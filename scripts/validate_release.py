@@ -18,6 +18,7 @@ REQUIRED_ERRORS = {
     "reorganising shifts", "equipment", "make their own", "mass-produced", "purpose", "bend",
     "entrance", "beyond", "alongside", "carpet", "electrician", "oven", "curtain", "vacuum",
     "thorough", "retention", "morale", "resentful", "preferential",
+    "get to grips with", "stalled", "colossal", "interest rates", "bolder move", "intrinsic",
 }
 
 
@@ -26,7 +27,7 @@ def fail(message: str) -> None:
 
 
 def main() -> None:
-    if AUDIT.get("sourceRows") != 743 or AUDIT.get("realErrorRows") != 40:
+    if AUDIT.get("sourceRows", 0) < 749 or AUDIT.get("realErrorRows", 0) < 46:
         fail(f"Unexpected Feishu source counts: {AUDIT}")
     if AUDIT.get("untraceableEntries") or AUDIT.get("duplicateIds"):
         fail("Untraceable or duplicate vocabulary entries found")

@@ -1,6 +1,6 @@
 {
   "voice": "en-GB-SoniaNeural",
-  "count": 293,
+  "count": 294,
   "files": [
     "audio/beginners.mp3",
     "audio/bilingual.mp3",
@@ -11,6 +11,7 @@
     "audio/electrician.mp3",
     "audio/entrance.mp3",
     "audio/equipment.mp3",
+    "audio/interest-rates.mp3",
     "audio/lead.mp3",
     "audio/litter.mp3",
     "audio/meal.mp3",

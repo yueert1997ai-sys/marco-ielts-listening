@@ -183,8 +183,8 @@ def build(rows: list[dict], revision: int) -> tuple[list[dict], dict]:
 
 
 def validate(items: list[dict], audit: dict) -> None:
-    if audit["realErrorRows"] != 40:
-        raise SystemExit(f"Expected exactly 40 real-error source rows, found {audit['realErrorRows']}")
+    if audit["realErrorRows"] < 46:
+        raise SystemExit(f"Expected at least 46 real-error source rows, found {audit['realErrorRows']}")
     if audit["duplicateIds"]:
         raise SystemExit("Duplicate item IDs found")
     if audit["activities"].get("spelling", 0) < 200:

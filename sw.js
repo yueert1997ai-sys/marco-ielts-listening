@@ -1,4 +1,4 @@
-const CACHE = "ielts-listening-v5";
+const CACHE = "ielts-listening-v6";
 const CORE = ["./", "./index.html", "./style.css", "./app.js", "./data/listening.json", "./manifest.webmanifest", "./icon.svg"];
 
 self.addEventListener("install", (event) => {

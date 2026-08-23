@@ -1,18 +1,18 @@
 {
-  "sourceRevision": 3,
-  "sourceRows": 743,
-  "uniqueEntries": 667,
-  "realErrorRows": 40,
-  "realErrorEntries": 42,
+  "sourceRevision": 4,
+  "sourceRows": 749,
+  "uniqueEntries": 673,
+  "realErrorRows": 46,
+  "realErrorEntries": 48,
   "activities": {
-    "recognition": 423,
-    "spelling": 293
+    "recognition": 429,
+    "spelling": 294
   },
   "sectionRows": {
     "P1 + P4 必会听写词": 275,
     "P2 + P3 必会看懂词": 281,
     "常见第二义": 48,
-    "我的真实错词": 40,
+    "我的真实错词": 46,
     "高频短语 / Chunk": 99
   },
   "untraceableEntries": 0,
