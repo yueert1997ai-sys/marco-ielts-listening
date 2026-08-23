@@ -156,6 +156,18 @@
     return [target, ...meanings].sort((a, b) => hashString(activity.key + a) - hashString(activity.key + b));
   }
 
+  function createBrowseDeck(sourceItems, filter = "all", seed = "default") {
+    return sourceItems
+      .filter((item) => {
+        if (filter === "spelling") return item.modes.includes("spelling");
+        if (filter === "recognition") return item.modes.includes("recognition");
+        if (filter === "errors") return item.isRealError;
+        return true;
+      })
+      .slice()
+      .sort((a, b) => hashString(`${seed}:${a.id}`) - hashString(`${seed}:${b.id}`));
+  }
+
   function diffAnswer(typed, expected) {
     const value = String(typed || "");
     return [...value].map((char, index) => {
@@ -171,7 +183,7 @@
   const api = {
     dateKey, addDays, hashString, normaliseAnswer, makeActivities, safeState,
     createDailyDeck, prepareDaily, scheduleReview, insertRetry, buildChoices,
-    shouldRevealAnswer, RESPONSE_LIMIT_MS, INTERVALS,
+    createBrowseDeck, shouldRevealAnswer, RESPONSE_LIMIT_MS, INTERVALS,
   };
 
   if (typeof module !== "undefined" && module.exports) module.exports = api;
@@ -183,9 +195,13 @@
   let state = safeState(null);
   let recognitionStartedAt = 0;
   let currentResult = null;
+  let browseFilter = "all";
+  let browseSeed = `${dateKey()}:browse`;
   const screen = document.getElementById("screen");
   const rail = document.getElementById("signal-rail");
   const dayCount = document.getElementById("day-count");
+  const screenTitle = document.getElementById("screen-title");
+  const appShell = document.getElementById("app");
 
   function loadState() {
     try { state = safeState(JSON.parse(localStorage.getItem(STORAGE_KEY))); }
@@ -222,9 +238,17 @@
     saveState();
   }
 
+  function setShellMode(mode) {
+    const browsing = mode === "browse";
+    appShell.classList.toggle("browse-mode", browsing);
+    screenTitle.textContent = browsing ? "随便刷" : "今日 50";
+    if (browsing) dayCount.textContent = "∞";
+    else updateChrome();
+  }
+
   function homeScreen() {
     window.scrollTo(0, 0);
-    updateChrome();
+    setShellMode("daily");
     const done = baseDone();
     const remainingRetries = state.daily.queue.filter((entry) => entry.isRetry).length;
     const buttonText = state.daily.completed ? "今天已完成" : (state.daily.started ? "继续训练" : "开始今日 50");
@@ -240,6 +264,10 @@
           </div>
         </div>
         <button id="start" class="primary" ${state.daily.completed ? "disabled" : ""}>${buttonText}</button>
+        <button id="browse" class="browse-entry">
+          <span><strong>随便刷</strong><small>不答题，不计进度，想停就停</small></span>
+          <b aria-hidden="true">∞</b>
+        </button>
         <p class="status-line">连续 ${state.streak || 0} 天${remainingRetries ? ` · 还有 ${remainingRetries} 个回炉题` : ""}</p>
         <details>
           <summary>进度与备份</summary>
@@ -255,6 +283,7 @@
       saveState();
       renderCurrent();
     });
+    document.getElementById("browse")?.addEventListener("click", browseScreen);
     document.getElementById("export")?.addEventListener("click", exportProgress);
     document.getElementById("import")?.addEventListener("change", importProgress);
   }
@@ -319,6 +348,7 @@
   }
 
   function renderCurrent() {
+    setShellMode("daily");
     updateChrome();
     const entry = state.daily.queue[0];
     if (!entry) {
@@ -341,6 +371,70 @@
     }
     if (activity.mode === "spelling") renderSpelling(entry, activity);
     else renderRecognition(entry, activity);
+  }
+
+  function browseScreen() {
+    window.scrollTo(0, 0);
+    setShellMode("browse");
+    const deck = createBrowseDeck(items, browseFilter, browseSeed);
+    const filters = [
+      ["all", "全部"],
+      ["spelling", "听写"],
+      ["recognition", "看懂"],
+      ["errors", "我的错词"],
+    ];
+    screen.innerHTML = `
+      <section class="browse">
+        <div class="browse-toolbar">
+          <button id="browse-back" class="text-button">← 今日任务</button>
+          <button id="browse-shuffle" class="text-button">换个顺序</button>
+        </div>
+        <div class="browse-intro">
+          <p>不用回忆，不用作答。往下滑，看到就算复习。</p>
+          <span>${deck.length} 条</span>
+        </div>
+        <div class="filter-strip" role="group" aria-label="筛选词表">
+          ${filters.map(([value, label]) => `<button class="filter-chip${browseFilter === value ? " active" : ""}" data-filter="${value}">${label}</button>`).join("")}
+        </div>
+        <div class="word-stream">
+          ${deck.map((item) => browseCard(item)).join("")}
+        </div>
+        <p class="stream-end">刷到底了。换个顺序，还能再来一遍。</p>
+      </section>`;
+    document.getElementById("browse-back").addEventListener("click", homeScreen);
+    document.getElementById("browse-shuffle").addEventListener("click", () => {
+      browseSeed = `${Date.now()}:${Math.random()}`;
+      browseScreen();
+    });
+    document.querySelectorAll(".filter-chip").forEach((button) => button.addEventListener("click", () => {
+      browseFilter = button.dataset.filter;
+      browseScreen();
+    }));
+    document.querySelectorAll(".mini-play").forEach((button) => button.addEventListener("click", () => {
+      const item = items.find((candidate) => candidate.id === button.dataset.id);
+      if (item) playAudio(item, button);
+    }));
+  }
+
+  function browseCard(item) {
+    const tags = [];
+    if (item.modes.includes("spelling")) tags.push("听写");
+    if (item.modes.includes("recognition")) tags.push("看懂");
+    if (item.isRealError) tags.push("错词");
+    const rawNote = String(item.errorNote || item.note || "").trim();
+    const note = /^[-—–]+$/.test(rawNote) ? "" : rawNote;
+    return `
+      <article class="word-card${item.isRealError ? " real-error" : ""}">
+        <div class="word-main">
+          <div>
+            <h2>${escapeHtml(item.term)}</h2>
+            <p>${escapeHtml(item.meaning)}</p>
+          </div>
+          ${item.audioPath ? `<button class="mini-play" data-id="${escapeHtml(item.id)}" aria-label="播放 ${escapeHtml(item.term)}">▶</button>` : ""}
+        </div>
+        ${note ? `<p class="word-note">${escapeHtml(note)}</p>` : ""}
+        <div class="word-tags">${tags.map((tag) => `<span>${tag}</span>`).join("")}</div>
+      </article>`;
   }
 
   function recordAttempt(entry, activity, outcome, detail) {
@@ -380,8 +474,8 @@
     document.getElementById("continue").addEventListener("click", renderCurrent);
   }
 
-  function playAudio(activity) {
-    const button = document.getElementById("play");
+  function playAudio(activity, targetButton) {
+    const button = targetButton || document.getElementById("play");
     button?.classList.add("playing");
     const finish = () => button?.classList.remove("playing");
     const audio = new Audio(`./${activity.audioPath}`);

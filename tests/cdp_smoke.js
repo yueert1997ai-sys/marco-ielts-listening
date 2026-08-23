@@ -71,7 +71,7 @@ async function screenshot(send, name) {
     const registration = await navigator.serviceWorker.ready;
     await new Promise((resolve) => setTimeout(resolve, 5000));
     const names = await caches.keys();
-    const cache = names.includes('ielts-listening-v3') ? await caches.open('ielts-listening-v3') : null;
+    const cache = names.includes('ielts-listening-v4') ? await caches.open('ielts-listening-v4') : null;
     const keys = cache ? await cache.keys() : [];
     return {
       active: registration.active?.state || null,
@@ -81,6 +81,21 @@ async function screenshot(send, name) {
     };
   })()`);
   await screenshot(send, "mobile-cdp-home.png");
+
+  await evaluate(send, "document.querySelector('#browse').click(); true");
+  await new Promise((resolve) => setTimeout(resolve, 200));
+  const browse = await evaluate(send, `(() => ({
+    title: document.querySelector('#screen-title')?.textContent,
+    count: document.querySelector('#day-count')?.textContent,
+    cards: document.querySelectorAll('.word-card').length,
+    filters: document.querySelectorAll('.filter-chip').length,
+    audioButtons: document.querySelectorAll('.mini-play').length,
+    scrollWidth: document.documentElement.scrollWidth,
+    railHidden: getComputedStyle(document.querySelector('#signal-rail')).display === 'none'
+  }))()`);
+  await screenshot(send, "mobile-cdp-browse.png");
+  await evaluate(send, "document.querySelector('#browse-back').click(); true");
+  await new Promise((resolve) => setTimeout(resolve, 100));
 
   await evaluate(send, "document.querySelector('#start').click(); true");
   await new Promise((resolve) => setTimeout(resolve, 200));
@@ -118,6 +133,6 @@ async function screenshot(send, name) {
   }))()`);
   await screenshot(send, "mobile-cdp-recognition.png");
 
-  console.log(JSON.stringify({ ok: true, home, offline, spelling, result, recognition }));
+  console.log(JSON.stringify({ ok: true, home, offline, browse, spelling, result, recognition }));
   socket.close();
 })().catch((error) => { console.error(error); process.exit(1); });

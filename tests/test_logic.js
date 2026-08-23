@@ -86,5 +86,13 @@ test("intervals match spec", () => assert.deepEqual(logic.INTERVALS, [1, 3, 7, 1
 test("spelling answer stays hidden after first error", () => assert.equal(logic.shouldRevealAnswer("spelling", "fail", 1), false));
 test("spelling answer reveals after third error", () => assert.equal(logic.shouldRevealAnswer("spelling", "fail", 3), true));
 test("recognition answer reveals immediately", () => assert.equal(logic.shouldRevealAnswer("recognition", "fail", 1), true));
+test("browse all contains every source item", () => assert.equal(logic.createBrowseDeck(items, "all", "seed").length, items.length));
+test("browse spelling only contains spelling items", () => assert(logic.createBrowseDeck(items, "spelling", "seed").every((item) => item.modes.includes("spelling"))));
+test("browse recognition only contains recognition items", () => assert(logic.createBrowseDeck(items, "recognition", "seed").every((item) => item.modes.includes("recognition"))));
+test("browse errors only contains real errors", () => assert(logic.createBrowseDeck(items, "errors", "seed").every((item) => item.isRealError)));
+test("browse order is deterministic for the same seed", () => assert.deepEqual(
+  logic.createBrowseDeck(items, "all", "same").map((item) => item.id),
+  logic.createBrowseDeck(items, "all", "same").map((item) => item.id)
+));
 
 console.log(JSON.stringify({ ok: true, tests }));
