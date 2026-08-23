@@ -1,0 +1,14 @@
+{
+  "name": "IELTS Listening 50",
+  "short_name": "Listening 50",
+  "description": "每天 25 个听音拼写和 25 个快速看义",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#dce9e6",
+  "theme_color": "#dce9e6",
+  "orientation": "portrait",
+  "icons": [
+    { "src": "./icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }
+  ]
+}

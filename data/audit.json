@@ -1,0 +1,20 @@
+{
+  "sourceRevision": 3,
+  "sourceRows": 743,
+  "uniqueEntries": 667,
+  "realErrorRows": 40,
+  "realErrorEntries": 42,
+  "activities": {
+    "recognition": 423,
+    "spelling": 293
+  },
+  "sectionRows": {
+    "P1 + P4 必会听写词": 275,
+    "P2 + P3 必会看懂词": 281,
+    "常见第二义": 48,
+    "我的真实错词": 40,
+    "高频短语 / Chunk": 99
+  },
+  "untraceableEntries": 0,
+  "duplicateIds": 0
+}

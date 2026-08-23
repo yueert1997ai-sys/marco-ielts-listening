@@ -1,6 +1,4 @@
-__pycache__/
-*.pyc
+mobile-*.png
 .DS_Store
 Thumbs.db
-work/
 .tools/
