@@ -81,7 +81,7 @@ test("new day creates new state", () => {
   assert.equal(state.daily.date, "2026-08-24"); assert.equal(Object.keys(state.daily.answeredBase).length, 0);
 });
 test("safe state rejects bad progress", () => assert.deepEqual(logic.safeState({ progress: null }).progress, {}));
-test("response limit is six seconds", () => assert.equal(logic.RESPONSE_LIMIT_MS, 6000));
+test("response limit is five seconds", () => assert.equal(logic.RESPONSE_LIMIT_MS, 5000));
 test("intervals match spec", () => assert.deepEqual(logic.INTERVALS, [1, 3, 7, 14, 30, 60]));
 test("spelling answer stays hidden after first error", () => assert.equal(logic.shouldRevealAnswer("spelling", "fail", 1), false));
 test("spelling answer reveals after third error", () => assert.equal(logic.shouldRevealAnswer("spelling", "fail", 3), true));

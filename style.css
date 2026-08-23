@@ -161,8 +161,11 @@ h1 { margin: 0; font-size: 25px; line-height: 1; letter-spacing: -.04em; }
 }
 .spelling-input:focus { border-color: var(--signal); box-shadow: 0 0 0 4px var(--signal-soft); }
 .submit-button { width: 100%; }
+.timer-label { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 7px; color: var(--muted); font-size: 11px; }
+.timer-label strong { min-width: 3ch; color: var(--signal); font: 800 16px/1 ui-monospace, SFMono-Regular, Consolas, monospace; text-align: right; }
+.timer-label strong.expired { color: var(--error); font-size: 12px; }
 .timer { height: 5px; border-radius: 9px; overflow: hidden; background: var(--line); margin-bottom: 15px; }
-.timer-bar { height: 100%; width: 100%; background: var(--signal); transform-origin: left; animation: countdown 6s linear forwards; }
+.timer-bar { height: 100%; width: 100%; background: var(--signal); transform-origin: left; animation: countdown 5s linear forwards; }
 .choices { display: grid; gap: 10px; margin-top: auto; }
 .choice {
   min-height: 59px;

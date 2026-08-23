@@ -71,7 +71,7 @@ async function screenshot(send, name) {
     const registration = await navigator.serviceWorker.ready;
     await new Promise((resolve) => setTimeout(resolve, 5000));
     const names = await caches.keys();
-    const cache = names.includes('ielts-listening-v4') ? await caches.open('ielts-listening-v4') : null;
+    const cache = names.includes('ielts-listening-v5') ? await caches.open('ielts-listening-v5') : null;
     const keys = cache ? await cache.keys() : [];
     return {
       active: registration.active?.state || null,
@@ -129,8 +129,11 @@ async function screenshot(send, name) {
   const recognition = await evaluate(send, `(() => ({
     mode: document.querySelector('.mode-label')?.textContent,
     choices: document.querySelectorAll('.choice').length,
-    timer: Boolean(document.querySelector('.timer-bar'))
+    timer: Boolean(document.querySelector('.timer-bar')),
+    timerText: document.querySelector('#timer-count')?.textContent
   }))()`);
+  await new Promise((resolve) => setTimeout(resolve, 5200));
+  recognition.expiredText = await evaluate(send, "document.querySelector('#timer-count')?.textContent");
   await screenshot(send, "mobile-cdp-recognition.png");
 
   console.log(JSON.stringify({ ok: true, home, offline, browse, spelling, result, recognition }));

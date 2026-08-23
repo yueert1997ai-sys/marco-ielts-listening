@@ -3,7 +3,7 @@
 
   const STORAGE_KEY = "marcoIeltsListening.v1";
   const DAILY_PER_MODE = 25;
-  const RESPONSE_LIMIT_MS = 6000;
+  const RESPONSE_LIMIT_MS = 5000;
   const INTERVALS = [1, 3, 7, 14, 30, 60];
 
   function dateKey(date = new Date()) {
@@ -194,6 +194,7 @@
   let activityMap = new Map();
   let state = safeState(null);
   let recognitionStartedAt = 0;
+  let recognitionTimerId = null;
   let currentResult = null;
   let browseFilter = "all";
   let browseSeed = `${dateKey()}:browse`;
@@ -257,7 +258,7 @@
         <div class="home-card">
           <p class="eyebrow">${escapeHtml(state.daily.date)}</p>
           <div class="hero-number">${done}</div>
-          <p class="hero-copy">先把到期词清掉。听写必须拼对，看义必须 6 秒内反应。</p>
+          <p class="hero-copy">先把到期词清掉。听写必须拼对，看义必须 5 秒内反应。</p>
           <div class="split-summary">
             <div class="split-item"><strong>25</strong><span>听音拼写</span></div>
             <div class="split-item"><strong>25</strong><span>快速看义</span></div>
@@ -324,21 +325,31 @@
 
   function renderRecognition(entry, activity) {
     window.scrollTo(0, 0);
+    clearInterval(recognitionTimerId);
     recognitionStartedAt = performance.now();
     const choices = buildChoices(activity, activities);
     screen.innerHTML = `
       <section class="session">
         ${sessionMeta(entry, activity)}
         <div class="question-card">
+          <div class="timer-label"><span>反应时间</span><strong id="timer-count">5</strong></div>
           <div class="timer"><div class="timer-bar"></div></div>
-          <p class="prompt">6 秒内选出最直接的意思</p>
+          <p class="prompt">选出最直接的意思</p>
           <h2 class="term">${escapeHtml(activity.term)}</h2>
           <div class="choices">
             ${choices.map((choice) => `<button class="choice" data-choice="${escapeHtml(choice)}">${escapeHtml(choice)}</button>`).join("")}
           </div>
         </div>
       </section>`;
+    const timerCount = document.getElementById("timer-count");
+    recognitionTimerId = setInterval(() => {
+      const remaining = Math.max(0, Math.ceil((RESPONSE_LIMIT_MS - (performance.now() - recognitionStartedAt)) / 1000));
+      timerCount.textContent = remaining > 0 ? String(remaining) : "超时";
+      timerCount.classList.toggle("expired", remaining === 0);
+      if (remaining === 0) clearInterval(recognitionTimerId);
+    }, 100);
     document.querySelectorAll(".choice").forEach((button) => button.addEventListener("click", () => {
+      clearInterval(recognitionTimerId);
       const elapsed = performance.now() - recognitionStartedAt;
       const selected = button.dataset.choice;
       const correct = selected === activity.meaning;
@@ -456,7 +467,7 @@
     const pass = outcome === "pass";
     const retryCount = state.daily.retryCount[activity.key] || 0;
     const reveal = shouldRevealAnswer(activity.mode, outcome, retryCount);
-    const label = pass ? "本次通过" : (outcome === "slow" ? "答对了，但超过 6 秒" : "这次没拼对 / 选对");
+    const label = pass ? "本次通过" : (outcome === "slow" ? "答对了，但超过 5 秒" : "这次没拼对 / 选对");
     const typed = detail.typed !== undefined
       ? `<p class="typed">你写的是：${diffAnswer(detail.typed, activity.term)}</p>`
       : (detail.selected ? `<p class="typed">你选的是：${escapeHtml(detail.selected)}</p>` : "");
