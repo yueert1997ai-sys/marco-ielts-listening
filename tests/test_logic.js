@@ -1,5 +1,6 @@
 const assert = require("assert");
 const logic = require("../app.js");
+const directions = require("../data/directions.json");
 
 let tests = 0;
 function test(name, fn) {
@@ -50,6 +51,38 @@ test("daily deck order changes across days", () => assert.notDeepEqual(
   logic.createDailyDeck(activities, {}, "2026-08-23"),
   logic.createDailyDeck(activities, {}, "2026-08-24")
 ));
+test("direction deck contains ten questions and all eight directions", () => {
+  const deck = logic.createDirectionDeck(directions, "coverage");
+  assert.equal(deck.length, 10);
+  assert.equal(new Set(deck.map((item) => item.id)).size, 8);
+});
+test("direction deck repeats two different directions", () => {
+  const deck = logic.createDirectionDeck(directions, "extras");
+  const counts = deck.reduce((result, item) => ({ ...result, [item.id]: (result[item.id] || 0) + 1 }), {});
+  assert.equal(Object.values(counts).filter((count) => count === 2).length, 2);
+});
+test("direction deck never repeats a direction immediately", () => {
+  for (let index = 0; index < 50; index += 1) {
+    const deck = logic.createDirectionDeck(directions, `adjacent-${index}`);
+    assert(deck.every((item, itemIndex) => itemIndex === 0 || item.id !== deck[itemIndex - 1].id));
+  }
+});
+test("direction answer passes at exactly two seconds", () => {
+  assert.equal(logic.judgeDirectionAttempt("north", "north", 2000).outcome, "pass");
+});
+test("direction answer fails when correct but slower than two seconds", () => {
+  assert.equal(logic.judgeDirectionAttempt("north", "north", 2000.01).outcome, "slow");
+});
+test("direction wrong answer and timeout fail", () => {
+  assert.equal(logic.judgeDirectionAttempt("north", "south", 800).outcome, "fail");
+  assert.equal(logic.judgeDirectionAttempt("north", null, 2000).outcome, "timeout");
+});
+test("direction run only passes with ten passed answers", () => {
+  const passed = Array.from({ length: 10 }, () => ({ passed: true }));
+  assert(logic.isDirectionRunPassed(passed));
+  assert(!logic.isDirectionRunPassed(passed.slice(0, 9)));
+  assert(!logic.isDirectionRunPassed([...passed.slice(0, 9), { passed: false }]));
+});
 test("pass advances one-day interval", () => {
   const record = logic.scheduleReview(null, "pass", "2026-08-23");
   assert.equal(record.stage, 1); assert.equal(record.due, "2026-08-24");
@@ -95,7 +128,9 @@ test("version one state migrates without losing progress", () => {
 });
 test("response limit is five seconds", () => assert.equal(logic.RESPONSE_LIMIT_MS, 5000));
 test("intervals match spec", () => assert.deepEqual(logic.INTERVALS, [1, 3, 7, 14, 30, 60]));
-test("visible app version matches this release", () => assert.equal(logic.APP_VERSION, "v2.6.0"));
+test("visible app version matches this release", () => assert.equal(logic.APP_VERSION, "v2.7.0"));
+test("direction response limit is two seconds", () => assert.equal(logic.DIRECTION_RESPONSE_LIMIT_MS, 2000));
+test("direction release preserves the existing training reset", () => assert.equal(logic.TRAINING_RESET_ID, "fresh-start-v2.5.0"));
 test("release reset clears training but preserves personal words and stars", () => {
   const reset = logic.applyTrainingReset(logic.safeState({
     progress: { "carpet:spelling": { stage: 3 } },

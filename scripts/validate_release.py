@@ -8,8 +8,10 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 ITEMS = json.loads((ROOT / "data" / "listening.json").read_text(encoding="utf-8"))
+DIRECTIONS = json.loads((ROOT / "data" / "directions.json").read_text(encoding="utf-8"))
 AUDIT = json.loads((ROOT / "data" / "audit.json").read_text(encoding="utf-8"))
 MANIFEST = json.loads((ROOT / "audio" / "manifest.json").read_text(encoding="utf-8"))
+DIRECTION_MANIFEST = json.loads((ROOT / "audio" / "directions-manifest.json").read_text(encoding="utf-8"))
 
 REQUIRED_ERRORS = {
     "litter", "meal", "midday", "beginner", "bilingual", "waitress", "reference", "mild",
@@ -65,6 +67,29 @@ def main() -> None:
     if MANIFEST.get("count") != len(ITEMS) or len(MANIFEST.get("files", [])) != len(ITEMS):
         fail("Audio manifest is incomplete")
 
+    expected_directions = {
+        "north", "northeast", "east", "southeast",
+        "south", "southwest", "west", "northwest",
+    }
+    if {item.get("id") for item in DIRECTIONS} != expected_directions:
+        fail("Direction data must contain the eight compass directions")
+    expected_positions = {(row, column) for row in range(3) for column in range(3)} - {(1, 1)}
+    if {(item.get("row"), item.get("column")) for item in DIRECTIONS} != expected_positions:
+        fail("Direction coordinates must fill the eight cells around the centre")
+    missing_direction_audio = []
+    for item in DIRECTIONS:
+        path = ROOT / item["audioPath"]
+        if not path.exists() or path.stat().st_size < 500:
+            missing_direction_audio.append(item["term"])
+            continue
+        header = path.read_bytes()[:3]
+        if header != b"ID3" and not (header and header[0] == 0xFF):
+            fail(f"Invalid direction MP3 header: {path.name}")
+    if missing_direction_audio:
+        fail(f"Missing direction audio: {missing_direction_audio}")
+    if DIRECTION_MANIFEST.get("count") != len(DIRECTIONS) or len(DIRECTION_MANIFEST.get("files", [])) != len(DIRECTIONS):
+        fail("Direction audio manifest is incomplete")
+
     for required in ("index.html", "app.js", "style.css", "sw.js", "manifest.webmanifest", "version.json", "icon.svg"):
         if not (ROOT / required).exists():
             fail(f"Missing app shell file: {required}")
@@ -82,6 +107,7 @@ def main() -> None:
         "realErrorRows": AUDIT["realErrorRows"],
         "realErrorEntries": AUDIT["realErrorEntries"],
         "audioFiles": MANIFEST["count"],
+        "directionAudioFiles": DIRECTION_MANIFEST["count"],
     }, ensure_ascii=False))
 
 

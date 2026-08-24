@@ -1,13 +1,13 @@
 {
   "sourceRevision": 4,
   "sourceRows": 749,
-  "uniqueEntries": 650,
+  "uniqueEntries": 654,
   "realErrorRows": 46,
-  "realErrorEntries": 47,
-  "customEntries": 1,
+  "realErrorEntries": 52,
+  "customEntries": 6,
   "activities": {
-    "recognition": 429,
-    "spelling": 271
+    "recognition": 433,
+    "spelling": 272
   },
   "sectionRows": {
     "P1 + P4 必会听写词": 275,

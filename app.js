@@ -2,12 +2,14 @@
   "use strict";
 
   const STORAGE_KEY = "marcoIeltsListening.v1";
-  const APP_VERSION = "v2.6.0";
+  const APP_VERSION = "v2.7.0";
   const TRAINING_RESET_ID = "fresh-start-v2.5.0";
   const DECK_REVISION = "whole-bank-v2";
   const DAILY_PER_MODE = 25;
   const BROWSE_PAGE_SIZE = 20;
   const RESPONSE_LIMIT_MS = 5000;
+  const DIRECTION_RESPONSE_LIMIT_MS = 2000;
+  const DIRECTION_QUESTION_COUNT = 10;
   const INTERVALS = [1, 3, 7, 14, 30, 60];
   const REPOSITORY_URL = "https://github.com/yueert1997ai-sys/marco-ielts-listening";
 
@@ -117,6 +119,31 @@
       .map((value, index) => ({ value, rank: hashString(`${seed}:${index}:${typeof value === "string" ? value : JSON.stringify(value)}`) }))
       .sort((a, b) => a.rank - b.rank)
       .map((entry) => entry.value);
+  }
+
+  function createDirectionDeck(directions, seed = "direction") {
+    const unique = [...new Map((directions || []).map((item) => [item.id, item])).values()];
+    if (unique.length !== 8) throw new Error("方位检测需要正好 8 个不同方向");
+    const base = seededShuffle(unique, `${seed}:base`);
+    const extras = seededShuffle(unique, `${seed}:extras`).slice(0, DIRECTION_QUESTION_COUNT - unique.length);
+    const pool = [...base, ...extras];
+    for (let attempt = 0; attempt < 50; attempt += 1) {
+      const deck = seededShuffle(pool, `${seed}:deck:${attempt}`);
+      if (deck.every((item, index) => index === 0 || item.id !== deck[index - 1].id)) return deck;
+    }
+    throw new Error("方位题目没有成功打乱");
+  }
+
+  function judgeDirectionAttempt(expectedId, selectedId, elapsedMs, limit = DIRECTION_RESPONSE_LIMIT_MS) {
+    const elapsed = Number.isFinite(elapsedMs) ? Math.max(0, elapsedMs) : limit;
+    const correct = selectedId === expectedId;
+    const inTime = elapsed <= limit;
+    const outcome = !selectedId ? "timeout" : (correct ? (inTime ? "pass" : "slow") : "fail");
+    return { expectedId, selectedId: selectedId || null, elapsedMs: elapsed, correct, inTime, outcome, passed: outcome === "pass" };
+  }
+
+  function isDirectionRunPassed(results, questionCount = DIRECTION_QUESTION_COUNT) {
+    return Array.isArray(results) && results.length === questionCount && results.every((result) => result.passed);
   }
 
   function createDailyDeck(activities, progress, today = dateKey(), starred = {}, options = {}) {
@@ -424,14 +451,17 @@
     dateKey, addDays, hashString, normaliseAnswer, makeActivities, safeState,
     createDailyDeck, prepareDaily, scheduleReview, insertRetry, buildChoices,
     createBrowseDeck, parseWrongWordInput, mergeCustomItems, migrateNumberVariantState, seededShuffle,
+    createDirectionDeck, judgeDirectionAttempt, isDirectionRunPassed,
     resetTrainingState, applyTrainingReset, shouldRevealAnswer,
-    RESPONSE_LIMIT_MS, INTERVALS, BROWSE_PAGE_SIZE, APP_VERSION, TRAINING_RESET_ID, DECK_REVISION,
+    RESPONSE_LIMIT_MS, DIRECTION_RESPONSE_LIMIT_MS, DIRECTION_QUESTION_COUNT,
+    INTERVALS, BROWSE_PAGE_SIZE, APP_VERSION, TRAINING_RESET_ID, DECK_REVISION,
   };
 
   if (typeof module !== "undefined" && module.exports) module.exports = api;
   if (typeof document === "undefined") return;
 
   let sourceItems = [];
+  let directions = [];
   let items = [];
   let activities = [];
   let activityMap = new Map();
@@ -443,6 +473,13 @@
   let browseFilter = "all";
   let browseSeed = `${dateKey()}:browse`;
   let browsePage = 1;
+  let directionRun = null;
+  let directionStartedAt = 0;
+  let directionTimerId = null;
+  let directionDeadlineId = null;
+  let directionFeedbackId = null;
+  let directionAnswered = false;
+  let directionAudio = null;
   const screen = document.getElementById("screen");
   const rail = document.getElementById("signal-rail");
   const dayCount = document.getElementById("day-count");
@@ -567,6 +604,16 @@
     }).join("");
   }
 
+  function updateDirectionChrome() {
+    const results = directionRun?.results || [];
+    dayCount.textContent = `${results.length}/${DIRECTION_QUESTION_COUNT}`;
+    rail.innerHTML = Array.from({ length: DIRECTION_QUESTION_COUNT }, (_, index) => {
+      const result = results[index];
+      const css = result ? (result.passed ? " done" : " weak") : "";
+      return `<span class="signal-tick${css}"></span>`;
+    }).join("");
+  }
+
   function finishDay() {
     if (state.daily.completed) return;
     const yesterday = addDays(state.daily.date, -1);
@@ -578,9 +625,12 @@
 
   function setShellMode(mode) {
     const browsing = mode === "browse";
+    const direction = mode === "direction";
     appShell.classList.toggle("browse-mode", browsing);
-    screenTitle.textContent = browsing ? "随便刷" : "今日 50";
+    appShell.classList.toggle("direction-mode", direction);
+    screenTitle.textContent = browsing ? "随便刷" : (direction ? "方位检测" : "今日 50");
     if (browsing) dayCount.textContent = "∞";
+    else if (direction) updateDirectionChrome();
     else updateChrome();
   }
 
@@ -604,6 +654,10 @@
           </div>
         </div>
         <button id="start" class="primary" ${state.daily.completed ? "disabled" : ""}>${buttonText}</button>
+        <button id="direction" class="direction-entry">
+          <span><strong>方位检测</strong><small>10 题 · 听音后 2 秒选中位置</small></span>
+          <b aria-hidden="true">⌖</b>
+        </button>
         <button id="browse" class="browse-entry">
           <span><strong>随便刷</strong><small>分页浏览、全词发音，想停就停</small></span>
           <b aria-hidden="true">∞</b>
@@ -636,6 +690,7 @@
       saveState();
       renderCurrent();
     });
+    document.getElementById("direction")?.addEventListener("click", directionIntroScreen);
     document.getElementById("browse")?.addEventListener("click", browseScreen);
     document.getElementById("inbox")?.addEventListener("click", inboxScreen);
     document.getElementById("starred")?.addEventListener("click", () => {
@@ -652,6 +707,249 @@
       saveState();
       homeScreen();
     });
+  }
+
+  function clearDirectionTiming() {
+    clearInterval(directionTimerId);
+    clearTimeout(directionDeadlineId);
+    clearTimeout(directionFeedbackId);
+    directionTimerId = null;
+    directionDeadlineId = null;
+    directionFeedbackId = null;
+    directionStartedAt = 0;
+  }
+
+  function stopDirectionAudio() {
+    if (!directionAudio) return;
+    directionAudio.pause();
+    directionAudio.onplaying = null;
+    directionAudio.onerror = null;
+  }
+
+  function leaveDirection() {
+    clearDirectionTiming();
+    stopDirectionAudio();
+    directionRun = null;
+    homeScreen();
+  }
+
+  function directionBoardMarkup(interactive = true) {
+    const nodes = directions.map((direction) => {
+      const position = `grid-row:${direction.row + 1};grid-column:${direction.column + 1}`;
+      if (!interactive) return `<span class="direction-target direction-target-preview" style="${position}"></span>`;
+      return `<button class="direction-target" type="button" data-direction="${escapeHtml(direction.id)}"
+        style="${position}" aria-label="${escapeHtml(direction.meaning)}方位" disabled><span></span></button>`;
+    }).join("");
+    return `<div class="direction-board${interactive ? "" : " direction-board-preview"}">
+      ${nodes}
+      <div class="direction-origin" aria-hidden="true"><span></span></div>
+    </div>`;
+  }
+
+  function directionIntroScreen() {
+    window.scrollTo(0, 0);
+    clearDirectionTiming();
+    stopDirectionAudio();
+    directionRun = null;
+    setShellMode("direction");
+    screen.innerHTML = `
+      <section class="direction-intro">
+        <div class="direction-toolbar">
+          <button id="direction-back" class="text-button">← 今日任务</button>
+          <span class="mode-label">AUDIO · 2 秒</span>
+        </div>
+        <div class="direction-intro-card">
+          <p class="eyebrow">8-WAY REFLEX</p>
+          <h2>听到英文，立即点方位。</h2>
+          <p>每轮 10 题。八个方向都会出现，全部答对且每题不超过 2 秒才算过关。</p>
+          ${directionBoardMarkup(false)}
+          <div class="direction-rules">
+            <span><b>01</b> 只播放英文</span>
+            <span><b>02</b> 圆点没有文字</span>
+            <span><b>03</b> 不能题内重播</span>
+          </div>
+        </div>
+        <button id="direction-start" class="primary">开始 10 题</button>
+      </section>`;
+    document.getElementById("direction-back").addEventListener("click", leaveDirection);
+    document.getElementById("direction-start").addEventListener("click", startDirectionRun);
+  }
+
+  function startDirectionRun() {
+    clearDirectionTiming();
+    stopDirectionAudio();
+    directionRun = {
+      deck: createDirectionDeck(directions, `${Date.now()}:${Math.random()}`),
+      results: [],
+    };
+    renderDirectionQuestion();
+  }
+
+  function playDirectionPrompt(question) {
+    if (!directionAudio) directionAudio = new Audio();
+    directionAudio.pause();
+    directionAudio.currentTime = 0;
+    directionAudio.src = `./${question.audioPath}`;
+    directionAudio.preload = "auto";
+    return new Promise((resolve, reject) => {
+      let settled = false;
+      const finish = (callback) => {
+        if (settled) return;
+        settled = true;
+        directionAudio.onplaying = null;
+        directionAudio.onerror = null;
+        callback();
+      };
+      directionAudio.onplaying = () => finish(resolve);
+      directionAudio.onerror = () => finish(() => reject(new Error("audio")));
+      const playing = directionAudio.play();
+      if (playing?.catch) playing.catch(() => finish(() => reject(new Error("audio"))));
+    });
+  }
+
+  function startDirectionCountdown() {
+    const board = document.querySelector(".direction-board");
+    const timerBar = document.getElementById("direction-timer-bar");
+    const timerCount = document.getElementById("direction-timer-count");
+    const prompt = document.getElementById("direction-prompt");
+    if (!directionRun || !board || !timerBar || !timerCount || !prompt) return;
+    directionAnswered = false;
+    directionStartedAt = performance.now();
+    board.classList.add("ready");
+    prompt.textContent = "现在选择";
+    timerBar.classList.remove("paused");
+    document.querySelectorAll(".direction-target").forEach((button) => { button.disabled = false; });
+    directionTimerId = setInterval(() => {
+      const remaining = Math.max(0, DIRECTION_RESPONSE_LIMIT_MS - (performance.now() - directionStartedAt));
+      timerCount.textContent = remaining > 0 ? (remaining / 1000).toFixed(1) : "超时";
+      timerCount.classList.toggle("expired", remaining === 0);
+    }, 50);
+    directionDeadlineId = setTimeout(() => finishDirectionAnswer(null), DIRECTION_RESPONSE_LIMIT_MS);
+  }
+
+  function showDirectionAudioError(question) {
+    const prompt = document.getElementById("direction-prompt");
+    const retry = document.getElementById("direction-audio-retry");
+    if (!directionRun || !prompt || !retry) return;
+    prompt.textContent = "音频没有开始，本题尚未计时";
+    retry.hidden = false;
+    retry.onclick = () => {
+      retry.hidden = true;
+      prompt.textContent = "准备播放…";
+      playDirectionPrompt(question).then(startDirectionCountdown).catch(() => showDirectionAudioError(question));
+    };
+  }
+
+  function renderDirectionQuestion() {
+    window.scrollTo(0, 0);
+    clearDirectionTiming();
+    setShellMode("direction");
+    if (!directionRun || directionRun.results.length >= DIRECTION_QUESTION_COUNT) {
+      renderDirectionResult();
+      return;
+    }
+    directionAnswered = true;
+    const index = directionRun.results.length;
+    const question = directionRun.deck[index];
+    screen.innerHTML = `
+      <section class="direction-session">
+        <div class="direction-toolbar">
+          <button id="direction-exit" class="text-button">← 退出</button>
+          <span class="mode-label">第 ${index + 1}/${DIRECTION_QUESTION_COUNT} 题</span>
+        </div>
+        <div class="direction-card">
+          <div class="timer-label"><span>反应时间</span><strong id="direction-timer-count">2.0</strong></div>
+          <div class="timer"><div id="direction-timer-bar" class="direction-timer-bar paused"></div></div>
+          <p id="direction-prompt" class="direction-prompt" aria-live="polite">准备播放…</p>
+          ${directionBoardMarkup(true)}
+          <div id="direction-feedback" class="direction-feedback" aria-live="polite"></div>
+          <button id="direction-audio-retry" class="test-play direction-audio-retry" type="button" hidden>重新播放</button>
+        </div>
+      </section>`;
+    document.getElementById("direction-exit").addEventListener("click", leaveDirection);
+    document.querySelectorAll(".direction-target").forEach((button) => {
+      button.addEventListener("click", () => finishDirectionAnswer(button.dataset.direction));
+    });
+    playDirectionPrompt(question).then(startDirectionCountdown).catch(() => showDirectionAudioError(question));
+  }
+
+  function finishDirectionAnswer(selectedId) {
+    if (directionAnswered || !directionRun || !directionStartedAt) return;
+    directionAnswered = true;
+    clearInterval(directionTimerId);
+    clearTimeout(directionDeadlineId);
+    directionTimerId = null;
+    directionDeadlineId = null;
+    const index = directionRun.results.length;
+    const question = directionRun.deck[index];
+    const elapsed = selectedId ? performance.now() - directionStartedAt : DIRECTION_RESPONSE_LIMIT_MS;
+    const result = {
+      ...judgeDirectionAttempt(question.id, selectedId, elapsed),
+      term: question.term,
+      meaning: question.meaning,
+    };
+    directionRun.results.push(result);
+    document.querySelectorAll(".direction-target").forEach((button) => {
+      button.disabled = true;
+      if (button.dataset.direction === question.id) button.classList.add("correct");
+      if (selectedId && button.dataset.direction === selectedId && selectedId !== question.id) button.classList.add("wrong");
+    });
+    const timerCount = document.getElementById("direction-timer-count");
+    const timerBar = document.getElementById("direction-timer-bar");
+    if (timerCount) {
+      timerCount.textContent = result.outcome === "timeout" ? "超时" : `${(result.elapsedMs / 1000).toFixed(2)}s`;
+      timerCount.classList.toggle("expired", !result.passed);
+    }
+    timerBar?.classList.add("stopped");
+    const label = result.passed ? "答对" : (result.outcome === "timeout" ? "超时" : (result.outcome === "slow" ? "超过 2 秒" : "选错"));
+    const feedback = document.getElementById("direction-feedback");
+    if (feedback) {
+      feedback.className = `direction-feedback visible ${result.passed ? "pass" : "weak"}`;
+      feedback.innerHTML = `<strong>${escapeHtml(question.term)}</strong><span>${escapeHtml(question.meaning)} · ${label}</span>`;
+    }
+    updateDirectionChrome();
+    directionFeedbackId = setTimeout(renderDirectionQuestion, 700);
+  }
+
+  function renderDirectionResult() {
+    window.scrollTo(0, 0);
+    clearDirectionTiming();
+    stopDirectionAudio();
+    setShellMode("direction");
+    const results = directionRun?.results || [];
+    const passedCount = results.filter((result) => result.passed).length;
+    const passed = isDirectionRunPassed(results);
+    const average = results.length ? results.reduce((sum, result) => sum + result.elapsedMs, 0) / results.length : 0;
+    const misses = results.filter((result) => !result.passed);
+    const directionMap = new Map(directions.map((direction) => [direction.id, direction]));
+    const missesMarkup = misses.length ? `
+      <div class="direction-misses">
+        <p>需要再练</p>
+        ${misses.map((result) => {
+          const selected = directionMap.get(result.selectedId);
+          const reason = result.outcome === "timeout" ? "超时" : (result.outcome === "slow" ? `${(result.elapsedMs / 1000).toFixed(2)} 秒` : `误选 ${selected?.meaning || "其他方位"}`);
+          return `<div><strong>${escapeHtml(result.term)} · ${escapeHtml(result.meaning)}</strong><span>${escapeHtml(reason)}</span></div>`;
+        }).join("")}
+      </div>` : "";
+    screen.innerHTML = `
+      <section class="direction-result">
+        <div class="direction-toolbar">
+          <button id="direction-result-home" class="text-button">← 今日任务</button>
+          <span class="mode-label">本轮完成</span>
+        </div>
+        <div class="direction-result-card">
+          <p class="result-mark ${passed ? "pass" : "weak"}">${passed ? "方位反射合格" : "本轮还未过关"}</p>
+          <div class="direction-score"><strong>${passedCount}</strong><span>/10</span></div>
+          <p>${passed ? "十题全部在 2 秒内答对。" : "必须十题全部答对且不超时，再来一轮。"}</p>
+          <div class="direction-result-stat"><span>平均反应</span><strong>${(average / 1000).toFixed(2)} 秒</strong></div>
+          ${missesMarkup}
+        </div>
+        <button id="direction-restart" class="primary">再测一次</button>
+        <button id="direction-finish-home" class="secondary direction-home-button">返回首页</button>
+      </section>`;
+    document.getElementById("direction-result-home").addEventListener("click", leaveDirection);
+    document.getElementById("direction-finish-home").addEventListener("click", leaveDirection);
+    document.getElementById("direction-restart").addEventListener("click", startDirectionRun);
   }
 
   function sessionMeta(entry, activity) {
@@ -1130,9 +1428,12 @@
     try {
       versionButton?.addEventListener("click", forceAppUpdate);
       showVersionStatus();
-      const response = await fetch(`./data/listening.json?v=${encodeURIComponent(APP_VERSION)}`);
-      if (!response.ok) throw new Error(`HTTP ${response.status}`);
-      sourceItems = await response.json();
+      const [response, directionResponse] = await Promise.all([
+        fetch(`./data/listening.json?v=${encodeURIComponent(APP_VERSION)}`),
+        fetch(`./data/directions.json?v=${encodeURIComponent(APP_VERSION)}`),
+      ]);
+      if (!response.ok || !directionResponse.ok) throw new Error(`HTTP ${response.status}/${directionResponse.status}`);
+      [sourceItems, directions] = await Promise.all([response.json(), directionResponse.json()]);
       loadState();
       state = applyTrainingReset(state);
       migrateNumberVariantState(state, sourceItems);

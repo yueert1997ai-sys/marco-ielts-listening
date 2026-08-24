@@ -1,11 +1,12 @@
-const APP_VERSION = "v2.6.0";
-const CACHE = "ielts-listening-v12";
+const APP_VERSION = "v2.7.0";
+const CACHE = "ielts-listening-v13";
 const CORE = [
   "./",
   `./index.html?v=${APP_VERSION}`,
   `./style.css?v=${APP_VERSION}`,
   `./app.js?v=${APP_VERSION}`,
   `./data/listening.json?v=${APP_VERSION}`,
+  `./data/directions.json?v=${APP_VERSION}`,
   `./manifest.webmanifest?v=${APP_VERSION}`,
   `./version.json?v=${APP_VERSION}`,
   "./icon.svg",
@@ -14,8 +15,11 @@ const CORE = [
 self.addEventListener("install", (event) => {
   event.waitUntil(caches.open(CACHE).then(async (cache) => {
     await cache.addAll(CORE);
-    const data = await fetch(`./data/listening.json?v=${APP_VERSION}`).then((response) => response.json());
-    const audio = [...new Set(data.filter((item) => item.audioPath).map((item) => `./${item.audioPath}`))];
+    const [data, directions] = await Promise.all([
+      fetch(`./data/listening.json?v=${APP_VERSION}`).then((response) => response.json()),
+      fetch(`./data/directions.json?v=${APP_VERSION}`).then((response) => response.json()),
+    ]);
+    const audio = [...new Set([...data, ...directions].filter((item) => item.audioPath).map((item) => `./${item.audioPath}`))];
     for (let index = 0; index < audio.length; index += 20) {
       await cache.addAll(audio.slice(index, index + 20));
     }
@@ -40,7 +44,8 @@ self.addEventListener("fetch", (event) => {
       url.pathname.endsWith("/style.css") ||
       url.pathname.endsWith("/manifest.webmanifest") ||
       url.pathname.endsWith("/version.json") ||
-      url.pathname.endsWith("/data/listening.json")
+      url.pathname.endsWith("/data/listening.json") ||
+      url.pathname.endsWith("/data/directions.json")
     )
   );
 

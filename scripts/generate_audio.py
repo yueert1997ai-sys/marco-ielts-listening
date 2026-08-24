@@ -12,12 +12,14 @@ import edge_tts
 
 ROOT = Path(__file__).resolve().parents[1]
 DATA = ROOT / "data" / "listening.json"
+DIRECTIONS = ROOT / "data" / "directions.json"
 OUT = ROOT / "audio"
 VOICE = "en-GB-SoniaNeural"
 
 
 async def generate(item: dict, semaphore: asyncio.Semaphore, overwrite: bool) -> tuple[str, str]:
-    path = OUT / f"{item['id']}.mp3"
+    path = ROOT / item.get("audioPath", f"audio/{item['id']}.mp3")
+    path.parent.mkdir(parents=True, exist_ok=True)
     if path.exists() and path.stat().st_size > 500 and not overwrite:
         return item["id"], "cached"
     async with semaphore:
@@ -40,17 +42,23 @@ async def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--limit", type=int)
     parser.add_argument("--overwrite", action="store_true")
+    parser.add_argument("--directions-only", action="store_true")
     args = parser.parse_args()
-    items = json.loads(DATA.read_text(encoding="utf-8"))
+    vocabulary = json.loads(DATA.read_text(encoding="utf-8"))
+    directions = json.loads(DIRECTIONS.read_text(encoding="utf-8"))
+    items = directions if args.directions_only else [*vocabulary, *directions]
     if args.limit:
         items = items[: args.limit]
     OUT.mkdir(parents=True, exist_ok=True)
     semaphore = asyncio.Semaphore(2)
     results = await asyncio.gather(*(generate(item, semaphore, args.overwrite) for item in items))
     counts = {status: sum(1 for _, value in results if value == status) for status in {value for _, value in results}}
-    successful = [item for item in items if (OUT / f"{item['id']}.mp3").exists() and (OUT / f"{item['id']}.mp3").stat().st_size > 500]
+    successful = [item for item in vocabulary if (ROOT / item["audioPath"]).exists() and (ROOT / item["audioPath"]).stat().st_size > 500]
     manifest = {"voice": VOICE, "count": len(successful), "files": [item["audioPath"] for item in successful]}
     (OUT / "manifest.json").write_text(json.dumps(manifest, ensure_ascii=False, indent=2), encoding="utf-8")
+    direction_successful = [item for item in directions if (ROOT / item["audioPath"]).exists() and (ROOT / item["audioPath"]).stat().st_size > 500]
+    direction_manifest = {"voice": VOICE, "count": len(direction_successful), "files": [item["audioPath"] for item in direction_successful]}
+    (OUT / "directions-manifest.json").write_text(json.dumps(direction_manifest, ensure_ascii=False, indent=2), encoding="utf-8")
     print(json.dumps({"ok": True, **counts, "total": len(items)}, ensure_ascii=False))
     if counts.get("failed"):
         raise SystemExit(1)

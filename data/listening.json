@@ -162,6 +162,29 @@
     "audioPath": "audio/carpet.mp3"
   },
   {
+    "id": "colony",
+    "term": "colony",
+    "meaning": "殖民地；（动植物的）群落、群体",
+    "note": "今日生词：不认识；注意动物或生物语境中的群体义",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "colony"
+    ],
+    "errorNote": "今日生词：不认识；注意动物或生物语境中的群体义",
+    "userAddedAt": "2026-08-24",
+    "sourceType": "user",
+    "sourceRevision": 4,
+    "audioText": "colony",
+    "audioPath": "audio/colony.mp3"
+  },
+  {
     "id": "colossal",
     "term": "colossal",
     "meaning": "巨大的；规模惊人的",
@@ -181,6 +204,30 @@
     "sourceRevision": 4,
     "audioText": "colossal",
     "audioPath": "audio/colossal.mp3"
+  },
+  {
+    "id": "council",
+    "term": "council",
+    "meaning": "委员会；地方议会",
+    "note": "今日生词：原记录 concil，正确拼写为 council；拼写与识义不确定",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition",
+      "spelling"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "council"
+    ],
+    "errorNote": "今日生词：原记录 concil，正确拼写为 council；拼写与识义不确定",
+    "userAddedAt": "2026-08-24",
+    "sourceType": "user",
+    "sourceRevision": 4,
+    "audioText": "council",
+    "audioPath": "audio/council.mp3"
   },
   {
     "id": "curtain",
@@ -299,6 +346,29 @@
     "sourceRevision": 4,
     "audioText": "equipment",
     "audioPath": "audio/equipment.mp3"
+  },
+  {
+    "id": "erected",
+    "term": "erected",
+    "meaning": "建造；竖立（erect 的过去式/过去分词）",
+    "note": "今日生词：识义；常用于建筑物、纪念碑等被建造或竖立",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "erected"
+    ],
+    "errorNote": "今日生词：识义；常用于建筑物、纪念碑等被建造或竖立",
+    "userAddedAt": "2026-08-24",
+    "sourceType": "user",
+    "sourceRevision": 4,
+    "audioText": "erected",
+    "audioPath": "audio/erected.mp3"
   },
   {
     "id": "excessive-sweating",
@@ -725,6 +795,30 @@
     "audioPath": "audio/pharmacy.mp3"
   },
   {
+    "id": "postpone",
+    "term": "postpone",
+    "meaning": "推迟；延期",
+    "note": "—",
+    "category": "行为与决策动作",
+    "sections": [
+      "P2 + P3 必会看懂词",
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "postpone"
+    ],
+    "errorNote": "今日生词：识义；postpone = 推迟",
+    "userAddedAt": "2026-08-24",
+    "sourceType": "user",
+    "sourceRevision": 4,
+    "audioText": "postpone",
+    "audioPath": "audio/postpone.mp3"
+  },
+  {
     "id": "preferential",
     "term": "preferential",
     "meaning": "优先的；给予优待的",
@@ -880,6 +974,29 @@
     "sourceRevision": 4,
     "audioText": "resentful",
     "audioPath": "audio/resentful.mp3"
+  },
+  {
+    "id": "resurfaced",
+    "term": "resurfaced",
+    "meaning": "重新铺设表面；再次出现（resurface 的过去式/过去分词）",
+    "note": "今日生词：识义；道路语境常指重新铺路面",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "resurfaced"
+    ],
+    "errorNote": "今日生词：识义；道路语境常指重新铺路面",
+    "userAddedAt": "2026-08-24",
+    "sourceType": "user",
+    "sourceRevision": 4,
+    "audioText": "resurfaced",
+    "audioPath": "audio/resurfaced.mp3"
   },
   {
     "id": "retention",
@@ -9521,26 +9638,6 @@
     "sourceRevision": 4,
     "audioText": "postcode",
     "audioPath": "audio/postcode.mp3"
-  },
-  {
-    "id": "postpone",
-    "term": "postpone",
-    "meaning": "推迟",
-    "note": "—",
-    "category": "行为与决策动作",
-    "sections": [
-      "P2 + P3 必会看懂词"
-    ],
-    "modes": [
-      "recognition"
-    ],
-    "isRealError": false,
-    "acceptedAnswers": [
-      "postpone"
-    ],
-    "sourceRevision": 4,
-    "audioText": "postpone",
-    "audioPath": "audio/postpone.mp3"
   },
   {
     "id": "practical",

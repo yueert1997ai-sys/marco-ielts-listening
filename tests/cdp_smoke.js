@@ -71,16 +71,43 @@ async function screenshot(send, name) {
     const registration = await navigator.serviceWorker.ready;
     await new Promise((resolve) => setTimeout(resolve, 5000));
     const names = await caches.keys();
-    const cache = names.includes('ielts-listening-v6') ? await caches.open('ielts-listening-v6') : null;
+    const cache = names.includes('ielts-listening-v13') ? await caches.open('ielts-listening-v13') : null;
     const keys = cache ? await cache.keys() : [];
     return {
       active: registration.active?.state || null,
       names,
       total: keys.length,
-      audio: keys.filter((request) => request.url.includes('/audio/') && request.url.endsWith('.mp3')).length
+      audio: keys.filter((request) => request.url.includes('/audio/') && request.url.endsWith('.mp3')).length,
+      directionAudio: keys.filter((request) => request.url.includes('/audio/directions/') && request.url.endsWith('.mp3')).length
     };
   })()`);
   await screenshot(send, "mobile-cdp-home.png");
+
+  const dailyBeforeDirection = await evaluate(send, "JSON.stringify(JSON.parse(localStorage.getItem('marcoIeltsListening.v1')).daily)");
+  await evaluate(send, "document.querySelector('#direction').click(); true");
+  await new Promise((resolve) => setTimeout(resolve, 100));
+  const directionIntro = await evaluate(send, `(() => ({
+    title: document.querySelector('#screen-title')?.textContent,
+    previewTargets: document.querySelectorAll('.direction-target-preview').length,
+    rules: document.querySelectorAll('.direction-rules span').length,
+    ticks: document.querySelectorAll('.signal-tick').length,
+    scrollWidth: document.documentElement.scrollWidth
+  }))()`);
+  await evaluate(send, "document.querySelector('#direction-start').click(); true");
+  await new Promise((resolve) => setTimeout(resolve, 350));
+  const directionSession = await evaluate(send, `(() => ({
+    targets: document.querySelectorAll('button.direction-target').length,
+    timer: document.querySelector('#direction-timer-count')?.textContent,
+    replayVisible: !document.querySelector('#direction-audio-retry')?.hidden,
+    boardWidth: Math.round(document.querySelector('.direction-board').getBoundingClientRect().width),
+    boardHeight: Math.round(document.querySelector('.direction-board').getBoundingClientRect().height),
+    scrollWidth: document.documentElement.scrollWidth
+  }))()`);
+  await screenshot(send, "mobile-cdp-direction.png");
+  await evaluate(send, "document.querySelector('#direction-exit').click(); true");
+  await new Promise((resolve) => setTimeout(resolve, 100));
+  directionSession.dailyUnchanged = await evaluate(send,
+    `JSON.stringify(JSON.parse(localStorage.getItem('marcoIeltsListening.v1')).daily) === ${JSON.stringify(dailyBeforeDirection)}`);
 
   await evaluate(send, "document.querySelector('#browse').click(); true");
   await new Promise((resolve) => setTimeout(resolve, 200));
@@ -136,6 +163,6 @@ async function screenshot(send, name) {
   recognition.expiredText = await evaluate(send, "document.querySelector('#timer-count')?.textContent");
   await screenshot(send, "mobile-cdp-recognition.png");
 
-  console.log(JSON.stringify({ ok: true, home, offline, browse, spelling, result, recognition }));
+  console.log(JSON.stringify({ ok: true, home, offline, directionIntro, directionSession, browse, spelling, result, recognition }));
   socket.close();
 })().catch((error) => { console.error(error); process.exit(1); });

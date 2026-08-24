@@ -1,0 +1,14 @@
+{
+  "voice": "en-GB-SoniaNeural",
+  "count": 8,
+  "files": [
+    "audio/directions/north.mp3",
+    "audio/directions/northeast.mp3",
+    "audio/directions/east.mp3",
+    "audio/directions/southeast.mp3",
+    "audio/directions/south.mp3",
+    "audio/directions/southwest.mp3",
+    "audio/directions/west.mp3",
+    "audio/directions/northwest.mp3"
+  ]
+}

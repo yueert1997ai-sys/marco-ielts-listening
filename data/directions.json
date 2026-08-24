@@ -1,0 +1,74 @@
+[
+  {
+    "id": "north",
+    "term": "north",
+    "meaning": "北",
+    "row": 0,
+    "column": 1,
+    "audioText": "north",
+    "audioPath": "audio/directions/north.mp3"
+  },
+  {
+    "id": "northeast",
+    "term": "northeast",
+    "meaning": "东北",
+    "row": 0,
+    "column": 2,
+    "audioText": "northeast",
+    "audioPath": "audio/directions/northeast.mp3"
+  },
+  {
+    "id": "east",
+    "term": "east",
+    "meaning": "东",
+    "row": 1,
+    "column": 2,
+    "audioText": "east",
+    "audioPath": "audio/directions/east.mp3"
+  },
+  {
+    "id": "southeast",
+    "term": "southeast",
+    "meaning": "东南",
+    "row": 2,
+    "column": 2,
+    "audioText": "southeast",
+    "audioPath": "audio/directions/southeast.mp3"
+  },
+  {
+    "id": "south",
+    "term": "south",
+    "meaning": "南",
+    "row": 2,
+    "column": 1,
+    "audioText": "south",
+    "audioPath": "audio/directions/south.mp3"
+  },
+  {
+    "id": "southwest",
+    "term": "southwest",
+    "meaning": "西南",
+    "row": 2,
+    "column": 0,
+    "audioText": "southwest",
+    "audioPath": "audio/directions/southwest.mp3"
+  },
+  {
+    "id": "west",
+    "term": "west",
+    "meaning": "西",
+    "row": 1,
+    "column": 0,
+    "audioText": "west",
+    "audioPath": "audio/directions/west.mp3"
+  },
+  {
+    "id": "northwest",
+    "term": "northwest",
+    "meaning": "西北",
+    "row": 0,
+    "column": 0,
+    "audioText": "northwest",
+    "audioPath": "audio/directions/northwest.mp3"
+  }
+]

@@ -1,5 +1,39 @@
 [
   {
+    "id": "colony",
+    "term": "colony",
+    "meaning": "殖民地；（动植物的）群落、群体",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "今日生词：不认识；注意动物或生物语境中的群体义",
+    "category": "我的同步错词",
+    "addedAt": "2026-08-24"
+  },
+  {
+    "id": "council",
+    "term": "council",
+    "meaning": "委员会；地方议会",
+    "modes": [
+      "recognition",
+      "spelling"
+    ],
+    "reason": "今日生词：原记录 concil，正确拼写为 council；拼写与识义不确定",
+    "category": "我的同步错词",
+    "addedAt": "2026-08-24"
+  },
+  {
+    "id": "erected",
+    "term": "erected",
+    "meaning": "建造；竖立（erect 的过去式/过去分词）",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "今日生词：识义；常用于建筑物、纪念碑等被建造或竖立",
+    "category": "我的同步错词",
+    "addedAt": "2026-08-24"
+  },
+  {
     "id": "meticulous",
     "term": "meticulous",
     "meaning": "一丝不苟的；非常仔细的",
@@ -7,6 +41,28 @@
       "recognition"
     ],
     "reason": "自动同步链路验收；阅读识词",
+    "category": "我的同步错词",
+    "addedAt": "2026-08-24"
+  },
+  {
+    "id": "postpone",
+    "term": "postpone",
+    "meaning": "推迟；延期",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "今日生词：识义；postpone = 推迟",
+    "category": "我的同步错词",
+    "addedAt": "2026-08-24"
+  },
+  {
+    "id": "resurfaced",
+    "term": "resurfaced",
+    "meaning": "重新铺设表面；再次出现（resurface 的过去式/过去分词）",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "今日生词：识义；道路语境常指重新铺路面",
     "category": "我的同步错词",
     "addedAt": "2026-08-24"
   }
