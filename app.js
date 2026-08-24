@@ -2,7 +2,7 @@
   "use strict";
 
   const STORAGE_KEY = "marcoIeltsListening.v1";
-  const APP_VERSION = "v2.5.0";
+  const APP_VERSION = "v2.6.0";
   const TRAINING_RESET_ID = "fresh-start-v2.5.0";
   const DECK_REVISION = "whole-bank-v2";
   const DAILY_PER_MODE = 25;
@@ -693,7 +693,10 @@
           <input id="answer" class="spelling-input" type="text" inputmode="text"
             autocomplete="off" autocapitalize="none" autocorrect="off" spellcheck="false"
             enterkeyhint="done" aria-label="输入英文答案" placeholder="输入你听到的词">
-          <button class="submit-button" type="submit">检查拼写</button>
+          <div class="answer-actions">
+            <button class="submit-button" type="submit">检查拼写</button>
+            <button id="spelling-dont-know" class="dont-know-button" type="button">不会</button>
+          </div>
         </form>
       </section>`;
     const playButton = document.getElementById("play");
@@ -705,6 +708,9 @@
       if (!normaliseAnswer(typed)) return;
       const correct = activity.acceptedAnswers.some((answer) => normaliseAnswer(answer) === normaliseAnswer(typed));
       recordAttempt(entry, activity, correct ? "pass" : "fail", { typed });
+    });
+    document.getElementById("spelling-dont-know").addEventListener("click", () => {
+      recordAttempt(entry, activity, "fail", { skipped: true });
     });
     playAudio(activity, playButton);
   }
@@ -728,6 +734,7 @@
           <div class="choices">
             ${choices.map((choice) => `<button class="choice" data-choice="${escapeHtml(choice)}">${escapeHtml(choice)}</button>`).join("")}
           </div>
+          <button id="recognition-dont-know" class="dont-know-button" type="button">不会</button>
         </div>
       </section>`;
     const timerCount = document.getElementById("timer-count");
@@ -754,6 +761,10 @@
       const outcome = correct && elapsed <= RESPONSE_LIMIT_MS ? "pass" : (correct ? "slow" : "fail");
       recordAttempt(entry, activity, outcome, { selected, elapsed });
     }));
+    document.getElementById("recognition-dont-know").addEventListener("click", () => {
+      clearInterval(recognitionTimerId);
+      recordAttempt(entry, activity, "fail", { skipped: true });
+    });
     playAudio(activity, playButton).then(startTimer);
   }
 
@@ -901,10 +912,12 @@
     const { activity, outcome, detail } = currentResult;
     const pass = outcome === "pass";
     const record = state.progress[activity.key] || {};
-    const label = pass ? "本次通过" : (outcome === "slow" ? "答对了，但超过 5 秒" : "这次答错了");
-    const typed = detail.typed !== undefined
+    const label = detail.skipped ? "已标记为不会" : (pass ? "本次通过" : (outcome === "slow" ? "答对了，但超过 5 秒" : "这次答错了"));
+    const typed = detail.skipped
+      ? `<p class="typed">你选择了：不会</p>`
+      : (detail.typed !== undefined
       ? `<p class="typed">你写的是：${diffAnswer(detail.typed, activity.term)}</p>`
-      : (detail.selected ? `<p class="typed">你选的是：${escapeHtml(detail.selected)}</p>` : "");
+      : (detail.selected ? `<p class="typed">你选的是：${escapeHtml(detail.selected)}</p>` : ""));
     screen.innerHTML = `
       <section class="result">
         <div class="result-toolbar">
