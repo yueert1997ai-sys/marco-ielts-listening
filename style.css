@@ -311,6 +311,30 @@ h1 { margin: 0; font-size: 25px; line-height: 1; letter-spacing: -.04em; }
   justify-content: space-between;
   margin-bottom: 8px;
 }
+.direction-mode-switch {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+.direction-mode-option {
+  min-width: 0;
+  min-height: 62px;
+  padding: 10px 12px;
+  display: grid;
+  align-content: center;
+  gap: 5px;
+  text-align: left;
+  color: var(--muted);
+  background: rgba(246, 250, 248, .5);
+  border: 1px solid rgba(16, 42, 49, .16);
+  border-radius: 15px;
+  cursor: pointer;
+}
+.direction-mode-option span { font-size: 13px; font-weight: 800; }
+.direction-mode-option strong { font: 750 11px/1 ui-monospace, SFMono-Regular, Consolas, monospace; }
+.direction-mode-option.active { color: var(--signal); background: var(--signal-soft); border-color: rgba(35, 104, 196, .42); }
+.direction-mode-option.hard.active { color: #765006; background: #fff3d5; border-color: var(--warm); box-shadow: inset 3px 0 0 var(--warm); }
 .direction-intro-card, .direction-card, .direction-result-card {
   background: var(--paper);
   border: 1px solid rgba(16, 42, 49, .11);
@@ -351,6 +375,15 @@ h1 { margin: 0; font-size: 25px; line-height: 1; letter-spacing: -.04em; }
 }
 .direction-board::before { width: 76%; height: 1px; left: 12%; top: 50%; }
 .direction-board::after { width: 1px; height: 76%; left: 50%; top: 12%; background: linear-gradient(180deg, transparent, rgba(35, 104, 196, .26) 15%, rgba(35, 104, 196, .26) 85%, transparent); }
+.direction-board-diagonal::before { transform: rotate(45deg); }
+.direction-board-diagonal::after {
+  width: 76%;
+  height: 1px;
+  left: 12%;
+  top: 50%;
+  background: linear-gradient(90deg, transparent, rgba(35, 104, 196, .26) 15%, rgba(35, 104, 196, .26) 85%, transparent);
+  transform: rotate(-45deg);
+}
 .direction-target {
   position: relative;
   z-index: 2;
@@ -401,6 +434,7 @@ h1 { margin: 0; font-size: 25px; line-height: 1; letter-spacing: -.04em; }
 }
 .direction-origin::before { width: 16px; height: 1px; left: 8px; top: 16px; }
 .direction-origin::after { width: 1px; height: 16px; left: 16px; top: 8px; }
+.direction-board-diagonal .direction-origin { transform: rotate(45deg); }
 .direction-board-preview { width: min(56vw, 218px); margin: 12px auto 4px; }
 .direction-board-preview .direction-target { width: 37px; box-shadow: none; pointer-events: none; }
 .direction-board-preview .direction-target::after { width: 5px; height: 5px; }

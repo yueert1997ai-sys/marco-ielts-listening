@@ -71,7 +71,7 @@ async function screenshot(send, name) {
     const registration = await navigator.serviceWorker.ready;
     await new Promise((resolve) => setTimeout(resolve, 5000));
     const names = await caches.keys();
-    const cache = names.includes('ielts-listening-v13') ? await caches.open('ielts-listening-v13') : null;
+    const cache = names.includes('ielts-listening-v14') ? await caches.open('ielts-listening-v14') : null;
     const keys = cache ? await cache.keys() : [];
     return {
       active: registration.active?.state || null,
@@ -93,11 +93,22 @@ async function screenshot(send, name) {
     ticks: document.querySelectorAll('.signal-tick').length,
     scrollWidth: document.documentElement.scrollWidth
   }))()`);
+  await evaluate(send, "document.querySelector('[data-direction-mode=hard]').click(); true");
+  await new Promise((resolve) => setTimeout(resolve, 100));
+  directionIntro.hard = await evaluate(send, `(() => ({
+    previewTargets: document.querySelectorAll('.direction-target-preview').length,
+    activeMode: document.querySelector('.direction-mode-option.active')?.textContent.trim(),
+    diagonalBoard: document.querySelector('.direction-board')?.classList.contains('direction-board-diagonal'),
+    scrollWidth: document.documentElement.scrollWidth
+  }))()`);
   await evaluate(send, "document.querySelector('#direction-start').click(); true");
   await new Promise((resolve) => setTimeout(resolve, 350));
   const directionSession = await evaluate(send, `(() => ({
     targets: document.querySelectorAll('button.direction-target').length,
     timer: document.querySelector('#direction-timer-count')?.textContent,
+    timerDuration: document.querySelector('#direction-timer-bar')?.style.animationDuration,
+    mode: document.querySelector('.timer-label span')?.textContent,
+    diagonalBoard: document.querySelector('.direction-board')?.classList.contains('direction-board-diagonal'),
     replayVisible: !document.querySelector('#direction-audio-retry')?.hidden,
     boardWidth: Math.round(document.querySelector('.direction-board').getBoundingClientRect().width),
     boardHeight: Math.round(document.querySelector('.direction-board').getBoundingClientRect().height),
@@ -162,6 +173,14 @@ async function screenshot(send, name) {
   await new Promise((resolve) => setTimeout(resolve, 5200));
   recognition.expiredText = await evaluate(send, "document.querySelector('#timer-count')?.textContent");
   await screenshot(send, "mobile-cdp-recognition.png");
+
+  if (home.scrollWidth > 390 || directionIntro.previewTargets !== 8
+    || directionIntro.hard.previewTargets !== 4 || !directionIntro.hard.diagonalBoard
+    || directionSession.targets !== 4 || directionSession.timerDuration !== "1000ms"
+    || !directionSession.diagonalBoard || directionSession.scrollWidth > 390
+    || !directionSession.dailyUnchanged) {
+    throw new Error("Mobile direction mode smoke check failed");
+  }
 
   console.log(JSON.stringify({ ok: true, home, offline, directionIntro, directionSession, browse, spelling, result, recognition }));
   socket.close();

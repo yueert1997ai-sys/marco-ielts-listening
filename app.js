@@ -2,14 +2,16 @@
   "use strict";
 
   const STORAGE_KEY = "marcoIeltsListening.v1";
-  const APP_VERSION = "v2.7.0";
+  const APP_VERSION = "v2.8.0";
   const TRAINING_RESET_ID = "fresh-start-v2.5.0";
   const DECK_REVISION = "whole-bank-v2";
   const DAILY_PER_MODE = 25;
   const BROWSE_PAGE_SIZE = 20;
   const RESPONSE_LIMIT_MS = 5000;
   const DIRECTION_RESPONSE_LIMIT_MS = 2000;
+  const HARD_DIRECTION_RESPONSE_LIMIT_MS = 1000;
   const DIRECTION_QUESTION_COUNT = 10;
+  const HARD_DIRECTION_IDS = ["northeast", "southeast", "southwest", "northwest"];
   const INTERVALS = [1, 3, 7, 14, 30, 60];
   const REPOSITORY_URL = "https://github.com/yueert1997ai-sys/marco-ielts-listening";
 
@@ -121,17 +123,28 @@
       .map((entry) => entry.value);
   }
 
-  function createDirectionDeck(directions, seed = "direction") {
-    const unique = [...new Map((directions || []).map((item) => [item.id, item])).values()];
-    if (unique.length !== 8) throw new Error("方位检测需要正好 8 个不同方向");
-    const base = seededShuffle(unique, `${seed}:base`);
-    const extras = seededShuffle(unique, `${seed}:extras`).slice(0, DIRECTION_QUESTION_COUNT - unique.length);
-    const pool = [...base, ...extras];
+  function createDirectionDeck(directions, seed = "direction", options = {}) {
+    const allowedIds = Array.isArray(options.allowedIds) ? [...new Set(options.allowedIds)] : null;
+    const questionCount = options.questionCount || DIRECTION_QUESTION_COUNT;
+    const allUnique = [...new Map((directions || []).map((item) => [item.id, item])).values()];
+    const unique = allowedIds ? allUnique.filter((item) => allowedIds.includes(item.id)) : allUnique;
+    const expectedCount = allowedIds ? allowedIds.length : 8;
+    if (unique.length !== expectedCount) throw new Error(`方位检测需要正好 ${expectedCount} 个不同方向`);
+    if (questionCount < unique.length) throw new Error("题目数量不能少于方位数量");
+    const pool = [];
+    for (let round = 0; pool.length < questionCount; round += 1) {
+      const batch = seededShuffle(unique, `${seed}:round:${round}`);
+      pool.push(...batch.slice(0, questionCount - pool.length));
+    }
     for (let attempt = 0; attempt < 50; attempt += 1) {
       const deck = seededShuffle(pool, `${seed}:deck:${attempt}`);
       if (deck.every((item, index) => index === 0 || item.id !== deck[index - 1].id)) return deck;
     }
     throw new Error("方位题目没有成功打乱");
+  }
+
+  function createHardDirectionDeck(directions, seed = "hard-direction") {
+    return createDirectionDeck(directions, seed, { allowedIds: HARD_DIRECTION_IDS });
   }
 
   function judgeDirectionAttempt(expectedId, selectedId, elapsedMs, limit = DIRECTION_RESPONSE_LIMIT_MS) {
@@ -451,9 +464,10 @@
     dateKey, addDays, hashString, normaliseAnswer, makeActivities, safeState,
     createDailyDeck, prepareDaily, scheduleReview, insertRetry, buildChoices,
     createBrowseDeck, parseWrongWordInput, mergeCustomItems, migrateNumberVariantState, seededShuffle,
-    createDirectionDeck, judgeDirectionAttempt, isDirectionRunPassed,
+    createDirectionDeck, createHardDirectionDeck, judgeDirectionAttempt, isDirectionRunPassed,
     resetTrainingState, applyTrainingReset, shouldRevealAnswer,
-    RESPONSE_LIMIT_MS, DIRECTION_RESPONSE_LIMIT_MS, DIRECTION_QUESTION_COUNT,
+    RESPONSE_LIMIT_MS, DIRECTION_RESPONSE_LIMIT_MS, HARD_DIRECTION_RESPONSE_LIMIT_MS,
+    DIRECTION_QUESTION_COUNT, HARD_DIRECTION_IDS,
     INTERVALS, BROWSE_PAGE_SIZE, APP_VERSION, TRAINING_RESET_ID, DECK_REVISION,
   };
 
@@ -480,6 +494,23 @@
   let directionFeedbackId = null;
   let directionAnswered = false;
   let directionAudio = null;
+  let directionMode = "standard";
+  const directionModes = {
+    standard: {
+      id: "standard",
+      responseLimitMs: DIRECTION_RESPONSE_LIMIT_MS,
+      directionIds: null,
+      eyebrow: "8-WAY REFLEX",
+      description: "八个方向都会出现，全部答对且每题不超过 2 秒才算过关。",
+    },
+    hard: {
+      id: "hard",
+      responseLimitMs: HARD_DIRECTION_RESPONSE_LIMIT_MS,
+      directionIds: HARD_DIRECTION_IDS,
+      eyebrow: "45° REFLEX",
+      description: "只考东北、东南、西南、西北，全部答对且每题不超过 1 秒才算过关。",
+    },
+  };
   const screen = document.getElementById("screen");
   const rail = document.getElementById("signal-rail");
   const dayCount = document.getElementById("day-count");
@@ -655,7 +686,7 @@
         </div>
         <button id="start" class="primary" ${state.daily.completed ? "disabled" : ""}>${buttonText}</button>
         <button id="direction" class="direction-entry">
-          <span><strong>方位检测</strong><small>10 题 · 听音后 2 秒选中位置</small></span>
+          <span><strong>方位检测</strong><small>10 题 · 标准 2 秒 / 困难 1 秒</small></span>
           <b aria-hidden="true">⌖</b>
         </button>
         <button id="browse" class="browse-entry">
@@ -733,14 +764,18 @@
     homeScreen();
   }
 
-  function directionBoardMarkup(interactive = true) {
-    const nodes = directions.map((direction) => {
+  function directionBoardMarkup(interactive = true, directionIds = null) {
+    const allowed = Array.isArray(directionIds) ? new Set(directionIds) : null;
+    const visibleDirections = allowed ? directions.filter((direction) => allowed.has(direction.id)) : directions;
+    const diagonal = allowed && allowed.size === HARD_DIRECTION_IDS.length
+      && HARD_DIRECTION_IDS.every((id) => allowed.has(id));
+    const nodes = visibleDirections.map((direction) => {
       const position = `grid-row:${direction.row + 1};grid-column:${direction.column + 1}`;
       if (!interactive) return `<span class="direction-target direction-target-preview" style="${position}"></span>`;
       return `<button class="direction-target" type="button" data-direction="${escapeHtml(direction.id)}"
         style="${position}" aria-label="${escapeHtml(direction.meaning)}方位" disabled><span></span></button>`;
     }).join("");
-    return `<div class="direction-board${interactive ? "" : " direction-board-preview"}">
+    return `<div class="direction-board${interactive ? "" : " direction-board-preview"}${diagonal ? " direction-board-diagonal" : ""}">
       ${nodes}
       <div class="direction-origin" aria-hidden="true"><span></span></div>
     </div>`;
@@ -752,34 +787,54 @@
     stopDirectionAudio();
     directionRun = null;
     setShellMode("direction");
+    const config = directionModes[directionMode] || directionModes.standard;
+    const seconds = config.responseLimitMs / 1000;
     screen.innerHTML = `
       <section class="direction-intro">
         <div class="direction-toolbar">
           <button id="direction-back" class="text-button">← 今日任务</button>
-          <span class="mode-label">AUDIO · 2 秒</span>
+          <span class="mode-label">AUDIO · ${seconds} 秒</span>
+        </div>
+        <div class="direction-mode-switch" role="group" aria-label="选择方位检测难度">
+          <button type="button" data-direction-mode="standard" class="direction-mode-option${config.id === "standard" ? " active" : ""}" aria-pressed="${config.id === "standard"}">
+            <span>标准模式</span><strong>8 方位 · 2.0s</strong>
+          </button>
+          <button type="button" data-direction-mode="hard" class="direction-mode-option hard${config.id === "hard" ? " active" : ""}" aria-pressed="${config.id === "hard"}">
+            <span>困难模式</span><strong>45° · 1.0s</strong>
+          </button>
         </div>
         <div class="direction-intro-card">
-          <p class="eyebrow">8-WAY REFLEX</p>
+          <p class="eyebrow">${config.eyebrow}</p>
           <h2>听到英文，立即点方位。</h2>
-          <p>每轮 10 题。八个方向都会出现，全部答对且每题不超过 2 秒才算过关。</p>
-          ${directionBoardMarkup(false)}
+          <p>每轮 10 题。${config.description}</p>
+          ${directionBoardMarkup(false, config.directionIds)}
           <div class="direction-rules">
             <span><b>01</b> 只播放英文</span>
             <span><b>02</b> 圆点没有文字</span>
             <span><b>03</b> 不能题内重播</span>
           </div>
         </div>
-        <button id="direction-start" class="primary">开始 10 题</button>
+        <button id="direction-start" class="primary">开始${config.id === "hard" ? "困难" : "标准"} 10 题</button>
       </section>`;
     document.getElementById("direction-back").addEventListener("click", leaveDirection);
     document.getElementById("direction-start").addEventListener("click", startDirectionRun);
+    document.querySelectorAll("[data-direction-mode]").forEach((button) => {
+      button.addEventListener("click", () => {
+        directionMode = button.dataset.directionMode;
+        directionIntroScreen();
+      });
+    });
   }
 
   function startDirectionRun() {
     clearDirectionTiming();
     stopDirectionAudio();
+    const config = directionModes[directionMode] || directionModes.standard;
     directionRun = {
-      deck: createDirectionDeck(directions, `${Date.now()}:${Math.random()}`),
+      mode: config.id,
+      responseLimitMs: config.responseLimitMs,
+      directionIds: config.directionIds,
+      deck: createDirectionDeck(directions, `${Date.now()}:${Math.random()}`, { allowedIds: config.directionIds }),
       results: [],
     };
     renderDirectionQuestion();
@@ -813,6 +868,7 @@
     const timerCount = document.getElementById("direction-timer-count");
     const prompt = document.getElementById("direction-prompt");
     if (!directionRun || !board || !timerBar || !timerCount || !prompt) return;
+    const responseLimitMs = directionRun.responseLimitMs || DIRECTION_RESPONSE_LIMIT_MS;
     directionAnswered = false;
     directionStartedAt = performance.now();
     board.classList.add("ready");
@@ -820,11 +876,11 @@
     timerBar.classList.remove("paused");
     document.querySelectorAll(".direction-target").forEach((button) => { button.disabled = false; });
     directionTimerId = setInterval(() => {
-      const remaining = Math.max(0, DIRECTION_RESPONSE_LIMIT_MS - (performance.now() - directionStartedAt));
+      const remaining = Math.max(0, responseLimitMs - (performance.now() - directionStartedAt));
       timerCount.textContent = remaining > 0 ? (remaining / 1000).toFixed(1) : "超时";
       timerCount.classList.toggle("expired", remaining === 0);
     }, 50);
-    directionDeadlineId = setTimeout(() => finishDirectionAnswer(null), DIRECTION_RESPONSE_LIMIT_MS);
+    directionDeadlineId = setTimeout(() => finishDirectionAnswer(null), responseLimitMs);
   }
 
   function showDirectionAudioError(question) {
@@ -851,6 +907,7 @@
     directionAnswered = true;
     const index = directionRun.results.length;
     const question = directionRun.deck[index];
+    const responseLimitMs = directionRun.responseLimitMs || DIRECTION_RESPONSE_LIMIT_MS;
     screen.innerHTML = `
       <section class="direction-session">
         <div class="direction-toolbar">
@@ -858,10 +915,10 @@
           <span class="mode-label">第 ${index + 1}/${DIRECTION_QUESTION_COUNT} 题</span>
         </div>
         <div class="direction-card">
-          <div class="timer-label"><span>反应时间</span><strong id="direction-timer-count">2.0</strong></div>
-          <div class="timer"><div id="direction-timer-bar" class="direction-timer-bar paused"></div></div>
+          <div class="timer-label"><span>${directionRun.mode === "hard" ? "困难模式 · 45°" : "标准模式 · 8 方位"}</span><strong id="direction-timer-count">${(responseLimitMs / 1000).toFixed(1)}</strong></div>
+          <div class="timer"><div id="direction-timer-bar" class="direction-timer-bar paused" style="animation-duration:${responseLimitMs}ms"></div></div>
           <p id="direction-prompt" class="direction-prompt" aria-live="polite">准备播放…</p>
-          ${directionBoardMarkup(true)}
+          ${directionBoardMarkup(true, directionRun.directionIds)}
           <div id="direction-feedback" class="direction-feedback" aria-live="polite"></div>
           <button id="direction-audio-retry" class="test-play direction-audio-retry" type="button" hidden>重新播放</button>
         </div>
@@ -882,9 +939,10 @@
     directionDeadlineId = null;
     const index = directionRun.results.length;
     const question = directionRun.deck[index];
-    const elapsed = selectedId ? performance.now() - directionStartedAt : DIRECTION_RESPONSE_LIMIT_MS;
+    const responseLimitMs = directionRun.responseLimitMs || DIRECTION_RESPONSE_LIMIT_MS;
+    const elapsed = selectedId ? performance.now() - directionStartedAt : responseLimitMs;
     const result = {
-      ...judgeDirectionAttempt(question.id, selectedId, elapsed),
+      ...judgeDirectionAttempt(question.id, selectedId, elapsed, responseLimitMs),
       term: question.term,
       meaning: question.meaning,
     };
@@ -901,7 +959,7 @@
       timerCount.classList.toggle("expired", !result.passed);
     }
     timerBar?.classList.add("stopped");
-    const label = result.passed ? "答对" : (result.outcome === "timeout" ? "超时" : (result.outcome === "slow" ? "超过 2 秒" : "选错"));
+    const label = result.passed ? "答对" : (result.outcome === "timeout" ? "超时" : (result.outcome === "slow" ? `超过 ${responseLimitMs / 1000} 秒` : "选错"));
     const feedback = document.getElementById("direction-feedback");
     if (feedback) {
       feedback.className = `direction-feedback visible ${result.passed ? "pass" : "weak"}`;
@@ -919,6 +977,8 @@
     const results = directionRun?.results || [];
     const passedCount = results.filter((result) => result.passed).length;
     const passed = isDirectionRunPassed(results);
+    const config = directionModes[directionRun?.mode] || directionModes.standard;
+    const seconds = config.responseLimitMs / 1000;
     const average = results.length ? results.reduce((sum, result) => sum + result.elapsedMs, 0) / results.length : 0;
     const misses = results.filter((result) => !result.passed);
     const directionMap = new Map(directions.map((direction) => [direction.id, direction]));
@@ -935,12 +995,12 @@
       <section class="direction-result">
         <div class="direction-toolbar">
           <button id="direction-result-home" class="text-button">← 今日任务</button>
-          <span class="mode-label">本轮完成</span>
+          <span class="mode-label">${config.id === "hard" ? "困难" : "标准"} · 本轮完成</span>
         </div>
         <div class="direction-result-card">
-          <p class="result-mark ${passed ? "pass" : "weak"}">${passed ? "方位反射合格" : "本轮还未过关"}</p>
+          <p class="result-mark ${passed ? "pass" : "weak"}">${passed ? `${config.id === "hard" ? "45° " : ""}方位反射合格` : "本轮还未过关"}</p>
           <div class="direction-score"><strong>${passedCount}</strong><span>/10</span></div>
-          <p>${passed ? "十题全部在 2 秒内答对。" : "必须十题全部答对且不超时，再来一轮。"}</p>
+          <p>${passed ? `十题全部在 ${seconds} 秒内答对。` : `必须十题全部答对且每题不超过 ${seconds} 秒，再来一轮。`}</p>
           <div class="direction-result-stat"><span>平均反应</span><strong>${(average / 1000).toFixed(2)} 秒</strong></div>
           ${missesMarkup}
         </div>

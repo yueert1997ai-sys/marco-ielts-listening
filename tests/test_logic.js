@@ -67,6 +67,20 @@ test("direction deck never repeats a direction immediately", () => {
     assert(deck.every((item, itemIndex) => itemIndex === 0 || item.id !== deck[itemIndex - 1].id));
   }
 });
+test("hard direction deck contains ten diagonal-only questions", () => {
+  const deck = logic.createHardDirectionDeck(directions, "hard-coverage");
+  const counts = deck.reduce((result, item) => ({ ...result, [item.id]: (result[item.id] || 0) + 1 }), {});
+  assert.equal(deck.length, 10);
+  assert.deepEqual([...new Set(deck.map((item) => item.id))].sort(), [...logic.HARD_DIRECTION_IDS].sort());
+  assert(Object.values(counts).every((count) => count >= 2));
+  assert.equal(Object.values(counts).filter((count) => count === 3).length, 2);
+});
+test("hard direction deck never repeats a direction immediately", () => {
+  for (let index = 0; index < 50; index += 1) {
+    const deck = logic.createHardDirectionDeck(directions, `hard-adjacent-${index}`);
+    assert(deck.every((item, itemIndex) => itemIndex === 0 || item.id !== deck[itemIndex - 1].id));
+  }
+});
 test("direction answer passes at exactly two seconds", () => {
   assert.equal(logic.judgeDirectionAttempt("north", "north", 2000).outcome, "pass");
 });
@@ -76,6 +90,11 @@ test("direction answer fails when correct but slower than two seconds", () => {
 test("direction wrong answer and timeout fail", () => {
   assert.equal(logic.judgeDirectionAttempt("north", "south", 800).outcome, "fail");
   assert.equal(logic.judgeDirectionAttempt("north", null, 2000).outcome, "timeout");
+});
+test("hard direction answer passes at exactly one second", () => {
+  assert.equal(logic.judgeDirectionAttempt("northeast", "northeast", 1000, logic.HARD_DIRECTION_RESPONSE_LIMIT_MS).outcome, "pass");
+  assert.equal(logic.judgeDirectionAttempt("northeast", "northeast", 1000.01, logic.HARD_DIRECTION_RESPONSE_LIMIT_MS).outcome, "slow");
+  assert.equal(logic.judgeDirectionAttempt("northeast", null, 1000, logic.HARD_DIRECTION_RESPONSE_LIMIT_MS).outcome, "timeout");
 });
 test("direction run only passes with ten passed answers", () => {
   const passed = Array.from({ length: 10 }, () => ({ passed: true }));
@@ -128,8 +147,9 @@ test("version one state migrates without losing progress", () => {
 });
 test("response limit is five seconds", () => assert.equal(logic.RESPONSE_LIMIT_MS, 5000));
 test("intervals match spec", () => assert.deepEqual(logic.INTERVALS, [1, 3, 7, 14, 30, 60]));
-test("visible app version matches this release", () => assert.equal(logic.APP_VERSION, "v2.7.0"));
+test("visible app version matches this release", () => assert.equal(logic.APP_VERSION, "v2.8.0"));
 test("direction response limit is two seconds", () => assert.equal(logic.DIRECTION_RESPONSE_LIMIT_MS, 2000));
+test("hard direction response limit is one second", () => assert.equal(logic.HARD_DIRECTION_RESPONSE_LIMIT_MS, 1000));
 test("direction release preserves the existing training reset", () => assert.equal(logic.TRAINING_RESET_ID, "fresh-start-v2.5.0"));
 test("release reset clears training but preserves personal words and stars", () => {
   const reset = logic.applyTrainingReset(logic.safeState({
