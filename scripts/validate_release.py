@@ -65,9 +65,14 @@ def main() -> None:
     if MANIFEST.get("count") != len(ITEMS) or len(MANIFEST.get("files", [])) != len(ITEMS):
         fail("Audio manifest is incomplete")
 
-    for required in ("index.html", "app.js", "style.css", "sw.js", "manifest.webmanifest", "icon.svg"):
+    for required in ("index.html", "app.js", "style.css", "sw.js", "manifest.webmanifest", "version.json", "icon.svg"):
         if not (ROOT / required).exists():
             fail(f"Missing app shell file: {required}")
+
+    version = json.loads((ROOT / "version.json").read_text(encoding="utf-8")).get("version")
+    if not version or any(version not in (ROOT / filename).read_text(encoding="utf-8")
+                          for filename in ("index.html", "app.js", "sw.js")):
+        fail("Visible app version is inconsistent across the release")
 
     print(json.dumps({
         "ok": True,

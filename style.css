@@ -39,6 +39,20 @@ button { touch-action: manipulation; }
   justify-content: space-between;
   padding: 4px 2px 12px;
 }
+.topbar-meta { display: grid; justify-items: end; gap: 7px; }
+.version-badge {
+  min-height: 27px;
+  padding: 0 9px;
+  color: var(--muted);
+  background: rgba(246, 250, 248, .55);
+  border: 1px solid rgba(16, 42, 49, .14);
+  border-radius: 999px;
+  cursor: pointer;
+  font: 750 10px/1 ui-monospace, SFMono-Regular, Consolas, monospace;
+  letter-spacing: .03em;
+}
+.version-badge.update-available { color: white; background: var(--signal); border-color: var(--signal); }
+.version-badge:disabled { opacity: .7; cursor: wait; }
 .eyebrow {
   margin: 0 0 3px;
   color: var(--muted);

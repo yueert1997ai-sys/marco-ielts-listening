@@ -2,6 +2,7 @@
   "use strict";
 
   const STORAGE_KEY = "marcoIeltsListening.v1";
+  const APP_VERSION = "v2.3.0";
   const DAILY_PER_MODE = 25;
   const BROWSE_PAGE_SIZE = 20;
   const RESPONSE_LIMIT_MS = 5000;
@@ -389,7 +390,7 @@
     dateKey, addDays, hashString, normaliseAnswer, makeActivities, safeState,
     createDailyDeck, prepareDaily, scheduleReview, insertRetry, buildChoices,
     createBrowseDeck, parseWrongWordInput, mergeCustomItems, migrateNumberVariantState, seededShuffle,
-    shouldRevealAnswer, RESPONSE_LIMIT_MS, INTERVALS, BROWSE_PAGE_SIZE,
+    shouldRevealAnswer, RESPONSE_LIMIT_MS, INTERVALS, BROWSE_PAGE_SIZE, APP_VERSION,
   };
 
   if (typeof module !== "undefined" && module.exports) module.exports = api;
@@ -411,6 +412,7 @@
   const dayCount = document.getElementById("day-count");
   const screenTitle = document.getElementById("screen-title");
   const appShell = document.getElementById("app");
+  const versionButton = document.getElementById("app-version");
 
   function loadState() {
     try { state = safeState(JSON.parse(localStorage.getItem(STORAGE_KEY))); }
@@ -420,6 +422,58 @@
   function saveState() {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
     updateChrome();
+  }
+
+  async function fetchLatestVersion() {
+    const response = await fetch(`./version.json?check=${Date.now()}`, { cache: "no-store" });
+    if (!response.ok) throw new Error(`HTTP ${response.status}`);
+    return response.json();
+  }
+
+  async function showVersionStatus() {
+    if (!versionButton) return;
+    versionButton.textContent = APP_VERSION;
+    versionButton.setAttribute("aria-label", `当前版本 ${APP_VERSION}，点击检查更新`);
+    try {
+      const latest = await fetchLatestVersion();
+      const hasUpdate = latest.version && latest.version !== APP_VERSION;
+      versionButton.classList.toggle("update-available", hasUpdate);
+      if (hasUpdate) {
+        versionButton.textContent = `${APP_VERSION} · 更新`;
+        versionButton.setAttribute("aria-label", `当前版本 ${APP_VERSION}，最新版本 ${latest.version}，点击更新`);
+      }
+    } catch (_) {
+      versionButton.title = "当前离线，仍可继续训练";
+    }
+  }
+
+  async function forceAppUpdate() {
+    if (!versionButton || versionButton.disabled) return;
+    const original = versionButton.textContent;
+    versionButton.disabled = true;
+    versionButton.textContent = "检查中…";
+    try {
+      const latest = await fetchLatestVersion();
+      if ("serviceWorker" in navigator) {
+        const registrations = await navigator.serviceWorker.getRegistrations();
+        await Promise.all(registrations.map((registration) => registration.update()));
+      }
+      if ("caches" in window) {
+        const keys = await caches.keys();
+        await Promise.all(keys.filter((key) => key.startsWith("ielts-listening-")).map((key) => caches.delete(key)));
+      }
+      const url = new URL(window.location.href);
+      url.searchParams.set("v", latest.version || APP_VERSION);
+      url.searchParams.set("refresh", Date.now());
+      window.location.replace(url.toString());
+    } catch (_) {
+      versionButton.textContent = "离线";
+      versionButton.title = "联网后再点版本号检查更新";
+      setTimeout(() => {
+        versionButton.disabled = false;
+        versionButton.textContent = original;
+      }, 1400);
+    }
   }
 
   function rebuildDecks() {
@@ -973,7 +1027,9 @@
 
   async function init() {
     try {
-      const response = await fetch("./data/listening.json");
+      versionButton?.addEventListener("click", forceAppUpdate);
+      showVersionStatus();
+      const response = await fetch(`./data/listening.json?v=${encodeURIComponent(APP_VERSION)}`);
       if (!response.ok) throw new Error(`HTTP ${response.status}`);
       sourceItems = await response.json();
       loadState();
@@ -983,7 +1039,19 @@
       prepareDaily(state, activities);
       saveState();
       homeScreen();
-      if ("serviceWorker" in navigator) navigator.serviceWorker.register("./sw.js");
+      if ("serviceWorker" in navigator) {
+        const hadController = Boolean(navigator.serviceWorker.controller);
+        let refreshing = false;
+        navigator.serviceWorker.addEventListener("controllerchange", () => {
+          if (hadController && !refreshing) {
+            refreshing = true;
+            window.location.reload();
+          }
+        });
+        navigator.serviceWorker.register(`./sw.js?v=${encodeURIComponent(APP_VERSION)}`, { updateViaCache: "none" })
+          .then((registration) => registration.update())
+          .catch(() => {});
+      }
     } catch (error) {
       screen.innerHTML = `<section class="finished"><h2>词库没有加载成功</h2><p>${escapeHtml(error.message)}。联网后刷新页面再试。</p></section>`;
     }

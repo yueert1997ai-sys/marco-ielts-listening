@@ -2,7 +2,7 @@
   "name": "IELTS Listening 50",
   "short_name": "Listening 50",
   "description": "每日 50 个听力基础题，另有不限量随便刷词表",
-  "start_url": "./",
+  "start_url": "./?pwa=1",
   "scope": "./",
   "display": "standalone",
   "background_color": "#dce9e6",
