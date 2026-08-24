@@ -21,7 +21,7 @@ const activities = logic.makeActivities(items);
 test("answer ignores case and outer whitespace", () => assert.equal(logic.normaliseAnswer(" Carpet "), "carpet"));
 test("answer collapses internal whitespace", () => assert.equal(logic.normaliseAnswer("first   name"), "first name"));
 test("hyphens remain significant", () => assert.notEqual(logic.normaliseAnswer("mass produced"), logic.normaliseAnswer("mass-produced")));
-test("plural remains significant", () => assert.notEqual(logic.normaliseAnswer("carpet"), logic.normaliseAnswer("carpets")));
+test("a plural typo remains significant within one spelling card", () => assert.notEqual(logic.normaliseAnswer("carpet"), logic.normaliseAnswer("carpets")));
 test("activities split modes", () => assert(activities.some((item) => item.key === "carpet:spelling") && activities.some((item) => item.key === "carpet:recognition")));
 test("daily deck is exactly 50", () => assert.equal(logic.createDailyDeck(activities, {}, "2026-08-23").length, 50));
 test("daily deck has 25 spelling", () => {
@@ -91,7 +91,7 @@ test("new day creates new state", () => {
 test("safe state rejects bad progress", () => assert.deepEqual(logic.safeState({ progress: null }).progress, {}));
 test("version one state migrates without losing progress", () => {
   const state = logic.safeState({ version: 1, progress: { x: { stage: 2 } } });
-  assert.equal(state.version, 2); assert.equal(state.progress.x.stage, 2); assert.deepEqual(state.starred, {});
+  assert.equal(state.version, 3); assert.equal(state.progress.x.stage, 2); assert.deepEqual(state.starred, {});
 });
 test("response limit is five seconds", () => assert.equal(logic.RESPONSE_LIMIT_MS, 5000));
 test("intervals match spec", () => assert.deepEqual(logic.INTERVALS, [1, 3, 7, 14, 30, 60]));
@@ -121,6 +121,48 @@ test("custom word merges with an existing item", () => {
   const merged = logic.mergeCustomItems(items, [{ term: "carpet", meaning: "地毯", mode: "both", reason: "又错了" }]);
   const carpet = merged.find((item) => item.id === "carpet");
   assert(carpet.isRealError); assert.deepEqual(carpet.modes.sort(), ["recognition", "spelling"]);
+});
+test("plural progress and today's queue migrate to the singular card", () => {
+  const source = [{
+    id: "curtain", term: "curtain", meaning: "窗帘", modes: ["spelling"],
+    numberVariants: ["curtains"], acceptedAnswers: ["curtain"],
+  }];
+  const state = logic.safeState({
+    version: 2,
+    progress: {
+      "curtain:spelling": { stage: 1, attempts: 1, passes: 1, lapses: 0, due: "2026-08-25" },
+      "curtains:spelling": { stage: 3, attempts: 2, passes: 1, lapses: 1, due: "2026-08-24" },
+    },
+    starred: { curtains: true },
+    daily: {
+      baseKeys: ["curtain:spelling", "curtains:spelling"],
+      queue: [
+        { key: "curtain:spelling", isRetry: false },
+        { key: "curtains:spelling", isRetry: false },
+      ],
+      answeredBase: {}, outcomes: {}, retryCount: {},
+    },
+  });
+  logic.migrateNumberVariantState(state, source);
+  assert.deepEqual(state.daily.baseKeys, ["curtain:spelling"]);
+  assert.equal(state.daily.queue.length, 1);
+  assert.equal(state.progress["curtain:spelling"].attempts, 3);
+  assert.equal(state.progress["curtain:spelling"].stage, 3);
+  assert.equal(state.progress["curtain:spelling"].due, "2026-08-24");
+  assert(!state.progress["curtains:spelling"]);
+  assert.deepEqual(state.starred, { curtain: true });
+});
+test("a locally added plural merges into the published singular item", () => {
+  const source = [{
+    id: "curtain", term: "curtain", meaning: "窗帘", modes: ["spelling"],
+    numberVariants: ["curtains"], acceptedAnswers: ["curtain"],
+  }];
+  const merged = logic.mergeCustomItems(source, [
+    { term: "curtains", meaning: "窗帘", mode: "recognition", reason: "不重复考复数" },
+  ]);
+  assert.equal(merged.length, 1);
+  assert.equal(merged[0].id, "curtain");
+  assert.deepEqual(merged[0].modes.sort(), ["recognition", "spelling"]);
 });
 test("browse page size is twenty", () => assert.equal(logic.BROWSE_PAGE_SIZE, 20));
 

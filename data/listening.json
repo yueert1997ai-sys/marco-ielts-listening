@@ -22,26 +22,31 @@
     "audioPath": "audio/alongside.mp3"
   },
   {
-    "id": "beginners",
-    "term": "beginners",
+    "id": "beginner",
+    "term": "beginner",
     "meaning": "初学者",
     "note": "双 n",
     "category": "工作、学校与学术",
     "sections": [
       "P1 + P4 必会听写词",
+      "P2 + P3 必会看懂词",
       "我的真实错词"
     ],
     "modes": [
+      "recognition",
       "spelling"
     ],
     "isRealError": true,
     "acceptedAnswers": [
+      "beginner"
+    ],
+    "numberVariants": [
       "beginners"
     ],
     "errorNote": "真实卡点：复数",
     "sourceRevision": 4,
-    "audioText": "beginners",
-    "audioPath": "audio/beginners.mp3"
+    "audioText": "beginner",
+    "audioPath": "audio/beginner.mp3"
   },
   {
     "id": "bend",
@@ -148,32 +153,13 @@
     "acceptedAnswers": [
       "carpet"
     ],
-    "errorNote": "真实卡点：听义、词形、拼写",
-    "sourceRevision": 4,
-    "audioText": "carpet",
-    "audioPath": "audio/carpet.mp3"
-  },
-  {
-    "id": "carpets",
-    "term": "carpets",
-    "meaning": "地毯",
-    "note": "不是 carptes",
-    "category": "住房、酒店、旅游与交通",
-    "sections": [
-      "P1 + P4 必会听写词",
-      "我的真实错词"
-    ],
-    "modes": [
-      "spelling"
-    ],
-    "isRealError": true,
-    "acceptedAnswers": [
+    "numberVariants": [
       "carpets"
     ],
     "errorNote": "真实卡点：听义、词形、拼写",
     "sourceRevision": 4,
-    "audioText": "carpets",
-    "audioPath": "audio/carpets.mp3"
+    "audioText": "carpet",
+    "audioPath": "audio/carpet.mp3"
   },
   {
     "id": "colossal",
@@ -214,32 +200,13 @@
     "acceptedAnswers": [
       "curtain"
     ],
-    "errorNote": "真实卡点：听义、复数",
-    "sourceRevision": 4,
-    "audioText": "curtain",
-    "audioPath": "audio/curtain.mp3"
-  },
-  {
-    "id": "curtains",
-    "term": "curtains",
-    "meaning": "窗帘",
-    "note": "注意复数尾音",
-    "category": "住房、酒店、旅游与交通",
-    "sections": [
-      "P1 + P4 必会听写词",
-      "我的真实错词"
-    ],
-    "modes": [
-      "spelling"
-    ],
-    "isRealError": true,
-    "acceptedAnswers": [
+    "numberVariants": [
       "curtains"
     ],
     "errorNote": "真实卡点：听义、复数",
     "sourceRevision": 4,
-    "audioText": "curtains",
-    "audioPath": "audio/curtains.mp3"
+    "audioText": "curtain",
+    "audioPath": "audio/curtain.mp3"
   },
   {
     "id": "disbelief",
@@ -939,9 +906,10 @@
     "id": "spectator",
     "term": "spectator",
     "meaning": "现场观众",
-    "note": "真实卡点：不是 spector",
-    "category": "我的真实错词",
+    "note": "体育比赛、活动的观看者",
+    "category": "人物、关系与身份",
     "sections": [
+      "P2 + P3 必会看懂词",
       "我的真实错词"
     ],
     "modes": [
@@ -950,6 +918,9 @@
     "isRealError": true,
     "acceptedAnswers": [
       "spectator"
+    ],
+    "numberVariants": [
+      "spectators"
     ],
     "errorNote": "真实卡点：不是 spector",
     "sourceRevision": 4,
@@ -2476,28 +2447,6 @@
     "sourceRevision": 4,
     "audioText": "because of",
     "audioPath": "audio/because-of.mp3"
-  },
-  {
-    "id": "beginner",
-    "term": "beginner",
-    "meaning": "初学者",
-    "note": "双 n",
-    "category": "工作、学校与学术",
-    "sections": [
-      "P1 + P4 必会听写词",
-      "P2 + P3 必会看懂词"
-    ],
-    "modes": [
-      "recognition",
-      "spelling"
-    ],
-    "isRealError": false,
-    "acceptedAnswers": [
-      "beginner"
-    ],
-    "sourceRevision": 4,
-    "audioText": "beginner",
-    "audioPath": "audio/beginner.mp3"
   },
   {
     "id": "behind-the",
@@ -4327,29 +4276,12 @@
     "acceptedAnswers": [
       "decoration"
     ],
-    "sourceRevision": 4,
-    "audioText": "decoration",
-    "audioPath": "audio/decoration.mp3"
-  },
-  {
-    "id": "decorations",
-    "term": "decorations",
-    "meaning": "装饰物",
-    "note": "检查复数",
-    "category": "饮食、购物与日常生活",
-    "sections": [
-      "P1 + P4 必会听写词"
-    ],
-    "modes": [
-      "spelling"
-    ],
-    "isRealError": false,
-    "acceptedAnswers": [
+    "numberVariants": [
       "decorations"
     ],
     "sourceRevision": 4,
-    "audioText": "decorations",
-    "audioPath": "audio/decorations.mp3"
+    "audioText": "decoration",
+    "audioPath": "audio/decoration.mp3"
   },
   {
     "id": "degree",
@@ -5113,29 +5045,12 @@
     "acceptedAnswers": [
       "engineer"
     ],
-    "sourceRevision": 4,
-    "audioText": "engineer",
-    "audioPath": "audio/engineer.mp3"
-  },
-  {
-    "id": "engineers",
-    "term": "engineers",
-    "meaning": "工程师",
-    "note": "检查复数",
-    "category": "工作、学校与学术",
-    "sections": [
-      "P1 + P4 必会听写词"
-    ],
-    "modes": [
-      "spelling"
-    ],
-    "isRealError": false,
-    "acceptedAnswers": [
+    "numberVariants": [
       "engineers"
     ],
     "sourceRevision": 4,
-    "audioText": "engineers",
-    "audioPath": "audio/engineers.mp3"
+    "audioText": "engineer",
+    "audioPath": "audio/engineer.mp3"
   },
   {
     "id": "ensure",
@@ -5273,29 +5188,12 @@
     "acceptedAnswers": [
       "essay"
     ],
-    "sourceRevision": 4,
-    "audioText": "essay",
-    "audioPath": "audio/essay.mp3"
-  },
-  {
-    "id": "essays",
-    "term": "essays",
-    "meaning": "论文；文章",
-    "note": "检查复数",
-    "category": "工作、学校与学术",
-    "sections": [
-      "P1 + P4 必会听写词"
-    ],
-    "modes": [
-      "spelling"
-    ],
-    "isRealError": false,
-    "acceptedAnswers": [
+    "numberVariants": [
       "essays"
     ],
     "sourceRevision": 4,
-    "audioText": "essays",
-    "audioPath": "audio/essays.mp3"
+    "audioText": "essay",
+    "audioPath": "audio/essay.mp3"
   },
   {
     "id": "essential",
@@ -5564,26 +5462,6 @@
     "audioPath": "audio/facilities.mp3"
   },
   {
-    "id": "factories",
-    "term": "factories",
-    "meaning": "工厂",
-    "note": "y 变 ies",
-    "category": "环境、自然、材料与科学",
-    "sections": [
-      "P1 + P4 必会听写词"
-    ],
-    "modes": [
-      "spelling"
-    ],
-    "isRealError": false,
-    "acceptedAnswers": [
-      "factories"
-    ],
-    "sourceRevision": 4,
-    "audioText": "factories",
-    "audioPath": "audio/factories.mp3"
-  },
-  {
     "id": "factory",
     "term": "factory",
     "meaning": "工厂",
@@ -5598,6 +5476,9 @@
     "isRealError": false,
     "acceptedAnswers": [
       "factory"
+    ],
+    "numberVariants": [
+      "factories"
     ],
     "sourceRevision": 4,
     "audioText": "factory",
@@ -5830,26 +5711,6 @@
     "note": "常用复数",
     "category": "工作、学校与学术",
     "sections": [
-      "P1 + P4 必会听写词"
-    ],
-    "modes": [
-      "spelling"
-    ],
-    "isRealError": false,
-    "acceptedAnswers": [
-      "finding"
-    ],
-    "sourceRevision": 4,
-    "audioText": "finding",
-    "audioPath": "audio/finding.mp3"
-  },
-  {
-    "id": "findings",
-    "term": "findings",
-    "meaning": "研究发现",
-    "note": "常用复数",
-    "category": "工作、学校与学术",
-    "sections": [
       "P1 + P4 必会听写词",
       "P2 + P3 必会看懂词"
     ],
@@ -5859,11 +5720,14 @@
     ],
     "isRealError": false,
     "acceptedAnswers": [
+      "finding"
+    ],
+    "numberVariants": [
       "findings"
     ],
     "sourceRevision": 4,
-    "audioText": "findings",
-    "audioPath": "audio/findings.mp3"
+    "audioText": "finding",
+    "audioPath": "audio/finding.mp3"
   },
   {
     "id": "fine",
@@ -6521,29 +6385,12 @@
     "acceptedAnswers": [
       "headache"
     ],
-    "sourceRevision": 4,
-    "audioText": "headache",
-    "audioPath": "audio/headache.mp3"
-  },
-  {
-    "id": "headaches",
-    "term": "headaches",
-    "meaning": "头痛",
-    "note": "head + ache",
-    "category": "医疗与健康",
-    "sections": [
-      "P1 + P4 必会听写词"
-    ],
-    "modes": [
-      "spelling"
-    ],
-    "isRealError": false,
-    "acceptedAnswers": [
+    "numberVariants": [
       "headaches"
     ],
     "sourceRevision": 4,
-    "audioText": "headaches",
-    "audioPath": "audio/headaches.mp3"
+    "audioText": "headache",
+    "audioPath": "audio/headache.mp3"
   },
   {
     "id": "health",
@@ -7046,26 +6893,6 @@
     "audioPath": "audio/independent-living.mp3"
   },
   {
-    "id": "industries",
-    "term": "industries",
-    "meaning": "产业",
-    "note": "y 变 ies",
-    "category": "环境、自然、材料与科学",
-    "sections": [
-      "P1 + P4 必会听写词"
-    ],
-    "modes": [
-      "spelling"
-    ],
-    "isRealError": false,
-    "acceptedAnswers": [
-      "industries"
-    ],
-    "sourceRevision": 4,
-    "audioText": "industries",
-    "audioPath": "audio/industries.mp3"
-  },
-  {
     "id": "industry",
     "term": "industry",
     "meaning": "产业",
@@ -7080,6 +6907,9 @@
     "isRealError": false,
     "acceptedAnswers": [
       "industry"
+    ],
+    "numberVariants": [
+      "industries"
     ],
     "sourceRevision": 4,
     "audioText": "industry",
@@ -7161,29 +6991,12 @@
     "acceptedAnswers": [
       "insect"
     ],
-    "sourceRevision": 4,
-    "audioText": "insect",
-    "audioPath": "audio/insect.mp3"
-  },
-  {
-    "id": "insects",
-    "term": "insects",
-    "meaning": "昆虫",
-    "note": "检查复数",
-    "category": "环境、自然、材料与科学",
-    "sections": [
-      "P1 + P4 必会听写词"
-    ],
-    "modes": [
-      "spelling"
-    ],
-    "isRealError": false,
-    "acceptedAnswers": [
+    "numberVariants": [
       "insects"
     ],
     "sourceRevision": 4,
-    "audioText": "insects",
-    "audioPath": "audio/insects.mp3"
+    "audioText": "insect",
+    "audioPath": "audio/insect.mp3"
   },
   {
     "id": "instead-of",
@@ -7301,29 +7114,12 @@
     "acceptedAnswers": [
       "invitation"
     ],
-    "sourceRevision": 4,
-    "audioText": "invitation",
-    "audioPath": "audio/invitation.mp3"
-  },
-  {
-    "id": "invitations",
-    "term": "invitations",
-    "meaning": "邀请；请柬",
-    "note": "检查复数",
-    "category": "饮食、购物与日常生活",
-    "sections": [
-      "P1 + P4 必会听写词"
-    ],
-    "modes": [
-      "spelling"
-    ],
-    "isRealError": false,
-    "acceptedAnswers": [
+    "numberVariants": [
       "invitations"
     ],
     "sourceRevision": 4,
-    "audioText": "invitations",
-    "audioPath": "audio/invitations.mp3"
+    "audioText": "invitation",
+    "audioPath": "audio/invitation.mp3"
   },
   {
     "id": "involve",
@@ -7685,29 +7481,12 @@
     "acceptedAnswers": [
       "light"
     ],
-    "sourceRevision": 4,
-    "audioText": "light",
-    "audioPath": "audio/light.mp3"
-  },
-  {
-    "id": "lights",
-    "term": "lights",
-    "meaning": "灯；照明",
-    "note": "检查复数",
-    "category": "住房、酒店、旅游与交通",
-    "sections": [
-      "P1 + P4 必会听写词"
-    ],
-    "modes": [
-      "spelling"
-    ],
-    "isRealError": false,
-    "acceptedAnswers": [
+    "numberVariants": [
       "lights"
     ],
     "sourceRevision": 4,
-    "audioText": "lights",
-    "audioPath": "audio/lights.mp3"
+    "audioText": "light",
+    "audioPath": "audio/light.mp3"
   },
   {
     "id": "limited",
@@ -8049,29 +7828,12 @@
     "acceptedAnswers": [
       "material"
     ],
-    "sourceRevision": 4,
-    "audioText": "material",
-    "audioPath": "audio/material.mp3"
-  },
-  {
-    "id": "materials",
-    "term": "materials",
-    "meaning": "材料；资料",
-    "note": "检查复数",
-    "category": "工作、学校与学术",
-    "sections": [
-      "P1 + P4 必会听写词"
-    ],
-    "modes": [
-      "spelling"
-    ],
-    "isRealError": false,
-    "acceptedAnswers": [
+    "numberVariants": [
       "materials"
     ],
     "sourceRevision": 4,
-    "audioText": "materials",
-    "audioPath": "audio/materials.mp3"
+    "audioText": "material",
+    "audioPath": "audio/material.mp3"
   },
   {
     "id": "measure",
@@ -9551,29 +9313,12 @@
     "acceptedAnswers": [
       "plant"
     ],
-    "sourceRevision": 4,
-    "audioText": "plant",
-    "audioPath": "audio/plant.mp3"
-  },
-  {
-    "id": "plants",
-    "term": "plants",
-    "meaning": "植物",
-    "note": "检查复数",
-    "category": "环境、自然、材料与科学",
-    "sections": [
-      "P1 + P4 必会听写词"
-    ],
-    "modes": [
-      "spelling"
-    ],
-    "isRealError": false,
-    "acceptedAnswers": [
+    "numberVariants": [
       "plants"
     ],
     "sourceRevision": 4,
-    "audioText": "plants",
-    "audioPath": "audio/plants.mp3"
+    "audioText": "plant",
+    "audioPath": "audio/plant.mp3"
   },
   {
     "id": "plastic",
@@ -9935,6 +9680,9 @@
     "acceptedAnswers": [
       "present"
     ],
+    "numberVariants": [
+      "presents"
+    ],
     "sourceRevision": 4,
     "audioText": "present",
     "audioPath": "audio/present.mp3"
@@ -9960,26 +9708,6 @@
     "sourceRevision": 4,
     "audioText": "presentation",
     "audioPath": "audio/presentation.mp3"
-  },
-  {
-    "id": "presents",
-    "term": "presents",
-    "meaning": "礼物",
-    "note": "注意第二义",
-    "category": "饮食、购物与日常生活",
-    "sections": [
-      "P1 + P4 必会听写词"
-    ],
-    "modes": [
-      "spelling"
-    ],
-    "isRealError": false,
-    "acceptedAnswers": [
-      "presents"
-    ],
-    "sourceRevision": 4,
-    "audioText": "presents",
-    "audioPath": "audio/presents.mp3"
   },
   {
     "id": "prevent",
@@ -10604,29 +10332,12 @@
     "acceptedAnswers": [
       "recording"
     ],
-    "sourceRevision": 4,
-    "audioText": "recording",
-    "audioPath": "audio/recording.mp3"
-  },
-  {
-    "id": "recordings",
-    "term": "recordings",
-    "meaning": "录音",
-    "note": "检查复数",
-    "category": "工作、学校与学术",
-    "sections": [
-      "P1 + P4 必会听写词"
-    ],
-    "modes": [
-      "spelling"
-    ],
-    "isRealError": false,
-    "acceptedAnswers": [
+    "numberVariants": [
       "recordings"
     ],
     "sourceRevision": 4,
-    "audioText": "recordings",
-    "audioPath": "audio/recordings.mp3"
+    "audioText": "recording",
+    "audioPath": "audio/recording.mp3"
   },
   {
     "id": "recycling",
@@ -11226,29 +10937,12 @@
     "acceptedAnswers": [
       "result"
     ],
-    "sourceRevision": 4,
-    "audioText": "result",
-    "audioPath": "audio/result.mp3"
-  },
-  {
-    "id": "results",
-    "term": "results",
-    "meaning": "结果",
-    "note": "检查复数",
-    "category": "工作、学校与学术",
-    "sections": [
-      "P1 + P4 必会听写词"
-    ],
-    "modes": [
-      "spelling"
-    ],
-    "isRealError": false,
-    "acceptedAnswers": [
+    "numberVariants": [
       "results"
     ],
     "sourceRevision": 4,
-    "audioText": "results",
-    "audioPath": "audio/results.mp3"
+    "audioText": "result",
+    "audioPath": "audio/result.mp3"
   },
   {
     "id": "risk",
@@ -11427,29 +11121,12 @@
     "acceptedAnswers": [
       "sandwich"
     ],
-    "sourceRevision": 4,
-    "audioText": "sandwich",
-    "audioPath": "audio/sandwich.mp3"
-  },
-  {
-    "id": "sandwiches",
-    "term": "sandwiches",
-    "meaning": "三明治",
-    "note": "复数 -es",
-    "category": "饮食、购物与日常生活",
-    "sections": [
-      "P1 + P4 必会听写词"
-    ],
-    "modes": [
-      "spelling"
-    ],
-    "isRealError": false,
-    "acceptedAnswers": [
+    "numberVariants": [
       "sandwiches"
     ],
     "sourceRevision": 4,
-    "audioText": "sandwiches",
-    "audioPath": "audio/sandwiches.mp3"
+    "audioText": "sandwich",
+    "audioPath": "audio/sandwich.mp3"
   },
   {
     "id": "satellite",
@@ -11614,29 +11291,12 @@
     "acceptedAnswers": [
       "shift"
     ],
-    "sourceRevision": 4,
-    "audioText": "shift",
-    "audioPath": "audio/shift.mp3"
-  },
-  {
-    "id": "shifts",
-    "term": "shifts",
-    "meaning": "班次",
-    "note": "检查复数",
-    "category": "工作、学校与学术",
-    "sections": [
-      "P1 + P4 必会听写词"
-    ],
-    "modes": [
-      "spelling"
-    ],
-    "isRealError": false,
-    "acceptedAnswers": [
+    "numberVariants": [
       "shifts"
     ],
     "sourceRevision": 4,
-    "audioText": "shifts",
-    "audioPath": "audio/shifts.mp3"
+    "audioText": "shift",
+    "audioPath": "audio/shift.mp3"
   },
   {
     "id": "shortage",
@@ -11754,29 +11414,12 @@
     "acceptedAnswers": [
       "skill"
     ],
-    "sourceRevision": 4,
-    "audioText": "skill",
-    "audioPath": "audio/skill.mp3"
-  },
-  {
-    "id": "skills",
-    "term": "skills",
-    "meaning": "技能",
-    "note": "检查复数",
-    "category": "工作、学校与学术",
-    "sections": [
-      "P1 + P4 必会听写词"
-    ],
-    "modes": [
-      "spelling"
-    ],
-    "isRealError": false,
-    "acceptedAnswers": [
+    "numberVariants": [
       "skills"
     ],
     "sourceRevision": 4,
-    "audioText": "skills",
-    "audioPath": "audio/skills.mp3"
+    "audioText": "skill",
+    "audioPath": "audio/skill.mp3"
   },
   {
     "id": "slight",
@@ -11980,26 +11623,6 @@
     "audioPath": "audio/species.mp3"
   },
   {
-    "id": "spectator-spectators",
-    "term": "spectator / spectators",
-    "meaning": "现场观众",
-    "note": "体育比赛、活动的观看者",
-    "category": "人物、关系与身份",
-    "sections": [
-      "P2 + P3 必会看懂词"
-    ],
-    "modes": [
-      "recognition"
-    ],
-    "isRealError": false,
-    "acceptedAnswers": [
-      "spectator / spectators"
-    ],
-    "sourceRevision": 4,
-    "audioText": "spectator / spectators",
-    "audioPath": "audio/spectator-spectators.mp3"
-  },
-  {
     "id": "stadium",
     "term": "stadium",
     "meaning": "体育场",
@@ -12178,29 +11801,12 @@
     "acceptedAnswers": [
       "student"
     ],
-    "sourceRevision": 4,
-    "audioText": "student",
-    "audioPath": "audio/student.mp3"
-  },
-  {
-    "id": "students",
-    "term": "students",
-    "meaning": "学生",
-    "note": "检查复数",
-    "category": "工作、学校与学术",
-    "sections": [
-      "P1 + P4 必会听写词"
-    ],
-    "modes": [
-      "spelling"
-    ],
-    "isRealError": false,
-    "acceptedAnswers": [
+    "numberVariants": [
       "students"
     ],
     "sourceRevision": 4,
-    "audioText": "students",
-    "audioPath": "audio/students.mp3"
+    "audioText": "student",
+    "audioPath": "audio/student.mp3"
   },
   {
     "id": "subject",
@@ -12479,29 +12085,12 @@
     "acceptedAnswers": [
       "symptom"
     ],
-    "sourceRevision": 4,
-    "audioText": "symptom",
-    "audioPath": "audio/symptom.mp3"
-  },
-  {
-    "id": "symptoms",
-    "term": "symptoms",
-    "meaning": "症状",
-    "note": "检查复数",
-    "category": "医疗与健康",
-    "sections": [
-      "P1 + P4 必会听写词"
-    ],
-    "modes": [
-      "spelling"
-    ],
-    "isRealError": false,
-    "acceptedAnswers": [
+    "numberVariants": [
       "symptoms"
     ],
     "sourceRevision": 4,
-    "audioText": "symptoms",
-    "audioPath": "audio/symptoms.mp3"
+    "audioText": "symptom",
+    "audioPath": "audio/symptom.mp3"
   },
   {
     "id": "take-part-in",

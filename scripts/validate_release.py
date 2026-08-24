@@ -12,7 +12,7 @@ AUDIT = json.loads((ROOT / "data" / "audit.json").read_text(encoding="utf-8"))
 MANIFEST = json.loads((ROOT / "audio" / "manifest.json").read_text(encoding="utf-8"))
 
 REQUIRED_ERRORS = {
-    "litter", "meal", "midday", "beginners", "bilingual", "waitress", "reference", "mild",
+    "litter", "meal", "midday", "beginner", "bilingual", "waitress", "reference", "mild",
     "string", "wax", "lead", "prescription", "pharmacy", "relief", "disbelief", "gratitude",
     "homesickness", "spectator", "excessive sweating", "fellow students", "neglecting",
     "reorganising shifts", "equipment", "make their own", "mass-produced", "purpose", "bend",
@@ -39,6 +39,10 @@ def main() -> None:
         fail(f"Missing real-error vocabulary: {missing_errors}")
     if len(ids) != len(ITEMS):
         fail("Duplicate item IDs found")
+    aliases = {alias.lower() for item in ITEMS for alias in item.get("numberVariants", [])}
+    duplicate_number_forms = sorted(item["term"] for item in ITEMS if item["term"].lower() in aliases)
+    if duplicate_number_forms:
+        fail(f"Singular/plural forms remain separate challenges: {duplicate_number_forms}")
 
     spelling = [item for item in ITEMS if "spelling" in item["modes"]]
     recognition = [item for item in ITEMS if "recognition" in item["modes"]]

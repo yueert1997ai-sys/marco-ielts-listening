@@ -1,13 +1,13 @@
 {
   "sourceRevision": 4,
   "sourceRows": 749,
-  "uniqueEntries": 674,
+  "uniqueEntries": 650,
   "realErrorRows": 46,
-  "realErrorEntries": 49,
+  "realErrorEntries": 47,
   "customEntries": 1,
   "activities": {
-    "recognition": 430,
-    "spelling": 294
+    "recognition": 429,
+    "spelling": 271
   },
   "sectionRows": {
     "P1 + P4 必会听写词": 275,
@@ -17,5 +17,6 @@
     "高频短语 / Chunk": 99
   },
   "untraceableEntries": 0,
-  "duplicateIds": 0
+  "duplicateIds": 0,
+  "numberVariantAliases": 24
 }

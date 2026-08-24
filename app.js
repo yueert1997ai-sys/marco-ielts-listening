@@ -49,7 +49,7 @@
 
   function safeState(raw) {
     const base = {
-      version: 2,
+      version: 3,
       progress: {},
       starred: {},
       customItems: [],
@@ -61,7 +61,7 @@
     return {
       ...base,
       ...raw,
-      version: 2,
+      version: 3,
       progress: raw.progress && typeof raw.progress === "object" ? raw.progress : {},
       starred: raw.starred && typeof raw.starred === "object" ? raw.starred : {},
       customItems: Array.isArray(raw.customItems) ? raw.customItems : [],
@@ -190,6 +190,101 @@
     return String(value || "").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
   }
 
+  function numberVariantMap(sourceItems) {
+    const aliases = new Map();
+    sourceItems.forEach((item) => {
+      (item.numberVariants || []).forEach((variant) => aliases.set(keyFor(variant), item.id));
+    });
+    return aliases;
+  }
+
+  function mergeProgressRecords(first, second) {
+    if (!first) return { ...second };
+    if (!second) return { ...first };
+    const dueDates = [first.due, second.due].filter(Boolean).sort();
+    const seenDates = [first.lastSeen, second.lastSeen].filter(Boolean).sort();
+    return {
+      ...first,
+      ...second,
+      stage: Math.max(first.stage || 0, second.stage || 0),
+      attempts: (first.attempts || 0) + (second.attempts || 0),
+      passes: (first.passes || 0) + (second.passes || 0),
+      lapses: (first.lapses || 0) + (second.lapses || 0),
+      due: dueDates[0] || "",
+      lastSeen: seenDates.at(-1) || "",
+    };
+  }
+
+  function remapActivityKey(activityKey, aliases) {
+    const match = String(activityKey || "").match(/^(.*):(spelling|recognition)$/);
+    if (!match) return activityKey;
+    return `${aliases.get(match[1]) || match[1]}:${match[2]}`;
+  }
+
+  function migrateNumberVariantState(state, sourceItems) {
+    const aliases = numberVariantMap(sourceItems);
+    if (!aliases.size) return state;
+
+    const progress = {};
+    Object.entries(state.progress || {}).forEach(([key, record]) => {
+      const canonical = remapActivityKey(key, aliases);
+      progress[canonical] = mergeProgressRecords(progress[canonical], record);
+    });
+    state.progress = progress;
+
+    const starred = {};
+    Object.entries(state.starred || {}).forEach(([id, active]) => {
+      if (active) starred[aliases.get(id) || id] = true;
+    });
+    state.starred = starred;
+
+    const canonicalItems = new Map(sourceItems.map((item) => [item.id, item]));
+    const customItems = new Map();
+    (state.customItems || []).map(cleanCustomEntry).forEach((entry) => {
+      const id = aliases.get(entry.id) || entry.id;
+      const canonical = canonicalItems.get(id);
+      const migrated = canonical ? { ...entry, id, term: canonical.term } : entry;
+      const existing = customItems.get(id);
+      customItems.set(id, existing
+        ? { ...existing, ...migrated, modes: [...new Set([...existing.modes, ...migrated.modes])] }
+        : migrated);
+    });
+    state.customItems = [...customItems.values()];
+
+    if (!state.daily) return state;
+    const uniqueKeys = (values) => {
+      const seen = new Set();
+      return (values || []).map((key) => remapActivityKey(key, aliases)).filter((key) => {
+        if (seen.has(key)) return false;
+        seen.add(key);
+        return true;
+      });
+    };
+    state.daily.baseKeys = uniqueKeys(state.daily.baseKeys);
+    const queueSeen = new Set();
+    state.daily.queue = (state.daily.queue || []).map((entry) => ({
+      ...entry,
+      key: remapActivityKey(entry.key, aliases),
+    })).filter((entry) => {
+      const signature = `${entry.isRetry ? "retry" : "base"}:${entry.key}`;
+      if (queueSeen.has(signature)) return false;
+      queueSeen.add(signature);
+      return true;
+    });
+
+    const remapObject = (value, combine) => Object.entries(value || {}).reduce((result, [key, entry]) => {
+      const canonical = remapActivityKey(key, aliases);
+      result[canonical] = canonical in result ? combine(result[canonical], entry) : entry;
+      return result;
+    }, {});
+    const outcomeRank = { pass: 0, slow: 1, fail: 2 };
+    state.daily.answeredBase = remapObject(state.daily.answeredBase, (a, b) => Boolean(a || b));
+    state.daily.outcomes = remapObject(state.daily.outcomes,
+      (a, b) => (outcomeRank[b] || 0) > (outcomeRank[a] || 0) ? b : a);
+    state.daily.retryCount = remapObject(state.daily.retryCount, (a, b) => Math.max(a || 0, b || 0));
+    return state;
+  }
+
   function normaliseModes(value) {
     const values = Array.isArray(value) ? value : String(value || "").split(/[,+/，、\s]+/);
     const modes = new Set();
@@ -245,10 +340,12 @@
 
   function mergeCustomItems(sourceItems, customItems) {
     const merged = new Map(sourceItems.map((item) => [item.id, { ...item, modes: [...item.modes] }]));
+    const aliases = numberVariantMap(sourceItems);
     customItems.map(cleanCustomEntry).forEach((entry) => {
-      const existing = merged.get(entry.id);
+      const canonicalId = aliases.get(entry.id) || entry.id;
+      const existing = merged.get(canonicalId);
       if (existing) {
-        merged.set(entry.id, {
+        merged.set(canonicalId, {
           ...existing,
           meaning: entry.meaning || existing.meaning,
           modes: [...new Set([...existing.modes, ...entry.modes])].sort(),
@@ -260,7 +357,7 @@
           audioPath: existing.audioPath || `audio/${existing.id}.mp3`,
         });
       } else {
-        merged.set(entry.id, {
+        merged.set(canonicalId, {
           ...entry,
           sections: ["我的同步错词"],
           isRealError: true,
@@ -291,7 +388,7 @@
   const api = {
     dateKey, addDays, hashString, normaliseAnswer, makeActivities, safeState,
     createDailyDeck, prepareDaily, scheduleReview, insertRetry, buildChoices,
-    createBrowseDeck, parseWrongWordInput, mergeCustomItems, seededShuffle,
+    createBrowseDeck, parseWrongWordInput, mergeCustomItems, migrateNumberVariantState, seededShuffle,
     shouldRevealAnswer, RESPONSE_LIMIT_MS, INTERVALS, BROWSE_PAGE_SIZE,
   };
 
@@ -860,8 +957,9 @@
     reader.onload = () => {
       try {
         const parsed = JSON.parse(reader.result);
-        if (![1, 2].includes(parsed.version) || !parsed.progress) throw new Error("invalid");
+        if (![1, 2, 3].includes(parsed.version) || !parsed.progress) throw new Error("invalid");
         state = safeState(parsed);
+        migrateNumberVariantState(state, sourceItems);
         rebuildDecks();
         prepareDaily(state, activities);
         saveState();
@@ -879,6 +977,7 @@
       if (!response.ok) throw new Error(`HTTP ${response.status}`);
       sourceItems = await response.json();
       loadState();
+      migrateNumberVariantState(state, sourceItems);
       reconcileSyncedCustomItems();
       rebuildDecks();
       prepareDaily(state, activities);

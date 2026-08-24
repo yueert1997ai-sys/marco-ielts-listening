@@ -8,6 +8,7 @@
 - 任意 Codex：项目根目录的 `AGENTS.md` 会指导它通过 `scripts/import_wrong_words.py` 入库。
 - 跨设备同步：网页会生成 GitHub 同步单；仅仓库所有者提交的同步单会触发自动校验、音频生成和发布。
 - 分类规则：听错或拼错进入 `spelling`，不认识或词义混淆进入 `recognition`，两种情况进入两类。
+- 单数和规则复数只保留一张主卡，不会把 `curtain` / `curtains` 当成两个挑战；英美拼写差异仍分别保留。
 
 ## 数据来源
 

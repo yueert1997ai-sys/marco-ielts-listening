@@ -45,8 +45,70 @@ def split_spelling_forms(term: str) -> list[str]:
     return [item for item in forms if re.fullmatch(r"[A-Za-z][A-Za-z '\-]*", item)] or [term]
 
 
+IRREGULAR_PLURALS = {
+    "children": "child",
+    "feet": "foot",
+    "geese": "goose",
+    "men": "man",
+    "mice": "mouse",
+    "people": "person",
+    "teeth": "tooth",
+    "women": "woman",
+}
+
+
+def singular_candidates(term: str) -> set[str]:
+    """Return conservative singular candidates for comparison only."""
+    prefix, separator, word = term.lower().rpartition(" ")
+    stem_prefix = f"{prefix}{separator}" if separator else ""
+    candidates: set[str] = set()
+    if word in IRREGULAR_PLURALS:
+        candidates.add(stem_prefix + IRREGULAR_PLURALS[word])
+    if word.endswith("ies") and len(word) > 3:
+        candidates.add(stem_prefix + word[:-3] + "y")
+    if word.endswith("ves") and len(word) > 3:
+        candidates.add(stem_prefix + word[:-3] + "f")
+        candidates.add(stem_prefix + word[:-3] + "fe")
+    if word.endswith("es") and len(word) > 2:
+        candidates.add(stem_prefix + word[:-2])
+        candidates.add(stem_prefix + word[:-1])
+    if word.endswith("s") and not word.endswith("ss") and len(word) > 1:
+        candidates.add(stem_prefix + word[:-1])
+    return candidates
+
+
+def number_pair(first: str, second: str) -> tuple[str, str] | None:
+    """Return (singular, plural) when two forms only differ by number."""
+    first_normalised = first.lower()
+    second_normalised = second.lower()
+    if first_normalised in singular_candidates(second):
+        return first, second
+    if second_normalised in singular_candidates(first):
+        return second, first
+    return None
+
+
+def training_forms(term: str, mode: str) -> list[tuple[str, list[str]]]:
+    """Collapse number variants while preserving true spelling alternatives."""
+    forms = split_spelling_forms(term)
+    if len(forms) == 2:
+        pair = number_pair(forms[0], forms[1])
+        if pair:
+            singular, plural = pair
+            return [(singular, [plural])]
+    if mode == "spelling":
+        return [(form, []) for form in forms]
+    return [(term, [])]
+
+
 def key_for(term: str) -> str:
     return re.sub(r"[^a-z0-9]+", "-", term.lower()).strip("-")
+
+
+def find_number_canonical(merged: dict[str, dict], term: str) -> dict | None:
+    term_key = key_for(term)
+    return next((candidate for candidate in merged.values()
+                 if term_key in {key_for(variant) for variant in candidate.get("numberVariants", [])}), None)
 
 
 def parse_rows(content: str) -> list[dict]:
@@ -101,8 +163,11 @@ def build(rows: list[dict], revision: int, custom_rows: list[dict] | None = None
         if row["section"] == "我的真实错词":
             continue
         for mode in SECTION_MODES.get(row["section"], set()):
-            forms = split_spelling_forms(row["term"]) if mode == "spelling" else [row["term"]]
-            for term in forms:
+            for term, number_variants in training_forms(row["term"], mode):
+                canonical = find_number_canonical(merged, term)
+                if canonical:
+                    number_variants = [*number_variants, term]
+                    term = canonical["term"]
                 key = key_for(term)
                 if not key:
                     continue
@@ -116,7 +181,11 @@ def build(rows: list[dict], revision: int, custom_rows: list[dict] | None = None
                     "modes": [],
                     "isRealError": False,
                     "acceptedAnswers": [term],
+                    "numberVariants": [],
                 })
+                for variant in number_variants:
+                    if variant not in item["numberVariants"]:
+                        item["numberVariants"].append(variant)
                 if mode not in item["modes"]:
                     item["modes"].append(mode)
                 if row["section"] not in item["sections"]:
@@ -127,16 +196,18 @@ def build(rows: list[dict], revision: int, custom_rows: list[dict] | None = None
         if row["section"] != "我的真实错词":
             continue
         real_error_rows += 1
-        spelling_forms = split_spelling_forms(row["term"])
+        spelling_entries = training_forms(row["term"], "spelling")
+        spelling_forms = [term for term, _ in spelling_entries]
         inherited = set()
         for form in spelling_forms:
             inherited.update(merged.get(key_for(form), {}).get("modes", []))
         modes = infer_error_modes(row, inherited)
         for mode in sorted(modes):
-            # Singular and plural are distinct spelling answers, but duplicate
-            # recognition cards would only slow option reading practice.
-            forms = spelling_forms if mode == "spelling" else [spelling_forms[0]]
-            for term in forms:
+            for term, number_variants in training_forms(row["term"], mode):
+                canonical = find_number_canonical(merged, term)
+                if canonical:
+                    number_variants = [*number_variants, term]
+                    term = canonical["term"]
                 key = key_for(term)
                 if not key:
                     continue
@@ -150,7 +221,11 @@ def build(rows: list[dict], revision: int, custom_rows: list[dict] | None = None
                     "modes": [],
                     "isRealError": True,
                     "acceptedAnswers": [term],
+                    "numberVariants": [],
                 })
+                for variant in number_variants:
+                    if variant not in item["numberVariants"]:
+                        item["numberVariants"].append(variant)
                 item["isRealError"] = True
                 item["errorNote"] = row["note"]
                 item["meaning"] = row["meaning"]
@@ -171,6 +246,13 @@ def build(rows: list[dict], revision: int, custom_rows: list[dict] | None = None
         key = key_for(term)
         if not key:
             raise SystemExit(f"Invalid custom vocabulary term: {term}")
+        canonical = find_number_canonical(merged, term)
+        if canonical:
+            key = canonical["id"]
+            number_variants = [term]
+            term = canonical["term"]
+        else:
+            number_variants = []
         item = merged.setdefault(key, {
             "id": key,
             "term": term,
@@ -181,7 +263,11 @@ def build(rows: list[dict], revision: int, custom_rows: list[dict] | None = None
             "modes": [],
             "isRealError": True,
             "acceptedAnswers": [term],
+            "numberVariants": [],
         })
+        for variant in number_variants:
+            if variant != item["term"] and variant not in item["numberVariants"]:
+                item["numberVariants"].append(variant)
         item["meaning"] = meaning
         item["isRealError"] = True
         item["errorNote"] = row.get("reason") or "个人错词"
@@ -200,6 +286,10 @@ def build(rows: list[dict], revision: int, custom_rows: list[dict] | None = None
         item["sourceRevision"] = revision
         item["audioText"] = item["term"]
         item["audioPath"] = f"audio/{item['id']}.mp3"
+        if item["numberVariants"]:
+            item["numberVariants"].sort(key=str.lower)
+        else:
+            item.pop("numberVariants")
 
     activities = Counter(mode for item in items for mode in item["modes"])
     audit = {
@@ -213,6 +303,7 @@ def build(rows: list[dict], revision: int, custom_rows: list[dict] | None = None
         "sectionRows": dict(sorted(Counter(row["section"] for row in rows).items())),
         "untraceableEntries": 0,
         "duplicateIds": len(items) - len({item["id"] for item in items}),
+        "numberVariantAliases": sum(len(item.get("numberVariants", [])) for item in items),
     }
     return items, audit
 
@@ -222,6 +313,10 @@ def validate(items: list[dict], audit: dict) -> None:
         raise SystemExit(f"Expected at least 46 real-error source rows, found {audit['realErrorRows']}")
     if audit["duplicateIds"]:
         raise SystemExit("Duplicate item IDs found")
+    ids = {item["id"] for item in items}
+    alias_ids = {key_for(alias) for item in items for alias in item.get("numberVariants", [])}
+    if ids & alias_ids:
+        raise SystemExit(f"Number variant was kept as a separate challenge: {sorted(ids & alias_ids)}")
     if audit["activities"].get("spelling", 0) < 200:
         raise SystemExit("Spelling deck is unexpectedly small")
     if audit["activities"].get("recognition", 0) < 200:
