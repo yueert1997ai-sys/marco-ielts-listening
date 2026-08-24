@@ -1,6 +1,6 @@
 {
   "voice": "en-GB-SoniaNeural",
-  "count": 673,
+  "count": 674,
   "files": [
     "audio/alongside.mp3",
     "audio/beginners.mp3",
@@ -29,6 +29,7 @@
     "audio/make-their-own.mp3",
     "audio/mass-produced.mp3",
     "audio/meal.mp3",
+    "audio/meticulous.mp3",
     "audio/midday.mp3",
     "audio/mild.mp3",
     "audio/morale.mp3",

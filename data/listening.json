@@ -600,6 +600,29 @@
     "audioPath": "audio/meal.mp3"
   },
   {
+    "id": "meticulous",
+    "term": "meticulous",
+    "meaning": "一丝不苟的；非常仔细的",
+    "note": "自动同步链路验收；阅读识词",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "meticulous"
+    ],
+    "errorNote": "自动同步链路验收；阅读识词",
+    "userAddedAt": "2026-08-24",
+    "sourceType": "user",
+    "sourceRevision": 4,
+    "audioText": "meticulous",
+    "audioPath": "audio/meticulous.mp3"
+  },
+  {
     "id": "midday",
     "term": "midday",
     "meaning": "中午",

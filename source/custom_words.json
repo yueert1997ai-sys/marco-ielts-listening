@@ -1,1 +1,13 @@
-[]
+[
+  {
+    "id": "meticulous",
+    "term": "meticulous",
+    "meaning": "一丝不苟的；非常仔细的",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "自动同步链路验收；阅读识词",
+    "category": "我的同步错词",
+    "addedAt": "2026-08-24"
+  }
+]
