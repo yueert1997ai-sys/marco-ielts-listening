@@ -95,7 +95,28 @@ test("version one state migrates without losing progress", () => {
 });
 test("response limit is five seconds", () => assert.equal(logic.RESPONSE_LIMIT_MS, 5000));
 test("intervals match spec", () => assert.deepEqual(logic.INTERVALS, [1, 3, 7, 14, 30, 60]));
-test("visible app version matches this release", () => assert.equal(logic.APP_VERSION, "v2.4.0"));
+test("visible app version matches this release", () => assert.equal(logic.APP_VERSION, "v2.5.0"));
+test("release reset clears training but preserves personal words and stars", () => {
+  const reset = logic.applyTrainingReset(logic.safeState({
+    progress: { "carpet:spelling": { stage: 3 } },
+    daily: { date: "2026-08-24", queue: [{ key: "carpet:spelling" }] },
+    streak: 8,
+    starred: { carpet: true },
+    customItems: [{ id: "retain", term: "retain" }],
+  }));
+  assert.deepEqual(reset.progress, {}); assert.equal(reset.daily, null); assert.equal(reset.streak, 0);
+  assert(reset.starred.carpet); assert.equal(reset.customItems[0].id, "retain");
+  assert.equal(reset.trainingResetId, logic.TRAINING_RESET_ID);
+});
+test("release reset only runs once", () => {
+  const current = logic.applyTrainingReset(logic.safeState(null));
+  current.progress["carpet:spelling"] = { stage: 1 };
+  assert.equal(logic.applyTrainingReset(current).progress["carpet:spelling"].stage, 1);
+});
+test("a new deck nonce changes the fresh test selection", () => assert.notDeepEqual(
+  logic.createDailyDeck(activities, {}, "2026-08-24", {}, { deckNonce: "first", prioritiseRealErrors: false }),
+  logic.createDailyDeck(activities, {}, "2026-08-24", {}, { deckNonce: "second", prioritiseRealErrors: false })
+));
 test("spelling answer reveals after first error", () => assert.equal(logic.shouldRevealAnswer("spelling", "fail", 1), true));
 test("spelling answer still reveals after repeated errors", () => assert.equal(logic.shouldRevealAnswer("spelling", "fail", 3), true));
 test("recognition answer reveals immediately", () => assert.equal(logic.shouldRevealAnswer("recognition", "fail", 1), true));

@@ -150,6 +150,7 @@ h1 { margin: 0; font-size: 25px; line-height: 1; letter-spacing: -.04em; }
 .home summary { min-height: 44px; display: flex; align-items: center; cursor: pointer; }
 .tools { display: grid; gap: 8px; padding: 5px 0; }
 .tools .secondary { width: 100%; }
+.tools .danger-button { color: var(--error); border-color: color-mix(in srgb, var(--error) 45%, var(--line)); }
 .file-label { display: flex; align-items: center; justify-content: center; }
 .file-label input { position: absolute; opacity: 0; pointer-events: none; }
 .session-toolbar { min-height: 46px; display: grid; grid-template-columns: 62px 1fr 44px; align-items: center; gap: 8px; margin-bottom: 8px; }

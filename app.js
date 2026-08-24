@@ -2,7 +2,9 @@
   "use strict";
 
   const STORAGE_KEY = "marcoIeltsListening.v1";
-  const APP_VERSION = "v2.4.0";
+  const APP_VERSION = "v2.5.0";
+  const TRAINING_RESET_ID = "fresh-start-v2.5.0";
+  const DECK_REVISION = "whole-bank-v2";
   const DAILY_PER_MODE = 25;
   const BROWSE_PAGE_SIZE = 20;
   const RESPONSE_LIMIT_MS = 5000;
@@ -57,6 +59,8 @@
       daily: null,
       streak: 0,
       lastCompletedDate: null,
+      trainingResetId: null,
+      deckNonce: DECK_REVISION,
     };
     if (!raw || typeof raw !== "object") return base;
     return {
@@ -70,13 +74,34 @@
     };
   }
 
-  function activityRank(activity, progress, today, starred = {}) {
+  function resetTrainingState(current, resetId = TRAINING_RESET_ID, deckNonce = resetId) {
+    const preserved = safeState(current);
+    return {
+      ...preserved,
+      progress: {},
+      daily: null,
+      streak: 0,
+      lastCompletedDate: null,
+      trainingResetId: resetId,
+      deckNonce,
+    };
+  }
+
+  function applyTrainingReset(current) {
+    const safe = safeState(current);
+    return safe.trainingResetId === TRAINING_RESET_ID
+      ? safe
+      : resetTrainingState(safe, TRAINING_RESET_ID, DECK_REVISION);
+  }
+
+  function activityRank(activity, progress, today, starred = {}, tieBreaker = activity.key, prioritiseRealErrors = true) {
     const record = progress[activity.key];
     const important = starred[activity.id] ? 0 : 1;
-    if (record && record.due <= today) return [0, important, activity.isRealError ? 0 : 1, record.due, record.stage || 0, activity.key];
-    if (!record && activity.isRealError) return [1, important, 0, "", activity.key];
-    if (!record) return [2, important, 0, "", activity.key];
-    return [3, important, activity.isRealError ? 0 : 1, record.lastSeen || "", record.stage || 0, activity.key];
+    const realErrorRank = prioritiseRealErrors && activity.isRealError ? 0 : 1;
+    if (record && record.due <= today) return [0, important, realErrorRank, record.due, record.stage || 0, tieBreaker];
+    if (!record && prioritiseRealErrors && activity.isRealError) return [1, important, 0, "", tieBreaker];
+    if (!record) return [2, important, realErrorRank, "", tieBreaker];
+    return [3, important, realErrorRank, record.lastSeen || "", record.stage || 0, tieBreaker];
   }
 
   function compareRank(a, b) {
@@ -94,22 +119,31 @@
       .map((entry) => entry.value);
   }
 
-  function createDailyDeck(activities, progress, today = dateKey(), starred = {}) {
+  function createDailyDeck(activities, progress, today = dateKey(), starred = {}, options = {}) {
+    const deckNonce = options.deckNonce || DECK_REVISION;
+    const prioritiseRealErrors = options.prioritiseRealErrors !== false;
     function pick(mode) {
       return activities
         .filter((activity) => activity.mode === mode)
-        .sort((a, b) => compareRank(activityRank(a, progress, today, starred), activityRank(b, progress, today, starred)))
+        .sort((a, b) => compareRank(
+          activityRank(a, progress, today, starred, hashString(`${deckNonce}:${today}:${mode}:${a.key}`), prioritiseRealErrors),
+          activityRank(b, progress, today, starred, hashString(`${deckNonce}:${today}:${mode}:${b.key}`), prioritiseRealErrors)
+        ))
         .slice(0, DAILY_PER_MODE)
         .map((activity) => activity.key);
     }
     const spelling = pick("spelling");
     const recognition = pick("recognition");
-    return seededShuffle([...spelling, ...recognition], `${today}:daily`);
+    return seededShuffle([...spelling, ...recognition], `${today}:daily:${deckNonce}`);
   }
 
   function prepareDaily(state, activities, today = dateKey()) {
     if (state.daily && state.daily.date === today && Array.isArray(state.daily.queue)) return state;
-    const baseKeys = createDailyDeck(activities, state.progress, today, state.starred);
+    const isFreshBaseline = Object.keys(state.progress || {}).length === 0;
+    const baseKeys = createDailyDeck(activities, state.progress, today, state.starred, {
+      deckNonce: state.deckNonce || DECK_REVISION,
+      prioritiseRealErrors: !isFreshBaseline,
+    });
     state.daily = {
       date: today,
       baseKeys,
@@ -390,7 +424,8 @@
     dateKey, addDays, hashString, normaliseAnswer, makeActivities, safeState,
     createDailyDeck, prepareDaily, scheduleReview, insertRetry, buildChoices,
     createBrowseDeck, parseWrongWordInput, mergeCustomItems, migrateNumberVariantState, seededShuffle,
-    shouldRevealAnswer, RESPONSE_LIMIT_MS, INTERVALS, BROWSE_PAGE_SIZE, APP_VERSION,
+    resetTrainingState, applyTrainingReset, shouldRevealAnswer,
+    RESPONSE_LIMIT_MS, INTERVALS, BROWSE_PAGE_SIZE, APP_VERSION, TRAINING_RESET_ID, DECK_REVISION,
   };
 
   if (typeof module !== "undefined" && module.exports) module.exports = api;
@@ -591,6 +626,7 @@
           <div class="tools">
             <button id="export" class="secondary">导出学习进度</button>
             <label class="secondary file-label">导入学习进度<input id="import" type="file" accept="application/json"></label>
+            <button id="reset-training" class="secondary danger-button">重新开始正式训练</button>
             <p>词库 ${items.length} 条 · 飞书 revision ${items[0]?.sourceRevision || "-"}</p>
           </div>
         </details>
@@ -609,6 +645,13 @@
     });
     document.getElementById("export")?.addEventListener("click", exportProgress);
     document.getElementById("import")?.addEventListener("change", importProgress);
+    document.getElementById("reset-training")?.addEventListener("click", () => {
+      if (!window.confirm("确定清空正式训练进度并重新抽取 50 题吗？错词库和重点标记会保留。")) return;
+      state = resetTrainingState(state, TRAINING_RESET_ID, `manual-${Date.now()}`);
+      prepareDaily(state, activities);
+      saveState();
+      homeScreen();
+    });
   }
 
   function sessionMeta(entry, activity) {
@@ -1078,6 +1121,7 @@
       if (!response.ok) throw new Error(`HTTP ${response.status}`);
       sourceItems = await response.json();
       loadState();
+      state = applyTrainingReset(state);
       migrateNumberVariantState(state, sourceItems);
       reconcileSyncedCustomItems();
       rebuildDecks();
