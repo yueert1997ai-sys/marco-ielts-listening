@@ -2,7 +2,7 @@
   "use strict";
 
   const STORAGE_KEY = "marcoIeltsListening.v1";
-  const APP_VERSION = "v2.8.0";
+  const APP_VERSION = "v2.8.1";
   const TRAINING_RESET_ID = "fresh-start-v2.5.0";
   const DECK_REVISION = "whole-bank-v2";
   const DAILY_PER_MODE = 25;
@@ -10,6 +10,7 @@
   const RESPONSE_LIMIT_MS = 5000;
   const DIRECTION_RESPONSE_LIMIT_MS = 2000;
   const HARD_DIRECTION_RESPONSE_LIMIT_MS = 1000;
+  const HARD_DIRECTION_PLAYBACK_RATE = 1.4;
   const DIRECTION_QUESTION_COUNT = 10;
   const HARD_DIRECTION_IDS = ["northeast", "southeast", "southwest", "northwest"];
   const INTERVALS = [1, 3, 7, 14, 30, 60];
@@ -467,6 +468,7 @@
     createDirectionDeck, createHardDirectionDeck, judgeDirectionAttempt, isDirectionRunPassed,
     resetTrainingState, applyTrainingReset, shouldRevealAnswer,
     RESPONSE_LIMIT_MS, DIRECTION_RESPONSE_LIMIT_MS, HARD_DIRECTION_RESPONSE_LIMIT_MS,
+    HARD_DIRECTION_PLAYBACK_RATE,
     DIRECTION_QUESTION_COUNT, HARD_DIRECTION_IDS,
     INTERVALS, BROWSE_PAGE_SIZE, APP_VERSION, TRAINING_RESET_ID, DECK_REVISION,
   };
@@ -499,6 +501,7 @@
     standard: {
       id: "standard",
       responseLimitMs: DIRECTION_RESPONSE_LIMIT_MS,
+      playbackRate: 1,
       directionIds: null,
       eyebrow: "8-WAY REFLEX",
       description: "八个方向都会出现，全部答对且每题不超过 2 秒才算过关。",
@@ -506,9 +509,10 @@
     hard: {
       id: "hard",
       responseLimitMs: HARD_DIRECTION_RESPONSE_LIMIT_MS,
+      playbackRate: HARD_DIRECTION_PLAYBACK_RATE,
       directionIds: HARD_DIRECTION_IDS,
       eyebrow: "45° REFLEX",
-      description: "只考东北、东南、西南、西北，全部答对且每题不超过 1 秒才算过关。",
+      description: "只考东北、东南、西南、西北，音频以 1.4 倍速播放，每题不超过 1 秒。",
     },
   };
   const screen = document.getElementById("screen");
@@ -793,7 +797,7 @@
       <section class="direction-intro">
         <div class="direction-toolbar">
           <button id="direction-back" class="text-button">← 今日任务</button>
-          <span class="mode-label">AUDIO · ${seconds} 秒</span>
+          <span class="mode-label">AUDIO · ${seconds} 秒${config.playbackRate > 1 ? ` · ${config.playbackRate}×` : ""}</span>
         </div>
         <div class="direction-mode-switch" role="group" aria-label="选择方位检测难度">
           <button type="button" data-direction-mode="standard" class="direction-mode-option${config.id === "standard" ? " active" : ""}" aria-pressed="${config.id === "standard"}">
@@ -833,6 +837,7 @@
     directionRun = {
       mode: config.id,
       responseLimitMs: config.responseLimitMs,
+      playbackRate: config.playbackRate,
       directionIds: config.directionIds,
       deck: createDirectionDeck(directions, `${Date.now()}:${Math.random()}`, { allowedIds: config.directionIds }),
       results: [],
@@ -846,6 +851,9 @@
     directionAudio.currentTime = 0;
     directionAudio.src = `./${question.audioPath}`;
     directionAudio.preload = "auto";
+    const playbackRate = directionRun?.playbackRate || 1;
+    directionAudio.defaultPlaybackRate = playbackRate;
+    directionAudio.playbackRate = playbackRate;
     return new Promise((resolve, reject) => {
       let settled = false;
       const finish = (callback) => {
@@ -915,7 +923,7 @@
           <span class="mode-label">第 ${index + 1}/${DIRECTION_QUESTION_COUNT} 题</span>
         </div>
         <div class="direction-card">
-          <div class="timer-label"><span>${directionRun.mode === "hard" ? "困难模式 · 45°" : "标准模式 · 8 方位"}</span><strong id="direction-timer-count">${(responseLimitMs / 1000).toFixed(1)}</strong></div>
+          <div class="timer-label"><span>${directionRun.mode === "hard" ? `困难模式 · 45° · ${directionRun.playbackRate}×` : "标准模式 · 8 方位"}</span><strong id="direction-timer-count">${(responseLimitMs / 1000).toFixed(1)}</strong></div>
           <div class="timer"><div id="direction-timer-bar" class="direction-timer-bar paused" style="animation-duration:${responseLimitMs}ms"></div></div>
           <p id="direction-prompt" class="direction-prompt" aria-live="polite">准备播放…</p>
           ${directionBoardMarkup(true, directionRun.directionIds)}

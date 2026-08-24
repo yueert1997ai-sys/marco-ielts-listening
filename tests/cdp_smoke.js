@@ -71,7 +71,7 @@ async function screenshot(send, name) {
     const registration = await navigator.serviceWorker.ready;
     await new Promise((resolve) => setTimeout(resolve, 5000));
     const names = await caches.keys();
-    const cache = names.includes('ielts-listening-v14') ? await caches.open('ielts-listening-v14') : null;
+    const cache = names.includes('ielts-listening-v15') ? await caches.open('ielts-listening-v15') : null;
     const keys = cache ? await cache.keys() : [];
     return {
       active: registration.active?.state || null,
@@ -177,6 +177,7 @@ async function screenshot(send, name) {
   if (home.scrollWidth > 390 || directionIntro.previewTargets !== 8
     || directionIntro.hard.previewTargets !== 4 || !directionIntro.hard.diagonalBoard
     || directionSession.targets !== 4 || directionSession.timerDuration !== "1000ms"
+    || !directionSession.mode.includes("1.4×")
     || !directionSession.diagonalBoard || directionSession.scrollWidth > 390
     || !directionSession.dailyUnchanged) {
     throw new Error("Mobile direction mode smoke check failed");
