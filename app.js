@@ -3,8 +3,10 @@
 
   const STORAGE_KEY = "marcoIeltsListening.v1";
   const DAILY_PER_MODE = 25;
+  const BROWSE_PAGE_SIZE = 20;
   const RESPONSE_LIMIT_MS = 5000;
   const INTERVALS = [1, 3, 7, 14, 30, 60];
+  const REPOSITORY_URL = "https://github.com/yueert1997ai-sys/marco-ielts-listening";
 
   function dateKey(date = new Date()) {
     const year = date.getFullYear();
@@ -46,23 +48,34 @@
   }
 
   function safeState(raw) {
-    const base = { version: 1, progress: {}, daily: null, streak: 0, lastCompletedDate: null };
+    const base = {
+      version: 2,
+      progress: {},
+      starred: {},
+      customItems: [],
+      daily: null,
+      streak: 0,
+      lastCompletedDate: null,
+    };
     if (!raw || typeof raw !== "object") return base;
     return {
       ...base,
       ...raw,
-      version: 1,
+      version: 2,
       progress: raw.progress && typeof raw.progress === "object" ? raw.progress : {},
+      starred: raw.starred && typeof raw.starred === "object" ? raw.starred : {},
+      customItems: Array.isArray(raw.customItems) ? raw.customItems : [],
       daily: raw.daily && typeof raw.daily === "object" ? raw.daily : null,
     };
   }
 
-  function activityRank(activity, progress, today) {
+  function activityRank(activity, progress, today, starred = {}) {
     const record = progress[activity.key];
-    if (record && record.due <= today) return [0, activity.isRealError ? 0 : 1, record.due, record.stage || 0, activity.key];
-    if (!record && activity.isRealError) return [1, 0, "", 0, activity.key];
-    if (!record) return [2, 0, "", 0, activity.key];
-    return [3, activity.isRealError ? 0 : 1, record.lastSeen || "", record.stage || 0, activity.key];
+    const important = starred[activity.id] ? 0 : 1;
+    if (record && record.due <= today) return [0, important, activity.isRealError ? 0 : 1, record.due, record.stage || 0, activity.key];
+    if (!record && activity.isRealError) return [1, important, 0, "", activity.key];
+    if (!record) return [2, important, 0, "", activity.key];
+    return [3, important, activity.isRealError ? 0 : 1, record.lastSeen || "", record.stage || 0, activity.key];
   }
 
   function compareRank(a, b) {
@@ -73,27 +86,29 @@
     return 0;
   }
 
-  function createDailyDeck(activities, progress, today = dateKey()) {
+  function seededShuffle(values, seed) {
+    return values
+      .map((value, index) => ({ value, rank: hashString(`${seed}:${index}:${typeof value === "string" ? value : JSON.stringify(value)}`) }))
+      .sort((a, b) => a.rank - b.rank)
+      .map((entry) => entry.value);
+  }
+
+  function createDailyDeck(activities, progress, today = dateKey(), starred = {}) {
     function pick(mode) {
       return activities
         .filter((activity) => activity.mode === mode)
-        .sort((a, b) => compareRank(activityRank(a, progress, today), activityRank(b, progress, today)))
+        .sort((a, b) => compareRank(activityRank(a, progress, today, starred), activityRank(b, progress, today, starred)))
         .slice(0, DAILY_PER_MODE)
         .map((activity) => activity.key);
     }
     const spelling = pick("spelling");
     const recognition = pick("recognition");
-    const deck = [];
-    for (let i = 0; i < DAILY_PER_MODE; i += 1) {
-      if (spelling[i]) deck.push(spelling[i]);
-      if (recognition[i]) deck.push(recognition[i]);
-    }
-    return deck;
+    return seededShuffle([...spelling, ...recognition], `${today}:daily`);
   }
 
   function prepareDaily(state, activities, today = dateKey()) {
     if (state.daily && state.daily.date === today && Array.isArray(state.daily.queue)) return state;
-    const baseKeys = createDailyDeck(activities, state.progress, today);
+    const baseKeys = createDailyDeck(activities, state.progress, today, state.starred);
     state.daily = {
       date: today,
       baseKeys,
@@ -108,12 +123,13 @@
   }
 
   function scheduleReview(record, outcome, today = dateKey()) {
-    const current = record && typeof record === "object" ? record : { stage: 0, lapses: 0, passes: 0 };
+    const current = record && typeof record === "object" ? record : { stage: 0, lapses: 0, passes: 0, attempts: 0 };
     if (outcome === "pass") {
       const stage = Math.min((current.stage || 0) + 1, INTERVALS.length);
       return {
         ...current,
         stage,
+        attempts: (current.attempts || 0) + 1,
         passes: (current.passes || 0) + 1,
         lastSeen: today,
         due: addDays(today, INTERVALS[Math.max(0, stage - 1)]),
@@ -122,6 +138,7 @@
     return {
       ...current,
       stage: 0,
+      attempts: (current.attempts || 0) + 1,
       lapses: (current.lapses || 0) + 1,
       lastSeen: today,
       due: addDays(today, 1),
@@ -138,7 +155,7 @@
     return index;
   }
 
-  function buildChoices(activity, activities) {
+  function buildChoices(activity, activities, seed = activity.key) {
     const target = activity.meaning;
     const candidates = activities.filter((item) =>
       item.mode === "recognition" && item.key !== activity.key && item.meaning !== target
@@ -153,19 +170,110 @@
       if (!meanings.includes(item.meaning)) meanings.push(item.meaning);
       if (meanings.length === 3) break;
     }
-    return [target, ...meanings].sort((a, b) => hashString(activity.key + a) - hashString(activity.key + b));
+    return seededShuffle([target, ...meanings], `${activity.key}:${seed}:choices`);
   }
 
-  function createBrowseDeck(sourceItems, filter = "all", seed = "default") {
+  function createBrowseDeck(sourceItems, filter = "all", seed = "default", starred = {}) {
     return sourceItems
       .filter((item) => {
         if (filter === "spelling") return item.modes.includes("spelling");
         if (filter === "recognition") return item.modes.includes("recognition");
         if (filter === "errors") return item.isRealError;
+        if (filter === "starred") return Boolean(starred[item.id]);
         return true;
       })
       .slice()
       .sort((a, b) => hashString(`${seed}:${a.id}`) - hashString(`${seed}:${b.id}`));
+  }
+
+  function keyFor(value) {
+    return String(value || "").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+  }
+
+  function normaliseModes(value) {
+    const values = Array.isArray(value) ? value : String(value || "").split(/[,+/，、\s]+/);
+    const modes = new Set();
+    values.forEach((entry) => {
+      const mode = String(entry).trim().toLowerCase();
+      if (["spelling", "听写", "拼写", "听力"].includes(mode)) modes.add("spelling");
+      if (["recognition", "识词", "看义", "阅读", "识义"].includes(mode)) modes.add("recognition");
+      if (["both", "两类", "全部"].includes(mode)) { modes.add("spelling"); modes.add("recognition"); }
+    });
+    return [...modes];
+  }
+
+  function cleanCustomEntry(raw) {
+    const term = String(raw.term || raw.word || "").trim();
+    const meaning = String(raw.meaning || raw.translation || "").trim();
+    const modes = normaliseModes(raw.modes || raw.mode || raw.type);
+    if (!term || !meaning || !modes.length) throw new Error("每条错词都要有英文、中文意思和训练类型");
+    if (!/^[A-Za-z][A-Za-z '\-]*$/.test(term)) throw new Error(`英文格式不正确：${term}`);
+    const id = keyFor(term);
+    return {
+      id,
+      term,
+      meaning,
+      modes,
+      reason: String(raw.reason || raw.note || raw.errorNote || "个人错词").trim() || "个人错词",
+      category: String(raw.category || "我的同步错词").trim(),
+      addedAt: String(raw.addedAt || dateKey()),
+    };
+  }
+
+  function parseWrongWordInput(text) {
+    const value = String(text || "").trim();
+    if (!value) return [];
+    let rows;
+    if (value.startsWith("[") || value.startsWith("{")) {
+      const parsed = JSON.parse(value);
+      rows = Array.isArray(parsed) ? parsed : (Array.isArray(parsed.entries) ? parsed.entries : [parsed]);
+    } else {
+      rows = value.split(/\r?\n/).filter((line) => line.trim()).map((line) => {
+        const cells = line.split(/\s*[|｜\t]\s*/);
+        if (cells.length < 3) throw new Error(`无法识别这一行：${line}`);
+        return { term: cells[0], meaning: cells[1], mode: cells[2], reason: cells.slice(3).join(" | ") };
+      });
+    }
+    const merged = new Map();
+    rows.map(cleanCustomEntry).forEach((entry) => {
+      const existing = merged.get(entry.id);
+      if (!existing) merged.set(entry.id, entry);
+      else merged.set(entry.id, { ...existing, ...entry, modes: [...new Set([...existing.modes, ...entry.modes])] });
+    });
+    return [...merged.values()];
+  }
+
+  function mergeCustomItems(sourceItems, customItems) {
+    const merged = new Map(sourceItems.map((item) => [item.id, { ...item, modes: [...item.modes] }]));
+    customItems.map(cleanCustomEntry).forEach((entry) => {
+      const existing = merged.get(entry.id);
+      if (existing) {
+        merged.set(entry.id, {
+          ...existing,
+          meaning: entry.meaning || existing.meaning,
+          modes: [...new Set([...existing.modes, ...entry.modes])].sort(),
+          isRealError: true,
+          errorNote: entry.reason,
+          userAddedAt: entry.addedAt,
+          acceptedAnswers: [existing.term],
+          audioText: existing.term,
+          audioPath: existing.audioPath || `audio/${existing.id}.mp3`,
+        });
+      } else {
+        merged.set(entry.id, {
+          ...entry,
+          sections: ["我的同步错词"],
+          isRealError: true,
+          acceptedAnswers: [entry.term],
+          note: entry.reason,
+          errorNote: entry.reason,
+          audioText: entry.term,
+          audioPath: `audio/${entry.id}.mp3`,
+          sourceRevision: "local",
+        });
+      }
+    });
+    return [...merged.values()];
   }
 
   function diffAnswer(typed, expected) {
@@ -183,12 +291,14 @@
   const api = {
     dateKey, addDays, hashString, normaliseAnswer, makeActivities, safeState,
     createDailyDeck, prepareDaily, scheduleReview, insertRetry, buildChoices,
-    createBrowseDeck, shouldRevealAnswer, RESPONSE_LIMIT_MS, INTERVALS,
+    createBrowseDeck, parseWrongWordInput, mergeCustomItems, seededShuffle,
+    shouldRevealAnswer, RESPONSE_LIMIT_MS, INTERVALS, BROWSE_PAGE_SIZE,
   };
 
   if (typeof module !== "undefined" && module.exports) module.exports = api;
   if (typeof document === "undefined") return;
 
+  let sourceItems = [];
   let items = [];
   let activities = [];
   let activityMap = new Map();
@@ -198,6 +308,7 @@
   let currentResult = null;
   let browseFilter = "all";
   let browseSeed = `${dateKey()}:browse`;
+  let browsePage = 1;
   const screen = document.getElementById("screen");
   const rail = document.getElementById("signal-rail");
   const dayCount = document.getElementById("day-count");
@@ -212,6 +323,45 @@
   function saveState() {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
     updateChrome();
+  }
+
+  function rebuildDecks() {
+    items = mergeCustomItems(sourceItems, state.customItems);
+    activities = makeActivities(items);
+    activityMap = new Map(activities.map((activity) => [activity.key, activity]));
+  }
+
+  function reconcileSyncedCustomItems() {
+    const published = new Map(sourceItems.filter((item) => item.sourceType === "user").map((item) => [item.id, item]));
+    state.customItems = state.customItems.filter((custom) => {
+      const item = published.get(custom.id || keyFor(custom.term));
+      if (!item) return true;
+      const modes = normaliseModes(custom.modes || custom.mode);
+      return !modes.every((mode) => item.modes.includes(mode));
+    });
+  }
+
+  function toggleStar(itemId) {
+    if (state.starred[itemId]) delete state.starred[itemId];
+    else state.starred[itemId] = true;
+    saveState();
+    return Boolean(state.starred[itemId]);
+  }
+
+  function starButton(item, className = "star-button") {
+    const active = Boolean(state.starred[item.id]);
+    return `<button class="${className}${active ? " active" : ""}" data-star="${escapeHtml(item.id)}" aria-label="${active ? "取消重点" : "标为重点"}" aria-pressed="${active}">${active ? "★" : "☆"}</button>`;
+  }
+
+  function itemStats(item) {
+    const records = item.modes.map((mode) => state.progress[`${item.id}:${mode}`]).filter(Boolean);
+    return records.reduce((summary, record) => ({
+      attempts: summary.attempts + (record.attempts || (record.passes || 0) + (record.lapses || 0)),
+      passes: summary.passes + (record.passes || 0),
+      lapses: summary.lapses + (record.lapses || 0),
+      stage: Math.max(summary.stage, record.stage || 0),
+      due: !summary.due || (record.due && record.due < summary.due) ? record.due : summary.due,
+    }), { attempts: 0, passes: 0, lapses: 0, stage: 0, due: "" });
   }
 
   function baseDone() {
@@ -253,6 +403,8 @@
     const done = baseDone();
     const remainingRetries = state.daily.queue.filter((entry) => entry.isRetry).length;
     const buttonText = state.daily.completed ? "今天已完成" : (state.daily.started ? "继续训练" : "开始今日 50");
+    const totalErrors = Object.values(state.progress).reduce((sum, record) => sum + (record.lapses || 0), 0);
+    const starredCount = Object.keys(state.starred).length;
     screen.innerHTML = `
       <section class="home">
         <div class="home-card">
@@ -266,9 +418,21 @@
         </div>
         <button id="start" class="primary" ${state.daily.completed ? "disabled" : ""}>${buttonText}</button>
         <button id="browse" class="browse-entry">
-          <span><strong>随便刷</strong><small>不答题，不计进度，想停就停</small></span>
+          <span><strong>随便刷</strong><small>分页浏览、全词发音，想停就停</small></span>
           <b aria-hidden="true">∞</b>
         </button>
+        <div class="home-actions">
+          <button id="inbox" class="compact-entry">
+            <span><strong>错词收件箱</strong><small>${state.customItems.length} 条待同步</small></span><b>＋</b>
+          </button>
+          <button id="starred" class="compact-entry">
+            <span><strong>重点词</strong><small>${starredCount} 个已标记</small></span><b>★</b>
+          </button>
+        </div>
+        <div class="memory-summary">
+          <span>累计错误 <strong>${totalErrors}</strong></span>
+          <span>记忆阶段 <strong>1—6</strong></span>
+        </div>
         <p class="status-line">连续 ${state.streak || 0} 天${remainingRetries ? ` · 还有 ${remainingRetries} 个回炉题` : ""}</p>
         <details>
           <summary>进度与备份</summary>
@@ -285,13 +449,37 @@
       renderCurrent();
     });
     document.getElementById("browse")?.addEventListener("click", browseScreen);
+    document.getElementById("inbox")?.addEventListener("click", inboxScreen);
+    document.getElementById("starred")?.addEventListener("click", () => {
+      browseFilter = "starred";
+      browsePage = 1;
+      browseScreen();
+    });
     document.getElementById("export")?.addEventListener("click", exportProgress);
     document.getElementById("import")?.addEventListener("change", importProgress);
   }
 
   function sessionMeta(entry, activity) {
     const label = activity.mode === "spelling" ? "听音拼写" : "快速看义";
-    return `<div class="session-meta"><span class="mode-label">${label}</span><span>${entry.isRetry ? '<b class="retry-label">回炉题</b>' : `${baseDone() + 1}/50`}</span></div>`;
+    return `<div class="session-toolbar">
+      <button id="pause-session" class="text-button">← 暂停</button>
+      <div class="session-meta"><span class="mode-label">${label}</span><span>${entry.isRetry ? '<b class="retry-label">回炉题</b>' : `${baseDone() + 1}/50`}</span></div>
+      ${starButton(activity, "session-star")}
+    </div>`;
+  }
+
+  function bindSessionToolbar(activity) {
+    document.getElementById("pause-session")?.addEventListener("click", () => {
+      clearInterval(recognitionTimerId);
+      saveState();
+      homeScreen();
+    });
+    document.querySelector(".session-star")?.addEventListener("click", (event) => {
+      const active = toggleStar(activity.id);
+      event.currentTarget.classList.toggle("active", active);
+      event.currentTarget.textContent = active ? "★" : "☆";
+      event.currentTarget.setAttribute("aria-pressed", String(active));
+    });
   }
 
   function renderSpelling(entry, activity) {
@@ -314,6 +502,7 @@
         </form>
       </section>`;
     document.getElementById("play").addEventListener("click", () => playAudio(activity));
+    bindSessionToolbar(activity);
     document.getElementById("spelling-form").addEventListener("submit", (event) => {
       event.preventDefault();
       const typed = document.getElementById("answer").value;
@@ -327,7 +516,7 @@
     window.scrollTo(0, 0);
     clearInterval(recognitionTimerId);
     recognitionStartedAt = performance.now();
-    const choices = buildChoices(activity, activities);
+    const choices = buildChoices(activity, activities, `${Date.now()}:${Math.random()}`);
     screen.innerHTML = `
       <section class="session">
         ${sessionMeta(entry, activity)}
@@ -342,6 +531,7 @@
         </div>
       </section>`;
     const timerCount = document.getElementById("timer-count");
+    bindSessionToolbar(activity);
     recognitionTimerId = setInterval(() => {
       const remaining = Math.max(0, Math.ceil((RESPONSE_LIMIT_MS - (performance.now() - recognitionStartedAt)) / 1000));
       timerCount.textContent = remaining > 0 ? String(remaining) : "超时";
@@ -387,12 +577,16 @@
   function browseScreen() {
     window.scrollTo(0, 0);
     setShellMode("browse");
-    const deck = createBrowseDeck(items, browseFilter, browseSeed);
+    const deck = createBrowseDeck(items, browseFilter, browseSeed, state.starred);
+    const pageCount = Math.max(1, Math.ceil(deck.length / BROWSE_PAGE_SIZE));
+    browsePage = Math.min(Math.max(1, browsePage), pageCount);
+    const pageItems = deck.slice((browsePage - 1) * BROWSE_PAGE_SIZE, browsePage * BROWSE_PAGE_SIZE);
     const filters = [
       ["all", "全部"],
       ["spelling", "听写"],
       ["recognition", "看懂"],
       ["errors", "我的错词"],
+      ["starred", "重点词"],
     ];
     screen.innerHTML = `
       <section class="browse">
@@ -401,30 +595,48 @@
           <button id="browse-shuffle" class="text-button">换个顺序</button>
         </div>
         <div class="browse-intro">
-          <p>不用回忆，不用作答。往下滑，看到就算复习。</p>
+          <p>每页 ${BROWSE_PAGE_SIZE} 个。听发音、做标记，刷完一页就能停。</p>
           <span>${deck.length} 条</span>
         </div>
         <div class="filter-strip" role="group" aria-label="筛选词表">
           ${filters.map(([value, label]) => `<button class="filter-chip${browseFilter === value ? " active" : ""}" data-filter="${value}">${label}</button>`).join("")}
         </div>
         <div class="word-stream">
-          ${deck.map((item) => browseCard(item)).join("")}
+          ${pageItems.length ? pageItems.map((item) => browseCard(item)).join("") : '<div class="empty-card"><strong>这里还没有词</strong><p>答题或浏览时点 ☆，就会收进重点词。</p></div>'}
         </div>
-        <p class="stream-end">刷到底了。换个顺序，还能再来一遍。</p>
+        ${pagination(pageCount)}
       </section>`;
     document.getElementById("browse-back").addEventListener("click", homeScreen);
     document.getElementById("browse-shuffle").addEventListener("click", () => {
       browseSeed = `${Date.now()}:${Math.random()}`;
+      browsePage = 1;
       browseScreen();
     });
     document.querySelectorAll(".filter-chip").forEach((button) => button.addEventListener("click", () => {
       browseFilter = button.dataset.filter;
+      browsePage = 1;
       browseScreen();
     }));
     document.querySelectorAll(".mini-play").forEach((button) => button.addEventListener("click", () => {
       const item = items.find((candidate) => candidate.id === button.dataset.id);
       if (item) playAudio(item, button);
     }));
+    document.querySelectorAll(".star-button").forEach((button) => button.addEventListener("click", () => {
+      toggleStar(button.dataset.star);
+      browseScreen();
+    }));
+    document.querySelectorAll("[data-page]").forEach((button) => button.addEventListener("click", () => {
+      browsePage = Number(button.dataset.page);
+      browseScreen();
+    }));
+  }
+
+  function pagination(pageCount) {
+    return `<nav class="pagination" aria-label="词表翻页">
+      <button class="secondary" data-page="${Math.max(1, browsePage - 1)}" ${browsePage === 1 ? "disabled" : ""}>上一页</button>
+      <span><strong>${browsePage}</strong> / ${pageCount}</span>
+      <button class="secondary" data-page="${Math.min(pageCount, browsePage + 1)}" ${browsePage === pageCount ? "disabled" : ""}>下一页</button>
+    </nav>`;
   }
 
   function browseCard(item) {
@@ -432,19 +644,25 @@
     if (item.modes.includes("spelling")) tags.push("听写");
     if (item.modes.includes("recognition")) tags.push("看懂");
     if (item.isRealError) tags.push("错词");
+    if (state.starred[item.id]) tags.push("重点");
     const rawNote = String(item.errorNote || item.note || "").trim();
     const note = /^[-—–]+$/.test(rawNote) ? "" : rawNote;
+    const stats = itemStats(item);
     return `
-      <article class="word-card${item.isRealError ? " real-error" : ""}">
+      <article class="word-card${item.isRealError ? " real-error" : ""}${state.starred[item.id] ? " starred" : ""}">
         <div class="word-main">
           <div>
             <h2>${escapeHtml(item.term)}</h2>
             <p>${escapeHtml(item.meaning)}</p>
           </div>
-          ${item.audioPath ? `<button class="mini-play" data-id="${escapeHtml(item.id)}" aria-label="播放 ${escapeHtml(item.term)}">▶</button>` : ""}
+          <div class="word-actions">
+            ${starButton(item)}
+            <button class="mini-play" data-id="${escapeHtml(item.id)}" aria-label="播放 ${escapeHtml(item.term)}">▶</button>
+          </div>
         </div>
         ${note ? `<p class="word-note">${escapeHtml(note)}</p>` : ""}
         <div class="word-tags">${tags.map((tag) => `<span>${tag}</span>`).join("")}</div>
+        ${stats.attempts ? `<div class="word-stats"><span>错 ${stats.lapses}</span><span>对 ${stats.passes}</span><span>阶段 ${stats.stage}/6</span>${stats.due ? `<span>复习 ${escapeHtml(stats.due)}</span>` : ""}</div>` : ""}
       </article>`;
   }
 
@@ -454,6 +672,14 @@
       state.daily.answeredBase[activity.key] = true;
       state.daily.outcomes[activity.key] = outcome;
       state.progress[activity.key] = scheduleReview(state.progress[activity.key], outcome, state.daily.date);
+    } else if (entry.isRetry) {
+      const record = state.progress[activity.key] || { stage: 0, passes: 0, lapses: 0, attempts: 0, lastSeen: state.daily.date, due: addDays(state.daily.date, 1) };
+      state.progress[activity.key] = {
+        ...record,
+        attempts: (record.attempts || 0) + 1,
+        passes: (record.passes || 0) + (outcome === "pass" ? 1 : 0),
+        lapses: (record.lapses || 0) + (outcome === "pass" ? 0 : 1),
+      };
     }
     if (outcome !== "pass") insertRetry(state.daily, activity.key);
     currentResult = { entry, activity, outcome, detail };
@@ -467,32 +693,57 @@
     const pass = outcome === "pass";
     const retryCount = state.daily.retryCount[activity.key] || 0;
     const reveal = shouldRevealAnswer(activity.mode, outcome, retryCount);
+    const record = state.progress[activity.key] || {};
     const label = pass ? "本次通过" : (outcome === "slow" ? "答对了，但超过 5 秒" : "这次没拼对 / 选对");
     const typed = detail.typed !== undefined
       ? `<p class="typed">你写的是：${diffAnswer(detail.typed, activity.term)}</p>`
       : (detail.selected ? `<p class="typed">你选的是：${escapeHtml(detail.selected)}</p>` : "");
     screen.innerHTML = `
       <section class="result">
+        <div class="result-toolbar">
+          <button id="result-home" class="text-button">← 暂停</button>
+          ${starButton(activity, "session-star")}
+        </div>
         <div class="result-card">
           <p class="result-mark ${pass ? "pass" : "weak"}">${label}</p>
           <h2 class="answer">${reveal ? escapeHtml(activity.term) : "先不公布答案"}</h2>
           <p class="meaning">${reveal ? escapeHtml(activity.meaning) : `第 ${retryCount} 次错误：看清错误位置，隔几题再拼。`}</p>
           ${typed}
           <p class="note">${reveal ? escapeHtml(activity.errorNote || activity.note || "") : "答案会在连续三次错误后显示。"}${pass ? "" : " · 已放回今天的队列"}</p>
+          <div class="memory-strip">
+            <span><b>${record.lapses || 0}</b>累计错误</span>
+            <span><b>${record.passes || 0}</b>累计答对</span>
+            <span><b>${record.stage || 0}/6</b>记忆阶段</span>
+            <span><b>${escapeHtml(record.due || "—")}</b>下次复习</span>
+          </div>
         </div>
         <button id="continue" class="primary">继续</button>
       </section>`;
     document.getElementById("continue").addEventListener("click", renderCurrent);
+    document.getElementById("result-home").addEventListener("click", () => {
+      saveState();
+      homeScreen();
+    });
+    document.querySelector(".session-star")?.addEventListener("click", (event) => {
+      const active = toggleStar(activity.id);
+      event.currentTarget.classList.toggle("active", active);
+      event.currentTarget.textContent = active ? "★" : "☆";
+    });
   }
 
   function playAudio(activity, targetButton) {
     const button = targetButton || document.getElementById("play");
     button?.classList.add("playing");
     const finish = () => button?.classList.remove("playing");
+    if (!activity.audioPath) {
+      finish();
+      speakFallback(activity.audioText || activity.term);
+      return;
+    }
     const audio = new Audio(`./${activity.audioPath}`);
     audio.addEventListener("ended", finish, { once: true });
-    audio.addEventListener("error", () => { finish(); speakFallback(activity.audioText); }, { once: true });
-    audio.play().catch(() => { finish(); speakFallback(activity.audioText); });
+    audio.addEventListener("error", () => { finish(); speakFallback(activity.audioText || activity.term); }, { once: true });
+    audio.play().catch(() => { finish(); speakFallback(activity.audioText || activity.term); });
   }
 
   function speakFallback(text) {
@@ -504,6 +755,93 @@
     const voice = speechSynthesis.getVoices().find((candidate) => candidate.lang.toLowerCase().startsWith("en-gb"));
     if (voice) utterance.voice = voice;
     speechSynthesis.speak(utterance);
+  }
+
+  function wrongWordPrompt() {
+    return `请把我接下来提供的 IELTS 阅读/听力错词整理成纯 JSON 数组，不要解释。每项格式：{"term":"英文词或短语","meaning":"准确中文义","mode":"spelling 或 recognition 或 both","reason":"我错在哪里"}。听错、没拼对、单复数或词形错误归 spelling；不认识、选项没看懂、词义混淆归 recognition；两种问题都有归 both。`;
+  }
+
+  async function copyText(value) {
+    if (navigator.clipboard?.writeText) return navigator.clipboard.writeText(value);
+    const area = document.createElement("textarea");
+    area.value = value;
+    document.body.appendChild(area);
+    area.select();
+    document.execCommand("copy");
+    area.remove();
+  }
+
+  function syncPackage() {
+    return JSON.stringify({ version: 1, entries: state.customItems }, null, 2);
+  }
+
+  function inboxScreen() {
+    window.scrollTo(0, 0);
+    setShellMode("browse");
+    screenTitle.textContent = "错词收件箱";
+    dayCount.textContent = String(state.customItems.length);
+    screen.innerHTML = `
+      <section class="inbox-screen">
+        <div class="browse-toolbar">
+          <button id="inbox-back" class="text-button">← 今日任务</button>
+          <button id="copy-gpt-prompt" class="text-button">复制给 GPT 的要求</button>
+        </div>
+        <div class="inbox-hero">
+          <p class="eyebrow">GPT / CODEX / MANUAL</p>
+          <h2>谁帮你总结都行，最后都进同一个词库。</h2>
+          <p>把 GPT 输出的 JSON，或每行“英文 | 中文 | 类型 | 错误原因”粘到下面。类型可写 spelling、recognition 或 both。</p>
+        </div>
+        <label class="inbox-label" for="wrong-word-input">粘贴错词包</label>
+        <textarea id="wrong-word-input" class="inbox-input" rows="9" placeholder='[{"term":"retain","meaning":"保留","mode":"recognition","reason":"和 obtain 混淆"}]'></textarea>
+        <button id="import-wrong-words" class="primary">检查并加入本机词库</button>
+        <p id="inbox-message" class="inbox-message" aria-live="polite"></p>
+        <div class="sync-card">
+          <div><strong>本机新增 ${state.customItems.length} 条</strong><p>提交到 GitHub 后，其他设备也会获得这些词。</p></div>
+          <button id="submit-sync" class="secondary" ${state.customItems.length ? "" : "disabled"}>提交同步</button>
+          <button id="copy-package" class="secondary" ${state.customItems.length ? "" : "disabled"}>复制同步包</button>
+        </div>
+      </section>`;
+    const message = document.getElementById("inbox-message");
+    document.getElementById("inbox-back").addEventListener("click", homeScreen);
+    document.getElementById("copy-gpt-prompt").addEventListener("click", async () => {
+      await copyText(wrongWordPrompt());
+      message.textContent = "已复制。发给任意网页 GPT，再把它输出的 JSON 粘回来。";
+    });
+    document.getElementById("import-wrong-words").addEventListener("click", () => {
+      try {
+        const entries = parseWrongWordInput(document.getElementById("wrong-word-input").value);
+        if (!entries.length) throw new Error("还没有粘贴错词");
+        const merged = new Map(state.customItems.map((item) => [item.id || keyFor(item.term), cleanCustomEntry(item)]));
+        entries.forEach((entry) => {
+          const existing = merged.get(entry.id);
+          merged.set(entry.id, existing ? { ...existing, ...entry, modes: [...new Set([...existing.modes, ...entry.modes])] } : entry);
+        });
+        state.customItems = [...merged.values()];
+        rebuildDecks();
+        saveState();
+        message.textContent = `已加入 ${entries.length} 条，本机现在就能刷；正在等待提交到 GitHub。`;
+        setTimeout(inboxScreen, 650);
+      } catch (error) {
+        message.textContent = `没有导入：${error.message}`;
+        message.classList.add("error");
+      }
+    });
+    document.getElementById("copy-package").addEventListener("click", async () => {
+      await copyText(syncPackage());
+      message.textContent = "同步包已复制，可以直接发给任意 Codex 入库。";
+    });
+    document.getElementById("submit-sync").addEventListener("click", async () => {
+      const body = `请自动导入以下错词包。\n\n\`\`\`json\n${syncPackage()}\n\`\`\``;
+      const url = `${REPOSITORY_URL}/issues/new?title=${encodeURIComponent(`[错词同步] ${dateKey()} ${state.customItems.length}条`)}&body=${encodeURIComponent(body)}`;
+      if (url.length > 7000) {
+        await copyText(syncPackage());
+        window.open(`${REPOSITORY_URL}/issues/new`, "_blank", "noopener");
+        message.textContent = "词太多，已复制同步包。请在新建 Issue 中粘贴并提交。";
+      } else {
+        window.open(url, "_blank", "noopener");
+        message.textContent = "已打开 GitHub 提交页，确认内容后点 Submit new issue。";
+      }
+    });
   }
 
   function exportProgress() {
@@ -522,8 +860,9 @@
     reader.onload = () => {
       try {
         const parsed = JSON.parse(reader.result);
-        if (parsed.version !== 1 || !parsed.progress) throw new Error("invalid");
+        if (![1, 2].includes(parsed.version) || !parsed.progress) throw new Error("invalid");
         state = safeState(parsed);
+        rebuildDecks();
         prepareDaily(state, activities);
         saveState();
         homeScreen();
@@ -538,10 +877,10 @@
     try {
       const response = await fetch("./data/listening.json");
       if (!response.ok) throw new Error(`HTTP ${response.status}`);
-      items = await response.json();
-      activities = makeActivities(items);
-      activityMap = new Map(activities.map((activity) => [activity.key, activity]));
+      sourceItems = await response.json();
       loadState();
+      reconcileSyncedCustomItems();
+      rebuildDecks();
       prepareDaily(state, activities);
       saveState();
       homeScreen();

@@ -1,4 +1,4 @@
-"""Generate compact British-English MP3 prompts for every spelling activity."""
+"""Generate compact British-English MP3 audio for every vocabulary entry."""
 
 from __future__ import annotations
 
@@ -41,7 +41,7 @@ async def main() -> None:
     parser.add_argument("--limit", type=int)
     parser.add_argument("--overwrite", action="store_true")
     args = parser.parse_args()
-    items = [item for item in json.loads(DATA.read_text(encoding="utf-8")) if "spelling" in item["modes"]]
+    items = json.loads(DATA.read_text(encoding="utf-8"))
     if args.limit:
         items = items[: args.limit]
     OUT.mkdir(parents=True, exist_ok=True)

@@ -46,7 +46,7 @@ def main() -> None:
         fail("Activity counts do not match the audit")
 
     missing_audio = []
-    for item in spelling:
+    for item in ITEMS:
         if item["acceptedAnswers"] != [item["term"]]:
             fail(f"Loose spelling answer detected: {item['term']}")
         path = ROOT / item["audioPath"]
@@ -58,7 +58,7 @@ def main() -> None:
             fail(f"Invalid MP3 header: {path.name}")
     if missing_audio:
         fail(f"Missing audio for {len(missing_audio)} items: {missing_audio[:10]}")
-    if MANIFEST.get("count") != len(spelling) or len(MANIFEST.get("files", [])) != len(spelling):
+    if MANIFEST.get("count") != len(ITEMS) or len(MANIFEST.get("files", [])) != len(ITEMS):
         fail("Audio manifest is incomplete")
 
     for required in ("index.html", "app.js", "style.css", "sw.js", "manifest.webmanifest", "icon.svg"):

@@ -1,0 +1,18 @@
+name: 错词同步
+description: 把 ChatGPT 或其他工具整理出的错词包同步到公共词库
+title: "[错词同步] "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        仅仓库所有者提交的同步单会自动入库。请粘贴 JSON 错词包，提交后通常几分钟内完成。
+  - type: textarea
+    id: entries
+    attributes:
+      label: 错词包
+      description: 支持 JSON 数组，mode 只能是 spelling、recognition 或 both。
+      render: json
+      placeholder: |
+        [{"term":"retain","meaning":"保留","mode":"recognition","reason":"和 obtain 混淆"}]
+    validations:
+      required: true

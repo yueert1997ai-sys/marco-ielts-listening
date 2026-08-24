@@ -12,6 +12,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 SOURCE = ROOT / "source" / "feishu_listening.json"
+CUSTOM_SOURCE = ROOT / "source" / "custom_words.json"
 OUTPUT = ROOT / "data" / "listening.json"
 AUDIT = ROOT / "data" / "audit.json"
 
@@ -90,7 +91,7 @@ def infer_error_modes(row: dict, existing: set[str]) -> set[str]:
     return modes or {"recognition"}
 
 
-def build(rows: list[dict], revision: int) -> tuple[list[dict], dict]:
+def build(rows: list[dict], revision: int, custom_rows: list[dict] | None = None) -> tuple[list[dict], dict]:
     merged: dict[str, dict] = {}
     real_errors: set[str] = set()
     real_error_rows = 0
@@ -159,13 +160,46 @@ def build(rows: list[dict], revision: int) -> tuple[list[dict], dict]:
                     item["sections"].append("我的真实错词")
                 real_errors.add(key)
 
+    # Personal additions are stored separately from the Feishu snapshot so
+    # Codex, ChatGPT issue intake, and future source refreshes can share them.
+    for row in custom_rows or []:
+        term = normalise_term(str(row.get("term", "")))
+        meaning = str(row.get("meaning", "")).strip()
+        modes = sorted(set(row.get("modes") or []))
+        if not term or not meaning or not modes or any(mode not in {"spelling", "recognition"} for mode in modes):
+            raise SystemExit(f"Invalid custom vocabulary entry: {row}")
+        key = key_for(term)
+        if not key:
+            raise SystemExit(f"Invalid custom vocabulary term: {term}")
+        item = merged.setdefault(key, {
+            "id": key,
+            "term": term,
+            "meaning": meaning,
+            "note": row.get("reason") or "个人错词",
+            "category": row.get("category") or "我的同步错词",
+            "sections": [],
+            "modes": [],
+            "isRealError": True,
+            "acceptedAnswers": [term],
+        })
+        item["meaning"] = meaning
+        item["isRealError"] = True
+        item["errorNote"] = row.get("reason") or "个人错词"
+        item["userAddedAt"] = row.get("addedAt")
+        item["sourceType"] = "user"
+        for mode in modes:
+            if mode not in item["modes"]:
+                item["modes"].append(mode)
+        if "我的同步错词" not in item["sections"]:
+            item["sections"].append("我的同步错词")
+        real_errors.add(key)
+
     items = sorted(merged.values(), key=lambda item: (not item["isRealError"], item["term"].lower()))
     for item in items:
         item["modes"].sort()
         item["sourceRevision"] = revision
-        if "spelling" in item["modes"]:
-            item["audioText"] = item["term"]
-            item["audioPath"] = f"audio/{item['id']}.mp3"
+        item["audioText"] = item["term"]
+        item["audioPath"] = f"audio/{item['id']}.mp3"
 
     activities = Counter(mode for item in items for mode in item["modes"])
     audit = {
@@ -174,6 +208,7 @@ def build(rows: list[dict], revision: int) -> tuple[list[dict], dict]:
         "uniqueEntries": len(items),
         "realErrorRows": real_error_rows,
         "realErrorEntries": len(real_errors),
+        "customEntries": len(custom_rows or []),
         "activities": dict(sorted(activities.items())),
         "sectionRows": dict(sorted(Counter(row["section"] for row in rows).items())),
         "untraceableEntries": 0,
@@ -206,7 +241,8 @@ def main() -> None:
     document = payload["data"]["document"]
     revision = int(document["revision_id"])
     rows = parse_rows(document["content"])
-    items, audit = build(rows, revision)
+    custom_rows = json.loads(CUSTOM_SOURCE.read_text(encoding="utf-8")) if CUSTOM_SOURCE.exists() else []
+    items, audit = build(rows, revision, custom_rows)
     validate(items, audit)
     OUTPUT.parent.mkdir(parents=True, exist_ok=True)
     OUTPUT.write_text(json.dumps(items, ensure_ascii=False, indent=2), encoding="utf-8")

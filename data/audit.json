@@ -4,6 +4,7 @@
   "uniqueEntries": 673,
   "realErrorRows": 46,
   "realErrorEntries": 48,
+  "customEntries": 0,
   "activities": {
     "recognition": 429,
     "spelling": 294

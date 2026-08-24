@@ -32,16 +32,24 @@ test("daily deck has 25 recognition", () => {
   const deck = logic.createDailyDeck(activities, {}, "2026-08-23");
   assert.equal(deck.filter((key) => key.endsWith(":recognition")).length, 25);
 });
-test("real errors come first", () => {
+test("real errors are selected before ordinary unseen words", () => {
   const deck = logic.createDailyDeck(activities, {}, "2026-08-23");
-  assert(deck.indexOf("carpet:spelling") < 2);
-  assert(deck.indexOf("carpet:recognition") < 2);
+  assert(deck.includes("carpet:spelling"));
+  assert(deck.includes("carpet:recognition"));
 });
 test("overdue beats unseen", () => {
   const progress = { "s20:spelling": { stage: 2, due: "2026-08-20" } };
   const deck = logic.createDailyDeck(activities, progress, "2026-08-23");
-  assert.equal(deck[0], "s20:spelling");
+  assert(deck.includes("s20:spelling"));
 });
+test("daily deck order is stable within one day", () => assert.deepEqual(
+  logic.createDailyDeck(activities, {}, "2026-08-23"),
+  logic.createDailyDeck(activities, {}, "2026-08-23")
+));
+test("daily deck order changes across days", () => assert.notDeepEqual(
+  logic.createDailyDeck(activities, {}, "2026-08-23"),
+  logic.createDailyDeck(activities, {}, "2026-08-24")
+));
 test("pass advances one-day interval", () => {
   const record = logic.scheduleReview(null, "pass", "2026-08-23");
   assert.equal(record.stage, 1); assert.equal(record.due, "2026-08-24");
@@ -81,6 +89,10 @@ test("new day creates new state", () => {
   assert.equal(state.daily.date, "2026-08-24"); assert.equal(Object.keys(state.daily.answeredBase).length, 0);
 });
 test("safe state rejects bad progress", () => assert.deepEqual(logic.safeState({ progress: null }).progress, {}));
+test("version one state migrates without losing progress", () => {
+  const state = logic.safeState({ version: 1, progress: { x: { stage: 2 } } });
+  assert.equal(state.version, 2); assert.equal(state.progress.x.stage, 2); assert.deepEqual(state.starred, {});
+});
 test("response limit is five seconds", () => assert.equal(logic.RESPONSE_LIMIT_MS, 5000));
 test("intervals match spec", () => assert.deepEqual(logic.INTERVALS, [1, 3, 7, 14, 30, 60]));
 test("spelling answer stays hidden after first error", () => assert.equal(logic.shouldRevealAnswer("spelling", "fail", 1), false));
@@ -90,9 +102,26 @@ test("browse all contains every source item", () => assert.equal(logic.createBro
 test("browse spelling only contains spelling items", () => assert(logic.createBrowseDeck(items, "spelling", "seed").every((item) => item.modes.includes("spelling"))));
 test("browse recognition only contains recognition items", () => assert(logic.createBrowseDeck(items, "recognition", "seed").every((item) => item.modes.includes("recognition"))));
 test("browse errors only contains real errors", () => assert(logic.createBrowseDeck(items, "errors", "seed").every((item) => item.isRealError)));
+test("browse starred only contains marked words", () => assert.deepEqual(
+  logic.createBrowseDeck(items, "starred", "seed", { carpet: true }).map((item) => item.id), ["carpet"]
+));
 test("browse order is deterministic for the same seed", () => assert.deepEqual(
   logic.createBrowseDeck(items, "all", "same").map((item) => item.id),
   logic.createBrowseDeck(items, "all", "same").map((item) => item.id)
 ));
+test("GPT JSON package is classified into both modes", () => {
+  const parsed = logic.parseWrongWordInput('[{"term":"retain","meaning":"保留","mode":"both","reason":"听错也不认识"}]');
+  assert.deepEqual(parsed[0].modes.sort(), ["recognition", "spelling"]);
+});
+test("pipe-delimited package is accepted", () => {
+  const parsed = logic.parseWrongWordInput("accommodation | 住宿 | 听写 | 双写错误");
+  assert.equal(parsed[0].id, "accommodation"); assert.deepEqual(parsed[0].modes, ["spelling"]);
+});
+test("custom word merges with an existing item", () => {
+  const merged = logic.mergeCustomItems(items, [{ term: "carpet", meaning: "地毯", mode: "both", reason: "又错了" }]);
+  const carpet = merged.find((item) => item.id === "carpet");
+  assert(carpet.isRealError); assert.deepEqual(carpet.modes.sort(), ["recognition", "spelling"]);
+});
+test("browse page size is twenty", () => assert.equal(logic.BROWSE_PAGE_SIZE, 20));
 
 console.log(JSON.stringify({ ok: true, tests }));

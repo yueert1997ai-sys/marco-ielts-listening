@@ -17,7 +17,9 @@
       "alongside"
     ],
     "errorNote": "真实卡点：地图题",
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "alongside",
+    "audioPath": "audio/alongside.mp3"
   },
   {
     "id": "beginners",
@@ -59,7 +61,9 @@
       "bend"
     ],
     "errorNote": "真实卡点：地图题",
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "bend",
+    "audioPath": "audio/bend.mp3"
   },
   {
     "id": "beyond",
@@ -79,7 +83,9 @@
       "beyond"
     ],
     "errorNote": "真实卡点：地图题",
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "beyond",
+    "audioPath": "audio/beyond.mp3"
   },
   {
     "id": "bilingual",
@@ -120,7 +126,9 @@
       "bolder move"
     ],
     "errorNote": "真实卡点：短语识别；bold 的比较级是 bolder",
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "bolder move",
+    "audioPath": "audio/bolder-move.mp3"
   },
   {
     "id": "carpet",
@@ -184,7 +192,9 @@
       "colossal"
     ],
     "errorNote": "真实卡点：听义；a colossal investment",
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "colossal",
+    "audioPath": "audio/colossal.mp3"
   },
   {
     "id": "curtain",
@@ -249,7 +259,9 @@
       "disbelief"
     ],
     "errorNote": "真实卡点：选项识别",
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "disbelief",
+    "audioPath": "audio/disbelief.mp3"
   },
   {
     "id": "electrician",
@@ -338,7 +350,9 @@
       "excessive sweating"
     ],
     "errorNote": "真实卡点：短语识别",
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "excessive sweating",
+    "audioPath": "audio/excessive-sweating.mp3"
   },
   {
     "id": "fellow-students",
@@ -359,7 +373,9 @@
       "fellow students"
     ],
     "errorNote": "真实卡点：组合反应",
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "fellow students",
+    "audioPath": "audio/fellow-students.mp3"
   },
   {
     "id": "get-to-grips-with",
@@ -378,7 +394,9 @@
       "get to grips with"
     ],
     "errorNote": "真实卡点：听义；不是单独背 grips",
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "get to grips with",
+    "audioPath": "audio/get-to-grips-with.mp3"
   },
   {
     "id": "gratitude",
@@ -398,7 +416,9 @@
       "gratitude"
     ],
     "errorNote": "真实卡点：选项识别",
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "gratitude",
+    "audioPath": "audio/gratitude.mp3"
   },
   {
     "id": "homesickness",
@@ -418,7 +438,9 @@
       "homesickness"
     ],
     "errorNote": "真实卡点：选项识别",
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "homesickness",
+    "audioPath": "audio/homesickness.mp3"
   },
   {
     "id": "interest-rates",
@@ -459,7 +481,9 @@
       "intrinsic"
     ],
     "errorNote": "真实卡点：语义识别；intrinsic to the company",
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "intrinsic",
+    "audioPath": "audio/intrinsic.mp3"
   },
   {
     "id": "lead",
@@ -526,7 +550,9 @@
       "make their own"
     ],
     "errorNote": "真实卡点：短语反应",
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "make their own",
+    "audioPath": "audio/make-their-own.mp3"
   },
   {
     "id": "mass-produced",
@@ -546,7 +572,9 @@
       "mass-produced"
     ],
     "errorNote": "真实卡点：选项识别",
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "mass-produced",
+    "audioPath": "audio/mass-produced.mp3"
   },
   {
     "id": "meal",
@@ -635,7 +663,9 @@
       "morale"
     ],
     "errorNote": "真实卡点：陌生词吸附",
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "morale",
+    "audioPath": "audio/morale.mp3"
   },
   {
     "id": "neglecting",
@@ -655,7 +685,9 @@
       "neglecting"
     ],
     "errorNote": "真实卡点：加工慢",
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "neglecting",
+    "audioPath": "audio/neglecting.mp3"
   },
   {
     "id": "oven",
@@ -720,7 +752,9 @@
       "preferential"
     ],
     "errorNote": "真实卡点：语义识别",
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "preferential",
+    "audioPath": "audio/preferential.mp3"
   },
   {
     "id": "prescription",
@@ -810,7 +844,9 @@
       "relief"
     ],
     "errorNote": "真实卡点：选项识别",
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "relief",
+    "audioPath": "audio/relief.mp3"
   },
   {
     "id": "reorganising-shifts",
@@ -829,7 +865,9 @@
       "reorganising shifts"
     ],
     "errorNote": "真实卡点：组合反应",
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "reorganising shifts",
+    "audioPath": "audio/reorganising-shifts.mp3"
   },
   {
     "id": "resentful",
@@ -849,7 +887,9 @@
       "resentful"
     ],
     "errorNote": "真实卡点：选项识别",
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "resentful",
+    "audioPath": "audio/resentful.mp3"
   },
   {
     "id": "retention",
@@ -868,7 +908,9 @@
       "retention"
     ],
     "errorNote": "真实卡点：选项识别",
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "retention",
+    "audioPath": "audio/retention.mp3"
   },
   {
     "id": "spectator",
@@ -887,7 +929,9 @@
       "spectator"
     ],
     "errorNote": "真实卡点：不是 spector",
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "spectator",
+    "audioPath": "audio/spectator.mp3"
   },
   {
     "id": "stalled",
@@ -906,7 +950,9 @@
       "stalled"
     ],
     "errorNote": "真实卡点：听义；be stalled by a strike",
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "stalled",
+    "audioPath": "audio/stalled.mp3"
   },
   {
     "id": "string",
@@ -948,7 +994,9 @@
       "thorough"
     ],
     "errorNote": "真实卡点：辨音",
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "thorough",
+    "audioPath": "audio/thorough.mp3"
   },
   {
     "id": "vacuum",
@@ -1034,7 +1082,9 @@
     "acceptedAnswers": [
       "accept"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "accept",
+    "audioPath": "audio/accept.mp3"
   },
   {
     "id": "access",
@@ -1052,7 +1102,9 @@
     "acceptedAnswers": [
       "access"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "access",
+    "audioPath": "audio/access.mp3"
   },
   {
     "id": "accommodation",
@@ -1090,7 +1142,9 @@
     "acceptedAnswers": [
       "according to"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "according to",
+    "audioPath": "audio/according-to.mp3"
   },
   {
     "id": "account",
@@ -1108,7 +1162,9 @@
     "acceptedAnswers": [
       "account"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "account",
+    "audioPath": "audio/account.mp3"
   },
   {
     "id": "accuracy",
@@ -1126,7 +1182,9 @@
     "acceptedAnswers": [
       "accuracy"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "accuracy",
+    "audioPath": "audio/accuracy.mp3"
   },
   {
     "id": "accurate",
@@ -1144,7 +1202,9 @@
     "acceptedAnswers": [
       "accurate"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "accurate",
+    "audioPath": "audio/accurate.mp3"
   },
   {
     "id": "achievement",
@@ -1182,7 +1242,9 @@
     "acceptedAnswers": [
       "across from"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "across from",
+    "audioPath": "audio/across-from.mp3"
   },
   {
     "id": "actually",
@@ -1200,7 +1262,9 @@
     "acceptedAnswers": [
       "actually"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "actually",
+    "audioPath": "audio/actually.mp3"
   },
   {
     "id": "address",
@@ -1240,7 +1304,9 @@
     "acceptedAnswers": [
       "adjacent"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "adjacent",
+    "audioPath": "audio/adjacent.mp3"
   },
   {
     "id": "admire",
@@ -1258,7 +1324,9 @@
     "acceptedAnswers": [
       "admire"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "admire",
+    "audioPath": "audio/admire.mp3"
   },
   {
     "id": "advantage",
@@ -1276,7 +1344,9 @@
     "acceptedAnswers": [
       "advantage"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "advantage",
+    "audioPath": "audio/advantage.mp3"
   },
   {
     "id": "affordable",
@@ -1294,7 +1364,9 @@
     "acceptedAnswers": [
       "affordable"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "affordable",
+    "audioPath": "audio/affordable.mp3"
   },
   {
     "id": "agree-with",
@@ -1312,7 +1384,9 @@
     "acceptedAnswers": [
       "agree with"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "agree with",
+    "audioPath": "audio/agree-with.mp3"
   },
   {
     "id": "agriculture",
@@ -1350,7 +1424,9 @@
     "acceptedAnswers": [
       "aim"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "aim",
+    "audioPath": "audio/aim.mp3"
   },
   {
     "id": "airport",
@@ -1408,7 +1484,9 @@
     "acceptedAnswers": [
       "allow"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "allow",
+    "audioPath": "audio/allow.mp3"
   },
   {
     "id": "alongside-the",
@@ -1426,7 +1504,9 @@
     "acceptedAnswers": [
       "alongside the"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "alongside the",
+    "audioPath": "audio/alongside-the.mp3"
   },
   {
     "id": "analysis",
@@ -1464,7 +1544,9 @@
     "acceptedAnswers": [
       "annoyed"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "annoyed",
+    "audioPath": "audio/annoyed.mp3"
   },
   {
     "id": "antibiotic",
@@ -1502,7 +1584,9 @@
     "acceptedAnswers": [
       "anxiety"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "anxiety",
+    "audioPath": "audio/anxiety.mp3"
   },
   {
     "id": "anxious",
@@ -1520,7 +1604,9 @@
     "acceptedAnswers": [
       "anxious"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "anxious",
+    "audioPath": "audio/anxious.mp3"
   },
   {
     "id": "apartment",
@@ -1558,7 +1644,9 @@
     "acceptedAnswers": [
       "applicant"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "applicant",
+    "audioPath": "audio/applicant.mp3"
   },
   {
     "id": "application",
@@ -1598,7 +1686,9 @@
     "acceptedAnswers": [
       "apply"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "apply",
+    "audioPath": "audio/apply.mp3"
   },
   {
     "id": "apply-for",
@@ -1616,7 +1706,9 @@
     "acceptedAnswers": [
       "apply for"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "apply for",
+    "audioPath": "audio/apply-for.mp3"
   },
   {
     "id": "appointment",
@@ -1654,7 +1746,9 @@
     "acceptedAnswers": [
       "appreciation"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "appreciation",
+    "audioPath": "audio/appreciation.mp3"
   },
   {
     "id": "approach",
@@ -1672,7 +1766,9 @@
     "acceptedAnswers": [
       "approach"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "approach",
+    "audioPath": "audio/approach.mp3"
   },
   {
     "id": "approximately",
@@ -1690,7 +1786,9 @@
     "acceptedAnswers": [
       "approximately"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "approximately",
+    "audioPath": "audio/approximately.mp3"
   },
   {
     "id": "architect",
@@ -1728,7 +1826,9 @@
     "acceptedAnswers": [
       "arrange"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "arrange",
+    "audioPath": "audio/arrange.mp3"
   },
   {
     "id": "as-a-result",
@@ -1746,7 +1846,9 @@
     "acceptedAnswers": [
       "as a result"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "as a result",
+    "audioPath": "audio/as-a-result.mp3"
   },
   {
     "id": "assessment",
@@ -1764,7 +1866,9 @@
     "acceptedAnswers": [
       "assessment"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "assessment",
+    "audioPath": "audio/assessment.mp3"
   },
   {
     "id": "assignment",
@@ -1826,7 +1930,9 @@
     "acceptedAnswers": [
       "at first"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "at first",
+    "audioPath": "audio/at-first.mp3"
   },
   {
     "id": "at-the-bottom-of",
@@ -1844,7 +1950,9 @@
     "acceptedAnswers": [
       "at the bottom of"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "at the bottom of",
+    "audioPath": "audio/at-the-bottom-of.mp3"
   },
   {
     "id": "at-the-entrance",
@@ -1862,7 +1970,9 @@
     "acceptedAnswers": [
       "at the entrance"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "at the entrance",
+    "audioPath": "audio/at-the-entrance.mp3"
   },
   {
     "id": "at-the-far-end",
@@ -1880,7 +1990,9 @@
     "acceptedAnswers": [
       "at the far end"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "at the far end",
+    "audioPath": "audio/at-the-far-end.mp3"
   },
   {
     "id": "at-the-same-time",
@@ -1898,7 +2010,9 @@
     "acceptedAnswers": [
       "at the same time"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "at the same time",
+    "audioPath": "audio/at-the-same-time.mp3"
   },
   {
     "id": "at-the-top-of",
@@ -1916,7 +2030,9 @@
     "acceptedAnswers": [
       "at the top of"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "at the top of",
+    "audioPath": "audio/at-the-top-of.mp3"
   },
   {
     "id": "attend",
@@ -1934,7 +2050,9 @@
     "acceptedAnswers": [
       "attend"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "attend",
+    "audioPath": "audio/attend.mp3"
   },
   {
     "id": "audience",
@@ -1952,7 +2070,9 @@
     "acceptedAnswers": [
       "audience"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "audience",
+    "audioPath": "audio/audience.mp3"
   },
   {
     "id": "availability",
@@ -1970,7 +2090,9 @@
     "acceptedAnswers": [
       "availability"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "availability",
+    "audioPath": "audio/availability.mp3"
   },
   {
     "id": "available",
@@ -2008,7 +2130,9 @@
     "acceptedAnswers": [
       "avoid"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "avoid",
+    "audioPath": "audio/avoid.mp3"
   },
   {
     "id": "aware",
@@ -2026,7 +2150,9 @@
     "acceptedAnswers": [
       "aware"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "aware",
+    "audioPath": "audio/aware.mp3"
   },
   {
     "id": "background",
@@ -2044,7 +2170,9 @@
     "acceptedAnswers": [
       "background"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "background",
+    "audioPath": "audio/background.mp3"
   },
   {
     "id": "badly-organised",
@@ -2062,7 +2190,9 @@
     "acceptedAnswers": [
       "badly organised"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "badly organised",
+    "audioPath": "audio/badly-organised.mp3"
   },
   {
     "id": "balcony",
@@ -2120,7 +2250,9 @@
     "acceptedAnswers": [
       "be concerned about"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "be concerned about",
+    "audioPath": "audio/be-concerned-about.mp3"
   },
   {
     "id": "be-disappointed-with",
@@ -2138,7 +2270,9 @@
     "acceptedAnswers": [
       "be disappointed with"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "be disappointed with",
+    "audioPath": "audio/be-disappointed-with.mp3"
   },
   {
     "id": "be-impressed-by",
@@ -2156,7 +2290,9 @@
     "acceptedAnswers": [
       "be impressed by"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "be impressed by",
+    "audioPath": "audio/be-impressed-by.mp3"
   },
   {
     "id": "be-interested-in",
@@ -2174,7 +2310,9 @@
     "acceptedAnswers": [
       "be interested in"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "be interested in",
+    "audioPath": "audio/be-interested-in.mp3"
   },
   {
     "id": "be-involved-in",
@@ -2192,7 +2330,9 @@
     "acceptedAnswers": [
       "be involved in"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "be involved in",
+    "audioPath": "audio/be-involved-in.mp3"
   },
   {
     "id": "be-likely-to",
@@ -2210,7 +2350,9 @@
     "acceptedAnswers": [
       "be likely to"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "be likely to",
+    "audioPath": "audio/be-likely-to.mp3"
   },
   {
     "id": "be-pushed-for-time",
@@ -2228,7 +2370,9 @@
     "acceptedAnswers": [
       "be pushed for time"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "be pushed for time",
+    "audioPath": "audio/be-pushed-for-time.mp3"
   },
   {
     "id": "be-reluctant-to",
@@ -2246,7 +2390,9 @@
     "acceptedAnswers": [
       "be reluctant to"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "be reluctant to",
+    "audioPath": "audio/be-reluctant-to.mp3"
   },
   {
     "id": "be-responsible-for",
@@ -2264,7 +2410,9 @@
     "acceptedAnswers": [
       "be responsible for"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "be responsible for",
+    "audioPath": "audio/be-responsible-for.mp3"
   },
   {
     "id": "be-satisfied-with",
@@ -2282,7 +2430,9 @@
     "acceptedAnswers": [
       "be satisfied with"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "be satisfied with",
+    "audioPath": "audio/be-satisfied-with.mp3"
   },
   {
     "id": "because-of",
@@ -2300,7 +2450,9 @@
     "acceptedAnswers": [
       "because of"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "because of",
+    "audioPath": "audio/because-of.mp3"
   },
   {
     "id": "beginner",
@@ -2340,7 +2492,9 @@
     "acceptedAnswers": [
       "behind the"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "behind the",
+    "audioPath": "audio/behind-the.mp3"
   },
   {
     "id": "beneath",
@@ -2358,7 +2512,9 @@
     "acceptedAnswers": [
       "beneath"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "beneath",
+    "audioPath": "audio/beneath.mp3"
   },
   {
     "id": "beneficial",
@@ -2376,7 +2532,9 @@
     "acceptedAnswers": [
       "beneficial"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "beneficial",
+    "audioPath": "audio/beneficial.mp3"
   },
   {
     "id": "benefit",
@@ -2394,7 +2552,9 @@
     "acceptedAnswers": [
       "benefit"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "benefit",
+    "audioPath": "audio/benefit.mp3"
   },
   {
     "id": "beside-the",
@@ -2412,7 +2572,9 @@
     "acceptedAnswers": [
       "beside the"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "beside the",
+    "audioPath": "audio/beside-the.mp3"
   },
   {
     "id": "between-a-and-b",
@@ -2430,7 +2592,9 @@
     "acceptedAnswers": [
       "between A and B"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "between A and B",
+    "audioPath": "audio/between-a-and-b.mp3"
   },
   {
     "id": "beverage",
@@ -2508,7 +2672,9 @@
     "acceptedAnswers": [
       "boredom"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "boredom",
+    "audioPath": "audio/boredom.mp3"
   },
   {
     "id": "boring",
@@ -2526,7 +2692,9 @@
     "acceptedAnswers": [
       "boring"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "boring",
+    "audioPath": "audio/boring.mp3"
   },
   {
     "id": "breakfast",
@@ -2564,7 +2732,9 @@
     "acceptedAnswers": [
       "broaden"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "broaden",
+    "audioPath": "audio/broaden.mp3"
   },
   {
     "id": "broaden-one-s-horizons",
@@ -2582,7 +2752,9 @@
     "acceptedAnswers": [
       "broaden one's horizons"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "broaden one's horizons",
+    "audioPath": "audio/broaden-one-s-horizons.mp3"
   },
   {
     "id": "budget",
@@ -2620,7 +2792,9 @@
     "acceptedAnswers": [
       "business contacts"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "business contacts",
+    "audioPath": "audio/business-contacts.mp3"
   },
   {
     "id": "by-the-entrance",
@@ -2638,7 +2812,9 @@
     "acceptedAnswers": [
       "by the entrance"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "by the entrance",
+    "audioPath": "audio/by-the-entrance.mp3"
   },
   {
     "id": "cafeteria",
@@ -2736,7 +2912,9 @@
     "acceptedAnswers": [
       "cancel"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "cancel",
+    "audioPath": "audio/cancel.mp3"
   },
   {
     "id": "cancellation",
@@ -2774,7 +2952,9 @@
     "acceptedAnswers": [
       "candidate"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "candidate",
+    "audioPath": "audio/candidate.mp3"
   },
   {
     "id": "career",
@@ -2792,7 +2972,9 @@
     "acceptedAnswers": [
       "career"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "career",
+    "audioPath": "audio/career.mp3"
   },
   {
     "id": "career-officer",
@@ -2810,7 +2992,9 @@
     "acceptedAnswers": [
       "career officer"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "career officer",
+    "audioPath": "audio/career-officer.mp3"
   },
   {
     "id": "carpenter",
@@ -2848,7 +3032,9 @@
     "acceptedAnswers": [
       "carry"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "carry",
+    "audioPath": "audio/carry.mp3"
   },
   {
     "id": "carry-out-research",
@@ -2866,7 +3052,9 @@
     "acceptedAnswers": [
       "carry out research"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "carry out research",
+    "audioPath": "audio/carry-out-research.mp3"
   },
   {
     "id": "case",
@@ -2884,7 +3072,9 @@
     "acceptedAnswers": [
       "case"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "case",
+    "audioPath": "audio/case.mp3"
   },
   {
     "id": "cash",
@@ -2922,7 +3112,9 @@
     "acceptedAnswers": [
       "cause"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "cause",
+    "audioPath": "audio/cause.mp3"
   },
   {
     "id": "ceiling",
@@ -3000,7 +3192,9 @@
     "acceptedAnswers": [
       "centre"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "centre",
+    "audioPath": "audio/centre.mp3"
   },
   {
     "id": "certificate",
@@ -3038,7 +3232,9 @@
     "acceptedAnswers": [
       "challenging"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "challenging",
+    "audioPath": "audio/challenging.mp3"
   },
   {
     "id": "change-the-rota",
@@ -3056,7 +3252,9 @@
     "acceptedAnswers": [
       "change the rota"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "change the rota",
+    "audioPath": "audio/change-the-rota.mp3"
   },
   {
     "id": "charge",
@@ -3074,7 +3272,9 @@
     "acceptedAnswers": [
       "charge"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "charge",
+    "audioPath": "audio/charge.mp3"
   },
   {
     "id": "charity",
@@ -3112,7 +3312,9 @@
     "acceptedAnswers": [
       "childcare worker"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "childcare worker",
+    "audioPath": "audio/childcare-worker.mp3"
   },
   {
     "id": "choose",
@@ -3130,7 +3332,9 @@
     "acceptedAnswers": [
       "choose"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "choose",
+    "audioPath": "audio/choose.mp3"
   },
   {
     "id": "cleaner",
@@ -3168,7 +3372,9 @@
     "acceptedAnswers": [
       "clear"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "clear",
+    "audioPath": "audio/clear.mp3"
   },
   {
     "id": "client",
@@ -3186,7 +3392,9 @@
     "acceptedAnswers": [
       "client"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "client",
+    "audioPath": "audio/client.mp3"
   },
   {
     "id": "climate",
@@ -3306,7 +3514,9 @@
     "acceptedAnswers": [
       "colleague"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "colleague",
+    "audioPath": "audio/colleague.mp3"
   },
   {
     "id": "collect",
@@ -3324,7 +3534,9 @@
     "acceptedAnswers": [
       "collect"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "collect",
+    "audioPath": "audio/collect.mp3"
   },
   {
     "id": "college",
@@ -3362,7 +3574,9 @@
     "acceptedAnswers": [
       "compare"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "compare",
+    "audioPath": "audio/compare.mp3"
   },
   {
     "id": "compared-with",
@@ -3380,7 +3594,9 @@
     "acceptedAnswers": [
       "compared with"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "compared with",
+    "audioPath": "audio/compared-with.mp3"
   },
   {
     "id": "competition",
@@ -3418,7 +3634,9 @@
     "acceptedAnswers": [
       "complete"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "complete",
+    "audioPath": "audio/complete.mp3"
   },
   {
     "id": "completion",
@@ -3436,7 +3654,9 @@
     "acceptedAnswers": [
       "completion"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "completion",
+    "audioPath": "audio/completion.mp3"
   },
   {
     "id": "compulsory",
@@ -3454,7 +3674,9 @@
     "acceptedAnswers": [
       "compulsory"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "compulsory",
+    "audioPath": "audio/compulsory.mp3"
   },
   {
     "id": "computer",
@@ -3493,7 +3715,9 @@
     "acceptedAnswers": [
       "concern"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "concern",
+    "audioPath": "audio/concern.mp3"
   },
   {
     "id": "concrete",
@@ -3531,7 +3755,9 @@
     "acceptedAnswers": [
       "condition"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "condition",
+    "audioPath": "audio/condition.mp3"
   },
   {
     "id": "conduct",
@@ -3549,7 +3775,9 @@
     "acceptedAnswers": [
       "conduct"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "conduct",
+    "audioPath": "audio/conduct.mp3"
   },
   {
     "id": "conduct-a-survey",
@@ -3567,7 +3795,9 @@
     "acceptedAnswers": [
       "conduct a survey"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "conduct a survey",
+    "audioPath": "audio/conduct-a-survey.mp3"
   },
   {
     "id": "confidence",
@@ -3585,7 +3815,9 @@
     "acceptedAnswers": [
       "confidence"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "confidence",
+    "audioPath": "audio/confidence.mp3"
   },
   {
     "id": "confident",
@@ -3603,7 +3835,9 @@
     "acceptedAnswers": [
       "confident"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "confident",
+    "audioPath": "audio/confident.mp3"
   },
   {
     "id": "confused",
@@ -3621,7 +3855,9 @@
     "acceptedAnswers": [
       "confused"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "confused",
+    "audioPath": "audio/confused.mp3"
   },
   {
     "id": "conservation",
@@ -3659,7 +3895,9 @@
     "acceptedAnswers": [
       "considerable"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "considerable",
+    "audioPath": "audio/considerable.mp3"
   },
   {
     "id": "contact",
@@ -3697,7 +3935,9 @@
     "acceptedAnswers": [
       "continue"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "continue",
+    "audioPath": "audio/continue.mp3"
   },
   {
     "id": "convenient",
@@ -3715,7 +3955,9 @@
     "acceptedAnswers": [
       "convenient"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "convenient",
+    "audioPath": "audio/convenient.mp3"
   },
   {
     "id": "corner",
@@ -3733,7 +3975,9 @@
     "acceptedAnswers": [
       "corner"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "corner",
+    "audioPath": "audio/corner.mp3"
   },
   {
     "id": "cost",
@@ -3815,7 +4059,9 @@
     "acceptedAnswers": [
       "criteria"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "criteria",
+    "audioPath": "audio/criteria.mp3"
   },
   {
     "id": "cupboard",
@@ -3853,7 +4099,9 @@
     "acceptedAnswers": [
       "current"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "current",
+    "audioPath": "audio/current.mp3"
   },
   {
     "id": "customer",
@@ -3871,7 +4119,9 @@
     "acceptedAnswers": [
       "customer"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "customer",
+    "audioPath": "audio/customer.mp3"
   },
   {
     "id": "customer-relations",
@@ -3890,7 +4140,9 @@
     "acceptedAnswers": [
       "customer relations"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "customer relations",
+    "audioPath": "audio/customer-relations.mp3"
   },
   {
     "id": "cv",
@@ -3908,7 +4160,9 @@
     "acceptedAnswers": [
       "CV"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "CV",
+    "audioPath": "audio/cv.mp3"
   },
   {
     "id": "damage",
@@ -3970,7 +4224,9 @@
     "acceptedAnswers": [
       "deadline"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "deadline",
+    "audioPath": "audio/deadline.mp3"
   },
   {
     "id": "deal-with",
@@ -3988,7 +4244,9 @@
     "acceptedAnswers": [
       "deal with"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "deal with",
+    "audioPath": "audio/deal-with.mp3"
   },
   {
     "id": "decide",
@@ -4006,7 +4264,9 @@
     "acceptedAnswers": [
       "decide"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "decide",
+    "audioPath": "audio/decide.mp3"
   },
   {
     "id": "decline",
@@ -4024,7 +4284,9 @@
     "acceptedAnswers": [
       "decline"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "decline",
+    "audioPath": "audio/decline.mp3"
   },
   {
     "id": "decoration",
@@ -4082,7 +4344,9 @@
     "acceptedAnswers": [
       "degree"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "degree",
+    "audioPath": "audio/degree.mp3"
   },
   {
     "id": "delay",
@@ -4100,7 +4364,9 @@
     "acceptedAnswers": [
       "delay"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "delay",
+    "audioPath": "audio/delay.mp3"
   },
   {
     "id": "demanding",
@@ -4118,7 +4384,9 @@
     "acceptedAnswers": [
       "demanding"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "demanding",
+    "audioPath": "audio/demanding.mp3"
   },
   {
     "id": "dentist",
@@ -4278,7 +4546,9 @@
     "acceptedAnswers": [
       "disadvantage"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "disadvantage",
+    "audioPath": "audio/disadvantage.mp3"
   },
   {
     "id": "disagree-with",
@@ -4296,7 +4566,9 @@
     "acceptedAnswers": [
       "disagree with"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "disagree with",
+    "audioPath": "audio/disagree-with.mp3"
   },
   {
     "id": "disappointed",
@@ -4314,7 +4586,9 @@
     "acceptedAnswers": [
       "disappointed"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "disappointed",
+    "audioPath": "audio/disappointed.mp3"
   },
   {
     "id": "disappointment",
@@ -4332,7 +4606,9 @@
     "acceptedAnswers": [
       "disappointment"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "disappointment",
+    "audioPath": "audio/disappointment.mp3"
   },
   {
     "id": "discontinue",
@@ -4350,7 +4626,9 @@
     "acceptedAnswers": [
       "discontinue"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "discontinue",
+    "audioPath": "audio/discontinue.mp3"
   },
   {
     "id": "discount",
@@ -4388,7 +4666,9 @@
     "acceptedAnswers": [
       "dissatisfaction"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "dissatisfaction",
+    "audioPath": "audio/dissatisfaction.mp3"
   },
   {
     "id": "dissatisfied",
@@ -4406,7 +4686,9 @@
     "acceptedAnswers": [
       "dissatisfied"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "dissatisfied",
+    "audioPath": "audio/dissatisfied.mp3"
   },
   {
     "id": "doctor",
@@ -4464,7 +4746,9 @@
     "acceptedAnswers": [
       "drawback"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "drawback",
+    "audioPath": "audio/drawback.mp3"
   },
   {
     "id": "drop-a-course",
@@ -4482,7 +4766,9 @@
     "acceptedAnswers": [
       "drop a course"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "drop a course",
+    "audioPath": "audio/drop-a-course.mp3"
   },
   {
     "id": "due-to",
@@ -4500,7 +4786,9 @@
     "acceptedAnswers": [
       "due to"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "due to",
+    "audioPath": "audio/due-to.mp3"
   },
   {
     "id": "edge",
@@ -4518,7 +4806,9 @@
     "acceptedAnswers": [
       "edge"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "edge",
+    "audioPath": "audio/edge.mp3"
   },
   {
     "id": "effect",
@@ -4536,7 +4826,9 @@
     "acceptedAnswers": [
       "effect"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "effect",
+    "audioPath": "audio/effect.mp3"
   },
   {
     "id": "effective",
@@ -4554,7 +4846,9 @@
     "acceptedAnswers": [
       "effective"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "effective",
+    "audioPath": "audio/effective.mp3"
   },
   {
     "id": "efficient",
@@ -4572,7 +4866,9 @@
     "acceptedAnswers": [
       "efficient"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "efficient",
+    "audioPath": "audio/efficient.mp3"
   },
   {
     "id": "email",
@@ -4610,7 +4906,9 @@
     "acceptedAnswers": [
       "embarrassed"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "embarrassed",
+    "audioPath": "audio/embarrassed.mp3"
   },
   {
     "id": "embarrassment",
@@ -4628,7 +4926,9 @@
     "acceptedAnswers": [
       "embarrassment"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "embarrassment",
+    "audioPath": "audio/embarrassment.mp3"
   },
   {
     "id": "emergency",
@@ -4730,7 +5030,9 @@
     "acceptedAnswers": [
       "encourage"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "encourage",
+    "audioPath": "audio/encourage.mp3"
   },
   {
     "id": "end",
@@ -4748,7 +5050,9 @@
     "acceptedAnswers": [
       "end"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "end",
+    "audioPath": "audio/end.mp3"
   },
   {
     "id": "energy",
@@ -4826,7 +5130,9 @@
     "acceptedAnswers": [
       "ensure"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "ensure",
+    "audioPath": "audio/ensure.mp3"
   },
   {
     "id": "enthusiasm",
@@ -4844,7 +5150,9 @@
     "acceptedAnswers": [
       "enthusiasm"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "enthusiasm",
+    "audioPath": "audio/enthusiasm.mp3"
   },
   {
     "id": "enthusiastic",
@@ -4862,7 +5170,9 @@
     "acceptedAnswers": [
       "enthusiastic"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "enthusiastic",
+    "audioPath": "audio/enthusiastic.mp3"
   },
   {
     "id": "entire",
@@ -4880,7 +5190,9 @@
     "acceptedAnswers": [
       "entire"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "entire",
+    "audioPath": "audio/entire.mp3"
   },
   {
     "id": "entirely",
@@ -4898,7 +5210,9 @@
     "acceptedAnswers": [
       "entirely"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "entirely",
+    "audioPath": "audio/entirely.mp3"
   },
   {
     "id": "environment",
@@ -4976,7 +5290,9 @@
     "acceptedAnswers": [
       "essential"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "essential",
+    "audioPath": "audio/essential.mp3"
   },
   {
     "id": "essential-reading",
@@ -4994,7 +5310,9 @@
     "acceptedAnswers": [
       "essential reading"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "essential reading",
+    "audioPath": "audio/essential-reading.mp3"
   },
   {
     "id": "evaluate",
@@ -5012,7 +5330,9 @@
     "acceptedAnswers": [
       "evaluate"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "evaluate",
+    "audioPath": "audio/evaluate.mp3"
   },
   {
     "id": "evaluation",
@@ -5030,7 +5350,9 @@
     "acceptedAnswers": [
       "evaluation"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "evaluation",
+    "audioPath": "audio/evaluation.mp3"
   },
   {
     "id": "even-though",
@@ -5048,7 +5370,9 @@
     "acceptedAnswers": [
       "even though"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "even though",
+    "audioPath": "audio/even-though.mp3"
   },
   {
     "id": "evidence",
@@ -5089,7 +5413,9 @@
     "acceptedAnswers": [
       "excessive"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "excessive",
+    "audioPath": "audio/excessive.mp3"
   },
   {
     "id": "excitement",
@@ -5107,7 +5433,9 @@
     "acceptedAnswers": [
       "excitement"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "excitement",
+    "audioPath": "audio/excitement.mp3"
   },
   {
     "id": "exercise",
@@ -5187,7 +5515,9 @@
     "acceptedAnswers": [
       "expert"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "expert",
+    "audioPath": "audio/expert.mp3"
   },
   {
     "id": "facilities",
@@ -5206,7 +5536,9 @@
     "acceptedAnswers": [
       "facilities"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "facilities",
+    "audioPath": "audio/facilities.mp3"
   },
   {
     "id": "factories",
@@ -5264,7 +5596,9 @@
     "acceptedAnswers": [
       "fear"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "fear",
+    "audioPath": "audio/fear.mp3"
   },
   {
     "id": "february",
@@ -5322,7 +5656,9 @@
     "acceptedAnswers": [
       "feedback"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "feedback",
+    "audioPath": "audio/feedback.mp3"
   },
   {
     "id": "ferry",
@@ -5380,7 +5716,9 @@
     "acceptedAnswers": [
       "field"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "field",
+    "audioPath": "audio/field.mp3"
   },
   {
     "id": "figure",
@@ -5398,7 +5736,9 @@
     "acceptedAnswers": [
       "figure"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "figure",
+    "audioPath": "audio/figure.mp3"
   },
   {
     "id": "fill-in-a-form",
@@ -5416,7 +5756,9 @@
     "acceptedAnswers": [
       "fill in a form"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "fill in a form",
+    "audioPath": "audio/fill-in-a-form.mp3"
   },
   {
     "id": "financial-training",
@@ -5434,7 +5776,9 @@
     "acceptedAnswers": [
       "financial training"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "financial training",
+    "audioPath": "audio/financial-training.mp3"
   },
   {
     "id": "find-out",
@@ -5452,7 +5796,9 @@
     "acceptedAnswers": [
       "find out"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "find out",
+    "audioPath": "audio/find-out.mp3"
   },
   {
     "id": "finding",
@@ -5512,7 +5858,9 @@
     "acceptedAnswers": [
       "fine"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "fine",
+    "audioPath": "audio/fine.mp3"
   },
   {
     "id": "first-aid",
@@ -5550,7 +5898,9 @@
     "acceptedAnswers": [
       "first aid procedures"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "first aid procedures",
+    "audioPath": "audio/first-aid-procedures.mp3"
   },
   {
     "id": "first-name",
@@ -5588,7 +5938,9 @@
     "acceptedAnswers": [
       "flexible"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "flexible",
+    "audioPath": "audio/flexible.mp3"
   },
   {
     "id": "flood",
@@ -5666,7 +6018,9 @@
     "acceptedAnswers": [
       "foreign language"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "foreign language",
+    "audioPath": "audio/foreign-language.mp3"
   },
   {
     "id": "forest",
@@ -5704,7 +6058,9 @@
     "acceptedAnswers": [
       "form"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "form",
+    "audioPath": "audio/form.mp3"
   },
   {
     "id": "fortnight",
@@ -5742,7 +6098,9 @@
     "acceptedAnswers": [
       "frequent"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "frequent",
+    "audioPath": "audio/frequent.mp3"
   },
   {
     "id": "frustration",
@@ -5760,7 +6118,9 @@
     "acceptedAnswers": [
       "frustration"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "frustration",
+    "audioPath": "audio/frustration.mp3"
   },
   {
     "id": "funding",
@@ -5778,7 +6138,9 @@
     "acceptedAnswers": [
       "funding"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "funding",
+    "audioPath": "audio/funding.mp3"
   },
   {
     "id": "furniture",
@@ -5816,7 +6178,9 @@
     "acceptedAnswers": [
       "future developments"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "future developments",
+    "audioPath": "audio/future-developments.mp3"
   },
   {
     "id": "gallery",
@@ -5914,7 +6278,9 @@
     "acceptedAnswers": [
       "go past"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "go past",
+    "audioPath": "audio/go-past.mp3"
   },
   {
     "id": "go-straight-ahead",
@@ -5932,7 +6298,9 @@
     "acceptedAnswers": [
       "go straight ahead"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "go straight ahead",
+    "audioPath": "audio/go-straight-ahead.mp3"
   },
   {
     "id": "gradual",
@@ -5950,7 +6318,9 @@
     "acceptedAnswers": [
       "gradual"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "gradual",
+    "audioPath": "audio/gradual.mp3"
   },
   {
     "id": "grateful",
@@ -5968,7 +6338,9 @@
     "acceptedAnswers": [
       "grateful"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "grateful",
+    "audioPath": "audio/grateful.mp3"
   },
   {
     "id": "grocery",
@@ -6026,7 +6398,9 @@
     "acceptedAnswers": [
       "handle"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "handle",
+    "audioPath": "audio/handle.mp3"
   },
   {
     "id": "handle-stress",
@@ -6044,7 +6418,9 @@
     "acceptedAnswers": [
       "handle stress"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "handle stress",
+    "audioPath": "audio/handle-stress.mp3"
   },
   {
     "id": "handmade",
@@ -6062,7 +6438,9 @@
     "acceptedAnswers": [
       "handmade"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "handmade",
+    "audioPath": "audio/handmade.mp3"
   },
   {
     "id": "harmful",
@@ -6080,7 +6458,9 @@
     "acceptedAnswers": [
       "harmful"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "harmful",
+    "audioPath": "audio/harmful.mp3"
   },
   {
     "id": "have-access-to",
@@ -6098,7 +6478,9 @@
     "acceptedAnswers": [
       "have access to"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "have access to",
+    "audioPath": "audio/have-access-to.mp3"
   },
   {
     "id": "headache",
@@ -6256,7 +6638,9 @@
     "acceptedAnswers": [
       "hesitation"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "hesitation",
+    "audioPath": "audio/hesitation.mp3"
   },
   {
     "id": "hospital",
@@ -6334,7 +6718,9 @@
     "acceptedAnswers": [
       "however"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "however",
+    "audioPath": "audio/however.mp3"
   },
   {
     "id": "identify",
@@ -6352,7 +6738,9 @@
     "acceptedAnswers": [
       "identify"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "identify",
+    "audioPath": "audio/identify.mp3"
   },
   {
     "id": "ignore",
@@ -6370,7 +6758,9 @@
     "acceptedAnswers": [
       "ignore"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "ignore",
+    "audioPath": "audio/ignore.mp3"
   },
   {
     "id": "impact",
@@ -6388,7 +6778,9 @@
     "acceptedAnswers": [
       "impact"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "impact",
+    "audioPath": "audio/impact.mp3"
   },
   {
     "id": "impressed",
@@ -6406,7 +6798,9 @@
     "acceptedAnswers": [
       "impressed"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "impressed",
+    "audioPath": "audio/impressed.mp3"
   },
   {
     "id": "improve",
@@ -6424,7 +6818,9 @@
     "acceptedAnswers": [
       "improve"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "improve",
+    "audioPath": "audio/improve.mp3"
   },
   {
     "id": "improvement",
@@ -6442,7 +6838,9 @@
     "acceptedAnswers": [
       "improvement"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "improvement",
+    "audioPath": "audio/improvement.mp3"
   },
   {
     "id": "in-fact",
@@ -6460,7 +6858,9 @@
     "acceptedAnswers": [
       "in fact"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "in fact",
+    "audioPath": "audio/in-fact.mp3"
   },
   {
     "id": "in-front-of",
@@ -6478,7 +6878,9 @@
     "acceptedAnswers": [
       "in front of"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "in front of",
+    "audioPath": "audio/in-front-of.mp3"
   },
   {
     "id": "in-particular",
@@ -6496,7 +6898,9 @@
     "acceptedAnswers": [
       "in particular"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "in particular",
+    "audioPath": "audio/in-particular.mp3"
   },
   {
     "id": "in-terms-of",
@@ -6514,7 +6918,9 @@
     "acceptedAnswers": [
       "in terms of"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "in terms of",
+    "audioPath": "audio/in-terms-of.mp3"
   },
   {
     "id": "in-the-end",
@@ -6532,7 +6938,9 @@
     "acceptedAnswers": [
       "in the end"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "in the end",
+    "audioPath": "audio/in-the-end.mp3"
   },
   {
     "id": "in-the-middle-of",
@@ -6550,7 +6958,9 @@
     "acceptedAnswers": [
       "in the middle of"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "in the middle of",
+    "audioPath": "audio/in-the-middle-of.mp3"
   },
   {
     "id": "inaccurate",
@@ -6568,7 +6978,9 @@
     "acceptedAnswers": [
       "inaccurate"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "inaccurate",
+    "audioPath": "audio/inaccurate.mp3"
   },
   {
     "id": "increase",
@@ -6586,7 +6998,9 @@
     "acceptedAnswers": [
       "increase"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "increase",
+    "audioPath": "audio/increase.mp3"
   },
   {
     "id": "independent-living",
@@ -6604,7 +7018,9 @@
     "acceptedAnswers": [
       "independent living"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "independent living",
+    "audioPath": "audio/independent-living.mp3"
   },
   {
     "id": "industries",
@@ -6762,7 +7178,9 @@
     "acceptedAnswers": [
       "instead of"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "instead of",
+    "audioPath": "audio/instead-of.mp3"
   },
   {
     "id": "insurance",
@@ -6800,7 +7218,9 @@
     "acceptedAnswers": [
       "interact"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "interact",
+    "audioPath": "audio/interact.mp3"
   },
   {
     "id": "intern",
@@ -6818,7 +7238,9 @@
     "acceptedAnswers": [
       "intern"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "intern",
+    "audioPath": "audio/intern.mp3"
   },
   {
     "id": "internship",
@@ -6836,7 +7258,9 @@
     "acceptedAnswers": [
       "internship"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "internship",
+    "audioPath": "audio/internship.mp3"
   },
   {
     "id": "invitation",
@@ -6894,7 +7318,9 @@
     "acceptedAnswers": [
       "involve"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "involve",
+    "audioPath": "audio/involve.mp3"
   },
   {
     "id": "island",
@@ -6933,7 +7359,9 @@
     "acceptedAnswers": [
       "issue"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "issue",
+    "audioPath": "audio/issue.mp3"
   },
   {
     "id": "itinerary",
@@ -6991,7 +7419,9 @@
     "acceptedAnswers": [
       "just beyond"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "just beyond",
+    "audioPath": "audio/just-beyond.mp3"
   },
   {
     "id": "keep-in-touch-with",
@@ -7009,7 +7439,9 @@
     "acceptedAnswers": [
       "keep in touch with"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "keep in touch with",
+    "audioPath": "audio/keep-in-touch-with.mp3"
   },
   {
     "id": "laboratory",
@@ -7087,7 +7519,9 @@
     "acceptedAnswers": [
       "leader"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "leader",
+    "audioPath": "audio/leader.mp3"
   },
   {
     "id": "leak",
@@ -7148,7 +7582,9 @@
     "acceptedAnswers": [
       "lecturer"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "lecturer",
+    "audioPath": "audio/lecturer.mp3"
   },
   {
     "id": "library",
@@ -7266,7 +7702,9 @@
     "acceptedAnswers": [
       "limited"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "limited",
+    "audioPath": "audio/limited.mp3"
   },
   {
     "id": "lock",
@@ -7364,7 +7802,9 @@
     "acceptedAnswers": [
       "mainly"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "mainly",
+    "audioPath": "audio/mainly.mp3"
   },
   {
     "id": "maintain",
@@ -7382,7 +7822,9 @@
     "acceptedAnswers": [
       "maintain"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "maintain",
+    "audioPath": "audio/maintain.mp3"
   },
   {
     "id": "maintenance",
@@ -7400,7 +7842,9 @@
     "acceptedAnswers": [
       "maintenance"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "maintenance",
+    "audioPath": "audio/maintenance.mp3"
   },
   {
     "id": "major",
@@ -7418,7 +7862,9 @@
     "acceptedAnswers": [
       "major"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "major",
+    "audioPath": "audio/major.mp3"
   },
   {
     "id": "make-sure",
@@ -7436,7 +7882,9 @@
     "acceptedAnswers": [
       "make sure"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "make sure",
+    "audioPath": "audio/make-sure.mp3"
   },
   {
     "id": "make-up-one-s-mind",
@@ -7454,7 +7902,9 @@
     "acceptedAnswers": [
       "make up one's mind"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "make up one's mind",
+    "audioPath": "audio/make-up-one-s-mind.mp3"
   },
   {
     "id": "make-your-own",
@@ -7472,7 +7922,9 @@
     "acceptedAnswers": [
       "make your own"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "make your own",
+    "audioPath": "audio/make-your-own.mp3"
   },
   {
     "id": "manage",
@@ -7490,7 +7942,9 @@
     "acceptedAnswers": [
       "manage"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "manage",
+    "audioPath": "audio/manage.mp3"
   },
   {
     "id": "management",
@@ -7508,7 +7962,9 @@
     "acceptedAnswers": [
       "management"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "management",
+    "audioPath": "audio/management.mp3"
   },
   {
     "id": "manager",
@@ -7548,7 +8004,9 @@
     "acceptedAnswers": [
       "mass-produced goods"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "mass-produced goods",
+    "audioPath": "audio/mass-produced-goods.mp3"
   },
   {
     "id": "material",
@@ -7608,7 +8066,9 @@
     "acceptedAnswers": [
       "measure"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "measure",
+    "audioPath": "audio/measure.mp3"
   },
   {
     "id": "measurement",
@@ -7706,7 +8166,9 @@
     "acceptedAnswers": [
       "meet a deadline"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "meet a deadline",
+    "audioPath": "audio/meet-a-deadline.mp3"
   },
   {
     "id": "mental-health",
@@ -7744,7 +8206,9 @@
     "acceptedAnswers": [
       "mention"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "mention",
+    "audioPath": "audio/mention.mp3"
   },
   {
     "id": "menu",
@@ -7842,7 +8306,9 @@
     "acceptedAnswers": [
       "middle"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "middle",
+    "audioPath": "audio/middle.mp3"
   },
   {
     "id": "migration",
@@ -7900,7 +8366,9 @@
     "acceptedAnswers": [
       "module"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "module",
+    "audioPath": "audio/module.mp3"
   },
   {
     "id": "mostly",
@@ -7918,7 +8386,9 @@
     "acceptedAnswers": [
       "mostly"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "mostly",
+    "audioPath": "audio/mostly.mp3"
   },
   {
     "id": "motivation",
@@ -7936,7 +8406,9 @@
     "acceptedAnswers": [
       "motivation"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "motivation",
+    "audioPath": "audio/motivation.mp3"
   },
   {
     "id": "museum",
@@ -8014,7 +8486,9 @@
     "acceptedAnswers": [
       "nearby"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "nearby",
+    "audioPath": "audio/nearby.mp3"
   },
   {
     "id": "negative",
@@ -8032,7 +8506,9 @@
     "acceptedAnswers": [
       "negative"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "negative",
+    "audioPath": "audio/negative.mp3"
   },
   {
     "id": "neglect",
@@ -8050,7 +8526,9 @@
     "acceptedAnswers": [
       "neglect"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "neglect",
+    "audioPath": "audio/neglect.mp3"
   },
   {
     "id": "neighbour",
@@ -8068,7 +8546,9 @@
     "acceptedAnswers": [
       "neighbour"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "neighbour",
+    "audioPath": "audio/neighbour.mp3"
   },
   {
     "id": "newspaper",
@@ -8106,7 +8586,9 @@
     "acceptedAnswers": [
       "next to"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "next to",
+    "audioPath": "audio/next-to.mp3"
   },
   {
     "id": "nitrogen",
@@ -8144,7 +8626,9 @@
     "acceptedAnswers": [
       "northwest"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "northwest",
+    "audioPath": "audio/northwest.mp3"
   },
   {
     "id": "nurse",
@@ -8182,7 +8666,9 @@
     "acceptedAnswers": [
       "observe"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "observe",
+    "audioPath": "audio/observe.mp3"
   },
   {
     "id": "observer",
@@ -8200,7 +8686,9 @@
     "acceptedAnswers": [
       "observer"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "observer",
+    "audioPath": "audio/observer.mp3"
   },
   {
     "id": "occasional",
@@ -8218,7 +8706,9 @@
     "acceptedAnswers": [
       "occasional"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "occasional",
+    "audioPath": "audio/occasional.mp3"
   },
   {
     "id": "occupation",
@@ -8296,7 +8786,9 @@
     "acceptedAnswers": [
       "on the bend"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "on the bend",
+    "audioPath": "audio/on-the-bend.mp3"
   },
   {
     "id": "on-the-corner",
@@ -8314,7 +8806,9 @@
     "acceptedAnswers": [
       "on the corner"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "on the corner",
+    "audioPath": "audio/on-the-corner.mp3"
   },
   {
     "id": "on-the-edge-of",
@@ -8332,7 +8826,9 @@
     "acceptedAnswers": [
       "on the edge of"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "on the edge of",
+    "audioPath": "audio/on-the-edge-of.mp3"
   },
   {
     "id": "on-the-left",
@@ -8350,7 +8846,9 @@
     "acceptedAnswers": [
       "on the left"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "on the left",
+    "audioPath": "audio/on-the-left.mp3"
   },
   {
     "id": "on-the-right",
@@ -8368,7 +8866,9 @@
     "acceptedAnswers": [
       "on the right"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "on the right",
+    "audioPath": "audio/on-the-right.mp3"
   },
   {
     "id": "on-the-whole",
@@ -8386,7 +8886,9 @@
     "acceptedAnswers": [
       "on the whole"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "on the whole",
+    "audioPath": "audio/on-the-whole.mp3"
   },
   {
     "id": "on-time",
@@ -8404,7 +8906,9 @@
     "acceptedAnswers": [
       "on time"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "on time",
+    "audioPath": "audio/on-time.mp3"
   },
   {
     "id": "onlooker",
@@ -8422,7 +8926,9 @@
     "acceptedAnswers": [
       "onlooker"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "onlooker",
+    "audioPath": "audio/onlooker.mp3"
   },
   {
     "id": "opposite",
@@ -8440,7 +8946,9 @@
     "acceptedAnswers": [
       "opposite"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "opposite",
+    "audioPath": "audio/opposite.mp3"
   },
   {
     "id": "opposite-the",
@@ -8458,7 +8966,9 @@
     "acceptedAnswers": [
       "opposite the"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "opposite the",
+    "audioPath": "audio/opposite-the.mp3"
   },
   {
     "id": "optional",
@@ -8476,7 +8986,9 @@
     "acceptedAnswers": [
       "optional"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "optional",
+    "audioPath": "audio/optional.mp3"
   },
   {
     "id": "orange",
@@ -8514,7 +9026,9 @@
     "acceptedAnswers": [
       "organise"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "organise",
+    "audioPath": "audio/organise.mp3"
   },
   {
     "id": "originality",
@@ -8552,7 +9066,9 @@
     "acceptedAnswers": [
       "out of date"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "out of date",
+    "audioPath": "audio/out-of-date.mp3"
   },
   {
     "id": "outdated",
@@ -8570,7 +9086,9 @@
     "acceptedAnswers": [
       "outdated"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "outdated",
+    "audioPath": "audio/outdated.mp3"
   },
   {
     "id": "pain",
@@ -8608,7 +9126,9 @@
     "acceptedAnswers": [
       "paper"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "paper",
+    "audioPath": "audio/paper.mp3"
   },
   {
     "id": "parent",
@@ -8626,7 +9146,9 @@
     "acceptedAnswers": [
       "parent"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "parent",
+    "audioPath": "audio/parent.mp3"
   },
   {
     "id": "park",
@@ -8684,7 +9206,9 @@
     "acceptedAnswers": [
       "participant"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "participant",
+    "audioPath": "audio/participant.mp3"
   },
   {
     "id": "participate",
@@ -8702,7 +9226,9 @@
     "acceptedAnswers": [
       "participate"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "participate",
+    "audioPath": "audio/participate.mp3"
   },
   {
     "id": "particular",
@@ -8720,7 +9246,9 @@
     "acceptedAnswers": [
       "particular"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "particular",
+    "audioPath": "audio/particular.mp3"
   },
   {
     "id": "particularly",
@@ -8738,7 +9266,9 @@
     "acceptedAnswers": [
       "particularly"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "particularly",
+    "audioPath": "audio/particularly.mp3"
   },
   {
     "id": "partner",
@@ -8756,7 +9286,9 @@
     "acceptedAnswers": [
       "partner"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "partner",
+    "audioPath": "audio/partner.mp3"
   },
   {
     "id": "passenger",
@@ -8894,7 +9426,9 @@
     "acceptedAnswers": [
       "personal statement"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "personal statement",
+    "audioPath": "audio/personal-statement.mp3"
   },
   {
     "id": "pest",
@@ -8952,7 +9486,9 @@
     "acceptedAnswers": [
       "physical needs"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "physical needs",
+    "audioPath": "audio/physical-needs.mp3"
   },
   {
     "id": "placement",
@@ -8970,7 +9506,9 @@
     "acceptedAnswers": [
       "placement"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "placement",
+    "audioPath": "audio/placement.mp3"
   },
   {
     "id": "plant",
@@ -9092,7 +9630,9 @@
     "acceptedAnswers": [
       "point"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "point",
+    "audioPath": "audio/point.mp3"
   },
   {
     "id": "point-out",
@@ -9110,7 +9650,9 @@
     "acceptedAnswers": [
       "point out"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "point out",
+    "audioPath": "audio/point-out.mp3"
   },
   {
     "id": "pollution",
@@ -9168,7 +9710,9 @@
     "acceptedAnswers": [
       "position"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "position",
+    "audioPath": "audio/position.mp3"
   },
   {
     "id": "positive",
@@ -9186,7 +9730,9 @@
     "acceptedAnswers": [
       "positive"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "positive",
+    "audioPath": "audio/positive.mp3"
   },
   {
     "id": "postcode",
@@ -9224,7 +9770,9 @@
     "acceptedAnswers": [
       "postpone"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "postpone",
+    "audioPath": "audio/postpone.mp3"
   },
   {
     "id": "practical",
@@ -9242,7 +9790,9 @@
     "acceptedAnswers": [
       "practical"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "practical",
+    "audioPath": "audio/practical.mp3"
   },
   {
     "id": "practice",
@@ -9260,7 +9810,9 @@
     "acceptedAnswers": [
       "practice"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "practice",
+    "audioPath": "audio/practice.mp3"
   },
   {
     "id": "prefer",
@@ -9278,7 +9830,9 @@
     "acceptedAnswers": [
       "prefer"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "prefer",
+    "audioPath": "audio/prefer.mp3"
   },
   {
     "id": "prefer-a-to-b",
@@ -9296,7 +9850,9 @@
     "acceptedAnswers": [
       "prefer A to B"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "prefer A to B",
+    "audioPath": "audio/prefer-a-to-b.mp3"
   },
   {
     "id": "preference",
@@ -9314,7 +9870,9 @@
     "acceptedAnswers": [
       "preference"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "preference",
+    "audioPath": "audio/preference.mp3"
   },
   {
     "id": "prepare",
@@ -9332,7 +9890,9 @@
     "acceptedAnswers": [
       "prepare"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "prepare",
+    "audioPath": "audio/prepare.mp3"
   },
   {
     "id": "present",
@@ -9414,7 +9974,9 @@
     "acceptedAnswers": [
       "prevent"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "prevent",
+    "audioPath": "audio/prevent.mp3"
   },
   {
     "id": "price",
@@ -9452,7 +10014,9 @@
     "acceptedAnswers": [
       "pride"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "pride",
+    "audioPath": "audio/pride.mp3"
   },
   {
     "id": "priority",
@@ -9470,7 +10034,9 @@
     "acceptedAnswers": [
       "priority"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "priority",
+    "audioPath": "audio/priority.mp3"
   },
   {
     "id": "problem",
@@ -9488,7 +10054,9 @@
     "acceptedAnswers": [
       "problem"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "problem",
+    "audioPath": "audio/problem.mp3"
   },
   {
     "id": "procedure",
@@ -9506,7 +10074,9 @@
     "acceptedAnswers": [
       "procedure"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "procedure",
+    "audioPath": "audio/procedure.mp3"
   },
   {
     "id": "process",
@@ -9544,7 +10114,9 @@
     "acceptedAnswers": [
       "production"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "production",
+    "audioPath": "audio/production.mp3"
   },
   {
     "id": "production-figures",
@@ -9562,7 +10134,9 @@
     "acceptedAnswers": [
       "production figures"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "production figures",
+    "audioPath": "audio/production-figures.mp3"
   },
   {
     "id": "project",
@@ -9603,7 +10177,9 @@
     "acceptedAnswers": [
       "project management"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "project management",
+    "audioPath": "audio/project-management.mp3"
   },
   {
     "id": "proposal",
@@ -9622,7 +10198,9 @@
     "acceptedAnswers": [
       "proposal"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "proposal",
+    "audioPath": "audio/proposal.mp3"
   },
   {
     "id": "protect",
@@ -9640,7 +10218,9 @@
     "acceptedAnswers": [
       "protect"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "protect",
+    "audioPath": "audio/protect.mp3"
   },
   {
     "id": "protection",
@@ -9678,7 +10258,9 @@
     "acceptedAnswers": [
       "provide"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "provide",
+    "audioPath": "audio/provide.mp3"
   },
   {
     "id": "provide-somebody-with",
@@ -9696,7 +10278,9 @@
     "acceptedAnswers": [
       "provide somebody with"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "provide somebody with",
+    "audioPath": "audio/provide-somebody-with.mp3"
   },
   {
     "id": "pupil",
@@ -9714,7 +10298,9 @@
     "acceptedAnswers": [
       "pupil"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "pupil",
+    "audioPath": "audio/pupil.mp3"
   },
   {
     "id": "qualification",
@@ -9732,7 +10318,9 @@
     "acceptedAnswers": [
       "qualification"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "qualification",
+    "audioPath": "audio/qualification.mp3"
   },
   {
     "id": "quality",
@@ -9750,7 +10338,9 @@
     "acceptedAnswers": [
       "quality"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "quality",
+    "audioPath": "audio/quality.mp3"
   },
   {
     "id": "questionnaire",
@@ -9828,7 +10418,9 @@
     "acceptedAnswers": [
       "range"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "range",
+    "audioPath": "audio/range.mp3"
   },
   {
     "id": "rather-than",
@@ -9846,7 +10438,9 @@
     "acceptedAnswers": [
       "rather than"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "rather than",
+    "audioPath": "audio/rather-than.mp3"
   },
   {
     "id": "reason",
@@ -9946,7 +10540,9 @@
     "acceptedAnswers": [
       "recommend"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "recommend",
+    "audioPath": "audio/recommend.mp3"
   },
   {
     "id": "record",
@@ -9965,7 +10561,9 @@
     "acceptedAnswers": [
       "record"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "record",
+    "audioPath": "audio/record.mp3"
   },
   {
     "id": "recording",
@@ -10043,7 +10641,9 @@
     "acceptedAnswers": [
       "reduce"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "reduce",
+    "audioPath": "audio/reduce.mp3"
   },
   {
     "id": "reduction",
@@ -10061,7 +10661,9 @@
     "acceptedAnswers": [
       "reduction"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "reduction",
+    "audioPath": "audio/reduction.mp3"
   },
   {
     "id": "refund",
@@ -10119,7 +10721,9 @@
     "acceptedAnswers": [
       "regret"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "regret",
+    "audioPath": "audio/regret.mp3"
   },
   {
     "id": "reject",
@@ -10137,7 +10741,9 @@
     "acceptedAnswers": [
       "reject"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "reject",
+    "audioPath": "audio/reject.mp3"
   },
   {
     "id": "relevance",
@@ -10155,7 +10761,9 @@
     "acceptedAnswers": [
       "relevance"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "relevance",
+    "audioPath": "audio/relevance.mp3"
   },
   {
     "id": "reliability",
@@ -10173,7 +10781,9 @@
     "acceptedAnswers": [
       "reliability"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "reliability",
+    "audioPath": "audio/reliability.mp3"
   },
   {
     "id": "relieved",
@@ -10191,7 +10801,9 @@
     "acceptedAnswers": [
       "relieved"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "relieved",
+    "audioPath": "audio/relieved.mp3"
   },
   {
     "id": "reluctant",
@@ -10209,7 +10821,9 @@
     "acceptedAnswers": [
       "reluctant"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "reluctant",
+    "audioPath": "audio/reluctant.mp3"
   },
   {
     "id": "reorganise",
@@ -10227,7 +10841,9 @@
     "acceptedAnswers": [
       "reorganise"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "reorganise",
+    "audioPath": "audio/reorganise.mp3"
   },
   {
     "id": "reorganise-shifts",
@@ -10245,7 +10861,9 @@
     "acceptedAnswers": [
       "reorganise shifts"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "reorganise shifts",
+    "audioPath": "audio/reorganise-shifts.mp3"
   },
   {
     "id": "repair",
@@ -10283,7 +10901,9 @@
     "acceptedAnswers": [
       "replace"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "replace",
+    "audioPath": "audio/replace.mp3"
   },
   {
     "id": "representative",
@@ -10301,7 +10921,9 @@
     "acceptedAnswers": [
       "representative"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "representative",
+    "audioPath": "audio/representative.mp3"
   },
   {
     "id": "require",
@@ -10319,7 +10941,9 @@
     "acceptedAnswers": [
       "require"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "require",
+    "audioPath": "audio/require.mp3"
   },
   {
     "id": "requirement",
@@ -10337,7 +10961,9 @@
     "acceptedAnswers": [
       "requirement"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "requirement",
+    "audioPath": "audio/requirement.mp3"
   },
   {
     "id": "research",
@@ -10375,7 +11001,9 @@
     "acceptedAnswers": [
       "research and development"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "research and development",
+    "audioPath": "audio/research-and-development.mp3"
   },
   {
     "id": "researcher",
@@ -10393,7 +11021,9 @@
     "acceptedAnswers": [
       "researcher"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "researcher",
+    "audioPath": "audio/researcher.mp3"
   },
   {
     "id": "resentment",
@@ -10411,7 +11041,9 @@
     "acceptedAnswers": [
       "resentment"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "resentment",
+    "audioPath": "audio/resentment.mp3"
   },
   {
     "id": "reservation",
@@ -10449,7 +11081,9 @@
     "acceptedAnswers": [
       "reserve"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "reserve",
+    "audioPath": "audio/reserve.mp3"
   },
   {
     "id": "resident",
@@ -10467,7 +11101,9 @@
     "acceptedAnswers": [
       "resident"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "resident",
+    "audioPath": "audio/resident.mp3"
   },
   {
     "id": "respondent",
@@ -10485,7 +11121,9 @@
     "acceptedAnswers": [
       "respondent"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "respondent",
+    "audioPath": "audio/respondent.mp3"
   },
   {
     "id": "responsibility",
@@ -10503,7 +11141,9 @@
     "acceptedAnswers": [
       "responsibility"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "responsibility",
+    "audioPath": "audio/responsibility.mp3"
   },
   {
     "id": "restaurant",
@@ -10541,7 +11181,9 @@
     "acceptedAnswers": [
       "restrict"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "restrict",
+    "audioPath": "audio/restrict.mp3"
   },
   {
     "id": "result",
@@ -10601,7 +11243,9 @@
     "acceptedAnswers": [
       "risk"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "risk",
+    "audioPath": "audio/risk.mp3"
   },
   {
     "id": "river",
@@ -10640,7 +11284,9 @@
     "acceptedAnswers": [
       "role"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "role",
+    "audioPath": "audio/role.mp3"
   },
   {
     "id": "route",
@@ -10678,7 +11324,9 @@
     "acceptedAnswers": [
       "safety"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "safety",
+    "audioPath": "audio/safety.mp3"
   },
   {
     "id": "salary",
@@ -10816,7 +11464,9 @@
     "acceptedAnswers": [
       "satisfaction"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "satisfaction",
+    "audioPath": "audio/satisfaction.mp3"
   },
   {
     "id": "satisfied",
@@ -10834,7 +11484,9 @@
     "acceptedAnswers": [
       "satisfied"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "satisfied",
+    "audioPath": "audio/satisfied.mp3"
   },
   {
     "id": "schedule",
@@ -10874,7 +11526,9 @@
     "acceptedAnswers": [
       "section"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "section",
+    "audioPath": "audio/section.mp3"
   },
   {
     "id": "seminar",
@@ -10914,7 +11568,9 @@
     "acceptedAnswers": [
       "service"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "service",
+    "audioPath": "audio/service.mp3"
   },
   {
     "id": "shift",
@@ -10975,7 +11631,9 @@
     "acceptedAnswers": [
       "shortage"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "shortage",
+    "audioPath": "audio/shortage.mp3"
   },
   {
     "id": "signal",
@@ -11033,7 +11691,9 @@
     "acceptedAnswers": [
       "significant"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "significant",
+    "audioPath": "audio/significant.mp3"
   },
   {
     "id": "single-room",
@@ -11111,7 +11771,9 @@
     "acceptedAnswers": [
       "slight"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "slight",
+    "audioPath": "audio/slight.mp3"
   },
   {
     "id": "soil",
@@ -11169,7 +11831,9 @@
     "acceptedAnswers": [
       "solution"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "solution",
+    "audioPath": "audio/solution.mp3"
   },
   {
     "id": "source",
@@ -11188,7 +11852,9 @@
     "acceptedAnswers": [
       "source"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "source",
+    "audioPath": "audio/source.mp3"
   },
   {
     "id": "sources-of-funding",
@@ -11206,7 +11872,9 @@
     "acceptedAnswers": [
       "sources of funding"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "sources of funding",
+    "audioPath": "audio/sources-of-funding.mp3"
   },
   {
     "id": "southeast",
@@ -11224,7 +11892,9 @@
     "acceptedAnswers": [
       "southeast"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "southeast",
+    "audioPath": "audio/southeast.mp3"
   },
   {
     "id": "speaker",
@@ -11242,7 +11912,9 @@
     "acceptedAnswers": [
       "speaker"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "speaker",
+    "audioPath": "audio/speaker.mp3"
   },
   {
     "id": "specialist",
@@ -11260,7 +11932,9 @@
     "acceptedAnswers": [
       "specialist"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "specialist",
+    "audioPath": "audio/specialist.mp3"
   },
   {
     "id": "species",
@@ -11298,7 +11972,9 @@
     "acceptedAnswers": [
       "spectator / spectators"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "spectator / spectators",
+    "audioPath": "audio/spectator-spectators.mp3"
   },
   {
     "id": "stadium",
@@ -11337,7 +12013,9 @@
     "acceptedAnswers": [
       "staff"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "staff",
+    "audioPath": "audio/staff.mp3"
   },
   {
     "id": "standardised",
@@ -11355,7 +12033,9 @@
     "acceptedAnswers": [
       "standardised"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "standardised",
+    "audioPath": "audio/standardised.mp3"
   },
   {
     "id": "statistics",
@@ -11395,7 +12075,9 @@
     "acceptedAnswers": [
       "stick to"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "stick to",
+    "audioPath": "audio/stick-to.mp3"
   },
   {
     "id": "strength",
@@ -11413,7 +12095,9 @@
     "acceptedAnswers": [
       "strength"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "strength",
+    "audioPath": "audio/strength.mp3"
   },
   {
     "id": "stressful",
@@ -11431,7 +12115,9 @@
     "acceptedAnswers": [
       "stressful"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "stressful",
+    "audioPath": "audio/stressful.mp3"
   },
   {
     "id": "structure",
@@ -11509,7 +12195,9 @@
     "acceptedAnswers": [
       "subject"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "subject",
+    "audioPath": "audio/subject.mp3"
   },
   {
     "id": "submit",
@@ -11527,7 +12215,9 @@
     "acceptedAnswers": [
       "submit"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "submit",
+    "audioPath": "audio/submit.mp3"
   },
   {
     "id": "submit-an-application",
@@ -11545,7 +12235,9 @@
     "acceptedAnswers": [
       "submit an application"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "submit an application",
+    "audioPath": "audio/submit-an-application.mp3"
   },
   {
     "id": "suggest",
@@ -11563,7 +12255,9 @@
     "acceptedAnswers": [
       "suggest"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "suggest",
+    "audioPath": "audio/suggest.mp3"
   },
   {
     "id": "suitable",
@@ -11581,7 +12275,9 @@
     "acceptedAnswers": [
       "suitable"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "suitable",
+    "audioPath": "audio/suitable.mp3"
   },
   {
     "id": "supermarket",
@@ -11619,7 +12315,9 @@
     "acceptedAnswers": [
       "supervisor"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "supervisor",
+    "audioPath": "audio/supervisor.mp3"
   },
   {
     "id": "support",
@@ -11638,7 +12336,9 @@
     "acceptedAnswers": [
       "support"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "support",
+    "audioPath": "audio/support.mp3"
   },
   {
     "id": "surgery",
@@ -11696,7 +12396,9 @@
     "acceptedAnswers": [
       "surprised"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "surprised",
+    "audioPath": "audio/surprised.mp3"
   },
   {
     "id": "survey",
@@ -11734,7 +12436,9 @@
     "acceptedAnswers": [
       "sympathy"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "sympathy",
+    "audioPath": "audio/sympathy.mp3"
   },
   {
     "id": "symptom",
@@ -11792,7 +12496,9 @@
     "acceptedAnswers": [
       "take part in"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "take part in",
+    "audioPath": "audio/take-part-in.mp3"
   },
   {
     "id": "takeaway",
@@ -11830,7 +12536,9 @@
     "acceptedAnswers": [
       "task"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "task",
+    "audioPath": "audio/task.mp3"
   },
   {
     "id": "team-leader",
@@ -11848,7 +12556,9 @@
     "acceptedAnswers": [
       "team leader"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "team leader",
+    "audioPath": "audio/team-leader.mp3"
   },
   {
     "id": "teammate",
@@ -11866,7 +12576,9 @@
     "acceptedAnswers": [
       "teammate"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "teammate",
+    "audioPath": "audio/teammate.mp3"
   },
   {
     "id": "technician",
@@ -11966,7 +12678,9 @@
     "acceptedAnswers": [
       "tend to"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "tend to",
+    "audioPath": "audio/tend-to.mp3"
   },
   {
     "id": "term",
@@ -11985,7 +12699,9 @@
     "acceptedAnswers": [
       "term"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "term",
+    "audioPath": "audio/term.mp3"
   },
   {
     "id": "theatre",
@@ -12064,7 +12780,9 @@
     "acceptedAnswers": [
       "time management"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "time management",
+    "audioPath": "audio/time-management.mp3"
   },
   {
     "id": "timetable",
@@ -12102,7 +12820,9 @@
     "acceptedAnswers": [
       "to the north of"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "to the north of",
+    "audioPath": "audio/to-the-north-of.mp3"
   },
   {
     "id": "top-priority",
@@ -12120,7 +12840,9 @@
     "acceptedAnswers": [
       "top priority"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "top priority",
+    "audioPath": "audio/top-priority.mp3"
   },
   {
     "id": "tourism",
@@ -12260,7 +12982,9 @@
     "acceptedAnswers": [
       "turn left / right"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "turn left / right",
+    "audioPath": "audio/turn-left-right.mp3"
   },
   {
     "id": "tutor",
@@ -12300,7 +13024,9 @@
     "acceptedAnswers": [
       "uncertainty"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "uncertainty",
+    "audioPath": "audio/uncertainty.mp3"
   },
   {
     "id": "uniform",
@@ -12338,7 +13064,9 @@
     "acceptedAnswers": [
       "unique"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "unique",
+    "audioPath": "audio/unique.mp3"
   },
   {
     "id": "university",
@@ -12376,7 +13104,9 @@
     "acceptedAnswers": [
       "update"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "update",
+    "audioPath": "audio/update.mp3"
   },
   {
     "id": "upset",
@@ -12394,7 +13124,9 @@
     "acceptedAnswers": [
       "upset"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "upset",
+    "audioPath": "audio/upset.mp3"
   },
   {
     "id": "vaccination",
@@ -12472,7 +13204,9 @@
     "acceptedAnswers": [
       "visitor"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "visitor",
+    "audioPath": "audio/visitor.mp3"
   },
   {
     "id": "volunteer",
@@ -12592,7 +13326,9 @@
     "acceptedAnswers": [
       "weakness"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "weakness",
+    "audioPath": "audio/weakness.mp3"
   },
   {
     "id": "weather",
@@ -12650,7 +13386,9 @@
     "acceptedAnswers": [
       "weigh up"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "weigh up",
+    "audioPath": "audio/weigh-up.mp3"
   },
   {
     "id": "weigh-up-the-options",
@@ -12668,7 +13406,9 @@
     "acceptedAnswers": [
       "weigh up the options"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "weigh up the options",
+    "audioPath": "audio/weigh-up-the-options.mp3"
   },
   {
     "id": "well-illustrated",
@@ -12687,7 +13427,9 @@
     "acceptedAnswers": [
       "well illustrated"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "well illustrated",
+    "audioPath": "audio/well-illustrated.mp3"
   },
   {
     "id": "well-organised",
@@ -12705,7 +13447,9 @@
     "acceptedAnswers": [
       "well-organised"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "well-organised",
+    "audioPath": "audio/well-organised.mp3"
   },
   {
     "id": "wildlife",
@@ -12743,7 +13487,9 @@
     "acceptedAnswers": [
       "willing"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "willing",
+    "audioPath": "audio/willing.mp3"
   },
   {
     "id": "wind",
@@ -12801,7 +13547,9 @@
     "acceptedAnswers": [
       "work around the clock"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "work around the clock",
+    "audioPath": "audio/work-around-the-clock.mp3"
   },
   {
     "id": "work-out-a-plan",
@@ -12819,7 +13567,9 @@
     "acceptedAnswers": [
       "work out a plan"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "work out a plan",
+    "audioPath": "audio/work-out-a-plan.mp3"
   },
   {
     "id": "work-to-a-deadline",
@@ -12837,7 +13587,9 @@
     "acceptedAnswers": [
       "work to a deadline"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "work to a deadline",
+    "audioPath": "audio/work-to-a-deadline.mp3"
   },
   {
     "id": "workforce",
@@ -12855,7 +13607,9 @@
     "acceptedAnswers": [
       "workforce"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "workforce",
+    "audioPath": "audio/workforce.mp3"
   },
   {
     "id": "workload",
@@ -12873,7 +13627,9 @@
     "acceptedAnswers": [
       "workload"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "workload",
+    "audioPath": "audio/workload.mp3"
   },
   {
     "id": "workplace-communication",
@@ -12891,6 +13647,8 @@
     "acceptedAnswers": [
       "workplace communication"
     ],
-    "sourceRevision": 4
+    "sourceRevision": 4,
+    "audioText": "workplace communication",
+    "audioPath": "audio/workplace-communication.mp3"
   }
 ]
