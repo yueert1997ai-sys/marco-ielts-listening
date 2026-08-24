@@ -1,0 +1,50 @@
+name: Sync wrong words
+
+on:
+  issues:
+    types: [opened]
+
+permissions:
+  contents: write
+  issues: write
+
+concurrency:
+  group: wrong-word-sync
+  cancel-in-progress: false
+
+jobs:
+  import:
+    if: github.actor == 'yueert1997ai-sys' && startsWith(github.event.issue.title, '[错词同步]')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: pip install -r requirements.txt
+      - run: python scripts/import_wrong_words.py --github-event "$GITHUB_EVENT_PATH"
+      - run: python scripts/build_listening.py
+      - run: python scripts/generate_audio.py
+      - run: python scripts/validate_release.py
+      - run: node tests/test_logic.js
+      - name: Commit vocabulary update
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add source/custom_words.json data/listening.json data/audit.json audio
+          if git diff --cached --quiet; then
+            echo "No vocabulary change"
+          else
+            git commit -m "Sync personal wrong words from issue #${{ github.event.issue.number }}"
+            git push
+          fi
+      - name: Close intake issue
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh issue comment "${{ github.event.issue.number }}" --body "错词已通过校验并同步到词库。"
+          gh issue close "${{ github.event.issue.number }}"
