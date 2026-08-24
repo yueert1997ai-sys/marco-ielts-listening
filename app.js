@@ -2,7 +2,7 @@
   "use strict";
 
   const STORAGE_KEY = "marcoIeltsListening.v1";
-  const APP_VERSION = "v2.3.0";
+  const APP_VERSION = "v2.4.0";
   const DAILY_PER_MODE = 25;
   const BROWSE_PAGE_SIZE = 20;
   const RESPONSE_LIMIT_MS = 5000;
@@ -382,8 +382,8 @@
     }).join("") || "（空白）";
   }
 
-  function shouldRevealAnswer(mode, outcome, retryCount) {
-    return mode === "recognition" || outcome === "pass" || retryCount >= 3;
+  function shouldRevealAnswer() {
+    return true;
   }
 
   const api = {
@@ -403,6 +403,7 @@
   let state = safeState(null);
   let recognitionStartedAt = 0;
   let recognitionTimerId = null;
+  let activeAudio = null;
   let currentResult = null;
   let browseFilter = "all";
   let browseSeed = `${dateKey()}:browse`;
@@ -639,9 +640,9 @@
       <section class="session">
         ${sessionMeta(entry, activity)}
         <div class="question-card">
-          <p class="prompt">点击播放，写出完整英文</p>
+          <p class="prompt">会自动读一遍，写出完整英文</p>
           <div class="play-zone">
-            <button id="play" class="play-button" aria-label="播放英音">▶ 播放</button>
+            <button id="play" class="play-button" aria-label="再读一次">▶ 再读</button>
             <p class="play-hint">单复数、空格、连字符都要准确</p>
           </div>
         </div>
@@ -652,7 +653,8 @@
           <button class="submit-button" type="submit">检查拼写</button>
         </form>
       </section>`;
-    document.getElementById("play").addEventListener("click", () => playAudio(activity));
+    const playButton = document.getElementById("play");
+    playButton.addEventListener("click", () => playAudio(activity, playButton));
     bindSessionToolbar(activity);
     document.getElementById("spelling-form").addEventListener("submit", (event) => {
       event.preventDefault();
@@ -661,42 +663,55 @@
       const correct = activity.acceptedAnswers.some((answer) => normaliseAnswer(answer) === normaliseAnswer(typed));
       recordAttempt(entry, activity, correct ? "pass" : "fail", { typed });
     });
+    playAudio(activity, playButton);
   }
 
   function renderRecognition(entry, activity) {
     window.scrollTo(0, 0);
     clearInterval(recognitionTimerId);
-    recognitionStartedAt = performance.now();
+    recognitionStartedAt = 0;
     const choices = buildChoices(activity, activities, `${Date.now()}:${Math.random()}`);
     screen.innerHTML = `
       <section class="session">
         ${sessionMeta(entry, activity)}
         <div class="question-card">
           <div class="timer-label"><span>反应时间</span><strong id="timer-count">5</strong></div>
-          <div class="timer"><div class="timer-bar"></div></div>
+          <div class="timer"><div id="timer-bar" class="timer-bar paused"></div></div>
           <p class="prompt">选出最直接的意思</p>
-          <h2 class="term">${escapeHtml(activity.term)}</h2>
+          <div class="recognition-term">
+            <h2 class="term">${escapeHtml(activity.term)}</h2>
+            <button id="recognition-play" class="test-play" type="button" aria-label="再读一次">▶ 再读</button>
+          </div>
           <div class="choices">
             ${choices.map((choice) => `<button class="choice" data-choice="${escapeHtml(choice)}">${escapeHtml(choice)}</button>`).join("")}
           </div>
         </div>
       </section>`;
     const timerCount = document.getElementById("timer-count");
+    const timerBar = document.getElementById("timer-bar");
+    const playButton = document.getElementById("recognition-play");
     bindSessionToolbar(activity);
-    recognitionTimerId = setInterval(() => {
-      const remaining = Math.max(0, Math.ceil((RESPONSE_LIMIT_MS - (performance.now() - recognitionStartedAt)) / 1000));
-      timerCount.textContent = remaining > 0 ? String(remaining) : "超时";
-      timerCount.classList.toggle("expired", remaining === 0);
-      if (remaining === 0) clearInterval(recognitionTimerId);
-    }, 100);
+    const startTimer = () => {
+      if (recognitionStartedAt || !screen.contains(timerBar)) return;
+      recognitionStartedAt = performance.now();
+      timerBar.classList.remove("paused");
+      recognitionTimerId = setInterval(() => {
+        const remaining = Math.max(0, Math.ceil((RESPONSE_LIMIT_MS - (performance.now() - recognitionStartedAt)) / 1000));
+        timerCount.textContent = remaining > 0 ? String(remaining) : "超时";
+        timerCount.classList.toggle("expired", remaining === 0);
+        if (remaining === 0) clearInterval(recognitionTimerId);
+      }, 100);
+    };
+    playButton.addEventListener("click", () => playAudio(activity, playButton));
     document.querySelectorAll(".choice").forEach((button) => button.addEventListener("click", () => {
       clearInterval(recognitionTimerId);
-      const elapsed = performance.now() - recognitionStartedAt;
+      const elapsed = recognitionStartedAt ? performance.now() - recognitionStartedAt : 0;
       const selected = button.dataset.choice;
       const correct = selected === activity.meaning;
       const outcome = correct && elapsed <= RESPONSE_LIMIT_MS ? "pass" : (correct ? "slow" : "fail");
       recordAttempt(entry, activity, outcome, { selected, elapsed });
     }));
+    playAudio(activity, playButton).then(startTimer);
   }
 
   function renderCurrent() {
@@ -842,10 +857,8 @@
     window.scrollTo(0, 0);
     const { activity, outcome, detail } = currentResult;
     const pass = outcome === "pass";
-    const retryCount = state.daily.retryCount[activity.key] || 0;
-    const reveal = shouldRevealAnswer(activity.mode, outcome, retryCount);
     const record = state.progress[activity.key] || {};
-    const label = pass ? "本次通过" : (outcome === "slow" ? "答对了，但超过 5 秒" : "这次没拼对 / 选对");
+    const label = pass ? "本次通过" : (outcome === "slow" ? "答对了，但超过 5 秒" : "这次答错了");
     const typed = detail.typed !== undefined
       ? `<p class="typed">你写的是：${diffAnswer(detail.typed, activity.term)}</p>`
       : (detail.selected ? `<p class="typed">你选的是：${escapeHtml(detail.selected)}</p>` : "");
@@ -857,10 +870,13 @@
         </div>
         <div class="result-card">
           <p class="result-mark ${pass ? "pass" : "weak"}">${label}</p>
-          <h2 class="answer">${reveal ? escapeHtml(activity.term) : "先不公布答案"}</h2>
-          <p class="meaning">${reveal ? escapeHtml(activity.meaning) : `第 ${retryCount} 次错误：看清错误位置，隔几题再拼。`}</p>
+          <div class="answer-row">
+            <h2 class="answer">${escapeHtml(activity.term)}</h2>
+            <button id="result-play" class="test-play" type="button" aria-label="再读一次">▶ 再读</button>
+          </div>
+          <p class="meaning">${escapeHtml(activity.meaning)}</p>
           ${typed}
-          <p class="note">${reveal ? escapeHtml(activity.errorNote || activity.note || "") : "答案会在连续三次错误后显示。"}${pass ? "" : " · 已放回今天的队列"}</p>
+          <p class="note">${escapeHtml(activity.errorNote || activity.note || "")}${pass ? "" : " · 已放回今天的队列"}</p>
           <div class="memory-strip">
             <span><b>${record.lapses || 0}</b>累计错误</span>
             <span><b>${record.passes || 0}</b>累计答对</span>
@@ -871,6 +887,8 @@
         <button id="continue" class="primary">继续</button>
       </section>`;
     document.getElementById("continue").addEventListener("click", renderCurrent);
+    const resultPlayButton = document.getElementById("result-play");
+    resultPlayButton.addEventListener("click", () => playAudio(activity, resultPlayButton));
     document.getElementById("result-home").addEventListener("click", () => {
       saveState();
       homeScreen();
@@ -884,17 +902,44 @@
 
   function playAudio(activity, targetButton) {
     const button = targetButton || document.getElementById("play");
+    if (activeAudio) {
+      activeAudio.pause();
+      activeAudio = null;
+    }
+    if ("speechSynthesis" in window) speechSynthesis.cancel();
     button?.classList.add("playing");
     const finish = () => button?.classList.remove("playing");
-    if (!activity.audioPath) {
-      finish();
-      speakFallback(activity.audioText || activity.term);
-      return;
-    }
-    const audio = new Audio(`./${activity.audioPath}`);
-    audio.addEventListener("ended", finish, { once: true });
-    audio.addEventListener("error", () => { finish(); speakFallback(activity.audioText || activity.term); }, { once: true });
-    audio.play().catch(() => { finish(); speakFallback(activity.audioText || activity.term); });
+    return new Promise((resolve) => {
+      let started = false;
+      let fallbackUsed = false;
+      let audio = null;
+      const markStarted = () => {
+        if (started) return;
+        started = true;
+        resolve();
+      };
+      const useFallback = () => {
+        if (fallbackUsed) return;
+        fallbackUsed = true;
+        if (activeAudio === audio) activeAudio = null;
+        finish();
+        markStarted();
+        speakFallback(activity.audioText || activity.term);
+      };
+      if (!activity.audioPath) {
+        useFallback();
+        return;
+      }
+      audio = new Audio(`./${activity.audioPath}`);
+      activeAudio = audio;
+      audio.addEventListener("playing", markStarted, { once: true });
+      audio.addEventListener("ended", () => {
+        if (activeAudio === audio) activeAudio = null;
+        finish();
+      }, { once: true });
+      audio.addEventListener("error", useFallback, { once: true });
+      audio.play().then(markStarted).catch(useFallback);
+    });
   }
 
   function speakFallback(text) {
