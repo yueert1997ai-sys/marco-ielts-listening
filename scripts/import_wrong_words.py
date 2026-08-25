@@ -56,7 +56,7 @@ def clean(raw: dict) -> dict:
     term = str(raw.get("term") or raw.get("word") or "").strip()
     meaning = str(raw.get("meaning") or raw.get("translation") or "").strip()
     modes = modes_for(raw.get("modes") or raw.get("mode") or raw.get("type"))
-    if not re.fullmatch(r"[A-Za-z][A-Za-z '\-]*", term):
+    if not re.fullmatch(r"[A-Za-z0-9][A-Za-z0-9 '&\-]*", term):
         raise SystemExit(f"Invalid English term: {term!r}")
     if not meaning or not modes:
         raise SystemExit(f"Missing meaning or mode: {raw}")

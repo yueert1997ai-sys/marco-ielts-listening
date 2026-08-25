@@ -4,6 +4,8 @@
 
 ## 记录新错词
 
+- 手机端可直接粘贴带编号的单词列表、“单词+中文”或原有 JSON；页面会去编号并生成可编辑预览。
+- 主词库已有的词会自动补中文释义；全新词在确认前需要补齐准确中文义。
 - 任意 ChatGPT：让它输出 `term / meaning / mode / reason` 的 JSON，粘贴进网页“错词收件箱”。
 - 任意 Codex：项目根目录的 `AGENTS.md` 会指导它通过 `scripts/import_wrong_words.py` 入库。
 - 跨设备同步：网页会生成 GitHub 同步单；仅仓库所有者提交的同步单会触发自动校验、音频生成和发布。
@@ -28,3 +30,5 @@ node tests/test_logic.js
 ```
 
 网页本身是静态文件。训练进度、重点词和未提交的个人错词保存在当前浏览器，并可在首页导入、导出；提交到 GitHub 的错词会进入公共词库，在所有设备生效。
+
+本地浏览器验收使用 `scripts/run_playwright.sh`，脚本已内置 Node/npm/npx 路径与 OpenSSL 兼容处理。

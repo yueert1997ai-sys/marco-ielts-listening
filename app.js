@@ -2,7 +2,7 @@
   "use strict";
 
   const STORAGE_KEY = "marcoIeltsListening.v1";
-  const APP_VERSION = "v2.9.0";
+  const APP_VERSION = "v2.10.0";
   const TRAINING_RESET_ID = "fresh-start-v2.5.0";
   const LEARNING_REVIEW_SPLIT_ID = "learning-review-v2.9.0";
   const DECK_REVISION = "whole-bank-v2";
@@ -442,7 +442,7 @@
     const meaning = String(raw.meaning || raw.translation || "").trim();
     const modes = normaliseModes(raw.modes || raw.mode || raw.type);
     if (!term || !meaning || !modes.length) throw new Error("每条错词都要有英文、中文意思和训练类型");
-    if (!/^[A-Za-z][A-Za-z '\-]*$/.test(term)) throw new Error(`英文格式不正确：${term}`);
+    if (!/^[A-Za-z0-9][A-Za-z0-9 '&\-]*$/.test(term)) throw new Error(`英文格式不正确：${term}`);
     const id = keyFor(term);
     return {
       id,
@@ -474,6 +474,101 @@
       const existing = merged.get(entry.id);
       if (!existing) merged.set(entry.id, entry);
       else merged.set(entry.id, { ...existing, ...entry, modes: [...new Set([...existing.modes, ...entry.modes])] });
+    });
+    return [...merged.values()];
+  }
+
+  function normalisePastedText(text) {
+    return String(text || "")
+      .replace(/(?:&#x20;|&#32;|&nbsp;)/gi, " ")
+      .replace(/[‘’]/g, "'")
+      .replace(/[–—]/g, "-");
+  }
+
+  function parseWrongWordDrafts(text, knownItems = []) {
+    const value = normalisePastedText(text).trim();
+    if (!value) return [];
+    if (value.startsWith("[") || value.startsWith("{")) return parseWrongWordInput(value);
+
+    const lines = value.split(/\r?\n/).flatMap((rawLine) => {
+      const line = rawLine.trim();
+      if (!line) return [];
+      if (!/[\u3400-\u9fff]/.test(line) && /[,，;；]/.test(line)) {
+        return line.split(/\s*[,，;；]\s*/).filter(Boolean);
+      }
+      return [line];
+    });
+    const known = new Map(knownItems.map((item) => [keyFor(item.term), item]));
+    const drafts = [];
+
+    const addDraft = (termValue, meaningValue = "", hint = "") => {
+      const term = String(termValue || "").trim().replace(/^[`'\"]+|[`'\".,;:!?]+$/g, "");
+      if (!term) return;
+      if (!/^[A-Za-z0-9][A-Za-z0-9 '&\-]*$/.test(term)) throw new Error(`英文格式不正确：${term}`);
+      const id = keyFor(term);
+      const matched = known.get(id);
+      const usageOnly = /^(?:作为|作|形容词|名词|动词|副词|不认识|不确定|听不懂|拼写)/.test(meaningValue.trim());
+      const meaning = usageOnly ? (matched?.meaning || "") : (meaningValue.trim() || matched?.meaning || "");
+      drafts.push({
+        id: matched?.id || id,
+        term: matched?.term || term,
+        meaning,
+        modes: ["recognition"],
+        reason: hint || (usageOnly ? `随手粘贴：${meaningValue.trim()}` : "随手粘贴：识义"),
+        category: "我的同步错词",
+        addedAt: dateKey(),
+        matched: Boolean(matched),
+      });
+    };
+
+    lines.forEach((rawLine) => {
+      const line = rawLine
+        .replace(/^\s*(?:[-*•·]\s+|\d{1,3}\s*[.)、）]\s*)/, "")
+        .trim();
+      if (!line) return;
+
+      const pipeCells = line.split(/\s*[|｜\t]\s*/);
+      if (pipeCells.length >= 2) {
+        const mode = pipeCells[2] || "recognition";
+        const entry = cleanCustomEntry({
+          term: pipeCells[0], meaning: pipeCells[1], mode,
+          reason: pipeCells.slice(3).join(" | ") || "随手粘贴：识义",
+        });
+        drafts.push({ ...entry, matched: known.has(entry.id) });
+        return;
+      }
+
+      const chineseIndex = line.search(/[\u3400-\u9fff]/);
+      const termPart = (chineseIndex >= 0 ? line.slice(0, chineseIndex) : line)
+        .replace(/\s*[:：=-]\s*$/, "").trim();
+      const meaningPart = chineseIndex >= 0
+        ? line.slice(chineseIndex).replace(/^\s*[:：=-]\s*/, "").trim()
+        : "";
+      const exact = known.get(keyFor(termPart));
+      if (exact || meaningPart) {
+        addDraft(termPart, meaningPart);
+        return;
+      }
+
+      const tokens = termPart.split(/\s+/).filter(Boolean);
+      if (tokens.length > 1 && tokens.every((token) => known.has(keyFor(token)))) {
+        tokens.forEach((token) => addDraft(token));
+        return;
+      }
+      addDraft(termPart);
+    });
+
+    const merged = new Map();
+    drafts.forEach((entry) => {
+      const existing = merged.get(entry.id);
+      if (!existing) merged.set(entry.id, entry);
+      else merged.set(entry.id, {
+        ...existing,
+        ...entry,
+        meaning: entry.meaning || existing.meaning,
+        modes: [...new Set([...existing.modes, ...entry.modes])],
+        matched: existing.matched || entry.matched,
+      });
     });
     return [...merged.values()];
   }
@@ -528,7 +623,7 @@
   const api = {
     dateKey, addDays, hashString, normaliseAnswer, makeActivities, safeState,
     createDailyDeck, createLearningDeck, createReviewDeck, prepareDaily, scheduleReview, insertRetry, buildChoices,
-    createBrowseDeck, parseWrongWordInput, mergeCustomItems, migrateNumberVariantState, seededShuffle,
+    createBrowseDeck, parseWrongWordInput, parseWrongWordDrafts, mergeCustomItems, migrateNumberVariantState, seededShuffle,
     createDirectionDeck, createHardDirectionDeck, judgeDirectionAttempt, isDirectionRunPassed,
     resetTrainingState, applyTrainingReset, applyLearningReviewSplit, enqueueReviewActivity, shouldRevealAnswer,
     RESPONSE_LIMIT_MS, DIRECTION_RESPONSE_LIMIT_MS, HARD_DIRECTION_RESPONSE_LIMIT_MS,
@@ -1507,14 +1602,15 @@
           <button id="copy-gpt-prompt" class="text-button">复制给 GPT 的要求</button>
         </div>
         <div class="inbox-hero">
-          <p class="eyebrow">GPT / CODEX / MANUAL</p>
-          <h2>谁帮你总结都行，最后都进同一个词库。</h2>
-          <p>把 GPT 输出的 JSON，或每行“英文 | 中文 | 类型 | 错误原因”粘到下面。类型可写 spelling、recognition 或 both。</p>
+          <p class="eyebrow">SMART PASTE</p>
+          <h2>直接把随手记粘进来。</h2>
+          <p>编号、空行、“单词+中文”都会自动识别。词库里已有的词会自动补释义；全新词只需在预览里补一下中文。</p>
         </div>
-        <label class="inbox-label" for="wrong-word-input">粘贴错词包</label>
-        <textarea id="wrong-word-input" class="inbox-input" rows="9" placeholder='[{"term":"retain","meaning":"保留","mode":"recognition","reason":"和 obtain 混淆"}]'></textarea>
-        <button id="import-wrong-words" class="primary">检查并加入本机词库</button>
+        <label class="inbox-label" for="wrong-word-input">粘贴你的原始记录</label>
+        <textarea id="wrong-word-input" class="inbox-input" rows="9" placeholder="1. juggle\n2) rural\n3. postpone推迟\n4. round 作为形容词"></textarea>
+        <button id="parse-wrong-words" class="primary">识别并预览</button>
         <p id="inbox-message" class="inbox-message" aria-live="polite"></p>
+        <div id="inbox-preview" class="inbox-preview" hidden></div>
         <div class="sync-card">
           <div><strong>本机新增 ${state.customItems.length} 条</strong><p>提交到 GitHub 后，其他设备也会获得这些词。</p></div>
           <button id="submit-sync" class="secondary" ${state.customItems.length ? "" : "disabled"}>提交同步</button>
@@ -1522,30 +1618,121 @@
         </div>
       </section>`;
     const message = document.getElementById("inbox-message");
+    const area = document.getElementById("wrong-word-input");
+    const preview = document.getElementById("inbox-preview");
+    let drafts = [];
+
+    const renderPreview = () => {
+      if (!drafts.length) {
+        preview.hidden = true;
+        preview.innerHTML = "";
+        return;
+      }
+      preview.hidden = false;
+      const missing = drafts.filter((entry) => !entry.meaning).length;
+      preview.innerHTML = `
+        <div class="inbox-preview-head">
+          <div><strong>识别到 ${drafts.length} 条</strong><p>${missing ? `${missing} 条需要补中文` : "释义已齐，可直接加入"}</p></div>
+          <button id="clear-preview" class="text-button">清空预览</button>
+        </div>
+        <div class="inbox-preview-list">
+          ${drafts.map((entry, index) => {
+            const mode = entry.modes.length > 1 ? "both" : entry.modes[0];
+            return `<article class="inbox-preview-row" data-index="${index}">
+              <div class="inbox-preview-term">
+                <strong>${escapeHtml(entry.term)}</strong>
+                <span class="${entry.meaning ? "ready" : "missing"}">${entry.meaning ? (entry.matched ? "已匹配词库" : "已带释义") : "待补中文"}</span>
+              </div>
+              <div class="inbox-preview-fields">
+                <label><small>中文意思</small><input class="inbox-meaning" value="${escapeHtml(entry.meaning)}" placeholder="输入准确中文义"></label>
+                <label><small>训练类型</small><select class="inbox-mode">
+                  <option value="recognition" ${mode === "recognition" ? "selected" : ""}>看词识义</option>
+                  <option value="spelling" ${mode === "spelling" ? "selected" : ""}>听音拼写</option>
+                  <option value="both" ${mode === "both" ? "selected" : ""}>两种都练</option>
+                </select></label>
+              </div>
+              <button class="remove-preview text-button" data-remove="${index}">移除</button>
+            </article>`;
+          }).join("")}
+        </div>
+        <button id="confirm-wrong-words" class="primary">确认加入本机词库</button>`;
+
+      preview.querySelector("#clear-preview").addEventListener("click", () => {
+        drafts = [];
+        renderPreview();
+        message.textContent = "已清空预览，原文还在。";
+      });
+      preview.querySelectorAll("[data-remove]").forEach((button) => button.addEventListener("click", () => {
+        drafts.splice(Number(button.dataset.remove), 1);
+        renderPreview();
+      }));
+      preview.querySelectorAll(".inbox-preview-row").forEach((row) => {
+        const index = Number(row.dataset.index);
+        const meaningInput = row.querySelector(".inbox-meaning");
+        const modeSelect = row.querySelector(".inbox-mode");
+        meaningInput.addEventListener("input", () => {
+          drafts[index].meaning = meaningInput.value.trim();
+          const badge = row.querySelector(".inbox-preview-term span");
+          badge.className = drafts[index].meaning ? "ready" : "missing";
+          badge.textContent = drafts[index].meaning ? "已补释义" : "待补中文";
+        });
+        modeSelect.addEventListener("change", () => {
+          drafts[index].modes = normaliseModes(modeSelect.value);
+        });
+      });
+      preview.querySelector("#confirm-wrong-words").addEventListener("click", () => {
+        try {
+          const entries = [...preview.querySelectorAll(".inbox-preview-row")].map((row) => {
+            const draft = drafts[Number(row.dataset.index)];
+            return cleanCustomEntry({
+              ...draft,
+              meaning: row.querySelector(".inbox-meaning").value,
+              mode: row.querySelector(".inbox-mode").value,
+            });
+          });
+          const merged = new Map(state.customItems.map((item) => [item.id || keyFor(item.term), cleanCustomEntry(item)]));
+          entries.forEach((entry) => {
+            const existing = merged.get(entry.id);
+            merged.set(entry.id, existing ? { ...existing, ...entry, modes: [...new Set([...existing.modes, ...entry.modes])] } : entry);
+          });
+          state.customItems = [...merged.values()];
+          rebuildDecks();
+          saveState();
+          message.classList.remove("error");
+          message.textContent = `已加入 ${entries.length} 条，本机现在就能刷；正在等待提交到 GitHub。`;
+          setTimeout(inboxScreen, 650);
+        } catch (error) {
+          message.textContent = `还不能加入：${error.message}`;
+          message.classList.add("error");
+        }
+      });
+    };
+
+    const parseAndPreview = () => {
+      try {
+        drafts = parseWrongWordDrafts(area.value, [...sourceItems, ...state.customItems]);
+        if (!drafts.length) throw new Error("还没有粘贴错词");
+        renderPreview();
+        message.classList.remove("error");
+        const missing = drafts.filter((entry) => !entry.meaning).length;
+        message.textContent = missing
+          ? `已识别 ${drafts.length} 条；请先补齐 ${missing} 条中文释义。`
+          : `已识别 ${drafts.length} 条，检查后直接确认。`;
+      } catch (error) {
+        drafts = [];
+        renderPreview();
+        message.textContent = `没有识别：${error.message}`;
+        message.classList.add("error");
+      }
+    };
+
     document.getElementById("inbox-back").addEventListener("click", homeScreen);
     document.getElementById("copy-gpt-prompt").addEventListener("click", async () => {
       await copyText(wrongWordPrompt());
       message.textContent = "已复制。发给任意网页 GPT，再把它输出的 JSON 粘回来。";
     });
-    document.getElementById("import-wrong-words").addEventListener("click", () => {
-      try {
-        const entries = parseWrongWordInput(document.getElementById("wrong-word-input").value);
-        if (!entries.length) throw new Error("还没有粘贴错词");
-        const merged = new Map(state.customItems.map((item) => [item.id || keyFor(item.term), cleanCustomEntry(item)]));
-        entries.forEach((entry) => {
-          const existing = merged.get(entry.id);
-          merged.set(entry.id, existing ? { ...existing, ...entry, modes: [...new Set([...existing.modes, ...entry.modes])] } : entry);
-        });
-        state.customItems = [...merged.values()];
-        rebuildDecks();
-        saveState();
-        message.textContent = `已加入 ${entries.length} 条，本机现在就能刷；正在等待提交到 GitHub。`;
-        setTimeout(inboxScreen, 650);
-      } catch (error) {
-        message.textContent = `没有导入：${error.message}`;
-        message.classList.add("error");
-      }
-    });
+    document.getElementById("parse-wrong-words").addEventListener("click", parseAndPreview);
+    area.addEventListener("paste", () => setTimeout(parseAndPreview, 30));
     document.getElementById("copy-package").addEventListener("click", async () => {
       await copyText(syncPackage());
       message.textContent = "同步包已复制，可以直接发给任意 Codex 入库。";

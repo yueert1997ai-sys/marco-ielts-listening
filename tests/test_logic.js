@@ -180,7 +180,7 @@ test("version one state migrates without losing progress", () => {
 });
 test("response limit is five seconds", () => assert.equal(logic.RESPONSE_LIMIT_MS, 5000));
 test("intervals match spec", () => assert.deepEqual(logic.INTERVALS, [1, 3, 7, 14, 30, 60]));
-test("visible app version matches this release", () => assert.equal(logic.APP_VERSION, "v2.9.0"));
+test("visible app version matches this release", () => assert.equal(logic.APP_VERSION, "v2.10.0"));
 test("direction response limit is two seconds", () => assert.equal(logic.DIRECTION_RESPONSE_LIMIT_MS, 2000));
 test("hard direction response limit is one second", () => assert.equal(logic.HARD_DIRECTION_RESPONSE_LIMIT_MS, 1000));
 test("hard direction audio plays at one point four speed", () => assert.equal(logic.HARD_DIRECTION_PLAYBACK_RATE, 1.4));
@@ -238,6 +238,39 @@ test("GPT JSON package is classified into both modes", () => {
 test("pipe-delimited package is accepted", () => {
   const parsed = logic.parseWrongWordInput("accommodation | 住宿 | 听写 | 双写错误");
   assert.equal(parsed[0].id, "accommodation"); assert.deepEqual(parsed[0].modes, ["spelling"]);
+});
+test("numbered casual paste strips numbering and HTML spaces", () => {
+  const known = [
+    { id: "juggle", term: "juggle", meaning: "同时应付", modes: ["recognition"] },
+    { id: "rural", term: "rural", meaning: "乡村的", modes: ["recognition"] },
+  ];
+  const parsed = logic.parseWrongWordDrafts("1. juggle&#x20;\n\n2) rural&#x20;", known);
+  assert.deepEqual(parsed.map((item) => item.term), ["juggle", "rural"]);
+  assert.deepEqual(parsed.map((item) => item.meaning), ["同时应付", "乡村的"]);
+});
+test("casual paste splits adjacent known words but preserves a known phrase", () => {
+  const known = [
+    { id: "fast-paced", term: "fast-paced", meaning: "节奏快的", modes: ["recognition"] },
+    { id: "permanent", term: "permanent", meaning: "长期的", modes: ["recognition"] },
+    { id: "low-profit-margins", term: "low profit margins", meaning: "低利润率", modes: ["recognition"] },
+  ];
+  const parsed = logic.parseWrongWordDrafts("3. fast-paced permanent\n11. low profit margins", known);
+  assert.deepEqual(parsed.map((item) => item.term), ["fast-paced", "permanent", "low profit margins"]);
+});
+test("casual paste uses inline Chinese and keeps usage hints out of the meaning", () => {
+  const known = [{ id: "round", term: "round", meaning: "圆的；球形的", modes: ["recognition"] }];
+  const parsed = logic.parseWrongWordDrafts("postpone推迟\nround 作为形容词", known);
+  assert.equal(parsed[0].meaning, "推迟");
+  assert.equal(parsed[1].meaning, "圆的；球形的");
+  assert(parsed[1].reason.includes("作为形容词"));
+});
+test("unknown casual paste remains a preview draft needing a meaning", () => {
+  const parsed = logic.parseWrongWordDrafts("new vocabulary phrase", []);
+  assert.equal(parsed[0].term, "new vocabulary phrase"); assert.equal(parsed[0].meaning, "");
+});
+test("numeric-leading vocabulary phrase is accepted", () => {
+  const parsed = logic.parseWrongWordInput('[{"term":"12-month maternity cover contract","meaning":"产假替岗合同","mode":"recognition"}]');
+  assert.equal(parsed[0].id, "12-month-maternity-cover-contract");
 });
 test("custom word merges with an existing item", () => {
   const merged = logic.mergeCustomItems(items, [{ term: "carpet", meaning: "地毯", mode: "both", reason: "又错了" }]);

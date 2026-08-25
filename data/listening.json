@@ -1,5 +1,28 @@
 [
   {
+    "id": "12-month-maternity-cover-contract",
+    "term": "12-month maternity cover contract",
+    "meaning": "为期 12 个月的产假替岗合同",
+    "note": "今日生词：整块识义；英式招聘表达",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "12-month maternity cover contract"
+    ],
+    "errorNote": "今日生词：整块识义；英式招聘表达",
+    "userAddedAt": "2026-08-25",
+    "sourceType": "user",
+    "sourceRevision": 4,
+    "audioText": "12-month maternity cover contract",
+    "audioPath": "audio/12-month-maternity-cover-contract.mp3"
+  },
+  {
     "id": "alongside",
     "term": "alongside",
     "meaning": "在……旁边",
@@ -206,6 +229,29 @@
     "audioPath": "audio/colossal.mp3"
   },
   {
+    "id": "cottage",
+    "term": "cottage",
+    "meaning": "乡间小屋；村舍",
+    "note": "今日生词：识义",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "cottage"
+    ],
+    "errorNote": "今日生词：识义",
+    "userAddedAt": "2026-08-25",
+    "sourceType": "user",
+    "sourceRevision": 4,
+    "audioText": "cottage",
+    "audioPath": "audio/cottage.mp3"
+  },
+  {
     "id": "council",
     "term": "council",
     "meaning": "委员会；地方议会",
@@ -254,6 +300,29 @@
     "sourceRevision": 4,
     "audioText": "curtain",
     "audioPath": "audio/curtain.mp3"
+  },
+  {
+    "id": "deliberately",
+    "term": "deliberately",
+    "meaning": "故意地；蓄意地",
+    "note": "今日生词：识义；副词",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "deliberately"
+    ],
+    "errorNote": "今日生词：识义；副词",
+    "userAddedAt": "2026-08-25",
+    "sourceType": "user",
+    "sourceRevision": 4,
+    "audioText": "deliberately",
+    "audioPath": "audio/deliberately.mp3"
   },
   {
     "id": "disbelief",
@@ -371,6 +440,29 @@
     "audioPath": "audio/erected.mp3"
   },
   {
+    "id": "estate",
+    "term": "estate",
+    "meaning": "地产；庄园；住宅区",
+    "note": "今日生词：识义；按语境区分 estate / housing estate",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "estate"
+    ],
+    "errorNote": "今日生词：识义；按语境区分 estate / housing estate",
+    "userAddedAt": "2026-08-25",
+    "sourceType": "user",
+    "sourceRevision": 4,
+    "audioText": "estate",
+    "audioPath": "audio/estate.mp3"
+  },
+  {
     "id": "excessive-sweating",
     "term": "excessive sweating",
     "meaning": "出汗过多",
@@ -390,6 +482,29 @@
     "sourceRevision": 4,
     "audioText": "excessive sweating",
     "audioPath": "audio/excessive-sweating.mp3"
+  },
+  {
+    "id": "fast-paced",
+    "term": "fast-paced",
+    "meaning": "节奏快的；进展迅速的",
+    "note": "今日生词：识义；常见于 fast-paced environment",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "fast-paced"
+    ],
+    "errorNote": "今日生词：识义；常见于 fast-paced environment",
+    "userAddedAt": "2026-08-25",
+    "sourceType": "user",
+    "sourceRevision": 4,
+    "audioText": "fast-paced",
+    "audioPath": "audio/fast-paced.mp3"
   },
   {
     "id": "fellow-students",
@@ -458,6 +573,29 @@
     "audioPath": "audio/gratitude.mp3"
   },
   {
+    "id": "grind",
+    "term": "grind",
+    "meaning": "磨碎；研磨；苦差事、单调劳作",
+    "note": "今日生词：识义；注意 the daily grind",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "grind"
+    ],
+    "errorNote": "今日生词：识义；注意 the daily grind",
+    "userAddedAt": "2026-08-25",
+    "sourceType": "user",
+    "sourceRevision": 4,
+    "audioText": "grind",
+    "audioPath": "audio/grind.mp3"
+  },
+  {
     "id": "homesickness",
     "term": "homesickness",
     "meaning": "想家",
@@ -523,6 +661,29 @@
     "audioPath": "audio/intrinsic.mp3"
   },
   {
+    "id": "juggle",
+    "term": "juggle",
+    "meaning": "同时应付（多件事）；玩杂耍",
+    "note": "今日生词：识义；工作语境常指同时处理多项任务",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "juggle"
+    ],
+    "errorNote": "今日生词：识义；工作语境常指同时处理多项任务",
+    "userAddedAt": "2026-08-25",
+    "sourceType": "user",
+    "sourceRevision": 4,
+    "audioText": "juggle",
+    "audioPath": "audio/juggle.mp3"
+  },
+  {
     "id": "lead",
     "term": "lead",
     "meaning": "铅",
@@ -568,6 +729,29 @@
     "sourceRevision": 4,
     "audioText": "litter",
     "audioPath": "audio/litter.mp3"
+  },
+  {
+    "id": "low-profit-margins",
+    "term": "low profit margins",
+    "meaning": "低利润率；利润空间小",
+    "note": "今日生词：整块识义；商业语境",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "low profit margins"
+    ],
+    "errorNote": "今日生词：整块识义；商业语境",
+    "userAddedAt": "2026-08-25",
+    "sourceType": "user",
+    "sourceRevision": 4,
+    "audioText": "low profit margins",
+    "audioPath": "audio/low-profit-margins.mp3"
   },
   {
     "id": "make-their-own",
@@ -771,6 +955,52 @@
     "sourceRevision": 4,
     "audioText": "oven",
     "audioPath": "audio/oven.mp3"
+  },
+  {
+    "id": "perks",
+    "term": "perks",
+    "meaning": "额外福利；津贴（尤指工作福利）",
+    "note": "今日生词：识义；job perks",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "perks"
+    ],
+    "errorNote": "今日生词：识义；job perks",
+    "userAddedAt": "2026-08-25",
+    "sourceType": "user",
+    "sourceRevision": 4,
+    "audioText": "perks",
+    "audioPath": "audio/perks.mp3"
+  },
+  {
+    "id": "permanent",
+    "term": "permanent",
+    "meaning": "永久的；长期的；正式的（职位）",
+    "note": "今日生词：识义；招聘语境与 temporary 相对",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "permanent"
+    ],
+    "errorNote": "今日生词：识义；招聘语境与 temporary 相对",
+    "userAddedAt": "2026-08-25",
+    "sourceType": "user",
+    "sourceRevision": 4,
+    "audioText": "permanent",
+    "audioPath": "audio/permanent.mp3"
   },
   {
     "id": "pharmacy",
@@ -1018,6 +1248,52 @@
     "sourceRevision": 4,
     "audioText": "retention",
     "audioPath": "audio/retention.mp3"
+  },
+  {
+    "id": "round",
+    "term": "round",
+    "meaning": "圆的；球形的",
+    "note": "今日生词：形容词义；a round table",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "round"
+    ],
+    "errorNote": "今日生词：形容词义；a round table",
+    "userAddedAt": "2026-08-25",
+    "sourceType": "user",
+    "sourceRevision": 4,
+    "audioText": "round",
+    "audioPath": "audio/round.mp3"
+  },
+  {
+    "id": "rural",
+    "term": "rural",
+    "meaning": "乡村的；农村的",
+    "note": "今日生词：识义；与 urban（城市的）相对",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "rural"
+    ],
+    "errorNote": "今日生词：识义；与 urban（城市的）相对",
+    "userAddedAt": "2026-08-25",
+    "sourceType": "user",
+    "sourceRevision": 4,
+    "audioText": "rural",
+    "audioPath": "audio/rural.mp3"
   },
   {
     "id": "spectator",

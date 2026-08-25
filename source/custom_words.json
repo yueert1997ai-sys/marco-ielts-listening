@@ -1,5 +1,16 @@
 [
   {
+    "id": "12-month-maternity-cover-contract",
+    "term": "12-month maternity cover contract",
+    "meaning": "为期 12 个月的产假替岗合同",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "今日生词：整块识义；英式招聘表达",
+    "category": "我的同步错词",
+    "addedAt": "2026-08-25"
+  },
+  {
     "id": "colony",
     "term": "colony",
     "meaning": "殖民地；（动植物的）群落、群体",
@@ -9,6 +20,17 @@
     "reason": "今日生词：不认识；注意动物或生物语境中的群体义",
     "category": "我的同步错词",
     "addedAt": "2026-08-24"
+  },
+  {
+    "id": "cottage",
+    "term": "cottage",
+    "meaning": "乡间小屋；村舍",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "今日生词：识义",
+    "category": "我的同步错词",
+    "addedAt": "2026-08-25"
   },
   {
     "id": "council",
@@ -23,6 +45,17 @@
     "addedAt": "2026-08-24"
   },
   {
+    "id": "deliberately",
+    "term": "deliberately",
+    "meaning": "故意地；蓄意地",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "今日生词：识义；副词",
+    "category": "我的同步错词",
+    "addedAt": "2026-08-25"
+  },
+  {
     "id": "erected",
     "term": "erected",
     "meaning": "建造；竖立（erect 的过去式/过去分词）",
@@ -34,6 +67,61 @@
     "addedAt": "2026-08-24"
   },
   {
+    "id": "estate",
+    "term": "estate",
+    "meaning": "地产；庄园；住宅区",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "今日生词：识义；按语境区分 estate / housing estate",
+    "category": "我的同步错词",
+    "addedAt": "2026-08-25"
+  },
+  {
+    "id": "fast-paced",
+    "term": "fast-paced",
+    "meaning": "节奏快的；进展迅速的",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "今日生词：识义；常见于 fast-paced environment",
+    "category": "我的同步错词",
+    "addedAt": "2026-08-25"
+  },
+  {
+    "id": "grind",
+    "term": "grind",
+    "meaning": "磨碎；研磨；苦差事、单调劳作",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "今日生词：识义；注意 the daily grind",
+    "category": "我的同步错词",
+    "addedAt": "2026-08-25"
+  },
+  {
+    "id": "juggle",
+    "term": "juggle",
+    "meaning": "同时应付（多件事）；玩杂耍",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "今日生词：识义；工作语境常指同时处理多项任务",
+    "category": "我的同步错词",
+    "addedAt": "2026-08-25"
+  },
+  {
+    "id": "low-profit-margins",
+    "term": "low profit margins",
+    "meaning": "低利润率；利润空间小",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "今日生词：整块识义；商业语境",
+    "category": "我的同步错词",
+    "addedAt": "2026-08-25"
+  },
+  {
     "id": "meticulous",
     "term": "meticulous",
     "meaning": "一丝不苟的；非常仔细的",
@@ -43,6 +131,28 @@
     "reason": "自动同步链路验收；阅读识词",
     "category": "我的同步错词",
     "addedAt": "2026-08-24"
+  },
+  {
+    "id": "perks",
+    "term": "perks",
+    "meaning": "额外福利；津贴（尤指工作福利）",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "今日生词：识义；job perks",
+    "category": "我的同步错词",
+    "addedAt": "2026-08-25"
+  },
+  {
+    "id": "permanent",
+    "term": "permanent",
+    "meaning": "永久的；长期的；正式的（职位）",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "今日生词：识义；招聘语境与 temporary 相对",
+    "category": "我的同步错词",
+    "addedAt": "2026-08-25"
   },
   {
     "id": "postpone",
@@ -65,5 +175,27 @@
     "reason": "今日生词：识义；道路语境常指重新铺路面",
     "category": "我的同步错词",
     "addedAt": "2026-08-24"
+  },
+  {
+    "id": "round",
+    "term": "round",
+    "meaning": "圆的；球形的",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "今日生词：形容词义；a round table",
+    "category": "我的同步错词",
+    "addedAt": "2026-08-25"
+  },
+  {
+    "id": "rural",
+    "term": "rural",
+    "meaning": "乡村的；农村的",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "今日生词：识义；与 urban（城市的）相对",
+    "category": "我的同步错词",
+    "addedAt": "2026-08-25"
   }
 ]

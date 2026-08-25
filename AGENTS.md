@@ -8,6 +8,8 @@
 4. 依次运行 `scripts/build_listening.py`、`scripts/generate_audio.py`、`scripts/validate_release.py` 和 `node tests/test_logic.js`。
 5. 报告新增、合并、拒绝的条目以及验证结果。没有用户明确授权时不要推送仓库。
 
+本机真实浏览器验收统一使用 `scripts/run_playwright.sh`；它会自动选择用户级 Node/npm/npx 并规避异常的系统 OpenSSL 默认配置，不要再手工拼环境变量。
+
 通用输入格式：
 
 ```json

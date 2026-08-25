@@ -1,12 +1,12 @@
 {
   "sourceRevision": 4,
   "sourceRows": 749,
-  "uniqueEntries": 654,
+  "uniqueEntries": 666,
   "realErrorRows": 46,
-  "realErrorEntries": 52,
-  "customEntries": 6,
+  "realErrorEntries": 64,
+  "customEntries": 18,
   "activities": {
-    "recognition": 433,
+    "recognition": 445,
     "spelling": 272
   },
   "sectionRows": {
