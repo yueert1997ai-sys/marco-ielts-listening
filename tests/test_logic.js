@@ -51,6 +51,39 @@ test("daily deck order changes across days", () => assert.notDeepEqual(
   logic.createDailyDeck(activities, {}, "2026-08-23"),
   logic.createDailyDeck(activities, {}, "2026-08-24")
 ));
+test("new-word deck excludes every previously seen activity", () => {
+  const progress = { "s0:spelling": { attempts: 1 }, "r0:recognition": { attempts: 1 }, "carpet:spelling": { attempts: 1 } };
+  const deck = logic.createLearningDeck(activities, progress, "2026-08-25");
+  assert.equal(deck.length, 50);
+  assert(deck.every((key) => !progress[key]));
+  assert.equal(deck.filter((key) => key.endsWith(":spelling")).length, 25);
+  assert.equal(deck.filter((key) => key.endsWith(":recognition")).length, 25);
+});
+test("review deck contains only due activities with prior errors", () => {
+  const progress = {
+    "s0:spelling": { lapses: 4, due: "2026-08-24" },
+    "s1:spelling": { lapses: 1, due: "2026-08-25" },
+    "r0:recognition": { lapses: 5, due: "2026-08-26" },
+    "r1:recognition": { lapses: 0, due: "2026-08-24" },
+    "r2:recognition": { lapses: 3, due: "2026-08-25" },
+  };
+  const deck = logic.createReviewDeck(activities, progress, "2026-08-25");
+  assert.deepEqual([...deck].sort(), ["r2:recognition", "s0:spelling", "s1:spelling"]);
+  assert.deepEqual(logic.createReviewDeck(activities, progress, "2026-08-25", 1), ["s0:spelling"]);
+});
+test("new learning and high-frequency review are prepared as separate queues", () => {
+  const state = logic.safeState({ progress: { "carpet:spelling": { lapses: 6, due: "2026-08-25" } } });
+  logic.prepareDaily(state, activities, "2026-08-25");
+  assert(!state.daily.baseKeys.includes("carpet:spelling"));
+  assert(state.reviewDaily.baseKeys.includes("carpet:spelling"));
+});
+test("a new learning mistake enters review once without joining the learning queue", () => {
+  const review = { baseKeys: [], queue: [], answeredBase: {}, outcomes: {}, retryCount: {}, completed: true };
+  assert(logic.enqueueReviewActivity(review, "carpet:spelling"));
+  assert(!logic.enqueueReviewActivity(review, "carpet:spelling"));
+  assert.deepEqual(review.baseKeys, ["carpet:spelling"]);
+  assert.equal(review.queue.length, 1); assert.equal(review.completed, false);
+});
 test("direction deck contains ten questions and all eight directions", () => {
   const deck = logic.createDirectionDeck(directions, "coverage");
   assert.equal(deck.length, 10);
@@ -147,11 +180,22 @@ test("version one state migrates without losing progress", () => {
 });
 test("response limit is five seconds", () => assert.equal(logic.RESPONSE_LIMIT_MS, 5000));
 test("intervals match spec", () => assert.deepEqual(logic.INTERVALS, [1, 3, 7, 14, 30, 60]));
-test("visible app version matches this release", () => assert.equal(logic.APP_VERSION, "v2.8.1"));
+test("visible app version matches this release", () => assert.equal(logic.APP_VERSION, "v2.9.0"));
 test("direction response limit is two seconds", () => assert.equal(logic.DIRECTION_RESPONSE_LIMIT_MS, 2000));
 test("hard direction response limit is one second", () => assert.equal(logic.HARD_DIRECTION_RESPONSE_LIMIT_MS, 1000));
 test("hard direction audio plays at one point four speed", () => assert.equal(logic.HARD_DIRECTION_PLAYBACK_RATE, 1.4));
 test("direction release preserves the existing training reset", () => assert.equal(logic.TRAINING_RESET_ID, "fresh-start-v2.5.0"));
+test("learning-review migration preserves progress and rebuilds only task queues", () => {
+  const migrated = logic.applyLearningReviewSplit(logic.safeState({
+    progress: { "carpet:spelling": { lapses: 4 } },
+    daily: { date: "2026-08-24", queue: [{ key: "carpet:spelling" }] },
+    reviewDaily: { date: "2026-08-24", queue: [] },
+    starred: { carpet: true },
+  }));
+  assert.equal(migrated.progress["carpet:spelling"].lapses, 4);
+  assert(migrated.starred.carpet); assert.equal(migrated.daily, null); assert.equal(migrated.reviewDaily, null);
+  assert.equal(migrated.learningReviewSplitId, logic.LEARNING_REVIEW_SPLIT_ID);
+});
 test("release reset clears training but preserves personal words and stars", () => {
   const reset = logic.applyTrainingReset(logic.safeState({
     progress: { "carpet:spelling": { stage: 3 } },

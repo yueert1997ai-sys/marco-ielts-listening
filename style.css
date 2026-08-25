@@ -105,6 +105,27 @@ h1 { margin: 0; font-size: 25px; line-height: 1; letter-spacing: -.04em; }
 .primary:disabled { opacity: .45; cursor: default; }
 .secondary { background: transparent; color: var(--ink); border: 1px solid var(--line); }
 .home .primary { margin-top: 14px; }
+.review-entry {
+  width: 100%;
+  min-height: 76px;
+  margin-top: 10px;
+  padding: 13px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  text-align: left;
+  color: var(--ink);
+  background: #fff3d5;
+  border: 1px solid rgba(168, 109, 0, .28);
+  border-radius: 17px;
+  cursor: pointer;
+}
+.review-entry span { min-width: 0; display: grid; gap: 4px; }
+.review-entry strong { font-size: 17px; }
+.review-entry small { color: #85692c; font-size: 12px; }
+.review-entry b { flex: 0 0 auto; color: #a86d00; font: 750 18px/1 ui-monospace, SFMono-Regular, Consolas, monospace; }
+.review-entry:disabled { opacity: .55; cursor: default; }
 .direction-entry {
   width: 100%;
   min-height: 76px;

@@ -2,10 +2,12 @@
   "use strict";
 
   const STORAGE_KEY = "marcoIeltsListening.v1";
-  const APP_VERSION = "v2.8.1";
+  const APP_VERSION = "v2.9.0";
   const TRAINING_RESET_ID = "fresh-start-v2.5.0";
+  const LEARNING_REVIEW_SPLIT_ID = "learning-review-v2.9.0";
   const DECK_REVISION = "whole-bank-v2";
   const DAILY_PER_MODE = 25;
+  const DAILY_REVIEW_LIMIT = 30;
   const BROWSE_PAGE_SIZE = 20;
   const RESPONSE_LIMIT_MS = 5000;
   const DIRECTION_RESPONSE_LIMIT_MS = 2000;
@@ -62,10 +64,12 @@
       starred: {},
       customItems: [],
       daily: null,
+      reviewDaily: null,
       streak: 0,
       lastCompletedDate: null,
       trainingResetId: null,
       deckNonce: DECK_REVISION,
+      learningReviewSplitId: null,
     };
     if (!raw || typeof raw !== "object") return base;
     return {
@@ -76,6 +80,7 @@
       starred: raw.starred && typeof raw.starred === "object" ? raw.starred : {},
       customItems: Array.isArray(raw.customItems) ? raw.customItems : [],
       daily: raw.daily && typeof raw.daily === "object" ? raw.daily : null,
+      reviewDaily: raw.reviewDaily && typeof raw.reviewDaily === "object" ? raw.reviewDaily : null,
     };
   }
 
@@ -85,10 +90,12 @@
       ...preserved,
       progress: {},
       daily: null,
+      reviewDaily: null,
       streak: 0,
       lastCompletedDate: null,
       trainingResetId: resetId,
       deckNonce,
+      learningReviewSplitId: LEARNING_REVIEW_SPLIT_ID,
     };
   }
 
@@ -97,6 +104,17 @@
     return safe.trainingResetId === TRAINING_RESET_ID
       ? safe
       : resetTrainingState(safe, TRAINING_RESET_ID, DECK_REVISION);
+  }
+
+  function applyLearningReviewSplit(current) {
+    const safe = safeState(current);
+    if (safe.learningReviewSplitId === LEARNING_REVIEW_SPLIT_ID) return safe;
+    return {
+      ...safe,
+      daily: null,
+      reviewDaily: null,
+      learningReviewSplitId: LEARNING_REVIEW_SPLIT_ID,
+    };
   }
 
   function activityRank(activity, progress, today, starred = {}, tieBreaker = activity.key, prioritiseRealErrors = true) {
@@ -178,23 +196,67 @@
     return seededShuffle([...spelling, ...recognition], `${today}:daily:${deckNonce}`);
   }
 
-  function prepareDaily(state, activities, today = dateKey()) {
-    if (state.daily && state.daily.date === today && Array.isArray(state.daily.queue)) return state;
-    const isFreshBaseline = Object.keys(state.progress || {}).length === 0;
-    const baseKeys = createDailyDeck(activities, state.progress, today, state.starred, {
-      deckNonce: state.deckNonce || DECK_REVISION,
-      prioritiseRealErrors: !isFreshBaseline,
+  function createLearningDeck(activities, progress, today = dateKey(), starred = {}, deckNonce = DECK_REVISION) {
+    function pick(mode) {
+      return activities
+        .filter((activity) => activity.mode === mode && !progress[activity.key])
+        .sort((a, b) => compareRank(
+          [starred[a.id] ? 0 : 1, hashString(`${deckNonce}:${today}:learn:${mode}:${a.key}`)],
+          [starred[b.id] ? 0 : 1, hashString(`${deckNonce}:${today}:learn:${mode}:${b.key}`)]
+        ))
+        .slice(0, DAILY_PER_MODE)
+        .map((activity) => activity.key);
+    }
+    return seededShuffle([...pick("spelling"), ...pick("recognition")], `${today}:learning:${deckNonce}`);
+  }
+
+  function createReviewDeck(activities, progress, today = dateKey(), limit = DAILY_REVIEW_LIMIT) {
+    const candidates = activities.filter((activity) => {
+      const record = progress[activity.key];
+      return record && (record.lapses || 0) > 0 && (!record.due || record.due <= today);
     });
-    state.daily = {
-      date: today,
+    candidates.sort((a, b) => {
+      const first = progress[a.key];
+      const second = progress[b.key];
+      return compareRank(
+        [-(first.lapses || 0), first.due || "", first.stage || 0, hashString(`${today}:review:${a.key}`)],
+        [-(second.lapses || 0), second.due || "", second.stage || 0, hashString(`${today}:review:${b.key}`)]
+      );
+    });
+    return seededShuffle(candidates.slice(0, limit).map((activity) => activity.key), `${today}:review-order`);
+  }
+
+  function makeDailySession(date, baseKeys) {
+    return {
+      date,
       baseKeys,
       queue: baseKeys.map((key) => ({ key, isRetry: false })),
       answeredBase: {},
       outcomes: {},
       retryCount: {},
       started: false,
-      completed: false,
+      completed: baseKeys.length === 0,
     };
+  }
+
+  function enqueueReviewActivity(reviewDaily, key) {
+    if (!reviewDaily || !key) return false;
+    if (!reviewDaily.baseKeys.includes(key)) reviewDaily.baseKeys.push(key);
+    const alreadyPending = reviewDaily.queue.some((entry) => entry.key === key);
+    if (!alreadyPending) reviewDaily.queue.push({ key, isRetry: false });
+    reviewDaily.completed = false;
+    return !alreadyPending;
+  }
+
+  function prepareDaily(state, activities, today = dateKey()) {
+    if (!state.daily || state.daily.date !== today || !Array.isArray(state.daily.queue)) {
+      const learningKeys = createLearningDeck(activities, state.progress, today, state.starred, state.deckNonce || DECK_REVISION);
+      state.daily = makeDailySession(today, learningKeys);
+    }
+    if (!state.reviewDaily || state.reviewDaily.date !== today || !Array.isArray(state.reviewDaily.queue)) {
+      const reviewKeys = createReviewDeck(activities, state.progress, today);
+      state.reviewDaily = makeDailySession(today, reviewKeys);
+    }
     return state;
   }
 
@@ -327,7 +389,8 @@
     });
     state.customItems = [...customItems.values()];
 
-    if (!state.daily) return state;
+    const sessions = [state.daily, state.reviewDaily].filter(Boolean);
+    if (!sessions.length) return state;
     const uniqueKeys = (values) => {
       const seen = new Set();
       return (values || []).map((key) => remapActivityKey(key, aliases)).filter((key) => {
@@ -336,28 +399,29 @@
         return true;
       });
     };
-    state.daily.baseKeys = uniqueKeys(state.daily.baseKeys);
-    const queueSeen = new Set();
-    state.daily.queue = (state.daily.queue || []).map((entry) => ({
-      ...entry,
-      key: remapActivityKey(entry.key, aliases),
-    })).filter((entry) => {
-      const signature = `${entry.isRetry ? "retry" : "base"}:${entry.key}`;
-      if (queueSeen.has(signature)) return false;
-      queueSeen.add(signature);
-      return true;
-    });
-
     const remapObject = (value, combine) => Object.entries(value || {}).reduce((result, [key, entry]) => {
       const canonical = remapActivityKey(key, aliases);
       result[canonical] = canonical in result ? combine(result[canonical], entry) : entry;
       return result;
     }, {});
     const outcomeRank = { pass: 0, slow: 1, fail: 2 };
-    state.daily.answeredBase = remapObject(state.daily.answeredBase, (a, b) => Boolean(a || b));
-    state.daily.outcomes = remapObject(state.daily.outcomes,
-      (a, b) => (outcomeRank[b] || 0) > (outcomeRank[a] || 0) ? b : a);
-    state.daily.retryCount = remapObject(state.daily.retryCount, (a, b) => Math.max(a || 0, b || 0));
+    sessions.forEach((session) => {
+      session.baseKeys = uniqueKeys(session.baseKeys);
+      const queueSeen = new Set();
+      session.queue = (session.queue || []).map((entry) => ({
+        ...entry,
+        key: remapActivityKey(entry.key, aliases),
+      })).filter((entry) => {
+        const signature = `${entry.isRetry ? "retry" : "base"}:${entry.key}`;
+        if (queueSeen.has(signature)) return false;
+        queueSeen.add(signature);
+        return true;
+      });
+      session.answeredBase = remapObject(session.answeredBase, (a, b) => Boolean(a || b));
+      session.outcomes = remapObject(session.outcomes,
+        (a, b) => (outcomeRank[b] || 0) > (outcomeRank[a] || 0) ? b : a);
+      session.retryCount = remapObject(session.retryCount, (a, b) => Math.max(a || 0, b || 0));
+    });
     return state;
   }
 
@@ -463,14 +527,15 @@
 
   const api = {
     dateKey, addDays, hashString, normaliseAnswer, makeActivities, safeState,
-    createDailyDeck, prepareDaily, scheduleReview, insertRetry, buildChoices,
+    createDailyDeck, createLearningDeck, createReviewDeck, prepareDaily, scheduleReview, insertRetry, buildChoices,
     createBrowseDeck, parseWrongWordInput, mergeCustomItems, migrateNumberVariantState, seededShuffle,
     createDirectionDeck, createHardDirectionDeck, judgeDirectionAttempt, isDirectionRunPassed,
-    resetTrainingState, applyTrainingReset, shouldRevealAnswer,
+    resetTrainingState, applyTrainingReset, applyLearningReviewSplit, enqueueReviewActivity, shouldRevealAnswer,
     RESPONSE_LIMIT_MS, DIRECTION_RESPONSE_LIMIT_MS, HARD_DIRECTION_RESPONSE_LIMIT_MS,
     HARD_DIRECTION_PLAYBACK_RATE,
     DIRECTION_QUESTION_COUNT, HARD_DIRECTION_IDS,
-    INTERVALS, BROWSE_PAGE_SIZE, APP_VERSION, TRAINING_RESET_ID, DECK_REVISION,
+    INTERVALS, BROWSE_PAGE_SIZE, DAILY_REVIEW_LIMIT, APP_VERSION,
+    TRAINING_RESET_ID, LEARNING_REVIEW_SPLIT_ID, DECK_REVISION,
   };
 
   if (typeof module !== "undefined" && module.exports) module.exports = api;
@@ -489,6 +554,7 @@
   let browseFilter = "all";
   let browseSeed = `${dateKey()}:browse`;
   let browsePage = 1;
+  let activeTrainingKind = "learning";
   let directionRun = null;
   let directionStartedAt = 0;
   let directionTimerId = null;
@@ -623,17 +689,26 @@
     }), { attempts: 0, passes: 0, lapses: 0, stage: 0, due: "" });
   }
 
+  function currentTrainingSession() {
+    return activeTrainingKind === "review" ? state.reviewDaily : state.daily;
+  }
+
+  function sessionDone(session) {
+    return session ? Object.keys(session.answeredBase || {}).length : 0;
+  }
+
   function baseDone() {
-    return state.daily ? Object.keys(state.daily.answeredBase || {}).length : 0;
+    return sessionDone(currentTrainingSession());
   }
 
   function updateChrome() {
-    const done = baseDone();
-    dayCount.textContent = `${done}/50`;
-    const daily = state.daily || { baseKeys: [], outcomes: {} };
-    rail.innerHTML = Array.from({ length: 50 }, (_, index) => {
-      const key = daily.baseKeys[index];
-      const outcome = key ? daily.outcomes[key] : null;
+    const session = currentTrainingSession() || { baseKeys: [], outcomes: {} };
+    const total = session.baseKeys.length;
+    dayCount.textContent = `${sessionDone(session)}/${total}`;
+    rail.style.gridTemplateColumns = `repeat(${Math.max(1, total)}, 1fr)`;
+    rail.innerHTML = Array.from({ length: total }, (_, index) => {
+      const key = session.baseKeys[index];
+      const outcome = key ? session.outcomes[key] : null;
       const css = outcome ? (outcome === "pass" ? " done" : " weak") : "";
       return `<span class="signal-tick${css}"></span>`;
     }).join("");
@@ -642,6 +717,7 @@
   function updateDirectionChrome() {
     const results = directionRun?.results || [];
     dayCount.textContent = `${results.length}/${DIRECTION_QUESTION_COUNT}`;
+    rail.style.gridTemplateColumns = `repeat(${DIRECTION_QUESTION_COUNT}, 1fr)`;
     rail.innerHTML = Array.from({ length: DIRECTION_QUESTION_COUNT }, (_, index) => {
       const result = results[index];
       const css = result ? (result.passed ? " done" : " weak") : "";
@@ -661,9 +737,10 @@
   function setShellMode(mode) {
     const browsing = mode === "browse";
     const direction = mode === "direction";
+    const reviewing = mode === "review";
     appShell.classList.toggle("browse-mode", browsing);
     appShell.classList.toggle("direction-mode", direction);
-    screenTitle.textContent = browsing ? "随便刷" : (direction ? "方位检测" : "今日 50");
+    screenTitle.textContent = browsing ? "随便刷" : (direction ? "方位检测" : (reviewing ? "高频复习" : "今日新词"));
     if (browsing) dayCount.textContent = "∞";
     else if (direction) updateDirectionChrome();
     else updateChrome();
@@ -671,24 +748,37 @@
 
   function homeScreen() {
     window.scrollTo(0, 0);
+    activeTrainingKind = "learning";
     setShellMode("daily");
-    const done = baseDone();
-    const remainingRetries = state.daily.queue.filter((entry) => entry.isRetry).length;
-    const buttonText = state.daily.completed ? "今天已完成" : (state.daily.started ? "继续训练" : "开始今日 50");
+    const done = sessionDone(state.daily);
+    const learningTotal = state.daily.baseKeys.length;
+    const learningSpelling = state.daily.baseKeys.filter((key) => key.endsWith(":spelling")).length;
+    const learningRecognition = state.daily.baseKeys.filter((key) => key.endsWith(":recognition")).length;
+    const reviewDone = sessionDone(state.reviewDaily);
+    const reviewTotal = state.reviewDaily.baseKeys.length;
+    const reviewPending = state.reviewDaily.queue.length;
+    const buttonText = state.daily.completed ? "今日新词已完成" : (state.daily.started ? "继续今日新词" : `开始今日新词 ${learningTotal}`);
     const totalErrors = Object.values(state.progress).reduce((sum, record) => sum + (record.lapses || 0), 0);
+    const errorPoolCount = new Set(Object.entries(state.progress)
+      .filter(([, record]) => (record.lapses || 0) > 0)
+      .map(([key]) => key.replace(/:(spelling|recognition)$/, ""))).size;
     const starredCount = Object.keys(state.starred).length;
     screen.innerHTML = `
       <section class="home">
         <div class="home-card">
-          <p class="eyebrow">${escapeHtml(state.daily.date)}</p>
+          <p class="eyebrow">${escapeHtml(state.daily.date)} · 今日新词</p>
           <div class="hero-number">${done}</div>
-          <p class="hero-copy">先把到期词清掉。听写必须拼对，看义必须 5 秒内反应。</p>
+          <p class="hero-copy">今天只学没做过的新词。昨天错再多，也不会挤占这里的名额。</p>
           <div class="split-summary">
-            <div class="split-item"><strong>25</strong><span>听音拼写</span></div>
-            <div class="split-item"><strong>25</strong><span>快速看义</span></div>
+            <div class="split-item"><strong>${learningSpelling}</strong><span>新词听写</span></div>
+            <div class="split-item"><strong>${learningRecognition}</strong><span>新词识义</span></div>
           </div>
         </div>
         <button id="start" class="primary" ${state.daily.completed ? "disabled" : ""}>${buttonText}</button>
+        <button id="review" class="review-entry" ${reviewPending ? "" : "disabled"}>
+          <span><strong>高频复习</strong><small>${reviewPending ? `${reviewPending} 题待复习 · 错得多的优先` : "今天暂无到期错词"}</small></span>
+          <b>${reviewDone}/${reviewTotal}</b>
+        </button>
         <button id="direction" class="direction-entry">
           <span><strong>方位检测</strong><small>10 题 · 标准 2 秒 / 困难 1 秒</small></span>
           <b aria-hidden="true">⌖</b>
@@ -709,7 +799,7 @@
           <span>累计错误 <strong>${totalErrors}</strong></span>
           <span>记忆阶段 <strong>1—6</strong></span>
         </div>
-        <p class="status-line">连续 ${state.streak || 0} 天${remainingRetries ? ` · 还有 ${remainingRetries} 个回炉题` : ""}</p>
+        <p class="status-line">连续 ${state.streak || 0} 天 · 复习池 ${errorPoolCount} 项</p>
         <details>
           <summary>进度与备份</summary>
           <div class="tools">
@@ -721,7 +811,14 @@
         </details>
       </section>`;
     document.getElementById("start")?.addEventListener("click", () => {
+      activeTrainingKind = "learning";
       state.daily.started = true;
+      saveState();
+      renderCurrent();
+    });
+    document.getElementById("review")?.addEventListener("click", () => {
+      activeTrainingKind = "review";
+      state.reviewDaily.started = true;
       saveState();
       renderCurrent();
     });
@@ -736,7 +833,7 @@
     document.getElementById("export")?.addEventListener("click", exportProgress);
     document.getElementById("import")?.addEventListener("change", importProgress);
     document.getElementById("reset-training")?.addEventListener("click", () => {
-      if (!window.confirm("确定清空正式训练进度并重新抽取 50 题吗？错词库和重点标记会保留。")) return;
+      if (!window.confirm("确定清空新词和复习进度吗？错词库和重点标记会保留。")) return;
       state = resetTrainingState(state, TRAINING_RESET_ID, `manual-${Date.now()}`);
       prepareDaily(state, activities);
       saveState();
@@ -1021,10 +1118,12 @@
   }
 
   function sessionMeta(entry, activity) {
-    const label = activity.mode === "spelling" ? "听音拼写" : "快速看义";
+    const session = currentTrainingSession();
+    const taskLabel = activeTrainingKind === "review" ? "复习" : "新词";
+    const modeLabel = activity.mode === "spelling" ? "听写" : "识义";
     return `<div class="session-toolbar">
       <button id="pause-session" class="text-button">← 暂停</button>
-      <div class="session-meta"><span class="mode-label">${label}</span><span>${entry.isRetry ? '<b class="retry-label">回炉题</b>' : `${baseDone() + 1}/50`}</span></div>
+      <div class="session-meta"><span class="mode-label">${taskLabel} · ${modeLabel}</span><span>${entry.isRetry ? '<b class="retry-label">回炉题</b>' : `${baseDone() + 1}/${session.baseKeys.length}`}</span></div>
       ${starButton(activity, "session-star")}
     </div>`;
   }
@@ -1135,16 +1234,22 @@
   }
 
   function renderCurrent() {
-    setShellMode("daily");
+    const session = currentTrainingSession();
+    setShellMode(activeTrainingKind === "review" ? "review" : "daily");
     updateChrome();
-    const entry = state.daily.queue[0];
+    const entry = session.queue[0];
     if (!entry) {
-      finishDay();
+      if (activeTrainingKind === "learning") finishDay();
+      else {
+        session.completed = true;
+        saveState();
+      }
+      const isReview = activeTrainingKind === "review";
       screen.innerHTML = `
         <section class="finished">
           <div class="hero-number">✓</div>
-          <h2>今天清完了</h2>
-          <p>50 个基础题和所有回炉题都已完成。明天按遗忘顺序再来。</p>
+          <h2>${isReview ? "今天的复习清完了" : "今天的新词学完了"}</h2>
+          <p>${isReview ? "新词学习不受影响，明天再按错误频率和到期时间生成复习。" : "答错的词已进入独立复习池，不会堵住今天的新词进度。"}</p>
           <button id="back-home" class="secondary">返回首页</button>
         </section>`;
       document.getElementById("back-home").addEventListener("click", homeScreen);
@@ -1152,7 +1257,7 @@
     }
     const activity = activityMap.get(entry.key);
     if (!activity) {
-      state.daily.queue.shift();
+      session.queue.shift();
       saveState();
       return renderCurrent();
     }
@@ -1253,29 +1358,26 @@
   }
 
   function recordAttempt(entry, activity, outcome, detail) {
-    state.daily.queue.shift();
-    if (!entry.isRetry && !state.daily.answeredBase[activity.key]) {
-      state.daily.answeredBase[activity.key] = true;
-      state.daily.outcomes[activity.key] = outcome;
-      state.progress[activity.key] = scheduleReview(state.progress[activity.key], outcome, state.daily.date);
-    } else if (entry.isRetry) {
-      const record = state.progress[activity.key] || { stage: 0, passes: 0, lapses: 0, attempts: 0, lastSeen: state.daily.date, due: addDays(state.daily.date, 1) };
-      state.progress[activity.key] = {
-        ...record,
-        attempts: (record.attempts || 0) + 1,
-        passes: (record.passes || 0) + (outcome === "pass" ? 1 : 0),
-        lapses: (record.lapses || 0) + (outcome === "pass" ? 0 : 1),
-      };
+    const sessionKind = activeTrainingKind;
+    const session = currentTrainingSession();
+    session.queue.shift();
+    if (!entry.isRetry && !session.answeredBase[activity.key]) {
+      session.answeredBase[activity.key] = true;
+      session.outcomes[activity.key] = outcome;
     }
-    if (outcome !== "pass") insertRetry(state.daily, activity.key);
-    currentResult = { entry, activity, outcome, detail };
+    state.progress[activity.key] = scheduleReview(state.progress[activity.key], outcome, session.date);
+    if (outcome !== "pass") {
+      if (sessionKind === "review") insertRetry(session, activity.key);
+      else enqueueReviewActivity(state.reviewDaily, activity.key);
+    }
+    currentResult = { entry, activity, outcome, detail, sessionKind };
     saveState();
     renderResult();
   }
 
   function renderResult() {
     window.scrollTo(0, 0);
-    const { activity, outcome, detail } = currentResult;
+    const { activity, outcome, detail, sessionKind } = currentResult;
     const pass = outcome === "pass";
     const record = state.progress[activity.key] || {};
     const label = detail.skipped ? "已标记为不会" : (pass ? "本次通过" : (outcome === "slow" ? "答对了，但超过 5 秒" : "这次答错了"));
@@ -1298,7 +1400,7 @@
           </div>
           <p class="meaning">${escapeHtml(activity.meaning)}</p>
           ${typed}
-          <p class="note">${escapeHtml(activity.errorNote || activity.note || "")}${pass ? "" : " · 已放回今天的队列"}</p>
+          <p class="note">${escapeHtml(activity.errorNote || activity.note || "")}${pass ? "" : (sessionKind === "review" ? " · 已放回复习队列" : " · 已加入高频复习")}</p>
           <div class="memory-strip">
             <span><b>${record.lapses || 0}</b>累计错误</span>
             <span><b>${record.passes || 0}</b>累计答对</span>
@@ -1480,6 +1582,7 @@
         const parsed = JSON.parse(reader.result);
         if (![1, 2, 3].includes(parsed.version) || !parsed.progress) throw new Error("invalid");
         state = safeState(parsed);
+        state = applyLearningReviewSplit(state);
         migrateNumberVariantState(state, sourceItems);
         rebuildDecks();
         prepareDaily(state, activities);
@@ -1504,6 +1607,7 @@
       [sourceItems, directions] = await Promise.all([response.json(), directionResponse.json()]);
       loadState();
       state = applyTrainingReset(state);
+      state = applyLearningReviewSplit(state);
       migrateNumberVariantState(state, sourceItems);
       reconcileSyncedCustomItems();
       rebuildDecks();

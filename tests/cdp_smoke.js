@@ -63,6 +63,8 @@ async function screenshot(send, name) {
     innerWidth, innerHeight,
     scrollWidth: document.documentElement.scrollWidth,
     start: document.querySelector('#start')?.textContent,
+    review: document.querySelector('#review')?.textContent.trim(),
+    reviewDisabled: document.querySelector('#review')?.disabled,
     ticks: document.querySelectorAll('.signal-tick').length,
     appWidth: Math.round(document.querySelector('.app-shell').getBoundingClientRect().width),
     cardWidth: Math.round(document.querySelector('.home-card').getBoundingClientRect().width)
@@ -71,7 +73,7 @@ async function screenshot(send, name) {
     const registration = await navigator.serviceWorker.ready;
     await new Promise((resolve) => setTimeout(resolve, 5000));
     const names = await caches.keys();
-    const cache = names.includes('ielts-listening-v15') ? await caches.open('ielts-listening-v15') : null;
+    const cache = names.includes('ielts-listening-v16') ? await caches.open('ielts-listening-v16') : null;
     const keys = cache ? await cache.keys() : [];
     return {
       active: registration.active?.state || null,
@@ -160,9 +162,30 @@ async function screenshot(send, name) {
   await new Promise((resolve) => setTimeout(resolve, 100));
   const result = await evaluate(send, `(() => {
     const state = JSON.parse(localStorage.getItem('marcoIeltsListening.v1'));
-    return { result: document.querySelector('.result-mark')?.textContent, retries: state.daily.queue.filter(x => x.isRetry).length };
+    return {
+      result: document.querySelector('.result-mark')?.textContent,
+      note: document.querySelector('.note')?.textContent,
+      learningRetries: state.daily.queue.filter(x => x.isRetry).length,
+      reviewPending: state.reviewDaily.queue.length
+    };
   })()`);
-  await evaluate(send, "document.querySelector('#continue').click(); true");
+  await evaluate(send, "document.querySelector('#result-home').click(); true");
+  await new Promise((resolve) => setTimeout(resolve, 100));
+  const reviewHome = await evaluate(send, `(() => ({
+    text: document.querySelector('#review')?.textContent.trim(),
+    disabled: document.querySelector('#review')?.disabled,
+    newProgress: document.querySelector('#day-count')?.textContent
+  }))()`);
+  await evaluate(send, "document.querySelector('#start').click(); true");
+  await evaluate(send, `(async () => {
+    for (let index = 0; index < 12 && !document.querySelector('.choice'); index += 1) {
+      document.querySelector('#spelling-dont-know')?.click();
+      await new Promise((resolve) => setTimeout(resolve, 30));
+      document.querySelector('#continue')?.click();
+      await new Promise((resolve) => setTimeout(resolve, 30));
+    }
+    return Boolean(document.querySelector('.choice'));
+  })()`);
   await new Promise((resolve) => setTimeout(resolve, 100));
   const recognition = await evaluate(send, `(() => ({
     mode: document.querySelector('.mode-label')?.textContent,
@@ -179,10 +202,12 @@ async function screenshot(send, name) {
     || directionSession.targets !== 4 || directionSession.timerDuration !== "1000ms"
     || !directionSession.mode.includes("1.4×")
     || !directionSession.diagonalBoard || directionSession.scrollWidth > 390
-    || !directionSession.dailyUnchanged) {
+    || !directionSession.dailyUnchanged || result.learningRetries !== 0
+    || result.reviewPending < 1 || !result.note.includes('高频复习')
+    || reviewHome.disabled || !reviewHome.text.includes('待复习')) {
     throw new Error("Mobile direction mode smoke check failed");
   }
 
-  console.log(JSON.stringify({ ok: true, home, offline, directionIntro, directionSession, browse, spelling, result, recognition }));
+  console.log(JSON.stringify({ ok: true, home, offline, directionIntro, directionSession, browse, spelling, result, reviewHome, recognition }));
   socket.close();
 })().catch((error) => { console.error(error); process.exit(1); });
