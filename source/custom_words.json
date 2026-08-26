@@ -11,6 +11,28 @@
     "addedAt": "2026-08-25"
   },
   {
+    "id": "calories",
+    "term": "calories",
+    "meaning": "卡路里；热量",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "今日生词：识义；calorie 的复数",
+    "category": "我的同步错词",
+    "addedAt": "2026-08-26"
+  },
+  {
+    "id": "capitalism",
+    "term": "capitalism",
+    "meaning": "资本主义",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "今日生词：识义",
+    "category": "我的同步错词",
+    "addedAt": "2026-08-26"
+  },
+  {
     "id": "colony",
     "term": "colony",
     "meaning": "殖民地；（动植物的）群落、群体",
@@ -111,6 +133,28 @@
     "addedAt": "2026-08-25"
   },
   {
+    "id": "lane",
+    "term": "lane",
+    "meaning": "小路；车道；泳道",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "今日生词：识义",
+    "category": "我的同步错词",
+    "addedAt": "2026-08-26"
+  },
+  {
+    "id": "large-pans-of-sap-called-evaporators-are-heated-by-means-of-a-fire",
+    "term": "Large pans of sap called evaporators are heated by means of a fire",
+    "meaning": "装有树液、被称为蒸发器的大锅用火加热",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "今日生词：整句听义；by means of 表示通过、借助",
+    "category": "我的同步错词",
+    "addedAt": "2026-08-26"
+  },
+  {
     "id": "low-profit-margins",
     "term": "low profit margins",
     "meaning": "低利润率；利润空间小",
@@ -131,6 +175,17 @@
     "reason": "自动同步链路验收；阅读识词",
     "category": "我的同步错词",
     "addedAt": "2026-08-24"
+  },
+  {
+    "id": "obesity",
+    "term": "obesity",
+    "meaning": "肥胖；肥胖症",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "今日生词：识义；名词",
+    "category": "我的同步错词",
+    "addedAt": "2026-08-26"
   },
   {
     "id": "perks",
@@ -155,6 +210,17 @@
     "addedAt": "2026-08-25"
   },
   {
+    "id": "persuasive",
+    "term": "persuasive",
+    "meaning": "有说服力的；能劝服人的",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "今日生词：识义",
+    "category": "我的同步错词",
+    "addedAt": "2026-08-26"
+  },
+  {
     "id": "postpone",
     "term": "postpone",
     "meaning": "推迟；延期",
@@ -164,6 +230,28 @@
     "reason": "今日生词：识义；postpone = 推迟",
     "category": "我的同步错词",
     "addedAt": "2026-08-24"
+  },
+  {
+    "id": "practise",
+    "term": "practise",
+    "meaning": "练习；实践（英式动词拼写）",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "今日生词：识义；保留英式动词拼写",
+    "category": "我的同步错词",
+    "addedAt": "2026-08-26"
+  },
+  {
+    "id": "resilience",
+    "term": "resilience",
+    "meaning": "韧性；恢复力；适应力",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "今日生词：识义",
+    "category": "我的同步错词",
+    "addedAt": "2026-08-26"
   },
   {
     "id": "resurfaced",
@@ -197,5 +285,38 @@
     "reason": "今日生词：识义；与 urban（城市的）相对",
     "category": "我的同步错词",
     "addedAt": "2026-08-25"
+  },
+  {
+    "id": "stoicism",
+    "term": "Stoicism",
+    "meaning": "斯多葛主义；斯多葛哲学",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "今日生词：识义；专有名词",
+    "category": "我的同步错词",
+    "addedAt": "2026-08-26"
+  },
+  {
+    "id": "textile",
+    "term": "textile",
+    "meaning": "纺织品；纺织业；纺织的",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "今日生词：识义",
+    "category": "我的同步错词",
+    "addedAt": "2026-08-26"
+  },
+  {
+    "id": "therapy",
+    "term": "therapy",
+    "meaning": "治疗；疗法",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "今日生词：识义",
+    "category": "我的同步错词",
+    "addedAt": "2026-08-26"
   }
 ]

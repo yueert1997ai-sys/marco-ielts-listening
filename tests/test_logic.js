@@ -180,7 +180,7 @@ test("version one state migrates without losing progress", () => {
 });
 test("response limit is five seconds", () => assert.equal(logic.RESPONSE_LIMIT_MS, 5000));
 test("intervals match spec", () => assert.deepEqual(logic.INTERVALS, [1, 3, 7, 14, 30, 60]));
-test("visible app version matches this release", () => assert.equal(logic.APP_VERSION, "v2.10.0"));
+test("visible app version matches this release", () => assert.equal(logic.APP_VERSION, "v2.10.1"));
 test("direction response limit is two seconds", () => assert.equal(logic.DIRECTION_RESPONSE_LIMIT_MS, 2000));
 test("hard direction response limit is one second", () => assert.equal(logic.HARD_DIRECTION_RESPONSE_LIMIT_MS, 1000));
 test("hard direction audio plays at one point four speed", () => assert.equal(logic.HARD_DIRECTION_PLAYBACK_RATE, 1.4));

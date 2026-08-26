@@ -2,7 +2,7 @@
   "use strict";
 
   const STORAGE_KEY = "marcoIeltsListening.v1";
-  const APP_VERSION = "v2.10.0";
+  const APP_VERSION = "v2.10.1";
   const TRAINING_RESET_ID = "fresh-start-v2.5.0";
   const LEARNING_REVIEW_SPLIT_ID = "learning-review-v2.9.0";
   const DECK_REVISION = "whole-bank-v2";

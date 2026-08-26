@@ -159,6 +159,52 @@
     "audioPath": "audio/bolder-move.mp3"
   },
   {
+    "id": "calories",
+    "term": "calories",
+    "meaning": "卡路里；热量",
+    "note": "今日生词：识义；calorie 的复数",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "calories"
+    ],
+    "errorNote": "今日生词：识义；calorie 的复数",
+    "userAddedAt": "2026-08-26",
+    "sourceType": "user",
+    "sourceRevision": 4,
+    "audioText": "calories",
+    "audioPath": "audio/calories.mp3"
+  },
+  {
+    "id": "capitalism",
+    "term": "capitalism",
+    "meaning": "资本主义",
+    "note": "今日生词：识义",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "capitalism"
+    ],
+    "errorNote": "今日生词：识义",
+    "userAddedAt": "2026-08-26",
+    "sourceType": "user",
+    "sourceRevision": 4,
+    "audioText": "capitalism",
+    "audioPath": "audio/capitalism.mp3"
+  },
+  {
     "id": "carpet",
     "term": "carpet",
     "meaning": "地毯",
@@ -684,6 +730,52 @@
     "audioPath": "audio/juggle.mp3"
   },
   {
+    "id": "lane",
+    "term": "lane",
+    "meaning": "小路；车道；泳道",
+    "note": "今日生词：识义",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "lane"
+    ],
+    "errorNote": "今日生词：识义",
+    "userAddedAt": "2026-08-26",
+    "sourceType": "user",
+    "sourceRevision": 4,
+    "audioText": "lane",
+    "audioPath": "audio/lane.mp3"
+  },
+  {
+    "id": "large-pans-of-sap-called-evaporators-are-heated-by-means-of-a-fire",
+    "term": "Large pans of sap called evaporators are heated by means of a fire",
+    "meaning": "装有树液、被称为蒸发器的大锅用火加热",
+    "note": "今日生词：整句听义；by means of 表示通过、借助",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "Large pans of sap called evaporators are heated by means of a fire"
+    ],
+    "errorNote": "今日生词：整句听义；by means of 表示通过、借助",
+    "userAddedAt": "2026-08-26",
+    "sourceType": "user",
+    "sourceRevision": 4,
+    "audioText": "Large pans of sap called evaporators are heated by means of a fire",
+    "audioPath": "audio/large-pans-of-sap-called-evaporators-are-heated-by-means-of-a-fire.mp3"
+  },
+  {
     "id": "lead",
     "term": "lead",
     "meaning": "铅",
@@ -934,6 +1026,29 @@
     "audioPath": "audio/neglecting.mp3"
   },
   {
+    "id": "obesity",
+    "term": "obesity",
+    "meaning": "肥胖；肥胖症",
+    "note": "今日生词：识义；名词",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "obesity"
+    ],
+    "errorNote": "今日生词：识义；名词",
+    "userAddedAt": "2026-08-26",
+    "sourceType": "user",
+    "sourceRevision": 4,
+    "audioText": "obesity",
+    "audioPath": "audio/obesity.mp3"
+  },
+  {
     "id": "oven",
     "term": "oven",
     "meaning": "烤箱",
@@ -1003,6 +1118,29 @@
     "audioPath": "audio/permanent.mp3"
   },
   {
+    "id": "persuasive",
+    "term": "persuasive",
+    "meaning": "有说服力的；能劝服人的",
+    "note": "今日生词：识义",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "persuasive"
+    ],
+    "errorNote": "今日生词：识义",
+    "userAddedAt": "2026-08-26",
+    "sourceType": "user",
+    "sourceRevision": 4,
+    "audioText": "persuasive",
+    "audioPath": "audio/persuasive.mp3"
+  },
+  {
     "id": "pharmacy",
     "term": "pharmacy",
     "meaning": "药房",
@@ -1047,6 +1185,29 @@
     "sourceRevision": 4,
     "audioText": "postpone",
     "audioPath": "audio/postpone.mp3"
+  },
+  {
+    "id": "practise",
+    "term": "practise",
+    "meaning": "练习；实践（英式动词拼写）",
+    "note": "今日生词：识义；保留英式动词拼写",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "practise"
+    ],
+    "errorNote": "今日生词：识义；保留英式动词拼写",
+    "userAddedAt": "2026-08-26",
+    "sourceType": "user",
+    "sourceRevision": 4,
+    "audioText": "practise",
+    "audioPath": "audio/practise.mp3"
   },
   {
     "id": "preferential",
@@ -1206,6 +1367,29 @@
     "audioPath": "audio/resentful.mp3"
   },
   {
+    "id": "resilience",
+    "term": "resilience",
+    "meaning": "韧性；恢复力；适应力",
+    "note": "今日生词：识义",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "resilience"
+    ],
+    "errorNote": "今日生词：识义",
+    "userAddedAt": "2026-08-26",
+    "sourceType": "user",
+    "sourceRevision": 4,
+    "audioText": "resilience",
+    "audioPath": "audio/resilience.mp3"
+  },
+  {
     "id": "resurfaced",
     "term": "resurfaced",
     "meaning": "重新铺设表面；再次出现（resurface 的过去式/过去分词）",
@@ -1342,6 +1526,29 @@
     "audioPath": "audio/stalled.mp3"
   },
   {
+    "id": "stoicism",
+    "term": "Stoicism",
+    "meaning": "斯多葛主义；斯多葛哲学",
+    "note": "今日生词：识义；专有名词",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "Stoicism"
+    ],
+    "errorNote": "今日生词：识义；专有名词",
+    "userAddedAt": "2026-08-26",
+    "sourceType": "user",
+    "sourceRevision": 4,
+    "audioText": "Stoicism",
+    "audioPath": "audio/stoicism.mp3"
+  },
+  {
     "id": "string",
     "term": "string",
     "meaning": "细绳；一串",
@@ -1363,6 +1570,52 @@
     "sourceRevision": 4,
     "audioText": "string",
     "audioPath": "audio/string.mp3"
+  },
+  {
+    "id": "textile",
+    "term": "textile",
+    "meaning": "纺织品；纺织业；纺织的",
+    "note": "今日生词：识义",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "textile"
+    ],
+    "errorNote": "今日生词：识义",
+    "userAddedAt": "2026-08-26",
+    "sourceType": "user",
+    "sourceRevision": 4,
+    "audioText": "textile",
+    "audioPath": "audio/textile.mp3"
+  },
+  {
+    "id": "therapy",
+    "term": "therapy",
+    "meaning": "治疗；疗法",
+    "note": "今日生词：识义",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "therapy"
+    ],
+    "errorNote": "今日生词：识义",
+    "userAddedAt": "2026-08-26",
+    "sourceType": "user",
+    "sourceRevision": 4,
+    "audioText": "therapy",
+    "audioPath": "audio/therapy.mp3"
   },
   {
     "id": "thorough",
