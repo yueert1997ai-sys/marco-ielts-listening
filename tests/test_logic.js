@@ -180,10 +180,25 @@ test("version one state migrates without losing progress", () => {
 });
 test("response limit is five seconds", () => assert.equal(logic.RESPONSE_LIMIT_MS, 5000));
 test("audio plays at a brisk training pace", () => assert.equal(logic.AUDIO_PLAYBACK_RATE, 1.2));
-test("different published version triggers an update", () => assert(logic.hasVersionUpdate("v2.10.2", "v2.10.3")));
-test("matching published version does not trigger an update", () => assert.equal(logic.hasVersionUpdate("v2.10.3", "v2.10.3"), false));
+test("only a clean pass auto-advances", () => {
+  assert(logic.shouldAutoAdvance("pass"));
+  assert.equal(logic.shouldAutoAdvance("slow"), false);
+  assert.equal(logic.shouldAutoAdvance("fail"), false);
+});
+test("quick pass feedback stays brief but visible", () => {
+  assert(logic.QUICK_PASS_DELAY_MS >= 450 && logic.QUICK_PASS_DELAY_MS <= 650);
+  assert(logic.QUESTION_TRANSITION_MS >= 140 && logic.QUESTION_TRANSITION_MS <= 240);
+});
+test("result note has no dangling separator when source note is empty", () => {
+  assert.equal(logic.formatResultNote("", "fail", "learning"), "已加入高频复习");
+  assert.equal(logic.formatResultNote("—", "fail", "learning"), "已加入高频复习");
+  assert.equal(logic.formatResultNote("", "fail", "review"), "已放回复习队列");
+  assert.equal(logic.formatResultNote("双写错误", "fail", "learning"), "双写错误 · 已加入高频复习");
+});
+test("different published version triggers an update", () => assert(logic.hasVersionUpdate("v2.10.3", "v2.10.4")));
+test("matching published version does not trigger an update", () => assert.equal(logic.hasVersionUpdate("v2.10.4", "v2.10.4"), false));
 test("intervals match spec", () => assert.deepEqual(logic.INTERVALS, [1, 3, 7, 14, 30, 60]));
-test("visible app version matches this release", () => assert.equal(logic.APP_VERSION, "v2.10.3"));
+test("visible app version matches this release", () => assert.equal(logic.APP_VERSION, "v2.10.4"));
 test("direction response limit is two seconds", () => assert.equal(logic.DIRECTION_RESPONSE_LIMIT_MS, 2000));
 test("hard direction response limit is one second", () => assert.equal(logic.HARD_DIRECTION_RESPONSE_LIMIT_MS, 1000));
 test("hard direction audio plays at one point four speed", () => assert.equal(logic.HARD_DIRECTION_PLAYBACK_RATE, 1.4));

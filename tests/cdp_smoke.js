@@ -74,7 +74,7 @@ async function screenshot(send, name) {
     const registration = await navigator.serviceWorker.ready;
     await new Promise((resolve) => setTimeout(resolve, 5000));
     const names = await caches.keys();
-    const cache = names.includes('ielts-listening-v21') ? await caches.open('ielts-listening-v21') : null;
+    const cache = names.includes('ielts-listening-v22') ? await caches.open('ielts-listening-v22') : null;
     const keys = cache ? await cache.keys() : [];
     return {
       active: registration.active?.state || null,
@@ -149,6 +149,7 @@ async function screenshot(send, name) {
       autocomplete: input?.getAttribute('autocomplete'),
       autocorrect: input?.getAttribute('autocorrect'),
       spellcheck: input?.spellcheck,
+      focused: document.activeElement === input,
       audioPath
     };
   })()`);
@@ -198,17 +199,85 @@ async function screenshot(send, name) {
   recognition.expiredText = await evaluate(send, "document.querySelector('#timer-count')?.textContent");
   await screenshot(send, "mobile-cdp-recognition.png");
 
+  await evaluate(send, "document.querySelector('#recognition-dont-know').click(); true");
+  await new Promise((resolve) => setTimeout(resolve, 50));
+  await evaluate(send, "document.querySelector('#continue').click(); true");
+  await evaluate(send, `(async () => {
+    for (let index = 0; index < 20 && !document.querySelector('.choice'); index += 1) {
+      document.querySelector('#spelling-dont-know')?.click();
+      await new Promise((resolve) => setTimeout(resolve, 30));
+      document.querySelector('#continue')?.click();
+      await new Promise((resolve) => setTimeout(resolve, 30));
+    }
+    return Boolean(document.querySelector('.choice'));
+  })()`);
+  const fastPass = await evaluate(send, `(async () => {
+    const term = document.querySelector('.term')?.textContent;
+    const items = await fetch('./data/listening.json').then((response) => response.json());
+    const meaning = items.find((item) => item.term === term)?.meaning;
+    const choice = [...document.querySelectorAll('.choice')].find((button) => button.dataset.choice === meaning);
+    const before = document.querySelector('#day-count')?.textContent;
+    choice?.click();
+    await new Promise((resolve) => setTimeout(resolve, 100));
+    const feedback = document.querySelector('.quick-feedback')?.textContent;
+    const resultVisibleDuringFeedback = Boolean(document.querySelector('.result'));
+    await new Promise((resolve) => setTimeout(resolve, 650));
+    return {
+      before,
+      after: document.querySelector('#day-count')?.textContent,
+      feedback,
+      resultVisibleDuringFeedback,
+      advancedToQuestion: Boolean(document.querySelector('.question-card')),
+      feedbackGone: !document.querySelector('.quick-feedback')
+    };
+  })()`);
+
+  await evaluate(send, `(async () => {
+    for (let index = 0; index < 20 && !document.querySelector('.choice'); index += 1) {
+      document.querySelector('#spelling-dont-know')?.click();
+      await new Promise((resolve) => setTimeout(resolve, 30));
+      document.querySelector('#continue')?.click();
+      await new Promise((resolve) => setTimeout(resolve, 30));
+    }
+    return Boolean(document.querySelector('.choice'));
+  })()`);
+  await send("Emulation.setDeviceMetricsOverride", { width: 320, height: 568, deviceScaleFactor: 2, mobile: true });
+  await new Promise((resolve) => setTimeout(resolve, 100));
+  const shortRecognition = await evaluate(send, `(() => {
+    const controls = [...document.querySelectorAll('.choice, #recognition-dont-know')];
+    return {
+      scrollHeight: document.documentElement.scrollHeight,
+      controls: controls.length,
+      fullyVisible: controls.filter((control) => {
+        const rect = control.getBoundingClientRect();
+        return rect.top >= 0 && rect.bottom <= innerHeight;
+      }).length
+    };
+  })()`);
+  await evaluate(send, "document.querySelector('#recognition-dont-know').click(); true");
+  await new Promise((resolve) => setTimeout(resolve, 50));
+  shortRecognition.resultContinueVisible = await evaluate(send, `(() => {
+    const rect = document.querySelector('#continue').getBoundingClientRect();
+    return rect.top >= 0 && rect.bottom <= innerHeight;
+  })()`);
+  await send("Emulation.setDeviceMetricsOverride", { width: 390, height: 844, deviceScaleFactor: 2, mobile: true });
+
   if (home.scrollWidth > 390 || directionIntro.previewTargets !== 8
     || directionIntro.hard.previewTargets !== 4 || !directionIntro.hard.diagonalBoard
     || directionSession.targets !== 4 || directionSession.timerDuration !== "1000ms"
     || !directionSession.mode.includes("1.4×")
     || !directionSession.diagonalBoard || directionSession.scrollWidth > 390
     || !directionSession.dailyUnchanged || result.learningRetries !== 0
-    || result.reviewPending < 1 || !result.note.includes('高频复习')
+    || !spelling.focused || result.reviewPending < 1 || !result.note.includes('高频复习')
+    || result.note.trim().startsWith('—')
+    || !fastPass.feedback?.includes('正确') || fastPass.resultVisibleDuringFeedback
+    || !fastPass.advancedToQuestion || !fastPass.feedbackGone || fastPass.before === fastPass.after
+    || shortRecognition.controls !== 5 || shortRecognition.fullyVisible !== 5
+    || !shortRecognition.resultContinueVisible
     || reviewHome.disabled || !reviewHome.text.includes('待复习')) {
     throw new Error("Mobile direction mode smoke check failed");
   }
 
-  console.log(JSON.stringify({ ok: true, home, offline, directionIntro, directionSession, browse, spelling, result, reviewHome, recognition }));
+  console.log(JSON.stringify({ ok: true, home, offline, directionIntro, directionSession, browse, spelling, result, reviewHome, recognition, fastPass, shortRecognition }));
   socket.close();
 })().catch((error) => { console.error(error); process.exit(1); });

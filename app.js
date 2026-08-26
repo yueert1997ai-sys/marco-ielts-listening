@@ -2,7 +2,7 @@
   "use strict";
 
   const STORAGE_KEY = "marcoIeltsListening.v1";
-  const APP_VERSION = "v2.10.3";
+  const APP_VERSION = "v2.10.4";
   const AUTO_UPDATE_SESSION_KEY = "marcoIeltsListening.autoUpdateAttempt";
   const AUTO_UPDATE_THROTTLE_MS = 60 * 1000;
   const TRAINING_RESET_ID = "fresh-start-v2.5.0";
@@ -18,6 +18,8 @@
   const DIRECTION_QUESTION_COUNT = 10;
   const HARD_DIRECTION_IDS = ["northeast", "southeast", "southwest", "northwest"];
   const AUDIO_PLAYBACK_RATE = 1.2;
+  const QUICK_PASS_DELAY_MS = 560;
+  const QUESTION_TRANSITION_MS = 180;
   const INTERVALS = [1, 3, 7, 14, 30, 60];
   const REPOSITORY_URL = "https://github.com/yueert1997ai-sys/marco-ielts-listening";
 
@@ -627,15 +629,28 @@
     return Boolean(latestVersion && latestVersion !== currentVersion);
   }
 
+  function shouldAutoAdvance(outcome) {
+    return outcome === "pass";
+  }
+
+  function formatResultNote(note, outcome, sessionKind) {
+    const rawDetail = String(note || "").trim();
+    const detail = /^[—–-]+$/.test(rawDetail) ? "" : rawDetail;
+    const followUp = outcome === "pass"
+      ? ""
+      : (sessionKind === "review" ? "已放回复习队列" : "已加入高频复习");
+    return [detail, followUp].filter(Boolean).join(" · ");
+  }
+
   const api = {
     dateKey, addDays, hashString, normaliseAnswer, makeActivities, safeState,
     createDailyDeck, createLearningDeck, createReviewDeck, prepareDaily, scheduleReview, insertRetry, buildChoices,
     createBrowseDeck, parseWrongWordInput, parseWrongWordDrafts, mergeCustomItems, migrateNumberVariantState, seededShuffle,
     createDirectionDeck, createHardDirectionDeck, judgeDirectionAttempt, isDirectionRunPassed,
     resetTrainingState, applyTrainingReset, applyLearningReviewSplit, enqueueReviewActivity, shouldRevealAnswer,
-    hasVersionUpdate,
+    hasVersionUpdate, shouldAutoAdvance, formatResultNote,
     RESPONSE_LIMIT_MS, DIRECTION_RESPONSE_LIMIT_MS, HARD_DIRECTION_RESPONSE_LIMIT_MS,
-    AUDIO_PLAYBACK_RATE, HARD_DIRECTION_PLAYBACK_RATE,
+    AUDIO_PLAYBACK_RATE, HARD_DIRECTION_PLAYBACK_RATE, QUICK_PASS_DELAY_MS, QUESTION_TRANSITION_MS,
     DIRECTION_QUESTION_COUNT, HARD_DIRECTION_IDS,
     INTERVALS, BROWSE_PAGE_SIZE, DAILY_REVIEW_LIMIT, APP_VERSION,
     TRAINING_RESET_ID, LEARNING_REVIEW_SPLIT_ID, DECK_REVISION,
@@ -653,6 +668,8 @@
   let recognitionStartedAt = 0;
   let recognitionTimerId = null;
   let activeAudio = null;
+  let preloadedAudio = null;
+  let preloadedAudioPath = "";
   let currentResult = null;
   let browseFilter = "all";
   let browseSeed = `${dateKey()}:browse`;
@@ -1313,9 +1330,10 @@
     const playButton = document.getElementById("play");
     playButton.addEventListener("click", () => playAudio(activity, playButton));
     bindSessionToolbar(activity);
+    const answerInput = document.getElementById("answer");
     document.getElementById("spelling-form").addEventListener("submit", (event) => {
       event.preventDefault();
-      const typed = document.getElementById("answer").value;
+      const typed = answerInput.value;
       if (!normaliseAnswer(typed)) return;
       const correct = activity.acceptedAnswers.some((answer) => normaliseAnswer(answer) === normaliseAnswer(typed));
       recordAttempt(entry, activity, correct ? "pass" : "fail", { typed });
@@ -1323,6 +1341,7 @@
     document.getElementById("spelling-dont-know").addEventListener("click", () => {
       recordAttempt(entry, activity, "fail", { skipped: true });
     });
+    answerInput.focus({ preventScroll: true });
     playAudio(activity, playButton);
   }
 
@@ -1379,7 +1398,7 @@
     playAudio(activity, playButton).then(startTimer);
   }
 
-  function renderCurrent() {
+  function renderCurrent(options = {}) {
     const session = currentTrainingSession();
     setShellMode(activeTrainingKind === "review" ? "review" : "daily");
     updateChrome();
@@ -1409,6 +1428,10 @@
     }
     if (activity.mode === "spelling") renderSpelling(entry, activity);
     else renderRecognition(entry, activity);
+    if (options.animate) {
+      const card = screen.querySelector(".question-card");
+      card?.classList.add("question-card-enter");
+    }
   }
 
   function browseScreen() {
@@ -1518,7 +1541,39 @@
     }
     currentResult = { entry, activity, outcome, detail, sessionKind };
     saveState();
-    renderResult();
+    preloadUpcomingAudio();
+    if (shouldAutoAdvance(outcome)) showQuickPass(activity);
+    else renderResult();
+  }
+
+  function showQuickPass(activity) {
+    const card = screen.querySelector(".question-card");
+    if (!card) {
+      renderCurrent({ animate: true });
+      return;
+    }
+    screen.querySelectorAll("button, input").forEach((control) => { control.disabled = true; });
+    if (activity.mode === "recognition") {
+      const correctChoice = [...card.querySelectorAll(".choice")]
+        .find((choice) => choice.dataset.choice === activity.meaning);
+      if (correctChoice) {
+        correctChoice.classList.add("choice-correct");
+        correctChoice.textContent = `✓ ${correctChoice.textContent}`;
+      }
+    } else {
+      card.closest(".session")?.querySelector(".spelling-input")?.classList.add("answer-correct");
+      const submit = card.closest(".session")?.querySelector(".submit-button");
+      if (submit) submit.textContent = "✓ 正确";
+    }
+    const feedback = document.createElement("div");
+    feedback.className = "quick-feedback";
+    feedback.setAttribute("role", "status");
+    feedback.setAttribute("aria-live", "polite");
+    feedback.innerHTML = "<strong>正确</strong><span>下一题</span>";
+    card.append(feedback);
+    card.classList.add("quick-pass");
+    window.setTimeout(() => card.classList.add("quick-pass-leave"), QUICK_PASS_DELAY_MS - QUESTION_TRANSITION_MS);
+    window.setTimeout(() => renderCurrent({ animate: true }), QUICK_PASS_DELAY_MS);
   }
 
   function renderResult() {
@@ -1532,6 +1587,7 @@
       : (detail.typed !== undefined
       ? `<p class="typed">你写的是：${diffAnswer(detail.typed, activity.term)}</p>`
       : (detail.selected ? `<p class="typed">你选的是：${escapeHtml(detail.selected)}</p>` : ""));
+    const resultNote = formatResultNote(activity.errorNote || activity.note, outcome, sessionKind);
     screen.innerHTML = `
       <section class="result">
         <div class="result-toolbar">
@@ -1546,7 +1602,7 @@
           </div>
           <p class="meaning">${escapeHtml(activity.meaning)}</p>
           ${typed}
-          <p class="note">${escapeHtml(activity.errorNote || activity.note || "")}${pass ? "" : (sessionKind === "review" ? " · 已放回复习队列" : " · 已加入高频复习")}</p>
+          ${resultNote ? `<p class="note">${escapeHtml(resultNote)}</p>` : ""}
           <div class="memory-strip">
             <span><b>${record.lapses || 0}</b>累计错误</span>
             <span><b>${record.passes || 0}</b>累计答对</span>
@@ -1568,6 +1624,22 @@
       event.currentTarget.classList.toggle("active", active);
       event.currentTarget.textContent = active ? "★" : "☆";
     });
+  }
+
+  function preloadUpcomingAudio() {
+    const nextEntry = currentTrainingSession()?.queue?.[0];
+    const nextActivity = nextEntry ? activityMap.get(nextEntry.key) : null;
+    const nextPath = nextActivity?.audioPath ? `./${nextActivity.audioPath}` : "";
+    if (!nextPath) {
+      preloadedAudio = null;
+      preloadedAudioPath = "";
+      return;
+    }
+    if (nextPath === preloadedAudioPath) return;
+    preloadedAudio = new Audio(nextPath);
+    preloadedAudio.preload = "auto";
+    preloadedAudio.defaultPlaybackRate = AUDIO_PLAYBACK_RATE;
+    preloadedAudioPath = nextPath;
   }
 
   function playAudio(activity, targetButton) {
@@ -1600,7 +1672,14 @@
         useFallback();
         return;
       }
-      audio = new Audio(`./${activity.audioPath}`);
+      const audioPath = `./${activity.audioPath}`;
+      if (preloadedAudio && preloadedAudioPath === audioPath) {
+        audio = preloadedAudio;
+        preloadedAudio = null;
+        preloadedAudioPath = "";
+      } else {
+        audio = new Audio(audioPath);
+      }
       audio.defaultPlaybackRate = AUDIO_PLAYBACK_RATE;
       audio.playbackRate = AUDIO_PLAYBACK_RATE;
       activeAudio = audio;
