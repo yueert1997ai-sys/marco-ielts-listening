@@ -2,7 +2,7 @@
   "use strict";
 
   const STORAGE_KEY = "marcoIeltsListening.v1";
-  const APP_VERSION = "v2.10.1";
+  const APP_VERSION = "v2.10.2";
   const TRAINING_RESET_ID = "fresh-start-v2.5.0";
   const LEARNING_REVIEW_SPLIT_ID = "learning-review-v2.9.0";
   const DECK_REVISION = "whole-bank-v2";
@@ -15,6 +15,7 @@
   const HARD_DIRECTION_PLAYBACK_RATE = 1.4;
   const DIRECTION_QUESTION_COUNT = 10;
   const HARD_DIRECTION_IDS = ["northeast", "southeast", "southwest", "northwest"];
+  const AUDIO_PLAYBACK_RATE = 1.2;
   const INTERVALS = [1, 3, 7, 14, 30, 60];
   const REPOSITORY_URL = "https://github.com/yueert1997ai-sys/marco-ielts-listening";
 
@@ -627,7 +628,7 @@
     createDirectionDeck, createHardDirectionDeck, judgeDirectionAttempt, isDirectionRunPassed,
     resetTrainingState, applyTrainingReset, applyLearningReviewSplit, enqueueReviewActivity, shouldRevealAnswer,
     RESPONSE_LIMIT_MS, DIRECTION_RESPONSE_LIMIT_MS, HARD_DIRECTION_RESPONSE_LIMIT_MS,
-    HARD_DIRECTION_PLAYBACK_RATE,
+    AUDIO_PLAYBACK_RATE, HARD_DIRECTION_PLAYBACK_RATE,
     DIRECTION_QUESTION_COUNT, HARD_DIRECTION_IDS,
     INTERVALS, BROWSE_PAGE_SIZE, DAILY_REVIEW_LIMIT, APP_VERSION,
     TRAINING_RESET_ID, LEARNING_REVIEW_SPLIT_ID, DECK_REVISION,
@@ -1550,6 +1551,8 @@
         return;
       }
       audio = new Audio(`./${activity.audioPath}`);
+      audio.defaultPlaybackRate = AUDIO_PLAYBACK_RATE;
+      audio.playbackRate = AUDIO_PLAYBACK_RATE;
       activeAudio = audio;
       audio.addEventListener("playing", markStarted, { once: true });
       audio.addEventListener("ended", () => {
@@ -1566,7 +1569,7 @@
     speechSynthesis.cancel();
     const utterance = new SpeechSynthesisUtterance(text);
     utterance.lang = "en-GB";
-    utterance.rate = 0.82;
+    utterance.rate = AUDIO_PLAYBACK_RATE;
     const voice = speechSynthesis.getVoices().find((candidate) => candidate.lang.toLowerCase().startsWith("en-gb"));
     if (voice) utterance.voice = voice;
     speechSynthesis.speak(utterance);

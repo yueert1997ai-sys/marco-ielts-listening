@@ -47,6 +47,7 @@ async function screenshot(send, name) {
   const { socket, send } = await connect();
   await send("Page.enable");
   await send("Runtime.enable");
+  await new Promise((resolve) => setTimeout(resolve, 500));
   await send("Emulation.setDeviceMetricsOverride", { width: 390, height: 844, deviceScaleFactor: 2, mobile: true });
   await evaluate(send, `(async () => {
     localStorage.removeItem('marcoIeltsListening.v1');
@@ -73,7 +74,7 @@ async function screenshot(send, name) {
     const registration = await navigator.serviceWorker.ready;
     await new Promise((resolve) => setTimeout(resolve, 5000));
     const names = await caches.keys();
-    const cache = names.includes('ielts-listening-v16') ? await caches.open('ielts-listening-v16') : null;
+    const cache = names.includes('ielts-listening-v20') ? await caches.open('ielts-listening-v20') : null;
     const keys = cache ? await cache.keys() : [];
     return {
       active: registration.active?.state || null,
