@@ -2,7 +2,9 @@
   "use strict";
 
   const STORAGE_KEY = "marcoIeltsListening.v1";
-  const APP_VERSION = "v2.10.2";
+  const APP_VERSION = "v2.10.3";
+  const AUTO_UPDATE_SESSION_KEY = "marcoIeltsListening.autoUpdateAttempt";
+  const AUTO_UPDATE_THROTTLE_MS = 60 * 1000;
   const TRAINING_RESET_ID = "fresh-start-v2.5.0";
   const LEARNING_REVIEW_SPLIT_ID = "learning-review-v2.9.0";
   const DECK_REVISION = "whole-bank-v2";
@@ -621,12 +623,17 @@
     return true;
   }
 
+  function hasVersionUpdate(currentVersion, latestVersion) {
+    return Boolean(latestVersion && latestVersion !== currentVersion);
+  }
+
   const api = {
     dateKey, addDays, hashString, normaliseAnswer, makeActivities, safeState,
     createDailyDeck, createLearningDeck, createReviewDeck, prepareDaily, scheduleReview, insertRetry, buildChoices,
     createBrowseDeck, parseWrongWordInput, parseWrongWordDrafts, mergeCustomItems, migrateNumberVariantState, seededShuffle,
     createDirectionDeck, createHardDirectionDeck, judgeDirectionAttempt, isDirectionRunPassed,
     resetTrainingState, applyTrainingReset, applyLearningReviewSplit, enqueueReviewActivity, shouldRevealAnswer,
+    hasVersionUpdate,
     RESPONSE_LIMIT_MS, DIRECTION_RESPONSE_LIMIT_MS, HARD_DIRECTION_RESPONSE_LIMIT_MS,
     AUDIO_PLAYBACK_RATE, HARD_DIRECTION_PLAYBACK_RATE,
     DIRECTION_QUESTION_COUNT, HARD_DIRECTION_IDS,
@@ -659,6 +666,10 @@
   let directionAnswered = false;
   let directionAudio = null;
   let directionMode = "standard";
+  let automaticUpdateReady = false;
+  let automaticUpdateCheckInFlight = false;
+  let lastAutomaticUpdateCheckAt = 0;
+  let appReloading = false;
   const directionModes = {
     standard: {
       id: "standard",
@@ -700,43 +711,71 @@
     return response.json();
   }
 
-  async function showVersionStatus() {
+  function getAutomaticUpdateAttempt() {
+    try { return sessionStorage.getItem(AUTO_UPDATE_SESSION_KEY); }
+    catch (_) { return null; }
+  }
+
+  function setAutomaticUpdateAttempt(version) {
+    try {
+      if (version) sessionStorage.setItem(AUTO_UPDATE_SESSION_KEY, version);
+      else sessionStorage.removeItem(AUTO_UPDATE_SESSION_KEY);
+    } catch (_) {}
+  }
+
+  function canApplyAutomaticUpdate() {
+    return Boolean(screen.querySelector(".home"));
+  }
+
+  async function showVersionStatus({ autoApply = false } = {}) {
     if (!versionButton) return;
     versionButton.textContent = APP_VERSION;
     versionButton.setAttribute("aria-label", `当前版本 ${APP_VERSION}，点击检查更新`);
     try {
       const latest = await fetchLatestVersion();
-      const hasUpdate = latest.version && latest.version !== APP_VERSION;
+      const hasUpdate = hasVersionUpdate(APP_VERSION, latest.version);
       versionButton.classList.toggle("update-available", hasUpdate);
       if (hasUpdate) {
         versionButton.textContent = `${APP_VERSION} · 更新`;
         versionButton.setAttribute("aria-label", `当前版本 ${APP_VERSION}，最新版本 ${latest.version}，点击更新`);
+        if (autoApply && canApplyAutomaticUpdate() && getAutomaticUpdateAttempt() !== latest.version) {
+          setAutomaticUpdateAttempt(latest.version);
+          await forceAppUpdate(latest);
+        }
+      } else {
+        setAutomaticUpdateAttempt(null);
       }
     } catch (_) {
       versionButton.title = "当前离线，仍可继续训练";
     }
   }
 
-  async function forceAppUpdate() {
+  async function forceAppUpdate(latestHint = null) {
     if (!versionButton || versionButton.disabled) return;
     const original = versionButton.textContent;
     versionButton.disabled = true;
     versionButton.textContent = "检查中…";
     try {
-      const latest = await fetchLatestVersion();
+      const latest = latestHint || await fetchLatestVersion();
+      if (!hasVersionUpdate(APP_VERSION, latest.version)) {
+        versionButton.textContent = "已是最新";
+        setTimeout(() => {
+          versionButton.disabled = false;
+          versionButton.textContent = APP_VERSION;
+        }, 1400);
+        return;
+      }
       if ("serviceWorker" in navigator) {
         const registrations = await navigator.serviceWorker.getRegistrations();
         await Promise.all(registrations.map((registration) => registration.update()));
       }
-      if ("caches" in window) {
-        const keys = await caches.keys();
-        await Promise.all(keys.filter((key) => key.startsWith("ielts-listening-")).map((key) => caches.delete(key)));
-      }
       const url = new URL(window.location.href);
       url.searchParams.set("v", latest.version || APP_VERSION);
       url.searchParams.set("refresh", Date.now());
+      appReloading = true;
       window.location.replace(url.toString());
     } catch (_) {
+      setAutomaticUpdateAttempt(null);
       versionButton.textContent = "离线";
       versionButton.title = "联网后再点版本号检查更新";
       setTimeout(() => {
@@ -744,6 +783,16 @@
         versionButton.textContent = original;
       }, 1400);
     }
+  }
+
+  function requestAutomaticUpdateCheck({ force = false } = {}) {
+    if (!automaticUpdateReady || automaticUpdateCheckInFlight || document.visibilityState === "hidden") return;
+    if (!canApplyAutomaticUpdate()) return;
+    const now = Date.now();
+    if (!force && now - lastAutomaticUpdateCheckAt < AUTO_UPDATE_THROTTLE_MS) return;
+    lastAutomaticUpdateCheckAt = now;
+    automaticUpdateCheckInFlight = true;
+    showVersionStatus({ autoApply: true }).finally(() => { automaticUpdateCheckInFlight = false; });
   }
 
   function rebuildDecks() {
@@ -935,6 +984,7 @@
       saveState();
       homeScreen();
     });
+    requestAutomaticUpdateCheck();
   }
 
   function clearDirectionTiming() {
@@ -1787,8 +1837,7 @@
 
   async function init() {
     try {
-      versionButton?.addEventListener("click", forceAppUpdate);
-      showVersionStatus();
+      versionButton?.addEventListener("click", () => forceAppUpdate());
       const [response, directionResponse] = await Promise.all([
         fetch(`./data/listening.json?v=${encodeURIComponent(APP_VERSION)}`),
         fetch(`./data/directions.json?v=${encodeURIComponent(APP_VERSION)}`),
@@ -1806,17 +1855,21 @@
       homeScreen();
       if ("serviceWorker" in navigator) {
         const hadController = Boolean(navigator.serviceWorker.controller);
-        let refreshing = false;
         navigator.serviceWorker.addEventListener("controllerchange", () => {
-          if (hadController && !refreshing) {
-            refreshing = true;
+          if (hadController && !appReloading) {
+            appReloading = true;
             window.location.reload();
           }
         });
-        navigator.serviceWorker.register(`./sw.js?v=${encodeURIComponent(APP_VERSION)}`, { updateViaCache: "none" })
-          .then((registration) => registration.update())
-          .catch(() => {});
+        try {
+          const registration = await navigator.serviceWorker.register("./sw.js", { updateViaCache: "none" });
+          await registration.update();
+        } catch (_) {}
       }
+      automaticUpdateReady = true;
+      window.addEventListener("pageshow", () => requestAutomaticUpdateCheck());
+      document.addEventListener("visibilitychange", () => requestAutomaticUpdateCheck());
+      requestAutomaticUpdateCheck({ force: true });
     } catch (error) {
       screen.innerHTML = `<section class="finished"><h2>词库没有加载成功</h2><p>${escapeHtml(error.message)}。联网后刷新页面再试。</p></section>`;
     }
