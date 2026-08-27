@@ -93,6 +93,20 @@
     "addedAt": "2026-08-24"
   },
   {
+    "id": "curtain",
+    "term": "curtain",
+    "meaning": "窗帘",
+    "modes": [
+      "recognition",
+      "spelling"
+    ],
+    "reason": "production end-to-end dedupe verification",
+    "category": "我的同步错词",
+    "addedAt": "2026-08-27",
+    "lastReportedAt": "2026-08-27",
+    "reportedCount": 1
+  },
+  {
     "id": "deliberately",
     "term": "deliberately",
     "meaning": "故意地；蓄意地",

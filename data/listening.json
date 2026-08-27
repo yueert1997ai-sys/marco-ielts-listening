@@ -379,7 +379,8 @@
     "category": "住房、酒店、旅游与交通",
     "sections": [
       "P1 + P4 必会听写词",
-      "我的真实错词"
+      "我的真实错词",
+      "我的同步错词"
     ],
     "modes": [
       "recognition",
@@ -392,7 +393,11 @@
     "numberVariants": [
       "curtains"
     ],
-    "errorNote": "真实卡点：听义、复数",
+    "errorNote": "production end-to-end dedupe verification",
+    "userAddedAt": "2026-08-27",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-08-27",
     "sourceRevision": 4,
     "audioText": "curtain",
     "audioPath": "audio/curtain.mp3"
