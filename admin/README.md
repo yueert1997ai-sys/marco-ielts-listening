@@ -3,6 +3,8 @@
 Cloudflare Worker + D1 single-user vocabulary management site for the IELTS
 Listening PWA. The GitHub repository remains the source of truth.
 
+Production: <https://marco-vocabulary-admin.marco-vocabulary-admin.workers.dev>
+
 ## Local setup
 
 1. `npm install`

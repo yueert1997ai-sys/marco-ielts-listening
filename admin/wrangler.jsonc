@@ -17,7 +17,7 @@
     {
       "binding": "DB",
       "database_name": "marco-vocabulary-admin",
-      "database_id": "replace-with-cloudflare-d1-id"
+      "database_id": "3d963d79-fcb0-45fd-9606-1b2d9e9f9150"
     }
   ],
   "triggers": {

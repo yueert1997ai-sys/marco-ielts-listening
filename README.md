@@ -6,6 +6,8 @@
 
 `admin/` 是独立的 Cloudflare Worker + D1 单人后台。它提供密码登录、全词库表格、搜索分页、修改、停用恢复、快速录入、ECDICT 本地释义与 30 秒批量发布。后台只管理正式词库内容，不读取或同步手机上的训练进度与记忆曲线。
 
+- 后台地址：<https://marco-vocabulary-admin.marco-vocabulary-admin.workers.dev>
+
 后台把待发布操作合并成 GitHub Issue，由仓库自动化完成去重、构建、缺失音频生成、校验与 GitHub Pages 发布；正式真相源仍是 `source/custom_words.json` 与 `source/vocabulary_overrides.json`。
 
 ## 记录新错词
