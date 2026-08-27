@@ -195,10 +195,10 @@ test("result note has no dangling separator when source note is empty", () => {
   assert.equal(logic.formatResultNote("", "fail", "review"), "已放回复习队列");
   assert.equal(logic.formatResultNote("双写错误", "fail", "learning"), "双写错误 · 已加入高频复习");
 });
-test("different published version triggers an update", () => assert(logic.hasVersionUpdate("v2.10.3", "v2.10.4")));
-test("matching published version does not trigger an update", () => assert.equal(logic.hasVersionUpdate("v2.10.4", "v2.10.4"), false));
+test("different published version triggers an update", () => assert(logic.hasVersionUpdate("v2.10.4", "v2.11.0")));
+test("matching published version does not trigger an update", () => assert.equal(logic.hasVersionUpdate("v2.11.0", "v2.11.0"), false));
 test("intervals match spec", () => assert.deepEqual(logic.INTERVALS, [1, 3, 7, 14, 30, 60]));
-test("visible app version matches this release", () => assert.equal(logic.APP_VERSION, "v2.10.4"));
+test("visible app version matches this release", () => assert.equal(logic.APP_VERSION, "v2.11.0"));
 test("direction response limit is two seconds", () => assert.equal(logic.DIRECTION_RESPONSE_LIMIT_MS, 2000));
 test("hard direction response limit is one second", () => assert.equal(logic.HARD_DIRECTION_RESPONSE_LIMIT_MS, 1000));
 test("hard direction audio plays at one point four speed", () => assert.equal(logic.HARD_DIRECTION_PLAYBACK_RATE, 1.4));

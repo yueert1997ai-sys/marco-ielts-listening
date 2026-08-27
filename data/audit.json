@@ -5,6 +5,8 @@
   "realErrorRows": 46,
   "realErrorEntries": 75,
   "customEntries": 29,
+  "overrideEntries": 0,
+  "archivedEntries": 0,
   "activities": {
     "recognition": 456,
     "spelling": 272

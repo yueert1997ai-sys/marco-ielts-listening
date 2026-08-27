@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>Marco 词库管理</title>
+  <link rel="icon" href="./favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <main id="login-view" class="login-shell" hidden>
+    <section class="login-panel" aria-labelledby="login-title">
+      <p class="eyebrow">MARCO IELTS · VOCABULARY DESK</p>
+      <h1 id="login-title">词库管理</h1>
+      <p class="login-copy">查词、录错词、改释义。保存后自动同步到手机训练端。</p>
+      <form id="login-form" class="login-form">
+        <input class="credential-helper" type="text" name="username" value="Marco" autocomplete="username" tabindex="-1" aria-hidden="true">
+        <label for="password">管理密码</label>
+        <div class="login-row">
+          <input id="password" name="password" type="password" minlength="12" autocomplete="current-password" required autofocus>
+          <button type="submit" class="button primary">进入后台</button>
+        </div>
+        <p id="login-message" class="form-message" role="status"></p>
+      </form>
+    </section>
+  </main>
+
+  <main id="admin-view" class="admin-shell" hidden>
+    <header class="topbar">
+      <div>
+        <p class="eyebrow">MARCO IELTS · VOCABULARY DESK</p>
+        <h1>词库管理</h1>
+      </div>
+      <div class="version-stack" aria-label="版本信息">
+        <span id="training-version">训练端 —</span>
+        <span id="admin-version">后台 —</span>
+        <button id="logout" class="text-button" type="button">退出</button>
+      </div>
+    </header>
+
+    <section class="capture-desk" aria-labelledby="capture-title">
+      <div class="capture-heading">
+        <div>
+          <p class="section-label">QUICK CAPTURE</p>
+          <h2 id="capture-title">输入一个生词，按回车</h2>
+        </div>
+        <div id="mode-switch" class="mode-switch" role="radiogroup" aria-label="训练类型">
+          <button type="button" data-mode="recognition" role="radio">识词</button>
+          <button type="button" data-mode="spelling" role="radio">听写</button>
+          <button type="button" data-mode="both" role="radio">两者</button>
+        </div>
+      </div>
+      <form id="capture-form" class="capture-form">
+        <input id="term-input" type="text" autocomplete="off" spellcheck="false" placeholder="colossal" aria-label="输入英文单词或短语">
+        <button class="capture-enter" type="submit" aria-label="录入生词">Enter ↵</button>
+      </form>
+      <div class="capture-status">
+        <p id="capture-message" role="status">已选模式会自动保留，方便连续录入。</p>
+        <button id="publish-now" type="button" class="text-button">立即同步</button>
+      </div>
+      <div class="sync-track" aria-hidden="true"><span id="sync-progress"></span></div>
+    </section>
+
+    <section class="library-section" aria-labelledby="library-title">
+      <div class="library-toolbar">
+        <div>
+          <p class="section-label">WORD LIBRARY</p>
+          <h2 id="library-title">全部词库 <span id="visible-count"></span></h2>
+        </div>
+        <div class="toolbar-actions">
+          <label class="search-field">
+            <span class="sr-only">搜索词库</span>
+            <input id="search-input" type="search" placeholder="搜索单词或中文">
+          </label>
+          <select id="filter-select" aria-label="筛选词库">
+            <option value="all">全部词库</option>
+            <option value="base">基础词</option>
+            <option value="errors">真实错词</option>
+            <option value="custom">同步错词</option>
+            <option value="spelling">听写类</option>
+            <option value="recognition">识词类</option>
+            <option value="archived">已停用</option>
+          </select>
+          <button id="refresh" class="button secondary" type="button">刷新</button>
+        </div>
+      </div>
+
+      <div class="status-strip">
+        <span><i class="status-dot pending"></i>待同步 <b id="pending-count">0</b></span>
+        <span><i class="status-dot publishing"></i>发布中 <b id="publishing-count">0</b></span>
+        <span><i class="status-dot failed"></i>失败 <b id="failed-count">0</b></span>
+        <span id="last-sync">最后同步 —</span>
+      </div>
+
+      <div class="table-frame">
+        <table>
+          <thead>
+            <tr>
+              <th>单词</th><th>中文释义</th><th>训练</th><th>来源 / 分类</th>
+              <th>词形</th><th>状态</th><th class="actions-column">操作</th>
+            </tr>
+          </thead>
+          <tbody id="vocabulary-body"></tbody>
+        </table>
+        <div id="empty-state" class="empty-state" hidden>没有匹配的词条。</div>
+      </div>
+      <footer class="pagination">
+        <button id="prev-page" class="button secondary" type="button">上一页</button>
+        <span id="page-label">第 1 页</span>
+        <button id="next-page" class="button secondary" type="button">下一页</button>
+      </footer>
+    </section>
+  </main>
+
+  <dialog id="edit-dialog" class="edit-dialog">
+    <form id="edit-form" method="dialog">
+      <div class="dialog-head">
+        <div><p class="section-label">EDIT ENTRY</p><h2 id="edit-title">修改词条</h2></div>
+        <button id="close-dialog" type="button" class="icon-button" aria-label="关闭">×</button>
+      </div>
+      <input id="edit-id" type="hidden">
+      <label>中文释义<textarea id="edit-meaning" rows="3" required></textarea></label>
+      <label>分类<input id="edit-category" type="text"></label>
+      <label>备注<textarea id="edit-reason" rows="2"></textarea></label>
+      <fieldset>
+        <legend>训练类型</legend>
+        <label class="check-label"><input id="edit-recognition" type="checkbox">识词</label>
+        <label class="check-label"><input id="edit-spelling" type="checkbox">听写</label>
+      </fieldset>
+      <div class="dialog-actions">
+        <button id="cancel-edit" type="button" class="button secondary">取消</button>
+        <button type="submit" class="button primary">保存修改</button>
+      </div>
+    </form>
+  </dialog>
+
+  <dialog id="model-dialog" class="model-dialog">
+    <div>
+      <p class="section-label">LOCAL AI</p>
+      <h2>正在准备本地词汇模型</h2>
+      <p>首次会下载模型并缓存在这台电脑，之后不需要 API。</p>
+      <div class="model-progress"><span id="model-progress-bar"></span></div>
+      <p id="model-progress-text">准备中…</p>
+    </div>
+  </dialog>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script type="module" src="./app.js"></script>
+</body>
+</html>

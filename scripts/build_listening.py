@@ -13,6 +13,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 SOURCE = ROOT / "source" / "feishu_listening.json"
 CUSTOM_SOURCE = ROOT / "source" / "custom_words.json"
+OVERRIDE_SOURCE = ROOT / "source" / "vocabulary_overrides.json"
 OUTPUT = ROOT / "data" / "listening.json"
 AUDIT = ROOT / "data" / "audit.json"
 
@@ -153,7 +154,10 @@ def infer_error_modes(row: dict, existing: set[str]) -> set[str]:
     return modes or {"recognition"}
 
 
-def build(rows: list[dict], revision: int, custom_rows: list[dict] | None = None) -> tuple[list[dict], dict]:
+def build(
+    rows: list[dict], revision: int, custom_rows: list[dict] | None = None,
+    overrides: list[dict] | None = None,
+) -> tuple[list[dict], dict]:
     merged: dict[str, dict] = {}
     real_errors: set[str] = set()
     real_error_rows = 0
@@ -273,12 +277,54 @@ def build(rows: list[dict], revision: int, custom_rows: list[dict] | None = None
         item["errorNote"] = row.get("reason") or "个人错词"
         item["userAddedAt"] = row.get("addedAt")
         item["sourceType"] = "user"
+        if row.get("phonetic"):
+            item["phonetic"] = row["phonetic"]
+        if row.get("reportedCount"):
+            item["reportedCount"] = int(row["reportedCount"])
+        if row.get("lastReportedAt"):
+            item["lastReportedAt"] = row["lastReportedAt"]
         for mode in modes:
             if mode not in item["modes"]:
                 item["modes"].append(mode)
         if "我的同步错词" not in item["sections"]:
             item["sections"].append("我的同步错词")
         real_errors.add(key)
+
+    archived_entries = 0
+    applied_overrides = 0
+    for override in overrides or []:
+        target_id = str(override.get("id") or "")
+        if not target_id:
+            raise SystemExit(f"Invalid vocabulary override: {override}")
+        item = merged.get(target_id)
+        if override.get("archived"):
+            if item:
+                merged.pop(target_id)
+                archived_entries += 1
+            continue
+        if not item:
+            continue
+        for field in ("meaning", "category", "phonetic"):
+            if field in override:
+                value = str(override[field]).strip()
+                if not value and field != "phonetic":
+                    raise SystemExit(f"Override cannot clear {field}: {target_id}")
+                if value:
+                    item[field] = value
+                elif field in item:
+                    item.pop(field)
+        note = override.get("reason", override.get("note"))
+        if note is not None:
+            item["note"] = str(note).strip()
+            if item.get("isRealError"):
+                item["errorNote"] = item["note"]
+        if "modes" in override:
+            modes = sorted(set(override.get("modes") or []))
+            if not modes or any(mode not in {"spelling", "recognition"} for mode in modes):
+                raise SystemExit(f"Invalid override modes: {target_id}")
+            item["modes"] = modes
+        item["adminUpdatedAt"] = override.get("updatedAt")
+        applied_overrides += 1
 
     items = sorted(merged.values(), key=lambda item: (not item["isRealError"], item["term"].lower()))
     for item in items:
@@ -299,6 +345,8 @@ def build(rows: list[dict], revision: int, custom_rows: list[dict] | None = None
         "realErrorRows": real_error_rows,
         "realErrorEntries": len(real_errors),
         "customEntries": len(custom_rows or []),
+        "overrideEntries": applied_overrides,
+        "archivedEntries": archived_entries,
         "activities": dict(sorted(activities.items())),
         "sectionRows": dict(sorted(Counter(row["section"] for row in rows).items())),
         "untraceableEntries": 0,
@@ -337,7 +385,8 @@ def main() -> None:
     revision = int(document["revision_id"])
     rows = parse_rows(document["content"])
     custom_rows = json.loads(CUSTOM_SOURCE.read_text(encoding="utf-8")) if CUSTOM_SOURCE.exists() else []
-    items, audit = build(rows, revision, custom_rows)
+    overrides = json.loads(OVERRIDE_SOURCE.read_text(encoding="utf-8")) if OVERRIDE_SOURCE.exists() else []
+    items, audit = build(rows, revision, custom_rows, overrides)
     validate(items, audit)
     OUTPUT.parent.mkdir(parents=True, exist_ok=True)
     OUTPUT.write_text(json.dumps(items, ensure_ascii=False, indent=2), encoding="utf-8")

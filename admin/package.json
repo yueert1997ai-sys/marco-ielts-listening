@@ -1,0 +1,16 @@
+{
+  "name": "marco-vocabulary-admin",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "wrangler dev --local",
+    "deploy": "wrangler deploy",
+    "db:local": "wrangler d1 execute marco-vocabulary-admin --local --file=./schema.sql",
+    "db:remote": "wrangler d1 execute marco-vocabulary-admin --remote --file=./schema.sql",
+    "test": "node --test tests/*.test.mjs"
+  },
+  "devDependencies": {
+    "wrangler": "^4.0.0"
+  }
+}

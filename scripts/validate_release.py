@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import json
+import re
 from pathlib import Path
 
 
@@ -10,6 +11,7 @@ ROOT = Path(__file__).resolve().parents[1]
 ITEMS = json.loads((ROOT / "data" / "listening.json").read_text(encoding="utf-8"))
 DIRECTIONS = json.loads((ROOT / "data" / "directions.json").read_text(encoding="utf-8"))
 AUDIT = json.loads((ROOT / "data" / "audit.json").read_text(encoding="utf-8"))
+OVERRIDES = json.loads((ROOT / "source" / "vocabulary_overrides.json").read_text(encoding="utf-8"))
 MANIFEST = json.loads((ROOT / "audio" / "manifest.json").read_text(encoding="utf-8"))
 DIRECTION_MANIFEST = json.loads((ROOT / "audio" / "directions-manifest.json").read_text(encoding="utf-8"))
 
@@ -28,6 +30,10 @@ def fail(message: str) -> None:
     raise SystemExit(message)
 
 
+def key_for(value: str) -> str:
+    return "-".join(filter(None, re.split(r"[^a-z0-9]+", value.lower())))
+
+
 def main() -> None:
     if AUDIT.get("sourceRows", 0) < 749 or AUDIT.get("realErrorRows", 0) < 46:
         fail(f"Unexpected Feishu source counts: {AUDIT}")
@@ -36,7 +42,8 @@ def main() -> None:
 
     ids = {item["id"] for item in ITEMS}
     errors = {item["term"] for item in ITEMS if item.get("isRealError")}
-    missing_errors = sorted(REQUIRED_ERRORS - errors)
+    archived = {item["id"] for item in OVERRIDES if item.get("archived")}
+    missing_errors = sorted(term for term in REQUIRED_ERRORS if term not in errors and key_for(term) not in archived)
     if missing_errors:
         fail(f"Missing real-error vocabulary: {missing_errors}")
     if len(ids) != len(ITEMS):

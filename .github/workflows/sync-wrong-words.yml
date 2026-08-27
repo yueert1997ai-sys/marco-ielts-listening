@@ -14,7 +14,7 @@ concurrency:
 
 jobs:
   import:
-    if: github.actor == 'yueert1997ai-sys' && startsWith(github.event.issue.title, '[错词同步]')
+    if: github.actor == 'yueert1997ai-sys' && (startsWith(github.event.issue.title, '[错词同步]') || startsWith(github.event.issue.title, '[词库管理]'))
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -35,16 +35,21 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add source/custom_words.json data/listening.json data/audit.json audio
+          git add source/custom_words.json source/vocabulary_overrides.json data/listening.json data/audit.json audio
           if git diff --cached --quiet; then
             echo "No vocabulary change"
           else
-            git commit -m "Sync personal wrong words from issue #${{ github.event.issue.number }}"
+            git commit -m "Sync vocabulary operations from issue #${{ github.event.issue.number }}"
             git push
           fi
       - name: Close intake issue
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          gh issue comment "${{ github.event.issue.number }}" --body "错词已通过校验并同步到词库。"
+          gh issue comment "${{ github.event.issue.number }}" --body $'<!-- marco-sync:published -->\n词库操作已通过校验并同步到训练端。'
           gh issue close "${{ github.event.issue.number }}"
+      - name: Report sync failure
+        if: failure()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh issue comment "${{ github.event.issue.number }}" --body $'<!-- marco-sync:failed -->\n词库同步失败，未发布半成品。修正后可重试。'
