@@ -1,1 +1,72 @@
-[]
+[
+  {
+    "id": "end",
+    "snapshot": {
+      "id": "end",
+      "term": "end",
+      "meaning": "目的；目标",
+      "category": "多义误解词",
+      "modes": [
+        "recognition"
+      ]
+    },
+    "category": "多义误解词",
+    "updatedAt": "2026-08-27"
+  },
+  {
+    "id": "field",
+    "snapshot": {
+      "id": "field",
+      "term": "field",
+      "meaning": "领域；学科",
+      "category": "多义误解词",
+      "modes": [
+        "recognition"
+      ]
+    },
+    "category": "多义误解词",
+    "updatedAt": "2026-08-27"
+  },
+  {
+    "id": "practical",
+    "snapshot": {
+      "id": "practical",
+      "term": "practical",
+      "meaning": "可行的；实用的；行得通的",
+      "category": "高频多义误解词",
+      "modes": [
+        "recognition"
+      ]
+    },
+    "category": "高频多义误解词",
+    "updatedAt": "2026-08-27"
+  },
+  {
+    "id": "proposal",
+    "snapshot": {
+      "id": "proposal",
+      "term": "proposal",
+      "meaning": "提议；方案；研究计划",
+      "category": "多义误解词",
+      "modes": [
+        "recognition"
+      ]
+    },
+    "category": "多义误解词",
+    "updatedAt": "2026-08-27"
+  },
+  {
+    "id": "purpose",
+    "snapshot": {
+      "id": "purpose",
+      "term": "purpose",
+      "meaning": "目的；用途",
+      "category": "多义误解词",
+      "modes": [
+        "recognition"
+      ]
+    },
+    "category": "多义误解词",
+    "updatedAt": "2026-08-27"
+  }
+]

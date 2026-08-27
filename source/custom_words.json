@@ -44,6 +44,19 @@
     "addedAt": "2026-08-24"
   },
   {
+    "id": "commitment",
+    "term": "commitment",
+    "meaning": "投入；承诺；责任",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "多义误解｜重点反复刷：词义卡住；注意 require commitment、commitment to something",
+    "category": "高频多义误解词",
+    "addedAt": "2026-08-27",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-08-27"
+  },
+  {
     "id": "cottage",
     "term": "cottage",
     "meaning": "乡间小屋；村舍",
@@ -53,6 +66,19 @@
     "reason": "今日生词：识义",
     "category": "我的同步错词",
     "addedAt": "2026-08-25"
+  },
+  {
+    "id": "could",
+    "term": "could",
+    "meaning": "可能；有可能会",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "多义误解｜重点反复刷：只想到 can 的过去式；注意 could cause、could be missed",
+    "category": "高频多义误解词",
+    "addedAt": "2026-08-27",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-08-27"
   },
   {
     "id": "council",
@@ -78,6 +104,19 @@
     "addedAt": "2026-08-25"
   },
   {
+    "id": "end",
+    "term": "end",
+    "meaning": "目的；目标",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "多义误解：原理解为结束；注意 means and ends、to what end",
+    "category": "多义误解词",
+    "addedAt": "2026-08-27",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-08-27"
+  },
+  {
     "id": "erected",
     "term": "erected",
     "meaning": "建造；竖立（erect 的过去式/过去分词）",
@@ -100,6 +139,19 @@
     "addedAt": "2026-08-25"
   },
   {
+    "id": "expedition",
+    "term": "expedition",
+    "meaning": "考察；探险；远征",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "今日生词：识义",
+    "category": "今日生词",
+    "addedAt": "2026-08-27",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-08-27"
+  },
+  {
     "id": "fast-paced",
     "term": "fast-paced",
     "meaning": "节奏快的；进展迅速的",
@@ -109,6 +161,19 @@
     "reason": "今日生词：识义；常见于 fast-paced environment",
     "category": "我的同步错词",
     "addedAt": "2026-08-25"
+  },
+  {
+    "id": "field",
+    "term": "field",
+    "meaning": "领域；学科",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "多义误解：原理解为田野；注意 field of study、professional field",
+    "category": "多义误解词",
+    "addedAt": "2026-08-27",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-08-27"
   },
   {
     "id": "grind",
@@ -166,6 +231,19 @@
     "addedAt": "2026-08-25"
   },
   {
+    "id": "means",
+    "term": "means",
+    "meaning": "手段；方法（名词）",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "多义误解：误联想到 mean；注意 a means of doing something、means to an end",
+    "category": "多义误解词",
+    "addedAt": "2026-08-27",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-08-27"
+  },
+  {
     "id": "meticulous",
     "term": "meticulous",
     "meaning": "一丝不苟的；非常仔细的",
@@ -177,6 +255,32 @@
     "addedAt": "2026-08-24"
   },
   {
+    "id": "mine",
+    "term": "mine",
+    "meaning": "矿井；开采",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "多义误解｜重点反复刷：原理解为我的；注意 a gold mine、mine gold、mining industry",
+    "category": "高频多义误解词",
+    "addedAt": "2026-08-27",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-08-27"
+  },
+  {
+    "id": "neatly",
+    "term": "neatly",
+    "meaning": "整齐地；有条理地",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "今日生词：识义",
+    "category": "今日生词",
+    "addedAt": "2026-08-27",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-08-27"
+  },
+  {
     "id": "obesity",
     "term": "obesity",
     "meaning": "肥胖；肥胖症",
@@ -186,6 +290,32 @@
     "reason": "今日生词：识义；名词",
     "category": "我的同步错词",
     "addedAt": "2026-08-26"
+  },
+  {
+    "id": "pattern",
+    "term": "pattern",
+    "meaning": "模式；规律；趋势",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "多义误解：原理解为图案；注意 behaviour pattern、a pattern emerges",
+    "category": "多义误解词",
+    "addedAt": "2026-08-27",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-08-27"
+  },
+  {
+    "id": "period",
+    "term": "period",
+    "meaning": "时期；一段时间",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "多义误解：误联想到句号；注意 a period of time、historical period",
+    "category": "多义误解词",
+    "addedAt": "2026-08-27",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-08-27"
   },
   {
     "id": "perks",
@@ -221,6 +351,19 @@
     "addedAt": "2026-08-26"
   },
   {
+    "id": "post",
+    "term": "post",
+    "meaning": "柱子；桩；标杆",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "多义误解｜重点反复刷：原理解为帖子、发帖；注意 fence post、wooden post、posts in a line",
+    "category": "高频多义误解词",
+    "addedAt": "2026-08-27",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-08-27"
+  },
+  {
     "id": "postpone",
     "term": "postpone",
     "meaning": "推迟；延期",
@@ -232,6 +375,19 @@
     "addedAt": "2026-08-24"
   },
   {
+    "id": "practical",
+    "term": "practical",
+    "meaning": "可行的；实用的；行得通的",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "多义误解｜重点反复刷：原理解为实际的；注意 practical solution、not practical",
+    "category": "高频多义误解词",
+    "addedAt": "2026-08-27",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-08-27"
+  },
+  {
     "id": "practise",
     "term": "practise",
     "meaning": "练习；实践（英式动词拼写）",
@@ -241,6 +397,58 @@
     "reason": "今日生词：识义；保留英式动词拼写",
     "category": "我的同步错词",
     "addedAt": "2026-08-26"
+  },
+  {
+    "id": "principle",
+    "term": "principle",
+    "meaning": "原则；原理",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "今日生词：识义",
+    "category": "今日生词",
+    "addedAt": "2026-08-27",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-08-27"
+  },
+  {
+    "id": "principled",
+    "term": "principled",
+    "meaning": "有原则的；合乎道德的",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "今日生词：识义；形容词",
+    "category": "今日生词",
+    "addedAt": "2026-08-27",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-08-27"
+  },
+  {
+    "id": "proposal",
+    "term": "proposal",
+    "meaning": "提议；方案；研究计划",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "多义误解：词义不熟；注意 research proposal、proposal for something",
+    "category": "多义误解词",
+    "addedAt": "2026-08-27",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-08-27"
+  },
+  {
+    "id": "purpose",
+    "term": "purpose",
+    "meaning": "目的；用途",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "多义误解：只掌握目的义；补充用途义；注意 purpose of something、for the purpose of、serve a purpose",
+    "category": "多义误解词",
+    "addedAt": "2026-08-27",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-08-27"
   },
   {
     "id": "resilience",
@@ -287,6 +495,32 @@
     "addedAt": "2026-08-25"
   },
   {
+    "id": "scale",
+    "term": "scale",
+    "meaning": "规模；程度；尺度",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "多义误解：原理解为秤；注意 large scale、on a global scale",
+    "category": "多义误解词",
+    "addedAt": "2026-08-27",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-08-27"
+  },
+  {
+    "id": "soak",
+    "term": "soak",
+    "meaning": "浸泡；使湿透；吸收水分",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "今日生词：识义",
+    "category": "今日生词",
+    "addedAt": "2026-08-27",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-08-27"
+  },
+  {
     "id": "stoicism",
     "term": "Stoicism",
     "meaning": "斯多葛主义；斯多葛哲学",
@@ -318,5 +552,18 @@
     "reason": "今日生词：识义",
     "category": "我的同步错词",
     "addedAt": "2026-08-26"
+  },
+  {
+    "id": "ventilation",
+    "term": "ventilation",
+    "meaning": "通风；通风系统",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "今日生词：识义",
+    "category": "今日生词",
+    "addedAt": "2026-08-27",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-08-27"
   }
 ]

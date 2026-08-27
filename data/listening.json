@@ -275,6 +275,31 @@
     "audioPath": "audio/colossal.mp3"
   },
   {
+    "id": "commitment",
+    "term": "commitment",
+    "meaning": "投入；承诺；责任",
+    "note": "多义误解｜重点反复刷：词义卡住；注意 require commitment、commitment to something",
+    "category": "高频多义误解词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "commitment"
+    ],
+    "errorNote": "多义误解｜重点反复刷：词义卡住；注意 require commitment、commitment to something",
+    "userAddedAt": "2026-08-27",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-08-27",
+    "sourceRevision": 4,
+    "audioText": "commitment",
+    "audioPath": "audio/commitment.mp3"
+  },
+  {
     "id": "cottage",
     "term": "cottage",
     "meaning": "乡间小屋；村舍",
@@ -296,6 +321,31 @@
     "sourceRevision": 4,
     "audioText": "cottage",
     "audioPath": "audio/cottage.mp3"
+  },
+  {
+    "id": "could",
+    "term": "could",
+    "meaning": "可能；有可能会",
+    "note": "多义误解｜重点反复刷：只想到 can 的过去式；注意 could cause、could be missed",
+    "category": "高频多义误解词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "could"
+    ],
+    "errorNote": "多义误解｜重点反复刷：只想到 can 的过去式；注意 could cause、could be missed",
+    "userAddedAt": "2026-08-27",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-08-27",
+    "sourceRevision": 4,
+    "audioText": "could",
+    "audioPath": "audio/could.mp3"
   },
   {
     "id": "council",
@@ -415,6 +465,33 @@
     "audioPath": "audio/electrician.mp3"
   },
   {
+    "id": "end",
+    "term": "end",
+    "meaning": "目的；目标",
+    "note": "—",
+    "category": "多义误解词",
+    "sections": [
+      "P2 + P3 必会看懂词",
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "end"
+    ],
+    "errorNote": "多义误解：原理解为结束；注意 means and ends、to what end",
+    "userAddedAt": "2026-08-27",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-08-27",
+    "adminUpdatedAt": "2026-08-27",
+    "sourceRevision": 4,
+    "audioText": "end",
+    "audioPath": "audio/end.mp3"
+  },
+  {
     "id": "entrance",
     "term": "entrance",
     "meaning": "入口",
@@ -530,6 +607,31 @@
     "audioPath": "audio/excessive-sweating.mp3"
   },
   {
+    "id": "expedition",
+    "term": "expedition",
+    "meaning": "考察；探险；远征",
+    "note": "今日生词：识义",
+    "category": "今日生词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "expedition"
+    ],
+    "errorNote": "今日生词：识义",
+    "userAddedAt": "2026-08-27",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-08-27",
+    "sourceRevision": 4,
+    "audioText": "expedition",
+    "audioPath": "audio/expedition.mp3"
+  },
+  {
     "id": "fast-paced",
     "term": "fast-paced",
     "meaning": "节奏快的；进展迅速的",
@@ -574,6 +676,33 @@
     "sourceRevision": 4,
     "audioText": "fellow students",
     "audioPath": "audio/fellow-students.mp3"
+  },
+  {
+    "id": "field",
+    "term": "field",
+    "meaning": "领域；学科",
+    "note": "不只是“田地”",
+    "category": "多义误解词",
+    "sections": [
+      "常见第二义",
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "field"
+    ],
+    "errorNote": "多义误解：原理解为田野；注意 field of study、professional field",
+    "userAddedAt": "2026-08-27",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-08-27",
+    "adminUpdatedAt": "2026-08-27",
+    "sourceRevision": 4,
+    "audioText": "field",
+    "audioPath": "audio/field.mp3"
   },
   {
     "id": "get-to-grips-with",
@@ -913,6 +1042,31 @@
     "audioPath": "audio/meal.mp3"
   },
   {
+    "id": "means",
+    "term": "means",
+    "meaning": "手段；方法（名词）",
+    "note": "多义误解：误联想到 mean；注意 a means of doing something、means to an end",
+    "category": "多义误解词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "means"
+    ],
+    "errorNote": "多义误解：误联想到 mean；注意 a means of doing something、means to an end",
+    "userAddedAt": "2026-08-27",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-08-27",
+    "sourceRevision": 4,
+    "audioText": "means",
+    "audioPath": "audio/means.mp3"
+  },
+  {
     "id": "meticulous",
     "term": "meticulous",
     "meaning": "一丝不苟的；非常仔细的",
@@ -982,6 +1136,31 @@
     "audioPath": "audio/mild.mp3"
   },
   {
+    "id": "mine",
+    "term": "mine",
+    "meaning": "矿井；开采",
+    "note": "多义误解｜重点反复刷：原理解为我的；注意 a gold mine、mine gold、mining industry",
+    "category": "高频多义误解词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "mine"
+    ],
+    "errorNote": "多义误解｜重点反复刷：原理解为我的；注意 a gold mine、mine gold、mining industry",
+    "userAddedAt": "2026-08-27",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-08-27",
+    "sourceRevision": 4,
+    "audioText": "mine",
+    "audioPath": "audio/mine.mp3"
+  },
+  {
     "id": "morale",
     "term": "morale",
     "meaning": "士气；工作积极性",
@@ -1002,6 +1181,31 @@
     "sourceRevision": 4,
     "audioText": "morale",
     "audioPath": "audio/morale.mp3"
+  },
+  {
+    "id": "neatly",
+    "term": "neatly",
+    "meaning": "整齐地；有条理地",
+    "note": "今日生词：识义",
+    "category": "今日生词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "neatly"
+    ],
+    "errorNote": "今日生词：识义",
+    "userAddedAt": "2026-08-27",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-08-27",
+    "sourceRevision": 4,
+    "audioText": "neatly",
+    "audioPath": "audio/neatly.mp3"
   },
   {
     "id": "neglecting",
@@ -1070,6 +1274,56 @@
     "sourceRevision": 4,
     "audioText": "oven",
     "audioPath": "audio/oven.mp3"
+  },
+  {
+    "id": "pattern",
+    "term": "pattern",
+    "meaning": "模式；规律；趋势",
+    "note": "多义误解：原理解为图案；注意 behaviour pattern、a pattern emerges",
+    "category": "多义误解词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "pattern"
+    ],
+    "errorNote": "多义误解：原理解为图案；注意 behaviour pattern、a pattern emerges",
+    "userAddedAt": "2026-08-27",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-08-27",
+    "sourceRevision": 4,
+    "audioText": "pattern",
+    "audioPath": "audio/pattern.mp3"
+  },
+  {
+    "id": "period",
+    "term": "period",
+    "meaning": "时期；一段时间",
+    "note": "多义误解：误联想到句号；注意 a period of time、historical period",
+    "category": "多义误解词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "period"
+    ],
+    "errorNote": "多义误解：误联想到句号；注意 a period of time、historical period",
+    "userAddedAt": "2026-08-27",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-08-27",
+    "sourceRevision": 4,
+    "audioText": "period",
+    "audioPath": "audio/period.mp3"
   },
   {
     "id": "perks",
@@ -1163,6 +1417,31 @@
     "audioPath": "audio/pharmacy.mp3"
   },
   {
+    "id": "post",
+    "term": "post",
+    "meaning": "柱子；桩；标杆",
+    "note": "多义误解｜重点反复刷：原理解为帖子、发帖；注意 fence post、wooden post、posts in a line",
+    "category": "高频多义误解词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "post"
+    ],
+    "errorNote": "多义误解｜重点反复刷：原理解为帖子、发帖；注意 fence post、wooden post、posts in a line",
+    "userAddedAt": "2026-08-27",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-08-27",
+    "sourceRevision": 4,
+    "audioText": "post",
+    "audioPath": "audio/post.mp3"
+  },
+  {
     "id": "postpone",
     "term": "postpone",
     "meaning": "推迟；延期",
@@ -1185,6 +1464,33 @@
     "sourceRevision": 4,
     "audioText": "postpone",
     "audioPath": "audio/postpone.mp3"
+  },
+  {
+    "id": "practical",
+    "term": "practical",
+    "meaning": "可行的；实用的；行得通的",
+    "note": "—",
+    "category": "高频多义误解词",
+    "sections": [
+      "P2 + P3 必会看懂词",
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "practical"
+    ],
+    "errorNote": "多义误解｜重点反复刷：原理解为实际的；注意 practical solution、not practical",
+    "userAddedAt": "2026-08-27",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-08-27",
+    "adminUpdatedAt": "2026-08-27",
+    "sourceRevision": 4,
+    "audioText": "practical",
+    "audioPath": "audio/practical.mp3"
   },
   {
     "id": "practise",
@@ -1254,15 +1560,94 @@
     "audioPath": "audio/prescription.mp3"
   },
   {
+    "id": "principle",
+    "term": "principle",
+    "meaning": "原则；原理",
+    "note": "今日生词：识义",
+    "category": "今日生词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "principle"
+    ],
+    "errorNote": "今日生词：识义",
+    "userAddedAt": "2026-08-27",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-08-27",
+    "sourceRevision": 4,
+    "audioText": "principle",
+    "audioPath": "audio/principle.mp3"
+  },
+  {
+    "id": "principled",
+    "term": "principled",
+    "meaning": "有原则的；合乎道德的",
+    "note": "今日生词：识义；形容词",
+    "category": "今日生词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "principled"
+    ],
+    "errorNote": "今日生词：识义；形容词",
+    "userAddedAt": "2026-08-27",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-08-27",
+    "sourceRevision": 4,
+    "audioText": "principled",
+    "audioPath": "audio/principled.mp3"
+  },
+  {
+    "id": "proposal",
+    "term": "proposal",
+    "meaning": "提议；方案；研究计划",
+    "note": "research proposal",
+    "category": "多义误解词",
+    "sections": [
+      "P2 + P3 必会看懂词",
+      "常见第二义",
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "proposal"
+    ],
+    "errorNote": "多义误解：词义不熟；注意 research proposal、proposal for something",
+    "userAddedAt": "2026-08-27",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-08-27",
+    "adminUpdatedAt": "2026-08-27",
+    "sourceRevision": 4,
+    "audioText": "proposal",
+    "audioPath": "audio/proposal.mp3"
+  },
+  {
     "id": "purpose",
     "term": "purpose",
-    "meaning": "目的",
+    "meaning": "目的；用途",
     "note": "—",
-    "category": "工作、学校与学术",
+    "category": "多义误解词",
     "sections": [
       "P1 + P4 必会听写词",
       "P2 + P3 必会看懂词",
-      "我的真实错词"
+      "我的真实错词",
+      "我的同步错词"
     ],
     "modes": [
       "recognition",
@@ -1272,7 +1657,12 @@
     "acceptedAnswers": [
       "purpose"
     ],
-    "errorNote": "真实卡点：基础抽象词",
+    "errorNote": "多义误解：只掌握目的义；补充用途义；注意 purpose of something、for the purpose of、serve a purpose",
+    "userAddedAt": "2026-08-27",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-08-27",
+    "adminUpdatedAt": "2026-08-27",
     "sourceRevision": 4,
     "audioText": "purpose",
     "audioPath": "audio/purpose.mp3"
@@ -1480,6 +1870,56 @@
     "audioPath": "audio/rural.mp3"
   },
   {
+    "id": "scale",
+    "term": "scale",
+    "meaning": "规模；程度；尺度",
+    "note": "多义误解：原理解为秤；注意 large scale、on a global scale",
+    "category": "多义误解词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "scale"
+    ],
+    "errorNote": "多义误解：原理解为秤；注意 large scale、on a global scale",
+    "userAddedAt": "2026-08-27",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-08-27",
+    "sourceRevision": 4,
+    "audioText": "scale",
+    "audioPath": "audio/scale.mp3"
+  },
+  {
+    "id": "soak",
+    "term": "soak",
+    "meaning": "浸泡；使湿透；吸收水分",
+    "note": "今日生词：识义",
+    "category": "今日生词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "soak"
+    ],
+    "errorNote": "今日生词：识义",
+    "userAddedAt": "2026-08-27",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-08-27",
+    "sourceRevision": 4,
+    "audioText": "soak",
+    "audioPath": "audio/soak.mp3"
+  },
+  {
     "id": "spectator",
     "term": "spectator",
     "meaning": "现场观众",
@@ -1660,6 +2100,31 @@
     "sourceRevision": 4,
     "audioText": "vacuum",
     "audioPath": "audio/vacuum.mp3"
+  },
+  {
+    "id": "ventilation",
+    "term": "ventilation",
+    "meaning": "通风；通风系统",
+    "note": "今日生词：识义",
+    "category": "今日生词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "ventilation"
+    ],
+    "errorNote": "今日生词：识义",
+    "userAddedAt": "2026-08-27",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-08-27",
+    "sourceRevision": 4,
+    "audioText": "ventilation",
+    "audioPath": "audio/ventilation.mp3"
   },
   {
     "id": "waitress",
@@ -5636,26 +6101,6 @@
     "audioPath": "audio/encourage.mp3"
   },
   {
-    "id": "end",
-    "term": "end",
-    "meaning": "尽头；末端",
-    "note": "—",
-    "category": "地图、空间与程度词",
-    "sections": [
-      "P2 + P3 必会看懂词"
-    ],
-    "modes": [
-      "recognition"
-    ],
-    "isRealError": false,
-    "acceptedAnswers": [
-      "end"
-    ],
-    "sourceRevision": 4,
-    "audioText": "end",
-    "audioPath": "audio/end.mp3"
-  },
-  {
     "id": "energy",
     "term": "energy",
     "meaning": "能源；能量",
@@ -6249,26 +6694,6 @@
     "sourceRevision": 4,
     "audioText": "fever",
     "audioPath": "audio/fever.mp3"
-  },
-  {
-    "id": "field",
-    "term": "field",
-    "meaning": "领域；学科",
-    "note": "不只是“田地”",
-    "category": "常见第二义",
-    "sections": [
-      "常见第二义"
-    ],
-    "modes": [
-      "recognition"
-    ],
-    "isRealError": false,
-    "acceptedAnswers": [
-      "field"
-    ],
-    "sourceRevision": 4,
-    "audioText": "field",
-    "audioPath": "audio/field.mp3"
   },
   {
     "id": "figure",
@@ -10169,26 +10594,6 @@
     "audioPath": "audio/postcode.mp3"
   },
   {
-    "id": "practical",
-    "term": "practical",
-    "meaning": "实用的；实践的",
-    "note": "—",
-    "category": "原因、问题、优缺点与评价",
-    "sections": [
-      "P2 + P3 必会看懂词"
-    ],
-    "modes": [
-      "recognition"
-    ],
-    "isRealError": false,
-    "acceptedAnswers": [
-      "practical"
-    ],
-    "sourceRevision": 4,
-    "audioText": "practical",
-    "audioPath": "audio/practical.mp3"
-  },
-  {
     "id": "practice",
     "term": "practice",
     "meaning": "实践；惯例；练习",
@@ -10557,27 +10962,6 @@
     "sourceRevision": 4,
     "audioText": "project management",
     "audioPath": "audio/project-management.mp3"
-  },
-  {
-    "id": "proposal",
-    "term": "proposal",
-    "meaning": "提议；方案；研究计划",
-    "note": "research proposal",
-    "category": "学校、工作与项目",
-    "sections": [
-      "P2 + P3 必会看懂词",
-      "常见第二义"
-    ],
-    "modes": [
-      "recognition"
-    ],
-    "isRealError": false,
-    "acceptedAnswers": [
-      "proposal"
-    ],
-    "sourceRevision": 4,
-    "audioText": "proposal",
-    "audioPath": "audio/proposal.mp3"
   },
   {
     "id": "protect",
