@@ -74,7 +74,7 @@ async function screenshot(send, name) {
     const registration = await navigator.serviceWorker.ready;
     await new Promise((resolve) => setTimeout(resolve, 5000));
     const names = await caches.keys();
-    const cache = names.includes('ielts-listening-v22') ? await caches.open('ielts-listening-v22') : null;
+    const cache = names.includes('ielts-listening-v25') ? await caches.open('ielts-listening-v25') : null;
     const keys = cache ? await cache.keys() : [];
     return {
       active: registration.active?.state || null,

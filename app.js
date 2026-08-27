@@ -2,7 +2,7 @@
   "use strict";
 
   const STORAGE_KEY = "marcoIeltsListening.v1";
-  const APP_VERSION = "v2.11.1";
+  const APP_VERSION = "v2.11.2";
   const AUTO_UPDATE_SESSION_KEY = "marcoIeltsListening.autoUpdateAttempt";
   const AUTO_UPDATE_THROTTLE_MS = 60 * 1000;
   const TRAINING_RESET_ID = "fresh-start-v2.5.0";
@@ -896,10 +896,11 @@
     saveState();
   }
 
-  function setShellMode(mode) {
+  function setShellMode(mode, activeSession = false) {
     const browsing = mode === "browse";
     const direction = mode === "direction";
     const reviewing = mode === "review";
+    appShell.classList.toggle("active-session", activeSession);
     appShell.classList.toggle("browse-mode", browsing);
     appShell.classList.toggle("direction-mode", direction);
     screenTitle.textContent = browsing ? "随便刷" : (direction ? "方位检测" : (reviewing ? "高频复习" : "今日新词"));
@@ -916,11 +917,9 @@
     const learningTotal = state.daily.baseKeys.length;
     const learningSpelling = state.daily.baseKeys.filter((key) => key.endsWith(":spelling")).length;
     const learningRecognition = state.daily.baseKeys.filter((key) => key.endsWith(":recognition")).length;
-    const reviewDone = sessionDone(state.reviewDaily);
-    const reviewTotal = state.reviewDaily.baseKeys.length;
     const reviewPending = state.reviewDaily.queue.length;
-    const buttonText = state.daily.completed ? "今日新词已完成" : (state.daily.started ? "继续今日新词" : `开始今日新词 ${learningTotal}`);
-    const totalErrors = Object.values(state.progress).reduce((sum, record) => sum + (record.lapses || 0), 0);
+    const buttonText = state.daily.completed ? "今日已完成" : (state.daily.started ? "继续训练" : "开始训练");
+    const remaining = Math.max(0, learningTotal - done);
     const errorPoolCount = new Set(Object.entries(state.progress)
       .filter(([, record]) => (record.lapses || 0) > 0)
       .map(([key]) => key.replace(/:(spelling|recognition)$/, ""))).size;
@@ -928,42 +927,34 @@
     screen.innerHTML = `
       <section class="home">
         <div class="home-card">
-          <p class="eyebrow">${escapeHtml(state.daily.date)} · 今日新词</p>
-          <div class="hero-number">${done}</div>
-          <p class="hero-copy">今天只学没做过的新词。昨天错再多，也不会挤占这里的名额。</p>
-          <div class="split-summary">
-            <div class="split-item"><strong>${learningSpelling}</strong><span>新词听写</span></div>
-            <div class="split-item"><strong>${learningRecognition}</strong><span>新词识义</span></div>
+          <div class="home-card-head">
+            <div>
+              <p class="eyebrow">${escapeHtml(state.daily.date)} · 今日训练</p>
+              <h2>${state.daily.completed ? "今天完成" : `还剩 ${remaining} 题`}</h2>
+              <p>${learningSpelling} 听写 · ${learningRecognition} 识义</p>
+            </div>
+            <div class="home-progress" aria-label="今日已完成 ${done} / ${learningTotal}">
+              <strong>${done}</strong><span>/${learningTotal}</span>
+            </div>
           </div>
+          <button id="start" class="primary" ${state.daily.completed ? "disabled" : ""}>${buttonText}</button>
         </div>
-        <button id="start" class="primary" ${state.daily.completed ? "disabled" : ""}>${buttonText}</button>
-        <button id="review" class="review-entry" ${reviewPending ? "" : "disabled"}>
-          <span><strong>高频复习</strong><small>${reviewPending ? `${reviewPending} 题待复习 · 错得多的优先` : "今天暂无到期错词"}</small></span>
-          <b>${reviewDone}/${reviewTotal}</b>
-        </button>
-        <button id="direction" class="direction-entry">
-          <span><strong>方位检测</strong><small>10 题 · 标准 2 秒 / 困难 1 秒</small></span>
-          <b aria-hidden="true">⌖</b>
-        </button>
-        <button id="browse" class="browse-entry">
-          <span><strong>随便刷</strong><small>分页浏览、全词发音，想停就停</small></span>
-          <b aria-hidden="true">∞</b>
-        </button>
-        <div class="home-actions">
-          <button id="inbox" class="compact-entry">
-            <span><strong>错词收件箱</strong><small>${state.customItems.length} 条待同步</small></span><b>＋</b>
+        <div class="home-core-actions">
+          <button id="review" class="home-task review-task" ${reviewPending ? "" : "disabled"}>
+            <span>高频复习</span><strong>${reviewPending ? `${reviewPending} 题` : "暂无"}</strong>
           </button>
-          <button id="starred" class="compact-entry">
-            <span><strong>重点词</strong><small>${starredCount} 个已标记</small></span><b>★</b>
+          <button id="direction" class="home-task direction-task">
+            <span>方位检测</span><strong>10 题</strong>
           </button>
-        </div>
-        <div class="memory-summary">
-          <span>累计错误 <strong>${totalErrors}</strong></span>
-          <span>记忆阶段 <strong>1—6</strong></span>
         </div>
         <p class="status-line">连续 ${state.streak || 0} 天 · 复习池 ${errorPoolCount} 项</p>
-        <details>
-          <summary>进度与备份</summary>
+        <details id="home-more" class="home-more">
+          <summary><span>更多练习与设置</span><b aria-hidden="true">＋</b></summary>
+          <div class="home-menu">
+            <button id="browse" class="menu-entry"><span>随便刷</span><small>自由浏览词库</small></button>
+            <button id="starred" class="menu-entry"><span>重点词</span><small>${starredCount} 个</small></button>
+            <button id="inbox" class="menu-entry"><span>错词收件箱</span><small>${state.customItems.length} 条待同步</small></button>
+          </div>
           <div class="tools">
             <button id="export" class="secondary">导出学习进度</button>
             <label class="secondary file-label">导入学习进度<input id="import" type="file" accept="application/json"></label>
@@ -1281,12 +1272,10 @@
   }
 
   function sessionMeta(entry, activity) {
-    const session = currentTrainingSession();
-    const taskLabel = activeTrainingKind === "review" ? "复习" : "新词";
     const modeLabel = activity.mode === "spelling" ? "听写" : "识义";
     return `<div class="session-toolbar">
       <button id="pause-session" class="text-button">← 暂停</button>
-      <div class="session-meta"><span class="mode-label">${taskLabel} · ${modeLabel}</span><span>${entry.isRetry ? '<b class="retry-label">回炉题</b>' : `${baseDone() + 1}/${session.baseKeys.length}`}</span></div>
+      <div class="session-meta"><span class="mode-label">${modeLabel}</span>${entry.isRetry ? '<b class="retry-label">回炉题</b>' : ""}</div>
       ${starButton(activity, "session-star")}
     </div>`;
   }
@@ -1311,10 +1300,9 @@
       <section class="session">
         ${sessionMeta(entry, activity)}
         <div class="question-card">
-          <p class="prompt">会自动读一遍，写出完整英文</p>
+          <p class="prompt">听音，写出完整英文</p>
           <div class="play-zone">
             <button id="play" class="play-button" aria-label="再读一次">▶ 再读</button>
-            <p class="play-hint">单复数、空格、连字符都要准确</p>
           </div>
         </div>
         <form id="spelling-form" class="spelling-form">
@@ -1356,7 +1344,7 @@
         <div class="question-card">
           <div class="timer-label"><span>反应时间</span><strong id="timer-count">5</strong></div>
           <div class="timer"><div id="timer-bar" class="timer-bar paused"></div></div>
-          <p class="prompt">选出最直接的意思</p>
+          <p class="prompt">选中文</p>
           <div class="recognition-term">
             <h2 class="term">${escapeHtml(activity.term)}</h2>
             <button id="recognition-play" class="test-play" type="button" aria-label="再读一次">▶ 再读</button>
@@ -1400,7 +1388,7 @@
 
   function renderCurrent(options = {}) {
     const session = currentTrainingSession();
-    setShellMode(activeTrainingKind === "review" ? "review" : "daily");
+    setShellMode(activeTrainingKind === "review" ? "review" : "daily", Boolean(session.queue[0]));
     updateChrome();
     const entry = session.queue[0];
     if (!entry) {
