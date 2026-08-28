@@ -1,5 +1,5 @@
-const APP_VERSION = "v2.11.3";
-const CACHE = "ielts-listening-v26";
+const APP_VERSION = "v2.12.0";
+const CACHE = "ielts-listening-v27";
 const CORE = [
   "./",
   `./index.html?v=${APP_VERSION}`,
@@ -10,6 +10,9 @@ const CORE = [
   `./manifest.webmanifest?v=${APP_VERSION}`,
   `./version.json?v=${APP_VERSION}`,
   "./icon.svg",
+  "./icon-192.png",
+  "./icon-512.png",
+  "./apple-touch-icon.png",
 ];
 
 self.addEventListener("install", (event) => {

@@ -2,7 +2,7 @@
   "use strict";
 
   const STORAGE_KEY = "marcoIeltsListening.v1";
-  const APP_VERSION = "v2.11.3";
+  const APP_VERSION = "v2.12.0";
   const AUTO_UPDATE_SESSION_KEY = "marcoIeltsListening.autoUpdateAttempt";
   const AUTO_UPDATE_THROTTLE_MS = 60 * 1000;
   const TRAINING_RESET_ID = "fresh-start-v2.5.0";
@@ -1019,6 +1019,7 @@
     const reviewing = mode === "review";
     const errorTraining = mode === "errors";
     appShell.classList.toggle("active-session", activeSession);
+    appShell.classList.remove("home-mode");
     appShell.classList.toggle("browse-mode", browsing);
     appShell.classList.toggle("direction-mode", direction);
     screenTitle.textContent = browsing ? "随便刷" : (direction ? "方位检测" : (reviewing ? "高频复习" : (errorTraining ? "错词专项" : "今日新词")));
@@ -1031,6 +1032,7 @@
     window.scrollTo(0, 0);
     activeTrainingKind = "learning";
     setShellMode("daily");
+    appShell.classList.add("home-mode");
     const done = sessionDone(state.daily);
     const learningTotal = state.daily.baseKeys.length;
     const learningSpelling = state.daily.baseKeys.filter((key) => key.endsWith(":spelling")).length;
@@ -1045,30 +1047,32 @@
     const starredCount = Object.keys(state.starred).length;
     screen.innerHTML = `
       <section class="home">
-        <div class="home-card">
-          <div class="home-card-head">
+        <section class="home-daily" aria-labelledby="home-daily-title">
+          <div class="home-daily-head">
             <div>
-              <p class="eyebrow">${escapeHtml(state.daily.date)} · 今日训练</p>
-              <h2>${state.daily.completed ? "今天完成" : `还剩 ${remaining} 题`}</h2>
-              <p>${learningSpelling} 听写 · ${learningRecognition} 识义</p>
+              <h2 id="home-daily-title">今日新词</h2>
+              <p class="home-completion">今日完成 <strong>${done} / ${learningTotal}</strong></p>
+              <p class="home-remaining">${state.daily.completed ? "今日任务已完成" : `剩余 ${remaining} 题`}</p>
             </div>
-            <div class="home-progress" aria-label="今日已完成 ${done} / ${learningTotal}">
-              <strong>${done}</strong><span>/${learningTotal}</span>
-            </div>
+            <p class="home-date">${escapeHtml(state.daily.date)}</p>
           </div>
+          <p class="home-mode-summary">${learningSpelling} 听写 · ${learningRecognition} 识义</p>
           <button id="start" class="primary" ${state.daily.completed ? "disabled" : ""}>${buttonText}</button>
-        </div>
-        <div class="home-core-actions">
-          <button id="review" class="home-task review-task" ${reviewPending ? "" : "disabled"}>
-            <span>高频复习</span><strong>${reviewPending ? `${reviewPending} 题` : "暂无"}</strong>
-          </button>
-          <button id="direction" class="home-task direction-task">
-            <span>方位检测</span><strong>10 题</strong>
-          </button>
-        </div>
+        </section>
+        <section class="home-secondary" aria-labelledby="home-secondary-title">
+          <h2 id="home-secondary-title">其他练习</h2>
+          <div class="home-core-actions">
+            <button id="review" class="home-task review-task" ${reviewPending ? "" : "disabled"}>
+              <span>高频复习</span><strong>${reviewPending ? `${reviewPending} 题` : "暂无"}</strong>
+            </button>
+            <button id="direction" class="home-task direction-task">
+              <span>方位检测</span><strong>10 题</strong>
+            </button>
+          </div>
+        </section>
         <p class="status-line">连续 ${state.streak || 0} 天 · 复习池 ${errorPoolCount} 项</p>
         <details id="home-more" class="home-more">
-          <summary><span>更多练习与设置</span><b aria-hidden="true">＋</b></summary>
+          <summary><span>更多练习与设置</span></summary>
           <div class="home-menu">
             <button id="error-training" class="menu-entry error-training-entry" ${errorTrainingPending ? "" : "disabled"}><span>错词专项</span><small>${errorTrainingPending ? `${errorTrainingPending} 题` : (state.errorDaily.completed ? "今日已完成" : "暂无错词")}</small></button>
             <button id="browse" class="menu-entry"><span>随便刷</span><small>自由浏览词库</small></button>
@@ -1284,7 +1288,7 @@
   function renderDirectionQuestion() {
     window.scrollTo(0, 0);
     clearDirectionTiming();
-    setShellMode("direction");
+    setShellMode("direction", true);
     if (!directionRun || directionRun.results.length >= DIRECTION_QUESTION_COUNT) {
       renderDirectionResult();
       return;
@@ -1358,7 +1362,7 @@
     window.scrollTo(0, 0);
     clearDirectionTiming();
     stopDirectionAudio();
-    setShellMode("direction");
+    setShellMode("direction", true);
     const results = directionRun?.results || [];
     const passedCount = results.filter((result) => result.passed).length;
     const passed = isDirectionRunPassed(results);

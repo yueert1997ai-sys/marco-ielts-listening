@@ -68,13 +68,14 @@ async function screenshot(send, name) {
     reviewDisabled: document.querySelector('#review')?.disabled,
     ticks: document.querySelectorAll('.signal-tick').length,
     appWidth: Math.round(document.querySelector('.app-shell').getBoundingClientRect().width),
-    cardWidth: Math.round(document.querySelector('.home-card').getBoundingClientRect().width)
+    dailyWidth: Math.round(document.querySelector('.home-daily').getBoundingClientRect().width),
+    railHidden: getComputedStyle(document.querySelector('#signal-rail')).display === 'none'
   }))()`);
   const offline = await evaluate(send, `(async () => {
     const registration = await navigator.serviceWorker.ready;
     await new Promise((resolve) => setTimeout(resolve, 5000));
     const names = await caches.keys();
-    const cache = names.includes('ielts-listening-v26') ? await caches.open('ielts-listening-v26') : null;
+    const cache = names.includes('ielts-listening-v27') ? await caches.open('ielts-listening-v27') : null;
     const keys = cache ? await cache.keys() : [];
     return {
       active: registration.active?.state || null,
@@ -178,6 +179,7 @@ async function screenshot(send, name) {
     disabled: document.querySelector('#review')?.disabled,
     newProgress: document.querySelector('#day-count')?.textContent
   }))()`);
+  await screenshot(send, "mobile-cdp-home-progress.png");
   await evaluate(send, "document.querySelector('#start').click(); true");
   await evaluate(send, `(async () => {
     for (let index = 0; index < 12 && !document.querySelector('.choice'); index += 1) {
@@ -268,7 +270,7 @@ async function screenshot(send, name) {
     || directionSession.targets !== 4 || directionSession.timerDuration !== "1000ms"
     || !directionSession.mode.includes("1.4×")
     || !directionSession.diagonalBoard || directionSession.scrollWidth > 390
-    || !directionSession.dailyUnchanged || result.learningRetries !== 0
+    || !directionSession.dailyUnchanged || result.learningRetries < 1
     || !spelling.focused || result.reviewPending < 1 || !result.note.includes('高频复习')
     || result.note.trim().startsWith('—')
     || !fastPass.feedback?.includes('正确') || fastPass.resultVisibleDuringFeedback
@@ -276,8 +278,9 @@ async function screenshot(send, name) {
     || recognition.partsOfSpeech.length !== 4 || recognition.partsOfSpeech.some((label) => !label || label.includes('待补'))
     || shortRecognition.controls !== 5 || shortRecognition.fullyVisible !== 5
     || !shortRecognition.resultContinueVisible
-    || reviewHome.disabled || !reviewHome.text.includes('待复习')) {
-    throw new Error("Mobile direction mode smoke check failed");
+    || reviewHome.disabled || !/\d+\s*题/.test(reviewHome.text)
+    || !home.railHidden) {
+    throw new Error(`Mobile direction mode smoke check failed: ${JSON.stringify({ home, offline, directionIntro, directionSession, browse, spelling, result, reviewHome, recognition, fastPass, shortRecognition })}`);
   }
 
   console.log(JSON.stringify({ ok: true, home, offline, directionIntro, directionSession, browse, spelling, result, reviewHome, recognition, fastPass, shortRecognition }));

@@ -30,11 +30,11 @@ async (page) => {
     coreActions: document.querySelectorAll(".home-task").length,
   }));
   home.browseVisible = await page.locator("#browse").isVisible();
-  await page.screenshot({ path: "output/playwright/v2113/home.png" });
+  await page.screenshot({ path: "output/playwright/v2120/home.png" });
   await page.locator("#home-more summary").click();
   home.moreEntriesVisible = await page.locator("#error-training, #browse, #starred, #inbox, #export, #reset-training")
     .evaluateAll((entries) => entries.every((entry) => entry.getClientRects().length > 0));
-  await page.screenshot({ path: "output/playwright/v2113/home-more.png", fullPage: true });
+  await page.screenshot({ path: "output/playwright/v2120/home-more.png", fullPage: true });
   await page.locator("#home-more summary").click();
   await page.locator("#start").click();
 
@@ -72,7 +72,7 @@ async (page) => {
     feedback: await page.locator(".quick-feedback").innerText(),
     resultVisible: await page.locator(".result").count() > 0,
   };
-  await page.screenshot({ path: "output/playwright/v2113/quick-pass.png" });
+  await page.screenshot({ path: "output/playwright/v2120/quick-pass.png" });
   await page.waitForTimeout(600);
   quickPass.advanced = await page.locator(".question-card").count() > 0;
   quickPass.feedbackGone = await page.locator(".quick-feedback").count() === 0;
@@ -89,14 +89,14 @@ async (page) => {
     }).length,
     scrollHeight: document.documentElement.scrollHeight,
   }));
-  await page.screenshot({ path: "output/playwright/v2113/short-question.png" });
+  await page.screenshot({ path: "output/playwright/v2120/short-question.png" });
   await page.locator("#recognition-dont-know").click();
   await page.locator("#continue").waitFor();
   shortRecognition.resultContinueVisible = await page.locator("#continue").evaluate((button) => {
     const rect = button.getBoundingClientRect();
     return rect.top >= 0 && rect.bottom <= innerHeight;
   });
-  await page.screenshot({ path: "output/playwright/v2113/short-result.png" });
+  await page.screenshot({ path: "output/playwright/v2120/short-result.png" });
 
   await page.setViewportSize({ width: 390, height: 844 });
   await page.evaluate(() => {
