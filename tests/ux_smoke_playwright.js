@@ -121,13 +121,21 @@ async (page) => {
   });
   await page.reload();
   await page.locator("#start").click();
+  const firstCarpetChoiceIndex = await page.locator(".choice").evaluateAll((choices) => choices.findIndex((choice) => choice.dataset.choice === "地毯"));
   await page.locator(".choice").filter({ hasText: "地毯" }).click();
+  const confidenceFeedback = await page.locator(".quick-feedback").innerText();
+  const reinforcementCount = await page.locator("#day-count").innerText();
   const keyboardPrimed = await page.locator(".keyboard-primer").count() === 1;
   await page.locator("#answer").waitFor();
   const switchedSpellingFocused = await page.locator("#answer").evaluate((input) => document.activeElement === input);
   await page.locator("#answer").fill("carpet");
   await page.locator("#spelling-form").evaluate((form) => form.requestSubmit());
   const correctSpellingFeedback = await page.locator(".quick-feedback").innerText();
+  await page.locator(".choice").first().waitFor();
+  const confirmationMeta = await page.locator(".session-meta").innerText();
+  const confirmationChoiceIndex = await page.locator(".choice").evaluateAll((choices) => choices.findIndex((choice) => choice.dataset.choice === "地毯"));
+  await page.locator(".choice").filter({ hasText: "地毯" }).click();
+  const masteredFeedback = await page.locator(".quick-feedback").innerText();
 
   if (home.scrollHeight > 844
     || home.moreOpen
@@ -152,9 +160,14 @@ async (page) => {
     || !shortRecognition.resultContinueVisible
     || !keyboardPrimed
     || !switchedSpellingFocused
-    || !correctSpellingFeedback.includes("地毯")) {
-    throw new Error(JSON.stringify({ home, trainingChrome, spelling, wrongResult, quickPass, choicePartsOfSpeech, shortRecognition, keyboardPrimed, switchedSpellingFocused, correctSpellingFeedback }));
+    || !correctSpellingFeedback.includes("地毯")
+    || !confidenceFeedback.includes("稍后换序再确认")
+    || !reinforcementCount.includes("+1")
+    || !confirmationMeta.includes("确认题")
+    || firstCarpetChoiceIndex === confirmationChoiceIndex
+    || !masteredFeedback.includes("已完成巩固")) {
+    throw new Error(JSON.stringify({ home, trainingChrome, spelling, wrongResult, quickPass, choicePartsOfSpeech, shortRecognition, keyboardPrimed, switchedSpellingFocused, correctSpellingFeedback, confidenceFeedback, reinforcementCount, confirmationMeta, firstCarpetChoiceIndex, confirmationChoiceIndex, masteredFeedback }));
   }
 
-  return { ok: true, home, trainingChrome, spelling, wrongResult, quickPass, choicePartsOfSpeech, shortRecognition, keyboardPrimed, switchedSpellingFocused, correctSpellingFeedback };
+  return { ok: true, home, trainingChrome, spelling, wrongResult, quickPass, choicePartsOfSpeech, shortRecognition, keyboardPrimed, switchedSpellingFocused, correctSpellingFeedback, confidenceFeedback, reinforcementCount, confirmationMeta, firstCarpetChoiceIndex, confirmationChoiceIndex, masteredFeedback };
 }

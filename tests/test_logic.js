@@ -59,6 +59,11 @@ test("new-word deck excludes every previously seen activity", () => {
   assert.equal(deck.filter((key) => key.endsWith(":spelling")).length, 25);
   assert.equal(deck.filter((key) => key.endsWith(":recognition")).length, 25);
 });
+test("an unfinished confidence check remains eligible as a new word next day", () => {
+  const progress = { "r0:recognition": { attempts: 1, passes: 1, stage: 0, pendingConfirmation: true } };
+  const deck = logic.createLearningDeck(activities, progress, "2026-08-26");
+  assert(deck.includes("r0:recognition"));
+});
 test("review deck contains only due activities with prior errors", () => {
   const progress = {
     "s0:spelling": { lapses: 4, due: "2026-08-24" },
@@ -159,15 +164,54 @@ test("failure resets stage", () => {
   const record = logic.scheduleReview({ stage: 5 }, "fail", "2026-08-23");
   assert.equal(record.stage, 0); assert.equal(record.due, "2026-08-24");
 });
-test("retry is inserted five to ten places later", () => {
+test("a missed word returns two to four questions later", () => {
   const daily = { date: "2026-08-23", queue: Array.from({ length: 20 }, (_, i) => ({ key: `x${i}`, isRetry: false })), retryCount: {} };
   const index = logic.insertRetry(daily, "carpet:spelling");
-  assert(index >= 5 && index <= 10); assert.equal(daily.queue[index].key, "carpet:spelling");
+  assert(index >= 2 && index <= 4); assert.equal(daily.queue[index].key, "carpet:spelling");
+  assert.equal(daily.queue[index].reason, "retry");
+});
+test("a confidence check returns six to nine questions later", () => {
+  const daily = { date: "2026-08-23", queue: Array.from({ length: 20 }, (_, i) => ({ key: `x${i}`, isRetry: false })), retryCount: {} };
+  const index = logic.insertRetry(daily, "carpet:recognition", {
+    reason: "confirm", minDistance: logic.CONFIRM_MIN_DISTANCE, maxDistance: logic.CONFIRM_MAX_DISTANCE, avoidChoiceIndex: 2,
+  });
+  assert(index >= 6 && index <= 9); assert.equal(daily.queue[index].reason, "confirm");
+  assert.equal(daily.queue[index].avoidChoiceIndex, 2);
 });
 test("only one pending retry per item", () => {
   const daily = { date: "2026-08-23", queue: [], retryCount: {} };
   logic.insertRetry(daily, "carpet:spelling"); logic.insertRetry(daily, "carpet:spelling");
   assert.equal(daily.queue.filter((entry) => entry.key === "carpet:spelling").length, 1);
+});
+test("real-error recognition requires a later confidence check", () => {
+  const activity = activities.find((item) => item.key === "carpet:recognition");
+  assert(logic.shouldConfirmRecognition({ key: activity.key, isRetry: false }, activity, null, "2026-08-23"));
+  assert(!logic.shouldConfirmRecognition({ key: activity.key, isRetry: true }, activity, null, "2026-08-23"));
+});
+test("first recognition pass can be provisional instead of mastered", () => {
+  const activity = activities.find((item) => item.key === "carpet:recognition");
+  const decision = logic.reinforcementDecision({ key: activity.key, isRetry: false }, activity, "pass", null, 0, "2026-08-23");
+  assert.equal(decision.recordOutcome, "practice");
+  assert.equal(decision.streak, 1); assert.equal(decision.reason, "confirm");
+});
+test("a miss needs two consecutive recovery passes", () => {
+  const activity = activities.find((item) => item.key === "carpet:spelling");
+  const missed = logic.reinforcementDecision({ key: activity.key, isRetry: false }, activity, "fail", null, 0, "2026-08-23");
+  const firstRecovery = logic.reinforcementDecision({ key: activity.key, isRetry: true, reason: "retry" }, activity, "pass", null, missed.streak, "2026-08-23");
+  const secondRecovery = logic.reinforcementDecision({ key: activity.key, isRetry: true, reason: "confirm" }, activity, "pass", null, firstRecovery.streak, "2026-08-23");
+  assert.equal(missed.recordOutcome, "fail"); assert(missed.retry);
+  assert.equal(firstRecovery.recordOutcome, "practice"); assert(firstRecovery.retry);
+  assert.equal(secondRecovery.recordOutcome, "pass"); assert.equal(secondRecovery.retry, false);
+});
+test("practice pass is counted without advancing the memory stage", () => {
+  const record = logic.recordPracticePass({ stage: 0, attempts: 1, passes: 0, lapses: 1 }, "2026-08-23", true);
+  assert.equal(record.stage, 0); assert.equal(record.attempts, 2); assert.equal(record.passes, 1);
+  assert.equal(record.due, "2026-08-24");
+  assert.equal(record.pendingConfirmation, true);
+});
+test("mastery clears a pending confidence flag", () => {
+  const record = logic.scheduleReview({ stage: 0, pendingConfirmation: true }, "pass", "2026-08-23");
+  assert.equal(record.pendingConfirmation, false); assert.equal(record.stage, 1);
 });
 test("choices contain target and four unique meanings", () => {
   const activity = activities.find((item) => item.key === "carpet:recognition");
@@ -208,11 +252,11 @@ test("quick pass feedback stays brief but visible", () => {
   assert(logic.QUESTION_TRANSITION_MS >= 140 && logic.QUESTION_TRANSITION_MS <= 240);
 });
 test("result note has no dangling separator when source note is empty", () => {
-  assert.equal(logic.formatResultNote("", "fail", "learning"), "已加入高频复习");
-  assert.equal(logic.formatResultNote("—", "fail", "learning"), "已加入高频复习");
-  assert.equal(logic.formatResultNote("", "fail", "review"), "已放回复习队列");
-  assert.equal(logic.formatResultNote("", "fail", "errors"), "已放回错词专项队列");
-  assert.equal(logic.formatResultNote("双写错误", "fail", "learning"), "双写错误 · 已加入高频复习");
+  assert.equal(logic.formatResultNote("", "fail", "learning"), "2–4 题后回炉，并已加入高频复习");
+  assert.equal(logic.formatResultNote("—", "fail", "learning"), "2–4 题后回炉，并已加入高频复习");
+  assert.equal(logic.formatResultNote("", "fail", "review"), "2–4 题后回炉");
+  assert.equal(logic.formatResultNote("", "fail", "errors"), "2–4 题后回炉，并已加入高频复习");
+  assert.equal(logic.formatResultNote("双写错误", "fail", "learning"), "双写错误 · 2–4 题后回炉，并已加入高频复习");
 });
 test("different published version triggers an update", () => assert(logic.hasVersionUpdate("v2.11.1", "v2.11.2")));
 test("matching published version does not trigger an update", () => assert.equal(logic.hasVersionUpdate("v2.11.2", "v2.11.2"), false));

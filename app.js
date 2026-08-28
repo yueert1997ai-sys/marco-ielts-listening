@@ -22,6 +22,13 @@
   const QUICK_PASS_DELAY_MS = 560;
   const SPELLING_MEANING_DELAY_MS = 950;
   const QUESTION_TRANSITION_MS = 180;
+  const RETRY_MIN_DISTANCE = 2;
+  const RETRY_MAX_DISTANCE = 4;
+  const CONFIRM_MIN_DISTANCE = 6;
+  const CONFIRM_MAX_DISTANCE = 9;
+  const REQUIRED_CORRECT_STREAK = 2;
+  const MAX_REINFORCEMENT_INSERTIONS = 4;
+  const RECOGNITION_SPOTCHECK_PERCENT = 40;
   const INTERVALS = [1, 3, 7, 14, 30, 60];
   const REPOSITORY_URL = "https://github.com/yueert1997ai-sys/marco-ielts-listening";
 
@@ -209,7 +216,7 @@
   function createLearningDeck(activities, progress, today = dateKey(), starred = {}, deckNonce = DECK_REVISION) {
     function pick(mode) {
       return activities
-        .filter((activity) => activity.mode === mode && !progress[activity.key])
+        .filter((activity) => activity.mode === mode && (!progress[activity.key] || progress[activity.key].pendingConfirmation))
         .sort((a, b) => compareRank(
           [starred[a.id] ? 0 : 1, hashString(`${deckNonce}:${today}:learn:${mode}:${a.key}`)],
           [starred[b.id] ? 0 : 1, hashString(`${deckNonce}:${today}:learn:${mode}:${b.key}`)]
@@ -257,6 +264,7 @@
       answeredBase: {},
       outcomes: {},
       retryCount: {},
+      correctStreak: {},
       started: false,
       completed: baseKeys.length === 0,
     };
@@ -294,6 +302,7 @@
       return {
         ...current,
         stage,
+        pendingConfirmation: false,
         attempts: (current.attempts || 0) + 1,
         passes: (current.passes || 0) + 1,
         lastSeen: today,
@@ -303,6 +312,7 @@
     return {
       ...current,
       stage: 0,
+      pendingConfirmation: false,
       attempts: (current.attempts || 0) + 1,
       lapses: (current.lapses || 0) + 1,
       lastSeen: today,
@@ -310,13 +320,80 @@
     };
   }
 
-  function insertRetry(daily, key) {
+  function recordPracticePass(record, today = dateKey(), pendingConfirmation = false) {
+    const current = record && typeof record === "object" ? record : { stage: 0, lapses: 0, passes: 0, attempts: 0 };
+    return {
+      ...current,
+      pendingConfirmation: Boolean(pendingConfirmation),
+      attempts: (current.attempts || 0) + 1,
+      passes: (current.passes || 0) + 1,
+      lastSeen: today,
+      due: addDays(today, 1),
+    };
+  }
+
+  function shouldConfirmRecognition(entry, activity, record, sessionDate = dateKey()) {
+    if (entry.isRetry || activity.mode !== "recognition") return false;
+    if (activity.isRealError || (record?.lapses || 0) > 0) return true;
+    return hashString(`${sessionDate}:confidence:${activity.key}`) % 100 < RECOGNITION_SPOTCHECK_PERCENT;
+  }
+
+  function reinforcementDecision(entry, activity, outcome, record, currentStreak = 0, sessionDate = dateKey()) {
+    if (outcome !== "pass") {
+      return {
+        recordOutcome: "fail",
+        streak: 0,
+        retry: true,
+        reason: "retry",
+        minDistance: RETRY_MIN_DISTANCE,
+        maxDistance: RETRY_MAX_DISTANCE,
+        feedback: "",
+      };
+    }
+    if (shouldConfirmRecognition(entry, activity, record, sessionDate)) {
+      return {
+        recordOutcome: "practice",
+        streak: 1,
+        retry: true,
+        reason: "confirm",
+        minDistance: CONFIRM_MIN_DISTANCE,
+        maxDistance: CONFIRM_MAX_DISTANCE,
+        pendingConfirmation: true,
+        feedback: "稍后换序再确认",
+      };
+    }
+    if (entry.isRetry) {
+      const streak = currentStreak + 1;
+      if (streak < REQUIRED_CORRECT_STREAK) {
+        return {
+          recordOutcome: "practice",
+          streak,
+          retry: true,
+          reason: "confirm",
+          minDistance: RETRY_MIN_DISTANCE,
+          maxDistance: RETRY_MAX_DISTANCE,
+          feedback: "再对一次才算掌握",
+        };
+      }
+      return { recordOutcome: "pass", streak: 0, retry: false, feedback: "已完成巩固" };
+    }
+    return { recordOutcome: "pass", streak: 0, retry: false, feedback: "" };
+  }
+
+  function insertRetry(daily, key, options = {}) {
+    const reason = options.reason || "retry";
+    const minDistance = Number.isFinite(options.minDistance) ? options.minDistance : RETRY_MIN_DISTANCE;
+    const maxDistance = Number.isFinite(options.maxDistance) ? options.maxDistance : RETRY_MAX_DISTANCE;
     daily.queue = daily.queue.filter((entry) => !(entry.isRetry && entry.key === key));
+    daily.retryCount = daily.retryCount || {};
     const count = (daily.retryCount[key] || 0) + 1;
     daily.retryCount[key] = count;
-    const distance = 5 + (hashString(`${key}:${count}:${daily.date}`) % 6);
+    const range = Math.max(1, maxDistance - minDistance + 1);
+    const distance = minDistance + (hashString(`${key}:${count}:${daily.date}:${reason}`) % range);
     const index = Math.min(distance, daily.queue.length);
-    daily.queue.splice(index, 0, { key, isRetry: true });
+    const retryEntry = { key, isRetry: true, reason };
+    if (Number.isInteger(options.avoidChoiceIndex)) retryEntry.avoidChoiceIndex = options.avoidChoiceIndex;
+    daily.queue.splice(index, 0, retryEntry);
     return index;
   }
 
@@ -456,6 +533,7 @@
       session.outcomes = remapObject(session.outcomes,
         (a, b) => (outcomeRank[b] || 0) > (outcomeRank[a] || 0) ? b : a);
       session.retryCount = remapObject(session.retryCount, (a, b) => Math.max(a || 0, b || 0));
+      session.correctStreak = remapObject(session.correctStreak, (a, b) => Math.max(a || 0, b || 0));
     });
     return state;
   }
@@ -668,13 +746,16 @@
     const detail = /^[—–-]+$/.test(rawDetail) ? "" : rawDetail;
     const followUp = outcome === "pass"
       ? ""
-      : (sessionKind === "learning" ? "已加入高频复习" : (sessionKind === "errors" ? "已放回错词专项队列" : "已放回复习队列"));
+      : (sessionKind === "learning"
+        ? "2–4 题后回炉，并已加入高频复习"
+        : (sessionKind === "errors" ? "2–4 题后回炉，并已加入高频复习" : "2–4 题后回炉"));
     return [detail, followUp].filter(Boolean).join(" · ");
   }
 
   const api = {
     dateKey, addDays, hashString, normaliseAnswer, makeActivities, safeState,
-    createDailyDeck, createLearningDeck, createReviewDeck, createErrorTrainingDeck, prepareDaily, scheduleReview, insertRetry, buildChoices,
+    createDailyDeck, createLearningDeck, createReviewDeck, createErrorTrainingDeck, prepareDaily, scheduleReview, recordPracticePass,
+    shouldConfirmRecognition, reinforcementDecision, insertRetry, buildChoices,
     partOfSpeechForMeaning,
     createBrowseDeck, parseWrongWordInput, parseWrongWordDrafts, mergeCustomItems, migrateNumberVariantState, seededShuffle,
     createDirectionDeck, createHardDirectionDeck, judgeDirectionAttempt, isDirectionRunPassed,
@@ -682,6 +763,8 @@
     hasVersionUpdate, shouldAutoAdvance, formatResultNote,
     RESPONSE_LIMIT_MS, DIRECTION_RESPONSE_LIMIT_MS, HARD_DIRECTION_RESPONSE_LIMIT_MS,
     AUDIO_PLAYBACK_RATE, HARD_DIRECTION_PLAYBACK_RATE, QUICK_PASS_DELAY_MS, SPELLING_MEANING_DELAY_MS, QUESTION_TRANSITION_MS,
+    RETRY_MIN_DISTANCE, RETRY_MAX_DISTANCE, CONFIRM_MIN_DISTANCE, CONFIRM_MAX_DISTANCE,
+    REQUIRED_CORRECT_STREAK, MAX_REINFORCEMENT_INSERTIONS, RECOGNITION_SPOTCHECK_PERCENT,
     DIRECTION_QUESTION_COUNT, HARD_DIRECTION_IDS,
     INTERVALS, BROWSE_PAGE_SIZE, DAILY_REVIEW_LIMIT, ERROR_TRAINING_PER_MODE, APP_VERSION,
     TRAINING_RESET_ID, LEARNING_REVIEW_SPLIT_ID, DECK_REVISION,
@@ -899,7 +982,8 @@
   function updateChrome() {
     const session = currentTrainingSession() || { baseKeys: [], outcomes: {} };
     const total = session.baseKeys.length;
-    dayCount.textContent = `${sessionDone(session)}/${total}`;
+    const reinforcementPending = (session.queue || []).filter((entry) => entry.isRetry).length;
+    dayCount.textContent = `${sessionDone(session)}/${total}${reinforcementPending ? ` +${reinforcementPending}` : ""}`;
     rail.style.gridTemplateColumns = `repeat(${Math.max(1, total)}, 1fr)`;
     rail.innerHTML = Array.from({ length: total }, (_, index) => {
       const key = session.baseKeys[index];
@@ -1315,9 +1399,10 @@
 
   function sessionMeta(entry, activity) {
     const modeLabel = activity.mode === "spelling" ? "听写" : "识义";
+    const reinforcementLabel = entry.reason === "confirm" ? "确认题" : "回炉题";
     return `<div class="session-toolbar">
       <button id="pause-session" class="text-button">← 暂停</button>
-      <div class="session-meta"><span class="mode-label">${modeLabel}</span>${entry.isRetry ? '<b class="retry-label">回炉题</b>' : ""}</div>
+      <div class="session-meta"><span class="mode-label">${modeLabel}</span>${entry.isRetry ? `<b class="retry-label">${reinforcementLabel}</b>` : ""}</div>
       ${starButton(activity, "session-star")}
     </div>`;
   }
@@ -1397,6 +1482,12 @@
     clearInterval(recognitionTimerId);
     recognitionStartedAt = 0;
     const choices = buildChoices(activity, activities, `${Date.now()}:${Math.random()}`);
+    const previousChoiceIndex = entry.avoidChoiceIndex;
+    const currentChoiceIndex = choices.indexOf(activity.meaning);
+    if (Number.isInteger(previousChoiceIndex) && currentChoiceIndex === previousChoiceIndex) {
+      const [target] = choices.splice(currentChoiceIndex, 1);
+      choices.splice((currentChoiceIndex + 1) % 4, 0, target);
+    }
     screen.innerHTML = `
       <section class="session">
         ${sessionMeta(entry, activity)}
@@ -1436,7 +1527,7 @@
       const selected = button.dataset.choice;
       const correct = selected === activity.meaning;
       const outcome = correct && elapsed <= RESPONSE_LIMIT_MS ? "pass" : (correct ? "slow" : "fail");
-      recordAttempt(entry, activity, outcome, { selected, elapsed });
+      recordAttempt(entry, activity, outcome, { selected, elapsed, choiceIndex: choices.indexOf(activity.meaning) });
     }));
     document.getElementById("recognition-dont-know").addEventListener("click", () => {
       clearInterval(recognitionTimerId);
@@ -1579,26 +1670,48 @@
     const sessionKind = activeTrainingKind;
     const session = currentTrainingSession();
     session.queue.shift();
-    if (!entry.isRetry && !session.answeredBase[activity.key]) {
+    session.correctStreak = session.correctStreak || {};
+    session.retryCount = session.retryCount || {};
+    const firstBaseAttempt = !entry.isRetry && !session.answeredBase[activity.key];
+    const previousRecord = state.progress[activity.key];
+    const decision = reinforcementDecision(
+      entry,
+      activity,
+      outcome,
+      previousRecord,
+      session.correctStreak[activity.key] || 0,
+      session.date
+    );
+    if (firstBaseAttempt) {
       session.answeredBase[activity.key] = true;
-      session.outcomes[activity.key] = outcome;
+      session.outcomes[activity.key] = decision.recordOutcome === "practice" ? "pending" : outcome;
+    } else if (decision.recordOutcome === "fail") {
+      session.outcomes[activity.key] = "fail";
+    } else if (decision.recordOutcome === "pass" && session.outcomes[activity.key] === "pending") {
+      session.outcomes[activity.key] = "pass";
     }
-    state.progress[activity.key] = scheduleReview(state.progress[activity.key], outcome, session.date);
-    if (outcome !== "pass") {
-      if (sessionKind === "review") insertRetry(session, activity.key);
-      else if (sessionKind === "errors") {
-        insertRetry(session, activity.key);
+    session.correctStreak[activity.key] = decision.streak;
+    if (decision.recordOutcome === "practice") {
+      state.progress[activity.key] = recordPracticePass(previousRecord, session.date, decision.pendingConfirmation);
+    } else {
+      state.progress[activity.key] = scheduleReview(previousRecord, decision.recordOutcome, session.date);
+    }
+    if (decision.retry && (session.retryCount[activity.key] || 0) < MAX_REINFORCEMENT_INSERTIONS) {
+      insertRetry(session, activity.key, { ...decision, avoidChoiceIndex: detail.choiceIndex });
+    }
+    if (decision.recordOutcome === "fail") {
+      if (sessionKind === "errors" || sessionKind === "learning") {
         enqueueReviewActivity(state.reviewDaily, activity.key);
-      } else enqueueReviewActivity(state.reviewDaily, activity.key);
+      }
     }
-    currentResult = { entry, activity, outcome, detail, sessionKind };
+    currentResult = { entry, activity, outcome, detail, sessionKind, feedback: decision.feedback };
     saveState();
     preloadUpcomingAudio();
-    if (shouldAutoAdvance(outcome)) showQuickPass(activity);
+    if (shouldAutoAdvance(outcome)) showQuickPass(activity, decision.feedback);
     else renderResult();
   }
 
-  function showQuickPass(activity) {
+  function showQuickPass(activity, feedbackText = "") {
     const card = screen.querySelector(".question-card");
     if (!card) {
       renderCurrent({ animate: true });
@@ -1621,7 +1734,8 @@
     feedback.className = "quick-feedback";
     feedback.setAttribute("role", "status");
     feedback.setAttribute("aria-live", "polite");
-    feedback.innerHTML = `<strong>正确</strong><span>${escapeHtml(activity.mode === "spelling" ? activity.meaning : "下一题")}</span>`;
+    const detail = feedbackText || (activity.mode === "spelling" ? activity.meaning : "下一题");
+    feedback.innerHTML = `<strong>正确</strong><span>${escapeHtml(detail)}</span>`;
     card.append(feedback);
     card.classList.add("quick-pass");
     const delay = activity.mode === "spelling" ? SPELLING_MEANING_DELAY_MS : QUICK_PASS_DELAY_MS;
