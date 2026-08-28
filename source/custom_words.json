@@ -118,6 +118,20 @@
     "addedAt": "2026-08-25"
   },
   {
+    "id": "department",
+    "term": "department",
+    "meaning": "n. 部门, 系, 机关\\n[医] 部, 科",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "后台录入生词",
+    "category": "我的同步错词",
+    "addedAt": "2026-08-28",
+    "phonetic": "di'pɑ:tmәnt",
+    "lastReportedAt": "2026-08-28",
+    "reportedCount": 1
+  },
+  {
     "id": "end",
     "term": "end",
     "meaning": "目的；目标",
@@ -475,8 +489,8 @@
     "category": "我的同步错词",
     "addedAt": "2026-08-28",
     "phonetic": "ri'gɑ:d",
-    "lastReportedAt": "2026-08-28",
-    "reportedCount": 1
+    "reportedCount": 1,
+    "lastReportedAt": "2026-08-28"
   },
   {
     "id": "resilience",

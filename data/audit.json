@@ -1,14 +1,14 @@
 {
   "sourceRevision": 4,
   "sourceRows": 749,
-  "uniqueEntries": 692,
+  "uniqueEntries": 693,
   "realErrorRows": 46,
-  "realErrorEntries": 94,
-  "customEntries": 50,
+  "realErrorEntries": 95,
+  "customEntries": 51,
   "overrideEntries": 5,
   "archivedEntries": 0,
   "activities": {
-    "recognition": 471,
+    "recognition": 472,
     "spelling": 272
   },
   "sectionRows": {
@@ -21,5 +21,5 @@
   "untraceableEntries": 0,
   "duplicateIds": 0,
   "numberVariantAliases": 24,
-  "partOfSpeechEntries": 692
+  "partOfSpeechEntries": 693
 }

@@ -444,6 +444,33 @@
     "audioPath": "audio/deliberately.mp3"
   },
   {
+    "id": "department",
+    "term": "department",
+    "meaning": "n. 部门, 系, 机关\\n[医] 部, 科",
+    "note": "后台录入生词",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "department"
+    ],
+    "errorNote": "后台录入生词",
+    "userAddedAt": "2026-08-28",
+    "sourceType": "user",
+    "phonetic": "di'pɑ:tmәnt",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-08-28",
+    "partOfSpeech": "名词",
+    "sourceRevision": 4,
+    "audioText": "department",
+    "audioPath": "audio/department.mp3"
+  },
+  {
     "id": "disbelief",
     "term": "disbelief",
     "meaning": "难以置信",
