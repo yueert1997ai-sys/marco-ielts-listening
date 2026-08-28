@@ -31,11 +31,15 @@ jobs:
       - run: python scripts/generate_audio.py
       - run: python scripts/validate_release.py
       - run: node tests/test_logic.js
+      - run: python -m unittest tests/test_vocabulary_admin.py tests/test_project_docs.py
+      - name: Update project handoff docs
+        run: python scripts/update_project_docs.py --github-event "$GITHUB_EVENT_PATH"
+      - run: python scripts/check_docs_sync.py
       - name: Commit vocabulary update
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add source/custom_words.json source/vocabulary_overrides.json data/listening.json data/audit.json audio
+          git add source/custom_words.json source/vocabulary_overrides.json data/listening.json data/audit.json audio CHANGELOG.md docs/HANDOFF.md
           if git diff --cached --quiet; then
             echo "No vocabulary change"
           else
