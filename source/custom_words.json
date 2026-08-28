@@ -128,8 +128,8 @@
     "category": "我的同步错词",
     "addedAt": "2026-08-28",
     "phonetic": "di'pɑ:tmәnt",
-    "lastReportedAt": "2026-08-28",
-    "reportedCount": 1
+    "reportedCount": 1,
+    "lastReportedAt": "2026-08-28"
   },
   {
     "id": "end",
@@ -572,6 +572,20 @@
     "reason": "今日生词：识义；专有名词",
     "category": "我的同步错词",
     "addedAt": "2026-08-26"
+  },
+  {
+    "id": "tethered",
+    "term": "tethered",
+    "meaning": "n. 系绳, 系链, 界限, 范围\\nvt. 栓, 束缚, 限制",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "后台录入生词",
+    "category": "我的同步错词",
+    "addedAt": "2026-08-28",
+    "phonetic": "'teðә",
+    "lastReportedAt": "2026-08-28",
+    "reportedCount": 1
   },
   {
     "id": "textile",

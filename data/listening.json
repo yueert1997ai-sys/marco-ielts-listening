@@ -2157,6 +2157,33 @@
     "audioPath": "audio/string.mp3"
   },
   {
+    "id": "tethered",
+    "term": "tethered",
+    "meaning": "n. 系绳, 系链, 界限, 范围\\nvt. 栓, 束缚, 限制",
+    "note": "后台录入生词",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "tethered"
+    ],
+    "errorNote": "后台录入生词",
+    "userAddedAt": "2026-08-28",
+    "sourceType": "user",
+    "phonetic": "'teðә",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-08-28",
+    "partOfSpeech": "名词",
+    "sourceRevision": 4,
+    "audioText": "tethered",
+    "audioPath": "audio/tethered.mp3"
+  },
+  {
     "id": "textile",
     "term": "textile",
     "meaning": "纺织品；纺织业；纺织的",
