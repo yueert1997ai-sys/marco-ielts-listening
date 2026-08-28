@@ -103,8 +103,8 @@
     "reason": "production end-to-end dedupe verification",
     "category": "我的同步错词",
     "addedAt": "2026-08-27",
-    "lastReportedAt": "2026-08-27",
-    "reportedCount": 1
+    "reportedCount": 1,
+    "lastReportedAt": "2026-08-27"
   },
   {
     "id": "deliberately",
@@ -463,6 +463,20 @@
     "addedAt": "2026-08-27",
     "reportedCount": 1,
     "lastReportedAt": "2026-08-27"
+  },
+  {
+    "id": "regard",
+    "term": "regard",
+    "meaning": "n. 关心, 注意, 尊敬, 关系, 问候\\nvt. 视为, 注意, 考虑, 和...有关, 看待\\nvi. 注视, 注意",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "后台录入生词",
+    "category": "我的同步错词",
+    "addedAt": "2026-08-28",
+    "phonetic": "ri'gɑ:d",
+    "lastReportedAt": "2026-08-28",
+    "reportedCount": 1
   },
   {
     "id": "resilience",

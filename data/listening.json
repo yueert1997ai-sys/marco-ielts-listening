@@ -1769,6 +1769,33 @@
     "audioPath": "audio/reference.mp3"
   },
   {
+    "id": "regard",
+    "term": "regard",
+    "meaning": "n. 关心, 注意, 尊敬, 关系, 问候\\nvt. 视为, 注意, 考虑, 和...有关, 看待\\nvi. 注视, 注意",
+    "note": "后台录入生词",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "regard"
+    ],
+    "errorNote": "后台录入生词",
+    "userAddedAt": "2026-08-28",
+    "sourceType": "user",
+    "phonetic": "ri'gɑ:d",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-08-28",
+    "partOfSpeech": "名词",
+    "sourceRevision": 4,
+    "audioText": "regard",
+    "audioPath": "audio/regard.mp3"
+  },
+  {
     "id": "relief",
     "term": "relief",
     "meaning": "松了口气",
