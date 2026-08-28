@@ -9,12 +9,12 @@ function test(name, fn) {
 }
 
 const items = [
-  { id: "carpet", term: "carpet", meaning: "地毯", modes: ["spelling", "recognition"], isRealError: true, category: "住房", acceptedAnswers: ["carpet"] },
+  { id: "carpet", term: "carpet", meaning: "地毯", partOfSpeech: "名词", modes: ["spelling", "recognition"], isRealError: true, category: "住房", acceptedAnswers: ["carpet"] },
   ...Array.from({ length: 30 }, (_, index) => ({
     id: `s${index}`, term: `spell${index}`, meaning: `拼写${index}`, modes: ["spelling"], isRealError: false, category: "日常", acceptedAnswers: [`spell${index}`],
   })),
   ...Array.from({ length: 30 }, (_, index) => ({
-    id: `r${index}`, term: `read${index}`, meaning: `看义${index}`, modes: ["recognition"], isRealError: false, category: "学校", acceptedAnswers: [`read${index}`],
+    id: `r${index}`, term: `read${index}`, meaning: `看义${index}`, partOfSpeech: "名词", modes: ["recognition"], isRealError: false, category: "学校", acceptedAnswers: [`read${index}`],
   })),
 ];
 const activities = logic.makeActivities(items);
@@ -70,6 +70,18 @@ test("review deck contains only due activities with prior errors", () => {
   const deck = logic.createReviewDeck(activities, progress, "2026-08-25");
   assert.deepEqual([...deck].sort(), ["r2:recognition", "s0:spelling", "s1:spelling"]);
   assert.deepEqual(logic.createReviewDeck(activities, progress, "2026-08-25", 1), ["s0:spelling"]);
+});
+test("error training contains only real-error activities", () => {
+  const deck = logic.createErrorTrainingDeck(activities, "2026-08-25");
+  assert.deepEqual([...deck].sort(), ["carpet:recognition", "carpet:spelling"]);
+});
+test("error training is a third queue independent from learning and due review", () => {
+  const state = logic.safeState(null);
+  logic.prepareDaily(state, activities, "2026-08-25");
+  assert(state.errorDaily.baseKeys.includes("carpet:spelling"));
+  assert(state.errorDaily.baseKeys.includes("carpet:recognition"));
+  assert.notStrictEqual(state.errorDaily, state.daily);
+  assert.notStrictEqual(state.errorDaily, state.reviewDaily);
 });
 test("new learning and high-frequency review are prepared as separate queues", () => {
   const state = logic.safeState({ progress: { "carpet:spelling": { lapses: 6, due: "2026-08-25" } } });
@@ -162,6 +174,11 @@ test("choices contain target and four unique meanings", () => {
   const choices = logic.buildChoices(activity, activities);
   assert.equal(choices.length, 4); assert.equal(new Set(choices).size, 4); assert(choices.includes("地毯"));
 });
+test("recognition choices expose the matched part of speech", () => {
+  const activity = activities.find((item) => item.key === "carpet:recognition");
+  assert.equal(logic.partOfSpeechForMeaning(activity, "地毯", activities), "名词");
+  assert.equal(logic.partOfSpeechForMeaning(activity, "未知释义", activities), "词性待补");
+});
 test("same daily deck survives prepare", () => {
   const state = logic.prepareDaily(logic.safeState(null), activities, "2026-08-23");
   const first = state.daily;
@@ -187,18 +204,20 @@ test("only a clean pass auto-advances", () => {
 });
 test("quick pass feedback stays brief but visible", () => {
   assert(logic.QUICK_PASS_DELAY_MS >= 450 && logic.QUICK_PASS_DELAY_MS <= 650);
+  assert(logic.SPELLING_MEANING_DELAY_MS >= 850 && logic.SPELLING_MEANING_DELAY_MS <= 1100);
   assert(logic.QUESTION_TRANSITION_MS >= 140 && logic.QUESTION_TRANSITION_MS <= 240);
 });
 test("result note has no dangling separator when source note is empty", () => {
   assert.equal(logic.formatResultNote("", "fail", "learning"), "已加入高频复习");
   assert.equal(logic.formatResultNote("—", "fail", "learning"), "已加入高频复习");
   assert.equal(logic.formatResultNote("", "fail", "review"), "已放回复习队列");
+  assert.equal(logic.formatResultNote("", "fail", "errors"), "已放回错词专项队列");
   assert.equal(logic.formatResultNote("双写错误", "fail", "learning"), "双写错误 · 已加入高频复习");
 });
 test("different published version triggers an update", () => assert(logic.hasVersionUpdate("v2.11.1", "v2.11.2")));
 test("matching published version does not trigger an update", () => assert.equal(logic.hasVersionUpdate("v2.11.2", "v2.11.2"), false));
 test("intervals match spec", () => assert.deepEqual(logic.INTERVALS, [1, 3, 7, 14, 30, 60]));
-test("visible app version matches this release", () => assert.equal(logic.APP_VERSION, "v2.11.2"));
+test("visible app version matches this release", () => assert.equal(logic.APP_VERSION, "v2.11.3"));
 test("direction response limit is two seconds", () => assert.equal(logic.DIRECTION_RESPONSE_LIMIT_MS, 2000));
 test("hard direction response limit is one second", () => assert.equal(logic.HARD_DIRECTION_RESPONSE_LIMIT_MS, 1000));
 test("hard direction audio plays at one point four speed", () => assert.equal(logic.HARD_DIRECTION_PLAYBACK_RATE, 1.4));

@@ -74,7 +74,7 @@ async function screenshot(send, name) {
     const registration = await navigator.serviceWorker.ready;
     await new Promise((resolve) => setTimeout(resolve, 5000));
     const names = await caches.keys();
-    const cache = names.includes('ielts-listening-v25') ? await caches.open('ielts-listening-v25') : null;
+    const cache = names.includes('ielts-listening-v26') ? await caches.open('ielts-listening-v26') : null;
     const keys = cache ? await cache.keys() : [];
     return {
       active: registration.active?.state || null,
@@ -192,6 +192,7 @@ async function screenshot(send, name) {
   const recognition = await evaluate(send, `(() => ({
     mode: document.querySelector('.mode-label')?.textContent,
     choices: document.querySelectorAll('.choice').length,
+    partsOfSpeech: [...document.querySelectorAll('.choice-pos')].map((item) => item.textContent.trim()),
     timer: Boolean(document.querySelector('.timer-bar')),
     timerText: document.querySelector('#timer-count')?.textContent
   }))()`);
@@ -272,6 +273,7 @@ async function screenshot(send, name) {
     || result.note.trim().startsWith('—')
     || !fastPass.feedback?.includes('正确') || fastPass.resultVisibleDuringFeedback
     || !fastPass.advancedToQuestion || !fastPass.feedbackGone || fastPass.before === fastPass.after
+    || recognition.partsOfSpeech.length !== 4 || recognition.partsOfSpeech.some((label) => !label || label.includes('待补'))
     || shortRecognition.controls !== 5 || shortRecognition.fullyVisible !== 5
     || !shortRecognition.resultContinueVisible
     || reviewHome.disabled || !reviewHome.text.includes('待复习')) {

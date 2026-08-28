@@ -16,6 +16,7 @@ CUSTOM_SOURCE = ROOT / "source" / "custom_words.json"
 OVERRIDE_SOURCE = ROOT / "source" / "vocabulary_overrides.json"
 OUTPUT = ROOT / "data" / "listening.json"
 AUDIT = ROOT / "data" / "audit.json"
+ECDICT_LITE = ROOT / "admin" / "public" / "data" / "ecdict-lite.json"
 
 SECTION_MODES = {
     "P1 + P4 必会听写词": {"spelling"},
@@ -26,6 +27,26 @@ SECTION_MODES = {
 SPELL_MARKERS = ("拼写", "复数", "词形", "声音转拼写")
 RECOGNITION_MARKERS = (
     "选项", "看懂", "第二义", "短语", "组合", "加工", "地图", "基础", "语义", "陌生词", "听义"
+)
+PART_OF_SPEECH_LABELS = {
+    "n": "名词", "pl": "名词", "v": "动词", "vt": "动词", "vi": "动词",
+    "a": "形容词", "adj": "形容词", "ad": "副词", "adv": "副词",
+    "prep": "介词", "conj": "连词", "pron": "代词", "num": "数词",
+    "art": "冠词", "abbr": "缩写", "aux": "助动词", "int": "感叹词",
+}
+PART_OF_SPEECH_OVERRIDES = {
+    "end": "名词 / 动词",
+    "mass-produced": "形容词",
+    "principled": "形容词",
+    "stalled": "形容词",
+    "affordable": "形容词",
+    "funding": "名词",
+    "recycling": "名词",
+    "well-organised": "形容词",
+}
+POS_MARKER = re.compile(
+    r"(?:^|[；\n])\s*(abbr|adj|adv|prep|conj|pron|num|art|aux|int|vt|vi|pl|n|v|a|ad)\.",
+    re.IGNORECASE,
 )
 
 
@@ -106,6 +127,28 @@ def key_for(term: str) -> str:
     return re.sub(r"[^a-z0-9]+", "-", term.lower()).strip("-")
 
 
+def part_of_speech_for(item: dict, dictionary: dict | None) -> str:
+    explicit = str(item.get("partOfSpeech") or item.get("pos") or "").strip()
+    if explicit:
+        return explicit
+    item_id = item["id"]
+    if item_id in PART_OF_SPEECH_OVERRIDES:
+        return PART_OF_SPEECH_OVERRIDES[item_id]
+    if not dictionary:
+        return ""
+    entries = dictionary.get("entries") or {}
+    aliases = dictionary.get("aliases") or {}
+    entry = entries.get(item_id) or entries.get(aliases.get(item_id, "")) or {}
+    labels: list[str] = []
+    for marker in POS_MARKER.findall(str(entry.get("translation") or "")):
+        label = PART_OF_SPEECH_LABELS.get(marker.lower())
+        if label and label not in labels:
+            labels.append(label)
+    if labels:
+        return " / ".join(labels)
+    return "短语" if " " in item["term"].strip() else "词性待补"
+
+
 def find_number_canonical(merged: dict[str, dict], term: str) -> dict | None:
     term_key = key_for(term)
     return next((candidate for candidate in merged.values()
@@ -156,7 +199,7 @@ def infer_error_modes(row: dict, existing: set[str]) -> set[str]:
 
 def build(
     rows: list[dict], revision: int, custom_rows: list[dict] | None = None,
-    overrides: list[dict] | None = None,
+    overrides: list[dict] | None = None, dictionary: dict | None = None,
 ) -> tuple[list[dict], dict]:
     merged: dict[str, dict] = {}
     real_errors: set[str] = set()
@@ -279,6 +322,8 @@ def build(
         item["sourceType"] = "user"
         if row.get("phonetic"):
             item["phonetic"] = row["phonetic"]
+        if row.get("partOfSpeech") or row.get("pos"):
+            item["partOfSpeech"] = str(row.get("partOfSpeech") or row.get("pos")).strip()
         if row.get("reportedCount"):
             item["reportedCount"] = int(row["reportedCount"])
         if row.get("lastReportedAt"):
@@ -304,7 +349,7 @@ def build(
             continue
         if not item:
             continue
-        for field in ("meaning", "category", "phonetic"):
+        for field in ("meaning", "category", "phonetic", "partOfSpeech"):
             if field in override:
                 value = str(override[field]).strip()
                 if not value and field != "phonetic":
@@ -328,6 +373,7 @@ def build(
 
     items = sorted(merged.values(), key=lambda item: (not item["isRealError"], item["term"].lower()))
     for item in items:
+        item["partOfSpeech"] = part_of_speech_for(item, dictionary)
         item["modes"].sort()
         item["sourceRevision"] = revision
         item["audioText"] = item["term"]
@@ -352,6 +398,7 @@ def build(
         "untraceableEntries": 0,
         "duplicateIds": len(items) - len({item["id"] for item in items}),
         "numberVariantAliases": sum(len(item.get("numberVariants", [])) for item in items),
+        "partOfSpeechEntries": sum(bool(item.get("partOfSpeech")) for item in items),
     }
     return items, audit
 
@@ -372,6 +419,8 @@ def validate(items: list[dict], audit: dict) -> None:
     for item in items:
         if not item["term"] or not item["meaning"] or not item["modes"]:
             raise SystemExit(f"Incomplete entry: {item}")
+        if "recognition" in item["modes"] and not item.get("partOfSpeech"):
+            raise SystemExit(f"Recognition entry has no part of speech: {item['term']}")
         if "spelling" in item["modes"]:
             if item["acceptedAnswers"] != [item["term"]]:
                 raise SystemExit(f"Spelling answer was loosened: {item['term']}")
@@ -386,7 +435,8 @@ def main() -> None:
     rows = parse_rows(document["content"])
     custom_rows = json.loads(CUSTOM_SOURCE.read_text(encoding="utf-8")) if CUSTOM_SOURCE.exists() else []
     overrides = json.loads(OVERRIDE_SOURCE.read_text(encoding="utf-8")) if OVERRIDE_SOURCE.exists() else []
-    items, audit = build(rows, revision, custom_rows, overrides)
+    dictionary = json.loads(ECDICT_LITE.read_text(encoding="utf-8")) if ECDICT_LITE.exists() else None
+    items, audit = build(rows, revision, custom_rows, overrides, dictionary)
     validate(items, audit)
     OUTPUT.parent.mkdir(parents=True, exist_ok=True)
     OUTPUT.write_text(json.dumps(items, ensure_ascii=False, indent=2), encoding="utf-8")

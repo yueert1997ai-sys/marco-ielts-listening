@@ -2,7 +2,7 @@
   "use strict";
 
   const STORAGE_KEY = "marcoIeltsListening.v1";
-  const APP_VERSION = "v2.11.2";
+  const APP_VERSION = "v2.11.3";
   const AUTO_UPDATE_SESSION_KEY = "marcoIeltsListening.autoUpdateAttempt";
   const AUTO_UPDATE_THROTTLE_MS = 60 * 1000;
   const TRAINING_RESET_ID = "fresh-start-v2.5.0";
@@ -10,6 +10,7 @@
   const DECK_REVISION = "whole-bank-v2";
   const DAILY_PER_MODE = 25;
   const DAILY_REVIEW_LIMIT = 30;
+  const ERROR_TRAINING_PER_MODE = 25;
   const BROWSE_PAGE_SIZE = 20;
   const RESPONSE_LIMIT_MS = 5000;
   const DIRECTION_RESPONSE_LIMIT_MS = 2000;
@@ -19,6 +20,7 @@
   const HARD_DIRECTION_IDS = ["northeast", "southeast", "southwest", "northwest"];
   const AUDIO_PLAYBACK_RATE = 1.2;
   const QUICK_PASS_DELAY_MS = 560;
+  const SPELLING_MEANING_DELAY_MS = 950;
   const QUESTION_TRANSITION_MS = 180;
   const INTERVALS = [1, 3, 7, 14, 30, 60];
   const REPOSITORY_URL = "https://github.com/yueert1997ai-sys/marco-ielts-listening";
@@ -70,6 +72,7 @@
       customItems: [],
       daily: null,
       reviewDaily: null,
+      errorDaily: null,
       streak: 0,
       lastCompletedDate: null,
       trainingResetId: null,
@@ -86,6 +89,7 @@
       customItems: Array.isArray(raw.customItems) ? raw.customItems : [],
       daily: raw.daily && typeof raw.daily === "object" ? raw.daily : null,
       reviewDaily: raw.reviewDaily && typeof raw.reviewDaily === "object" ? raw.reviewDaily : null,
+      errorDaily: raw.errorDaily && typeof raw.errorDaily === "object" ? raw.errorDaily : null,
     };
   }
 
@@ -96,6 +100,7 @@
       progress: {},
       daily: null,
       reviewDaily: null,
+      errorDaily: null,
       streak: 0,
       lastCompletedDate: null,
       trainingResetId: resetId,
@@ -231,6 +236,19 @@
     return seededShuffle(candidates.slice(0, limit).map((activity) => activity.key), `${today}:review-order`);
   }
 
+  function createErrorTrainingDeck(activities, today = dateKey(), starred = {}, limitPerMode = ERROR_TRAINING_PER_MODE) {
+    function pick(mode) {
+      const candidates = activities.filter((activity) => activity.mode === mode && activity.isRealError);
+      const important = candidates.filter((activity) => starred[activity.id]);
+      const ordinary = candidates.filter((activity) => !starred[activity.id]);
+      return [
+        ...seededShuffle(important, `${today}:errors:${mode}:starred`),
+        ...seededShuffle(ordinary, `${today}:errors:${mode}:ordinary`),
+      ].slice(0, limitPerMode).map((activity) => activity.key);
+    }
+    return seededShuffle([...pick("spelling"), ...pick("recognition")], `${today}:errors:order`);
+  }
+
   function makeDailySession(date, baseKeys) {
     return {
       date,
@@ -261,6 +279,10 @@
     if (!state.reviewDaily || state.reviewDaily.date !== today || !Array.isArray(state.reviewDaily.queue)) {
       const reviewKeys = createReviewDeck(activities, state.progress, today);
       state.reviewDaily = makeDailySession(today, reviewKeys);
+    }
+    if (!state.errorDaily || state.errorDaily.date !== today || !Array.isArray(state.errorDaily.queue)) {
+      const errorKeys = createErrorTrainingDeck(activities, today, state.starred);
+      state.errorDaily = makeDailySession(today, errorKeys);
     }
     return state;
   }
@@ -314,6 +336,14 @@
       if (meanings.length === 3) break;
     }
     return seededShuffle([target, ...meanings], `${activity.key}:${seed}:choices`);
+  }
+
+  function partOfSpeechForMeaning(activity, meaning, activities) {
+    if (meaning === activity.meaning) return activity.partOfSpeech || "词性待补";
+    const match = activities.find((item) =>
+      item.mode === "recognition" && item.meaning === meaning && item.partOfSpeech
+    );
+    return match?.partOfSpeech || "词性待补";
   }
 
   function createBrowseDeck(sourceItems, filter = "all", seed = "default", starred = {}) {
@@ -394,7 +424,7 @@
     });
     state.customItems = [...customItems.values()];
 
-    const sessions = [state.daily, state.reviewDaily].filter(Boolean);
+    const sessions = [state.daily, state.reviewDaily, state.errorDaily].filter(Boolean);
     if (!sessions.length) return state;
     const uniqueKeys = (values) => {
       const seen = new Set();
@@ -638,21 +668,22 @@
     const detail = /^[—–-]+$/.test(rawDetail) ? "" : rawDetail;
     const followUp = outcome === "pass"
       ? ""
-      : (sessionKind === "review" ? "已放回复习队列" : "已加入高频复习");
+      : (sessionKind === "learning" ? "已加入高频复习" : (sessionKind === "errors" ? "已放回错词专项队列" : "已放回复习队列"));
     return [detail, followUp].filter(Boolean).join(" · ");
   }
 
   const api = {
     dateKey, addDays, hashString, normaliseAnswer, makeActivities, safeState,
-    createDailyDeck, createLearningDeck, createReviewDeck, prepareDaily, scheduleReview, insertRetry, buildChoices,
+    createDailyDeck, createLearningDeck, createReviewDeck, createErrorTrainingDeck, prepareDaily, scheduleReview, insertRetry, buildChoices,
+    partOfSpeechForMeaning,
     createBrowseDeck, parseWrongWordInput, parseWrongWordDrafts, mergeCustomItems, migrateNumberVariantState, seededShuffle,
     createDirectionDeck, createHardDirectionDeck, judgeDirectionAttempt, isDirectionRunPassed,
     resetTrainingState, applyTrainingReset, applyLearningReviewSplit, enqueueReviewActivity, shouldRevealAnswer,
     hasVersionUpdate, shouldAutoAdvance, formatResultNote,
     RESPONSE_LIMIT_MS, DIRECTION_RESPONSE_LIMIT_MS, HARD_DIRECTION_RESPONSE_LIMIT_MS,
-    AUDIO_PLAYBACK_RATE, HARD_DIRECTION_PLAYBACK_RATE, QUICK_PASS_DELAY_MS, QUESTION_TRANSITION_MS,
+    AUDIO_PLAYBACK_RATE, HARD_DIRECTION_PLAYBACK_RATE, QUICK_PASS_DELAY_MS, SPELLING_MEANING_DELAY_MS, QUESTION_TRANSITION_MS,
     DIRECTION_QUESTION_COUNT, HARD_DIRECTION_IDS,
-    INTERVALS, BROWSE_PAGE_SIZE, DAILY_REVIEW_LIMIT, APP_VERSION,
+    INTERVALS, BROWSE_PAGE_SIZE, DAILY_REVIEW_LIMIT, ERROR_TRAINING_PER_MODE, APP_VERSION,
     TRAINING_RESET_ID, LEARNING_REVIEW_SPLIT_ID, DECK_REVISION,
   };
 
@@ -852,7 +883,9 @@
   }
 
   function currentTrainingSession() {
-    return activeTrainingKind === "review" ? state.reviewDaily : state.daily;
+    if (activeTrainingKind === "review") return state.reviewDaily;
+    if (activeTrainingKind === "errors") return state.errorDaily;
+    return state.daily;
   }
 
   function sessionDone(session) {
@@ -900,10 +933,11 @@
     const browsing = mode === "browse";
     const direction = mode === "direction";
     const reviewing = mode === "review";
+    const errorTraining = mode === "errors";
     appShell.classList.toggle("active-session", activeSession);
     appShell.classList.toggle("browse-mode", browsing);
     appShell.classList.toggle("direction-mode", direction);
-    screenTitle.textContent = browsing ? "随便刷" : (direction ? "方位检测" : (reviewing ? "高频复习" : "今日新词"));
+    screenTitle.textContent = browsing ? "随便刷" : (direction ? "方位检测" : (reviewing ? "高频复习" : (errorTraining ? "错词专项" : "今日新词")));
     if (browsing) dayCount.textContent = "∞";
     else if (direction) updateDirectionChrome();
     else updateChrome();
@@ -918,6 +952,7 @@
     const learningSpelling = state.daily.baseKeys.filter((key) => key.endsWith(":spelling")).length;
     const learningRecognition = state.daily.baseKeys.filter((key) => key.endsWith(":recognition")).length;
     const reviewPending = state.reviewDaily.queue.length;
+    const errorTrainingPending = state.errorDaily.queue.length;
     const buttonText = state.daily.completed ? "今日已完成" : (state.daily.started ? "继续训练" : "开始训练");
     const remaining = Math.max(0, learningTotal - done);
     const errorPoolCount = new Set(Object.entries(state.progress)
@@ -951,6 +986,7 @@
         <details id="home-more" class="home-more">
           <summary><span>更多练习与设置</span><b aria-hidden="true">＋</b></summary>
           <div class="home-menu">
+            <button id="error-training" class="menu-entry error-training-entry" ${errorTrainingPending ? "" : "disabled"}><span>错词专项</span><small>${errorTrainingPending ? `${errorTrainingPending} 题` : (state.errorDaily.completed ? "今日已完成" : "暂无错词")}</small></button>
             <button id="browse" class="menu-entry"><span>随便刷</span><small>自由浏览词库</small></button>
             <button id="starred" class="menu-entry"><span>重点词</span><small>${starredCount} 个</small></button>
             <button id="inbox" class="menu-entry"><span>错词收件箱</span><small>${state.customItems.length} 条待同步</small></button>
@@ -976,6 +1012,12 @@
       renderCurrent();
     });
     document.getElementById("direction")?.addEventListener("click", directionIntroScreen);
+    document.getElementById("error-training")?.addEventListener("click", () => {
+      activeTrainingKind = "errors";
+      state.errorDaily.started = true;
+      saveState();
+      renderCurrent();
+    });
     document.getElementById("browse")?.addEventListener("click", browseScreen);
     document.getElementById("inbox")?.addEventListener("click", inboxScreen);
     document.getElementById("starred")?.addEventListener("click", () => {
@@ -1294,6 +1336,22 @@
     });
   }
 
+  function primeUpcomingSpellingKeyboard() {
+    const nextEntry = currentTrainingSession()?.queue?.[0];
+    const nextActivity = nextEntry ? activityMap.get(nextEntry.key) : null;
+    if (nextActivity?.mode !== "spelling") return;
+    document.querySelector(".keyboard-primer")?.remove();
+    const primer = document.createElement("input");
+    primer.type = "text";
+    primer.inputMode = "text";
+    primer.autocomplete = "off";
+    primer.tabIndex = -1;
+    primer.className = "keyboard-primer";
+    primer.setAttribute("aria-hidden", "true");
+    document.body.append(primer);
+    primer.focus({ preventScroll: true });
+  }
+
   function renderSpelling(entry, activity) {
     window.scrollTo(0, 0);
     screen.innerHTML = `
@@ -1330,6 +1388,7 @@
       recordAttempt(entry, activity, "fail", { skipped: true });
     });
     answerInput.focus({ preventScroll: true });
+    window.setTimeout(() => document.querySelector(".keyboard-primer")?.remove(), 0);
     playAudio(activity, playButton);
   }
 
@@ -1350,7 +1409,7 @@
             <button id="recognition-play" class="test-play" type="button" aria-label="再读一次">▶ 再读</button>
           </div>
           <div class="choices">
-            ${choices.map((choice) => `<button class="choice" data-choice="${escapeHtml(choice)}">${escapeHtml(choice)}</button>`).join("")}
+            ${choices.map((choice) => `<button class="choice" data-choice="${escapeHtml(choice)}"><span class="choice-pos">${escapeHtml(partOfSpeechForMeaning(activity, choice, activities))}</span><span class="choice-meaning">${escapeHtml(choice)}</span></button>`).join("")}
           </div>
           <button id="recognition-dont-know" class="dont-know-button" type="button">不会</button>
         </div>
@@ -1388,7 +1447,8 @@
 
   function renderCurrent(options = {}) {
     const session = currentTrainingSession();
-    setShellMode(activeTrainingKind === "review" ? "review" : "daily", Boolean(session.queue[0]));
+    const shellMode = activeTrainingKind === "review" ? "review" : (activeTrainingKind === "errors" ? "errors" : "daily");
+    setShellMode(shellMode, Boolean(session.queue[0]));
     updateChrome();
     const entry = session.queue[0];
     if (!entry) {
@@ -1398,11 +1458,12 @@
         saveState();
       }
       const isReview = activeTrainingKind === "review";
+      const isErrorTraining = activeTrainingKind === "errors";
       screen.innerHTML = `
         <section class="finished">
           <div class="hero-number">✓</div>
-          <h2>${isReview ? "今天的复习清完了" : "今天的新词学完了"}</h2>
-          <p>${isReview ? "新词学习不受影响，明天再按错误频率和到期时间生成复习。" : "答错的词已进入独立复习池，不会堵住今天的新词进度。"}</p>
+          <h2>${isErrorTraining ? "今天的错词专项完成" : (isReview ? "今天的复习清完了" : "今天的新词学完了")}</h2>
+          <p>${isErrorTraining ? "这一轮只练了真实错词，训练结果已计入记忆曲线。" : (isReview ? "新词学习不受影响，明天再按错误频率和到期时间生成复习。" : "答错的词已进入独立复习池，不会堵住今天的新词进度。")}</p>
           <button id="back-home" class="secondary">返回首页</button>
         </section>`;
       document.getElementById("back-home").addEventListener("click", homeScreen);
@@ -1525,7 +1586,10 @@
     state.progress[activity.key] = scheduleReview(state.progress[activity.key], outcome, session.date);
     if (outcome !== "pass") {
       if (sessionKind === "review") insertRetry(session, activity.key);
-      else enqueueReviewActivity(state.reviewDaily, activity.key);
+      else if (sessionKind === "errors") {
+        insertRetry(session, activity.key);
+        enqueueReviewActivity(state.reviewDaily, activity.key);
+      } else enqueueReviewActivity(state.reviewDaily, activity.key);
     }
     currentResult = { entry, activity, outcome, detail, sessionKind };
     saveState();
@@ -1541,12 +1605,12 @@
       return;
     }
     screen.querySelectorAll("button, input").forEach((control) => { control.disabled = true; });
+    primeUpcomingSpellingKeyboard();
     if (activity.mode === "recognition") {
       const correctChoice = [...card.querySelectorAll(".choice")]
         .find((choice) => choice.dataset.choice === activity.meaning);
       if (correctChoice) {
         correctChoice.classList.add("choice-correct");
-        correctChoice.textContent = `✓ ${correctChoice.textContent}`;
       }
     } else {
       card.closest(".session")?.querySelector(".spelling-input")?.classList.add("answer-correct");
@@ -1557,11 +1621,12 @@
     feedback.className = "quick-feedback";
     feedback.setAttribute("role", "status");
     feedback.setAttribute("aria-live", "polite");
-    feedback.innerHTML = "<strong>正确</strong><span>下一题</span>";
+    feedback.innerHTML = `<strong>正确</strong><span>${escapeHtml(activity.mode === "spelling" ? activity.meaning : "下一题")}</span>`;
     card.append(feedback);
     card.classList.add("quick-pass");
-    window.setTimeout(() => card.classList.add("quick-pass-leave"), QUICK_PASS_DELAY_MS - QUESTION_TRANSITION_MS);
-    window.setTimeout(() => renderCurrent({ animate: true }), QUICK_PASS_DELAY_MS);
+    const delay = activity.mode === "spelling" ? SPELLING_MEANING_DELAY_MS : QUICK_PASS_DELAY_MS;
+    window.setTimeout(() => card.classList.add("quick-pass-leave"), delay - QUESTION_TRANSITION_MS);
+    window.setTimeout(() => renderCurrent({ animate: true }), delay);
   }
 
   function renderResult() {

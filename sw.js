@@ -1,5 +1,5 @@
-const APP_VERSION = "v2.11.2";
-const CACHE = "ielts-listening-v25";
+const APP_VERSION = "v2.11.3";
+const CACHE = "ielts-listening-v26";
 const CORE = [
   "./",
   `./index.html?v=${APP_VERSION}`,

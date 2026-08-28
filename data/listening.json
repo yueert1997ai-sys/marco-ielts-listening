@@ -18,6 +18,7 @@
     "errorNote": "今日生词：整块识义；英式招聘表达",
     "userAddedAt": "2026-08-25",
     "sourceType": "user",
+    "partOfSpeech": "短语",
     "sourceRevision": 4,
     "audioText": "12-month maternity cover contract",
     "audioPath": "audio/12-month-maternity-cover-contract.mp3"
@@ -40,6 +41,7 @@
       "alongside"
     ],
     "errorNote": "真实卡点：地图题",
+    "partOfSpeech": "副词",
     "sourceRevision": 4,
     "audioText": "alongside",
     "audioPath": "audio/alongside.mp3"
@@ -67,6 +69,7 @@
       "beginners"
     ],
     "errorNote": "真实卡点：复数",
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "beginner",
     "audioPath": "audio/beginner.mp3"
@@ -89,6 +92,7 @@
       "bend"
     ],
     "errorNote": "真实卡点：地图题",
+    "partOfSpeech": "动词",
     "sourceRevision": 4,
     "audioText": "bend",
     "audioPath": "audio/bend.mp3"
@@ -111,6 +115,7 @@
       "beyond"
     ],
     "errorNote": "真实卡点：地图题",
+    "partOfSpeech": "介词",
     "sourceRevision": 4,
     "audioText": "beyond",
     "audioPath": "audio/beyond.mp3"
@@ -133,6 +138,7 @@
       "bilingual"
     ],
     "errorNote": "真实卡点：拼写",
+    "partOfSpeech": "形容词",
     "sourceRevision": 4,
     "audioText": "bilingual",
     "audioPath": "audio/bilingual.mp3"
@@ -154,6 +160,7 @@
       "bolder move"
     ],
     "errorNote": "真实卡点：短语识别；bold 的比较级是 bolder",
+    "partOfSpeech": "短语",
     "sourceRevision": 4,
     "audioText": "bolder move",
     "audioPath": "audio/bolder-move.mp3"
@@ -177,6 +184,7 @@
     "errorNote": "今日生词：识义；calorie 的复数",
     "userAddedAt": "2026-08-26",
     "sourceType": "user",
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "calories",
     "audioPath": "audio/calories.mp3"
@@ -200,6 +208,7 @@
     "errorNote": "今日生词：识义",
     "userAddedAt": "2026-08-26",
     "sourceType": "user",
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "capitalism",
     "audioPath": "audio/capitalism.mp3"
@@ -226,6 +235,7 @@
       "carpets"
     ],
     "errorNote": "真实卡点：听义、词形、拼写",
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "carpet",
     "audioPath": "audio/carpet.mp3"
@@ -249,6 +259,7 @@
     "errorNote": "今日生词：不认识；注意动物或生物语境中的群体义",
     "userAddedAt": "2026-08-24",
     "sourceType": "user",
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "colony",
     "audioPath": "audio/colony.mp3"
@@ -270,6 +281,7 @@
       "colossal"
     ],
     "errorNote": "真实卡点：听义；a colossal investment",
+    "partOfSpeech": "形容词",
     "sourceRevision": 4,
     "audioText": "colossal",
     "audioPath": "audio/colossal.mp3"
@@ -295,6 +307,7 @@
     "sourceType": "user",
     "reportedCount": 1,
     "lastReportedAt": "2026-08-27",
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "commitment",
     "audioPath": "audio/commitment.mp3"
@@ -318,6 +331,7 @@
     "errorNote": "今日生词：识义",
     "userAddedAt": "2026-08-25",
     "sourceType": "user",
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "cottage",
     "audioPath": "audio/cottage.mp3"
@@ -343,6 +357,7 @@
     "sourceType": "user",
     "reportedCount": 1,
     "lastReportedAt": "2026-08-27",
+    "partOfSpeech": "助动词",
     "sourceRevision": 4,
     "audioText": "could",
     "audioPath": "audio/could.mp3"
@@ -367,6 +382,7 @@
     "errorNote": "今日生词：原记录 concil，正确拼写为 council；拼写与识义不确定",
     "userAddedAt": "2026-08-24",
     "sourceType": "user",
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "council",
     "audioPath": "audio/council.mp3"
@@ -398,6 +414,7 @@
     "sourceType": "user",
     "reportedCount": 1,
     "lastReportedAt": "2026-08-27",
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "curtain",
     "audioPath": "audio/curtain.mp3"
@@ -421,6 +438,7 @@
     "errorNote": "今日生词：识义；副词",
     "userAddedAt": "2026-08-25",
     "sourceType": "user",
+    "partOfSpeech": "副词",
     "sourceRevision": 4,
     "audioText": "deliberately",
     "audioPath": "audio/deliberately.mp3"
@@ -443,6 +461,7 @@
       "disbelief"
     ],
     "errorNote": "真实卡点：选项识别",
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "disbelief",
     "audioPath": "audio/disbelief.mp3"
@@ -465,6 +484,7 @@
       "electrician"
     ],
     "errorNote": "真实卡点：声音转拼写",
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "electrician",
     "audioPath": "audio/electrician.mp3"
@@ -492,6 +512,7 @@
     "reportedCount": 1,
     "lastReportedAt": "2026-08-27",
     "adminUpdatedAt": "2026-08-27",
+    "partOfSpeech": "名词 / 动词",
     "sourceRevision": 4,
     "audioText": "end",
     "audioPath": "audio/end.mp3"
@@ -516,6 +537,7 @@
       "entrance"
     ],
     "errorNote": "真实卡点：地图题",
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "entrance",
     "audioPath": "audio/entrance.mp3"
@@ -540,6 +562,7 @@
       "equipment"
     ],
     "errorNote": "真实卡点：拼写 / 不可数",
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "equipment",
     "audioPath": "audio/equipment.mp3"
@@ -563,6 +586,7 @@
     "errorNote": "今日生词：识义；常用于建筑物、纪念碑等被建造或竖立",
     "userAddedAt": "2026-08-24",
     "sourceType": "user",
+    "partOfSpeech": "动词",
     "sourceRevision": 4,
     "audioText": "erected",
     "audioPath": "audio/erected.mp3"
@@ -586,6 +610,7 @@
     "errorNote": "今日生词：识义；按语境区分 estate / housing estate",
     "userAddedAt": "2026-08-25",
     "sourceType": "user",
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "estate",
     "audioPath": "audio/estate.mp3"
@@ -607,6 +632,7 @@
       "excessive sweating"
     ],
     "errorNote": "真实卡点：短语识别",
+    "partOfSpeech": "短语",
     "sourceRevision": 4,
     "audioText": "excessive sweating",
     "audioPath": "audio/excessive-sweating.mp3"
@@ -632,6 +658,7 @@
     "sourceType": "user",
     "reportedCount": 1,
     "lastReportedAt": "2026-08-27",
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "expedition",
     "audioPath": "audio/expedition.mp3"
@@ -655,6 +682,7 @@
     "errorNote": "今日生词：识义；常见于 fast-paced environment",
     "userAddedAt": "2026-08-25",
     "sourceType": "user",
+    "partOfSpeech": "形容词",
     "sourceRevision": 4,
     "audioText": "fast-paced",
     "audioPath": "audio/fast-paced.mp3"
@@ -678,6 +706,7 @@
       "fellow students"
     ],
     "errorNote": "真实卡点：组合反应",
+    "partOfSpeech": "短语",
     "sourceRevision": 4,
     "audioText": "fellow students",
     "audioPath": "audio/fellow-students.mp3"
@@ -705,6 +734,7 @@
     "reportedCount": 1,
     "lastReportedAt": "2026-08-27",
     "adminUpdatedAt": "2026-08-27",
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "field",
     "audioPath": "audio/field.mp3"
@@ -726,6 +756,7 @@
       "get to grips with"
     ],
     "errorNote": "真实卡点：听义；不是单独背 grips",
+    "partOfSpeech": "短语",
     "sourceRevision": 4,
     "audioText": "get to grips with",
     "audioPath": "audio/get-to-grips-with.mp3"
@@ -748,6 +779,7 @@
       "gratitude"
     ],
     "errorNote": "真实卡点：选项识别",
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "gratitude",
     "audioPath": "audio/gratitude.mp3"
@@ -771,6 +803,7 @@
     "errorNote": "今日生词：识义；注意 the daily grind",
     "userAddedAt": "2026-08-25",
     "sourceType": "user",
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "grind",
     "audioPath": "audio/grind.mp3"
@@ -793,6 +826,7 @@
       "homesickness"
     ],
     "errorNote": "真实卡点：选项识别",
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "homesickness",
     "audioPath": "audio/homesickness.mp3"
@@ -815,6 +849,7 @@
       "interest rates"
     ],
     "errorNote": "真实卡点：听义 / 拼写；high interest rates",
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "interest rates",
     "audioPath": "audio/interest-rates.mp3"
@@ -836,6 +871,7 @@
       "intrinsic"
     ],
     "errorNote": "真实卡点：语义识别；intrinsic to the company",
+    "partOfSpeech": "形容词",
     "sourceRevision": 4,
     "audioText": "intrinsic",
     "audioPath": "audio/intrinsic.mp3"
@@ -859,6 +895,7 @@
     "errorNote": "今日生词：识义；工作语境常指同时处理多项任务",
     "userAddedAt": "2026-08-25",
     "sourceType": "user",
+    "partOfSpeech": "动词",
     "sourceRevision": 4,
     "audioText": "juggle",
     "audioPath": "audio/juggle.mp3"
@@ -882,6 +919,7 @@
     "errorNote": "今日生词：识义",
     "userAddedAt": "2026-08-26",
     "sourceType": "user",
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "lane",
     "audioPath": "audio/lane.mp3"
@@ -905,6 +943,7 @@
     "errorNote": "今日生词：整句听义；by means of 表示通过、借助",
     "userAddedAt": "2026-08-26",
     "sourceType": "user",
+    "partOfSpeech": "短语",
     "sourceRevision": 4,
     "audioText": "Large pans of sap called evaporators are heated by means of a fire",
     "audioPath": "audio/large-pans-of-sap-called-evaporators-are-heated-by-means-of-a-fire.mp3"
@@ -929,6 +968,7 @@
       "lead"
     ],
     "errorNote": "真实卡点：第二义，读 /led/",
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "lead",
     "audioPath": "audio/lead.mp3"
@@ -952,6 +992,7 @@
       "litter"
     ],
     "errorNote": "真实卡点：听义",
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "litter",
     "audioPath": "audio/litter.mp3"
@@ -975,6 +1016,7 @@
     "errorNote": "今日生词：整块识义；商业语境",
     "userAddedAt": "2026-08-25",
     "sourceType": "user",
+    "partOfSpeech": "短语",
     "sourceRevision": 4,
     "audioText": "low profit margins",
     "audioPath": "audio/low-profit-margins.mp3"
@@ -997,6 +1039,7 @@
       "make their own"
     ],
     "errorNote": "真实卡点：短语反应",
+    "partOfSpeech": "短语",
     "sourceRevision": 4,
     "audioText": "make their own",
     "audioPath": "audio/make-their-own.mp3"
@@ -1019,6 +1062,7 @@
       "mass-produced"
     ],
     "errorNote": "真实卡点：选项识别",
+    "partOfSpeech": "形容词",
     "sourceRevision": 4,
     "audioText": "mass-produced",
     "audioPath": "audio/mass-produced.mp3"
@@ -1042,6 +1086,7 @@
       "meal"
     ],
     "errorNote": "真实卡点：基础生活词",
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "meal",
     "audioPath": "audio/meal.mp3"
@@ -1067,6 +1112,7 @@
     "sourceType": "user",
     "reportedCount": 1,
     "lastReportedAt": "2026-08-27",
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "means",
     "audioPath": "audio/means.mp3"
@@ -1090,6 +1136,7 @@
     "errorNote": "自动同步链路验收；阅读识词",
     "userAddedAt": "2026-08-24",
     "sourceType": "user",
+    "partOfSpeech": "形容词",
     "sourceRevision": 4,
     "audioText": "meticulous",
     "audioPath": "audio/meticulous.mp3"
@@ -1113,6 +1160,7 @@
       "midday"
     ],
     "errorNote": "真实卡点：听义 / 拼写",
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "midday",
     "audioPath": "audio/midday.mp3"
@@ -1136,6 +1184,7 @@
       "mild"
     ],
     "errorNote": "真实卡点：看懂",
+    "partOfSpeech": "形容词",
     "sourceRevision": 4,
     "audioText": "mild",
     "audioPath": "audio/mild.mp3"
@@ -1161,6 +1210,7 @@
     "sourceType": "user",
     "reportedCount": 1,
     "lastReportedAt": "2026-08-27",
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "mine",
     "audioPath": "audio/mine.mp3"
@@ -1183,6 +1233,7 @@
       "morale"
     ],
     "errorNote": "真实卡点：陌生词吸附",
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "morale",
     "audioPath": "audio/morale.mp3"
@@ -1208,6 +1259,7 @@
     "sourceType": "user",
     "reportedCount": 1,
     "lastReportedAt": "2026-08-27",
+    "partOfSpeech": "副词",
     "sourceRevision": 4,
     "audioText": "neatly",
     "audioPath": "audio/neatly.mp3"
@@ -1230,6 +1282,7 @@
       "neglecting"
     ],
     "errorNote": "真实卡点：加工慢",
+    "partOfSpeech": "动词",
     "sourceRevision": 4,
     "audioText": "neglecting",
     "audioPath": "audio/neglecting.mp3"
@@ -1253,6 +1306,7 @@
     "errorNote": "今日生词：识义；名词",
     "userAddedAt": "2026-08-26",
     "sourceType": "user",
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "obesity",
     "audioPath": "audio/obesity.mp3"
@@ -1276,6 +1330,7 @@
       "oven"
     ],
     "errorNote": "真实卡点：听义",
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "oven",
     "audioPath": "audio/oven.mp3"
@@ -1301,6 +1356,7 @@
     "sourceType": "user",
     "reportedCount": 1,
     "lastReportedAt": "2026-08-27",
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "pattern",
     "audioPath": "audio/pattern.mp3"
@@ -1326,6 +1382,7 @@
     "sourceType": "user",
     "reportedCount": 1,
     "lastReportedAt": "2026-08-27",
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "period",
     "audioPath": "audio/period.mp3"
@@ -1349,6 +1406,7 @@
     "errorNote": "今日生词：识义；job perks",
     "userAddedAt": "2026-08-25",
     "sourceType": "user",
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "perks",
     "audioPath": "audio/perks.mp3"
@@ -1372,6 +1430,7 @@
     "errorNote": "今日生词：识义；招聘语境与 temporary 相对",
     "userAddedAt": "2026-08-25",
     "sourceType": "user",
+    "partOfSpeech": "形容词",
     "sourceRevision": 4,
     "audioText": "permanent",
     "audioPath": "audio/permanent.mp3"
@@ -1395,6 +1454,7 @@
     "errorNote": "今日生词：识义",
     "userAddedAt": "2026-08-26",
     "sourceType": "user",
+    "partOfSpeech": "形容词",
     "sourceRevision": 4,
     "audioText": "persuasive",
     "audioPath": "audio/persuasive.mp3"
@@ -1417,6 +1477,7 @@
       "pharmacy"
     ],
     "errorNote": "真实卡点：拼写",
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "pharmacy",
     "audioPath": "audio/pharmacy.mp3"
@@ -1442,6 +1503,7 @@
     "sourceType": "user",
     "reportedCount": 1,
     "lastReportedAt": "2026-08-27",
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "post",
     "audioPath": "audio/post.mp3"
@@ -1466,6 +1528,7 @@
     "errorNote": "今日生词：识义；postpone = 推迟",
     "userAddedAt": "2026-08-24",
     "sourceType": "user",
+    "partOfSpeech": "动词",
     "sourceRevision": 4,
     "audioText": "postpone",
     "audioPath": "audio/postpone.mp3"
@@ -1493,6 +1556,7 @@
     "reportedCount": 1,
     "lastReportedAt": "2026-08-27",
     "adminUpdatedAt": "2026-08-27",
+    "partOfSpeech": "形容词",
     "sourceRevision": 4,
     "audioText": "practical",
     "audioPath": "audio/practical.mp3"
@@ -1516,6 +1580,7 @@
     "errorNote": "今日生词：识义；保留英式动词拼写",
     "userAddedAt": "2026-08-26",
     "sourceType": "user",
+    "partOfSpeech": "动词",
     "sourceRevision": 4,
     "audioText": "practise",
     "audioPath": "audio/practise.mp3"
@@ -1538,6 +1603,7 @@
       "preferential"
     ],
     "errorNote": "真实卡点：语义识别",
+    "partOfSpeech": "形容词",
     "sourceRevision": 4,
     "audioText": "preferential",
     "audioPath": "audio/preferential.mp3"
@@ -1560,6 +1626,7 @@
       "prescription"
     ],
     "errorNote": "真实卡点：拼写",
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "prescription",
     "audioPath": "audio/prescription.mp3"
@@ -1585,6 +1652,7 @@
     "sourceType": "user",
     "reportedCount": 1,
     "lastReportedAt": "2026-08-27",
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "principle",
     "audioPath": "audio/principle.mp3"
@@ -1610,6 +1678,7 @@
     "sourceType": "user",
     "reportedCount": 1,
     "lastReportedAt": "2026-08-27",
+    "partOfSpeech": "形容词",
     "sourceRevision": 4,
     "audioText": "principled",
     "audioPath": "audio/principled.mp3"
@@ -1638,6 +1707,7 @@
     "reportedCount": 1,
     "lastReportedAt": "2026-08-27",
     "adminUpdatedAt": "2026-08-27",
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "proposal",
     "audioPath": "audio/proposal.mp3"
@@ -1668,6 +1738,7 @@
     "reportedCount": 1,
     "lastReportedAt": "2026-08-27",
     "adminUpdatedAt": "2026-08-27",
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "purpose",
     "audioPath": "audio/purpose.mp3"
@@ -1692,6 +1763,7 @@
       "reference"
     ],
     "errorNote": "真实卡点：第二义",
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "reference",
     "audioPath": "audio/reference.mp3"
@@ -1714,6 +1786,7 @@
       "relief"
     ],
     "errorNote": "真实卡点：选项识别",
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "relief",
     "audioPath": "audio/relief.mp3"
@@ -1735,6 +1808,7 @@
       "reorganising shifts"
     ],
     "errorNote": "真实卡点：组合反应",
+    "partOfSpeech": "短语",
     "sourceRevision": 4,
     "audioText": "reorganising shifts",
     "audioPath": "audio/reorganising-shifts.mp3"
@@ -1757,6 +1831,7 @@
       "resentful"
     ],
     "errorNote": "真实卡点：选项识别",
+    "partOfSpeech": "形容词",
     "sourceRevision": 4,
     "audioText": "resentful",
     "audioPath": "audio/resentful.mp3"
@@ -1780,6 +1855,7 @@
     "errorNote": "今日生词：识义",
     "userAddedAt": "2026-08-26",
     "sourceType": "user",
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "resilience",
     "audioPath": "audio/resilience.mp3"
@@ -1803,6 +1879,7 @@
     "errorNote": "今日生词：识义；道路语境常指重新铺路面",
     "userAddedAt": "2026-08-24",
     "sourceType": "user",
+    "partOfSpeech": "动词",
     "sourceRevision": 4,
     "audioText": "resurfaced",
     "audioPath": "audio/resurfaced.mp3"
@@ -1824,6 +1901,7 @@
       "retention"
     ],
     "errorNote": "真实卡点：选项识别",
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "retention",
     "audioPath": "audio/retention.mp3"
@@ -1847,6 +1925,7 @@
     "errorNote": "今日生词：形容词义；a round table",
     "userAddedAt": "2026-08-25",
     "sourceType": "user",
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "round",
     "audioPath": "audio/round.mp3"
@@ -1870,6 +1949,7 @@
     "errorNote": "今日生词：识义；与 urban（城市的）相对",
     "userAddedAt": "2026-08-25",
     "sourceType": "user",
+    "partOfSpeech": "形容词",
     "sourceRevision": 4,
     "audioText": "rural",
     "audioPath": "audio/rural.mp3"
@@ -1895,6 +1975,7 @@
     "sourceType": "user",
     "reportedCount": 1,
     "lastReportedAt": "2026-08-27",
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "scale",
     "audioPath": "audio/scale.mp3"
@@ -1920,6 +2001,7 @@
     "sourceType": "user",
     "reportedCount": 1,
     "lastReportedAt": "2026-08-27",
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "soak",
     "audioPath": "audio/soak.mp3"
@@ -1945,6 +2027,7 @@
       "spectators"
     ],
     "errorNote": "真实卡点：不是 spector",
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "spectator",
     "audioPath": "audio/spectator.mp3"
@@ -1966,6 +2049,7 @@
       "stalled"
     ],
     "errorNote": "真实卡点：听义；be stalled by a strike",
+    "partOfSpeech": "形容词",
     "sourceRevision": 4,
     "audioText": "stalled",
     "audioPath": "audio/stalled.mp3"
@@ -1989,6 +2073,7 @@
     "errorNote": "今日生词：识义；专有名词",
     "userAddedAt": "2026-08-26",
     "sourceType": "user",
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "Stoicism",
     "audioPath": "audio/stoicism.mp3"
@@ -2012,6 +2097,7 @@
       "string"
     ],
     "errorNote": "真实卡点：听义",
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "string",
     "audioPath": "audio/string.mp3"
@@ -2035,6 +2121,7 @@
     "errorNote": "今日生词：识义",
     "userAddedAt": "2026-08-26",
     "sourceType": "user",
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "textile",
     "audioPath": "audio/textile.mp3"
@@ -2058,6 +2145,7 @@
     "errorNote": "今日生词：识义",
     "userAddedAt": "2026-08-26",
     "sourceType": "user",
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "therapy",
     "audioPath": "audio/therapy.mp3"
@@ -2079,6 +2167,7 @@
       "thorough"
     ],
     "errorNote": "真实卡点：辨音",
+    "partOfSpeech": "形容词",
     "sourceRevision": 4,
     "audioText": "thorough",
     "audioPath": "audio/thorough.mp3"
@@ -2102,6 +2191,7 @@
       "vacuum"
     ],
     "errorNote": "真实卡点：听义、拼写",
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "vacuum",
     "audioPath": "audio/vacuum.mp3"
@@ -2127,6 +2217,7 @@
     "sourceType": "user",
     "reportedCount": 1,
     "lastReportedAt": "2026-08-27",
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "ventilation",
     "audioPath": "audio/ventilation.mp3"
@@ -2149,6 +2240,7 @@
       "waitress"
     ],
     "errorNote": "真实卡点：拼写",
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "waitress",
     "audioPath": "audio/waitress.mp3"
@@ -2172,6 +2264,7 @@
       "wax"
     ],
     "errorNote": "真实卡点：听义",
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "wax",
     "audioPath": "audio/wax.mp3"
@@ -2192,6 +2285,7 @@
     "acceptedAnswers": [
       "accept"
     ],
+    "partOfSpeech": "动词",
     "sourceRevision": 4,
     "audioText": "accept",
     "audioPath": "audio/accept.mp3"
@@ -2212,6 +2306,7 @@
     "acceptedAnswers": [
       "access"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "access",
     "audioPath": "audio/access.mp3"
@@ -2232,6 +2327,7 @@
     "acceptedAnswers": [
       "accommodation"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "accommodation",
     "audioPath": "audio/accommodation.mp3"
@@ -2252,6 +2348,7 @@
     "acceptedAnswers": [
       "according to"
     ],
+    "partOfSpeech": "短语",
     "sourceRevision": 4,
     "audioText": "according to",
     "audioPath": "audio/according-to.mp3"
@@ -2272,6 +2369,7 @@
     "acceptedAnswers": [
       "account"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "account",
     "audioPath": "audio/account.mp3"
@@ -2292,6 +2390,7 @@
     "acceptedAnswers": [
       "accuracy"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "accuracy",
     "audioPath": "audio/accuracy.mp3"
@@ -2312,6 +2411,7 @@
     "acceptedAnswers": [
       "accurate"
     ],
+    "partOfSpeech": "形容词",
     "sourceRevision": 4,
     "audioText": "accurate",
     "audioPath": "audio/accurate.mp3"
@@ -2332,6 +2432,7 @@
     "acceptedAnswers": [
       "achievement"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "achievement",
     "audioPath": "audio/achievement.mp3"
@@ -2352,6 +2453,7 @@
     "acceptedAnswers": [
       "across from"
     ],
+    "partOfSpeech": "短语",
     "sourceRevision": 4,
     "audioText": "across from",
     "audioPath": "audio/across-from.mp3"
@@ -2372,6 +2474,7 @@
     "acceptedAnswers": [
       "actually"
     ],
+    "partOfSpeech": "副词",
     "sourceRevision": 4,
     "audioText": "actually",
     "audioPath": "audio/actually.mp3"
@@ -2394,6 +2497,7 @@
     "acceptedAnswers": [
       "address"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "address",
     "audioPath": "audio/address.mp3"
@@ -2414,6 +2518,7 @@
     "acceptedAnswers": [
       "adjacent"
     ],
+    "partOfSpeech": "形容词",
     "sourceRevision": 4,
     "audioText": "adjacent",
     "audioPath": "audio/adjacent.mp3"
@@ -2434,6 +2539,7 @@
     "acceptedAnswers": [
       "admire"
     ],
+    "partOfSpeech": "动词",
     "sourceRevision": 4,
     "audioText": "admire",
     "audioPath": "audio/admire.mp3"
@@ -2454,6 +2560,7 @@
     "acceptedAnswers": [
       "advantage"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "advantage",
     "audioPath": "audio/advantage.mp3"
@@ -2474,6 +2581,7 @@
     "acceptedAnswers": [
       "affordable"
     ],
+    "partOfSpeech": "形容词",
     "sourceRevision": 4,
     "audioText": "affordable",
     "audioPath": "audio/affordable.mp3"
@@ -2494,6 +2602,7 @@
     "acceptedAnswers": [
       "agree with"
     ],
+    "partOfSpeech": "短语",
     "sourceRevision": 4,
     "audioText": "agree with",
     "audioPath": "audio/agree-with.mp3"
@@ -2514,6 +2623,7 @@
     "acceptedAnswers": [
       "agriculture"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "agriculture",
     "audioPath": "audio/agriculture.mp3"
@@ -2534,6 +2644,7 @@
     "acceptedAnswers": [
       "aim"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "aim",
     "audioPath": "audio/aim.mp3"
@@ -2554,6 +2665,7 @@
     "acceptedAnswers": [
       "airport"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "airport",
     "audioPath": "audio/airport.mp3"
@@ -2574,6 +2686,7 @@
     "acceptedAnswers": [
       "allergy"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "allergy",
     "audioPath": "audio/allergy.mp3"
@@ -2594,6 +2707,7 @@
     "acceptedAnswers": [
       "allow"
     ],
+    "partOfSpeech": "动词",
     "sourceRevision": 4,
     "audioText": "allow",
     "audioPath": "audio/allow.mp3"
@@ -2614,6 +2728,7 @@
     "acceptedAnswers": [
       "alongside the"
     ],
+    "partOfSpeech": "短语",
     "sourceRevision": 4,
     "audioText": "alongside the",
     "audioPath": "audio/alongside-the.mp3"
@@ -2634,6 +2749,7 @@
     "acceptedAnswers": [
       "analysis"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "analysis",
     "audioPath": "audio/analysis.mp3"
@@ -2654,6 +2770,7 @@
     "acceptedAnswers": [
       "annoyed"
     ],
+    "partOfSpeech": "形容词",
     "sourceRevision": 4,
     "audioText": "annoyed",
     "audioPath": "audio/annoyed.mp3"
@@ -2674,6 +2791,7 @@
     "acceptedAnswers": [
       "antibiotic"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "antibiotic",
     "audioPath": "audio/antibiotic.mp3"
@@ -2694,6 +2812,7 @@
     "acceptedAnswers": [
       "anxiety"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "anxiety",
     "audioPath": "audio/anxiety.mp3"
@@ -2714,6 +2833,7 @@
     "acceptedAnswers": [
       "anxious"
     ],
+    "partOfSpeech": "形容词",
     "sourceRevision": 4,
     "audioText": "anxious",
     "audioPath": "audio/anxious.mp3"
@@ -2734,6 +2854,7 @@
     "acceptedAnswers": [
       "apartment"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "apartment",
     "audioPath": "audio/apartment.mp3"
@@ -2754,6 +2875,7 @@
     "acceptedAnswers": [
       "applicant"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "applicant",
     "audioPath": "audio/applicant.mp3"
@@ -2776,6 +2898,7 @@
     "acceptedAnswers": [
       "application"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "application",
     "audioPath": "audio/application.mp3"
@@ -2796,6 +2919,7 @@
     "acceptedAnswers": [
       "apply"
     ],
+    "partOfSpeech": "动词",
     "sourceRevision": 4,
     "audioText": "apply",
     "audioPath": "audio/apply.mp3"
@@ -2816,6 +2940,7 @@
     "acceptedAnswers": [
       "apply for"
     ],
+    "partOfSpeech": "短语",
     "sourceRevision": 4,
     "audioText": "apply for",
     "audioPath": "audio/apply-for.mp3"
@@ -2836,6 +2961,7 @@
     "acceptedAnswers": [
       "appointment"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "appointment",
     "audioPath": "audio/appointment.mp3"
@@ -2856,6 +2982,7 @@
     "acceptedAnswers": [
       "appreciation"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "appreciation",
     "audioPath": "audio/appreciation.mp3"
@@ -2876,6 +3003,7 @@
     "acceptedAnswers": [
       "approach"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "approach",
     "audioPath": "audio/approach.mp3"
@@ -2896,6 +3024,7 @@
     "acceptedAnswers": [
       "approximately"
     ],
+    "partOfSpeech": "副词",
     "sourceRevision": 4,
     "audioText": "approximately",
     "audioPath": "audio/approximately.mp3"
@@ -2916,6 +3045,7 @@
     "acceptedAnswers": [
       "architect"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "architect",
     "audioPath": "audio/architect.mp3"
@@ -2936,6 +3066,7 @@
     "acceptedAnswers": [
       "arrange"
     ],
+    "partOfSpeech": "动词",
     "sourceRevision": 4,
     "audioText": "arrange",
     "audioPath": "audio/arrange.mp3"
@@ -2956,6 +3087,7 @@
     "acceptedAnswers": [
       "as a result"
     ],
+    "partOfSpeech": "短语",
     "sourceRevision": 4,
     "audioText": "as a result",
     "audioPath": "audio/as-a-result.mp3"
@@ -2976,6 +3108,7 @@
     "acceptedAnswers": [
       "assessment"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "assessment",
     "audioPath": "audio/assessment.mp3"
@@ -2998,6 +3131,7 @@
     "acceptedAnswers": [
       "assignment"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "assignment",
     "audioPath": "audio/assignment.mp3"
@@ -3020,6 +3154,7 @@
     "acceptedAnswers": [
       "assistant"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "assistant",
     "audioPath": "audio/assistant.mp3"
@@ -3040,6 +3175,7 @@
     "acceptedAnswers": [
       "at first"
     ],
+    "partOfSpeech": "短语",
     "sourceRevision": 4,
     "audioText": "at first",
     "audioPath": "audio/at-first.mp3"
@@ -3060,6 +3196,7 @@
     "acceptedAnswers": [
       "at the bottom of"
     ],
+    "partOfSpeech": "短语",
     "sourceRevision": 4,
     "audioText": "at the bottom of",
     "audioPath": "audio/at-the-bottom-of.mp3"
@@ -3080,6 +3217,7 @@
     "acceptedAnswers": [
       "at the entrance"
     ],
+    "partOfSpeech": "短语",
     "sourceRevision": 4,
     "audioText": "at the entrance",
     "audioPath": "audio/at-the-entrance.mp3"
@@ -3100,6 +3238,7 @@
     "acceptedAnswers": [
       "at the far end"
     ],
+    "partOfSpeech": "短语",
     "sourceRevision": 4,
     "audioText": "at the far end",
     "audioPath": "audio/at-the-far-end.mp3"
@@ -3120,6 +3259,7 @@
     "acceptedAnswers": [
       "at the same time"
     ],
+    "partOfSpeech": "短语",
     "sourceRevision": 4,
     "audioText": "at the same time",
     "audioPath": "audio/at-the-same-time.mp3"
@@ -3140,6 +3280,7 @@
     "acceptedAnswers": [
       "at the top of"
     ],
+    "partOfSpeech": "短语",
     "sourceRevision": 4,
     "audioText": "at the top of",
     "audioPath": "audio/at-the-top-of.mp3"
@@ -3160,6 +3301,7 @@
     "acceptedAnswers": [
       "attend"
     ],
+    "partOfSpeech": "动词",
     "sourceRevision": 4,
     "audioText": "attend",
     "audioPath": "audio/attend.mp3"
@@ -3180,6 +3322,7 @@
     "acceptedAnswers": [
       "audience"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "audience",
     "audioPath": "audio/audience.mp3"
@@ -3200,6 +3343,7 @@
     "acceptedAnswers": [
       "availability"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "availability",
     "audioPath": "audio/availability.mp3"
@@ -3220,6 +3364,7 @@
     "acceptedAnswers": [
       "available"
     ],
+    "partOfSpeech": "形容词",
     "sourceRevision": 4,
     "audioText": "available",
     "audioPath": "audio/available.mp3"
@@ -3240,6 +3385,7 @@
     "acceptedAnswers": [
       "avoid"
     ],
+    "partOfSpeech": "动词",
     "sourceRevision": 4,
     "audioText": "avoid",
     "audioPath": "audio/avoid.mp3"
@@ -3260,6 +3406,7 @@
     "acceptedAnswers": [
       "aware"
     ],
+    "partOfSpeech": "形容词",
     "sourceRevision": 4,
     "audioText": "aware",
     "audioPath": "audio/aware.mp3"
@@ -3280,6 +3427,7 @@
     "acceptedAnswers": [
       "background"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "background",
     "audioPath": "audio/background.mp3"
@@ -3300,6 +3448,7 @@
     "acceptedAnswers": [
       "badly organised"
     ],
+    "partOfSpeech": "短语",
     "sourceRevision": 4,
     "audioText": "badly organised",
     "audioPath": "audio/badly-organised.mp3"
@@ -3320,6 +3469,7 @@
     "acceptedAnswers": [
       "balcony"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "balcony",
     "audioPath": "audio/balcony.mp3"
@@ -3340,6 +3490,7 @@
     "acceptedAnswers": [
       "basement"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "basement",
     "audioPath": "audio/basement.mp3"
@@ -3360,6 +3511,7 @@
     "acceptedAnswers": [
       "be concerned about"
     ],
+    "partOfSpeech": "短语",
     "sourceRevision": 4,
     "audioText": "be concerned about",
     "audioPath": "audio/be-concerned-about.mp3"
@@ -3380,6 +3532,7 @@
     "acceptedAnswers": [
       "be disappointed with"
     ],
+    "partOfSpeech": "短语",
     "sourceRevision": 4,
     "audioText": "be disappointed with",
     "audioPath": "audio/be-disappointed-with.mp3"
@@ -3400,6 +3553,7 @@
     "acceptedAnswers": [
       "be impressed by"
     ],
+    "partOfSpeech": "短语",
     "sourceRevision": 4,
     "audioText": "be impressed by",
     "audioPath": "audio/be-impressed-by.mp3"
@@ -3420,6 +3574,7 @@
     "acceptedAnswers": [
       "be interested in"
     ],
+    "partOfSpeech": "短语",
     "sourceRevision": 4,
     "audioText": "be interested in",
     "audioPath": "audio/be-interested-in.mp3"
@@ -3440,6 +3595,7 @@
     "acceptedAnswers": [
       "be involved in"
     ],
+    "partOfSpeech": "短语",
     "sourceRevision": 4,
     "audioText": "be involved in",
     "audioPath": "audio/be-involved-in.mp3"
@@ -3460,6 +3616,7 @@
     "acceptedAnswers": [
       "be likely to"
     ],
+    "partOfSpeech": "短语",
     "sourceRevision": 4,
     "audioText": "be likely to",
     "audioPath": "audio/be-likely-to.mp3"
@@ -3480,6 +3637,7 @@
     "acceptedAnswers": [
       "be pushed for time"
     ],
+    "partOfSpeech": "短语",
     "sourceRevision": 4,
     "audioText": "be pushed for time",
     "audioPath": "audio/be-pushed-for-time.mp3"
@@ -3500,6 +3658,7 @@
     "acceptedAnswers": [
       "be reluctant to"
     ],
+    "partOfSpeech": "短语",
     "sourceRevision": 4,
     "audioText": "be reluctant to",
     "audioPath": "audio/be-reluctant-to.mp3"
@@ -3520,6 +3679,7 @@
     "acceptedAnswers": [
       "be responsible for"
     ],
+    "partOfSpeech": "短语",
     "sourceRevision": 4,
     "audioText": "be responsible for",
     "audioPath": "audio/be-responsible-for.mp3"
@@ -3540,6 +3700,7 @@
     "acceptedAnswers": [
       "be satisfied with"
     ],
+    "partOfSpeech": "短语",
     "sourceRevision": 4,
     "audioText": "be satisfied with",
     "audioPath": "audio/be-satisfied-with.mp3"
@@ -3560,6 +3721,7 @@
     "acceptedAnswers": [
       "because of"
     ],
+    "partOfSpeech": "短语",
     "sourceRevision": 4,
     "audioText": "because of",
     "audioPath": "audio/because-of.mp3"
@@ -3580,6 +3742,7 @@
     "acceptedAnswers": [
       "behind the"
     ],
+    "partOfSpeech": "短语",
     "sourceRevision": 4,
     "audioText": "behind the",
     "audioPath": "audio/behind-the.mp3"
@@ -3600,6 +3763,7 @@
     "acceptedAnswers": [
       "beneath"
     ],
+    "partOfSpeech": "介词",
     "sourceRevision": 4,
     "audioText": "beneath",
     "audioPath": "audio/beneath.mp3"
@@ -3620,6 +3784,7 @@
     "acceptedAnswers": [
       "beneficial"
     ],
+    "partOfSpeech": "形容词",
     "sourceRevision": 4,
     "audioText": "beneficial",
     "audioPath": "audio/beneficial.mp3"
@@ -3640,6 +3805,7 @@
     "acceptedAnswers": [
       "benefit"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "benefit",
     "audioPath": "audio/benefit.mp3"
@@ -3660,6 +3826,7 @@
     "acceptedAnswers": [
       "beside the"
     ],
+    "partOfSpeech": "短语",
     "sourceRevision": 4,
     "audioText": "beside the",
     "audioPath": "audio/beside-the.mp3"
@@ -3680,6 +3847,7 @@
     "acceptedAnswers": [
       "between A and B"
     ],
+    "partOfSpeech": "短语",
     "sourceRevision": 4,
     "audioText": "between A and B",
     "audioPath": "audio/between-a-and-b.mp3"
@@ -3700,6 +3868,7 @@
     "acceptedAnswers": [
       "beverage"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "beverage",
     "audioPath": "audio/beverage.mp3"
@@ -3720,6 +3889,7 @@
     "acceptedAnswers": [
       "bicycle"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "bicycle",
     "audioPath": "audio/bicycle.mp3"
@@ -3740,6 +3910,7 @@
     "acceptedAnswers": [
       "biscuit"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "biscuit",
     "audioPath": "audio/biscuit.mp3"
@@ -3760,6 +3931,7 @@
     "acceptedAnswers": [
       "boredom"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "boredom",
     "audioPath": "audio/boredom.mp3"
@@ -3780,6 +3952,7 @@
     "acceptedAnswers": [
       "boring"
     ],
+    "partOfSpeech": "形容词",
     "sourceRevision": 4,
     "audioText": "boring",
     "audioPath": "audio/boring.mp3"
@@ -3800,6 +3973,7 @@
     "acceptedAnswers": [
       "breakfast"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "breakfast",
     "audioPath": "audio/breakfast.mp3"
@@ -3820,6 +3994,7 @@
     "acceptedAnswers": [
       "broaden"
     ],
+    "partOfSpeech": "动词",
     "sourceRevision": 4,
     "audioText": "broaden",
     "audioPath": "audio/broaden.mp3"
@@ -3840,6 +4015,7 @@
     "acceptedAnswers": [
       "broaden one's horizons"
     ],
+    "partOfSpeech": "短语",
     "sourceRevision": 4,
     "audioText": "broaden one's horizons",
     "audioPath": "audio/broaden-one-s-horizons.mp3"
@@ -3860,6 +4036,7 @@
     "acceptedAnswers": [
       "budget"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "budget",
     "audioPath": "audio/budget.mp3"
@@ -3880,6 +4057,7 @@
     "acceptedAnswers": [
       "business contacts"
     ],
+    "partOfSpeech": "短语",
     "sourceRevision": 4,
     "audioText": "business contacts",
     "audioPath": "audio/business-contacts.mp3"
@@ -3900,6 +4078,7 @@
     "acceptedAnswers": [
       "by the entrance"
     ],
+    "partOfSpeech": "短语",
     "sourceRevision": 4,
     "audioText": "by the entrance",
     "audioPath": "audio/by-the-entrance.mp3"
@@ -3920,6 +4099,7 @@
     "acceptedAnswers": [
       "cafeteria"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "cafeteria",
     "audioPath": "audio/cafeteria.mp3"
@@ -3940,6 +4120,7 @@
     "acceptedAnswers": [
       "cake"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "cake",
     "audioPath": "audio/cake.mp3"
@@ -3960,6 +4141,7 @@
     "acceptedAnswers": [
       "calendar"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "calendar",
     "audioPath": "audio/calendar.mp3"
@@ -3980,6 +4162,7 @@
     "acceptedAnswers": [
       "campsite"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "campsite",
     "audioPath": "audio/campsite.mp3"
@@ -4000,6 +4183,7 @@
     "acceptedAnswers": [
       "cancel"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "cancel",
     "audioPath": "audio/cancel.mp3"
@@ -4020,6 +4204,7 @@
     "acceptedAnswers": [
       "cancellation"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "cancellation",
     "audioPath": "audio/cancellation.mp3"
@@ -4040,6 +4225,7 @@
     "acceptedAnswers": [
       "candidate"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "candidate",
     "audioPath": "audio/candidate.mp3"
@@ -4060,6 +4246,7 @@
     "acceptedAnswers": [
       "career"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "career",
     "audioPath": "audio/career.mp3"
@@ -4080,6 +4267,7 @@
     "acceptedAnswers": [
       "career officer"
     ],
+    "partOfSpeech": "短语",
     "sourceRevision": 4,
     "audioText": "career officer",
     "audioPath": "audio/career-officer.mp3"
@@ -4100,6 +4288,7 @@
     "acceptedAnswers": [
       "carpenter"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "carpenter",
     "audioPath": "audio/carpenter.mp3"
@@ -4120,6 +4309,7 @@
     "acceptedAnswers": [
       "carry"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "carry",
     "audioPath": "audio/carry.mp3"
@@ -4140,6 +4330,7 @@
     "acceptedAnswers": [
       "carry out research"
     ],
+    "partOfSpeech": "短语",
     "sourceRevision": 4,
     "audioText": "carry out research",
     "audioPath": "audio/carry-out-research.mp3"
@@ -4160,6 +4351,7 @@
     "acceptedAnswers": [
       "case"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "case",
     "audioPath": "audio/case.mp3"
@@ -4180,6 +4372,7 @@
     "acceptedAnswers": [
       "cash"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "cash",
     "audioPath": "audio/cash.mp3"
@@ -4200,6 +4393,7 @@
     "acceptedAnswers": [
       "cause"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "cause",
     "audioPath": "audio/cause.mp3"
@@ -4220,6 +4414,7 @@
     "acceptedAnswers": [
       "ceiling"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "ceiling",
     "audioPath": "audio/ceiling.mp3"
@@ -4240,6 +4435,7 @@
     "acceptedAnswers": [
       "centimeter"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "centimeter",
     "audioPath": "audio/centimeter.mp3"
@@ -4260,6 +4456,7 @@
     "acceptedAnswers": [
       "centimetre"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "centimetre",
     "audioPath": "audio/centimetre.mp3"
@@ -4280,6 +4477,7 @@
     "acceptedAnswers": [
       "centre"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "centre",
     "audioPath": "audio/centre.mp3"
@@ -4300,6 +4498,7 @@
     "acceptedAnswers": [
       "certificate"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "certificate",
     "audioPath": "audio/certificate.mp3"
@@ -4320,6 +4519,7 @@
     "acceptedAnswers": [
       "challenging"
     ],
+    "partOfSpeech": "形容词",
     "sourceRevision": 4,
     "audioText": "challenging",
     "audioPath": "audio/challenging.mp3"
@@ -4340,6 +4540,7 @@
     "acceptedAnswers": [
       "change the rota"
     ],
+    "partOfSpeech": "短语",
     "sourceRevision": 4,
     "audioText": "change the rota",
     "audioPath": "audio/change-the-rota.mp3"
@@ -4360,6 +4561,7 @@
     "acceptedAnswers": [
       "charge"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "charge",
     "audioPath": "audio/charge.mp3"
@@ -4380,6 +4582,7 @@
     "acceptedAnswers": [
       "charity"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "charity",
     "audioPath": "audio/charity.mp3"
@@ -4400,6 +4603,7 @@
     "acceptedAnswers": [
       "childcare worker"
     ],
+    "partOfSpeech": "短语",
     "sourceRevision": 4,
     "audioText": "childcare worker",
     "audioPath": "audio/childcare-worker.mp3"
@@ -4420,6 +4624,7 @@
     "acceptedAnswers": [
       "choose"
     ],
+    "partOfSpeech": "动词",
     "sourceRevision": 4,
     "audioText": "choose",
     "audioPath": "audio/choose.mp3"
@@ -4440,6 +4645,7 @@
     "acceptedAnswers": [
       "cleaner"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "cleaner",
     "audioPath": "audio/cleaner.mp3"
@@ -4460,6 +4666,7 @@
     "acceptedAnswers": [
       "clear"
     ],
+    "partOfSpeech": "形容词",
     "sourceRevision": 4,
     "audioText": "clear",
     "audioPath": "audio/clear.mp3"
@@ -4480,6 +4687,7 @@
     "acceptedAnswers": [
       "client"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "client",
     "audioPath": "audio/client.mp3"
@@ -4500,6 +4708,7 @@
     "acceptedAnswers": [
       "climate"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "climate",
     "audioPath": "audio/climate.mp3"
@@ -4520,6 +4729,7 @@
     "acceptedAnswers": [
       "clinic"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "clinic",
     "audioPath": "audio/clinic.mp3"
@@ -4542,6 +4752,7 @@
     "acceptedAnswers": [
       "coach"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "coach",
     "audioPath": "audio/coach.mp3"
@@ -4562,6 +4773,7 @@
     "acceptedAnswers": [
       "coast"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "coast",
     "audioPath": "audio/coast.mp3"
@@ -4582,6 +4794,7 @@
     "acceptedAnswers": [
       "coconut"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "coconut",
     "audioPath": "audio/coconut.mp3"
@@ -4602,6 +4815,7 @@
     "acceptedAnswers": [
       "colleague"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "colleague",
     "audioPath": "audio/colleague.mp3"
@@ -4622,6 +4836,7 @@
     "acceptedAnswers": [
       "collect"
     ],
+    "partOfSpeech": "动词",
     "sourceRevision": 4,
     "audioText": "collect",
     "audioPath": "audio/collect.mp3"
@@ -4642,6 +4857,7 @@
     "acceptedAnswers": [
       "college"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "college",
     "audioPath": "audio/college.mp3"
@@ -4662,6 +4878,7 @@
     "acceptedAnswers": [
       "compare"
     ],
+    "partOfSpeech": "动词",
     "sourceRevision": 4,
     "audioText": "compare",
     "audioPath": "audio/compare.mp3"
@@ -4682,6 +4899,7 @@
     "acceptedAnswers": [
       "compared with"
     ],
+    "partOfSpeech": "短语",
     "sourceRevision": 4,
     "audioText": "compared with",
     "audioPath": "audio/compared-with.mp3"
@@ -4702,6 +4920,7 @@
     "acceptedAnswers": [
       "competition"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "competition",
     "audioPath": "audio/competition.mp3"
@@ -4722,6 +4941,7 @@
     "acceptedAnswers": [
       "complete"
     ],
+    "partOfSpeech": "形容词",
     "sourceRevision": 4,
     "audioText": "complete",
     "audioPath": "audio/complete.mp3"
@@ -4742,6 +4962,7 @@
     "acceptedAnswers": [
       "completion"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "completion",
     "audioPath": "audio/completion.mp3"
@@ -4762,6 +4983,7 @@
     "acceptedAnswers": [
       "compulsory"
     ],
+    "partOfSpeech": "形容词",
     "sourceRevision": 4,
     "audioText": "compulsory",
     "audioPath": "audio/compulsory.mp3"
@@ -4782,6 +5004,7 @@
     "acceptedAnswers": [
       "computer"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "computer",
     "audioPath": "audio/computer.mp3"
@@ -4803,6 +5026,7 @@
     "acceptedAnswers": [
       "concern"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "concern",
     "audioPath": "audio/concern.mp3"
@@ -4823,6 +5047,7 @@
     "acceptedAnswers": [
       "concrete"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "concrete",
     "audioPath": "audio/concrete.mp3"
@@ -4843,6 +5068,7 @@
     "acceptedAnswers": [
       "condition"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "condition",
     "audioPath": "audio/condition.mp3"
@@ -4863,6 +5089,7 @@
     "acceptedAnswers": [
       "conduct"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "conduct",
     "audioPath": "audio/conduct.mp3"
@@ -4883,6 +5110,7 @@
     "acceptedAnswers": [
       "conduct a survey"
     ],
+    "partOfSpeech": "短语",
     "sourceRevision": 4,
     "audioText": "conduct a survey",
     "audioPath": "audio/conduct-a-survey.mp3"
@@ -4903,6 +5131,7 @@
     "acceptedAnswers": [
       "confidence"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "confidence",
     "audioPath": "audio/confidence.mp3"
@@ -4923,6 +5152,7 @@
     "acceptedAnswers": [
       "confident"
     ],
+    "partOfSpeech": "形容词",
     "sourceRevision": 4,
     "audioText": "confident",
     "audioPath": "audio/confident.mp3"
@@ -4943,6 +5173,7 @@
     "acceptedAnswers": [
       "confused"
     ],
+    "partOfSpeech": "形容词",
     "sourceRevision": 4,
     "audioText": "confused",
     "audioPath": "audio/confused.mp3"
@@ -4963,6 +5194,7 @@
     "acceptedAnswers": [
       "conservation"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "conservation",
     "audioPath": "audio/conservation.mp3"
@@ -4983,6 +5215,7 @@
     "acceptedAnswers": [
       "considerable"
     ],
+    "partOfSpeech": "形容词",
     "sourceRevision": 4,
     "audioText": "considerable",
     "audioPath": "audio/considerable.mp3"
@@ -5003,6 +5236,7 @@
     "acceptedAnswers": [
       "contact"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "contact",
     "audioPath": "audio/contact.mp3"
@@ -5023,6 +5257,7 @@
     "acceptedAnswers": [
       "continue"
     ],
+    "partOfSpeech": "动词",
     "sourceRevision": 4,
     "audioText": "continue",
     "audioPath": "audio/continue.mp3"
@@ -5043,6 +5278,7 @@
     "acceptedAnswers": [
       "convenient"
     ],
+    "partOfSpeech": "形容词",
     "sourceRevision": 4,
     "audioText": "convenient",
     "audioPath": "audio/convenient.mp3"
@@ -5063,6 +5299,7 @@
     "acceptedAnswers": [
       "corner"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "corner",
     "audioPath": "audio/corner.mp3"
@@ -5085,6 +5322,7 @@
     "acceptedAnswers": [
       "cost"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "cost",
     "audioPath": "audio/cost.mp3"
@@ -5107,6 +5345,7 @@
     "acceptedAnswers": [
       "course"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "course",
     "audioPath": "audio/course.mp3"
@@ -5127,6 +5366,7 @@
     "acceptedAnswers": [
       "credit card"
     ],
+    "partOfSpeech": "短语",
     "sourceRevision": 4,
     "audioText": "credit card",
     "audioPath": "audio/credit-card.mp3"
@@ -5147,6 +5387,7 @@
     "acceptedAnswers": [
       "criteria"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "criteria",
     "audioPath": "audio/criteria.mp3"
@@ -5167,6 +5408,7 @@
     "acceptedAnswers": [
       "cupboard"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "cupboard",
     "audioPath": "audio/cupboard.mp3"
@@ -5187,6 +5429,7 @@
     "acceptedAnswers": [
       "current"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "current",
     "audioPath": "audio/current.mp3"
@@ -5207,6 +5450,7 @@
     "acceptedAnswers": [
       "customer"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "customer",
     "audioPath": "audio/customer.mp3"
@@ -5228,6 +5472,7 @@
     "acceptedAnswers": [
       "customer relations"
     ],
+    "partOfSpeech": "短语",
     "sourceRevision": 4,
     "audioText": "customer relations",
     "audioPath": "audio/customer-relations.mp3"
@@ -5248,6 +5493,7 @@
     "acceptedAnswers": [
       "CV"
     ],
+    "partOfSpeech": "缩写",
     "sourceRevision": 4,
     "audioText": "CV",
     "audioPath": "audio/cv.mp3"
@@ -5270,6 +5516,7 @@
     "acceptedAnswers": [
       "damage"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "damage",
     "audioPath": "audio/damage.mp3"
@@ -5292,6 +5539,7 @@
     "acceptedAnswers": [
       "data"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "data",
     "audioPath": "audio/data.mp3"
@@ -5312,6 +5560,7 @@
     "acceptedAnswers": [
       "deadline"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "deadline",
     "audioPath": "audio/deadline.mp3"
@@ -5332,6 +5581,7 @@
     "acceptedAnswers": [
       "deal with"
     ],
+    "partOfSpeech": "短语",
     "sourceRevision": 4,
     "audioText": "deal with",
     "audioPath": "audio/deal-with.mp3"
@@ -5352,6 +5602,7 @@
     "acceptedAnswers": [
       "decide"
     ],
+    "partOfSpeech": "动词",
     "sourceRevision": 4,
     "audioText": "decide",
     "audioPath": "audio/decide.mp3"
@@ -5372,6 +5623,7 @@
     "acceptedAnswers": [
       "decline"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "decline",
     "audioPath": "audio/decline.mp3"
@@ -5395,6 +5647,7 @@
     "numberVariants": [
       "decorations"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "decoration",
     "audioPath": "audio/decoration.mp3"
@@ -5415,6 +5668,7 @@
     "acceptedAnswers": [
       "degree"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "degree",
     "audioPath": "audio/degree.mp3"
@@ -5435,6 +5689,7 @@
     "acceptedAnswers": [
       "delay"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "delay",
     "audioPath": "audio/delay.mp3"
@@ -5455,6 +5710,7 @@
     "acceptedAnswers": [
       "demanding"
     ],
+    "partOfSpeech": "形容词",
     "sourceRevision": 4,
     "audioText": "demanding",
     "audioPath": "audio/demanding.mp3"
@@ -5475,6 +5731,7 @@
     "acceptedAnswers": [
       "dentist"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "dentist",
     "audioPath": "audio/dentist.mp3"
@@ -5497,6 +5754,7 @@
     "acceptedAnswers": [
       "deposit"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "deposit",
     "audioPath": "audio/deposit.mp3"
@@ -5517,6 +5775,7 @@
     "acceptedAnswers": [
       "depth"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "depth",
     "audioPath": "audio/depth.mp3"
@@ -5537,6 +5796,7 @@
     "acceptedAnswers": [
       "dessert"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "dessert",
     "audioPath": "audio/dessert.mp3"
@@ -5557,6 +5817,7 @@
     "acceptedAnswers": [
       "destination"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "destination",
     "audioPath": "audio/destination.mp3"
@@ -5577,6 +5838,7 @@
     "acceptedAnswers": [
       "diet"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "diet",
     "audioPath": "audio/diet.mp3"
@@ -5597,6 +5859,7 @@
     "acceptedAnswers": [
       "dinner"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "dinner",
     "audioPath": "audio/dinner.mp3"
@@ -5617,6 +5880,7 @@
     "acceptedAnswers": [
       "disadvantage"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "disadvantage",
     "audioPath": "audio/disadvantage.mp3"
@@ -5637,6 +5901,7 @@
     "acceptedAnswers": [
       "disagree with"
     ],
+    "partOfSpeech": "短语",
     "sourceRevision": 4,
     "audioText": "disagree with",
     "audioPath": "audio/disagree-with.mp3"
@@ -5657,6 +5922,7 @@
     "acceptedAnswers": [
       "disappointed"
     ],
+    "partOfSpeech": "形容词",
     "sourceRevision": 4,
     "audioText": "disappointed",
     "audioPath": "audio/disappointed.mp3"
@@ -5677,6 +5943,7 @@
     "acceptedAnswers": [
       "disappointment"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "disappointment",
     "audioPath": "audio/disappointment.mp3"
@@ -5697,6 +5964,7 @@
     "acceptedAnswers": [
       "discontinue"
     ],
+    "partOfSpeech": "动词",
     "sourceRevision": 4,
     "audioText": "discontinue",
     "audioPath": "audio/discontinue.mp3"
@@ -5717,6 +5985,7 @@
     "acceptedAnswers": [
       "discount"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "discount",
     "audioPath": "audio/discount.mp3"
@@ -5737,6 +6006,7 @@
     "acceptedAnswers": [
       "dissatisfaction"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "dissatisfaction",
     "audioPath": "audio/dissatisfaction.mp3"
@@ -5757,6 +6027,7 @@
     "acceptedAnswers": [
       "dissatisfied"
     ],
+    "partOfSpeech": "形容词",
     "sourceRevision": 4,
     "audioText": "dissatisfied",
     "audioPath": "audio/dissatisfied.mp3"
@@ -5777,6 +6048,7 @@
     "acceptedAnswers": [
       "doctor"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "doctor",
     "audioPath": "audio/doctor.mp3"
@@ -5797,6 +6069,7 @@
     "acceptedAnswers": [
       "double room"
     ],
+    "partOfSpeech": "短语",
     "sourceRevision": 4,
     "audioText": "double room",
     "audioPath": "audio/double-room.mp3"
@@ -5817,6 +6090,7 @@
     "acceptedAnswers": [
       "drawback"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "drawback",
     "audioPath": "audio/drawback.mp3"
@@ -5837,6 +6111,7 @@
     "acceptedAnswers": [
       "drop a course"
     ],
+    "partOfSpeech": "短语",
     "sourceRevision": 4,
     "audioText": "drop a course",
     "audioPath": "audio/drop-a-course.mp3"
@@ -5857,6 +6132,7 @@
     "acceptedAnswers": [
       "due to"
     ],
+    "partOfSpeech": "短语",
     "sourceRevision": 4,
     "audioText": "due to",
     "audioPath": "audio/due-to.mp3"
@@ -5877,6 +6153,7 @@
     "acceptedAnswers": [
       "edge"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "edge",
     "audioPath": "audio/edge.mp3"
@@ -5897,6 +6174,7 @@
     "acceptedAnswers": [
       "effect"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "effect",
     "audioPath": "audio/effect.mp3"
@@ -5917,6 +6195,7 @@
     "acceptedAnswers": [
       "effective"
     ],
+    "partOfSpeech": "形容词",
     "sourceRevision": 4,
     "audioText": "effective",
     "audioPath": "audio/effective.mp3"
@@ -5937,6 +6216,7 @@
     "acceptedAnswers": [
       "efficient"
     ],
+    "partOfSpeech": "形容词",
     "sourceRevision": 4,
     "audioText": "efficient",
     "audioPath": "audio/efficient.mp3"
@@ -5957,6 +6237,7 @@
     "acceptedAnswers": [
       "email"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "email",
     "audioPath": "audio/email.mp3"
@@ -5977,6 +6258,7 @@
     "acceptedAnswers": [
       "embarrassed"
     ],
+    "partOfSpeech": "形容词",
     "sourceRevision": 4,
     "audioText": "embarrassed",
     "audioPath": "audio/embarrassed.mp3"
@@ -5997,6 +6279,7 @@
     "acceptedAnswers": [
       "embarrassment"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "embarrassment",
     "audioPath": "audio/embarrassment.mp3"
@@ -6017,6 +6300,7 @@
     "acceptedAnswers": [
       "emergency"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "emergency",
     "audioPath": "audio/emergency.mp3"
@@ -6037,6 +6321,7 @@
     "acceptedAnswers": [
       "emergency contact"
     ],
+    "partOfSpeech": "短语",
     "sourceRevision": 4,
     "audioText": "emergency contact",
     "audioPath": "audio/emergency-contact.mp3"
@@ -6059,6 +6344,7 @@
     "acceptedAnswers": [
       "employee"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "employee",
     "audioPath": "audio/employee.mp3"
@@ -6081,6 +6367,7 @@
     "acceptedAnswers": [
       "employer"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "employer",
     "audioPath": "audio/employer.mp3"
@@ -6101,6 +6388,7 @@
     "acceptedAnswers": [
       "encourage"
     ],
+    "partOfSpeech": "动词",
     "sourceRevision": 4,
     "audioText": "encourage",
     "audioPath": "audio/encourage.mp3"
@@ -6121,6 +6409,7 @@
     "acceptedAnswers": [
       "energy"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "energy",
     "audioPath": "audio/energy.mp3"
@@ -6144,6 +6433,7 @@
     "numberVariants": [
       "engineers"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "engineer",
     "audioPath": "audio/engineer.mp3"
@@ -6164,6 +6454,7 @@
     "acceptedAnswers": [
       "ensure"
     ],
+    "partOfSpeech": "动词",
     "sourceRevision": 4,
     "audioText": "ensure",
     "audioPath": "audio/ensure.mp3"
@@ -6184,6 +6475,7 @@
     "acceptedAnswers": [
       "enthusiasm"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "enthusiasm",
     "audioPath": "audio/enthusiasm.mp3"
@@ -6204,6 +6496,7 @@
     "acceptedAnswers": [
       "enthusiastic"
     ],
+    "partOfSpeech": "形容词",
     "sourceRevision": 4,
     "audioText": "enthusiastic",
     "audioPath": "audio/enthusiastic.mp3"
@@ -6224,6 +6517,7 @@
     "acceptedAnswers": [
       "entire"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "entire",
     "audioPath": "audio/entire.mp3"
@@ -6244,6 +6538,7 @@
     "acceptedAnswers": [
       "entirely"
     ],
+    "partOfSpeech": "副词",
     "sourceRevision": 4,
     "audioText": "entirely",
     "audioPath": "audio/entirely.mp3"
@@ -6264,6 +6559,7 @@
     "acceptedAnswers": [
       "environment"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "environment",
     "audioPath": "audio/environment.mp3"
@@ -6287,6 +6583,7 @@
     "numberVariants": [
       "essays"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "essay",
     "audioPath": "audio/essay.mp3"
@@ -6307,6 +6604,7 @@
     "acceptedAnswers": [
       "essential"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "essential",
     "audioPath": "audio/essential.mp3"
@@ -6327,6 +6625,7 @@
     "acceptedAnswers": [
       "essential reading"
     ],
+    "partOfSpeech": "短语",
     "sourceRevision": 4,
     "audioText": "essential reading",
     "audioPath": "audio/essential-reading.mp3"
@@ -6347,6 +6646,7 @@
     "acceptedAnswers": [
       "evaluate"
     ],
+    "partOfSpeech": "动词",
     "sourceRevision": 4,
     "audioText": "evaluate",
     "audioPath": "audio/evaluate.mp3"
@@ -6367,6 +6667,7 @@
     "acceptedAnswers": [
       "evaluation"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "evaluation",
     "audioPath": "audio/evaluation.mp3"
@@ -6387,6 +6688,7 @@
     "acceptedAnswers": [
       "even though"
     ],
+    "partOfSpeech": "短语",
     "sourceRevision": 4,
     "audioText": "even though",
     "audioPath": "audio/even-though.mp3"
@@ -6410,6 +6712,7 @@
     "acceptedAnswers": [
       "evidence"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "evidence",
     "audioPath": "audio/evidence.mp3"
@@ -6430,6 +6733,7 @@
     "acceptedAnswers": [
       "excessive"
     ],
+    "partOfSpeech": "形容词",
     "sourceRevision": 4,
     "audioText": "excessive",
     "audioPath": "audio/excessive.mp3"
@@ -6450,6 +6754,7 @@
     "acceptedAnswers": [
       "excitement"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "excitement",
     "audioPath": "audio/excitement.mp3"
@@ -6470,6 +6775,7 @@
     "acceptedAnswers": [
       "exercise"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "exercise",
     "audioPath": "audio/exercise.mp3"
@@ -6492,6 +6798,7 @@
     "acceptedAnswers": [
       "exit"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "exit",
     "audioPath": "audio/exit.mp3"
@@ -6512,6 +6819,7 @@
     "acceptedAnswers": [
       "experiment"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "experiment",
     "audioPath": "audio/experiment.mp3"
@@ -6532,6 +6840,7 @@
     "acceptedAnswers": [
       "expert"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "expert",
     "audioPath": "audio/expert.mp3"
@@ -6553,6 +6862,7 @@
     "acceptedAnswers": [
       "facilities"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "facilities",
     "audioPath": "audio/facilities.mp3"
@@ -6576,6 +6886,7 @@
     "numberVariants": [
       "factories"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "factory",
     "audioPath": "audio/factory.mp3"
@@ -6596,6 +6907,7 @@
     "acceptedAnswers": [
       "fear"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "fear",
     "audioPath": "audio/fear.mp3"
@@ -6616,6 +6928,7 @@
     "acceptedAnswers": [
       "February"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "February",
     "audioPath": "audio/february.mp3"
@@ -6636,6 +6949,7 @@
     "acceptedAnswers": [
       "fee"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "fee",
     "audioPath": "audio/fee.mp3"
@@ -6656,6 +6970,7 @@
     "acceptedAnswers": [
       "feedback"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "feedback",
     "audioPath": "audio/feedback.mp3"
@@ -6676,6 +6991,7 @@
     "acceptedAnswers": [
       "ferry"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "ferry",
     "audioPath": "audio/ferry.mp3"
@@ -6696,6 +7012,7 @@
     "acceptedAnswers": [
       "fever"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "fever",
     "audioPath": "audio/fever.mp3"
@@ -6716,6 +7033,7 @@
     "acceptedAnswers": [
       "figure"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "figure",
     "audioPath": "audio/figure.mp3"
@@ -6736,6 +7054,7 @@
     "acceptedAnswers": [
       "fill in a form"
     ],
+    "partOfSpeech": "短语",
     "sourceRevision": 4,
     "audioText": "fill in a form",
     "audioPath": "audio/fill-in-a-form.mp3"
@@ -6756,6 +7075,7 @@
     "acceptedAnswers": [
       "financial training"
     ],
+    "partOfSpeech": "短语",
     "sourceRevision": 4,
     "audioText": "financial training",
     "audioPath": "audio/financial-training.mp3"
@@ -6776,6 +7096,7 @@
     "acceptedAnswers": [
       "find out"
     ],
+    "partOfSpeech": "短语",
     "sourceRevision": 4,
     "audioText": "find out",
     "audioPath": "audio/find-out.mp3"
@@ -6801,6 +7122,7 @@
     "numberVariants": [
       "findings"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "finding",
     "audioPath": "audio/finding.mp3"
@@ -6821,6 +7143,7 @@
     "acceptedAnswers": [
       "fine"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "fine",
     "audioPath": "audio/fine.mp3"
@@ -6841,6 +7164,7 @@
     "acceptedAnswers": [
       "first aid"
     ],
+    "partOfSpeech": "短语",
     "sourceRevision": 4,
     "audioText": "first aid",
     "audioPath": "audio/first-aid.mp3"
@@ -6861,6 +7185,7 @@
     "acceptedAnswers": [
       "first aid procedures"
     ],
+    "partOfSpeech": "短语",
     "sourceRevision": 4,
     "audioText": "first aid procedures",
     "audioPath": "audio/first-aid-procedures.mp3"
@@ -6881,6 +7206,7 @@
     "acceptedAnswers": [
       "first name"
     ],
+    "partOfSpeech": "短语",
     "sourceRevision": 4,
     "audioText": "first name",
     "audioPath": "audio/first-name.mp3"
@@ -6901,6 +7227,7 @@
     "acceptedAnswers": [
       "flexible"
     ],
+    "partOfSpeech": "形容词",
     "sourceRevision": 4,
     "audioText": "flexible",
     "audioPath": "audio/flexible.mp3"
@@ -6921,6 +7248,7 @@
     "acceptedAnswers": [
       "flood"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "flood",
     "audioPath": "audio/flood.mp3"
@@ -6941,6 +7269,7 @@
     "acceptedAnswers": [
       "flooding"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "flooding",
     "audioPath": "audio/flooding.mp3"
@@ -6961,6 +7290,7 @@
     "acceptedAnswers": [
       "flour"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "flour",
     "audioPath": "audio/flour.mp3"
@@ -6981,6 +7311,7 @@
     "acceptedAnswers": [
       "foreign language"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "foreign language",
     "audioPath": "audio/foreign-language.mp3"
@@ -7001,6 +7332,7 @@
     "acceptedAnswers": [
       "forest"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "forest",
     "audioPath": "audio/forest.mp3"
@@ -7021,6 +7353,7 @@
     "acceptedAnswers": [
       "form"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "form",
     "audioPath": "audio/form.mp3"
@@ -7041,6 +7374,7 @@
     "acceptedAnswers": [
       "fortnight"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "fortnight",
     "audioPath": "audio/fortnight.mp3"
@@ -7061,6 +7395,7 @@
     "acceptedAnswers": [
       "frequent"
     ],
+    "partOfSpeech": "形容词",
     "sourceRevision": 4,
     "audioText": "frequent",
     "audioPath": "audio/frequent.mp3"
@@ -7081,6 +7416,7 @@
     "acceptedAnswers": [
       "frustration"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "frustration",
     "audioPath": "audio/frustration.mp3"
@@ -7101,6 +7437,7 @@
     "acceptedAnswers": [
       "funding"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "funding",
     "audioPath": "audio/funding.mp3"
@@ -7121,6 +7458,7 @@
     "acceptedAnswers": [
       "furniture"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "furniture",
     "audioPath": "audio/furniture.mp3"
@@ -7141,6 +7479,7 @@
     "acceptedAnswers": [
       "future developments"
     ],
+    "partOfSpeech": "短语",
     "sourceRevision": 4,
     "audioText": "future developments",
     "audioPath": "audio/future-developments.mp3"
@@ -7161,6 +7500,7 @@
     "acceptedAnswers": [
       "gallery"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "gallery",
     "audioPath": "audio/gallery.mp3"
@@ -7181,6 +7521,7 @@
     "acceptedAnswers": [
       "garage"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "garage",
     "audioPath": "audio/garage.mp3"
@@ -7201,6 +7542,7 @@
     "acceptedAnswers": [
       "garbage"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "garbage",
     "audioPath": "audio/garbage.mp3"
@@ -7221,6 +7563,7 @@
     "acceptedAnswers": [
       "glass"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "glass",
     "audioPath": "audio/glass.mp3"
@@ -7241,6 +7584,7 @@
     "acceptedAnswers": [
       "go past"
     ],
+    "partOfSpeech": "短语",
     "sourceRevision": 4,
     "audioText": "go past",
     "audioPath": "audio/go-past.mp3"
@@ -7261,6 +7605,7 @@
     "acceptedAnswers": [
       "go straight ahead"
     ],
+    "partOfSpeech": "短语",
     "sourceRevision": 4,
     "audioText": "go straight ahead",
     "audioPath": "audio/go-straight-ahead.mp3"
@@ -7281,6 +7626,7 @@
     "acceptedAnswers": [
       "gradual"
     ],
+    "partOfSpeech": "形容词",
     "sourceRevision": 4,
     "audioText": "gradual",
     "audioPath": "audio/gradual.mp3"
@@ -7301,6 +7647,7 @@
     "acceptedAnswers": [
       "grateful"
     ],
+    "partOfSpeech": "形容词",
     "sourceRevision": 4,
     "audioText": "grateful",
     "audioPath": "audio/grateful.mp3"
@@ -7321,6 +7668,7 @@
     "acceptedAnswers": [
       "grocery"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "grocery",
     "audioPath": "audio/grocery.mp3"
@@ -7341,6 +7689,7 @@
     "acceptedAnswers": [
       "habitat"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "habitat",
     "audioPath": "audio/habitat.mp3"
@@ -7361,6 +7710,7 @@
     "acceptedAnswers": [
       "handle"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "handle",
     "audioPath": "audio/handle.mp3"
@@ -7381,6 +7731,7 @@
     "acceptedAnswers": [
       "handle stress"
     ],
+    "partOfSpeech": "短语",
     "sourceRevision": 4,
     "audioText": "handle stress",
     "audioPath": "audio/handle-stress.mp3"
@@ -7401,6 +7752,7 @@
     "acceptedAnswers": [
       "handmade"
     ],
+    "partOfSpeech": "形容词",
     "sourceRevision": 4,
     "audioText": "handmade",
     "audioPath": "audio/handmade.mp3"
@@ -7421,6 +7773,7 @@
     "acceptedAnswers": [
       "harmful"
     ],
+    "partOfSpeech": "形容词",
     "sourceRevision": 4,
     "audioText": "harmful",
     "audioPath": "audio/harmful.mp3"
@@ -7441,6 +7794,7 @@
     "acceptedAnswers": [
       "have access to"
     ],
+    "partOfSpeech": "短语",
     "sourceRevision": 4,
     "audioText": "have access to",
     "audioPath": "audio/have-access-to.mp3"
@@ -7464,6 +7818,7 @@
     "numberVariants": [
       "headaches"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "headache",
     "audioPath": "audio/headache.mp3"
@@ -7484,6 +7839,7 @@
     "acceptedAnswers": [
       "health"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "health",
     "audioPath": "audio/health.mp3"
@@ -7504,6 +7860,7 @@
     "acceptedAnswers": [
       "healthy"
     ],
+    "partOfSpeech": "形容词",
     "sourceRevision": 4,
     "audioText": "healthy",
     "audioPath": "audio/healthy.mp3"
@@ -7524,6 +7881,7 @@
     "acceptedAnswers": [
       "heated"
     ],
+    "partOfSpeech": "形容词",
     "sourceRevision": 4,
     "audioText": "heated",
     "audioPath": "audio/heated.mp3"
@@ -7544,6 +7902,7 @@
     "acceptedAnswers": [
       "helicopter"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "helicopter",
     "audioPath": "audio/helicopter.mp3"
@@ -7564,6 +7923,7 @@
     "acceptedAnswers": [
       "helmet"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "helmet",
     "audioPath": "audio/helmet.mp3"
@@ -7584,6 +7944,7 @@
     "acceptedAnswers": [
       "hesitation"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "hesitation",
     "audioPath": "audio/hesitation.mp3"
@@ -7604,6 +7965,7 @@
     "acceptedAnswers": [
       "hospital"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "hospital",
     "audioPath": "audio/hospital.mp3"
@@ -7624,6 +7986,7 @@
     "acceptedAnswers": [
       "hostel"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "hostel",
     "audioPath": "audio/hostel.mp3"
@@ -7644,6 +8007,7 @@
     "acceptedAnswers": [
       "hotel"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "hotel",
     "audioPath": "audio/hotel.mp3"
@@ -7664,6 +8028,7 @@
     "acceptedAnswers": [
       "however"
     ],
+    "partOfSpeech": "副词",
     "sourceRevision": 4,
     "audioText": "however",
     "audioPath": "audio/however.mp3"
@@ -7684,6 +8049,7 @@
     "acceptedAnswers": [
       "identify"
     ],
+    "partOfSpeech": "动词",
     "sourceRevision": 4,
     "audioText": "identify",
     "audioPath": "audio/identify.mp3"
@@ -7704,6 +8070,7 @@
     "acceptedAnswers": [
       "ignore"
     ],
+    "partOfSpeech": "动词",
     "sourceRevision": 4,
     "audioText": "ignore",
     "audioPath": "audio/ignore.mp3"
@@ -7724,6 +8091,7 @@
     "acceptedAnswers": [
       "impact"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "impact",
     "audioPath": "audio/impact.mp3"
@@ -7744,6 +8112,7 @@
     "acceptedAnswers": [
       "impressed"
     ],
+    "partOfSpeech": "形容词",
     "sourceRevision": 4,
     "audioText": "impressed",
     "audioPath": "audio/impressed.mp3"
@@ -7764,6 +8133,7 @@
     "acceptedAnswers": [
       "improve"
     ],
+    "partOfSpeech": "动词",
     "sourceRevision": 4,
     "audioText": "improve",
     "audioPath": "audio/improve.mp3"
@@ -7784,6 +8154,7 @@
     "acceptedAnswers": [
       "improvement"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "improvement",
     "audioPath": "audio/improvement.mp3"
@@ -7804,6 +8175,7 @@
     "acceptedAnswers": [
       "in fact"
     ],
+    "partOfSpeech": "短语",
     "sourceRevision": 4,
     "audioText": "in fact",
     "audioPath": "audio/in-fact.mp3"
@@ -7824,6 +8196,7 @@
     "acceptedAnswers": [
       "in front of"
     ],
+    "partOfSpeech": "短语",
     "sourceRevision": 4,
     "audioText": "in front of",
     "audioPath": "audio/in-front-of.mp3"
@@ -7844,6 +8217,7 @@
     "acceptedAnswers": [
       "in particular"
     ],
+    "partOfSpeech": "短语",
     "sourceRevision": 4,
     "audioText": "in particular",
     "audioPath": "audio/in-particular.mp3"
@@ -7864,6 +8238,7 @@
     "acceptedAnswers": [
       "in terms of"
     ],
+    "partOfSpeech": "短语",
     "sourceRevision": 4,
     "audioText": "in terms of",
     "audioPath": "audio/in-terms-of.mp3"
@@ -7884,6 +8259,7 @@
     "acceptedAnswers": [
       "in the end"
     ],
+    "partOfSpeech": "短语",
     "sourceRevision": 4,
     "audioText": "in the end",
     "audioPath": "audio/in-the-end.mp3"
@@ -7904,6 +8280,7 @@
     "acceptedAnswers": [
       "in the middle of"
     ],
+    "partOfSpeech": "短语",
     "sourceRevision": 4,
     "audioText": "in the middle of",
     "audioPath": "audio/in-the-middle-of.mp3"
@@ -7924,6 +8301,7 @@
     "acceptedAnswers": [
       "inaccurate"
     ],
+    "partOfSpeech": "形容词",
     "sourceRevision": 4,
     "audioText": "inaccurate",
     "audioPath": "audio/inaccurate.mp3"
@@ -7944,6 +8322,7 @@
     "acceptedAnswers": [
       "increase"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "increase",
     "audioPath": "audio/increase.mp3"
@@ -7964,6 +8343,7 @@
     "acceptedAnswers": [
       "independent living"
     ],
+    "partOfSpeech": "短语",
     "sourceRevision": 4,
     "audioText": "independent living",
     "audioPath": "audio/independent-living.mp3"
@@ -7987,6 +8367,7 @@
     "numberVariants": [
       "industries"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "industry",
     "audioPath": "audio/industry.mp3"
@@ -8007,6 +8388,7 @@
     "acceptedAnswers": [
       "infection"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "infection",
     "audioPath": "audio/infection.mp3"
@@ -8027,6 +8409,7 @@
     "acceptedAnswers": [
       "ingredient"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "ingredient",
     "audioPath": "audio/ingredient.mp3"
@@ -8047,6 +8430,7 @@
     "acceptedAnswers": [
       "injury"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "injury",
     "audioPath": "audio/injury.mp3"
@@ -8070,6 +8454,7 @@
     "numberVariants": [
       "insects"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "insect",
     "audioPath": "audio/insect.mp3"
@@ -8090,6 +8475,7 @@
     "acceptedAnswers": [
       "instead of"
     ],
+    "partOfSpeech": "短语",
     "sourceRevision": 4,
     "audioText": "instead of",
     "audioPath": "audio/instead-of.mp3"
@@ -8110,6 +8496,7 @@
     "acceptedAnswers": [
       "insurance"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "insurance",
     "audioPath": "audio/insurance.mp3"
@@ -8130,6 +8517,7 @@
     "acceptedAnswers": [
       "interact"
     ],
+    "partOfSpeech": "动词",
     "sourceRevision": 4,
     "audioText": "interact",
     "audioPath": "audio/interact.mp3"
@@ -8150,6 +8538,7 @@
     "acceptedAnswers": [
       "intern"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "intern",
     "audioPath": "audio/intern.mp3"
@@ -8170,6 +8559,7 @@
     "acceptedAnswers": [
       "internship"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "internship",
     "audioPath": "audio/internship.mp3"
@@ -8193,6 +8583,7 @@
     "numberVariants": [
       "invitations"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "invitation",
     "audioPath": "audio/invitation.mp3"
@@ -8213,6 +8604,7 @@
     "acceptedAnswers": [
       "involve"
     ],
+    "partOfSpeech": "动词",
     "sourceRevision": 4,
     "audioText": "involve",
     "audioPath": "audio/involve.mp3"
@@ -8233,6 +8625,7 @@
     "acceptedAnswers": [
       "island"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "island",
     "audioPath": "audio/island.mp3"
@@ -8254,6 +8647,7 @@
     "acceptedAnswers": [
       "issue"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "issue",
     "audioPath": "audio/issue.mp3"
@@ -8274,6 +8668,7 @@
     "acceptedAnswers": [
       "itinerary"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "itinerary",
     "audioPath": "audio/itinerary.mp3"
@@ -8294,6 +8689,7 @@
     "acceptedAnswers": [
       "journey"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "journey",
     "audioPath": "audio/journey.mp3"
@@ -8314,6 +8710,7 @@
     "acceptedAnswers": [
       "just beyond"
     ],
+    "partOfSpeech": "短语",
     "sourceRevision": 4,
     "audioText": "just beyond",
     "audioPath": "audio/just-beyond.mp3"
@@ -8334,6 +8731,7 @@
     "acceptedAnswers": [
       "keep in touch with"
     ],
+    "partOfSpeech": "短语",
     "sourceRevision": 4,
     "audioText": "keep in touch with",
     "audioPath": "audio/keep-in-touch-with.mp3"
@@ -8354,6 +8752,7 @@
     "acceptedAnswers": [
       "laboratory"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "laboratory",
     "audioPath": "audio/laboratory.mp3"
@@ -8374,6 +8773,7 @@
     "acceptedAnswers": [
       "language"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "language",
     "audioPath": "audio/language.mp3"
@@ -8394,6 +8794,7 @@
     "acceptedAnswers": [
       "laundry"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "laundry",
     "audioPath": "audio/laundry.mp3"
@@ -8414,6 +8815,7 @@
     "acceptedAnswers": [
       "leader"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "leader",
     "audioPath": "audio/leader.mp3"
@@ -8434,6 +8836,7 @@
     "acceptedAnswers": [
       "leak"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "leak",
     "audioPath": "audio/leak.mp3"
@@ -8457,6 +8860,7 @@
     "acceptedAnswers": [
       "lecture"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "lecture",
     "audioPath": "audio/lecture.mp3"
@@ -8477,6 +8881,7 @@
     "acceptedAnswers": [
       "lecturer"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "lecturer",
     "audioPath": "audio/lecturer.mp3"
@@ -8497,6 +8902,7 @@
     "acceptedAnswers": [
       "library"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "library",
     "audioPath": "audio/library.mp3"
@@ -8517,6 +8923,7 @@
     "acceptedAnswers": [
       "licence"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "licence",
     "audioPath": "audio/licence.mp3"
@@ -8537,6 +8944,7 @@
     "acceptedAnswers": [
       "lifestyle"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "lifestyle",
     "audioPath": "audio/lifestyle.mp3"
@@ -8560,6 +8968,7 @@
     "numberVariants": [
       "lights"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "light",
     "audioPath": "audio/light.mp3"
@@ -8580,6 +8989,7 @@
     "acceptedAnswers": [
       "limited"
     ],
+    "partOfSpeech": "形容词",
     "sourceRevision": 4,
     "audioText": "limited",
     "audioPath": "audio/limited.mp3"
@@ -8600,6 +9010,7 @@
     "acceptedAnswers": [
       "lock"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "lock",
     "audioPath": "audio/lock.mp3"
@@ -8620,6 +9031,7 @@
     "acceptedAnswers": [
       "luggage"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "luggage",
     "audioPath": "audio/luggage.mp3"
@@ -8640,6 +9052,7 @@
     "acceptedAnswers": [
       "lunch"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "lunch",
     "audioPath": "audio/lunch.mp3"
@@ -8660,6 +9073,7 @@
     "acceptedAnswers": [
       "machinery"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "machinery",
     "audioPath": "audio/machinery.mp3"
@@ -8680,6 +9094,7 @@
     "acceptedAnswers": [
       "mainly"
     ],
+    "partOfSpeech": "副词",
     "sourceRevision": 4,
     "audioText": "mainly",
     "audioPath": "audio/mainly.mp3"
@@ -8700,6 +9115,7 @@
     "acceptedAnswers": [
       "maintain"
     ],
+    "partOfSpeech": "动词",
     "sourceRevision": 4,
     "audioText": "maintain",
     "audioPath": "audio/maintain.mp3"
@@ -8720,6 +9136,7 @@
     "acceptedAnswers": [
       "maintenance"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "maintenance",
     "audioPath": "audio/maintenance.mp3"
@@ -8740,6 +9157,7 @@
     "acceptedAnswers": [
       "major"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "major",
     "audioPath": "audio/major.mp3"
@@ -8760,6 +9178,7 @@
     "acceptedAnswers": [
       "make sure"
     ],
+    "partOfSpeech": "短语",
     "sourceRevision": 4,
     "audioText": "make sure",
     "audioPath": "audio/make-sure.mp3"
@@ -8780,6 +9199,7 @@
     "acceptedAnswers": [
       "make up one's mind"
     ],
+    "partOfSpeech": "短语",
     "sourceRevision": 4,
     "audioText": "make up one's mind",
     "audioPath": "audio/make-up-one-s-mind.mp3"
@@ -8800,6 +9220,7 @@
     "acceptedAnswers": [
       "make your own"
     ],
+    "partOfSpeech": "短语",
     "sourceRevision": 4,
     "audioText": "make your own",
     "audioPath": "audio/make-your-own.mp3"
@@ -8820,6 +9241,7 @@
     "acceptedAnswers": [
       "manage"
     ],
+    "partOfSpeech": "动词",
     "sourceRevision": 4,
     "audioText": "manage",
     "audioPath": "audio/manage.mp3"
@@ -8840,6 +9262,7 @@
     "acceptedAnswers": [
       "management"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "management",
     "audioPath": "audio/management.mp3"
@@ -8862,6 +9285,7 @@
     "acceptedAnswers": [
       "manager"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "manager",
     "audioPath": "audio/manager.mp3"
@@ -8882,6 +9306,7 @@
     "acceptedAnswers": [
       "mass-produced goods"
     ],
+    "partOfSpeech": "短语",
     "sourceRevision": 4,
     "audioText": "mass-produced goods",
     "audioPath": "audio/mass-produced-goods.mp3"
@@ -8907,6 +9332,7 @@
     "numberVariants": [
       "materials"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "material",
     "audioPath": "audio/material.mp3"
@@ -8927,6 +9353,7 @@
     "acceptedAnswers": [
       "measure"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "measure",
     "audioPath": "audio/measure.mp3"
@@ -8947,6 +9374,7 @@
     "acceptedAnswers": [
       "measurement"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "measurement",
     "audioPath": "audio/measurement.mp3"
@@ -8967,6 +9395,7 @@
     "acceptedAnswers": [
       "meat"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "meat",
     "audioPath": "audio/meat.mp3"
@@ -8987,6 +9416,7 @@
     "acceptedAnswers": [
       "mechanic"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "mechanic",
     "audioPath": "audio/mechanic.mp3"
@@ -9007,6 +9437,7 @@
     "acceptedAnswers": [
       "medicine"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "medicine",
     "audioPath": "audio/medicine.mp3"
@@ -9027,6 +9458,7 @@
     "acceptedAnswers": [
       "meet a deadline"
     ],
+    "partOfSpeech": "短语",
     "sourceRevision": 4,
     "audioText": "meet a deadline",
     "audioPath": "audio/meet-a-deadline.mp3"
@@ -9047,6 +9479,7 @@
     "acceptedAnswers": [
       "mental health"
     ],
+    "partOfSpeech": "短语",
     "sourceRevision": 4,
     "audioText": "mental health",
     "audioPath": "audio/mental-health.mp3"
@@ -9067,6 +9500,7 @@
     "acceptedAnswers": [
       "mention"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "mention",
     "audioPath": "audio/mention.mp3"
@@ -9087,6 +9521,7 @@
     "acceptedAnswers": [
       "menu"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "menu",
     "audioPath": "audio/menu.mp3"
@@ -9107,6 +9542,7 @@
     "acceptedAnswers": [
       "metal"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "metal",
     "audioPath": "audio/metal.mp3"
@@ -9127,6 +9563,7 @@
     "acceptedAnswers": [
       "method"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "method",
     "audioPath": "audio/method.mp3"
@@ -9147,6 +9584,7 @@
     "acceptedAnswers": [
       "microwave"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "microwave",
     "audioPath": "audio/microwave.mp3"
@@ -9167,6 +9605,7 @@
     "acceptedAnswers": [
       "middle"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "middle",
     "audioPath": "audio/middle.mp3"
@@ -9187,6 +9626,7 @@
     "acceptedAnswers": [
       "migration"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "migration",
     "audioPath": "audio/migration.mp3"
@@ -9207,6 +9647,7 @@
     "acceptedAnswers": [
       "milk"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "milk",
     "audioPath": "audio/milk.mp3"
@@ -9227,6 +9668,7 @@
     "acceptedAnswers": [
       "module"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "module",
     "audioPath": "audio/module.mp3"
@@ -9247,6 +9689,7 @@
     "acceptedAnswers": [
       "mostly"
     ],
+    "partOfSpeech": "副词",
     "sourceRevision": 4,
     "audioText": "mostly",
     "audioPath": "audio/mostly.mp3"
@@ -9267,6 +9710,7 @@
     "acceptedAnswers": [
       "motivation"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "motivation",
     "audioPath": "audio/motivation.mp3"
@@ -9287,6 +9731,7 @@
     "acceptedAnswers": [
       "museum"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "museum",
     "audioPath": "audio/museum.mp3"
@@ -9307,6 +9752,7 @@
     "acceptedAnswers": [
       "nationality"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "nationality",
     "audioPath": "audio/nationality.mp3"
@@ -9327,6 +9773,7 @@
     "acceptedAnswers": [
       "nature"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "nature",
     "audioPath": "audio/nature.mp3"
@@ -9347,6 +9794,7 @@
     "acceptedAnswers": [
       "nearby"
     ],
+    "partOfSpeech": "形容词",
     "sourceRevision": 4,
     "audioText": "nearby",
     "audioPath": "audio/nearby.mp3"
@@ -9367,6 +9815,7 @@
     "acceptedAnswers": [
       "negative"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "negative",
     "audioPath": "audio/negative.mp3"
@@ -9387,6 +9836,7 @@
     "acceptedAnswers": [
       "neglect"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "neglect",
     "audioPath": "audio/neglect.mp3"
@@ -9407,6 +9857,7 @@
     "acceptedAnswers": [
       "neighbour"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "neighbour",
     "audioPath": "audio/neighbour.mp3"
@@ -9427,6 +9878,7 @@
     "acceptedAnswers": [
       "newspaper"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "newspaper",
     "audioPath": "audio/newspaper.mp3"
@@ -9447,6 +9899,7 @@
     "acceptedAnswers": [
       "next to"
     ],
+    "partOfSpeech": "短语",
     "sourceRevision": 4,
     "audioText": "next to",
     "audioPath": "audio/next-to.mp3"
@@ -9467,6 +9920,7 @@
     "acceptedAnswers": [
       "nitrogen"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "nitrogen",
     "audioPath": "audio/nitrogen.mp3"
@@ -9487,6 +9941,7 @@
     "acceptedAnswers": [
       "northwest"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "northwest",
     "audioPath": "audio/northwest.mp3"
@@ -9507,6 +9962,7 @@
     "acceptedAnswers": [
       "nurse"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "nurse",
     "audioPath": "audio/nurse.mp3"
@@ -9527,6 +9983,7 @@
     "acceptedAnswers": [
       "observe"
     ],
+    "partOfSpeech": "动词",
     "sourceRevision": 4,
     "audioText": "observe",
     "audioPath": "audio/observe.mp3"
@@ -9547,6 +10004,7 @@
     "acceptedAnswers": [
       "observer"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "observer",
     "audioPath": "audio/observer.mp3"
@@ -9567,6 +10025,7 @@
     "acceptedAnswers": [
       "occasional"
     ],
+    "partOfSpeech": "形容词",
     "sourceRevision": 4,
     "audioText": "occasional",
     "audioPath": "audio/occasional.mp3"
@@ -9587,6 +10046,7 @@
     "acceptedAnswers": [
       "occupation"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "occupation",
     "audioPath": "audio/occupation.mp3"
@@ -9607,6 +10067,7 @@
     "acceptedAnswers": [
       "ocean"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "ocean",
     "audioPath": "audio/ocean.mp3"
@@ -9627,6 +10088,7 @@
     "acceptedAnswers": [
       "October"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "October",
     "audioPath": "audio/october.mp3"
@@ -9647,6 +10109,7 @@
     "acceptedAnswers": [
       "on the bend"
     ],
+    "partOfSpeech": "短语",
     "sourceRevision": 4,
     "audioText": "on the bend",
     "audioPath": "audio/on-the-bend.mp3"
@@ -9667,6 +10130,7 @@
     "acceptedAnswers": [
       "on the corner"
     ],
+    "partOfSpeech": "短语",
     "sourceRevision": 4,
     "audioText": "on the corner",
     "audioPath": "audio/on-the-corner.mp3"
@@ -9687,6 +10151,7 @@
     "acceptedAnswers": [
       "on the edge of"
     ],
+    "partOfSpeech": "短语",
     "sourceRevision": 4,
     "audioText": "on the edge of",
     "audioPath": "audio/on-the-edge-of.mp3"
@@ -9707,6 +10172,7 @@
     "acceptedAnswers": [
       "on the left"
     ],
+    "partOfSpeech": "短语",
     "sourceRevision": 4,
     "audioText": "on the left",
     "audioPath": "audio/on-the-left.mp3"
@@ -9727,6 +10193,7 @@
     "acceptedAnswers": [
       "on the right"
     ],
+    "partOfSpeech": "短语",
     "sourceRevision": 4,
     "audioText": "on the right",
     "audioPath": "audio/on-the-right.mp3"
@@ -9747,6 +10214,7 @@
     "acceptedAnswers": [
       "on the whole"
     ],
+    "partOfSpeech": "短语",
     "sourceRevision": 4,
     "audioText": "on the whole",
     "audioPath": "audio/on-the-whole.mp3"
@@ -9767,6 +10235,7 @@
     "acceptedAnswers": [
       "on time"
     ],
+    "partOfSpeech": "短语",
     "sourceRevision": 4,
     "audioText": "on time",
     "audioPath": "audio/on-time.mp3"
@@ -9787,6 +10256,7 @@
     "acceptedAnswers": [
       "onlooker"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "onlooker",
     "audioPath": "audio/onlooker.mp3"
@@ -9807,6 +10277,7 @@
     "acceptedAnswers": [
       "opposite"
     ],
+    "partOfSpeech": "形容词",
     "sourceRevision": 4,
     "audioText": "opposite",
     "audioPath": "audio/opposite.mp3"
@@ -9827,6 +10298,7 @@
     "acceptedAnswers": [
       "opposite the"
     ],
+    "partOfSpeech": "短语",
     "sourceRevision": 4,
     "audioText": "opposite the",
     "audioPath": "audio/opposite-the.mp3"
@@ -9847,6 +10319,7 @@
     "acceptedAnswers": [
       "optional"
     ],
+    "partOfSpeech": "形容词",
     "sourceRevision": 4,
     "audioText": "optional",
     "audioPath": "audio/optional.mp3"
@@ -9867,6 +10340,7 @@
     "acceptedAnswers": [
       "orange"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "orange",
     "audioPath": "audio/orange.mp3"
@@ -9887,6 +10361,7 @@
     "acceptedAnswers": [
       "organise"
     ],
+    "partOfSpeech": "动词",
     "sourceRevision": 4,
     "audioText": "organise",
     "audioPath": "audio/organise.mp3"
@@ -9907,6 +10382,7 @@
     "acceptedAnswers": [
       "originality"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "originality",
     "audioPath": "audio/originality.mp3"
@@ -9927,6 +10403,7 @@
     "acceptedAnswers": [
       "out of date"
     ],
+    "partOfSpeech": "短语",
     "sourceRevision": 4,
     "audioText": "out of date",
     "audioPath": "audio/out-of-date.mp3"
@@ -9947,6 +10424,7 @@
     "acceptedAnswers": [
       "outdated"
     ],
+    "partOfSpeech": "形容词",
     "sourceRevision": 4,
     "audioText": "outdated",
     "audioPath": "audio/outdated.mp3"
@@ -9967,6 +10445,7 @@
     "acceptedAnswers": [
       "pain"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "pain",
     "audioPath": "audio/pain.mp3"
@@ -9987,6 +10466,7 @@
     "acceptedAnswers": [
       "paper"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "paper",
     "audioPath": "audio/paper.mp3"
@@ -10007,6 +10487,7 @@
     "acceptedAnswers": [
       "parent"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "parent",
     "audioPath": "audio/parent.mp3"
@@ -10027,6 +10508,7 @@
     "acceptedAnswers": [
       "park"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "park",
     "audioPath": "audio/park.mp3"
@@ -10047,6 +10529,7 @@
     "acceptedAnswers": [
       "parking"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "parking",
     "audioPath": "audio/parking.mp3"
@@ -10067,6 +10550,7 @@
     "acceptedAnswers": [
       "participant"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "participant",
     "audioPath": "audio/participant.mp3"
@@ -10087,6 +10571,7 @@
     "acceptedAnswers": [
       "participate"
     ],
+    "partOfSpeech": "动词",
     "sourceRevision": 4,
     "audioText": "participate",
     "audioPath": "audio/participate.mp3"
@@ -10107,6 +10592,7 @@
     "acceptedAnswers": [
       "particular"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "particular",
     "audioPath": "audio/particular.mp3"
@@ -10127,6 +10613,7 @@
     "acceptedAnswers": [
       "particularly"
     ],
+    "partOfSpeech": "副词",
     "sourceRevision": 4,
     "audioText": "particularly",
     "audioPath": "audio/particularly.mp3"
@@ -10147,6 +10634,7 @@
     "acceptedAnswers": [
       "partner"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "partner",
     "audioPath": "audio/partner.mp3"
@@ -10167,6 +10655,7 @@
     "acceptedAnswers": [
       "passenger"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "passenger",
     "audioPath": "audio/passenger.mp3"
@@ -10187,6 +10676,7 @@
     "acceptedAnswers": [
       "passport"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "passport",
     "audioPath": "audio/passport.mp3"
@@ -10207,6 +10697,7 @@
     "acceptedAnswers": [
       "patient"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "patient",
     "audioPath": "audio/patient.mp3"
@@ -10227,6 +10718,7 @@
     "acceptedAnswers": [
       "payment"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "payment",
     "audioPath": "audio/payment.mp3"
@@ -10247,6 +10739,7 @@
     "acceptedAnswers": [
       "pedestrian"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "pedestrian",
     "audioPath": "audio/pedestrian.mp3"
@@ -10267,6 +10760,7 @@
     "acceptedAnswers": [
       "perfume"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "perfume",
     "audioPath": "audio/perfume.mp3"
@@ -10287,6 +10781,7 @@
     "acceptedAnswers": [
       "personal statement"
     ],
+    "partOfSpeech": "短语",
     "sourceRevision": 4,
     "audioText": "personal statement",
     "audioPath": "audio/personal-statement.mp3"
@@ -10307,6 +10802,7 @@
     "acceptedAnswers": [
       "pest"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "pest",
     "audioPath": "audio/pest.mp3"
@@ -10327,6 +10823,7 @@
     "acceptedAnswers": [
       "physical health"
     ],
+    "partOfSpeech": "短语",
     "sourceRevision": 4,
     "audioText": "physical health",
     "audioPath": "audio/physical-health.mp3"
@@ -10347,6 +10844,7 @@
     "acceptedAnswers": [
       "physical needs"
     ],
+    "partOfSpeech": "短语",
     "sourceRevision": 4,
     "audioText": "physical needs",
     "audioPath": "audio/physical-needs.mp3"
@@ -10367,6 +10865,7 @@
     "acceptedAnswers": [
       "placement"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "placement",
     "audioPath": "audio/placement.mp3"
@@ -10392,6 +10891,7 @@
     "numberVariants": [
       "plants"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "plant",
     "audioPath": "audio/plant.mp3"
@@ -10412,6 +10912,7 @@
     "acceptedAnswers": [
       "plastic"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "plastic",
     "audioPath": "audio/plastic.mp3"
@@ -10434,6 +10935,7 @@
     "acceptedAnswers": [
       "platform"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "platform",
     "audioPath": "audio/platform.mp3"
@@ -10454,6 +10956,7 @@
     "acceptedAnswers": [
       "plumber"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "plumber",
     "audioPath": "audio/plumber.mp3"
@@ -10474,6 +10977,7 @@
     "acceptedAnswers": [
       "point"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "point",
     "audioPath": "audio/point.mp3"
@@ -10494,6 +10998,7 @@
     "acceptedAnswers": [
       "point out"
     ],
+    "partOfSpeech": "短语",
     "sourceRevision": 4,
     "audioText": "point out",
     "audioPath": "audio/point-out.mp3"
@@ -10514,6 +11019,7 @@
     "acceptedAnswers": [
       "pollution"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "pollution",
     "audioPath": "audio/pollution.mp3"
@@ -10534,6 +11040,7 @@
     "acceptedAnswers": [
       "population"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "population",
     "audioPath": "audio/population.mp3"
@@ -10554,6 +11061,7 @@
     "acceptedAnswers": [
       "position"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "position",
     "audioPath": "audio/position.mp3"
@@ -10574,6 +11082,7 @@
     "acceptedAnswers": [
       "positive"
     ],
+    "partOfSpeech": "形容词",
     "sourceRevision": 4,
     "audioText": "positive",
     "audioPath": "audio/positive.mp3"
@@ -10594,6 +11103,7 @@
     "acceptedAnswers": [
       "postcode"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "postcode",
     "audioPath": "audio/postcode.mp3"
@@ -10614,6 +11124,7 @@
     "acceptedAnswers": [
       "practice"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "practice",
     "audioPath": "audio/practice.mp3"
@@ -10634,6 +11145,7 @@
     "acceptedAnswers": [
       "prefer"
     ],
+    "partOfSpeech": "动词",
     "sourceRevision": 4,
     "audioText": "prefer",
     "audioPath": "audio/prefer.mp3"
@@ -10654,6 +11166,7 @@
     "acceptedAnswers": [
       "prefer A to B"
     ],
+    "partOfSpeech": "短语",
     "sourceRevision": 4,
     "audioText": "prefer A to B",
     "audioPath": "audio/prefer-a-to-b.mp3"
@@ -10674,6 +11187,7 @@
     "acceptedAnswers": [
       "preference"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "preference",
     "audioPath": "audio/preference.mp3"
@@ -10694,6 +11208,7 @@
     "acceptedAnswers": [
       "prepare"
     ],
+    "partOfSpeech": "动词",
     "sourceRevision": 4,
     "audioText": "prepare",
     "audioPath": "audio/prepare.mp3"
@@ -10719,6 +11234,7 @@
     "numberVariants": [
       "presents"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "present",
     "audioPath": "audio/present.mp3"
@@ -10741,6 +11257,7 @@
     "acceptedAnswers": [
       "presentation"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "presentation",
     "audioPath": "audio/presentation.mp3"
@@ -10761,6 +11278,7 @@
     "acceptedAnswers": [
       "prevent"
     ],
+    "partOfSpeech": "动词",
     "sourceRevision": 4,
     "audioText": "prevent",
     "audioPath": "audio/prevent.mp3"
@@ -10781,6 +11299,7 @@
     "acceptedAnswers": [
       "price"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "price",
     "audioPath": "audio/price.mp3"
@@ -10801,6 +11320,7 @@
     "acceptedAnswers": [
       "pride"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "pride",
     "audioPath": "audio/pride.mp3"
@@ -10821,6 +11341,7 @@
     "acceptedAnswers": [
       "priority"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "priority",
     "audioPath": "audio/priority.mp3"
@@ -10841,6 +11362,7 @@
     "acceptedAnswers": [
       "problem"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "problem",
     "audioPath": "audio/problem.mp3"
@@ -10861,6 +11383,7 @@
     "acceptedAnswers": [
       "procedure"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "procedure",
     "audioPath": "audio/procedure.mp3"
@@ -10881,6 +11404,7 @@
     "acceptedAnswers": [
       "process"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "process",
     "audioPath": "audio/process.mp3"
@@ -10901,6 +11425,7 @@
     "acceptedAnswers": [
       "production"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "production",
     "audioPath": "audio/production.mp3"
@@ -10921,6 +11446,7 @@
     "acceptedAnswers": [
       "production figures"
     ],
+    "partOfSpeech": "短语",
     "sourceRevision": 4,
     "audioText": "production figures",
     "audioPath": "audio/production-figures.mp3"
@@ -10943,6 +11469,7 @@
     "acceptedAnswers": [
       "project"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "project",
     "audioPath": "audio/project.mp3"
@@ -10964,6 +11491,7 @@
     "acceptedAnswers": [
       "project management"
     ],
+    "partOfSpeech": "短语",
     "sourceRevision": 4,
     "audioText": "project management",
     "audioPath": "audio/project-management.mp3"
@@ -10984,6 +11512,7 @@
     "acceptedAnswers": [
       "protect"
     ],
+    "partOfSpeech": "动词",
     "sourceRevision": 4,
     "audioText": "protect",
     "audioPath": "audio/protect.mp3"
@@ -11004,6 +11533,7 @@
     "acceptedAnswers": [
       "protection"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "protection",
     "audioPath": "audio/protection.mp3"
@@ -11024,6 +11554,7 @@
     "acceptedAnswers": [
       "provide"
     ],
+    "partOfSpeech": "动词",
     "sourceRevision": 4,
     "audioText": "provide",
     "audioPath": "audio/provide.mp3"
@@ -11044,6 +11575,7 @@
     "acceptedAnswers": [
       "provide somebody with"
     ],
+    "partOfSpeech": "短语",
     "sourceRevision": 4,
     "audioText": "provide somebody with",
     "audioPath": "audio/provide-somebody-with.mp3"
@@ -11064,6 +11596,7 @@
     "acceptedAnswers": [
       "pupil"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "pupil",
     "audioPath": "audio/pupil.mp3"
@@ -11084,6 +11617,7 @@
     "acceptedAnswers": [
       "qualification"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "qualification",
     "audioPath": "audio/qualification.mp3"
@@ -11104,6 +11638,7 @@
     "acceptedAnswers": [
       "quality"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "quality",
     "audioPath": "audio/quality.mp3"
@@ -11124,6 +11659,7 @@
     "acceptedAnswers": [
       "questionnaire"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "questionnaire",
     "audioPath": "audio/questionnaire.mp3"
@@ -11144,6 +11680,7 @@
     "acceptedAnswers": [
       "railway"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "railway",
     "audioPath": "audio/railway.mp3"
@@ -11164,6 +11701,7 @@
     "acceptedAnswers": [
       "rainfall"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "rainfall",
     "audioPath": "audio/rainfall.mp3"
@@ -11184,6 +11722,7 @@
     "acceptedAnswers": [
       "range"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "range",
     "audioPath": "audio/range.mp3"
@@ -11204,6 +11743,7 @@
     "acceptedAnswers": [
       "rather than"
     ],
+    "partOfSpeech": "短语",
     "sourceRevision": 4,
     "audioText": "rather than",
     "audioPath": "audio/rather-than.mp3"
@@ -11226,6 +11766,7 @@
     "acceptedAnswers": [
       "reason"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "reason",
     "audioPath": "audio/reason.mp3"
@@ -11246,6 +11787,7 @@
     "acceptedAnswers": [
       "receipt"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "receipt",
     "audioPath": "audio/receipt.mp3"
@@ -11266,6 +11808,7 @@
     "acceptedAnswers": [
       "reception"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "reception",
     "audioPath": "audio/reception.mp3"
@@ -11286,6 +11829,7 @@
     "acceptedAnswers": [
       "receptionist"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "receptionist",
     "audioPath": "audio/receptionist.mp3"
@@ -11306,6 +11850,7 @@
     "acceptedAnswers": [
       "recommend"
     ],
+    "partOfSpeech": "动词",
     "sourceRevision": 4,
     "audioText": "recommend",
     "audioPath": "audio/recommend.mp3"
@@ -11327,6 +11872,7 @@
     "acceptedAnswers": [
       "record"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "record",
     "audioPath": "audio/record.mp3"
@@ -11350,6 +11896,7 @@
     "numberVariants": [
       "recordings"
     ],
+    "partOfSpeech": "形容词",
     "sourceRevision": 4,
     "audioText": "recording",
     "audioPath": "audio/recording.mp3"
@@ -11370,6 +11917,7 @@
     "acceptedAnswers": [
       "recycling"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "recycling",
     "audioPath": "audio/recycling.mp3"
@@ -11390,6 +11938,7 @@
     "acceptedAnswers": [
       "reduce"
     ],
+    "partOfSpeech": "动词",
     "sourceRevision": 4,
     "audioText": "reduce",
     "audioPath": "audio/reduce.mp3"
@@ -11410,6 +11959,7 @@
     "acceptedAnswers": [
       "reduction"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "reduction",
     "audioPath": "audio/reduction.mp3"
@@ -11430,6 +11980,7 @@
     "acceptedAnswers": [
       "refund"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "refund",
     "audioPath": "audio/refund.mp3"
@@ -11450,6 +12001,7 @@
     "acceptedAnswers": [
       "registration"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "registration",
     "audioPath": "audio/registration.mp3"
@@ -11470,6 +12022,7 @@
     "acceptedAnswers": [
       "regret"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "regret",
     "audioPath": "audio/regret.mp3"
@@ -11490,6 +12043,7 @@
     "acceptedAnswers": [
       "reject"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "reject",
     "audioPath": "audio/reject.mp3"
@@ -11510,6 +12064,7 @@
     "acceptedAnswers": [
       "relevance"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "relevance",
     "audioPath": "audio/relevance.mp3"
@@ -11530,6 +12085,7 @@
     "acceptedAnswers": [
       "reliability"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "reliability",
     "audioPath": "audio/reliability.mp3"
@@ -11550,6 +12106,7 @@
     "acceptedAnswers": [
       "relieved"
     ],
+    "partOfSpeech": "形容词",
     "sourceRevision": 4,
     "audioText": "relieved",
     "audioPath": "audio/relieved.mp3"
@@ -11570,6 +12127,7 @@
     "acceptedAnswers": [
       "reluctant"
     ],
+    "partOfSpeech": "形容词",
     "sourceRevision": 4,
     "audioText": "reluctant",
     "audioPath": "audio/reluctant.mp3"
@@ -11590,6 +12148,7 @@
     "acceptedAnswers": [
       "reorganise"
     ],
+    "partOfSpeech": "动词",
     "sourceRevision": 4,
     "audioText": "reorganise",
     "audioPath": "audio/reorganise.mp3"
@@ -11610,6 +12169,7 @@
     "acceptedAnswers": [
       "reorganise shifts"
     ],
+    "partOfSpeech": "短语",
     "sourceRevision": 4,
     "audioText": "reorganise shifts",
     "audioPath": "audio/reorganise-shifts.mp3"
@@ -11630,6 +12190,7 @@
     "acceptedAnswers": [
       "repair"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "repair",
     "audioPath": "audio/repair.mp3"
@@ -11650,6 +12211,7 @@
     "acceptedAnswers": [
       "replace"
     ],
+    "partOfSpeech": "动词",
     "sourceRevision": 4,
     "audioText": "replace",
     "audioPath": "audio/replace.mp3"
@@ -11670,6 +12232,7 @@
     "acceptedAnswers": [
       "representative"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "representative",
     "audioPath": "audio/representative.mp3"
@@ -11690,6 +12253,7 @@
     "acceptedAnswers": [
       "require"
     ],
+    "partOfSpeech": "动词",
     "sourceRevision": 4,
     "audioText": "require",
     "audioPath": "audio/require.mp3"
@@ -11710,6 +12274,7 @@
     "acceptedAnswers": [
       "requirement"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "requirement",
     "audioPath": "audio/requirement.mp3"
@@ -11730,6 +12295,7 @@
     "acceptedAnswers": [
       "research"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "research",
     "audioPath": "audio/research.mp3"
@@ -11750,6 +12316,7 @@
     "acceptedAnswers": [
       "research and development"
     ],
+    "partOfSpeech": "短语",
     "sourceRevision": 4,
     "audioText": "research and development",
     "audioPath": "audio/research-and-development.mp3"
@@ -11770,6 +12337,7 @@
     "acceptedAnswers": [
       "researcher"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "researcher",
     "audioPath": "audio/researcher.mp3"
@@ -11790,6 +12358,7 @@
     "acceptedAnswers": [
       "resentment"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "resentment",
     "audioPath": "audio/resentment.mp3"
@@ -11810,6 +12379,7 @@
     "acceptedAnswers": [
       "reservation"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "reservation",
     "audioPath": "audio/reservation.mp3"
@@ -11830,6 +12400,7 @@
     "acceptedAnswers": [
       "reserve"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "reserve",
     "audioPath": "audio/reserve.mp3"
@@ -11850,6 +12421,7 @@
     "acceptedAnswers": [
       "resident"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "resident",
     "audioPath": "audio/resident.mp3"
@@ -11870,6 +12442,7 @@
     "acceptedAnswers": [
       "respondent"
     ],
+    "partOfSpeech": "形容词",
     "sourceRevision": 4,
     "audioText": "respondent",
     "audioPath": "audio/respondent.mp3"
@@ -11890,6 +12463,7 @@
     "acceptedAnswers": [
       "responsibility"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "responsibility",
     "audioPath": "audio/responsibility.mp3"
@@ -11910,6 +12484,7 @@
     "acceptedAnswers": [
       "restaurant"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "restaurant",
     "audioPath": "audio/restaurant.mp3"
@@ -11930,6 +12505,7 @@
     "acceptedAnswers": [
       "restrict"
     ],
+    "partOfSpeech": "动词",
     "sourceRevision": 4,
     "audioText": "restrict",
     "audioPath": "audio/restrict.mp3"
@@ -11955,6 +12531,7 @@
     "numberVariants": [
       "results"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "result",
     "audioPath": "audio/result.mp3"
@@ -11975,6 +12552,7 @@
     "acceptedAnswers": [
       "risk"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "risk",
     "audioPath": "audio/risk.mp3"
@@ -11995,6 +12573,7 @@
     "acceptedAnswers": [
       "river"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "river",
     "audioPath": "audio/river.mp3"
@@ -12016,6 +12595,7 @@
     "acceptedAnswers": [
       "role"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "role",
     "audioPath": "audio/role.mp3"
@@ -12036,6 +12616,7 @@
     "acceptedAnswers": [
       "route"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "route",
     "audioPath": "audio/route.mp3"
@@ -12056,6 +12637,7 @@
     "acceptedAnswers": [
       "safety"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "safety",
     "audioPath": "audio/safety.mp3"
@@ -12076,6 +12658,7 @@
     "acceptedAnswers": [
       "salary"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "salary",
     "audioPath": "audio/salary.mp3"
@@ -12096,6 +12679,7 @@
     "acceptedAnswers": [
       "salt"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "salt",
     "audioPath": "audio/salt.mp3"
@@ -12116,6 +12700,7 @@
     "acceptedAnswers": [
       "sample"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "sample",
     "audioPath": "audio/sample.mp3"
@@ -12139,6 +12724,7 @@
     "numberVariants": [
       "sandwiches"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "sandwich",
     "audioPath": "audio/sandwich.mp3"
@@ -12159,6 +12745,7 @@
     "acceptedAnswers": [
       "satellite"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "satellite",
     "audioPath": "audio/satellite.mp3"
@@ -12179,6 +12766,7 @@
     "acceptedAnswers": [
       "satisfaction"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "satisfaction",
     "audioPath": "audio/satisfaction.mp3"
@@ -12199,6 +12787,7 @@
     "acceptedAnswers": [
       "satisfied"
     ],
+    "partOfSpeech": "形容词",
     "sourceRevision": 4,
     "audioText": "satisfied",
     "audioPath": "audio/satisfied.mp3"
@@ -12221,6 +12810,7 @@
     "acceptedAnswers": [
       "schedule"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "schedule",
     "audioPath": "audio/schedule.mp3"
@@ -12241,6 +12831,7 @@
     "acceptedAnswers": [
       "section"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "section",
     "audioPath": "audio/section.mp3"
@@ -12263,6 +12854,7 @@
     "acceptedAnswers": [
       "seminar"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "seminar",
     "audioPath": "audio/seminar.mp3"
@@ -12283,6 +12875,7 @@
     "acceptedAnswers": [
       "service"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "service",
     "audioPath": "audio/service.mp3"
@@ -12309,6 +12902,7 @@
     "numberVariants": [
       "shifts"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "shift",
     "audioPath": "audio/shift.mp3"
@@ -12329,6 +12923,7 @@
     "acceptedAnswers": [
       "shortage"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "shortage",
     "audioPath": "audio/shortage.mp3"
@@ -12349,6 +12944,7 @@
     "acceptedAnswers": [
       "signal"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "signal",
     "audioPath": "audio/signal.mp3"
@@ -12369,6 +12965,7 @@
     "acceptedAnswers": [
       "signature"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "signature",
     "audioPath": "audio/signature.mp3"
@@ -12389,6 +12986,7 @@
     "acceptedAnswers": [
       "significant"
     ],
+    "partOfSpeech": "形容词",
     "sourceRevision": 4,
     "audioText": "significant",
     "audioPath": "audio/significant.mp3"
@@ -12409,6 +13007,7 @@
     "acceptedAnswers": [
       "single room"
     ],
+    "partOfSpeech": "短语",
     "sourceRevision": 4,
     "audioText": "single room",
     "audioPath": "audio/single-room.mp3"
@@ -12432,6 +13031,7 @@
     "numberVariants": [
       "skills"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "skill",
     "audioPath": "audio/skill.mp3"
@@ -12452,6 +13052,7 @@
     "acceptedAnswers": [
       "slight"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "slight",
     "audioPath": "audio/slight.mp3"
@@ -12472,6 +13073,7 @@
     "acceptedAnswers": [
       "soil"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "soil",
     "audioPath": "audio/soil.mp3"
@@ -12492,6 +13094,7 @@
     "acceptedAnswers": [
       "solar"
     ],
+    "partOfSpeech": "形容词",
     "sourceRevision": 4,
     "audioText": "solar",
     "audioPath": "audio/solar.mp3"
@@ -12512,6 +13115,7 @@
     "acceptedAnswers": [
       "solution"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "solution",
     "audioPath": "audio/solution.mp3"
@@ -12533,6 +13137,7 @@
     "acceptedAnswers": [
       "source"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "source",
     "audioPath": "audio/source.mp3"
@@ -12553,6 +13158,7 @@
     "acceptedAnswers": [
       "sources of funding"
     ],
+    "partOfSpeech": "短语",
     "sourceRevision": 4,
     "audioText": "sources of funding",
     "audioPath": "audio/sources-of-funding.mp3"
@@ -12573,6 +13179,7 @@
     "acceptedAnswers": [
       "southeast"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "southeast",
     "audioPath": "audio/southeast.mp3"
@@ -12593,6 +13200,7 @@
     "acceptedAnswers": [
       "speaker"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "speaker",
     "audioPath": "audio/speaker.mp3"
@@ -12613,6 +13221,7 @@
     "acceptedAnswers": [
       "specialist"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "specialist",
     "audioPath": "audio/specialist.mp3"
@@ -12633,6 +13242,7 @@
     "acceptedAnswers": [
       "species"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "species",
     "audioPath": "audio/species.mp3"
@@ -12653,6 +13263,7 @@
     "acceptedAnswers": [
       "stadium"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "stadium",
     "audioPath": "audio/stadium.mp3"
@@ -12674,6 +13285,7 @@
     "acceptedAnswers": [
       "staff"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "staff",
     "audioPath": "audio/staff.mp3"
@@ -12694,6 +13306,7 @@
     "acceptedAnswers": [
       "standardised"
     ],
+    "partOfSpeech": "动词",
     "sourceRevision": 4,
     "audioText": "standardised",
     "audioPath": "audio/standardised.mp3"
@@ -12716,6 +13329,7 @@
     "acceptedAnswers": [
       "statistics"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "statistics",
     "audioPath": "audio/statistics.mp3"
@@ -12736,6 +13350,7 @@
     "acceptedAnswers": [
       "stick to"
     ],
+    "partOfSpeech": "短语",
     "sourceRevision": 4,
     "audioText": "stick to",
     "audioPath": "audio/stick-to.mp3"
@@ -12756,6 +13371,7 @@
     "acceptedAnswers": [
       "strength"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "strength",
     "audioPath": "audio/strength.mp3"
@@ -12776,6 +13392,7 @@
     "acceptedAnswers": [
       "stressful"
     ],
+    "partOfSpeech": "形容词",
     "sourceRevision": 4,
     "audioText": "stressful",
     "audioPath": "audio/stressful.mp3"
@@ -12796,6 +13413,7 @@
     "acceptedAnswers": [
       "structure"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "structure",
     "audioPath": "audio/structure.mp3"
@@ -12819,6 +13437,7 @@
     "numberVariants": [
       "students"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "student",
     "audioPath": "audio/student.mp3"
@@ -12839,6 +13458,7 @@
     "acceptedAnswers": [
       "subject"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "subject",
     "audioPath": "audio/subject.mp3"
@@ -12859,6 +13479,7 @@
     "acceptedAnswers": [
       "submit"
     ],
+    "partOfSpeech": "动词",
     "sourceRevision": 4,
     "audioText": "submit",
     "audioPath": "audio/submit.mp3"
@@ -12879,6 +13500,7 @@
     "acceptedAnswers": [
       "submit an application"
     ],
+    "partOfSpeech": "短语",
     "sourceRevision": 4,
     "audioText": "submit an application",
     "audioPath": "audio/submit-an-application.mp3"
@@ -12899,6 +13521,7 @@
     "acceptedAnswers": [
       "suggest"
     ],
+    "partOfSpeech": "动词",
     "sourceRevision": 4,
     "audioText": "suggest",
     "audioPath": "audio/suggest.mp3"
@@ -12919,6 +13542,7 @@
     "acceptedAnswers": [
       "suitable"
     ],
+    "partOfSpeech": "形容词",
     "sourceRevision": 4,
     "audioText": "suitable",
     "audioPath": "audio/suitable.mp3"
@@ -12939,6 +13563,7 @@
     "acceptedAnswers": [
       "supermarket"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "supermarket",
     "audioPath": "audio/supermarket.mp3"
@@ -12959,6 +13584,7 @@
     "acceptedAnswers": [
       "supervisor"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "supervisor",
     "audioPath": "audio/supervisor.mp3"
@@ -12980,6 +13606,7 @@
     "acceptedAnswers": [
       "support"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "support",
     "audioPath": "audio/support.mp3"
@@ -13000,6 +13627,7 @@
     "acceptedAnswers": [
       "surgery"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "surgery",
     "audioPath": "audio/surgery.mp3"
@@ -13020,6 +13648,7 @@
     "acceptedAnswers": [
       "surname"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "surname",
     "audioPath": "audio/surname.mp3"
@@ -13040,6 +13669,7 @@
     "acceptedAnswers": [
       "surprised"
     ],
+    "partOfSpeech": "形容词",
     "sourceRevision": 4,
     "audioText": "surprised",
     "audioPath": "audio/surprised.mp3"
@@ -13060,6 +13690,7 @@
     "acceptedAnswers": [
       "survey"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "survey",
     "audioPath": "audio/survey.mp3"
@@ -13080,6 +13711,7 @@
     "acceptedAnswers": [
       "sympathy"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "sympathy",
     "audioPath": "audio/sympathy.mp3"
@@ -13103,6 +13735,7 @@
     "numberVariants": [
       "symptoms"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "symptom",
     "audioPath": "audio/symptom.mp3"
@@ -13123,6 +13756,7 @@
     "acceptedAnswers": [
       "take part in"
     ],
+    "partOfSpeech": "短语",
     "sourceRevision": 4,
     "audioText": "take part in",
     "audioPath": "audio/take-part-in.mp3"
@@ -13143,6 +13777,7 @@
     "acceptedAnswers": [
       "takeaway"
     ],
+    "partOfSpeech": "形容词",
     "sourceRevision": 4,
     "audioText": "takeaway",
     "audioPath": "audio/takeaway.mp3"
@@ -13163,6 +13798,7 @@
     "acceptedAnswers": [
       "task"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "task",
     "audioPath": "audio/task.mp3"
@@ -13183,6 +13819,7 @@
     "acceptedAnswers": [
       "team leader"
     ],
+    "partOfSpeech": "短语",
     "sourceRevision": 4,
     "audioText": "team leader",
     "audioPath": "audio/team-leader.mp3"
@@ -13203,6 +13840,7 @@
     "acceptedAnswers": [
       "teammate"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "teammate",
     "audioPath": "audio/teammate.mp3"
@@ -13225,6 +13863,7 @@
     "acceptedAnswers": [
       "technician"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "technician",
     "audioPath": "audio/technician.mp3"
@@ -13245,6 +13884,7 @@
     "acceptedAnswers": [
       "technology"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "technology",
     "audioPath": "audio/technology.mp3"
@@ -13265,6 +13905,7 @@
     "acceptedAnswers": [
       "telephone"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "telephone",
     "audioPath": "audio/telephone.mp3"
@@ -13285,6 +13926,7 @@
     "acceptedAnswers": [
       "temperature"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "temperature",
     "audioPath": "audio/temperature.mp3"
@@ -13305,6 +13947,7 @@
     "acceptedAnswers": [
       "tend to"
     ],
+    "partOfSpeech": "短语",
     "sourceRevision": 4,
     "audioText": "tend to",
     "audioPath": "audio/tend-to.mp3"
@@ -13326,6 +13969,7 @@
     "acceptedAnswers": [
       "term"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "term",
     "audioPath": "audio/term.mp3"
@@ -13346,6 +13990,7 @@
     "acceptedAnswers": [
       "theatre"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "theatre",
     "audioPath": "audio/theatre.mp3"
@@ -13366,6 +14011,7 @@
     "acceptedAnswers": [
       "theory"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "theory",
     "audioPath": "audio/theory.mp3"
@@ -13386,6 +14032,7 @@
     "acceptedAnswers": [
       "thunderstorm"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "thunderstorm",
     "audioPath": "audio/thunderstorm.mp3"
@@ -13407,6 +14054,7 @@
     "acceptedAnswers": [
       "time management"
     ],
+    "partOfSpeech": "短语",
     "sourceRevision": 4,
     "audioText": "time management",
     "audioPath": "audio/time-management.mp3"
@@ -13427,6 +14075,7 @@
     "acceptedAnswers": [
       "timetable"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "timetable",
     "audioPath": "audio/timetable.mp3"
@@ -13447,6 +14096,7 @@
     "acceptedAnswers": [
       "to the north of"
     ],
+    "partOfSpeech": "短语",
     "sourceRevision": 4,
     "audioText": "to the north of",
     "audioPath": "audio/to-the-north-of.mp3"
@@ -13467,6 +14117,7 @@
     "acceptedAnswers": [
       "top priority"
     ],
+    "partOfSpeech": "短语",
     "sourceRevision": 4,
     "audioText": "top priority",
     "audioPath": "audio/top-priority.mp3"
@@ -13487,6 +14138,7 @@
     "acceptedAnswers": [
       "tourism"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "tourism",
     "audioPath": "audio/tourism.mp3"
@@ -13507,6 +14159,7 @@
     "acceptedAnswers": [
       "traffic"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "traffic",
     "audioPath": "audio/traffic.mp3"
@@ -13527,6 +14180,7 @@
     "acceptedAnswers": [
       "training"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "training",
     "audioPath": "audio/training.mp3"
@@ -13547,6 +14201,7 @@
     "acceptedAnswers": [
       "transport"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "transport",
     "audioPath": "audio/transport.mp3"
@@ -13569,6 +14224,7 @@
     "acceptedAnswers": [
       "treatment"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "treatment",
     "audioPath": "audio/treatment.mp3"
@@ -13589,6 +14245,7 @@
     "acceptedAnswers": [
       "trousers"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "trousers",
     "audioPath": "audio/trousers.mp3"
@@ -13609,6 +14266,7 @@
     "acceptedAnswers": [
       "turn left / right"
     ],
+    "partOfSpeech": "短语",
     "sourceRevision": 4,
     "audioText": "turn left / right",
     "audioPath": "audio/turn-left-right.mp3"
@@ -13631,6 +14289,7 @@
     "acceptedAnswers": [
       "tutor"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "tutor",
     "audioPath": "audio/tutor.mp3"
@@ -13651,6 +14310,7 @@
     "acceptedAnswers": [
       "uncertainty"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "uncertainty",
     "audioPath": "audio/uncertainty.mp3"
@@ -13671,6 +14331,7 @@
     "acceptedAnswers": [
       "uniform"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "uniform",
     "audioPath": "audio/uniform.mp3"
@@ -13691,6 +14352,7 @@
     "acceptedAnswers": [
       "unique"
     ],
+    "partOfSpeech": "形容词",
     "sourceRevision": 4,
     "audioText": "unique",
     "audioPath": "audio/unique.mp3"
@@ -13711,6 +14373,7 @@
     "acceptedAnswers": [
       "university"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "university",
     "audioPath": "audio/university.mp3"
@@ -13731,6 +14394,7 @@
     "acceptedAnswers": [
       "update"
     ],
+    "partOfSpeech": "动词",
     "sourceRevision": 4,
     "audioText": "update",
     "audioPath": "audio/update.mp3"
@@ -13751,6 +14415,7 @@
     "acceptedAnswers": [
       "upset"
     ],
+    "partOfSpeech": "形容词",
     "sourceRevision": 4,
     "audioText": "upset",
     "audioPath": "audio/upset.mp3"
@@ -13771,6 +14436,7 @@
     "acceptedAnswers": [
       "vaccination"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "vaccination",
     "audioPath": "audio/vaccination.mp3"
@@ -13791,6 +14457,7 @@
     "acceptedAnswers": [
       "vegetarian"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "vegetarian",
     "audioPath": "audio/vegetarian.mp3"
@@ -13811,6 +14478,7 @@
     "acceptedAnswers": [
       "vehicle"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "vehicle",
     "audioPath": "audio/vehicle.mp3"
@@ -13831,6 +14499,7 @@
     "acceptedAnswers": [
       "visitor"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "visitor",
     "audioPath": "audio/visitor.mp3"
@@ -13853,6 +14522,7 @@
     "acceptedAnswers": [
       "volunteer"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "volunteer",
     "audioPath": "audio/volunteer.mp3"
@@ -13873,6 +14543,7 @@
     "acceptedAnswers": [
       "wage"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "wage",
     "audioPath": "audio/wage.mp3"
@@ -13893,6 +14564,7 @@
     "acceptedAnswers": [
       "waiter"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "waiter",
     "audioPath": "audio/waiter.mp3"
@@ -13913,6 +14585,7 @@
     "acceptedAnswers": [
       "waste"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "waste",
     "audioPath": "audio/waste.mp3"
@@ -13933,6 +14606,7 @@
     "acceptedAnswers": [
       "water bottle"
     ],
+    "partOfSpeech": "短语",
     "sourceRevision": 4,
     "audioText": "water bottle",
     "audioPath": "audio/water-bottle.mp3"
@@ -13953,6 +14627,7 @@
     "acceptedAnswers": [
       "weakness"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "weakness",
     "audioPath": "audio/weakness.mp3"
@@ -13973,6 +14648,7 @@
     "acceptedAnswers": [
       "weather"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "weather",
     "audioPath": "audio/weather.mp3"
@@ -13993,6 +14669,7 @@
     "acceptedAnswers": [
       "Wednesday"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "Wednesday",
     "audioPath": "audio/wednesday.mp3"
@@ -14013,6 +14690,7 @@
     "acceptedAnswers": [
       "weigh up"
     ],
+    "partOfSpeech": "短语",
     "sourceRevision": 4,
     "audioText": "weigh up",
     "audioPath": "audio/weigh-up.mp3"
@@ -14033,6 +14711,7 @@
     "acceptedAnswers": [
       "weigh up the options"
     ],
+    "partOfSpeech": "短语",
     "sourceRevision": 4,
     "audioText": "weigh up the options",
     "audioPath": "audio/weigh-up-the-options.mp3"
@@ -14054,6 +14733,7 @@
     "acceptedAnswers": [
       "well illustrated"
     ],
+    "partOfSpeech": "短语",
     "sourceRevision": 4,
     "audioText": "well illustrated",
     "audioPath": "audio/well-illustrated.mp3"
@@ -14074,6 +14754,7 @@
     "acceptedAnswers": [
       "well-organised"
     ],
+    "partOfSpeech": "形容词",
     "sourceRevision": 4,
     "audioText": "well-organised",
     "audioPath": "audio/well-organised.mp3"
@@ -14094,6 +14775,7 @@
     "acceptedAnswers": [
       "wildlife"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "wildlife",
     "audioPath": "audio/wildlife.mp3"
@@ -14114,6 +14796,7 @@
     "acceptedAnswers": [
       "willing"
     ],
+    "partOfSpeech": "形容词",
     "sourceRevision": 4,
     "audioText": "willing",
     "audioPath": "audio/willing.mp3"
@@ -14134,6 +14817,7 @@
     "acceptedAnswers": [
       "wind"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "wind",
     "audioPath": "audio/wind.mp3"
@@ -14154,6 +14838,7 @@
     "acceptedAnswers": [
       "wood"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "wood",
     "audioPath": "audio/wood.mp3"
@@ -14174,6 +14859,7 @@
     "acceptedAnswers": [
       "work around the clock"
     ],
+    "partOfSpeech": "短语",
     "sourceRevision": 4,
     "audioText": "work around the clock",
     "audioPath": "audio/work-around-the-clock.mp3"
@@ -14194,6 +14880,7 @@
     "acceptedAnswers": [
       "work out a plan"
     ],
+    "partOfSpeech": "短语",
     "sourceRevision": 4,
     "audioText": "work out a plan",
     "audioPath": "audio/work-out-a-plan.mp3"
@@ -14214,6 +14901,7 @@
     "acceptedAnswers": [
       "work to a deadline"
     ],
+    "partOfSpeech": "短语",
     "sourceRevision": 4,
     "audioText": "work to a deadline",
     "audioPath": "audio/work-to-a-deadline.mp3"
@@ -14234,6 +14922,7 @@
     "acceptedAnswers": [
       "workforce"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "workforce",
     "audioPath": "audio/workforce.mp3"
@@ -14254,6 +14943,7 @@
     "acceptedAnswers": [
       "workload"
     ],
+    "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "workload",
     "audioPath": "audio/workload.mp3"
@@ -14274,6 +14964,7 @@
     "acceptedAnswers": [
       "workplace communication"
     ],
+    "partOfSpeech": "短语",
     "sourceRevision": 4,
     "audioText": "workplace communication",
     "audioPath": "audio/workplace-communication.mp3"

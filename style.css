@@ -157,6 +157,8 @@ h1 { margin: 0; font-size: 25px; line-height: 1; letter-spacing: -.04em; }
   font-weight: 700;
 }
 .menu-entry small { color: var(--muted); font-size: 11px; font-weight: 600; }
+.menu-entry.error-training-entry { background: #fff8f6; box-shadow: inset 3px 0 0 var(--error); }
+.menu-entry:disabled { opacity: .5; cursor: default; }
 .tools { display: grid; gap: 8px; padding: 10px 0 5px; }
 .tools .secondary { width: 100%; }
 .tools .danger-button { color: var(--error); border-color: color-mix(in srgb, var(--error) 45%, var(--line)); }
@@ -211,10 +213,11 @@ h1 { margin: 0; font-size: 25px; line-height: 1; letter-spacing: -.04em; }
   transform: translateX(-50%);
   animation: quick-feedback-in .16s cubic-bezier(.2, .8, .2, 1) both;
   pointer-events: none;
-  white-space: nowrap;
+  max-width: calc(100% - 34px);
+  white-space: normal;
 }
 .quick-feedback strong { font-size: 15px; }
-.quick-feedback span { opacity: .78; font-size: 11px; }
+.quick-feedback span { opacity: .88; font-size: 12px; line-height: 1.35; text-align: left; }
 .prompt { margin: 0; color: var(--muted); font-size: 13px; }
 .term {
   margin: auto 0;
@@ -264,6 +267,7 @@ h1 { margin: 0; font-size: 25px; line-height: 1; letter-spacing: -.04em; }
 }
 .spelling-input:focus { border-color: var(--signal); box-shadow: 0 0 0 4px var(--signal-soft); }
 .spelling-input.answer-correct { border-color: var(--success); background: #edf7f3; box-shadow: 0 0 0 4px rgba(22, 113, 95, .12); }
+.keyboard-primer { position: fixed; left: 50%; bottom: 0; width: 2px; height: 2px; padding: 0; opacity: .01; border: 0; pointer-events: none; }
 .submit-button { width: 100%; }
 .dont-know-button {
   color: var(--error);
@@ -281,6 +285,10 @@ h1 { margin: 0; font-size: 25px; line-height: 1; letter-spacing: -.04em; }
 .choice {
   min-height: 59px;
   padding: 12px 15px;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  gap: 10px;
   text-align: left;
   color: var(--ink);
   background: #e9f1ef;
@@ -288,6 +296,8 @@ h1 { margin: 0; font-size: 25px; line-height: 1; letter-spacing: -.04em; }
   font-size: 18px;
   line-height: 1.35;
 }
+.choice-pos { min-width: 48px; padding: 4px 7px; color: var(--signal); background: rgba(35, 104, 196, .09); border-radius: 7px; font-size: 11px; font-weight: 800; text-align: center; }
+.choice-meaning { min-width: 0; overflow-wrap: anywhere; }
 .choice:active { transform: scale(.985); }
 .choice.choice-correct { color: #0f5c4e; background: #d9eee8; border-color: rgba(22, 113, 95, .45); box-shadow: 0 0 0 4px rgba(22, 113, 95, .1); }
 .result-card { padding: 24px 22px; }

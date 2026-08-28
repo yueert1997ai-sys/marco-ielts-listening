@@ -66,6 +66,16 @@ class VocabularyAdminTests(unittest.TestCase):
         self.assertEqual(items[0]["modes"], ["recognition", "spelling"])
         self.assertEqual(audit["overrideEntries"], 1)
 
+    def test_build_adds_part_of_speech_from_local_dictionary(self) -> None:
+        rows = [{
+            "term": "curtain", "meaning": "窗帘", "note": "家居词",
+            "section": "P2 + P3 必会看懂词", "category": "住房",
+        }]
+        dictionary = {"entries": {"curtain": {"translation": "n. 窗帘；vt. 遮蔽"}}, "aliases": {}}
+        items, audit = build_listening.build(rows, 4, [], [], dictionary)
+        self.assertEqual(items[0]["partOfSpeech"], "名词 / 动词")
+        self.assertEqual(audit["partOfSpeechEntries"], 1)
+
 
 if __name__ == "__main__":
     unittest.main()

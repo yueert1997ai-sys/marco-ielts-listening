@@ -30,11 +30,11 @@ async (page) => {
     coreActions: document.querySelectorAll(".home-task").length,
   }));
   home.browseVisible = await page.locator("#browse").isVisible();
-  await page.screenshot({ path: ".tools/ux-v2112-home.png" });
+  await page.screenshot({ path: "output/playwright/v2113/home.png" });
   await page.locator("#home-more summary").click();
-  home.moreEntriesVisible = await page.locator("#browse, #starred, #inbox, #export, #reset-training")
+  home.moreEntriesVisible = await page.locator("#error-training, #browse, #starred, #inbox, #export, #reset-training")
     .evaluateAll((entries) => entries.every((entry) => entry.getClientRects().length > 0));
-  await page.screenshot({ path: ".tools/ux-v2112-home-more.png", fullPage: true });
+  await page.screenshot({ path: "output/playwright/v2113/home-more.png", fullPage: true });
   await page.locator("#home-more summary").click();
   await page.locator("#start").click();
 
@@ -64,6 +64,7 @@ async (page) => {
     const items = await fetch("./data/listening.json").then((response) => response.json());
     return items.find((item) => item.term === term)?.meaning;
   });
+  const choicePartsOfSpeech = await page.locator(".choice-pos").allTextContents();
   const countBefore = await page.locator("#day-count").innerText();
   await page.locator(".choice").filter({ hasText: correctMeaning }).click();
   await page.waitForTimeout(100);
@@ -71,7 +72,7 @@ async (page) => {
     feedback: await page.locator(".quick-feedback").innerText(),
     resultVisible: await page.locator(".result").count() > 0,
   };
-  await page.screenshot({ path: ".tools/ux-v2112-quick-pass.png" });
+  await page.screenshot({ path: "output/playwright/v2113/quick-pass.png" });
   await page.waitForTimeout(600);
   quickPass.advanced = await page.locator(".question-card").count() > 0;
   quickPass.feedbackGone = await page.locator(".quick-feedback").count() === 0;
@@ -88,14 +89,45 @@ async (page) => {
     }).length,
     scrollHeight: document.documentElement.scrollHeight,
   }));
-  await page.screenshot({ path: ".tools/ux-v2112-short-question.png" });
+  await page.screenshot({ path: "output/playwright/v2113/short-question.png" });
   await page.locator("#recognition-dont-know").click();
   await page.locator("#continue").waitFor();
   shortRecognition.resultContinueVisible = await page.locator("#continue").evaluate((button) => {
     const rect = button.getBoundingClientRect();
     return rect.top >= 0 && rect.bottom <= innerHeight;
   });
-  await page.screenshot({ path: ".tools/ux-v2112-short-result.png" });
+  await page.screenshot({ path: "output/playwright/v2113/short-result.png" });
+
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.evaluate(() => {
+    const now = new Date();
+    const date = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, "0")}-${String(now.getDate()).padStart(2, "0")}`;
+    const session = (keys) => ({
+      date,
+      baseKeys: keys,
+      queue: keys.map((key) => ({ key, isRetry: false })),
+      answeredBase: {}, outcomes: {}, retryCount: {}, started: true, completed: false,
+    });
+    localStorage.setItem("marcoIeltsListening.v1", JSON.stringify({
+      version: 3,
+      progress: {}, starred: {}, customItems: [], streak: 0, lastCompletedDate: null,
+      trainingResetId: "fresh-start-v2.5.0",
+      learningReviewSplitId: "learning-review-v2.9.0",
+      deckNonce: "whole-bank-v2",
+      daily: session(["carpet:recognition", "carpet:spelling"]),
+      reviewDaily: session([]),
+      errorDaily: session(["carpet:recognition", "carpet:spelling"]),
+    }));
+  });
+  await page.reload();
+  await page.locator("#start").click();
+  await page.locator(".choice").filter({ hasText: "地毯" }).click();
+  const keyboardPrimed = await page.locator(".keyboard-primer").count() === 1;
+  await page.locator("#answer").waitFor();
+  const switchedSpellingFocused = await page.locator("#answer").evaluate((input) => document.activeElement === input);
+  await page.locator("#answer").fill("carpet");
+  await page.locator("#spelling-form").evaluate((form) => form.requestSubmit());
+  const correctSpellingFeedback = await page.locator(".quick-feedback").innerText();
 
   if (home.scrollHeight > 844
     || home.moreOpen
@@ -113,11 +145,16 @@ async (page) => {
     || !quickPass.advanced
     || !quickPass.feedbackGone
     || !quickPass.countChanged
+    || choicePartsOfSpeech.length !== 4
+    || choicePartsOfSpeech.some((label) => !label.trim() || label.includes("待补"))
     || shortRecognition.count !== 5
     || shortRecognition.fullyVisible !== 5
-    || !shortRecognition.resultContinueVisible) {
-    throw new Error(JSON.stringify({ home, trainingChrome, spelling, wrongResult, quickPass, shortRecognition }));
+    || !shortRecognition.resultContinueVisible
+    || !keyboardPrimed
+    || !switchedSpellingFocused
+    || !correctSpellingFeedback.includes("地毯")) {
+    throw new Error(JSON.stringify({ home, trainingChrome, spelling, wrongResult, quickPass, choicePartsOfSpeech, shortRecognition, keyboardPrimed, switchedSpellingFocused, correctSpellingFeedback }));
   }
 
-  return { ok: true, home, trainingChrome, spelling, wrongResult, quickPass, shortRecognition };
+  return { ok: true, home, trainingChrome, spelling, wrongResult, quickPass, choicePartsOfSpeech, shortRecognition, keyboardPrimed, switchedSpellingFocused, correctSpellingFeedback };
 }
