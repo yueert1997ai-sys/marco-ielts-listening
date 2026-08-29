@@ -46,7 +46,13 @@ def changed_files(base: str | None, head: str | None) -> set[str]:
 def validate_structure() -> list[str]:
     errors = [f"缺少必备文件：{path.relative_to(ROOT)}" for path in REQUIRED_FILES if not path.exists()]
     agents = ROOT / "AGENTS.md"
-    if agents.exists() and (not agents.is_symlink() or agents.readlink() != Path("CLAUDE.md")):
+    windows_link_placeholder = (
+        agents.is_file()
+        and not agents.is_symlink()
+        and agents.read_text(encoding="utf-8").strip() == "CLAUDE.md"
+    )
+    valid_symlink = agents.is_symlink() and agents.readlink() == Path("CLAUDE.md")
+    if agents.exists() and not (valid_symlink or windows_link_placeholder):
         errors.append("AGENTS.md 必须是指向 CLAUDE.md 的软链接，避免多份规则分叉")
     readme = (ROOT / "README.md").read_text(encoding="utf-8")
     for required_link in ("CLAUDE.md", "docs/HANDOFF.md", "CHANGELOG.md"):

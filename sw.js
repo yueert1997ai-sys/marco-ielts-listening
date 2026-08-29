@@ -1,9 +1,10 @@
-const APP_VERSION = "v2.12.0";
-const CACHE = "ielts-listening-v27";
+const APP_VERSION = "v2.13.0";
+const CACHE = "ielts-listening-v28";
 const CORE = [
   "./",
   `./index.html?v=${APP_VERSION}`,
   `./style.css?v=${APP_VERSION}`,
+  `./vendor/phosphor/phosphor-regular.css?v=${APP_VERSION}`,
   `./app.js?v=${APP_VERSION}`,
   `./data/listening.json?v=${APP_VERSION}`,
   `./data/directions.json?v=${APP_VERSION}`,
@@ -13,6 +14,8 @@ const CORE = [
   "./icon-192.png",
   "./icon-512.png",
   "./apple-touch-icon.png",
+  "./vendor/phosphor/Phosphor.woff2",
+  "./vendor/phosphor/LICENSE",
 ];
 
 self.addEventListener("install", (event) => {

@@ -2,7 +2,7 @@
   "use strict";
 
   const STORAGE_KEY = "marcoIeltsListening.v1";
-  const APP_VERSION = "v2.12.0";
+  const APP_VERSION = "v2.13.0";
   const AUTO_UPDATE_SESSION_KEY = "marcoIeltsListening.autoUpdateAttempt";
   const AUTO_UPDATE_THROTTLE_MS = 60 * 1000;
   const TRAINING_RESET_ID = "fresh-start-v2.5.0";
@@ -65,6 +65,10 @@
       .replace(/>/g, "&gt;")
       .replace(/"/g, "&quot;")
       .replace(/'/g, "&#039;");
+  }
+
+  function icon(name) {
+    return `<i class="ph ph-${escapeHtml(name)}" aria-hidden="true"></i>`;
   }
 
   function makeActivities(items) {
@@ -951,7 +955,7 @@
 
   function starButton(item, className = "star-button") {
     const active = Boolean(state.starred[item.id]);
-    return `<button class="${className}${active ? " active" : ""}" data-star="${escapeHtml(item.id)}" aria-label="${active ? "取消重点" : "标为重点"}" aria-pressed="${active}">${active ? "★" : "☆"}</button>`;
+    return `<button class="${className}${active ? " active" : ""}" data-star="${escapeHtml(item.id)}" aria-label="${active ? "取消重点" : "标为重点"}" aria-pressed="${active}">${icon("star")}</button>`;
   }
 
   function itemStats(item) {
@@ -1040,50 +1044,55 @@
     const reviewPending = state.reviewDaily.queue.length;
     const errorTrainingPending = state.errorDaily.queue.length;
     const buttonText = state.daily.completed ? "今日已完成" : (state.daily.started ? "继续训练" : "开始训练");
-    const remaining = Math.max(0, learningTotal - done);
+    const completionPercent = learningTotal ? Math.min(100, Math.round((done / learningTotal) * 100)) : 0;
     const errorPoolCount = new Set(Object.entries(state.progress)
       .filter(([, record]) => (record.lapses || 0) > 0)
       .map(([key]) => key.replace(/:(spelling|recognition)$/, ""))).size;
     const starredCount = Object.keys(state.starred).length;
     screen.innerHTML = `
       <section class="home">
+        <p class="home-date">${escapeHtml(state.daily.date)}</p>
         <section class="home-daily" aria-labelledby="home-daily-title">
-          <div class="home-daily-head">
-            <div>
-              <h2 id="home-daily-title">今日新词</h2>
-              <p class="home-completion">今日完成 <strong>${done} / ${learningTotal}</strong></p>
-              <p class="home-remaining">${state.daily.completed ? "今日任务已完成" : `剩余 ${remaining} 题`}</p>
+          <div class="home-progress-ring" style="--progress:${completionPercent * 3.6}deg" role="img" aria-label="今日完成 ${done} / ${learningTotal}">
+            <div class="home-progress-inner">
+              <p><strong>${done}</strong><span>&nbsp;/ ${learningTotal}</span></p>
+              <small>${state.daily.completed ? "今日完成" : "今日进度"}</small>
             </div>
-            <p class="home-date">${escapeHtml(state.daily.date)}</p>
           </div>
-          <p class="home-mode-summary">${learningSpelling} 听写 · ${learningRecognition} 识义</p>
-          <button id="start" class="primary" ${state.daily.completed ? "disabled" : ""}>${buttonText}</button>
+          <div class="home-daily-copy">
+            <h2 id="home-daily-title">今日新词</h2>
+            <p class="home-mode-summary">${learningSpelling} 听写 · ${learningRecognition} 识义</p>
+          </div>
         </section>
-        <section class="home-secondary" aria-labelledby="home-secondary-title">
-          <h2 id="home-secondary-title">其他练习</h2>
+        <button id="start" class="primary home-start" ${state.daily.completed ? "disabled" : ""}>${buttonText}</button>
+        <section class="home-secondary" aria-label="其他练习">
           <div class="home-core-actions">
             <button id="review" class="home-task review-task" ${reviewPending ? "" : "disabled"}>
-              <span>高频复习</span><strong>${reviewPending ? `${reviewPending} 题` : "暂无"}</strong>
+              <span class="home-task-icon">${icon("headphones")}</span>
+              <span class="home-task-copy"><strong>高频复习</strong><small>${reviewPending ? `${reviewPending} 题待复习` : "今天暂无到期词"}</small></span>
+              <span class="home-task-caret">${icon("caret-right")}</span>
             </button>
             <button id="direction" class="home-task direction-task">
-              <span>方位检测</span><strong>10 题</strong>
+              <span class="home-task-icon">${icon("compass-rose")}</span>
+              <span class="home-task-copy"><strong>方位检测</strong><small>10 题 · 练反应</small></span>
+              <span class="home-task-caret">${icon("caret-right")}</span>
             </button>
           </div>
         </section>
         <p class="status-line">连续 ${state.streak || 0} 天 · 复习池 ${errorPoolCount} 项</p>
         <details id="home-more" class="home-more">
-          <summary><span>更多练习与设置</span></summary>
+          <summary><span class="home-task-icon">${icon("gear")}</span><span>更多练习与设置</span><span class="home-task-caret">${icon("caret-right")}</span></summary>
           <div class="home-menu">
-            <button id="error-training" class="menu-entry error-training-entry" ${errorTrainingPending ? "" : "disabled"}><span>错词专项</span><small>${errorTrainingPending ? `${errorTrainingPending} 题` : (state.errorDaily.completed ? "今日已完成" : "暂无错词")}</small></button>
-            <button id="browse" class="menu-entry"><span>随便刷</span><small>自由浏览词库</small></button>
-            <button id="starred" class="menu-entry"><span>重点词</span><small>${starredCount} 个</small></button>
-            <button id="inbox" class="menu-entry"><span>错词收件箱</span><small>${state.customItems.length} 条待同步</small></button>
+            <button id="error-training" class="menu-entry error-training-entry" ${errorTrainingPending ? "" : "disabled"}><span>${icon("warning-circle")}错词专项</span><small>${errorTrainingPending ? `${errorTrainingPending} 题` : (state.errorDaily.completed ? "今日已完成" : "暂无错词")}</small></button>
+            <button id="browse" class="menu-entry"><span>${icon("books")}浏览词库</span><small>${items.length} 条</small></button>
+            <button id="starred" class="menu-entry"><span>${icon("star")}重点词</span><small>${starredCount} 个</small></button>
+            <button id="inbox" class="menu-entry"><span>${icon("tray")}错词收件箱</span><small>${state.customItems.length} 条待同步</small></button>
           </div>
           <div class="tools">
-            <button id="export" class="secondary">导出学习进度</button>
-            <label class="secondary file-label">导入学习进度<input id="import" type="file" accept="application/json"></label>
-            <button id="reset-training" class="secondary danger-button">重新开始正式训练</button>
-            <p>词库 ${items.length} 条 · 飞书 revision ${items[0]?.sourceRevision || "-"}</p>
+            <button id="export" class="secondary">${icon("download-simple")}导出学习进度</button>
+            <label class="secondary file-label">${icon("upload-simple")}导入学习进度<input id="import" type="file" accept="application/json"></label>
+            <button id="reset-training" class="secondary danger-button">${icon("trash")}重新开始正式训练</button>
+            <p>${APP_VERSION} · 词库 ${items.length} 条 · 飞书 revision ${items[0]?.sourceRevision || "-"}</p>
           </div>
         </details>
       </section>`;
@@ -1177,8 +1186,8 @@
     screen.innerHTML = `
       <section class="direction-intro">
         <div class="direction-toolbar">
-          <button id="direction-back" class="text-button">← 今日任务</button>
-          <span class="mode-label">AUDIO · ${seconds} 秒${config.playbackRate > 1 ? ` · ${config.playbackRate}×` : ""}</span>
+          <button id="direction-back" class="text-button">${icon("arrow-left")}今日任务</button>
+          <span class="mode-label">听音 · ${seconds} 秒${config.playbackRate > 1 ? ` · ${config.playbackRate}×` : ""}</span>
         </div>
         <div class="direction-mode-switch" role="group" aria-label="选择方位检测难度">
           <button type="button" data-direction-mode="standard" class="direction-mode-option${config.id === "standard" ? " active" : ""}" aria-pressed="${config.id === "standard"}">
@@ -1300,7 +1309,7 @@
     screen.innerHTML = `
       <section class="direction-session">
         <div class="direction-toolbar">
-          <button id="direction-exit" class="text-button">← 退出</button>
+          <button id="direction-exit" class="text-button">${icon("arrow-left")}退出</button>
           <span class="mode-label">第 ${index + 1}/${DIRECTION_QUESTION_COUNT} 题</span>
         </div>
         <div class="direction-card">
@@ -1383,11 +1392,11 @@
     screen.innerHTML = `
       <section class="direction-result">
         <div class="direction-toolbar">
-          <button id="direction-result-home" class="text-button">← 今日任务</button>
+          <button id="direction-result-home" class="text-button">${icon("arrow-left")}今日任务</button>
           <span class="mode-label">${config.id === "hard" ? "困难" : "标准"} · 本轮完成</span>
         </div>
         <div class="direction-result-card">
-          <p class="result-mark ${passed ? "pass" : "weak"}">${passed ? `${config.id === "hard" ? "45° " : ""}方位反射合格` : "本轮还未过关"}</p>
+          <p class="result-mark ${passed ? "pass" : "weak"}">${passed ? `${config.id === "hard" ? "45° " : ""}方位反射合格` : "再来一次"}</p>
           <div class="direction-score"><strong>${passedCount}</strong><span>/10</span></div>
           <p>${passed ? `十题全部在 ${seconds} 秒内答对。` : `必须十题全部答对且每题不超过 ${seconds} 秒，再来一轮。`}</p>
           <div class="direction-result-stat"><span>平均反应</span><strong>${(average / 1000).toFixed(2)} 秒</strong></div>
@@ -1405,7 +1414,7 @@
     const modeLabel = activity.mode === "spelling" ? "听写" : "识义";
     const reinforcementLabel = entry.reason === "confirm" ? "确认题" : "回炉题";
     return `<div class="session-toolbar">
-      <button id="pause-session" class="text-button">← 暂停</button>
+      <button id="pause-session" class="text-button">${icon("arrow-left")}暂停</button>
       <div class="session-meta"><span class="mode-label">${modeLabel}</span>${entry.isRetry ? `<b class="retry-label">${reinforcementLabel}</b>` : ""}</div>
       ${starButton(activity, "session-star")}
     </div>`;
@@ -1420,7 +1429,7 @@
     document.querySelector(".session-star")?.addEventListener("click", (event) => {
       const active = toggleStar(activity.id);
       event.currentTarget.classList.toggle("active", active);
-      event.currentTarget.textContent = active ? "★" : "☆";
+      event.currentTarget.innerHTML = icon("star");
       event.currentTarget.setAttribute("aria-pressed", String(active));
     });
   }
@@ -1449,7 +1458,8 @@
         <div class="question-card">
           <p class="prompt">听音，写出完整英文</p>
           <div class="play-zone">
-            <button id="play" class="play-button" aria-label="再读一次">▶ 再读</button>
+            <button id="play" class="play-button" aria-label="播放发音">${icon("speaker-high")}</button>
+            <span class="play-hint">播放发音</span>
           </div>
         </div>
         <form id="spelling-form" class="spelling-form">
@@ -1458,7 +1468,7 @@
             enterkeyhint="done" aria-label="输入英文答案" placeholder="输入你听到的词">
           <div class="answer-actions">
             <button class="submit-button" type="submit">检查拼写</button>
-            <button id="spelling-dont-know" class="dont-know-button" type="button">不会</button>
+            <button id="spelling-dont-know" class="dont-know-button" type="button">先跳过</button>
           </div>
         </form>
       </section>`;
@@ -1501,12 +1511,12 @@
           <p class="prompt">选中文</p>
           <div class="recognition-term">
             <h2 class="term">${escapeHtml(activity.term)}</h2>
-            <button id="recognition-play" class="test-play" type="button" aria-label="再读一次">▶ 再读</button>
+            <button id="recognition-play" class="test-play" type="button" aria-label="再读一次">${icon("speaker-high")}再读</button>
           </div>
           <div class="choices">
             ${choices.map((choice) => `<button class="choice" data-choice="${escapeHtml(choice)}"><span class="choice-pos">${escapeHtml(partOfSpeechForMeaning(activity, choice, activities))}</span><span class="choice-meaning">${escapeHtml(choice)}</span></button>`).join("")}
           </div>
-          <button id="recognition-dont-know" class="dont-know-button" type="button">不会</button>
+          <button id="recognition-dont-know" class="dont-know-button" type="button">先跳过</button>
         </div>
       </section>`;
     const timerCount = document.getElementById("timer-count");
@@ -1556,7 +1566,7 @@
       const isErrorTraining = activeTrainingKind === "errors";
       screen.innerHTML = `
         <section class="finished">
-          <div class="hero-number">✓</div>
+          <div class="hero-number">${icon("check-circle")}</div>
           <h2>${isErrorTraining ? "今天的错词专项完成" : (isReview ? "今天的复习清完了" : "今天的新词学完了")}</h2>
           <p>${isErrorTraining ? "这一轮只练了真实错词，训练结果已计入记忆曲线。" : (isReview ? "新词学习不受影响，明天再按错误频率和到期时间生成复习。" : "答错的词已进入独立复习池，不会堵住今天的新词进度。")}</p>
           <button id="back-home" class="secondary">返回首页</button>
@@ -1595,8 +1605,8 @@
     screen.innerHTML = `
       <section class="browse">
         <div class="browse-toolbar">
-          <button id="browse-back" class="text-button">← 今日任务</button>
-          <button id="browse-shuffle" class="text-button">换个顺序</button>
+          <button id="browse-back" class="text-button">${icon("arrow-left")}今日任务</button>
+          <button id="browse-shuffle" class="text-button">${icon("shuffle")}换个顺序</button>
         </div>
         <div class="browse-intro">
           <p>每页 ${BROWSE_PAGE_SIZE} 个。听发音、做标记，刷完一页就能停。</p>
@@ -1606,7 +1616,7 @@
           ${filters.map(([value, label]) => `<button class="filter-chip${browseFilter === value ? " active" : ""}" data-filter="${value}">${label}</button>`).join("")}
         </div>
         <div class="word-stream">
-          ${pageItems.length ? pageItems.map((item) => browseCard(item)).join("") : '<div class="empty-card"><strong>这里还没有词</strong><p>答题或浏览时点 ☆，就会收进重点词。</p></div>'}
+          ${pageItems.length ? pageItems.map((item) => browseCard(item)).join("") : '<div class="empty-card"><strong>这里还没有词</strong><p>答题或浏览时点收藏按钮，就会收进重点词。</p></div>'}
         </div>
         ${pagination(pageCount)}
       </section>`;
@@ -1661,7 +1671,7 @@
           </div>
           <div class="word-actions">
             ${starButton(item)}
-            <button class="mini-play" data-id="${escapeHtml(item.id)}" aria-label="播放 ${escapeHtml(item.term)}">▶</button>
+            <button class="mini-play" data-id="${escapeHtml(item.id)}" aria-label="播放 ${escapeHtml(item.term)}">${icon("speaker-high")}</button>
           </div>
         </div>
         ${note ? `<p class="word-note">${escapeHtml(note)}</p>` : ""}
@@ -1721,6 +1731,7 @@
       renderCurrent({ animate: true });
       return;
     }
+    if (typeof navigator.vibrate === "function") navigator.vibrate(10);
     screen.querySelectorAll("button, input").forEach((control) => { control.disabled = true; });
     primeUpcomingSpellingKeyboard();
     if (activity.mode === "recognition") {
@@ -1732,10 +1743,10 @@
     } else {
       card.closest(".session")?.querySelector(".spelling-input")?.classList.add("answer-correct");
       const submit = card.closest(".session")?.querySelector(".submit-button");
-      if (submit) submit.textContent = "✓ 正确";
+      if (submit) submit.innerHTML = `${icon("check")}正确`;
     }
     const feedback = document.createElement("div");
-    feedback.className = "quick-feedback";
+    feedback.className = `quick-feedback quick-feedback-${activity.mode}`;
     feedback.setAttribute("role", "status");
     feedback.setAttribute("aria-live", "polite");
     const detail = feedbackText || (activity.mode === "spelling" ? activity.meaning : "下一题");
@@ -1752,9 +1763,9 @@
     const { activity, outcome, detail, sessionKind } = currentResult;
     const pass = outcome === "pass";
     const record = state.progress[activity.key] || {};
-    const label = detail.skipped ? "已标记为不会" : (pass ? "本次通过" : (outcome === "slow" ? "答对了，但超过 5 秒" : "这次答错了"));
+    const label = detail.skipped ? "已加入复习" : (pass ? "正确" : (outcome === "slow" ? "再来一次 · 超过 5 秒" : "再来一次"));
     const typed = detail.skipped
-      ? `<p class="typed">你选择了：不会</p>`
+      ? `<p class="typed">这题先跳过了</p>`
       : (detail.typed !== undefined
       ? `<p class="typed">你写的是：${diffAnswer(detail.typed, activity.term)}</p>`
       : (detail.selected ? `<p class="typed">你选的是：${escapeHtml(detail.selected)}</p>` : ""));
@@ -1762,14 +1773,14 @@
     screen.innerHTML = `
       <section class="result">
         <div class="result-toolbar">
-          <button id="result-home" class="text-button">← 暂停</button>
+          <button id="result-home" class="text-button">${icon("arrow-left")}暂停</button>
           ${starButton(activity, "session-star")}
         </div>
         <div class="result-card">
           <p class="result-mark ${pass ? "pass" : "weak"}">${label}</p>
           <div class="answer-row">
             <h2 class="answer">${escapeHtml(activity.term)}</h2>
-            <button id="result-play" class="test-play" type="button" aria-label="再读一次">▶ 再读</button>
+            <button id="result-play" class="test-play" type="button" aria-label="再读一次">${icon("speaker-high")}再读</button>
           </div>
           <p class="meaning">${escapeHtml(activity.meaning)}</p>
           ${typed}
@@ -1793,7 +1804,7 @@
     document.querySelector(".session-star")?.addEventListener("click", (event) => {
       const active = toggleStar(activity.id);
       event.currentTarget.classList.toggle("active", active);
-      event.currentTarget.textContent = active ? "★" : "☆";
+      event.currentTarget.innerHTML = icon("star");
     });
   }
 
@@ -1901,11 +1912,11 @@
     screen.innerHTML = `
       <section class="inbox-screen">
         <div class="browse-toolbar">
-          <button id="inbox-back" class="text-button">← 今日任务</button>
+          <button id="inbox-back" class="text-button">${icon("arrow-left")}今日任务</button>
           <button id="copy-gpt-prompt" class="text-button">复制给 GPT 的要求</button>
         </div>
         <div class="inbox-hero">
-          <p class="eyebrow">SMART PASTE</p>
+          <p class="eyebrow">快速导入</p>
           <h2>直接把随手记粘进来。</h2>
           <p>编号、空行、“单词+中文”都会自动识别。词库里已有的词会自动补释义；全新词只需在预览里补一下中文。</p>
         </div>

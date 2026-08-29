@@ -1,42 +1,41 @@
-# Design QA — v2.12.0
+# Design QA — v2.13.0
 
 ## Evidence
 
-- Source visual truth: `docs/design-qa/v2.12.0/reference.png`
-- Browser-rendered implementation: `docs/design-qa/v2.12.0/implementation.png`
-- Combined comparison (source left, implementation right): `docs/design-qa/v2.12.0/comparison.png`
-- Viewport and state: 390 × 844 CSS px, daily home after one completed item; `1 / 50`, one high-frequency review item, streak 0.
-- Source pixels: 853 × 1844. Implementation pixels: 780 × 1688 at device scale factor 2.
-- Density normalization: both images resized to 390 × 844 before composing the 800 × 844 comparison board.
-- Browser verification: local build opened in the Codex in-app browser at 390 × 844. Home, daily training, direction entry, browse entry, and active-session chrome were inspected. Browser console log was empty.
-- Automated browser states: home, hard direction mode, spelling, recognition, browse, 320 × 568 short-screen controls, Service Worker activation, and offline cache were exercised by `tests/cdp_smoke.js`.
+- Source visual truth: `docs/design-qa/v2.13.0/reference-source.png` (853 × 1844).
+- Normalized source: `docs/design-qa/v2.13.0/reference.png` (390 × 844).
+- Browser-rendered implementation: `docs/design-qa/v2.13.0/implementation.png` (390 × 844 CSS px at device scale factor 1).
+- Combined comparison, source left and implementation right: `docs/design-qa/v2.13.0/comparison.png`.
+- Focused home-core comparison: `docs/design-qa/v2.13.0/comparison-home-core.png`.
+- Comparison images are reproducible with `python scripts/build_design_comparison.py`.
+- Browser verification used the repository Playwright wrapper at 390 × 844, 320 × 568, 375 × 844, and 430 × 844. The final browser console contained no errors or warnings.
 
 ## Findings
 
 - No actionable P0, P1, or P2 differences remain.
-- Fonts and typography: the implementation uses the requested Apple system stack (`-apple-system`, `SF Pro Text`, `PingFang SC`) with a deliberately stronger 32px product title and a subordinate 21px task title. This is intentionally more prominent than the generated reference because of the user's title-hierarchy feedback.
-- Spacing and layout rhythm: 24px side margins, 52px primary action, 86px secondary tap rows, and the primary-before-secondary sequence match the selected direction. The implementation keeps all homepage content inside the 390 × 844 viewport without horizontal or vertical overflow.
-- Colors and visual tokens: near-black `#0b0b0c`, off-white `#f5f5f7`, gray `#8e8e93`, and separator `#2c2c2e` match the approved monochrome direction. Correct/error colors appear only as semantic training feedback.
-- Image quality and assets: the home screen contains no decorative raster assets. PWA icons are rendered from the existing source icon at 180, 192, and 512 pixels; no visible placeholder art remains.
-- Copy and content: the daily count, remaining count, learning split, high-frequency review, direction practice, streak, and review-pool state are all driven by the existing application state. The date is intentionally aligned with the current-task heading rather than repeated as a standalone row.
+- Visual hierarchy matches the selected light iOS reference: large product title and date, one grouped daily-progress card, one system-blue primary action, grouped task rows, quiet streak state, and a single collapsed settings row.
+- The implementation deliberately reflects live state rather than the static reference. High-frequency review is muted when the queue is empty; dates and counts come from the current day and saved progress.
+- Tokens match the release contract: grouped background `#F2F2F7`, white surfaces, black primary text, `#6C6C70` secondary text, system blue `#007AFF`, success green `#34C759`, and error red `#FF3B30`.
+- Touch targets are at least 44px on the primary flows. The 320 × 568 recognition state keeps all four choices, the skip control, and the result continue button fully visible.
+- Local Phosphor Regular icons replace text glyphs for navigation, audio, direction, settings, favourites, and feedback. No CDN or placeholder assets are used.
 
 ## Comparison History
 
-- Formal home comparison pass: no P0/P1/P2 issues. The larger product title and missing decorative chevrons are intentional changes: the former follows direct user feedback, and the latter keeps the dependency-free offline app focused on text and full-row tap targets.
-- Supporting-screen inspection found the direction session was still carrying the large product identity header. It was changed to focused active-session chrome before the final browser run; the final hard-mode flow passed at 390 × 844.
-- The spelling input focus ring was visually heavy in the first dark-theme pass. It was reduced to a 1px border plus a subtle 2px neutral halo before the final browser run.
+- Iteration 1: the version badge competed with compact titles on browse, direction, and inbox views (P2). Those modes now use a tight native-style navigation header and hide the product/version lockup.
+- Iteration 1: the recognition success pill overlapped the skip row (P2). It now appears in the question card's open center area and leaves every control unobstructed.
+- Iteration 2: the normalized side-by-side home comparison and focused crop were opened and inspected. Spacing, radius, typography, color, alignment, and content hierarchy had no remaining P0/P1/P2 mismatch.
 
 ## Primary Interactions Tested
 
-- Start/continue daily training.
-- Enter direction practice, switch to hard mode, start and exit.
-- Open the browse screen and render 20 playable word rows.
-- Submit a wrong spelling answer and return to the homepage with the review queue updated.
-- Complete a recognition answer, verify reinforcement behavior, and preserve all five controls on a 320 × 568 screen.
-- Activate the Service Worker and cache core files, 701 audio files, eight direction audio files, and the three PWA icon files.
+- Start and pause daily training while preserving `#start` and the existing local session data.
+- Submit an incorrect spelling answer, confirm the recovery copy `再来一次`, and continue with `#continue`.
+- Complete a correct recognition answer, confirm green auto-advance feedback, reinforcement scheduling, and reduced-motion compatibility.
+- Skip a question and confirm `已加入复习` plus the existing review rule and memory details.
+- Enter direction practice, browse the vocabulary, open starred words, and use the wrong-word inbox and expanded settings.
+- Activate the Service Worker and verify the light PWA theme, versioned assets, offline Phosphor font, vocabulary/audio resources, and all three generated app icons.
 
 ## Follow-up Polish
 
-- P3: if future use shows that disabled high-frequency review text is too subdued in bright environments, increase disabled opacity from `.5` to `.6` without changing the hierarchy.
+- P3: if future outdoor testing finds disabled review rows too quiet, raise disabled text opacity slightly without changing the selected hierarchy.
 
 final result: passed

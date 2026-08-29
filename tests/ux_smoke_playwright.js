@@ -28,13 +28,37 @@ async (page) => {
     scrollHeight: document.documentElement.scrollHeight,
     moreOpen: document.querySelector("#home-more")?.open,
     coreActions: document.querySelectorAll(".home-task").length,
+    bodyBackground: getComputedStyle(document.body).backgroundColor,
+    primaryBackground: getComputedStyle(document.querySelector("#start")).backgroundColor,
+    progress: document.querySelector(".home-progress-inner")?.textContent.replace(/\s+/g, " ").trim(),
+    repeatsRemainingPressure: document.querySelector(".home")?.textContent.includes("剩余 50 题"),
+    localIconStylesheet: [...document.styleSheets].some((sheet) => sheet.href?.includes("/vendor/phosphor/phosphor-regular.css")),
   }));
+  const manifestTheme = await page.evaluate(async () => fetch("./manifest.webmanifest").then((response) => response.json()).then((manifest) => ({
+    theme: manifest.theme_color,
+    background: manifest.background_color,
+  })));
+  const offline = await page.evaluate(async () => {
+    const registration = await navigator.serviceWorker.ready;
+    const cache = await caches.open("ielts-listening-v28");
+    const requests = await cache.keys();
+    const urls = requests.map((request) => request.url);
+    return {
+      active: registration.active?.state,
+      total: urls.length,
+      audio: urls.filter((url) => url.endsWith(".mp3")).length,
+      phosphorCss: urls.some((url) => url.includes("/vendor/phosphor/phosphor-regular.css")),
+      phosphorFont: urls.some((url) => url.includes("/vendor/phosphor/Phosphor.woff2")),
+      icons: ["apple-touch-icon.png", "icon-192.png", "icon-512.png"]
+        .every((filename) => urls.some((url) => url.endsWith(`/${filename}`))),
+    };
+  });
   home.browseVisible = await page.locator("#browse").isVisible();
-  await page.screenshot({ path: "output/playwright/v2120/home.png" });
+  await page.screenshot({ path: "output/playwright/v2130/home.png" });
   await page.locator("#home-more summary").click();
   home.moreEntriesVisible = await page.locator("#error-training, #browse, #starred, #inbox, #export, #reset-training")
     .evaluateAll((entries) => entries.every((entry) => entry.getClientRects().length > 0));
-  await page.screenshot({ path: "output/playwright/v2120/home-more.png", fullPage: true });
+  await page.screenshot({ path: "output/playwright/v2130/home-more.png", fullPage: true });
   await page.locator("#home-more summary").click();
   await page.locator("#start").click();
 
@@ -72,7 +96,7 @@ async (page) => {
     feedback: await page.locator(".quick-feedback").innerText(),
     resultVisible: await page.locator(".result").count() > 0,
   };
-  await page.screenshot({ path: "output/playwright/v2120/quick-pass.png" });
+  await page.screenshot({ path: "output/playwright/v2130/quick-pass.png" });
   await page.waitForTimeout(600);
   quickPass.advanced = await page.locator(".question-card").count() > 0;
   quickPass.feedbackGone = await page.locator(".quick-feedback").count() === 0;
@@ -89,14 +113,25 @@ async (page) => {
     }).length,
     scrollHeight: document.documentElement.scrollHeight,
   }));
-  await page.screenshot({ path: "output/playwright/v2120/short-question.png" });
+  await page.screenshot({ path: "output/playwright/v2130/short-question.png" });
   await page.locator("#recognition-dont-know").click();
   await page.locator("#continue").waitFor();
   shortRecognition.resultContinueVisible = await page.locator("#continue").evaluate((button) => {
     const rect = button.getBoundingClientRect();
     return rect.top >= 0 && rect.bottom <= innerHeight;
   });
-  await page.screenshot({ path: "output/playwright/v2120/short-result.png" });
+  await page.screenshot({ path: "output/playwright/v2130/short-result.png" });
+
+  const widthChecks = {};
+  for (const width of [375, 430]) {
+    await page.setViewportSize({ width, height: 844 });
+    await page.waitForTimeout(40);
+    widthChecks[width] = await page.evaluate(() => ({
+      scrollWidth: document.documentElement.scrollWidth,
+      viewport: innerWidth,
+      continueVisible: Boolean(document.querySelector("#continue")?.getClientRects().length),
+    }));
+  }
 
   await page.setViewportSize({ width: 390, height: 844 });
   await page.evaluate(() => {
@@ -142,6 +177,18 @@ async (page) => {
     || home.browseVisible
     || !home.moreEntriesVisible
     || home.coreActions !== 2
+    || home.bodyBackground !== "rgb(242, 242, 247)"
+    || home.primaryBackground !== "rgb(0, 122, 255)"
+    || !home.progress.includes("0 / 50")
+    || home.repeatsRemainingPressure
+    || !home.localIconStylesheet
+    || manifestTheme.theme.toLowerCase() !== "#f2f2f7"
+    || manifestTheme.background.toLowerCase() !== "#f2f2f7"
+    || offline.active !== "activated"
+    || offline.audio !== 702
+    || !offline.phosphorCss
+    || !offline.phosphorFont
+    || !offline.icons
     || !trainingChrome.active
     || trainingChrome.versionVisible
     || !["听写", "识义"].includes(trainingChrome.meta)
@@ -165,9 +212,10 @@ async (page) => {
     || !reinforcementCount.includes("+1")
     || !confirmationMeta.includes("确认题")
     || firstCarpetChoiceIndex === confirmationChoiceIndex
+    || Object.values(widthChecks).some((check) => check.scrollWidth > check.viewport || !check.continueVisible)
     || !masteredFeedback.includes("已完成巩固")) {
-    throw new Error(JSON.stringify({ home, trainingChrome, spelling, wrongResult, quickPass, choicePartsOfSpeech, shortRecognition, keyboardPrimed, switchedSpellingFocused, correctSpellingFeedback, confidenceFeedback, reinforcementCount, confirmationMeta, firstCarpetChoiceIndex, confirmationChoiceIndex, masteredFeedback }));
+    throw new Error(JSON.stringify({ home, manifestTheme, offline, trainingChrome, spelling, wrongResult, quickPass, choicePartsOfSpeech, shortRecognition, widthChecks, keyboardPrimed, switchedSpellingFocused, correctSpellingFeedback, confidenceFeedback, reinforcementCount, confirmationMeta, firstCarpetChoiceIndex, confirmationChoiceIndex, masteredFeedback }));
   }
 
-  return { ok: true, home, trainingChrome, spelling, wrongResult, quickPass, choicePartsOfSpeech, shortRecognition, keyboardPrimed, switchedSpellingFocused, correctSpellingFeedback, confidenceFeedback, reinforcementCount, confirmationMeta, firstCarpetChoiceIndex, confirmationChoiceIndex, masteredFeedback };
+  return { ok: true, home, manifestTheme, offline, trainingChrome, spelling, wrongResult, quickPass, choicePartsOfSpeech, shortRecognition, widthChecks, keyboardPrimed, switchedSpellingFocused, correctSpellingFeedback, confidenceFeedback, reinforcementCount, confirmationMeta, firstCarpetChoiceIndex, confirmationChoiceIndex, masteredFeedback };
 }

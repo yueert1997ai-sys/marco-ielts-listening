@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import json
 import re
+import struct
 from pathlib import Path
 
 
@@ -32,6 +33,13 @@ def fail(message: str) -> None:
 
 def key_for(value: str) -> str:
     return "-".join(filter(None, re.split(r"[^a-z0-9]+", value.lower())))
+
+
+def png_size(path: Path) -> tuple[int, int]:
+    header = path.read_bytes()[:24]
+    if header[:8] != b"\x89PNG\r\n\x1a\n" or header[12:16] != b"IHDR":
+        fail(f"Invalid PNG icon: {path.name}")
+    return struct.unpack(">II", header[16:24])
 
 
 def main() -> None:
@@ -97,7 +105,11 @@ def main() -> None:
     if DIRECTION_MANIFEST.get("count") != len(DIRECTIONS) or len(DIRECTION_MANIFEST.get("files", [])) != len(DIRECTIONS):
         fail("Direction audio manifest is incomplete")
 
-    for required in ("index.html", "app.js", "style.css", "sw.js", "manifest.webmanifest", "version.json", "icon.svg"):
+    for required in (
+        "index.html", "app.js", "style.css", "sw.js", "manifest.webmanifest", "version.json", "icon.svg",
+        "vendor/phosphor/phosphor-regular.css", "vendor/phosphor/Phosphor.woff2", "vendor/phosphor/LICENSE",
+        "apple-touch-icon.png", "icon-192.png", "icon-512.png",
+    ):
         if not (ROOT / required).exists():
             fail(f"Missing app shell file: {required}")
 
@@ -105,6 +117,28 @@ def main() -> None:
     if not version or any(version not in (ROOT / filename).read_text(encoding="utf-8")
                           for filename in ("index.html", "app.js", "sw.js")):
         fail("Visible app version is inconsistent across the release")
+
+    styles = (ROOT / "style.css").read_text(encoding="utf-8").lower()
+    index = (ROOT / "index.html").read_text(encoding="utf-8").lower()
+    service_worker = (ROOT / "sw.js").read_text(encoding="utf-8")
+    web_manifest = json.loads((ROOT / "manifest.webmanifest").read_text(encoding="utf-8"))
+    required_tokens = ("#f2f2f7", "#ffffff", "#6c6c70", "#007aff", "#34c759", "#ff3b30")
+    if any(token not in styles for token in required_tokens) or "color-scheme: dark" in styles:
+        fail("The iOS light theme token contract is incomplete")
+    if "vendor/phosphor/phosphor-regular.css" not in index or "vendor/phosphor/phosphor-regular.css" not in service_worker:
+        fail("The offline Phosphor icon stylesheet is not wired into the app shell and cache")
+    if web_manifest.get("theme_color", "").lower() != "#f2f2f7" or web_manifest.get("background_color", "").lower() != "#f2f2f7":
+        fail("The PWA manifest must use the light system grouped background")
+    if 'CACHE = "ielts-listening-v28"' not in service_worker:
+        fail("Unexpected Service Worker cache version")
+    expected_icon_sizes = {
+        "apple-touch-icon.png": (180, 180),
+        "icon-192.png": (192, 192),
+        "icon-512.png": (512, 512),
+    }
+    for filename, expected_size in expected_icon_sizes.items():
+        if png_size(ROOT / filename) != expected_size:
+            fail(f"Unexpected PWA icon dimensions: {filename}")
 
     print(json.dumps({
         "ok": True,

@@ -75,7 +75,7 @@ async function screenshot(send, name) {
     const registration = await navigator.serviceWorker.ready;
     await new Promise((resolve) => setTimeout(resolve, 5000));
     const names = await caches.keys();
-    const cache = names.includes('ielts-listening-v27') ? await caches.open('ielts-listening-v27') : null;
+    const cache = names.includes('ielts-listening-v28') ? await caches.open('ielts-listening-v28') : null;
     const keys = cache ? await cache.keys() : [];
     return {
       active: registration.active?.state || null,
@@ -83,6 +83,8 @@ async function screenshot(send, name) {
       total: keys.length,
       audio: keys.filter((request) => request.url.includes('/audio/') && request.url.endsWith('.mp3')).length,
       directionAudio: keys.filter((request) => request.url.includes('/audio/directions/') && request.url.endsWith('.mp3')).length
+      ,phosphorCss: keys.some((request) => request.url.includes('/vendor/phosphor/phosphor-regular.css'))
+      ,phosphorFont: keys.some((request) => request.url.includes('/vendor/phosphor/Phosphor.woff2'))
     };
   })()`);
   await screenshot(send, "mobile-cdp-home.png");
@@ -279,7 +281,7 @@ async function screenshot(send, name) {
     || shortRecognition.controls !== 5 || shortRecognition.fullyVisible !== 5
     || !shortRecognition.resultContinueVisible
     || reviewHome.disabled || !/\d+\s*题/.test(reviewHome.text)
-    || !home.railHidden) {
+    || !home.railHidden || !offline.phosphorCss || !offline.phosphorFont) {
     throw new Error(`Mobile direction mode smoke check failed: ${JSON.stringify({ home, offline, directionIntro, directionSession, browse, spelling, result, reviewHome, recognition, fastPass, shortRecognition })}`);
   }
 
