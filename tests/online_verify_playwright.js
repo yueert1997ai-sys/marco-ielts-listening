@@ -1,5 +1,5 @@
 async (page) => {
-  const liveUrl = "https://yueert1997ai-sys.github.io/marco-ielts-listening/?verify=v2.13.1";
+  const liveUrl = "https://yueert1997ai-sys.github.io/marco-ielts-listening/?verify=v2.14.0";
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto(liveUrl, { waitUntil: "networkidle" });
   await page.evaluate(() => {
@@ -11,16 +11,16 @@ async (page) => {
 
   const release = await page.evaluate(async () => {
     const [version, serviceWorker, manifest, iconCss, iconFont] = await Promise.all([
-      fetch("./version.json?verify=v2.13.1").then((response) => response.json()),
-      fetch("./sw.js?verify=v2.13.1").then((response) => response.text()),
-      fetch("./manifest.webmanifest?verify=v2.13.1").then((response) => response.json()),
-      fetch("./vendor/phosphor/phosphor-regular.css?verify=v2.13.1"),
-      fetch("./vendor/phosphor/Phosphor.woff2?verify=v2.13.1"),
+      fetch("./version.json?verify=v2.14.0").then((response) => response.json()),
+      fetch("./sw.js?verify=v2.14.0").then((response) => response.text()),
+      fetch("./manifest.webmanifest?verify=v2.14.0").then((response) => response.json()),
+      fetch("./vendor/phosphor/phosphor-regular.css?verify=v2.14.0"),
+      fetch("./vendor/phosphor/Phosphor.woff2?verify=v2.14.0"),
     ]);
     return {
       version,
-      swVersion: serviceWorker.includes('const APP_VERSION = "v2.13.1"'),
-      cacheVersion: serviceWorker.includes('CACHE = "ielts-listening-v29"'),
+      swVersion: serviceWorker.includes('const APP_VERSION = "v2.14.0"'),
+      cacheVersion: serviceWorker.includes('CACHE = "ielts-listening-v30"'),
       manifest,
       iconCss: iconCss.ok,
       iconFont: iconFont.ok,
@@ -31,6 +31,7 @@ async (page) => {
     progress: document.querySelector(".home-progress-inner")?.textContent.replace(/\s+/g, " ").trim(),
     background: getComputedStyle(document.body).backgroundColor,
     width: document.documentElement.scrollWidth,
+    personalErrors: document.querySelector("#error-training")?.textContent.replace(/\s+/g, " ").trim(),
   }));
 
   await page.evaluate(() => {
@@ -56,8 +57,13 @@ async (page) => {
   await page.reload({ waitUntil: "networkidle" });
   await page.locator("#start").click();
   await page.locator(".choice").filter({ hasText: "地毯" }).click();
-  const feedback = await page.locator(".quick-feedback").innerText();
-  await page.waitForTimeout(650);
+  const feedback = await page.locator(".quick-feedback").evaluate((element) => ({
+    text: element.innerText,
+    meaning: element.querySelector("strong")?.textContent,
+    fontSize: Number.parseFloat(getComputedStyle(element.querySelector("strong")).fontSize),
+    background: getComputedStyle(element).backgroundColor,
+  }));
+  await page.waitForTimeout(850);
   const spellingFocused = await page.locator("#answer").evaluate((input) => document.activeElement === input);
   await page.locator("#pause-session").click();
 
@@ -82,7 +88,7 @@ async (page) => {
     Math.abs(starScroll.afterUnstar - starScroll.afterStar),
   );
 
-  if (release.version.version !== "v2.13.1"
+  if (release.version.version !== "v2.14.0"
     || release.version.releasedAt !== "2026-08-30"
     || !release.swVersion
     || !release.cacheVersion
@@ -93,7 +99,11 @@ async (page) => {
     || !home.progress.includes("0 / 50")
     || home.background !== "rgb(242, 242, 247)"
     || home.width > 390
-    || !feedback.includes("正确")
+    || !home.personalErrors.includes("我的错词训练")
+    || !home.personalErrors.includes("52 词")
+    || feedback.meaning !== "地毯"
+    || feedback.fontSize < 20
+    || feedback.background !== "rgb(52, 199, 89)"
     || !spellingFocused
     || directionTargets !== 8
     || browseCards !== 20

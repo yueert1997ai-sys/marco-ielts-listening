@@ -368,9 +368,11 @@ textarea:focus-visible, select:focus-visible { outline: 3px solid rgba(0, 122, 2
   font-size: 17px;
   line-height: 1.3;
 }
-.choice-pos { min-width: 45px; padding: 4px 6px; color: var(--muted); background: var(--mist); border-radius: 6px; font-size: 10px; font-weight: 650; text-align: center; }
+.choice-pos { min-width: 38px; padding: 5px 6px; color: var(--muted); background: var(--mist); border-radius: 6px; font: 700 12px/1 ui-monospace, "SFMono-Regular", Menlo, monospace; letter-spacing: .01em; text-align: center; }
 .choice-meaning { min-width: 0; overflow-wrap: anywhere; }
-.choice.choice-correct { color: #186a2e; background: var(--success-soft); border-color: rgba(52, 199, 89, .55); animation: correct-pop .28s ease both; }
+.choice.choice-correct { color: #fff; background: var(--success); border-color: var(--success); box-shadow: 0 8px 22px rgba(52, 199, 89, .22); transition: none; animation: correct-pop .28s ease both; }
+.choice.choice-correct:disabled { opacity: 1; }
+.choice.choice-correct .choice-pos { color: #fff; background: rgba(255, 255, 255, .2); }
 .question-card.quick-pass { border-color: rgba(52, 199, 89, .45); }
 .question-card.quick-pass-leave { opacity: 0; transform: translateY(-7px) scale(.995); }
 .question-card-enter { animation: question-card-enter .2s cubic-bezier(.2, .8, .2, 1) both; }
@@ -378,27 +380,33 @@ textarea:focus-visible, select:focus-visible { outline: 3px solid rgba(0, 122, 2
   position: absolute;
   z-index: 4;
   left: 50%;
-  bottom: 15px;
-  max-width: calc(100% - 32px);
-  min-height: 42px;
-  padding: 8px 13px;
-  display: flex;
+  bottom: 18px;
+  width: min(292px, calc(100% - 32px));
+  min-height: 74px;
+  padding: 12px 16px;
+  display: grid;
+  grid-template-columns: 28px minmax(0, 1fr);
   align-items: center;
-  gap: 7px;
+  gap: 11px;
   color: #fff;
   background: var(--success);
-  border-radius: 999px;
-  box-shadow: 0 8px 22px rgba(52, 199, 89, .2);
+  border-radius: 20px;
+  box-shadow: 0 12px 30px rgba(52, 199, 89, .28);
   transform: translateX(-50%);
   animation: quick-feedback-in .18s cubic-bezier(.2, .8, .2, 1) both;
   pointer-events: none;
 }
-.quick-feedback strong { font-size: 14px; }
-.quick-feedback span { font-size: 12px; line-height: 1.3; opacity: .9; }
+.quick-feedback > .ph { font-size: 28px; }
+.quick-feedback-copy { min-width: 0; display: grid; gap: 2px; }
+.quick-feedback strong { font-size: 22px; font-weight: 760; line-height: 1.2; letter-spacing: -.02em; overflow-wrap: anywhere; }
+.quick-feedback small { color: #fff; font-size: 13px; font-weight: 600; line-height: 1.25; opacity: 1; }
 .quick-feedback-recognition {
-  top: 46%;
+  position: relative;
+  top: auto;
   bottom: auto;
-  transform: translate(-50%, -50%);
+  left: auto;
+  width: min(100%, 320px);
+  transform: none;
   animation-name: quick-feedback-recognition-in;
 }
 
@@ -590,8 +598,8 @@ textarea:focus-visible, select:focus-visible { outline: 3px solid rgba(0, 122, 2
 @keyframes direction-countdown { to { transform: scaleX(0); background: var(--error); } }
 @keyframes pulse { 50% { transform: scale(.95); } }
 @keyframes correct-pop { 45% { transform: scale(.985); } }
-@keyframes quick-feedback-in { from { opacity: 0; transform: translate(-50%, 6px) scale(.97); } }
-@keyframes quick-feedback-recognition-in { from { opacity: 0; transform: translate(-50%, calc(-50% + 6px)) scale(.97); } }
+@keyframes quick-feedback-in { from { transform: translate(-50%, 5px) scale(.97); } }
+@keyframes quick-feedback-recognition-in { from { transform: scale(.97); } }
 @keyframes question-card-enter { from { opacity: 0; transform: translateY(8px); } }
 
 @media (prefers-reduced-motion: reduce) {
@@ -615,7 +623,7 @@ textarea:focus-visible, select:focus-visible { outline: 3px solid rgba(0, 122, 2
   .test-play { min-height: 33px; padding-inline: 12px; }
   .choices { gap: 5px; }
   .choice { min-height: 45px; padding: 6px 10px; border-radius: 10px; font-size: 16px; }
-  .choice-pos { min-width: 42px; padding: 3px 5px; }
+  .choice-pos { min-width: 36px; padding: 4px 5px; font-size: 11px; }
   .question-card > .dont-know-button { min-height: 38px; margin-top: 5px; }
   .play-button { width: 82px; height: 82px; font-size: 33px; }
   .play-hint { font-size: 12px; }
@@ -631,7 +639,9 @@ textarea:focus-visible, select:focus-visible { outline: 3px solid rgba(0, 122, 2
   .note { margin-top: 10px; padding-top: 8px; }
   .memory-strip { gap: 6px; margin-top: 9px; padding-top: 8px; }
   .result .primary { min-height: 46px; margin-top: 7px; }
-  .quick-feedback { bottom: 9px; }
+  .quick-feedback { bottom: 11px; min-height: 68px; padding: 10px 13px; }
+  .quick-feedback-recognition { top: auto; }
+  .quick-feedback strong { font-size: 20px; }
   .direction-card { min-height: 0; }
 }
 

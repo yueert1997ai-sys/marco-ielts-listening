@@ -40,7 +40,7 @@ async (page) => {
   })));
   const offline = await page.evaluate(async () => {
     const registration = await navigator.serviceWorker.ready;
-    const cache = await caches.open("ielts-listening-v29");
+    const cache = await caches.open("ielts-listening-v30");
     const requests = await cache.keys();
     const urls = requests.map((request) => request.url);
     return {
@@ -54,11 +54,11 @@ async (page) => {
     };
   });
   home.browseVisible = await page.locator("#browse").isVisible();
-  await page.screenshot({ path: "output/playwright/v2130/home.png" });
+  await page.screenshot({ path: "output/playwright/v2140/home.png" });
   await page.locator("#home-more summary").click();
   home.moreEntriesVisible = await page.locator("#error-training, #browse, #starred, #inbox, #export, #reset-training")
     .evaluateAll((entries) => entries.every((entry) => entry.getClientRects().length > 0));
-  await page.screenshot({ path: "output/playwright/v2130/home-more.png", fullPage: true });
+  await page.screenshot({ path: "output/playwright/v2140/home-more.png", fullPage: true });
   await page.locator("#home-more summary").click();
   await page.locator("#start").click();
 
@@ -96,8 +96,8 @@ async (page) => {
     feedback: await page.locator(".quick-feedback").innerText(),
     resultVisible: await page.locator(".result").count() > 0,
   };
-  await page.screenshot({ path: "output/playwright/v2130/quick-pass.png" });
-  await page.waitForTimeout(600);
+  await page.screenshot({ path: "output/playwright/v2140/quick-pass.png" });
+  await page.waitForTimeout(850);
   quickPass.advanced = await page.locator(".question-card").count() > 0;
   quickPass.feedbackGone = await page.locator(".quick-feedback").count() === 0;
   quickPass.countChanged = countBefore !== await page.locator("#day-count").innerText();
@@ -113,14 +113,14 @@ async (page) => {
     }).length,
     scrollHeight: document.documentElement.scrollHeight,
   }));
-  await page.screenshot({ path: "output/playwright/v2130/short-question.png" });
+  await page.screenshot({ path: "output/playwright/v2140/short-question.png" });
   await page.locator("#recognition-dont-know").click();
   await page.locator("#continue").waitFor();
   shortRecognition.resultContinueVisible = await page.locator("#continue").evaluate((button) => {
     const rect = button.getBoundingClientRect();
     return rect.top >= 0 && rect.bottom <= innerHeight;
   });
-  await page.screenshot({ path: "output/playwright/v2130/short-result.png" });
+  await page.screenshot({ path: "output/playwright/v2140/short-result.png" });
 
   const widthChecks = {};
   for (const width of [375, 430]) {
@@ -176,7 +176,7 @@ async (page) => {
     || home.moreOpen
     || home.browseVisible
     || !home.moreEntriesVisible
-    || home.coreActions !== 2
+    || home.coreActions !== 3
     || home.bodyBackground !== "rgb(242, 242, 247)"
     || home.primaryBackground !== "rgb(0, 122, 255)"
     || !home.progress.includes("0 / 50")
@@ -201,7 +201,7 @@ async (page) => {
     || !quickPass.feedbackGone
     || !quickPass.countChanged
     || choicePartsOfSpeech.length !== 4
-    || choicePartsOfSpeech.some((label) => !label.trim() || label.includes("待补"))
+    || choicePartsOfSpeech.some((label) => !["n", "v", "adj", "adv", "prep", "phr", "abbr", "n/v", "aux", "—"].includes(label.trim()))
     || shortRecognition.count !== 5
     || shortRecognition.fullyVisible !== 5
     || !shortRecognition.resultContinueVisible
