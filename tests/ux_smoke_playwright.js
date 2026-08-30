@@ -40,7 +40,7 @@ async (page) => {
   })));
   const offline = await page.evaluate(async () => {
     const registration = await navigator.serviceWorker.ready;
-    const cache = await caches.open("ielts-listening-v28");
+    const cache = await caches.open("ielts-listening-v29");
     const requests = await cache.keys();
     const urls = requests.map((request) => request.url);
     return {

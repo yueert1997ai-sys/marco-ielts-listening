@@ -1,5 +1,5 @@
 async (page) => {
-  const liveUrl = "https://yueert1997ai-sys.github.io/marco-ielts-listening/?verify=v2.13.0";
+  const liveUrl = "https://yueert1997ai-sys.github.io/marco-ielts-listening/?verify=v2.13.1";
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto(liveUrl, { waitUntil: "networkidle" });
   await page.evaluate(() => {
@@ -11,16 +11,16 @@ async (page) => {
 
   const release = await page.evaluate(async () => {
     const [version, serviceWorker, manifest, iconCss, iconFont] = await Promise.all([
-      fetch("./version.json?verify=v2.13.0").then((response) => response.json()),
-      fetch("./sw.js?verify=v2.13.0").then((response) => response.text()),
-      fetch("./manifest.webmanifest?verify=v2.13.0").then((response) => response.json()),
-      fetch("./vendor/phosphor/phosphor-regular.css?verify=v2.13.0"),
-      fetch("./vendor/phosphor/Phosphor.woff2?verify=v2.13.0"),
+      fetch("./version.json?verify=v2.13.1").then((response) => response.json()),
+      fetch("./sw.js?verify=v2.13.1").then((response) => response.text()),
+      fetch("./manifest.webmanifest?verify=v2.13.1").then((response) => response.json()),
+      fetch("./vendor/phosphor/phosphor-regular.css?verify=v2.13.1"),
+      fetch("./vendor/phosphor/Phosphor.woff2?verify=v2.13.1"),
     ]);
     return {
       version,
-      swVersion: serviceWorker.includes('const APP_VERSION = "v2.13.0"'),
-      cacheVersion: serviceWorker.includes('CACHE = "ielts-listening-v28"'),
+      swVersion: serviceWorker.includes('const APP_VERSION = "v2.13.1"'),
+      cacheVersion: serviceWorker.includes('CACHE = "ielts-listening-v29"'),
       manifest,
       iconCss: iconCss.ok,
       iconFont: iconFont.ok,
@@ -69,8 +69,8 @@ async (page) => {
   await page.locator(".word-card").first().waitFor();
   const browseCards = await page.locator(".word-card").count();
 
-  if (release.version.version !== "v2.13.0"
-    || release.version.releasedAt !== "2026-08-29"
+  if (release.version.version !== "v2.13.1"
+    || release.version.releasedAt !== "2026-08-30"
     || !release.swVersion
     || !release.cacheVersion
     || release.manifest.theme_color.toLowerCase() !== "#f2f2f7"

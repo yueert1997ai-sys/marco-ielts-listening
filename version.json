@@ -1,5 +1,5 @@
 {
-  "version": "v2.13.0",
-  "releasedAt": "2026-08-29",
-  "label": "浅色 iOS 原生训练界面"
+  "version": "v2.13.1",
+  "releasedAt": "2026-08-30",
+  "label": "重点词滚动稳定性修复"
 }

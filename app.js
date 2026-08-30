@@ -2,7 +2,7 @@
   "use strict";
 
   const STORAGE_KEY = "marcoIeltsListening.v1";
-  const APP_VERSION = "v2.13.0";
+  const APP_VERSION = "v2.13.1";
   const AUTO_UPDATE_SESSION_KEY = "marcoIeltsListening.autoUpdateAttempt";
   const AUTO_UPDATE_THROTTLE_MS = 60 * 1000;
   const TRAINING_RESET_ID = "fresh-start-v2.5.0";
@@ -955,7 +955,14 @@
 
   function starButton(item, className = "star-button") {
     const active = Boolean(state.starred[item.id]);
-    return `<button class="${className}${active ? " active" : ""}" data-star="${escapeHtml(item.id)}" aria-label="${active ? "取消重点" : "标为重点"}" aria-pressed="${active}">${icon("star")}</button>`;
+    return `<button type="button" class="${className}${active ? " active" : ""}" data-star="${escapeHtml(item.id)}" aria-label="${active ? "取消重点" : "标为重点"}" aria-pressed="${active}">${icon("star")}</button>`;
+  }
+
+  function updateStarButton(button, active) {
+    button.classList.toggle("active", active);
+    button.setAttribute("aria-pressed", String(active));
+    button.setAttribute("aria-label", active ? "取消重点" : "标为重点");
+    button.innerHTML = icon("star");
   }
 
   function itemStats(item) {
@@ -1428,9 +1435,7 @@
     });
     document.querySelector(".session-star")?.addEventListener("click", (event) => {
       const active = toggleStar(activity.id);
-      event.currentTarget.classList.toggle("active", active);
-      event.currentTarget.innerHTML = icon("star");
-      event.currentTarget.setAttribute("aria-pressed", String(active));
+      updateStarButton(event.currentTarget, active);
     });
   }
 
@@ -1588,8 +1593,9 @@
     }
   }
 
-  function browseScreen() {
-    window.scrollTo(0, 0);
+  function browseScreen(options = {}) {
+    const preservedScrollY = options.preserveScroll ? window.scrollY : null;
+    if (preservedScrollY === null) window.scrollTo(0, 0);
     setShellMode("browse");
     const deck = createBrowseDeck(items, browseFilter, browseSeed, state.starred);
     const pageCount = Math.max(1, Math.ceil(deck.length / BROWSE_PAGE_SIZE));
@@ -1636,13 +1642,24 @@
       if (item) playAudio(item, button);
     }));
     document.querySelectorAll(".star-button").forEach((button) => button.addEventListener("click", () => {
-      toggleStar(button.dataset.star);
-      browseScreen();
+      const active = toggleStar(button.dataset.star);
+      if (browseFilter === "starred") {
+        browseScreen({ preserveScroll: true });
+        return;
+      }
+      updateStarButton(button, active);
+      const card = button.closest(".word-card");
+      card?.classList.toggle("starred", active);
+      const tags = card?.querySelector(".word-tags");
+      const starTag = tags?.querySelector("[data-star-tag]");
+      if (active && tags && !starTag) tags.insertAdjacentHTML("beforeend", '<span data-star-tag>重点</span>');
+      if (!active) starTag?.remove();
     }));
     document.querySelectorAll("[data-page]").forEach((button) => button.addEventListener("click", () => {
       browsePage = Number(button.dataset.page);
       browseScreen();
     }));
+    if (preservedScrollY !== null) window.scrollTo(0, preservedScrollY);
   }
 
   function pagination(pageCount) {
@@ -1675,7 +1692,7 @@
           </div>
         </div>
         ${note ? `<p class="word-note">${escapeHtml(note)}</p>` : ""}
-        <div class="word-tags">${tags.map((tag) => `<span>${tag}</span>`).join("")}</div>
+        <div class="word-tags">${tags.map((tag) => `<span${tag === "重点" ? " data-star-tag" : ""}>${tag}</span>`).join("")}</div>
         ${stats.attempts ? `<div class="word-stats"><span>错 ${stats.lapses}</span><span>对 ${stats.passes}</span><span>阶段 ${stats.stage}/6</span>${stats.due ? `<span>复习 ${escapeHtml(stats.due)}</span>` : ""}</div>` : ""}
       </article>`;
   }
@@ -1803,8 +1820,7 @@
     });
     document.querySelector(".session-star")?.addEventListener("click", (event) => {
       const active = toggleStar(activity.id);
-      event.currentTarget.classList.toggle("active", active);
-      event.currentTarget.innerHTML = icon("star");
+      updateStarButton(event.currentTarget, active);
     });
   }
 
