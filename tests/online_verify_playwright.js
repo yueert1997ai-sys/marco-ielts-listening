@@ -68,6 +68,19 @@ async (page) => {
   await page.locator("#browse").click();
   await page.locator(".word-card").first().waitFor();
   const browseCards = await page.locator(".word-card").count();
+  await page.locator(".word-card").nth(8).scrollIntoViewIfNeeded();
+  const liveStarButton = page.locator(".word-card").nth(8).locator(".star-button");
+  const starScroll = { before: await page.evaluate(() => window.scrollY) };
+  await liveStarButton.click();
+  starScroll.afterStar = await page.evaluate(() => window.scrollY);
+  starScroll.active = await liveStarButton.getAttribute("aria-pressed");
+  await liveStarButton.click();
+  starScroll.afterUnstar = await page.evaluate(() => window.scrollY);
+  starScroll.inactive = await liveStarButton.getAttribute("aria-pressed");
+  starScroll.maxShift = Math.max(
+    Math.abs(starScroll.afterStar - starScroll.before),
+    Math.abs(starScroll.afterUnstar - starScroll.afterStar),
+  );
 
   if (release.version.version !== "v2.13.1"
     || release.version.releasedAt !== "2026-08-30"
@@ -83,9 +96,13 @@ async (page) => {
     || !feedback.includes("正确")
     || !spellingFocused
     || directionTargets !== 8
-    || browseCards !== 20) {
-    throw new Error(JSON.stringify({ release, home, feedback, spellingFocused, directionTargets, browseCards }));
+    || browseCards !== 20
+    || starScroll.before < 300
+    || starScroll.maxShift > 2
+    || starScroll.active !== "true"
+    || starScroll.inactive !== "false") {
+    throw new Error(JSON.stringify({ release, home, feedback, spellingFocused, directionTargets, browseCards, starScroll }));
   }
 
-  return { ok: true, release, home, feedback, spellingFocused, directionTargets, browseCards };
+  return { ok: true, release, home, feedback, spellingFocused, directionTargets, browseCards, starScroll };
 }
