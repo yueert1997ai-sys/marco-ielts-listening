@@ -99,6 +99,32 @@
     "audioPath": "audio/amusing.mp3"
   },
   {
+    "id": "appliances",
+    "term": "appliances",
+    "meaning": "家用电器；器具（appliance 的复数）",
+    "note": "C15-T4-P3 生词",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "appliances"
+    ],
+    "errorNote": "C15-T4-P3 生词",
+    "userAddedAt": "2026-08-31",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-08-31",
+    "partOfSpeech": "词性待补",
+    "sourceRevision": 4,
+    "audioText": "appliances",
+    "audioPath": "audio/appliances.mp3"
+  },
+  {
     "id": "be-subject-to",
     "term": "be subject to",
     "meaning": "受……支配",
@@ -756,6 +782,32 @@
     "sourceRevision": 4,
     "audioText": "discipline",
     "audioPath": "audio/discipline.mp3"
+  },
+  {
+    "id": "disposed",
+    "term": "disposed",
+    "meaning": "处理；处置（dispose 的过去式/过去分词）",
+    "note": "C15-T4-P3 生词：废弃物处置语境",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "disposed"
+    ],
+    "errorNote": "C15-T4-P3 生词：废弃物处置语境",
+    "userAddedAt": "2026-08-31",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-08-31",
+    "partOfSpeech": "形容词",
+    "sourceRevision": 4,
+    "audioText": "disposed",
+    "audioPath": "audio/disposed.mp3"
   },
   {
     "id": "distinction",
@@ -1566,6 +1618,32 @@
     "audioPath": "audio/induce.mp3"
   },
   {
+    "id": "insulating",
+    "term": "insulating",
+    "meaning": "隔热的；起隔热作用的",
+    "note": "C15-T4-P3 生词：insulating material / 隔热语境不熟",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "insulating"
+    ],
+    "errorNote": "C15-T4-P3 生词：insulating material / 隔热语境不熟",
+    "userAddedAt": "2026-08-31",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-08-31",
+    "partOfSpeech": "动词",
+    "sourceRevision": 4,
+    "audioText": "insulating",
+    "audioPath": "audio/insulating.mp3"
+  },
+  {
     "id": "integrate",
     "term": "integrate",
     "meaning": "使……成整体",
@@ -1635,6 +1713,32 @@
     "sourceRevision": 4,
     "audioText": "intrinsic",
     "audioPath": "audio/intrinsic.mp3"
+  },
+  {
+    "id": "irresponsibly",
+    "term": "irresponsibly",
+    "meaning": "不负责任地",
+    "note": "C15-T4-P3 生词",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "irresponsibly"
+    ],
+    "errorNote": "C15-T4-P3 生词",
+    "userAddedAt": "2026-08-31",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-08-31",
+    "partOfSpeech": "词性待补",
+    "sourceRevision": 4,
+    "audioText": "irresponsibly",
+    "audioPath": "audio/irresponsibly.mp3"
   },
   {
     "id": "juggle",
@@ -2557,6 +2661,32 @@
     "audioPath": "audio/preferential.mp3"
   },
   {
+    "id": "premises",
+    "term": "premises",
+    "meaning": "经营场所；公司场地；办公或厂区",
+    "note": "C15-T4-P3 生词：company premises 场景义不熟",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "premises"
+    ],
+    "errorNote": "C15-T4-P3 生词：company premises 场景义不熟",
+    "userAddedAt": "2026-08-31",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-08-31",
+    "partOfSpeech": "名词",
+    "sourceRevision": 4,
+    "audioText": "premises",
+    "audioPath": "audio/premises.mp3"
+  },
+  {
     "id": "prescription",
     "term": "prescription",
     "meaning": "处方",
@@ -3352,6 +3482,32 @@
     "sourceRevision": 4,
     "audioText": "Stoicism",
     "audioPath": "audio/stoicism.mp3"
+  },
+  {
+    "id": "straw",
+    "term": "straw",
+    "meaning": "稻草；麦秆",
+    "note": "C15-T4-P3 生词",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "straw"
+    ],
+    "errorNote": "C15-T4-P3 生词",
+    "userAddedAt": "2026-08-31",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-08-31",
+    "partOfSpeech": "名词",
+    "sourceRevision": 4,
+    "audioText": "straw",
+    "audioPath": "audio/straw.mp3"
   },
   {
     "id": "string",

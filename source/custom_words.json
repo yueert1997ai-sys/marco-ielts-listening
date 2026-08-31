@@ -37,6 +37,19 @@
     "lastReportedAt": "2026-08-31"
   },
   {
+    "id": "appliances",
+    "term": "appliances",
+    "meaning": "家用电器；器具（appliance 的复数）",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "C15-T4-P3 生词",
+    "category": "我的同步错词",
+    "addedAt": "2026-08-31",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-08-31"
+  },
+  {
     "id": "be-subject-to",
     "term": "be subject to",
     "meaning": "受……支配",
@@ -260,6 +273,19 @@
       "recognition"
     ],
     "reason": "C15-T4-P3 阅读生词：原文 disciplines，规则复数归并到主词；重点掌握‘学科’义",
+    "category": "我的同步错词",
+    "addedAt": "2026-08-31",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-08-31"
+  },
+  {
+    "id": "disposed",
+    "term": "disposed",
+    "meaning": "处理；处置（dispose 的过去式/过去分词）",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "C15-T4-P3 生词：废弃物处置语境",
     "category": "我的同步错词",
     "addedAt": "2026-08-31",
     "reportedCount": 1,
@@ -570,6 +596,19 @@
     "lastReportedAt": "2026-08-31"
   },
   {
+    "id": "insulating",
+    "term": "insulating",
+    "meaning": "隔热的；起隔热作用的",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "C15-T4-P3 生词：insulating material / 隔热语境不熟",
+    "category": "我的同步错词",
+    "addedAt": "2026-08-31",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-08-31"
+  },
+  {
     "id": "integrate",
     "term": "integrate",
     "meaning": "使……成整体",
@@ -578,6 +617,19 @@
     ],
     "reason": "飞书薄弱词：必须秒懂",
     "category": "0824 Weak Vocu",
+    "addedAt": "2026-08-31",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-08-31"
+  },
+  {
+    "id": "irresponsibly",
+    "term": "irresponsibly",
+    "meaning": "不负责任地",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "C15-T4-P3 生词",
+    "category": "我的同步错词",
     "addedAt": "2026-08-31",
     "reportedCount": 1,
     "lastReportedAt": "2026-08-31"
@@ -890,6 +942,19 @@
     "addedAt": "2026-08-26"
   },
   {
+    "id": "premises",
+    "term": "premises",
+    "meaning": "经营场所；公司场地；办公或厂区",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "C15-T4-P3 生词：company premises 场景义不熟",
+    "category": "我的同步错词",
+    "addedAt": "2026-08-31",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-08-31"
+  },
+  {
     "id": "principle",
     "term": "principle",
     "meaning": "原则；原理",
@@ -1183,6 +1248,19 @@
     "category": "0824 Weak Vocu",
     "addedAt": "2026-08-26",
     "reportedCount": 2,
+    "lastReportedAt": "2026-08-31"
+  },
+  {
+    "id": "straw",
+    "term": "straw",
+    "meaning": "稻草；麦秆",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "C15-T4-P3 生词",
+    "category": "我的同步错词",
+    "addedAt": "2026-08-31",
+    "reportedCount": 1,
     "lastReportedAt": "2026-08-31"
   },
   {
