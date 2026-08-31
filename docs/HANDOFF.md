@@ -75,6 +75,7 @@
 ## 发布与运维要点
 
 - GitHub Issue 同步只接受仓库所有者创建的 `[错词同步]` 或 `[词库管理]` Issue。
+- 错词同步使用 `wrong-word-sync` 并发队列，并在任务真正开始时显式签出最新 `main`，避免排队期间其他同步提交导致最终推送冲突。
 - 自动同步成功后应提交源数据、构建数据、音频、`CHANGELOG.md` 和本文件，并关闭 Issue。
 - Cloudflare Worker 所需 Secret：`ADMIN_PASSWORD_HASH`、`SESSION_SECRET`、`GITHUB_TOKEN`；不得记录具体值。
 - `GITHUB_TOKEN` 应保持为仅该仓库、仅 Issues 读写的 fine-grained token。

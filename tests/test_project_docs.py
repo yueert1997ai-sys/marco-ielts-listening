@@ -15,6 +15,11 @@ import update_project_docs  # noqa: E402
 
 
 class ProjectDocsTests(unittest.TestCase):
+    def test_wrong_word_sync_checks_out_latest_main_after_queueing(self) -> None:
+        workflow = (ROOT / ".github" / "workflows" / "sync-wrong-words.yml").read_text(encoding="utf-8")
+        self.assertIn("group: wrong-word-sync", workflow)
+        self.assertRegex(workflow, r"actions/checkout@v4\s+with:\s+ref: main")
+
     def test_change_requires_changelog(self) -> None:
         self.assertEqual(
             check_docs_sync.validate_change_set({"app.js"}),
