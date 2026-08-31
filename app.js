@@ -2,7 +2,7 @@
   "use strict";
 
   const STORAGE_KEY = "marcoIeltsListening.v1";
-  const APP_VERSION = "v2.15.0";
+  const APP_VERSION = "v2.15.1";
   const AUTO_UPDATE_SESSION_KEY = "marcoIeltsListening.autoUpdateAttempt";
   const AUTO_UPDATE_THROTTLE_MS = 60 * 1000;
   const TRAINING_RESET_ID = "fresh-start-v2.5.0";
@@ -1172,6 +1172,11 @@
               <span class="home-task-copy"><strong>方位检测</strong><small>10 题 · 练反应</small></span>
               <span class="home-task-caret">${icon("caret-right")}</span>
             </button>
+            <a id="confusions" class="home-task confusions-entry" href="./confusions/">
+              <span class="home-task-icon">${icon("intersect-three")}</span>
+              <span class="home-task-copy"><strong>易混词</strong><small>独立学习与冷测</small></span>
+              <span class="home-task-caret">${icon("caret-right")}</span>
+            </a>
           </div>
         </section>
         <p class="status-line">连续 ${state.streak || 0} 天 · 复习池 ${errorPoolCount} 项</p>

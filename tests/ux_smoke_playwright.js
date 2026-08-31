@@ -40,7 +40,7 @@ async (page) => {
   })));
   const offline = await page.evaluate(async () => {
     const registration = await navigator.serviceWorker.ready;
-    const cache = await caches.open("ielts-listening-v31");
+    const cache = await caches.open("ielts-listening-v32");
     const requests = await cache.keys();
     const urls = requests.map((request) => request.url);
     return {
@@ -176,7 +176,7 @@ async (page) => {
     || home.moreOpen
     || home.browseVisible
     || !home.moreEntriesVisible
-    || home.coreActions !== 3
+    || home.coreActions !== 5
     || home.bodyBackground !== "rgb(242, 242, 247)"
     || home.primaryBackground !== "rgb(0, 122, 255)"
     || !home.progress.includes("0 / 50")
@@ -185,7 +185,7 @@ async (page) => {
     || manifestTheme.theme.toLowerCase() !== "#f2f2f7"
     || manifestTheme.background.toLowerCase() !== "#f2f2f7"
     || offline.active !== "activated"
-    || offline.audio !== 702
+    || offline.audio !== 741
     || !offline.phosphorCss
     || !offline.phosphorFont
     || !offline.icons

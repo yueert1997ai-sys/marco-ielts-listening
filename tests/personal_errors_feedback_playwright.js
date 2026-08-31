@@ -78,10 +78,10 @@ async (page) => {
   const expected = [...pool.expectedKeys].sort();
   const actual = [...pool.actualKeys].sort();
   const allowedPos = new Set(["n", "v", "adj", "adv", "prep", "phr", "abbr", "n/v", "aux", "—"]);
-  if (pool.words !== 52
+  if (pool.words !== 97
     || pool.buttonDisabled
     || !pool.buttonText.includes("我的错词训练")
-    || !pool.buttonText.includes("52 词")
+    || !pool.buttonText.includes("97 词")
     || JSON.stringify(actual) !== JSON.stringify(expected)
     || spellingFeedback.meaning !== pool.spelling.meaning
     || spellingFeedback.fontSize < 20

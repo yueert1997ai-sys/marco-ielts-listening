@@ -5,21 +5,23 @@
 ## 线上入口
 
 - 训练端：<https://yueert1997ai-sys.github.io/marco-ielts-listening/>
+- 易混词：<https://yueert1997ai-sys.github.io/marco-ielts-listening/confusions/>
 - 词库后台：<https://marco-vocabulary-admin.marco-vocabulary-admin.workers.dev/>
 - GitHub：<https://github.com/yueert1997ai-sys/marco-ielts-listening>
 
 ## 当前发布状态
 
 <!-- VOCAB_STATUS_START -->
-- 训练端程序版本：`v2.15.0`
+- 训练端程序版本：`v2.15.1`（当前分支候选，尚未完成线上回读）
+- 易混词程序版本：`v1.0.0`（当前分支候选，尚未完成线上回读）
 - 后台程序版本：`v1.0.0`
 - 正式词库：733 张主卡；听写 272 项；识词 512 项
 - 个人错词：97 条；基础词覆盖：5 条；已停用：0 条
 - 最后自动词库同步：2026-08-28，GitHub Issue #5
 <!-- VOCAB_STATUS_END -->
 
-- 最后完成线上运行态验收的提交：`8932586`（`v2.15.0`）
-- `v2.15.0` 已上线：包含重点词随机训练和飞书 `0824 Weak Vocu` 的 56 词错词批次；线上已回读版本、Service Worker、正式词库及新增音频。
+- 最后完成线上运行态验收的提交：`8932586`（Listening `v2.15.0`）
+- 当前分支待发布：Listening `v2.15.1` / Confusions `v1.0.0`。新增独立 `/confusions/` 子应用、32 组 84 词、独立 localStorage 与 Service Worker；Listening 正式词库和训练状态结构不变。
 - 训练端由 GitHub Pages 托管；后台由 Cloudflare Worker + D1 托管。
 - 词库后台只管理正式词库，不同步手机浏览器里的训练进度和记忆曲线。
 - 训练端采用手机优先的浅色 iOS 原生界面：系统分组灰背景、白色表面、动态圆形日进度和系统蓝主操作；正确/错误反馈只使用成功绿与错误红。桌面仅保留居中的手机宽度外壳。
@@ -43,7 +45,14 @@
 - `source/custom_words.json`：个人错词
 - `source/vocabulary_overrides.json`：基础词修订和停用状态
 
+易混词独立数据真相源：
+
+- `source/confusions.json`：32 组、84 词及句内题
+- `confusions/data/confusions.json`：由 `scripts/build_confusions.py` 生成的运行时数据
+- `marcoIeltsConfusions.v1`：浏览器内学习、冷测、混淆对与强化记录
+
 不要直接维护 `data/listening.json`、`data/audit.json` 或音频清单；这些都应由构建流程生成。
+易混词数据不得写入任何 Listening 源数据或 `marcoIeltsListening.v1`。
 
 ## 版本规则
 
@@ -51,6 +60,7 @@
 - 后台代码变化：提升 `admin/package.json` 的后台版本。
 - 单纯新增或更新词汇：训练端程序版本不变，以 Git 提交、Issue 编号和最后同步日期作为词库版本。
 - 手机上看到旧版时，先核对线上 `version.json` 和 `sw.js`，再判断是否是浏览器缓存。
+- 易混词独立读取 `confusions/version.json`，版本不跟随 Listening；两套 Service Worker 只清理各自的 cache namespace。
 
 ## Agent 接手流程
 
@@ -74,7 +84,10 @@
 ```bash
 python scripts/check_docs_sync.py
 python scripts/validate_release.py
+python scripts/build_confusions.py
+python scripts/validate_confusions.py
 node tests/test_logic.js
+node tests/test_confusions_logic.js
 python -m unittest tests/test_vocabulary_admin.py tests/test_project_docs.py
 cd admin && npm test
 ```
@@ -89,5 +102,6 @@ cd admin && npm test
 ## 已知边界
 
 - 手机训练进度只保存在对应浏览器本地，不在后台跨端同步。
+- 易混词使用独立 `marcoIeltsConfusions.v1`；其学习、冷测和强化记录不进入 Listening 进度、streak 或词库统计。
 - 本地模型只在词典缺失且浏览器支持 WebGPU 时按需使用；模型资源不随仓库发布。
 - 没有确认中的产品或技术待办；新需求以 GitHub 最新状态为起点重新评估。

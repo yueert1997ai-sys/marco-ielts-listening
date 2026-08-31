@@ -1,0 +1,33 @@
+{
+  "version": 3,
+  "progress": {
+    "carpet:spelling": {"stage": 3, "lapses": 1, "passes": 5, "attempts": 6, "lastSeen": "2026-08-30", "due": "2026-09-02"},
+    "carpet:recognition": {"stage": 2, "lapses": 2, "passes": 4, "attempts": 6, "lastSeen": "2026-08-30", "due": "2026-08-31"},
+    "curtain:spelling": {"stage": 1, "lapses": 1, "passes": 2, "attempts": 3, "lastSeen": "2026-08-29", "due": "2026-08-31"}
+  },
+  "starred": {"carpet": true, "curtain": true},
+  "customItems": [],
+  "streak": 8,
+  "lastCompletedDate": "2026-08-30",
+  "trainingResetId": "fresh-start-v2.5.0",
+  "deckNonce": "whole-bank-v2",
+  "learningReviewSplitId": "learning-review-v2.9.0",
+  "daily": {
+    "date": "2026-08-31", "baseKeys": ["access:recognition", "accept:spelling"],
+    "queue": [{"key": "access:recognition", "isRetry": false}, {"key": "accept:spelling", "isRetry": false}],
+    "answeredBase": {}, "outcomes": {}, "retryCount": {}, "correctStreak": {}, "started": false, "completed": false
+  },
+  "reviewDaily": {
+    "date": "2026-08-31", "baseKeys": ["carpet:recognition", "curtain:spelling"],
+    "queue": [{"key": "carpet:recognition", "isRetry": false}, {"key": "curtain:spelling", "isRetry": false}],
+    "answeredBase": {}, "outcomes": {}, "retryCount": {}, "correctStreak": {}, "started": false, "completed": false
+  },
+  "errorDaily": {
+    "date": "2026-08-31", "baseKeys": [], "queue": [], "answeredBase": {}, "outcomes": {}, "retryCount": {}, "correctStreak": {},
+    "started": false, "completed": true, "poolId": "personal-errors-v1", "poolSignature": ""
+  },
+  "starredDaily": {
+    "date": "2026-08-31", "baseKeys": [], "queue": [], "answeredBase": {}, "outcomes": {}, "retryCount": {}, "correctStreak": {},
+    "started": false, "completed": true, "poolId": "starred-words-v1", "poolSignature": ""
+  }
+}

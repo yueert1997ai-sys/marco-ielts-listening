@@ -1,5 +1,5 @@
 async (page) => {
-  const liveUrl = "https://yueert1997ai-sys.github.io/marco-ielts-listening/?verify=v2.15.0";
+  const liveUrl = "https://yueert1997ai-sys.github.io/marco-ielts-listening/?verify=v2.15.1";
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto(liveUrl, { waitUntil: "networkidle" });
   await page.evaluate(() => {
@@ -11,16 +11,16 @@ async (page) => {
 
   const release = await page.evaluate(async () => {
     const [version, serviceWorker, manifest, iconCss, iconFont] = await Promise.all([
-      fetch("./version.json?verify=v2.15.0").then((response) => response.json()),
-      fetch("./sw.js?verify=v2.15.0").then((response) => response.text()),
-      fetch("./manifest.webmanifest?verify=v2.15.0").then((response) => response.json()),
-      fetch("./vendor/phosphor/phosphor-regular.css?verify=v2.15.0"),
-      fetch("./vendor/phosphor/Phosphor.woff2?verify=v2.15.0"),
+      fetch("./version.json?verify=v2.15.1").then((response) => response.json()),
+      fetch("./sw.js?verify=v2.15.1").then((response) => response.text()),
+      fetch("./manifest.webmanifest?verify=v2.15.1").then((response) => response.json()),
+      fetch("./vendor/phosphor/phosphor-regular.css?verify=v2.15.1"),
+      fetch("./vendor/phosphor/Phosphor.woff2?verify=v2.15.1"),
     ]);
     return {
       version,
-      swVersion: serviceWorker.includes('const APP_VERSION = "v2.15.0"'),
-      cacheVersion: serviceWorker.includes('CACHE = "ielts-listening-v31"'),
+      swVersion: serviceWorker.includes('const APP_VERSION = "v2.15.1"'),
+      cacheVersion: serviceWorker.includes('CACHE = "ielts-listening-v32"'),
       manifest,
       iconCss: iconCss.ok,
       iconFont: iconFont.ok,
@@ -88,8 +88,8 @@ async (page) => {
     Math.abs(starScroll.afterUnstar - starScroll.afterStar),
   );
 
-  if (release.version.version !== "v2.15.0"
-    || release.version.releasedAt !== "2026-08-30"
+  if (release.version.version !== "v2.15.1"
+    || release.version.releasedAt !== "2026-08-31"
     || !release.swVersion
     || !release.cacheVersion
     || release.manifest.theme_color.toLowerCase() !== "#f2f2f7"
@@ -100,7 +100,7 @@ async (page) => {
     || home.background !== "rgb(242, 242, 247)"
     || home.width > 390
     || !home.personalErrors.includes("我的错词训练")
-    || !home.personalErrors.includes("52 词")
+    || !home.personalErrors.includes("97 词")
     || feedback.meaning !== "地毯"
     || feedback.fontSize < 20
     || feedback.background !== "rgb(52, 199, 89)"

@@ -1,5 +1,6 @@
-const APP_VERSION = "v2.15.0";
-const CACHE = "ielts-listening-v31";
+const APP_VERSION = "v2.15.1";
+const CACHE_PREFIX = "ielts-listening-";
+const CACHE = "ielts-listening-v32";
 const CORE = [
   "./",
   `./index.html?v=${APP_VERSION}`,
@@ -35,7 +36,7 @@ self.addEventListener("install", (event) => {
 
 self.addEventListener("activate", (event) => {
   event.waitUntil(
-    caches.keys().then((keys) => Promise.all(keys.filter((key) => key !== CACHE).map((key) => caches.delete(key))))
+    caches.keys().then((keys) => Promise.all(keys.filter((key) => key.startsWith(CACHE_PREFIX) && key !== CACHE).map((key) => caches.delete(key))))
       .then(() => self.clients.claim())
   );
 });
@@ -43,6 +44,7 @@ self.addEventListener("activate", (event) => {
 self.addEventListener("fetch", (event) => {
   if (event.request.method !== "GET") return;
   const url = new URL(event.request.url);
+  if (url.origin === location.origin && url.pathname.includes("/confusions/")) return;
   const isCoreRequest = event.request.mode === "navigate" || (
     url.origin === location.origin && (
       url.pathname.endsWith("/index.html") ||

@@ -14,6 +14,7 @@
 - 个人错词：`source/custom_words.json`
 - 基础词修订和停用：`source/vocabulary_overrides.json`
 - `data/listening.json`、`data/audit.json` 和 `audio/` 是构建产物，禁止绕过源数据直接维护。
+- 易混词独立使用 `source/confusions.json`，由 `scripts/build_confusions.py` 生成 `confusions/data/confusions.json`；不得写入 Listening 源数据或 `marcoIeltsListening.v1`。
 - 训练端、后台和词库是三个独立版本；只新增词汇时不得提升训练端程序版本。
 
 ## 错词入库
@@ -32,6 +33,9 @@ python scripts/build_listening.py
 python scripts/generate_audio.py
 python scripts/validate_release.py
 node tests/test_logic.js
+python scripts/build_confusions.py
+python scripts/validate_confusions.py
+node tests/test_confusions_logic.js
 python -m unittest tests/test_vocabulary_admin.py
 ```
 

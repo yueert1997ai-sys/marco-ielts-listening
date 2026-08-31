@@ -1,0 +1,281 @@
+{
+  "version": 1,
+  "groups": [
+    {
+      "id": "composition",
+      "label": "composition",
+      "terms": [
+        {"term": "compose", "partOfSpeech": "v.", "meaning": "构成；创作", "chunk": "be composed of", "sentence": "Several independent measures ___ the final index."},
+        {"term": "comprise", "partOfSpeech": "v.", "meaning": "包含；由……组成", "chunk": "comprise several parts", "sentence": "The final assessment will ___ three written tasks."},
+        {"term": "constitute", "partOfSpeech": "v.", "meaning": "构成", "chunk": "constitute the majority", "sentence": "International students ___ the majority of participants."},
+        {"term": "consist", "partOfSpeech": "v.", "meaning": "由……组成", "chunk": "consist of", "sentence": "The sample will ___ of adults from four regions."},
+        {"term": "compromise", "partOfSpeech": "n./v.", "meaning": "妥协；危及", "chunk": "compromise safety", "sentence": "Incomplete checks may ___ the safety of the experiment."}
+      ]
+    },
+    {
+      "id": "pose",
+      "label": "pose",
+      "terms": [
+        {"term": "impose", "partOfSpeech": "v.", "meaning": "强加；实施", "chunk": "impose restrictions", "sentence": "The authority may ___ temporary restrictions during the trial."},
+        {"term": "expose", "partOfSpeech": "v.", "meaning": "暴露；使接触", "chunk": "expose A to B", "sentence": "The programme will ___ students to several research methods."},
+        {"term": "oppose", "partOfSpeech": "v.", "meaning": "反对", "chunk": "oppose a proposal", "sentence": "Several residents ___ the proposal to extend the highway."},
+        {"term": "propose", "partOfSpeech": "v.", "meaning": "提出；建议", "chunk": "propose a solution", "sentence": "The authors ___ a practical solution to the funding gap."}
+      ]
+    },
+    {
+      "id": "cede-ceed",
+      "label": "cede / ceed",
+      "terms": [
+        {"term": "precede", "partOfSpeech": "v.", "meaning": "先于", "chunk": "precede an event", "sentence": "A short pilot study will ___ the main experiment."},
+        {"term": "proceed", "partOfSpeech": "v.", "meaning": "继续进行", "chunk": "proceed to the next stage", "sentence": "Only approved applications may ___ to the next stage."}
+      ]
+    },
+    {
+      "id": "ceive",
+      "label": "ceive",
+      "terms": [
+        {"term": "perceive", "partOfSpeech": "v.", "meaning": "感知；理解；认为", "chunk": "be perceived as", "sentence": "Consumers often ___ higher prices as evidence of quality."},
+        {"term": "conceive", "partOfSpeech": "v.", "meaning": "构想；设想", "chunk": "conceive an idea", "sentence": "Few researchers could ___ such a large-scale study at the time."},
+        {"term": "receive", "partOfSpeech": "v.", "meaning": "收到", "chunk": "receive information", "sentence": "Participants will ___ detailed instructions before the interview."},
+        {"term": "deceive", "partOfSpeech": "v.", "meaning": "欺骗", "chunk": "deceive people", "sentence": "Misleading graphs can ___ readers about the scale of a change."}
+      ]
+    },
+    {
+      "id": "perception-perspective",
+      "label": "perception / perspective",
+      "terms": [
+        {"term": "perception", "partOfSpeech": "n.", "meaning": "认知；看法", "chunk": "public perception", "sentence": "Media coverage strongly influences public ___ of scientific risk."},
+        {"term": "perspective", "partOfSpeech": "n.", "meaning": "观点；视角", "chunk": "from a historical perspective", "sentence": "The policy appears less unusual from a historical ___."},
+        {"term": "prospect", "partOfSpeech": "n.", "meaning": "前景；可能性", "chunk": "employment prospects", "sentence": "The new qualification may improve each graduate's employment ___."},
+        {"term": "prospective", "partOfSpeech": "adj.", "meaning": "潜在的；未来的", "chunk": "prospective students", "sentence": "The university invited ___ students to an online information session."}
+      ]
+    },
+    {
+      "id": "duce",
+      "label": "duce",
+      "terms": [
+        {"term": "induce", "partOfSpeech": "v.", "meaning": "导致；诱导", "chunk": "induce changes", "sentence": "A sudden rise in temperature may ___ chemical changes."},
+        {"term": "deduce", "partOfSpeech": "v.", "meaning": "推断", "chunk": "deduce from evidence", "sentence": "Researchers can ___ the likely cause from the available evidence."},
+        {"term": "reduce", "partOfSpeech": "v.", "meaning": "减少", "chunk": "reduce costs", "sentence": "Shared facilities can ___ operating costs for small firms."},
+        {"term": "produce", "partOfSpeech": "v.", "meaning": "生产；产生", "chunk": "produce results", "sentence": "The revised method should ___ more consistent results."}
+      ]
+    },
+    {
+      "id": "imply-infer",
+      "label": "imply / infer",
+      "terms": [
+        {"term": "imply", "partOfSpeech": "v.", "meaning": "暗示", "chunk": "imply that", "sentence": "These findings ___ that the original estimate was too low."},
+        {"term": "infer", "partOfSpeech": "v.", "meaning": "推断", "chunk": "infer from evidence", "sentence": "We cannot ___ causation from a simple correlation."}
+      ]
+    },
+    {
+      "id": "hibit",
+      "label": "hibit",
+      "terms": [
+        {"term": "inhibit", "partOfSpeech": "v.", "meaning": "抑制；阻碍", "chunk": "inhibit growth", "sentence": "A lack of credit can ___ the growth of small businesses."},
+        {"term": "inhabit", "partOfSpeech": "v.", "meaning": "居住于", "chunk": "inhabit a region", "sentence": "Several rare species ___ the coastal wetlands."},
+        {"term": "prohibit", "partOfSpeech": "v.", "meaning": "禁止", "chunk": "prohibit access", "sentence": "The new rules ___ access to sensitive records."}
+      ]
+    },
+    {
+      "id": "integr",
+      "label": "integr",
+      "terms": [
+        {"term": "integrate", "partOfSpeech": "v.", "meaning": "整合；融入", "chunk": "integrate A into B", "sentence": "Schools should ___ digital skills into the core curriculum."},
+        {"term": "integral", "partOfSpeech": "adj.", "meaning": "必不可少的；构成整体的", "chunk": "an integral part", "sentence": "Peer review is an ___ part of academic publishing."},
+        {"term": "integrity", "partOfSpeech": "n.", "meaning": "完整性；诚信", "chunk": "structural integrity", "sentence": "Engineers tested the structural ___ of the bridge."}
+      ]
+    },
+    {
+      "id": "compreh",
+      "label": "compreh",
+      "terms": [
+        {"term": "comprehensive", "partOfSpeech": "adj.", "meaning": "全面的", "chunk": "comprehensive research", "sentence": "The report provides a ___ review of the available evidence."},
+        {"term": "comprehensible", "partOfSpeech": "adj.", "meaning": "可理解的", "chunk": "easily comprehensible", "sentence": "Technical findings should be ___ to a general audience."}
+      ]
+    },
+    {
+      "id": "consider",
+      "label": "consider",
+      "terms": [
+        {"term": "considerable", "partOfSpeech": "adj.", "meaning": "相当大的；可观的", "chunk": "considerable evidence", "sentence": "There is ___ evidence that sleep affects memory."},
+        {"term": "considerate", "partOfSpeech": "adj.", "meaning": "体贴的", "chunk": "considerate behaviour", "sentence": "A ___ researcher explains the procedure clearly to participants."}
+      ]
+    },
+    {
+      "id": "serve",
+      "label": "serve",
+      "terms": [
+        {"term": "conserve", "partOfSpeech": "v.", "meaning": "节约；保护资源", "chunk": "conserve energy", "sentence": "Modern insulation helps households ___ energy."},
+        {"term": "preserve", "partOfSpeech": "v.", "meaning": "保存；保护原状", "chunk": "preserve buildings", "sentence": "The council plans to ___ several historic buildings."},
+        {"term": "reserve", "partOfSpeech": "v.", "meaning": "保留；预留", "chunk": "reserve resources", "sentence": "The laboratory will ___ some equipment for urgent projects."}
+      ]
+    },
+    {
+      "id": "sequence-result",
+      "label": "sequence / result",
+      "terms": [
+        {"term": "consecutive", "partOfSpeech": "adj.", "meaning": "连续的", "chunk": "consecutive years", "sentence": "The region recorded population growth for five ___ years."},
+        {"term": "consequent", "partOfSpeech": "adj.", "meaning": "随之发生的", "chunk": "consequent changes", "sentence": "The decline in demand and the ___ job losses affected the whole town."},
+        {"term": "subsequent", "partOfSpeech": "adj.", "meaning": "随后的", "chunk": "subsequent research", "sentence": "___ research failed to reproduce the original result."}
+      ]
+    },
+    {
+      "id": "confirm-conform",
+      "label": "confirm / conform",
+      "terms": [
+        {"term": "confirm", "partOfSpeech": "v.", "meaning": "证实；确认", "chunk": "confirm findings", "sentence": "A larger trial is needed to ___ these preliminary findings."},
+        {"term": "conform", "partOfSpeech": "v.", "meaning": "符合；遵守", "chunk": "conform to standards", "sentence": "All imported materials must ___ to national safety standards."}
+      ]
+    },
+    {
+      "id": "access-assess",
+      "label": "access / assess",
+      "terms": [
+        {"term": "access", "partOfSpeech": "n./v.", "meaning": "获取；进入", "chunk": "access information", "sentence": "Registered users can ___ the full dataset online."},
+        {"term": "assess", "partOfSpeech": "v.", "meaning": "评估", "chunk": "assess the impact", "sentence": "The study will ___ the impact of remote work on productivity."}
+      ]
+    },
+    {
+      "id": "adapt-adopt",
+      "label": "adapt / adopt",
+      "terms": [
+        {"term": "adapt", "partOfSpeech": "v.", "meaning": "适应；改编", "chunk": "adapt to change", "sentence": "Local firms must ___ to changing consumer preferences."},
+        {"term": "adopt", "partOfSpeech": "v.", "meaning": "采用；收养", "chunk": "adopt a method", "sentence": "The research team decided to ___ a mixed-method approach."}
+      ]
+    },
+    {
+      "id": "affect-effect",
+      "label": "affect / effect",
+      "terms": [
+        {"term": "affect", "partOfSpeech": "v.", "meaning": "影响", "chunk": "affect performance", "sentence": "Background noise can ___ performance on complex tasks."},
+        {"term": "effect", "partOfSpeech": "n.", "meaning": "效果；影响", "chunk": "have an effect on", "sentence": "The intervention had a measurable ___ on attendance."}
+      ]
+    },
+    {
+      "id": "attain-obtain-retain",
+      "label": "attain / obtain / retain",
+      "terms": [
+        {"term": "attain", "partOfSpeech": "v.", "meaning": "达到", "chunk": "attain a level", "sentence": "Most learners need sustained practice to ___ an advanced level."},
+        {"term": "obtain", "partOfSpeech": "v.", "meaning": "获得", "chunk": "obtain data", "sentence": "Researchers must ___ consent before collecting personal data."},
+        {"term": "retain", "partOfSpeech": "v.", "meaning": "保留；保持", "chunk": "retain information", "sentence": "Regular retrieval practice helps students ___ information."}
+      ]
+    },
+    {
+      "id": "quire",
+      "label": "quire",
+      "terms": [
+        {"term": "acquire", "partOfSpeech": "v.", "meaning": "获得；习得", "chunk": "acquire knowledge", "sentence": "Children ___ language through repeated social interaction."},
+        {"term": "require", "partOfSpeech": "v.", "meaning": "需要", "chunk": "require evidence", "sentence": "Strong claims ___ equally strong evidence."},
+        {"term": "inquire", "partOfSpeech": "v.", "meaning": "询问", "chunk": "inquire about", "sentence": "Applicants may ___ about funding by email."}
+      ]
+    },
+    {
+      "id": "tribute",
+      "label": "tribute",
+      "terms": [
+        {"term": "attribute", "partOfSpeech": "n./v.", "meaning": "特征；归因于", "chunk": "attribute A to B", "sentence": "The authors ___ the improvement to better training."},
+        {"term": "contribute", "partOfSpeech": "v.", "meaning": "贡献；促成", "chunk": "contribute to", "sentence": "Several social factors ___ to unequal health outcomes."},
+        {"term": "distribute", "partOfSpeech": "v.", "meaning": "分发；分布", "chunk": "distribute resources", "sentence": "Local agencies will ___ emergency resources across the region."}
+      ]
+    },
+    {
+      "id": "incidence",
+      "label": "incidence / incident",
+      "terms": [
+        {"term": "incidence", "partOfSpeech": "n.", "meaning": "发生率", "chunk": "incidence of disease", "sentence": "Vaccination reduced the ___ of the disease among children."},
+        {"term": "incident", "partOfSpeech": "n.", "meaning": "事件", "chunk": "a serious incident", "sentence": "The laboratory reported a serious safety ___."}
+      ]
+    },
+    {
+      "id": "inherent",
+      "label": "inherent / inherit",
+      "terms": [
+        {"term": "inherent", "partOfSpeech": "adj.", "meaning": "固有的；内在的", "chunk": "inherent limitations", "sentence": "Every survey method has ___ limitations."},
+        {"term": "inherit", "partOfSpeech": "v.", "meaning": "继承", "chunk": "inherit characteristics", "sentence": "Some organisms ___ characteristics from both parents."}
+      ]
+    },
+    {
+      "id": "complement",
+      "label": "complement / compliment",
+      "terms": [
+        {"term": "complement", "partOfSpeech": "n./v.", "meaning": "补充；互补", "chunk": "complement each other", "sentence": "Qualitative and quantitative methods can ___ each other."},
+        {"term": "compliment", "partOfSpeech": "n./v.", "meaning": "赞美", "chunk": "pay a compliment", "sentence": "The reviewer chose to ___ the clarity of the presentation."}
+      ]
+    },
+    {
+      "id": "principal",
+      "label": "principal / principle",
+      "terms": [
+        {"term": "principal", "partOfSpeech": "adj./n.", "meaning": "主要的；负责人", "chunk": "principal reason", "sentence": "The ___ reason for the delay was a shortage of materials."},
+        {"term": "principle", "partOfSpeech": "n.", "meaning": "原则；原理", "chunk": "basic principle", "sentence": "Transparency is a basic ___ of responsible research."}
+      ]
+    },
+    {
+      "id": "economic",
+      "label": "economic / economical",
+      "terms": [
+        {"term": "economic", "partOfSpeech": "adj.", "meaning": "经济的", "chunk": "economic growth", "sentence": "Investment in infrastructure can support long-term ___ growth."},
+        {"term": "economical", "partOfSpeech": "adj.", "meaning": "节省的；经济实惠的", "chunk": "economical method", "sentence": "Solar heating can be an ___ option in sunny regions."}
+      ]
+    },
+    {
+      "id": "efficiency",
+      "label": "efficient / effective",
+      "terms": [
+        {"term": "efficient", "partOfSpeech": "adj.", "meaning": "高效的", "chunk": "efficient system", "sentence": "The new scheduling system is more ___ and uses fewer resources."},
+        {"term": "effective", "partOfSpeech": "adj.", "meaning": "有效的", "chunk": "effective solution", "sentence": "Early intervention is often the most ___ solution."}
+      ]
+    },
+    {
+      "id": "explicit",
+      "label": "explicit / implicit",
+      "terms": [
+        {"term": "explicit", "partOfSpeech": "adj.", "meaning": "明确的", "chunk": "explicit instructions", "sentence": "Participants received ___ instructions before the task."},
+        {"term": "implicit", "partOfSpeech": "adj.", "meaning": "隐含的", "chunk": "implicit assumption", "sentence": "The argument rests on an ___ assumption about human behaviour."}
+      ]
+    },
+    {
+      "id": "sume",
+      "label": "sume",
+      "terms": [
+        {"term": "assume", "partOfSpeech": "v.", "meaning": "假设；承担", "chunk": "assume that", "sentence": "We should not ___ that all participants have internet access."},
+        {"term": "consume", "partOfSpeech": "v.", "meaning": "消耗", "chunk": "consume energy", "sentence": "Older buildings often ___ more energy than newer ones."},
+        {"term": "resume", "partOfSpeech": "v.", "meaning": "恢复；继续", "chunk": "resume activity", "sentence": "Fieldwork will ___ when weather conditions improve."}
+      ]
+    },
+    {
+      "id": "derive-deprive",
+      "label": "derive / deprive",
+      "terms": [
+        {"term": "derive", "partOfSpeech": "v.", "meaning": "获得；源于", "chunk": "derive from", "sentence": "Many technical terms ___ from Greek or Latin roots."},
+        {"term": "deprive", "partOfSpeech": "v.", "meaning": "剥夺", "chunk": "deprive A of B", "sentence": "Chronic noise can ___ residents of adequate sleep."}
+      ]
+    },
+    {
+      "id": "distinct",
+      "label": "distinct / distinctive",
+      "terms": [
+        {"term": "distinct", "partOfSpeech": "adj.", "meaning": "不同的；清晰的", "chunk": "distinct groups", "sentence": "The analysis identified three ___ groups of users."},
+        {"term": "distinctive", "partOfSpeech": "adj.", "meaning": "有特色的", "chunk": "distinctive feature", "sentence": "Its most ___ feature is the curved outer wall."}
+      ]
+    },
+    {
+      "id": "comparable-compatible",
+      "label": "comparable / compatible",
+      "terms": [
+        {"term": "comparable", "partOfSpeech": "adj.", "meaning": "可比较的；类似的", "chunk": "comparable results", "sentence": "The two laboratories produced broadly ___ results."},
+        {"term": "compatible", "partOfSpeech": "adj.", "meaning": "兼容的；相容的", "chunk": "compatible with", "sentence": "The software is not ___ with older operating systems."}
+      ]
+    },
+    {
+      "id": "sure",
+      "label": "sure",
+      "terms": [
+        {"term": "ensure", "partOfSpeech": "v.", "meaning": "确保", "chunk": "ensure success", "sentence": "Regular monitoring helps ___ the reliability of the data."},
+        {"term": "assure", "partOfSpeech": "v.", "meaning": "向某人保证", "chunk": "assure someone", "sentence": "The researchers ___ participants that their identities will remain private."},
+        {"term": "insure", "partOfSpeech": "v.", "meaning": "投保", "chunk": "insure property", "sentence": "Owners are advised to ___ valuable equipment against damage."}
+      ]
+    }
+  ]
+}
