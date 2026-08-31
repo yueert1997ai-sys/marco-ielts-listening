@@ -19,9 +19,9 @@
 - 最后自动词库同步：2026-08-31，GitHub Issue #7
 <!-- VOCAB_STATUS_END -->
 
-- 最后完成线上运行态验收的功能提交：`c4af30e`（Listening `v2.15.1` / Confusions `v1.0.1`）
+- 最后完成线上运行态验收的功能提交：`a46ce00`（Listening `v2.15.1` / Confusions `v1.1.0`）
 - 易混词已从 `/confusions/` 独立发布，共 32 组 84 词；线上已完成学习、12 题 cold test、错题强化、故障隔离、双 Cache 共存与离线回归。Listening localStorage 前后字节级相等，正式词库和训练状态结构不变。
-- Confusions `v1.0.1` 已完成线上回读：学习阶段的词义、Chunk 匹配与组末回忆均为每屏至少 4 词；双 Cache 共存、离线重载及 Listening localStorage 字节级隔离正常。
+- Confusions `v1.1.0` 已完成线上回读和完整手机流程验收：正式测试支持标准/舒缓节奏与题内暂停，暂停期间剩余时间、进度条和反应计时均冻结；320px 窄屏无横向溢出，44px 节奏触控区、减少动态效果、双 Cache 共存、离线重载及 Listening localStorage 字节级隔离均正常。
 - 训练端由 GitHub Pages 托管；后台由 Cloudflare Worker + D1 托管。
 - 词库后台只管理正式词库，不同步手机浏览器里的训练进度和记忆曲线。
 - 训练端采用手机优先的浅色 iOS 原生界面：系统分组灰背景、白色表面、动态圆形日进度和系统蓝主操作；正确/错误反馈只使用成功绿与错误红。桌面仅保留居中的手机宽度外壳。

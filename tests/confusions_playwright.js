@@ -1,6 +1,8 @@
 async (page) => {
   await page.setViewportSize({ width: 390, height: 844 });
-  const baseUrl = "http://127.0.0.1:4173/";
+  const baseUrl = page.url().startsWith("https://yueert1997ai-sys.github.io/")
+    ? "https://yueert1997ai-sys.github.io/marco-ielts-listening/"
+    : "http://127.0.0.1:4173/";
   await page.goto(baseUrl, { waitUntil: "networkidle" });
   await page.evaluate(async () => {
     localStorage.clear();
