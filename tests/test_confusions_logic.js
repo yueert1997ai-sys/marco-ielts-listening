@@ -54,6 +54,15 @@ test("cold test contains 12 unique groups with exact type quotas", () => {
   assert.equal(new Set(deck.map((question) => question.groupId)).size, 12);
   const counts = deck.reduce((result, question) => ({ ...result, [question.type]: (result[question.type] || 0) + 1 }), {});
   assert.deepEqual(counts, { "en-zh": 3, "zh-en": 3, sentence: 6 });
+  assert(deck.every((question) => question.pace === "standard"));
+  assert(deck.every((question) => question.timeLimitMs === logic.TYPE_LIMITS[question.type]));
+});
+
+test("relaxed cold test doubles time without changing the deck contract", () => {
+  const deck = logic.buildColdTest(groups, logic.defaultState(), "relaxed-seed", "relaxed");
+  assert.equal(deck.length, 12);
+  assert(deck.every((question) => question.pace === "relaxed"));
+  assert(deck.every((question) => question.timeLimitMs === logic.TYPE_LIMITS[question.type] * 2));
 });
 
 test("timeouts and response times are recorded from one answer", () => {
@@ -62,6 +71,8 @@ test("timeouts and response times are recorded from one answer", () => {
   assert.equal(timeout.timedOut, true);
   assert.equal(timeout.selected, null);
   assert.equal(timeout.responseMs, question.timeLimitMs);
+  assert.equal(timeout.timeLimitMs, question.timeLimitMs);
+  assert.equal(timeout.pace, "standard");
   const selected = logic.answerQuestion(question, question.expected, 321.8, "2026-08-31T00:00:01.000Z");
   assert.equal(selected.correct, true);
   assert.equal(selected.responseMs, 322);
@@ -83,6 +94,7 @@ test("cold test records pairwise confusion and first-attempt score", () => {
   ));
   const result = logic.recordColdTest(logic.defaultState(), answers, "2026-08-31T00:00:00.000Z");
   assert.equal(result.summary.score, 11);
+  assert.equal(result.summary.pace, "standard");
   const wrong = answers[0];
   assert.equal(result.state.confusionPairs[`${wrong.expected}->${wrong.selected}`].count, 1);
   assert.equal(result.state.groupStats[wrong.groupId].attempts, 1);
@@ -122,6 +134,9 @@ test("state recovery keeps module-local collections", () => {
   assert.equal(state.learning.x.status, "familiar");
   assert.deepEqual(state.testHistory, []);
   assert.deepEqual(state.groupStats, {});
+  assert.equal(state.settings.coldTestPace, "standard");
+  assert.equal(logic.safeState({ settings: { coldTestPace: "relaxed" } }).settings.coldTestPace, "relaxed");
+  assert.equal(logic.safeState({ settings: { coldTestPace: "unsupported" } }).settings.coldTestPace, "standard");
   assert.equal(logic.STORAGE_KEY, "marcoIeltsConfusions.v1");
 });
 

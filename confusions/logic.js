@@ -6,10 +6,11 @@
   "use strict";
 
   const STORAGE_KEY = "marcoIeltsConfusions.v1";
-  const VERSION = "v1.0.1";
+  const VERSION = "v1.1.0";
   const QUESTION_COUNT = 12;
   const RECENT_WINDOW = 20;
   const MIN_STABLE_ATTEMPTS = 3;
+  const COLD_TEST_PACES = ["standard", "relaxed"];
   const TYPE_LIMITS = {
     "en-zh": 2500,
     "zh-en": 2500,
@@ -46,6 +47,7 @@
   function defaultState() {
     return {
       schemaVersion: 1,
+      settings: { coldTestPace: "standard" },
       learning: {},
       testHistory: [],
       termStats: {},
@@ -63,6 +65,11 @@
     if (!raw || typeof raw !== "object" || Array.isArray(raw)) return defaultState();
     return {
       schemaVersion: 1,
+      settings: {
+        coldTestPace: COLD_TEST_PACES.includes(raw.settings?.coldTestPace)
+          ? raw.settings.coldTestPace
+          : "standard",
+      },
       learning: safeObject(raw.learning),
       testHistory: Array.isArray(raw.testHistory) ? raw.testHistory : [],
       termStats: safeObject(raw.termStats),
@@ -216,8 +223,10 @@
     return question;
   }
 
-  function buildColdTest(groups, state, seed = `${Date.now()}`) {
+  function buildColdTest(groups, state, seed = `${Date.now()}`, pace = "standard") {
     if (groups.length < QUESTION_COUNT) throw new Error("Cold test requires at least 12 groups");
+    const safePace = COLD_TEST_PACES.includes(pace) ? pace : "standard";
+    const timeMultiplier = safePace === "relaxed" ? 2 : 1;
     const priority = { "high-risk": 0, untested: 1, learning: 2, stable: 3 };
     const selectedGroups = [...groups]
       .sort((first, second) => {
@@ -237,7 +246,8 @@
     ], `${seed}:types`);
     return selectedGroups.map((group, index) => {
       const expected = selectTerm(group, state, `${seed}:${group.id}`);
-      return makeQuestion(group, expected, types[index], `${seed}:${index}`);
+      const question = makeQuestion(group, expected, types[index], `${seed}:${index}`);
+      return { ...question, pace: safePace, timeLimitMs: question.timeLimitMs * timeMultiplier };
     });
   }
 
@@ -255,6 +265,8 @@
       correct: selected === question.expected,
       timedOut,
       responseMs,
+      timeLimitMs: question.timeLimitMs,
+      pace: COLD_TEST_PACES.includes(question.pace) ? question.pace : "standard",
       timestamp,
     };
   }
@@ -312,6 +324,7 @@
       score: cleanAnswers.filter((answer) => answer.correct).length,
       total: cleanAnswers.length,
       medianResponseMs: median(cleanAnswers.map((answer) => answer.responseMs)),
+      pace: cleanAnswers.some((answer) => answer.pace === "relaxed") ? "relaxed" : "standard",
       answers: cleanAnswers,
     };
     state.testHistory = appendLimited(state.testHistory, summary, 100);
@@ -354,6 +367,7 @@
     QUESTION_COUNT,
     RECENT_WINDOW,
     MIN_STABLE_ATTEMPTS,
+    COLD_TEST_PACES,
     TYPE_LIMITS,
     defaultState,
     safeState,

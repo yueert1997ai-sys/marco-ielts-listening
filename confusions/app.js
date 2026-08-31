@@ -57,6 +57,7 @@
     screenLabel.textContent = "学习与冷测";
     const familiar = Object.values(state.learning).filter((record) => record?.status === "familiar").length;
     const coldRuns = state.testHistory.length;
+    const coldTestPace = state.settings.coldTestPace;
     screen.innerHTML = `
       <section class="hero">
         <p class="hero-kicker">DISCRIMINATION TRAINING</p>
@@ -79,9 +80,25 @@
           <span class="action-caret">${icon("caret-right")}</span>
         </button>
       </div>
+      <section class="test-pace" aria-labelledby="test-pace-title">
+        <div class="test-pace-copy">
+          <strong id="test-pace-title">测试节奏</strong>
+          <small>只放宽作答时间，掌握标准不变</small>
+        </div>
+        <div class="segmented" role="radiogroup" aria-label="正式测试节奏">
+          <button type="button" role="radio" data-test-pace="standard" aria-checked="${coldTestPace === "standard"}">标准</button>
+          <button type="button" role="radio" data-test-pace="relaxed" aria-checked="${coldTestPace === "relaxed"}">舒缓</button>
+        </div>
+        <p>${coldTestPace === "relaxed" ? "词义 5 秒 · 语境 10 秒" : "词义 2.5 秒 · 语境 5 秒"}</p>
+      </section>
       <p class="inline-note">易混词拥有独立版本、词库和学习记录，不会计入 Listening 训练进度。</p>`;
     document.getElementById("start-learning").addEventListener("click", startLearning);
     document.getElementById("start-test").addEventListener("click", startColdTest);
+    document.querySelectorAll("[data-test-pace]").forEach((button) => button.addEventListener("click", () => {
+      state.settings.coldTestPace = button.dataset.testPace;
+      saveState();
+      renderHome();
+    }));
   }
 
   function startLearning() {
@@ -281,16 +298,78 @@
 
   function startColdTest() {
     const startedAt = new Date().toISOString();
+    const pace = state.settings.coldTestPace;
     testRun = {
-      deck: logic.buildColdTest(groups, state, `${Date.now()}:${Math.random()}`),
+      deck: logic.buildColdTest(groups, state, `${Date.now()}:${Math.random()}`, pace),
       index: 0,
       answers: [],
       startedAt,
-      questionStartedAt: 0,
+      pace,
+      segmentStartedAt: 0,
+      elapsedMs: 0,
+      remainingMs: 0,
       timerId: null,
+      tickerId: null,
+      paused: false,
       locked: false,
     };
     renderColdQuestion();
+  }
+
+  function clearColdTimer() {
+    clearTimeout(testRun.timerId);
+    clearInterval(testRun.tickerId);
+    testRun.timerId = null;
+    testRun.tickerId = null;
+  }
+
+  function updateTimerCount() {
+    const timerCount = document.getElementById("test-timer-count");
+    if (!timerCount || testRun.paused || testRun.locked) return;
+    const elapsed = performance.now() - testRun.segmentStartedAt;
+    timerCount.textContent = `${(Math.max(0, testRun.remainingMs - elapsed) / 1000).toFixed(1)}s`;
+  }
+
+  function startColdTimer() {
+    const question = testRun.deck[testRun.index];
+    const timerBar = document.getElementById("test-timer-bar");
+    const fraction = Math.max(0, testRun.remainingMs / question.timeLimitMs);
+    timerBar.classList.remove("running");
+    timerBar.style.width = `${fraction * 100}%`;
+    timerBar.style.setProperty("--timer-duration", `${testRun.remainingMs}ms`);
+    void timerBar.offsetWidth;
+    timerBar.classList.add("running");
+    testRun.segmentStartedAt = performance.now();
+    testRun.timerId = setTimeout(() => finishColdAnswer(null), testRun.remainingMs);
+    testRun.tickerId = setInterval(updateTimerCount, 100);
+    updateTimerCount();
+  }
+
+  function pauseColdTest() {
+    if (!testRun || testRun.locked || testRun.paused) return;
+    const question = testRun.deck[testRun.index];
+    const segmentElapsed = Math.min(performance.now() - testRun.segmentStartedAt, testRun.remainingMs);
+    testRun.elapsedMs += segmentElapsed;
+    testRun.remainingMs = Math.max(0, testRun.remainingMs - segmentElapsed);
+    testRun.paused = true;
+    clearColdTimer();
+    const timerBar = document.getElementById("test-timer-bar");
+    timerBar.classList.remove("running");
+    timerBar.style.width = `${(testRun.remainingMs / question.timeLimitMs) * 100}%`;
+    document.getElementById("test-timer-count").textContent = `${(testRun.remainingMs / 1000).toFixed(1)}s`;
+    document.getElementById("question-content").hidden = true;
+    document.getElementById("pause-panel").hidden = false;
+    document.getElementById("pause-test").disabled = true;
+    document.getElementById("resume-test").focus();
+  }
+
+  function resumeColdTest() {
+    if (!testRun || testRun.locked || !testRun.paused) return;
+    testRun.paused = false;
+    document.getElementById("pause-panel").hidden = true;
+    document.getElementById("question-content").hidden = false;
+    document.getElementById("pause-test").disabled = false;
+    startColdTimer();
   }
 
   function renderColdQuestion() {
@@ -302,24 +381,41 @@
     screenLabel.textContent = "正式测试";
     const question = testRun.deck[testRun.index];
     testRun.locked = false;
+    testRun.paused = false;
+    testRun.elapsedMs = 0;
+    testRun.remainingMs = question.timeLimitMs;
     screen.innerHTML = `<section class="question-card">
-      <div class="question-meta"><span>COLD TEST · ${testRun.index + 1}/${testRun.deck.length}</span><span>${(question.timeLimitMs / 1000).toFixed(1)}s</span></div>
-      <div class="timer"><div class="timer-bar" style="animation-duration:${question.timeLimitMs}ms"></div></div>
-      ${questionPrompt(question)}
-      <div class="choices">${question.choices.map((choice) => `<button class="choice" data-answer="${escapeHtml(choice.term)}">${choiceMarkup(question, choice)}</button>`).join("")}</div>
-      <div id="test-note" class="inline-note">只记录第一次答案</div>
+      <div class="question-meta">
+        <span>COLD TEST · ${testRun.index + 1}/${testRun.deck.length}</span>
+        <span class="timer-tools"><button id="pause-test" class="timer-control" type="button" aria-label="暂停正式测试">${icon("pause")}<span>暂停</span></button><span id="test-timer-count" aria-hidden="true">${(question.timeLimitMs / 1000).toFixed(1)}s</span></span>
+      </div>
+      <div class="timer"><div id="test-timer-bar" class="timer-bar"></div></div>
+      <div id="question-content">
+        ${questionPrompt(question)}
+        <div class="choices">${question.choices.map((choice) => `<button class="choice" data-answer="${escapeHtml(choice.term)}">${choiceMarkup(question, choice)}</button>`).join("")}</div>
+        <div id="test-note" class="inline-note">只记录第一次答案</div>
+      </div>
+      <div id="pause-panel" class="pause-panel" hidden>
+        <span class="pause-icon">${icon("pause-circle")}</span>
+        <h2>测试已暂停</h2>
+        <p>本题倒计时已停下，准备好再继续。</p>
+        <button id="resume-test" class="primary" type="button">${icon("play")}<span>继续作答</span></button>
+      </div>
     </section>`;
     document.querySelectorAll("[data-answer]").forEach((button) => button.addEventListener("click", () => finishColdAnswer(button.dataset.answer)));
-    testRun.questionStartedAt = performance.now();
-    testRun.timerId = setTimeout(() => finishColdAnswer(null), question.timeLimitMs);
+    document.getElementById("pause-test").addEventListener("click", pauseColdTest);
+    document.getElementById("resume-test").addEventListener("click", resumeColdTest);
+    startColdTimer();
   }
 
   function finishColdAnswer(selected) {
-    if (testRun.locked) return;
+    if (testRun.locked || testRun.paused) return;
     testRun.locked = true;
-    clearTimeout(testRun.timerId);
+    const segmentElapsed = Math.min(performance.now() - testRun.segmentStartedAt, testRun.remainingMs);
+    const responseMs = selected ? testRun.elapsedMs + segmentElapsed : testRun.deck[testRun.index].timeLimitMs;
+    clearColdTimer();
     const question = testRun.deck[testRun.index];
-    const answer = logic.answerQuestion(question, selected, performance.now() - testRun.questionStartedAt);
+    const answer = logic.answerQuestion(question, selected, responseMs);
     testRun.answers.push(answer);
     document.querySelectorAll("[data-answer]").forEach((button) => {
       button.disabled = true;
@@ -347,8 +443,9 @@
     const pairs = logic.testConfusionPairs(lastResult.answers);
     const slowest = [...lastResult.answers].sort((first, second) => second.responseMs - first.responseMs).slice(0, 3);
     const wrong = lastResult.answers.filter((answer) => !answer.correct);
+    const paceName = lastResult.pace === "relaxed" ? "舒缓节奏" : "标准节奏";
     screen.innerHTML = `
-      <section class="result-score"><strong>${lastResult.score}</strong><span> / ${lastResult.total}</span><p>本轮 cold test 已锁定，不会被强化训练改写</p></section>
+      <section class="result-score"><strong>${lastResult.score}</strong><span> / ${lastResult.total}</span><p>${paceName} · 本轮 cold test 已锁定，不会被强化训练改写</p></section>
       <div class="metric-row"><div class="metric"><small>正确率</small><strong>${accuracy}%</strong></div><div class="metric"><small>中位反应</small><strong>${(lastResult.medianResponseMs / 1000).toFixed(2)}s</strong></div></div>
       ${Object.keys(pairs).length ? `<h3 class="list-title">本轮混淆</h3><div class="result-list">${Object.entries(pairs).map(([pair, count]) => `<div class="result-row"><span>${escapeHtml(pair.replace("->", " → "))}</span><strong>×${count}</strong></div>`).join("")}</div>` : ""}
       <h3 class="list-title">反应最慢</h3><div class="result-list">${slowest.map((answer) => `<div class="result-row"><span>${escapeHtml(answer.expected)}</span><strong>${(answer.responseMs / 1000).toFixed(2)}s</strong></div>`).join("")}</div>
