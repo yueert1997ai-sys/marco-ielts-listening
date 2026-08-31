@@ -24,6 +24,19 @@
     "lastReportedAt": "2026-08-31"
   },
   {
+    "id": "amusing",
+    "term": "amusing",
+    "meaning": "有趣的；逗人发笑的",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "C15-T2-P3 直接致错：Mr Bean / humour 未映射到 amusing",
+    "category": "我的同步错词",
+    "addedAt": "2026-08-31",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-08-31"
+  },
+  {
     "id": "be-subject-to",
     "term": "be subject to",
     "meaning": "受……支配",
@@ -240,6 +253,32 @@
     "lastReportedAt": "2026-08-31"
   },
   {
+    "id": "discipline",
+    "term": "discipline",
+    "meaning": "学科；纪律；训练",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "C15-T4-P3 阅读生词：原文 disciplines，规则复数归并到主词；重点掌握‘学科’义",
+    "category": "我的同步错词",
+    "addedAt": "2026-08-31",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-08-31"
+  },
+  {
+    "id": "distinction",
+    "term": "distinction",
+    "meaning": "区别；区分；差别",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "C15-T4-P3 Q37 直接致错：make/draw a clear distinction = 明确区分、划清界限",
+    "category": "我的同步错词",
+    "addedAt": "2026-08-31",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-08-31"
+  },
+  {
     "id": "emphasize",
     "term": "emphasize",
     "meaning": "强调；着重",
@@ -264,6 +303,19 @@
     "addedAt": "2026-08-27",
     "reportedCount": 1,
     "lastReportedAt": "2026-08-27"
+  },
+  {
+    "id": "energising",
+    "term": "energising",
+    "meaning": "使人精力充沛的；令人振奋的",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "C15-T2-P3 高价值同义词：energising → stimulating",
+    "category": "我的同步错词",
+    "addedAt": "2026-08-31",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-08-31"
   },
   {
     "id": "erected",
@@ -627,6 +679,32 @@
     "lastReportedAt": "2026-08-27"
   },
   {
+    "id": "moral",
+    "term": "moral",
+    "meaning": "道德的；道德准则；寓意",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "C15-T4-P3 阅读生词：重点掌握道德/是非评价语境",
+    "category": "我的同步错词",
+    "addedAt": "2026-08-31",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-08-31"
+  },
+  {
+    "id": "moralistic",
+    "term": "moralistic",
+    "meaning": "道德说教式的；喜欢从道德好坏评价人的",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "C15-T4-P3 高价值文章词：not a moralistic conclusion",
+    "category": "我的同步错词",
+    "addedAt": "2026-08-31",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-08-31"
+  },
+  {
     "id": "neatly",
     "term": "neatly",
     "meaning": "整齐地；有条理地",
@@ -676,6 +754,19 @@
     "category": "0824 Weak Vocu",
     "addedAt": "2026-08-26",
     "reportedCount": 2,
+    "lastReportedAt": "2026-08-31"
+  },
+  {
+    "id": "ordinary",
+    "term": "ordinary",
+    "meaning": "普通的；一般的；平常的",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "C15-T4-P3 Q32 直接致错：ordinary people = 普通人，曾误解为‘原始的’",
+    "category": "我的同步错词",
+    "addedAt": "2026-08-31",
+    "reportedCount": 1,
     "lastReportedAt": "2026-08-31"
   },
   {
@@ -904,6 +995,20 @@
     "lastReportedAt": "2026-08-31"
   },
   {
+    "id": "remarkably",
+    "term": "remarkably",
+    "meaning": "显著地；不同寻常地；令人惊讶地",
+    "modes": [
+      "recognition",
+      "spelling"
+    ],
+    "reason": "C15-T4-P3 阅读生词兼拼写错误：曾写成 remarkablely，正确拼写 remarkably",
+    "category": "我的同步错词",
+    "addedAt": "2026-08-31",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-08-31"
+  },
+  {
     "id": "resemble",
     "term": "resemble",
     "meaning": "像；与……相似",
@@ -1028,6 +1133,19 @@
     "lastReportedAt": "2026-08-27"
   },
   {
+    "id": "spectrum",
+    "term": "spectrum",
+    "meaning": "范围；谱；连续谱",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "C15-T4-P3 阅读生词：a spectrum of... 需能快速识义",
+    "category": "我的同步错词",
+    "addedAt": "2026-08-31",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-08-31"
+  },
+  {
     "id": "state",
     "term": "state",
     "meaning": "状态；国家；陈述",
@@ -1036,6 +1154,20 @@
     ],
     "reason": "飞书薄弱词：必须秒懂",
     "category": "0824 Weak Vocu",
+    "addedAt": "2026-08-31",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-08-31"
+  },
+  {
+    "id": "stimulating",
+    "term": "stimulating",
+    "meaning": "令人振奋的；有刺激作用的；启发性的",
+    "modes": [
+      "recognition",
+      "spelling"
+    ],
+    "reason": "C15-T2-P3 直接致错：误看成 simulating，且词义不熟；energising → stimulating",
+    "category": "我的同步错词",
     "addedAt": "2026-08-31",
     "reportedCount": 1,
     "lastReportedAt": "2026-08-31"
@@ -1075,6 +1207,19 @@
     ],
     "reason": "飞书薄弱词：必须秒懂",
     "category": "0824 Weak Vocu",
+    "addedAt": "2026-08-31",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-08-31"
+  },
+  {
+    "id": "tedious",
+    "term": "tedious",
+    "meaning": "冗长乏味的；无聊的",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "C15-T2-P3 直接致错：tedious → boring 同义替换未识别",
+    "category": "我的同步错词",
     "addedAt": "2026-08-31",
     "reportedCount": 1,
     "lastReportedAt": "2026-08-31"
@@ -1191,6 +1336,19 @@
     ],
     "reason": "飞书薄弱词：必须秒懂",
     "category": "0824 Weak Vocu",
+    "addedAt": "2026-08-31",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-08-31"
+  },
+  {
+    "id": "unprofitable",
+    "term": "unprofitable",
+    "meaning": "无利可图的；不赚钱的",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "C15-T4-P3 Q32 直接影响判断：make destructive policies unprofitable",
+    "category": "我的同步错词",
     "addedAt": "2026-08-31",
     "reportedCount": 1,
     "lastReportedAt": "2026-08-31"

@@ -73,6 +73,32 @@
     "audioPath": "audio/alongside.mp3"
   },
   {
+    "id": "amusing",
+    "term": "amusing",
+    "meaning": "有趣的；逗人发笑的",
+    "note": "C15-T2-P3 直接致错：Mr Bean / humour 未映射到 amusing",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "amusing"
+    ],
+    "errorNote": "C15-T2-P3 直接致错：Mr Bean / humour 未映射到 amusing",
+    "userAddedAt": "2026-08-31",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-08-31",
+    "partOfSpeech": "形容词",
+    "sourceRevision": 4,
+    "audioText": "amusing",
+    "audioPath": "audio/amusing.mp3"
+  },
+  {
     "id": "be-subject-to",
     "term": "be subject to",
     "meaning": "受……支配",
@@ -706,6 +732,58 @@
     "audioPath": "audio/disbelief.mp3"
   },
   {
+    "id": "discipline",
+    "term": "discipline",
+    "meaning": "学科；纪律；训练",
+    "note": "C15-T4-P3 阅读生词：原文 disciplines，规则复数归并到主词；重点掌握‘学科’义",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "discipline"
+    ],
+    "errorNote": "C15-T4-P3 阅读生词：原文 disciplines，规则复数归并到主词；重点掌握‘学科’义",
+    "userAddedAt": "2026-08-31",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-08-31",
+    "partOfSpeech": "名词",
+    "sourceRevision": 4,
+    "audioText": "discipline",
+    "audioPath": "audio/discipline.mp3"
+  },
+  {
+    "id": "distinction",
+    "term": "distinction",
+    "meaning": "区别；区分；差别",
+    "note": "C15-T4-P3 Q37 直接致错：make/draw a clear distinction = 明确区分、划清界限",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "distinction"
+    ],
+    "errorNote": "C15-T4-P3 Q37 直接致错：make/draw a clear distinction = 明确区分、划清界限",
+    "userAddedAt": "2026-08-31",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-08-31",
+    "partOfSpeech": "名词",
+    "sourceRevision": 4,
+    "audioText": "distinction",
+    "audioPath": "audio/distinction.mp3"
+  },
+  {
     "id": "electrician",
     "term": "electrician",
     "meaning": "电工",
@@ -781,6 +859,32 @@
     "sourceRevision": 4,
     "audioText": "end",
     "audioPath": "audio/end.mp3"
+  },
+  {
+    "id": "energising",
+    "term": "energising",
+    "meaning": "使人精力充沛的；令人振奋的",
+    "note": "C15-T2-P3 高价值同义词：energising → stimulating",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "energising"
+    ],
+    "errorNote": "C15-T2-P3 高价值同义词：energising → stimulating",
+    "userAddedAt": "2026-08-31",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-08-31",
+    "partOfSpeech": "词性待补",
+    "sourceRevision": 4,
+    "audioText": "energising",
+    "audioPath": "audio/energising.mp3"
   },
   {
     "id": "entrance",
@@ -1901,6 +2005,32 @@
     "audioPath": "audio/mine.mp3"
   },
   {
+    "id": "moral",
+    "term": "moral",
+    "meaning": "道德的；道德准则；寓意",
+    "note": "C15-T4-P3 阅读生词：重点掌握道德/是非评价语境",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "moral"
+    ],
+    "errorNote": "C15-T4-P3 阅读生词：重点掌握道德/是非评价语境",
+    "userAddedAt": "2026-08-31",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-08-31",
+    "partOfSpeech": "名词",
+    "sourceRevision": 4,
+    "audioText": "moral",
+    "audioPath": "audio/moral.mp3"
+  },
+  {
     "id": "morale",
     "term": "morale",
     "meaning": "士气；工作积极性",
@@ -1922,6 +2052,32 @@
     "sourceRevision": 4,
     "audioText": "morale",
     "audioPath": "audio/morale.mp3"
+  },
+  {
+    "id": "moralistic",
+    "term": "moralistic",
+    "meaning": "道德说教式的；喜欢从道德好坏评价人的",
+    "note": "C15-T4-P3 高价值文章词：not a moralistic conclusion",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "moralistic"
+    ],
+    "errorNote": "C15-T4-P3 高价值文章词：not a moralistic conclusion",
+    "userAddedAt": "2026-08-31",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-08-31",
+    "partOfSpeech": "形容词",
+    "sourceRevision": 4,
+    "audioText": "moralistic",
+    "audioPath": "audio/moralistic.mp3"
   },
   {
     "id": "neatly",
@@ -2049,6 +2205,32 @@
     "sourceRevision": 4,
     "audioText": "obesity",
     "audioPath": "audio/obesity.mp3"
+  },
+  {
+    "id": "ordinary",
+    "term": "ordinary",
+    "meaning": "普通的；一般的；平常的",
+    "note": "C15-T4-P3 Q32 直接致错：ordinary people = 普通人，曾误解为‘原始的’",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "ordinary"
+    ],
+    "errorNote": "C15-T4-P3 Q32 直接致错：ordinary people = 普通人，曾误解为‘原始的’",
+    "userAddedAt": "2026-08-31",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-08-31",
+    "partOfSpeech": "形容词",
+    "sourceRevision": 4,
+    "audioText": "ordinary",
+    "audioPath": "audio/ordinary.mp3"
   },
   {
     "id": "oven",
@@ -2664,6 +2846,33 @@
     "audioPath": "audio/relief.mp3"
   },
   {
+    "id": "remarkably",
+    "term": "remarkably",
+    "meaning": "显著地；不同寻常地；令人惊讶地",
+    "note": "C15-T4-P3 阅读生词兼拼写错误：曾写成 remarkablely，正确拼写 remarkably",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition",
+      "spelling"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "remarkably"
+    ],
+    "errorNote": "C15-T4-P3 阅读生词兼拼写错误：曾写成 remarkablely，正确拼写 remarkably",
+    "userAddedAt": "2026-08-31",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-08-31",
+    "partOfSpeech": "副词",
+    "sourceRevision": 4,
+    "audioText": "remarkably",
+    "audioPath": "audio/remarkably.mp3"
+  },
+  {
     "id": "reorganising-shifts",
     "term": "reorganising shifts",
     "meaning": "重新安排班次",
@@ -3018,6 +3227,32 @@
     "audioPath": "audio/spectator.mp3"
   },
   {
+    "id": "spectrum",
+    "term": "spectrum",
+    "meaning": "范围；谱；连续谱",
+    "note": "C15-T4-P3 阅读生词：a spectrum of... 需能快速识义",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "spectrum"
+    ],
+    "errorNote": "C15-T4-P3 阅读生词：a spectrum of... 需能快速识义",
+    "userAddedAt": "2026-08-31",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-08-31",
+    "partOfSpeech": "名词",
+    "sourceRevision": 4,
+    "audioText": "spectrum",
+    "audioPath": "audio/spectrum.mp3"
+  },
+  {
     "id": "stalled",
     "term": "stalled",
     "meaning": "停滞的；受阻的",
@@ -3064,6 +3299,33 @@
     "sourceRevision": 4,
     "audioText": "state",
     "audioPath": "audio/state.mp3"
+  },
+  {
+    "id": "stimulating",
+    "term": "stimulating",
+    "meaning": "令人振奋的；有刺激作用的；启发性的",
+    "note": "C15-T2-P3 直接致错：误看成 simulating，且词义不熟；energising → stimulating",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition",
+      "spelling"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "stimulating"
+    ],
+    "errorNote": "C15-T2-P3 直接致错：误看成 simulating，且词义不熟；energising → stimulating",
+    "userAddedAt": "2026-08-31",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-08-31",
+    "partOfSpeech": "动词",
+    "sourceRevision": 4,
+    "audioText": "stimulating",
+    "audioPath": "audio/stimulating.mp3"
   },
   {
     "id": "stoicism",
@@ -3166,6 +3428,32 @@
     "sourceRevision": 4,
     "audioText": "substitute",
     "audioPath": "audio/substitute.mp3"
+  },
+  {
+    "id": "tedious",
+    "term": "tedious",
+    "meaning": "冗长乏味的；无聊的",
+    "note": "C15-T2-P3 直接致错：tedious → boring 同义替换未识别",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "tedious"
+    ],
+    "errorNote": "C15-T2-P3 直接致错：tedious → boring 同义替换未识别",
+    "userAddedAt": "2026-08-31",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-08-31",
+    "partOfSpeech": "形容词",
+    "sourceRevision": 4,
+    "audioText": "tedious",
+    "audioPath": "audio/tedious.mp3"
   },
   {
     "id": "term",
@@ -3423,6 +3711,32 @@
     "sourceRevision": 4,
     "audioText": "underlie",
     "audioPath": "audio/underlie.mp3"
+  },
+  {
+    "id": "unprofitable",
+    "term": "unprofitable",
+    "meaning": "无利可图的；不赚钱的",
+    "note": "C15-T4-P3 Q32 直接影响判断：make destructive policies unprofitable",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "unprofitable"
+    ],
+    "errorNote": "C15-T4-P3 Q32 直接影响判断：make destructive policies unprofitable",
+    "userAddedAt": "2026-08-31",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-08-31",
+    "partOfSpeech": "词性待补",
+    "sourceRevision": 4,
+    "audioText": "unprofitable",
+    "audioPath": "audio/unprofitable.mp3"
   },
   {
     "id": "vacuum",
