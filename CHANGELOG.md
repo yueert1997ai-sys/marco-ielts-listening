@@ -3,6 +3,7 @@
 本文件记录所有会影响代码、配置、数据、发布流程或协作文档的改动。最新记录放在最上方；README 只维护当前用法，历史不重复堆入 README。
 
 <!-- CHANGELOG_ENTRIES -->
+- 2026-08-31 `[协作]` 完成 Confusions `v1.0.1` 的 GitHub Pages 发布与线上验收，功能提交为 `c4af30e`；线上确认学习首屏左右各 4 项、核心组标识、`ielts-confusions-v2` 离线缓存与 Listening Cache 共存均正常，页面往返前后 Listening localStorage 字节级不变。
 - 2026-08-31 `[Confusions v1.0.1]` 学习阶段的词义匹配、Chunk 匹配和组末回忆改为每屏至少同时辨析 4 个词；2～3 词组会按词性与词形相似度加入补位词，4～5 词组保留完整成员。补位词只提高当屏辨析难度，不改写核心组的学习归属、cold test 成绩或 confusion pair。
 - 2026-08-31 `[协作]` 完成 Listening `v2.15.1` 与 Confusions `v1.0.0` 的 GitHub Pages 发布及线上验收，功能提交为 `72b2661`；线上确认 733 张 Listening 主卡、32 组 84 个易混词、学习/冷测/强化流程、故障隔离、双 Service Worker/Cache 边界和 Confusions 离线加载均正常，Confusions 操作前后 Listening localStorage 字节级不变。
 - 2026-08-31 `[Listening v2.15.1 / Confusions v1.0.0]` 新增完全隔离的 `/confusions/` 易混词子应用：独立维护 32 组 84 词、版本、运行时数据、`marcoIeltsConfusions.v1` 和 `ielts-confusions-*` Cache；提供词义/Chunk 匹配、组末回忆、12 题 cold test、first-attempt 计分、pairwise confusion、滚动掌握状态与错题强化。Listening 仅增加首页入口并收窄根 Service Worker 的缓存清理范围，正式词库仍为 733 张主卡，训练 state schema 与三个 reset/deck 常量均未修改。
