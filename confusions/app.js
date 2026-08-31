@@ -70,7 +70,7 @@
       <div class="action-stack">
         <button id="start-learning" class="action-card" type="button">
           <span class="action-icon">${icon("cards-three")}</span>
-          <span class="action-copy"><strong>学习</strong><small>每轮约 5 组 · 已熟悉 ${familiar} / ${groups.length} 组</small></span>
+          <span class="action-copy"><strong>学习</strong><small>每屏至少 4 词 · 已熟悉 ${familiar} / ${groups.length} 组</small></span>
           <span class="action-caret">${icon("caret-right")}</span>
         </button>
         <button id="start-test" class="action-card" type="button">
@@ -85,9 +85,14 @@
   }
 
   function startLearning() {
-    const selected = logic.selectLearningGroups(groups, state, 5, `${Date.now()}`);
+    const seed = `${Date.now()}`;
+    const selected = logic.selectLearningGroups(groups, state, 5, seed);
     study = {
       groups: selected,
+      pools: Object.fromEntries(selected.map((group) => [
+        group.id,
+        logic.buildLearningPool(group, groups, `${seed}:${group.id}`),
+      ])),
       groupIndex: 0,
       stage: "meaning",
       matched: new Set(),
@@ -95,7 +100,7 @@
       selectedRight: null,
       recallIndex: 0,
       recallQuestions: [],
-      seed: `${Date.now()}`,
+      seed,
     };
     renderStudyStage();
   }
@@ -104,10 +109,14 @@
     return study.groups[study.groupIndex];
   }
 
+  function currentLearningPool() {
+    return study.pools[currentStudyGroup().id];
+  }
+
   function studyHeading(title, subtitle) {
     return `
       <header class="section-head">
-        <div><p class="eyebrow">LEARN · ${escapeHtml(currentStudyGroup().label)}</p><h2>${escapeHtml(title)}</h2><p>${escapeHtml(subtitle)}</p></div>
+        <div><p class="eyebrow">LEARN · 核心组 ${escapeHtml(currentStudyGroup().label)}</p><h2>${escapeHtml(title)}</h2><p>${escapeHtml(subtitle)}</p></div>
         <span class="progress-count">${study.groupIndex + 1}/${study.groups.length}</span>
       </header>`;
   }
@@ -121,8 +130,9 @@
 
   function renderMatching() {
     const group = currentStudyGroup();
+    const pool = currentLearningPool();
     const isMeaning = study.stage === "meaning";
-    const remaining = group.terms.filter((term) => !study.matched.has(term.term));
+    const remaining = pool.filter((term) => !study.matched.has(term.term));
     const left = logic.seededShuffle(remaining, `${study.seed}:${group.id}:${study.stage}:left:${study.matched.size}`);
     const right = logic.seededShuffle(remaining, `${study.seed}:${group.id}:${study.stage}:right:${study.matched.size}`);
     screen.innerHTML = `${studyHeading(isMeaning ? "词义匹配" : "Chunk 匹配", isMeaning ? "先点英文，再点对应中文。错误不会揭晓答案。" : "把单词和最常用的学术搭配连起来。")}
@@ -170,7 +180,7 @@
       study.selectedRight = null;
       return;
     }
-    const term = currentStudyGroup().terms.find((item) => item.term === study.selectedLeft);
+    const term = currentLearningPool().find((item) => item.term === study.selectedLeft);
     study.matched.add(term.term);
     document.querySelectorAll(".match-option").forEach((button) => { button.disabled = true; });
     const feedback = document.getElementById("match-feedback");
@@ -179,7 +189,7 @@
     study.selectedLeft = null;
     study.selectedRight = null;
     setTimeout(() => {
-      if (study.matched.size === currentStudyGroup().terms.length) {
+      if (study.matched.size === currentLearningPool().length) {
         study.stage = study.stage === "meaning" ? "chunk" : "recall";
         study.matched = new Set();
         if (study.stage === "recall") prepareRecallQuestions();
@@ -190,10 +200,11 @@
 
   function prepareRecallQuestions() {
     const group = currentStudyGroup();
+    const pool = currentLearningPool();
     const selected = logic.seededShuffle(group.terms, `${study.seed}:${group.id}:recall`).slice(0, 2);
     study.recallQuestions = [
-      logic.makeQuestion(group, selected[0], "zh-en", `${study.seed}:${group.id}:recall:0`),
-      logic.makeQuestion(group, selected[1], "sentence", `${study.seed}:${group.id}:recall:1`),
+      logic.makeLearningQuestion(group, selected[0], "zh-en", pool, `${study.seed}:${group.id}:recall:0`),
+      logic.makeLearningQuestion(group, selected[1], "sentence", pool, `${study.seed}:${group.id}:recall:1`),
     ];
     study.recallIndex = 0;
   }

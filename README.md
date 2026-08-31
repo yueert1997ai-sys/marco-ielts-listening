@@ -4,10 +4,10 @@
 
 ## 易混词
 
-“易混词”是同一 GitHub Pages 下的独立产品，提供词义匹配、Chunk 匹配、12 题 cold test、pairwise confusion 统计和错题强化。V1 包含 32 个 confusion groups、84 个词，每词配有人工校对的 academic 句内题。
+“易混词”是同一 GitHub Pages 下的独立产品，提供词义匹配、Chunk 匹配、12 题 cold test、pairwise confusion 统计和错题强化。学习盘面每屏至少同时辨析 4 个词，不足 4 词的组会按词性和词形相似度加入补位词，但仅核心组记入学习状态。V1 包含 32 个 confusion groups、84 个词，每词配有人工校对的 academic 句内题。
 
 - 入口：<https://yueert1997ai-sys.github.io/marco-ielts-listening/confusions/>
-- 独立版本：`Confusions v1.0.0`
+- 独立版本：`Confusions v1.0.1`
 - 独立数据：`source/confusions.json` → `confusions/data/confusions.json`
 - 独立本地记录：`marcoIeltsConfusions.v1`
 

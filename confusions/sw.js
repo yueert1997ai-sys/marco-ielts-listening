@@ -1,6 +1,6 @@
-const CONFUSIONS_VERSION = "v1.0.0";
+const CONFUSIONS_VERSION = "v1.0.1";
 const CACHE_PREFIX = "ielts-confusions-";
-const CACHE = `${CACHE_PREFIX}v1`;
+const CACHE = `${CACHE_PREFIX}v2`;
 const CORE = [
   "./",
   `./index.html?v=${CONFUSIONS_VERSION}`,

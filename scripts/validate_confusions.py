@@ -28,7 +28,7 @@ def main() -> None:
         fail("Every confusion term must have one cloze sentence")
 
     version = json.loads((ROOT / "confusions" / "version.json").read_text(encoding="utf-8")).get("version")
-    if version != "v1.0.0":
+    if version != "v1.0.1":
         fail("Unexpected Confusions version")
     for filename in ("index.html", "style.css", "logic.js", "app.js", "sw.js"):
         if not (ROOT / "confusions" / filename).exists():

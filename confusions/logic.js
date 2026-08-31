@@ -6,7 +6,7 @@
   "use strict";
 
   const STORAGE_KEY = "marcoIeltsConfusions.v1";
-  const VERSION = "v1.0.0";
+  const VERSION = "v1.0.1";
   const QUESTION_COUNT = 12;
   const RECENT_WINDOW = 20;
   const MIN_STABLE_ATTEMPTS = 3;
@@ -134,6 +134,50 @@
       .slice(0, count);
   }
 
+  function commonEdgeLength(first, second, fromEnd = false) {
+    const left = fromEnd ? [...first].reverse() : [...first];
+    const right = fromEnd ? [...second].reverse() : [...second];
+    let length = 0;
+    while (length < left.length && length < right.length && left[length] === right[length]) length += 1;
+    return length;
+  }
+
+  function wordBigrams(value) {
+    const normalized = String(value).toLowerCase();
+    const result = new Set();
+    for (let index = 0; index < normalized.length - 1; index += 1) result.add(normalized.slice(index, index + 2));
+    return result;
+  }
+
+  function learningSimilarity(candidate, targets) {
+    const candidateTerm = candidate.term.toLowerCase();
+    const candidateBigrams = wordBigrams(candidateTerm);
+    return Math.max(...targets.map((target) => {
+      const targetTerm = target.term.toLowerCase();
+      const targetBigrams = wordBigrams(targetTerm);
+      const sharedBigrams = [...candidateBigrams].filter((bigram) => targetBigrams.has(bigram)).length;
+      const samePartOfSpeech = candidate.partOfSpeech === target.partOfSpeech ? 12 : 0;
+      return samePartOfSpeech
+        + commonEdgeLength(candidateTerm, targetTerm) * 3
+        + commonEdgeLength(candidateTerm, targetTerm, true) * 2
+        + sharedBigrams;
+    }));
+  }
+
+  function buildLearningPool(group, groups, seed, minimum = 4) {
+    const targets = [...group.terms];
+    if (targets.length >= minimum) return targets;
+    const targetTerms = new Set(targets.map((term) => term.term));
+    const candidates = flattenTerms(groups)
+      .filter((term) => !targetTerms.has(term.term))
+      .sort((first, second) => {
+        const scoreDifference = learningSimilarity(second, targets) - learningSimilarity(first, targets);
+        if (scoreDifference) return scoreDifference;
+        return hashString(`${seed}:${first.term}`) - hashString(`${seed}:${second.term}`);
+      });
+    return [...targets, ...candidates.slice(0, Math.max(0, minimum - targets.length))];
+  }
+
   function selectTerm(group, state, seed) {
     return [...group.terms].sort((first, second) => {
       const firstSeen = state.termStats[first.term]?.lastTested || "";
@@ -163,6 +207,13 @@
       timeLimitMs: TYPE_LIMITS[type],
       choices: makeChoices(group, expected, seed),
     };
+  }
+
+  function makeLearningQuestion(group, expected, type, pool, seed) {
+    const question = makeQuestion(group, expected, type, seed);
+    question.choices = seededShuffle(pool, `${seed}:learning-choices`)
+      .map((term) => ({ term: term.term, meaning: term.meaning, partOfSpeech: term.partOfSpeech }));
+    return question;
   }
 
   function buildColdTest(groups, state, seed = `${Date.now()}`) {
@@ -313,8 +364,10 @@
     computeGroupStatus,
     statusCounts,
     selectLearningGroups,
+    buildLearningPool,
     makeChoices,
     makeQuestion,
+    makeLearningQuestion,
     buildColdTest,
     answerQuestion,
     recordColdTest,

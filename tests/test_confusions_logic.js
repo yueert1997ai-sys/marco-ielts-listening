@@ -30,6 +30,24 @@ test("all distractors come from the expected group", () => {
   }));
 });
 
+test("learning pools keep the whole target group and show at least four terms", () => {
+  groups.forEach((group) => {
+    const pool = logic.buildLearningPool(group, groups, `learning:${group.id}`);
+    const terms = pool.map((term) => term.term);
+    assert(pool.length >= 4 && pool.length <= 5);
+    assert.equal(new Set(terms).size, terms.length);
+    assert(group.terms.every((term) => terms.includes(term.term)));
+  });
+});
+
+test("learning recall uses the complete four-plus term pool", () => {
+  const group = groups.find((candidate) => candidate.terms.length === 2);
+  const pool = logic.buildLearningPool(group, groups, "learning-question");
+  const question = logic.makeLearningQuestion(group, group.terms[0], "zh-en", pool, "learning-question");
+  assert.equal(question.choices.length, 4);
+  assert.deepEqual(new Set(question.choices.map((choice) => choice.term)), new Set(pool.map((term) => term.term)));
+});
+
 test("cold test contains 12 unique groups with exact type quotas", () => {
   const deck = logic.buildColdTest(groups, logic.defaultState(), "cold-seed");
   assert.equal(deck.length, 12);

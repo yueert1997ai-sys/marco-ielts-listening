@@ -30,24 +30,31 @@ async (page) => {
   const expectedForVisibleQuestion = async () => page.evaluate(async () => {
     const payload = await fetch("./data/confusions.json").then((response) => response.json());
     const terms = payload.groups.flatMap((group) => group.terms);
+    const visibleAnswers = new Set([...document.querySelectorAll("[data-answer]")].map((element) => element.dataset.answer));
     const word = document.querySelector(".prompt-word")?.textContent.trim();
     if (word) return word;
     const meaning = document.querySelector(".prompt-meaning")?.textContent.trim();
-    if (meaning) return terms.find((term) => term.meaning === meaning)?.term;
+    if (meaning) return terms.find((term) => term.meaning === meaning && visibleAnswers.has(term.term))?.term;
     const sentence = document.querySelector(".prompt-sentence")?.textContent.trim();
-    return terms.find((term) => term.sentence === sentence)?.term;
+    return terms.find((term) => term.sentence === sentence && visibleAnswers.has(term.term))?.term;
   });
 
   await page.locator("#start-learning").click();
+  const learningBoards = { matchingStarts: {}, recallMinimum: Infinity };
   for (let guard = 0; guard < 90; guard += 1) {
     if (await page.locator("#learning-home").count()) break;
     if (await page.locator("[data-left]").count()) {
+      const boardKey = `${await page.locator(".progress-count").innerText()}:${await page.locator(".section-head h2").innerText()}`;
+      if (!(boardKey in learningBoards.matchingStarts)) {
+        learningBoards.matchingStarts[boardKey] = await page.locator("[data-left]").count();
+      }
       const term = await page.locator("[data-left]").first().getAttribute("data-left");
       await page.locator(`[data-left="${term}"]`).click();
       await page.locator(`[data-right="${term}"]`).click();
       await page.waitForTimeout(730);
       continue;
     }
+    learningBoards.recallMinimum = Math.min(learningBoards.recallMinimum, await page.locator("[data-answer]").count());
     const expected = await expectedForVisibleQuestion();
     await page.locator(`[data-answer="${expected}"]`).click();
     await page.waitForTimeout(540);
@@ -128,7 +135,7 @@ async (page) => {
   const cacheNames = await page.evaluate(() => caches.keys());
   const cacheIsolation = {
     listening: cacheNames.includes("ielts-listening-v32"),
-    confusions: cacheNames.includes("ielts-confusions-v1"),
+    confusions: cacheNames.includes("ielts-confusions-v2"),
   };
   await page.context().setOffline(true);
   await page.reload({ waitUntil: "domcontentloaded" });
@@ -138,7 +145,7 @@ async (page) => {
   await page.evaluate(async () => {
     const registrations = await navigator.serviceWorker.getRegistrations();
     await Promise.all(registrations.filter((registration) => registration.scope.includes("/confusions/")).map((registration) => registration.unregister()));
-    await caches.delete("ielts-confusions-v1");
+    await caches.delete("ielts-confusions-v2");
   });
   await page.route("**/confusions/data/confusions.json*", (route) => route.abort());
   await page.goto(`${baseUrl}confusions/?failure=1`, { waitUntil: "domcontentloaded" });
@@ -149,10 +156,13 @@ async (page) => {
   failure.listeningStillWorks = await page.locator("#start").isVisible();
 
   if (entry.title !== "易混词"
-    || entry.version !== "v1.0.0"
+    || entry.version !== "v1.0.1"
     || !entry.url.includes("/confusions/")
     || !entry.mainStorageUnchanged
     || Object.keys(afterLearning.confusions.learning).length !== 5
+    || Object.keys(learningBoards.matchingStarts).length !== 10
+    || Object.values(learningBoards.matchingStarts).some((count) => count < 4)
+    || learningBoards.recallMinimum < 4
     || afterLearning.confusions.testHistory.length !== 0
     || afterLearning.listening !== beforeRaw
     || !result.score.includes("11 / 12")
@@ -166,8 +176,8 @@ async (page) => {
     || !cacheIsolation.confusionsOffline
     || failure.message !== "易混词模块加载失败"
     || !failure.listeningStillWorks) {
-    throw new Error(JSON.stringify({ entry, afterLearning, result, afterReinforcement, listening, entries, cacheNames, cacheIsolation, failure }));
+    throw new Error(JSON.stringify({ entry, learningBoards, afterLearning, result, afterReinforcement, listening, entries, cacheNames, cacheIsolation, failure }));
   }
 
-  return { ok: true, entry, result, afterReinforcement, listening, entries, cacheNames, cacheIsolation, failure };
+  return { ok: true, entry, learningBoards, result, afterReinforcement, listening, entries, cacheNames, cacheIsolation, failure };
 }
