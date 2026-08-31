@@ -24,6 +24,32 @@
     "audioPath": "audio/12-month-maternity-cover-contract.mp3"
   },
   {
+    "id": "albeit",
+    "term": "albeit",
+    "meaning": "尽管；虽然",
+    "note": "飞书薄弱词：必须秒懂",
+    "category": "0824 Weak Vocu",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "albeit"
+    ],
+    "errorNote": "飞书薄弱词：必须秒懂",
+    "userAddedAt": "2026-08-31",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-08-31",
+    "partOfSpeech": "连词",
+    "sourceRevision": 4,
+    "audioText": "albeit",
+    "audioPath": "audio/albeit.mp3"
+  },
+  {
     "id": "alongside",
     "term": "alongside",
     "meaning": "在……旁边",
@@ -45,6 +71,32 @@
     "sourceRevision": 4,
     "audioText": "alongside",
     "audioPath": "audio/alongside.mp3"
+  },
+  {
+    "id": "be-subject-to",
+    "term": "be subject to",
+    "meaning": "受……支配",
+    "note": "飞书薄弱词：必须秒懂",
+    "category": "0824 Weak Vocu",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "be subject to"
+    ],
+    "errorNote": "飞书薄弱词：必须秒懂",
+    "userAddedAt": "2026-08-31",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-08-31",
+    "partOfSpeech": "短语",
+    "sourceRevision": 4,
+    "audioText": "be subject to",
+    "audioPath": "audio/be-subject-to.mp3"
   },
   {
     "id": "beginner",
@@ -166,11 +218,11 @@
     "audioPath": "audio/bolder-move.mp3"
   },
   {
-    "id": "calories",
-    "term": "calories",
+    "id": "calorie",
+    "term": "calorie",
     "meaning": "卡路里；热量",
-    "note": "今日生词：识义；calorie 的复数",
-    "category": "我的同步错词",
+    "note": "飞书薄弱词：必须秒懂；calories 已归并到主词",
+    "category": "0824 Weak Vocu",
     "sections": [
       "我的同步错词"
     ],
@@ -179,22 +231,24 @@
     ],
     "isRealError": true,
     "acceptedAnswers": [
-      "calories"
+      "calorie"
     ],
-    "errorNote": "今日生词：识义；calorie 的复数",
+    "errorNote": "飞书薄弱词：必须秒懂；calories 已归并到主词",
     "userAddedAt": "2026-08-26",
     "sourceType": "user",
+    "reportedCount": 2,
+    "lastReportedAt": "2026-08-31",
     "partOfSpeech": "名词",
     "sourceRevision": 4,
-    "audioText": "calories",
-    "audioPath": "audio/calories.mp3"
+    "audioText": "calorie",
+    "audioPath": "audio/calorie.mp3"
   },
   {
     "id": "capitalism",
     "term": "capitalism",
     "meaning": "资本主义",
-    "note": "今日生词：识义",
-    "category": "我的同步错词",
+    "note": "飞书薄弱词：必须秒懂",
+    "category": "0824 Weak Vocu",
     "sections": [
       "我的同步错词"
     ],
@@ -205,9 +259,11 @@
     "acceptedAnswers": [
       "capitalism"
     ],
-    "errorNote": "今日生词：识义",
+    "errorNote": "飞书薄弱词：必须秒懂",
     "userAddedAt": "2026-08-26",
     "sourceType": "user",
+    "reportedCount": 2,
+    "lastReportedAt": "2026-08-31",
     "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "capitalism",
@@ -239,6 +295,32 @@
     "sourceRevision": 4,
     "audioText": "carpet",
     "audioPath": "audio/carpet.mp3"
+  },
+  {
+    "id": "claim",
+    "term": "claim",
+    "meaning": "声称；主张；索赔",
+    "note": "飞书薄弱词：必须秒懂",
+    "category": "0824 Weak Vocu",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "claim"
+    ],
+    "errorNote": "飞书薄弱词：必须秒懂",
+    "userAddedAt": "2026-08-31",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-08-31",
+    "partOfSpeech": "名词",
+    "sourceRevision": 4,
+    "audioText": "claim",
+    "audioPath": "audio/claim.mp3"
   },
   {
     "id": "colony",
@@ -311,6 +393,84 @@
     "sourceRevision": 4,
     "audioText": "commitment",
     "audioPath": "audio/commitment.mp3"
+  },
+  {
+    "id": "comply-with",
+    "term": "comply with",
+    "meaning": "照做；遵守",
+    "note": "飞书薄弱词：必须秒懂",
+    "category": "0824 Weak Vocu",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "comply with"
+    ],
+    "errorNote": "飞书薄弱词：必须秒懂",
+    "userAddedAt": "2026-08-31",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-08-31",
+    "partOfSpeech": "短语",
+    "sourceRevision": 4,
+    "audioText": "comply with",
+    "audioPath": "audio/comply-with.mp3"
+  },
+  {
+    "id": "consequent",
+    "term": "consequent",
+    "meaning": "随之发生的；结果",
+    "note": "飞书薄弱词：必须秒懂",
+    "category": "0824 Weak Vocu",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "consequent"
+    ],
+    "errorNote": "飞书薄弱词：必须秒懂",
+    "userAddedAt": "2026-08-31",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-08-31",
+    "partOfSpeech": "名词",
+    "sourceRevision": 4,
+    "audioText": "consequent",
+    "audioPath": "audio/consequent.mp3"
+  },
+  {
+    "id": "constrain",
+    "term": "constrain",
+    "meaning": "束缚；限制",
+    "note": "飞书薄弱词：必须秒懂",
+    "category": "0824 Weak Vocu",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "constrain"
+    ],
+    "errorNote": "飞书薄弱词：必须秒懂",
+    "userAddedAt": "2026-08-31",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-08-31",
+    "partOfSpeech": "动词",
+    "sourceRevision": 4,
+    "audioText": "constrain",
+    "audioPath": "audio/constrain.mp3"
   },
   {
     "id": "cottage",
@@ -471,6 +631,58 @@
     "audioPath": "audio/department.mp3"
   },
   {
+    "id": "depict",
+    "term": "depict",
+    "meaning": "描绘；表现",
+    "note": "飞书薄弱词：必须秒懂",
+    "category": "0824 Weak Vocu",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "depict"
+    ],
+    "errorNote": "飞书薄弱词：必须秒懂",
+    "userAddedAt": "2026-08-31",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-08-31",
+    "partOfSpeech": "动词",
+    "sourceRevision": 4,
+    "audioText": "depict",
+    "audioPath": "audio/depict.mp3"
+  },
+  {
+    "id": "determine",
+    "term": "determine",
+    "meaning": "决定",
+    "note": "飞书薄弱词：必须秒懂",
+    "category": "0824 Weak Vocu",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "determine"
+    ],
+    "errorNote": "飞书薄弱词：必须秒懂",
+    "userAddedAt": "2026-08-31",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-08-31",
+    "partOfSpeech": "动词",
+    "sourceRevision": 4,
+    "audioText": "determine",
+    "audioPath": "audio/determine.mp3"
+  },
+  {
     "id": "disbelief",
     "term": "disbelief",
     "meaning": "难以置信",
@@ -515,6 +727,32 @@
     "sourceRevision": 4,
     "audioText": "electrician",
     "audioPath": "audio/electrician.mp3"
+  },
+  {
+    "id": "emphasize",
+    "term": "emphasize",
+    "meaning": "强调；着重",
+    "note": "飞书薄弱词：必须秒懂",
+    "category": "0824 Weak Vocu",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "emphasize"
+    ],
+    "errorNote": "飞书薄弱词：必须秒懂",
+    "userAddedAt": "2026-08-31",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-08-31",
+    "partOfSpeech": "动词",
+    "sourceRevision": 4,
+    "audioText": "emphasize",
+    "audioPath": "audio/emphasize.mp3"
   },
   {
     "id": "end",
@@ -691,6 +929,58 @@
     "audioPath": "audio/expedition.mp3"
   },
   {
+    "id": "extent",
+    "term": "extent",
+    "meaning": "程度；范围",
+    "note": "飞书薄弱词：必须秒懂",
+    "category": "0824 Weak Vocu",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "extent"
+    ],
+    "errorNote": "飞书薄弱词：必须秒懂",
+    "userAddedAt": "2026-08-31",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-08-31",
+    "partOfSpeech": "名词",
+    "sourceRevision": 4,
+    "audioText": "extent",
+    "audioPath": "audio/extent.mp3"
+  },
+  {
+    "id": "factor",
+    "term": "factor",
+    "meaning": "因素；要素",
+    "note": "飞书薄弱词：必须秒懂",
+    "category": "0824 Weak Vocu",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "factor"
+    ],
+    "errorNote": "飞书薄弱词：必须秒懂",
+    "userAddedAt": "2026-08-31",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-08-31",
+    "partOfSpeech": "名词",
+    "sourceRevision": 4,
+    "audioText": "factor",
+    "audioPath": "audio/factor.mp3"
+  },
+  {
     "id": "fast-paced",
     "term": "fast-paced",
     "meaning": "节奏快的；进展迅速的",
@@ -713,6 +1003,32 @@
     "sourceRevision": 4,
     "audioText": "fast-paced",
     "audioPath": "audio/fast-paced.mp3"
+  },
+  {
+    "id": "feasible",
+    "term": "feasible",
+    "meaning": "可行的",
+    "note": "飞书薄弱词：必须秒懂",
+    "category": "0824 Weak Vocu",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "feasible"
+    ],
+    "errorNote": "飞书薄弱词：必须秒懂",
+    "userAddedAt": "2026-08-31",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-08-31",
+    "partOfSpeech": "形容词",
+    "sourceRevision": 4,
+    "audioText": "feasible",
+    "audioPath": "audio/feasible.mp3"
   },
   {
     "id": "fellow-students",
@@ -767,6 +1083,32 @@
     "audioPath": "audio/field.mp3"
   },
   {
+    "id": "fundamental",
+    "term": "fundamental",
+    "meaning": "基本的；基础的",
+    "note": "飞书薄弱词：必须秒懂",
+    "category": "0824 Weak Vocu",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "fundamental"
+    ],
+    "errorNote": "飞书薄弱词：必须秒懂",
+    "userAddedAt": "2026-08-31",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-08-31",
+    "partOfSpeech": "名词",
+    "sourceRevision": 4,
+    "audioText": "fundamental",
+    "audioPath": "audio/fundamental.mp3"
+  },
+  {
     "id": "get-to-grips-with",
     "term": "get to grips with",
     "meaning": "开始认真处理；努力理解并掌握",
@@ -787,6 +1129,58 @@
     "sourceRevision": 4,
     "audioText": "get to grips with",
     "audioPath": "audio/get-to-grips-with.mp3"
+  },
+  {
+    "id": "give-rise-to",
+    "term": "give rise to",
+    "meaning": "导致；引起",
+    "note": "飞书薄弱词：必须秒懂",
+    "category": "0824 Weak Vocu",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "give rise to"
+    ],
+    "errorNote": "飞书薄弱词：必须秒懂",
+    "userAddedAt": "2026-08-31",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-08-31",
+    "partOfSpeech": "短语",
+    "sourceRevision": 4,
+    "audioText": "give rise to",
+    "audioPath": "audio/give-rise-to.mp3"
+  },
+  {
+    "id": "grant",
+    "term": "grant",
+    "meaning": "拨款；授予",
+    "note": "飞书薄弱词：必须秒懂",
+    "category": "0824 Weak Vocu",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "grant"
+    ],
+    "errorNote": "飞书薄弱词：必须秒懂",
+    "userAddedAt": "2026-08-31",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-08-31",
+    "partOfSpeech": "名词",
+    "sourceRevision": 4,
+    "audioText": "grant",
+    "audioPath": "audio/grant.mp3"
   },
   {
     "id": "gratitude",
@@ -836,6 +1230,58 @@
     "audioPath": "audio/grind.mp3"
   },
   {
+    "id": "hence",
+    "term": "hence",
+    "meaning": "因此；由此",
+    "note": "飞书薄弱词：必须秒懂",
+    "category": "0824 Weak Vocu",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "hence"
+    ],
+    "errorNote": "飞书薄弱词：必须秒懂",
+    "userAddedAt": "2026-08-31",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-08-31",
+    "partOfSpeech": "副词",
+    "sourceRevision": 4,
+    "audioText": "hence",
+    "audioPath": "audio/hence.mp3"
+  },
+  {
+    "id": "hinder",
+    "term": "hinder",
+    "meaning": "阻碍",
+    "note": "飞书薄弱词：必须秒懂",
+    "category": "0824 Weak Vocu",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "hinder"
+    ],
+    "errorNote": "飞书薄弱词：必须秒懂",
+    "userAddedAt": "2026-08-31",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-08-31",
+    "partOfSpeech": "形容词",
+    "sourceRevision": 4,
+    "audioText": "hinder",
+    "audioPath": "audio/hinder.mp3"
+  },
+  {
     "id": "homesickness",
     "term": "homesickness",
     "meaning": "想家",
@@ -857,6 +1303,189 @@
     "sourceRevision": 4,
     "audioText": "homesickness",
     "audioPath": "audio/homesickness.mp3"
+  },
+  {
+    "id": "impair",
+    "term": "impair",
+    "meaning": "削弱；减少",
+    "note": "飞书薄弱词：必须秒懂",
+    "category": "0824 Weak Vocu",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "impair"
+    ],
+    "errorNote": "飞书薄弱词：必须秒懂",
+    "userAddedAt": "2026-08-31",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-08-31",
+    "partOfSpeech": "动词",
+    "sourceRevision": 4,
+    "audioText": "impair",
+    "audioPath": "audio/impair.mp3"
+  },
+  {
+    "id": "in-accordance-with",
+    "term": "in accordance with",
+    "meaning": "依照；与……一致",
+    "note": "飞书薄弱词：必须秒懂",
+    "category": "0824 Weak Vocu",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "in accordance with"
+    ],
+    "errorNote": "飞书薄弱词：必须秒懂",
+    "userAddedAt": "2026-08-31",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-08-31",
+    "partOfSpeech": "短语",
+    "sourceRevision": 4,
+    "audioText": "in accordance with",
+    "audioPath": "audio/in-accordance-with.mp3"
+  },
+  {
+    "id": "in-terms-of",
+    "term": "in terms of",
+    "meaning": "就……而言",
+    "note": "—",
+    "category": "逻辑、态度与选择",
+    "sections": [
+      "高频短语 / Chunk",
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "in terms of"
+    ],
+    "errorNote": "飞书薄弱词：必须秒懂",
+    "userAddedAt": "2026-08-31",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-08-31",
+    "partOfSpeech": "短语",
+    "sourceRevision": 4,
+    "audioText": "in terms of",
+    "audioPath": "audio/in-terms-of.mp3"
+  },
+  {
+    "id": "in-the-absence-of",
+    "term": "in the absence of",
+    "meaning": "在缺少……时",
+    "note": "飞书薄弱词：必须秒懂",
+    "category": "0824 Weak Vocu",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "in the absence of"
+    ],
+    "errorNote": "飞书薄弱词：必须秒懂",
+    "userAddedAt": "2026-08-31",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-08-31",
+    "partOfSpeech": "短语",
+    "sourceRevision": 4,
+    "audioText": "in the absence of",
+    "audioPath": "audio/in-the-absence-of.mp3"
+  },
+  {
+    "id": "indicate",
+    "term": "indicate",
+    "meaning": "表明；指出",
+    "note": "飞书薄弱词：必须秒懂",
+    "category": "0824 Weak Vocu",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "indicate"
+    ],
+    "errorNote": "飞书薄弱词：必须秒懂",
+    "userAddedAt": "2026-08-31",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-08-31",
+    "partOfSpeech": "动词",
+    "sourceRevision": 4,
+    "audioText": "indicate",
+    "audioPath": "audio/indicate.mp3"
+  },
+  {
+    "id": "induce",
+    "term": "induce",
+    "meaning": "引起；引诱",
+    "note": "飞书薄弱词：必须秒懂",
+    "category": "0824 Weak Vocu",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "induce"
+    ],
+    "errorNote": "飞书薄弱词：必须秒懂",
+    "userAddedAt": "2026-08-31",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-08-31",
+    "partOfSpeech": "动词",
+    "sourceRevision": 4,
+    "audioText": "induce",
+    "audioPath": "audio/induce.mp3"
+  },
+  {
+    "id": "integrate",
+    "term": "integrate",
+    "meaning": "使……成整体",
+    "note": "飞书薄弱词：必须秒懂",
+    "category": "0824 Weak Vocu",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "integrate"
+    ],
+    "errorNote": "飞书薄弱词：必须秒懂",
+    "userAddedAt": "2026-08-31",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-08-31",
+    "partOfSpeech": "动词",
+    "sourceRevision": 4,
+    "audioText": "integrate",
+    "audioPath": "audio/integrate.mp3"
   },
   {
     "id": "interest-rates",
@@ -930,9 +1559,9 @@
   {
     "id": "lane",
     "term": "lane",
-    "meaning": "小路；车道；泳道",
-    "note": "今日生词：识义",
-    "category": "我的同步错词",
+    "meaning": "车道；小路；航道",
+    "note": "飞书薄弱词：必须秒懂",
+    "category": "0824 Weak Vocu",
     "sections": [
       "我的同步错词"
     ],
@@ -943,9 +1572,11 @@
     "acceptedAnswers": [
       "lane"
     ],
-    "errorNote": "今日生词：识义",
+    "errorNote": "飞书薄弱词：必须秒懂",
     "userAddedAt": "2026-08-26",
     "sourceType": "user",
+    "reportedCount": 2,
+    "lastReportedAt": "2026-08-31",
     "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "lane",
@@ -1047,6 +1678,33 @@
     "sourceRevision": 4,
     "audioText": "low profit margins",
     "audioPath": "audio/low-profit-margins.mp3"
+  },
+  {
+    "id": "maintain",
+    "term": "maintain",
+    "meaning": "维持；保持；主张",
+    "note": "—",
+    "category": "行为与决策动作",
+    "sections": [
+      "P2 + P3 必会看懂词",
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "maintain"
+    ],
+    "errorNote": "飞书薄弱词：必须秒懂",
+    "userAddedAt": "2026-08-31",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-08-31",
+    "partOfSpeech": "动词",
+    "sourceRevision": 4,
+    "audioText": "maintain",
+    "audioPath": "audio/maintain.mp3"
   },
   {
     "id": "make-their-own",
@@ -1269,8 +1927,8 @@
     "id": "neatly",
     "term": "neatly",
     "meaning": "整齐地；有条理地",
-    "note": "今日生词：识义",
-    "category": "今日生词",
+    "note": "飞书薄弱词：必须秒懂",
+    "category": "0824 Weak Vocu",
     "sections": [
       "我的同步错词"
     ],
@@ -1281,11 +1939,11 @@
     "acceptedAnswers": [
       "neatly"
     ],
-    "errorNote": "今日生词：识义",
+    "errorNote": "飞书薄弱词：必须秒懂",
     "userAddedAt": "2026-08-27",
     "sourceType": "user",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-08-27",
+    "reportedCount": 2,
+    "lastReportedAt": "2026-08-31",
     "partOfSpeech": "副词",
     "sourceRevision": 4,
     "audioText": "neatly",
@@ -1315,11 +1973,63 @@
     "audioPath": "audio/neglecting.mp3"
   },
   {
+    "id": "nevertheless",
+    "term": "nevertheless",
+    "meaning": "然而；尽管如此",
+    "note": "飞书薄弱词：必须秒懂",
+    "category": "0824 Weak Vocu",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "nevertheless"
+    ],
+    "errorNote": "飞书薄弱词：必须秒懂",
+    "userAddedAt": "2026-08-31",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-08-31",
+    "partOfSpeech": "副词",
+    "sourceRevision": 4,
+    "audioText": "nevertheless",
+    "audioPath": "audio/nevertheless.mp3"
+  },
+  {
+    "id": "nonetheless",
+    "term": "nonetheless",
+    "meaning": "尽管如此",
+    "note": "飞书薄弱词：必须秒懂",
+    "category": "0824 Weak Vocu",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "nonetheless"
+    ],
+    "errorNote": "飞书薄弱词：必须秒懂",
+    "userAddedAt": "2026-08-31",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-08-31",
+    "partOfSpeech": "连词",
+    "sourceRevision": 4,
+    "audioText": "nonetheless",
+    "audioPath": "audio/nonetheless.mp3"
+  },
+  {
     "id": "obesity",
     "term": "obesity",
     "meaning": "肥胖；肥胖症",
-    "note": "今日生词：识义；名词",
-    "category": "我的同步错词",
+    "note": "飞书薄弱词：必须秒懂",
+    "category": "0824 Weak Vocu",
     "sections": [
       "我的同步错词"
     ],
@@ -1330,9 +2040,11 @@
     "acceptedAnswers": [
       "obesity"
     ],
-    "errorNote": "今日生词：识义；名词",
+    "errorNote": "飞书薄弱词：必须秒懂",
     "userAddedAt": "2026-08-26",
     "sourceType": "user",
+    "reportedCount": 2,
+    "lastReportedAt": "2026-08-31",
     "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "obesity",
@@ -1365,9 +2077,9 @@
   {
     "id": "pattern",
     "term": "pattern",
-    "meaning": "模式；规律；趋势",
-    "note": "多义误解：原理解为图案；注意 behaviour pattern、a pattern emerges",
-    "category": "多义误解词",
+    "meaning": "模式；规律；分布特征",
+    "note": "飞书薄弱词：必须秒懂",
+    "category": "0824 Weak Vocu",
     "sections": [
       "我的同步错词"
     ],
@@ -1378,11 +2090,11 @@
     "acceptedAnswers": [
       "pattern"
     ],
-    "errorNote": "多义误解：原理解为图案；注意 behaviour pattern、a pattern emerges",
+    "errorNote": "飞书薄弱词：必须秒懂",
     "userAddedAt": "2026-08-27",
     "sourceType": "user",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-08-27",
+    "reportedCount": 2,
+    "lastReportedAt": "2026-08-31",
     "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "pattern",
@@ -1391,9 +2103,9 @@
   {
     "id": "period",
     "term": "period",
-    "meaning": "时期；一段时间",
-    "note": "多义误解：误联想到句号；注意 a period of time、historical period",
-    "category": "多义误解词",
+    "meaning": "时期；阶段；一段时间",
+    "note": "飞书薄弱词：必须秒懂",
+    "category": "0824 Weak Vocu",
     "sections": [
       "我的同步错词"
     ],
@@ -1404,11 +2116,11 @@
     "acceptedAnswers": [
       "period"
     ],
-    "errorNote": "多义误解：误联想到句号；注意 a period of time、historical period",
+    "errorNote": "飞书薄弱词：必须秒懂",
     "userAddedAt": "2026-08-27",
     "sourceType": "user",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-08-27",
+    "reportedCount": 2,
+    "lastReportedAt": "2026-08-31",
     "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "period",
@@ -1587,6 +2299,33 @@
     "sourceRevision": 4,
     "audioText": "practical",
     "audioPath": "audio/practical.mp3"
+  },
+  {
+    "id": "practice",
+    "term": "practice",
+    "meaning": "实践；惯例；练习",
+    "note": "in practice",
+    "category": "常见第二义",
+    "sections": [
+      "常见第二义",
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "practice"
+    ],
+    "errorNote": "飞书薄弱词：必须秒懂",
+    "userAddedAt": "2026-08-31",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-08-31",
+    "partOfSpeech": "名词",
+    "sourceRevision": 4,
+    "audioText": "practice",
+    "audioPath": "audio/practice.mp3"
   },
   {
     "id": "practise",
@@ -1771,6 +2510,33 @@
     "audioPath": "audio/purpose.mp3"
   },
   {
+    "id": "rather-than",
+    "term": "rather than",
+    "meaning": "而不是；而非",
+    "note": "常见对比",
+    "category": "逻辑、态度与选择",
+    "sections": [
+      "高频短语 / Chunk",
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "rather than"
+    ],
+    "errorNote": "飞书薄弱词：必须秒懂",
+    "userAddedAt": "2026-08-31",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-08-31",
+    "partOfSpeech": "短语",
+    "sourceRevision": 4,
+    "audioText": "rather than",
+    "audioPath": "audio/rather-than.mp3"
+  },
+  {
     "id": "reference",
     "term": "reference",
     "meaning": "推荐；参考资料",
@@ -1794,6 +2560,32 @@
     "sourceRevision": 4,
     "audioText": "reference",
     "audioPath": "audio/reference.mp3"
+  },
+  {
+    "id": "reflect",
+    "term": "reflect",
+    "meaning": "反映；体现；思考",
+    "note": "飞书薄弱词：必须秒懂",
+    "category": "0824 Weak Vocu",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "reflect"
+    ],
+    "errorNote": "飞书薄弱词：必须秒懂",
+    "userAddedAt": "2026-08-31",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-08-31",
+    "partOfSpeech": "动词",
+    "sourceRevision": 4,
+    "audioText": "reflect",
+    "audioPath": "audio/reflect.mp3"
   },
   {
     "id": "regard",
@@ -1821,6 +2613,32 @@
     "sourceRevision": 4,
     "audioText": "regard",
     "audioPath": "audio/regard.mp3"
+  },
+  {
+    "id": "relevant",
+    "term": "relevant",
+    "meaning": "相关的；切题的",
+    "note": "飞书薄弱词：必须秒懂",
+    "category": "0824 Weak Vocu",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "relevant"
+    ],
+    "errorNote": "飞书薄弱词：必须秒懂",
+    "userAddedAt": "2026-08-31",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-08-31",
+    "partOfSpeech": "形容词",
+    "sourceRevision": 4,
+    "audioText": "relevant",
+    "audioPath": "audio/relevant.mp3"
   },
   {
     "id": "relief",
@@ -1868,6 +2686,32 @@
     "audioPath": "audio/reorganising-shifts.mp3"
   },
   {
+    "id": "resemble",
+    "term": "resemble",
+    "meaning": "像；与……相似",
+    "note": "飞书薄弱词：必须秒懂",
+    "category": "0824 Weak Vocu",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "resemble"
+    ],
+    "errorNote": "飞书薄弱词：必须秒懂",
+    "userAddedAt": "2026-08-31",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-08-31",
+    "partOfSpeech": "动词",
+    "sourceRevision": 4,
+    "audioText": "resemble",
+    "audioPath": "audio/resemble.mp3"
+  },
+  {
     "id": "resentful",
     "term": "resentful",
     "meaning": "愤恨的；心怀不满的",
@@ -1893,9 +2737,9 @@
   {
     "id": "resilience",
     "term": "resilience",
-    "meaning": "韧性；恢复力；适应力",
-    "note": "今日生词：识义",
-    "category": "我的同步错词",
+    "meaning": "韧性；恢复力；复原力",
+    "note": "飞书薄弱词：必须秒懂",
+    "category": "0824 Weak Vocu",
     "sections": [
       "我的同步错词"
     ],
@@ -1906,9 +2750,11 @@
     "acceptedAnswers": [
       "resilience"
     ],
-    "errorNote": "今日生词：识义",
+    "errorNote": "飞书薄弱词：必须秒懂",
     "userAddedAt": "2026-08-26",
     "sourceType": "user",
+    "reportedCount": 2,
+    "lastReportedAt": "2026-08-31",
     "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "resilience",
@@ -1939,6 +2785,32 @@
     "audioPath": "audio/resurfaced.mp3"
   },
   {
+    "id": "retain",
+    "term": "retain",
+    "meaning": "保留；保持；记住",
+    "note": "飞书薄弱词：必须秒懂",
+    "category": "0824 Weak Vocu",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "retain"
+    ],
+    "errorNote": "飞书薄弱词：必须秒懂",
+    "userAddedAt": "2026-08-31",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-08-31",
+    "partOfSpeech": "动词",
+    "sourceRevision": 4,
+    "audioText": "retain",
+    "audioPath": "audio/retain.mp3"
+  },
+  {
     "id": "retention",
     "term": "retention",
     "meaning": "保留；员工留任",
@@ -1959,6 +2831,32 @@
     "sourceRevision": 4,
     "audioText": "retention",
     "audioPath": "audio/retention.mp3"
+  },
+  {
+    "id": "reveal",
+    "term": "reveal",
+    "meaning": "揭示；显示",
+    "note": "飞书薄弱词：必须秒懂",
+    "category": "0824 Weak Vocu",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "reveal"
+    ],
+    "errorNote": "飞书薄弱词：必须秒懂",
+    "userAddedAt": "2026-08-31",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-08-31",
+    "partOfSpeech": "动词",
+    "sourceRevision": 4,
+    "audioText": "reveal",
+    "audioPath": "audio/reveal.mp3"
   },
   {
     "id": "round",
@@ -2011,9 +2909,9 @@
   {
     "id": "scale",
     "term": "scale",
-    "meaning": "规模；程度；尺度",
-    "note": "多义误解：原理解为秤；注意 large scale、on a global scale",
-    "category": "多义误解词",
+    "meaning": "规模；尺度；范围",
+    "note": "飞书薄弱词：必须秒懂",
+    "category": "0824 Weak Vocu",
     "sections": [
       "我的同步错词"
     ],
@@ -2024,15 +2922,48 @@
     "acceptedAnswers": [
       "scale"
     ],
-    "errorNote": "多义误解：原理解为秤；注意 large scale、on a global scale",
+    "errorNote": "飞书薄弱词：必须秒懂",
     "userAddedAt": "2026-08-27",
     "sourceType": "user",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-08-27",
+    "reportedCount": 2,
+    "lastReportedAt": "2026-08-31",
     "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "scale",
     "audioPath": "audio/scale.mp3"
+  },
+  {
+    "id": "shift",
+    "term": "shift",
+    "meaning": "转变；变化",
+    "note": "检查复数",
+    "category": "工作、学校与学术",
+    "sections": [
+      "P1 + P4 必会听写词",
+      "P2 + P3 必会看懂词",
+      "常见第二义",
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition",
+      "spelling"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "shift"
+    ],
+    "numberVariants": [
+      "shifts"
+    ],
+    "errorNote": "飞书薄弱词：必须秒懂",
+    "userAddedAt": "2026-08-31",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-08-31",
+    "partOfSpeech": "名词",
+    "sourceRevision": 4,
+    "audioText": "shift",
+    "audioPath": "audio/shift.mp3"
   },
   {
     "id": "soak",
@@ -2109,11 +3040,37 @@
     "audioPath": "audio/stalled.mp3"
   },
   {
+    "id": "state",
+    "term": "state",
+    "meaning": "状态；国家；陈述",
+    "note": "飞书薄弱词：必须秒懂",
+    "category": "0824 Weak Vocu",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "state"
+    ],
+    "errorNote": "飞书薄弱词：必须秒懂",
+    "userAddedAt": "2026-08-31",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-08-31",
+    "partOfSpeech": "名词",
+    "sourceRevision": 4,
+    "audioText": "state",
+    "audioPath": "audio/state.mp3"
+  },
+  {
     "id": "stoicism",
     "term": "Stoicism",
-    "meaning": "斯多葛主义；斯多葛哲学",
-    "note": "今日生词：识义；专有名词",
-    "category": "我的同步错词",
+    "meaning": "斯多葛主义；坚忍克己的人生态度",
+    "note": "飞书薄弱词：必须秒懂",
+    "category": "0824 Weak Vocu",
     "sections": [
       "我的同步错词"
     ],
@@ -2124,9 +3081,11 @@
     "acceptedAnswers": [
       "Stoicism"
     ],
-    "errorNote": "今日生词：识义；专有名词",
+    "errorNote": "飞书薄弱词：必须秒懂",
     "userAddedAt": "2026-08-26",
     "sourceType": "user",
+    "reportedCount": 2,
+    "lastReportedAt": "2026-08-31",
     "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "Stoicism",
@@ -2155,6 +3114,86 @@
     "sourceRevision": 4,
     "audioText": "string",
     "audioPath": "audio/string.mp3"
+  },
+  {
+    "id": "strip",
+    "term": "strip",
+    "meaning": "剥去；去除",
+    "note": "飞书薄弱词：必须秒懂",
+    "category": "0824 Weak Vocu",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "strip"
+    ],
+    "errorNote": "飞书薄弱词：必须秒懂",
+    "userAddedAt": "2026-08-31",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-08-31",
+    "partOfSpeech": "名词",
+    "sourceRevision": 4,
+    "audioText": "strip",
+    "audioPath": "audio/strip.mp3"
+  },
+  {
+    "id": "substitute",
+    "term": "substitute",
+    "meaning": "替代品；替代；代替品",
+    "note": "飞书薄弱词：必须秒懂",
+    "category": "0824 Weak Vocu",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "substitute"
+    ],
+    "errorNote": "飞书薄弱词：必须秒懂",
+    "userAddedAt": "2026-08-31",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-08-31",
+    "partOfSpeech": "名词",
+    "sourceRevision": 4,
+    "audioText": "substitute",
+    "audioPath": "audio/substitute.mp3"
+  },
+  {
+    "id": "term",
+    "term": "term",
+    "meaning": "术语；期限；条件",
+    "note": "—",
+    "category": "学校、工作与项目",
+    "sections": [
+      "P2 + P3 必会看懂词",
+      "常见第二义",
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "term"
+    ],
+    "errorNote": "飞书薄弱词：必须秒懂",
+    "userAddedAt": "2026-08-31",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-08-31",
+    "partOfSpeech": "名词",
+    "sourceRevision": 4,
+    "audioText": "term",
+    "audioPath": "audio/term.mp3"
   },
   {
     "id": "tethered",
@@ -2210,9 +3249,9 @@
   {
     "id": "therapy",
     "term": "therapy",
-    "meaning": "治疗；疗法",
-    "note": "今日生词：识义",
-    "category": "我的同步错词",
+    "meaning": "治疗；理疗",
+    "note": "飞书薄弱词：必须秒懂",
+    "category": "0824 Weak Vocu",
     "sections": [
       "我的同步错词"
     ],
@@ -2223,13 +3262,41 @@
     "acceptedAnswers": [
       "therapy"
     ],
-    "errorNote": "今日生词：识义",
+    "errorNote": "飞书薄弱词：必须秒懂",
     "userAddedAt": "2026-08-26",
     "sourceType": "user",
+    "reportedCount": 2,
+    "lastReportedAt": "2026-08-31",
     "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "therapy",
     "audioPath": "audio/therapy.mp3"
+  },
+  {
+    "id": "thereby",
+    "term": "thereby",
+    "meaning": "因而；从而",
+    "note": "飞书薄弱词：必须秒懂",
+    "category": "0824 Weak Vocu",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "thereby"
+    ],
+    "errorNote": "飞书薄弱词：必须秒懂",
+    "userAddedAt": "2026-08-31",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-08-31",
+    "partOfSpeech": "副词",
+    "sourceRevision": 4,
+    "audioText": "thereby",
+    "audioPath": "audio/thereby.mp3"
   },
   {
     "id": "thorough",
@@ -2252,6 +3319,110 @@
     "sourceRevision": 4,
     "audioText": "thorough",
     "audioPath": "audio/thorough.mp3"
+  },
+  {
+    "id": "threaten",
+    "term": "threaten",
+    "meaning": "威胁；危及",
+    "note": "飞书薄弱词：必须秒懂",
+    "category": "0824 Weak Vocu",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "threaten"
+    ],
+    "errorNote": "飞书薄弱词：必须秒懂",
+    "userAddedAt": "2026-08-31",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-08-31",
+    "partOfSpeech": "动词",
+    "sourceRevision": 4,
+    "audioText": "threaten",
+    "audioPath": "audio/threaten.mp3"
+  },
+  {
+    "id": "trait",
+    "term": "trait",
+    "meaning": "特性；特征",
+    "note": "飞书薄弱词：必须秒懂",
+    "category": "0824 Weak Vocu",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "trait"
+    ],
+    "errorNote": "飞书薄弱词：必须秒懂",
+    "userAddedAt": "2026-08-31",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-08-31",
+    "partOfSpeech": "名词",
+    "sourceRevision": 4,
+    "audioText": "trait",
+    "audioPath": "audio/trait.mp3"
+  },
+  {
+    "id": "transmit",
+    "term": "transmit",
+    "meaning": "传达；传输",
+    "note": "飞书薄弱词：必须秒懂",
+    "category": "0824 Weak Vocu",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "transmit"
+    ],
+    "errorNote": "飞书薄弱词：必须秒懂",
+    "userAddedAt": "2026-08-31",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-08-31",
+    "partOfSpeech": "动词",
+    "sourceRevision": 4,
+    "audioText": "transmit",
+    "audioPath": "audio/transmit.mp3"
+  },
+  {
+    "id": "underlie",
+    "term": "underlie",
+    "meaning": "成为……基础",
+    "note": "飞书薄弱词：必须秒懂",
+    "category": "0824 Weak Vocu",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "underlie"
+    ],
+    "errorNote": "飞书薄弱词：必须秒懂",
+    "userAddedAt": "2026-08-31",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-08-31",
+    "partOfSpeech": "动词",
+    "sourceRevision": 4,
+    "audioText": "underlie",
+    "audioPath": "audio/underlie.mp3"
   },
   {
     "id": "vacuum",
@@ -2349,6 +3520,32 @@
     "sourceRevision": 4,
     "audioText": "wax",
     "audioPath": "audio/wax.mp3"
+  },
+  {
+    "id": "whereas",
+    "term": "whereas",
+    "meaning": "然而；鉴于（法律语境）",
+    "note": "飞书薄弱词：必须秒懂",
+    "category": "0824 Weak Vocu",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "whereas"
+    ],
+    "errorNote": "飞书薄弱词：必须秒懂",
+    "userAddedAt": "2026-08-31",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-08-31",
+    "partOfSpeech": "连词",
+    "sourceRevision": 4,
+    "audioText": "whereas",
+    "audioPath": "audio/whereas.mp3"
   },
   {
     "id": "accept",
@@ -8304,27 +9501,6 @@
     "audioPath": "audio/in-particular.mp3"
   },
   {
-    "id": "in-terms-of",
-    "term": "in terms of",
-    "meaning": "就……而言",
-    "note": "—",
-    "category": "逻辑、态度与选择",
-    "sections": [
-      "高频短语 / Chunk"
-    ],
-    "modes": [
-      "recognition"
-    ],
-    "isRealError": false,
-    "acceptedAnswers": [
-      "in terms of"
-    ],
-    "partOfSpeech": "短语",
-    "sourceRevision": 4,
-    "audioText": "in terms of",
-    "audioPath": "audio/in-terms-of.mp3"
-  },
-  {
     "id": "in-the-end",
     "term": "in the end",
     "meaning": "最后；最终",
@@ -9179,27 +10355,6 @@
     "sourceRevision": 4,
     "audioText": "mainly",
     "audioPath": "audio/mainly.mp3"
-  },
-  {
-    "id": "maintain",
-    "term": "maintain",
-    "meaning": "维持；维护",
-    "note": "—",
-    "category": "行为与决策动作",
-    "sections": [
-      "P2 + P3 必会看懂词"
-    ],
-    "modes": [
-      "recognition"
-    ],
-    "isRealError": false,
-    "acceptedAnswers": [
-      "maintain"
-    ],
-    "partOfSpeech": "动词",
-    "sourceRevision": 4,
-    "audioText": "maintain",
-    "audioPath": "audio/maintain.mp3"
   },
   {
     "id": "maintenance",
@@ -11190,27 +12345,6 @@
     "audioPath": "audio/postcode.mp3"
   },
   {
-    "id": "practice",
-    "term": "practice",
-    "meaning": "实践；惯例；练习",
-    "note": "in practice",
-    "category": "常见第二义",
-    "sections": [
-      "常见第二义"
-    ],
-    "modes": [
-      "recognition"
-    ],
-    "isRealError": false,
-    "acceptedAnswers": [
-      "practice"
-    ],
-    "partOfSpeech": "名词",
-    "sourceRevision": 4,
-    "audioText": "practice",
-    "audioPath": "audio/practice.mp3"
-  },
-  {
     "id": "prefer",
     "term": "prefer",
     "meaning": "更喜欢",
@@ -11807,27 +12941,6 @@
     "sourceRevision": 4,
     "audioText": "range",
     "audioPath": "audio/range.mp3"
-  },
-  {
-    "id": "rather-than",
-    "term": "rather than",
-    "meaning": "而不是",
-    "note": "常见对比",
-    "category": "逻辑、态度与选择",
-    "sections": [
-      "高频短语 / Chunk"
-    ],
-    "modes": [
-      "recognition"
-    ],
-    "isRealError": false,
-    "acceptedAnswers": [
-      "rather than"
-    ],
-    "partOfSpeech": "短语",
-    "sourceRevision": 4,
-    "audioText": "rather than",
-    "audioPath": "audio/rather-than.mp3"
   },
   {
     "id": "reason",
@@ -12962,33 +14075,6 @@
     "audioPath": "audio/service.mp3"
   },
   {
-    "id": "shift",
-    "term": "shift",
-    "meaning": "班次",
-    "note": "检查复数",
-    "category": "工作、学校与学术",
-    "sections": [
-      "P1 + P4 必会听写词",
-      "P2 + P3 必会看懂词",
-      "常见第二义"
-    ],
-    "modes": [
-      "recognition",
-      "spelling"
-    ],
-    "isRealError": false,
-    "acceptedAnswers": [
-      "shift"
-    ],
-    "numberVariants": [
-      "shifts"
-    ],
-    "partOfSpeech": "名词",
-    "sourceRevision": 4,
-    "audioText": "shift",
-    "audioPath": "audio/shift.mp3"
-  },
-  {
     "id": "shortage",
     "term": "shortage",
     "meaning": "短缺",
@@ -14032,28 +15118,6 @@
     "sourceRevision": 4,
     "audioText": "tend to",
     "audioPath": "audio/tend-to.mp3"
-  },
-  {
-    "id": "term",
-    "term": "term",
-    "meaning": "学期；术语",
-    "note": "—",
-    "category": "学校、工作与项目",
-    "sections": [
-      "P2 + P3 必会看懂词",
-      "常见第二义"
-    ],
-    "modes": [
-      "recognition"
-    ],
-    "isRealError": false,
-    "acceptedAnswers": [
-      "term"
-    ],
-    "partOfSpeech": "名词",
-    "sourceRevision": 4,
-    "audioText": "term",
-    "audioPath": "audio/term.mp3"
   },
   {
     "id": "theatre",

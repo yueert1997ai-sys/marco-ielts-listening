@@ -2,7 +2,7 @@
   "use strict";
 
   const STORAGE_KEY = "marcoIeltsListening.v1";
-  const APP_VERSION = "v2.14.0";
+  const APP_VERSION = "v2.15.0";
   const AUTO_UPDATE_SESSION_KEY = "marcoIeltsListening.autoUpdateAttempt";
   const AUTO_UPDATE_THROTTLE_MS = 60 * 1000;
   const TRAINING_RESET_ID = "fresh-start-v2.5.0";
@@ -11,6 +11,7 @@
   const DAILY_PER_MODE = 25;
   const DAILY_REVIEW_LIMIT = 30;
   const PERSONAL_ERROR_POOL_ID = "personal-errors-v1";
+  const STARRED_POOL_ID = "starred-words-v1";
   const BROWSE_PAGE_SIZE = 20;
   const RESPONSE_LIMIT_MS = 5000;
   const DIRECTION_RESPONSE_LIMIT_MS = 2000;
@@ -84,6 +85,7 @@
       daily: null,
       reviewDaily: null,
       errorDaily: null,
+      starredDaily: null,
       streak: 0,
       lastCompletedDate: null,
       trainingResetId: null,
@@ -101,6 +103,7 @@
       daily: raw.daily && typeof raw.daily === "object" ? raw.daily : null,
       reviewDaily: raw.reviewDaily && typeof raw.reviewDaily === "object" ? raw.reviewDaily : null,
       errorDaily: raw.errorDaily && typeof raw.errorDaily === "object" ? raw.errorDaily : null,
+      starredDaily: raw.starredDaily && typeof raw.starredDaily === "object" ? raw.starredDaily : null,
     };
   }
 
@@ -112,6 +115,7 @@
       daily: null,
       reviewDaily: null,
       errorDaily: null,
+      starredDaily: null,
       streak: 0,
       lastCompletedDate: null,
       trainingResetId: resetId,
@@ -266,28 +270,46 @@
     return seededShuffle([...pick("spelling"), ...pick("recognition")], `${today}:errors:order`);
   }
 
-  function syncPersonalErrorSession(current, today, errorKeys) {
-    const poolSignature = [...errorKeys].sort().join("|");
+  function createStarredTrainingDeck(activities, seed = dateKey(), starred = {}) {
+    function pick(mode) {
+      return seededShuffle(
+        activities.filter((activity) => activity.mode === mode && starred[activity.id]),
+        `${seed}:starred:${mode}`
+      ).map((activity) => activity.key);
+    }
+    return seededShuffle([...pick("spelling"), ...pick("recognition")], `${seed}:starred:order`);
+  }
+
+  function syncTrainingPoolSession(current, today, keys, poolId) {
+    const poolSignature = [...keys].sort().join("|");
     if (!current
       || current.date !== today
       || !Array.isArray(current.queue)
-      || current.poolId !== PERSONAL_ERROR_POOL_ID) {
-      return { ...makeDailySession(today, errorKeys), poolId: PERSONAL_ERROR_POOL_ID, poolSignature };
+      || current.poolId !== poolId) {
+      return { ...makeDailySession(today, keys), poolId, poolSignature };
     }
     if (current.poolSignature === poolSignature) return current;
 
-    const allowed = new Set(errorKeys);
+    const allowed = new Set(keys);
     const pending = current.queue.filter((entry) => allowed.has(entry.key));
     const queued = new Set(pending.map((entry) => entry.key));
-    errorKeys.forEach((key) => {
+    keys.forEach((key) => {
       if (!current.answeredBase?.[key] && !queued.has(key)) pending.push({ key, isRetry: false });
     });
-    current.baseKeys = errorKeys;
+    current.baseKeys = keys;
     current.queue = pending;
-    current.poolId = PERSONAL_ERROR_POOL_ID;
+    current.poolId = poolId;
     current.poolSignature = poolSignature;
     current.completed = pending.length === 0;
     return current;
+  }
+
+  function syncPersonalErrorSession(current, today, errorKeys) {
+    return syncTrainingPoolSession(current, today, errorKeys, PERSONAL_ERROR_POOL_ID);
+  }
+
+  function syncStarredSession(current, today, starredKeys) {
+    return syncTrainingPoolSession(current, today, starredKeys, STARRED_POOL_ID);
   }
 
   function makeDailySession(date, baseKeys) {
@@ -324,6 +346,8 @@
     }
     const errorKeys = createErrorTrainingDeck(activities, today, state.starred);
     state.errorDaily = syncPersonalErrorSession(state.errorDaily, today, errorKeys);
+    const starredKeys = createStarredTrainingDeck(activities, `${today}:starred`, state.starred);
+    state.starredDaily = syncStarredSession(state.starredDaily, today, starredKeys);
     return state;
   }
 
@@ -548,7 +572,7 @@
     });
     state.customItems = [...customItems.values()];
 
-    const sessions = [state.daily, state.reviewDaily, state.errorDaily].filter(Boolean);
+    const sessions = [state.daily, state.reviewDaily, state.errorDaily, state.starredDaily].filter(Boolean);
     if (!sessions.length) return state;
     const uniqueKeys = (values) => {
       const seen = new Set();
@@ -793,15 +817,16 @@
     const detail = /^[—–-]+$/.test(rawDetail) ? "" : rawDetail;
     const followUp = outcome === "pass"
       ? ""
-      : (sessionKind === "learning"
+      : (["learning", "errors", "starred"].includes(sessionKind)
         ? "2–4 题后回炉，并已加入高频复习"
-        : (sessionKind === "errors" ? "2–4 题后回炉，并已加入高频复习" : "2–4 题后回炉"));
+        : "2–4 题后回炉");
     return [detail, followUp].filter(Boolean).join(" · ");
   }
 
   const api = {
     dateKey, addDays, hashString, normaliseAnswer, makeActivities, safeState,
-    createDailyDeck, createLearningDeck, createReviewDeck, createErrorTrainingDeck, isPersonalErrorActivity, syncPersonalErrorSession,
+    createDailyDeck, createLearningDeck, createReviewDeck, createErrorTrainingDeck, createStarredTrainingDeck,
+    isPersonalErrorActivity, syncPersonalErrorSession, syncStarredSession,
     prepareDaily, scheduleReview, recordPracticePass,
     shouldConfirmRecognition, reinforcementDecision, insertRetry, buildChoices,
     partOfSpeechForMeaning, abbreviatePartOfSpeech,
@@ -814,7 +839,7 @@
     RETRY_MIN_DISTANCE, RETRY_MAX_DISTANCE, CONFIRM_MIN_DISTANCE, CONFIRM_MAX_DISTANCE,
     REQUIRED_CORRECT_STREAK, MAX_REINFORCEMENT_INSERTIONS, RECOGNITION_SPOTCHECK_PERCENT,
     DIRECTION_QUESTION_COUNT, HARD_DIRECTION_IDS,
-    INTERVALS, BROWSE_PAGE_SIZE, DAILY_REVIEW_LIMIT, PERSONAL_ERROR_POOL_ID, APP_VERSION,
+    INTERVALS, BROWSE_PAGE_SIZE, DAILY_REVIEW_LIMIT, PERSONAL_ERROR_POOL_ID, STARRED_POOL_ID, APP_VERSION,
     TRAINING_RESET_ID, LEARNING_REVIEW_SPLIT_ID, DECK_REVISION,
   };
 
@@ -1023,6 +1048,7 @@
   function currentTrainingSession() {
     if (activeTrainingKind === "review") return state.reviewDaily;
     if (activeTrainingKind === "errors") return state.errorDaily;
+    if (activeTrainingKind === "starred") return state.starredDaily;
     return state.daily;
   }
 
@@ -1073,11 +1099,12 @@
     const direction = mode === "direction";
     const reviewing = mode === "review";
     const errorTraining = mode === "errors";
+    const starredTraining = mode === "starred";
     appShell.classList.toggle("active-session", activeSession);
     appShell.classList.remove("home-mode");
     appShell.classList.toggle("browse-mode", browsing);
     appShell.classList.toggle("direction-mode", direction);
-    screenTitle.textContent = browsing ? "随便刷" : (direction ? "方位检测" : (reviewing ? "高频复习" : (errorTraining ? "我的错词" : "今日新词")));
+    screenTitle.textContent = browsing ? "随便刷" : (direction ? "方位检测" : (reviewing ? "高频复习" : (errorTraining ? "我的错词" : (starredTraining ? "重点词" : "今日新词"))));
     if (browsing) dayCount.textContent = "∞";
     else if (direction) updateDirectionChrome();
     else updateChrome();
@@ -1086,6 +1113,8 @@
   function homeScreen() {
     window.scrollTo(0, 0);
     activeTrainingKind = "learning";
+    const starredKeys = createStarredTrainingDeck(activities, `${dateKey()}:starred`, state.starred);
+    state.starredDaily = syncStarredSession(state.starredDaily, dateKey(), starredKeys);
     setShellMode("daily");
     appShell.classList.add("home-mode");
     const done = sessionDone(state.daily);
@@ -1097,12 +1126,14 @@
     const personalErrorItems = items.filter(isPersonalErrorActivity);
     const personalErrorCount = personalErrorItems.length;
     const personalErrorTasks = state.errorDaily.baseKeys.length;
+    const starredTrainingPending = state.starredDaily.queue.length;
+    const starredTasks = state.starredDaily.baseKeys.length;
     const buttonText = state.daily.completed ? "今日已完成" : (state.daily.started ? "继续训练" : "开始训练");
     const completionPercent = learningTotal ? Math.min(100, Math.round((done / learningTotal) * 100)) : 0;
     const errorPoolCount = new Set(Object.entries(state.progress)
       .filter(([, record]) => (record.lapses || 0) > 0)
       .map(([key]) => key.replace(/:(spelling|recognition)$/, ""))).size;
-    const starredCount = Object.keys(state.starred).length;
+    const starredCount = items.filter((item) => state.starred[item.id]).length;
     screen.innerHTML = `
       <section class="home">
         <p class="home-date">${escapeHtml(state.daily.date)}</p>
@@ -1131,6 +1162,11 @@
               <span class="home-task-copy"><strong>我的错词训练</strong><small>${personalErrorCount ? `${personalErrorCount} 词 · ${errorTrainingPending ? `剩 ${errorTrainingPending} 题` : `${personalErrorTasks} 题可再练`}` : "先去错词收件箱添加"}</small></span>
               <span class="home-task-caret">${icon("caret-right")}</span>
             </button>
+            <button id="starred-training" class="home-task starred-training-entry" ${starredCount ? "" : "disabled"}>
+              <span class="home-task-icon">${icon("star")}</span>
+              <span class="home-task-copy"><strong>重点词随机训练</strong><small>${starredCount ? `${starredCount} 词 · ${starredTrainingPending ? `剩 ${starredTrainingPending} 题` : `${starredTasks} 题可再练`}` : "先在词库或答题页标重点"}</small></span>
+              <span class="home-task-caret">${icon("caret-right")}</span>
+            </button>
             <button id="direction" class="home-task direction-task">
               <span class="home-task-icon">${icon("compass-rose")}</span>
               <span class="home-task-copy"><strong>方位检测</strong><small>10 题 · 练反应</small></span>
@@ -1143,7 +1179,7 @@
           <summary><span class="home-task-icon">${icon("gear")}</span><span>更多练习与设置</span><span class="home-task-caret">${icon("caret-right")}</span></summary>
           <div class="home-menu">
             <button id="browse" class="menu-entry"><span>${icon("books")}浏览词库</span><small>${items.length} 条</small></button>
-            <button id="starred" class="menu-entry"><span>${icon("star")}重点词</span><small>${starredCount} 个</small></button>
+            <button id="starred" class="menu-entry"><span>${icon("star")}浏览重点词</span><small>${starredCount} 个</small></button>
             <button id="inbox" class="menu-entry"><span>${icon("tray")}错词收件箱</span><small>${state.customItems.length} 条待同步</small></button>
           </div>
           <div class="tools">
@@ -1173,6 +1209,16 @@
         state.errorDaily = syncPersonalErrorSession(null, dateKey(), createErrorTrainingDeck(activities, dateKey(), state.starred));
       }
       state.errorDaily.started = true;
+      saveState();
+      renderCurrent();
+    });
+    document.getElementById("starred-training")?.addEventListener("click", () => {
+      activeTrainingKind = "starred";
+      if (!state.starredDaily.queue.length) {
+        const seed = `${dateKey()}:starred:${Date.now()}:${Math.random()}`;
+        state.starredDaily = syncStarredSession(null, dateKey(), createStarredTrainingDeck(activities, seed, state.starred));
+      }
+      state.starredDaily.started = true;
       saveState();
       renderCurrent();
     });
@@ -1611,7 +1657,9 @@
 
   function renderCurrent(options = {}) {
     const session = currentTrainingSession();
-    const shellMode = activeTrainingKind === "review" ? "review" : (activeTrainingKind === "errors" ? "errors" : "daily");
+    const shellMode = activeTrainingKind === "review"
+      ? "review"
+      : (activeTrainingKind === "errors" ? "errors" : (activeTrainingKind === "starred" ? "starred" : "daily"));
     setShellMode(shellMode, Boolean(session.queue[0]));
     updateChrome();
     const entry = session.queue[0];
@@ -1623,11 +1671,12 @@
       }
       const isReview = activeTrainingKind === "review";
       const isErrorTraining = activeTrainingKind === "errors";
+      const isStarredTraining = activeTrainingKind === "starred";
       screen.innerHTML = `
         <section class="finished">
           <div class="hero-number">${icon("check-circle")}</div>
-          <h2>${isErrorTraining ? "这一轮我的错词练完了" : (isReview ? "今天的复习清完了" : "今天的新词学完了")}</h2>
-          <p>${isErrorTraining ? "这里只练你在错词收件箱手工加入的词；返回首页后可以随时再练一轮。" : (isReview ? "新词学习不受影响，明天再按错误频率和到期时间生成复习。" : "答错的词已进入独立复习池，不会堵住今天的新词进度。")}</p>
+          <h2>${isErrorTraining ? "这一轮我的错词练完了" : (isStarredTraining ? "这一轮重点词练完了" : (isReview ? "今天的复习清完了" : "今天的新词学完了"))}</h2>
+          <p>${isErrorTraining ? "这里只练你手工或同步加入的个人错词；返回首页后可以随时再练一轮。" : (isStarredTraining ? "本轮顺序已经打乱；返回首页后可以立即换个顺序再练。" : (isReview ? "新词学习不受影响，明天再按错误频率和到期时间生成复习。" : "答错的词已进入独立复习池，不会堵住今天的新词进度。"))}</p>
           <button id="back-home" class="secondary">返回首页</button>
         </section>`;
       document.getElementById("back-home").addEventListener("click", homeScreen);
@@ -1785,7 +1834,7 @@
       insertRetry(session, activity.key, { ...decision, avoidChoiceIndex: detail.choiceIndex });
     }
     if (decision.recordOutcome === "fail") {
-      if (sessionKind === "errors" || sessionKind === "learning") {
+      if (["errors", "learning", "starred"].includes(sessionKind)) {
         enqueueReviewActivity(state.reviewDaily, activity.key);
       }
     }

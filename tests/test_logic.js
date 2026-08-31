@@ -84,6 +84,18 @@ test("personal error training contains only manually added activities", () => {
   ]);
   assert.deepEqual(logic.createErrorTrainingDeck(nonPersonal, "2026-08-25"), []);
 });
+test("starred training contains every mode of starred words and nothing else", () => {
+  const starred = { carpet: true, s0: true, r0: true };
+  const deck = logic.createStarredTrainingDeck(activities, "starred-seed", starred);
+  assert.deepEqual([...deck].sort(), ["carpet:recognition", "carpet:spelling", "r0:recognition", "s0:spelling"]);
+  assert.deepEqual(deck, logic.createStarredTrainingDeck(activities, "starred-seed", starred));
+});
+test("a new starred round can use a different random order", () => {
+  const starred = Object.fromEntries(items.slice(0, 12).map((item) => [item.id, true]));
+  const first = logic.createStarredTrainingDeck(activities, "round-one", starred);
+  const alternatives = Array.from({ length: 6 }, (_, index) => logic.createStarredTrainingDeck(activities, `round-${index + 2}`, starred));
+  assert(alternatives.some((deck) => JSON.stringify(deck) !== JSON.stringify(first)));
+});
 test("personal error training is a third queue independent from learning and due review", () => {
   const state = logic.safeState(null);
   logic.prepareDaily(state, activities, "2026-08-25");
@@ -91,6 +103,15 @@ test("personal error training is a third queue independent from learning and due
   assert(state.errorDaily.baseKeys.includes("carpet:recognition"));
   assert.notStrictEqual(state.errorDaily, state.daily);
   assert.notStrictEqual(state.errorDaily, state.reviewDaily);
+});
+test("starred training is an independent repeatable queue", () => {
+  const state = logic.safeState({ starred: { carpet: true } });
+  logic.prepareDaily(state, activities, "2026-08-25");
+  assert.deepEqual([...state.starredDaily.baseKeys].sort(), ["carpet:recognition", "carpet:spelling"]);
+  assert.notStrictEqual(state.starredDaily, state.daily);
+  assert.notStrictEqual(state.starredDaily, state.errorDaily);
+  const restarted = logic.syncStarredSession(null, "2026-08-25", state.starredDaily.baseKeys);
+  assert.equal(restarted.queue.length, 2);
 });
 test("new learning and high-frequency review are prepared as separate queues", () => {
   const state = logic.safeState({ progress: { "carpet:spelling": { lapses: 6, due: "2026-08-25" } } });
@@ -266,12 +287,13 @@ test("result note has no dangling separator when source note is empty", () => {
   assert.equal(logic.formatResultNote("—", "fail", "learning"), "2–4 题后回炉，并已加入高频复习");
   assert.equal(logic.formatResultNote("", "fail", "review"), "2–4 题后回炉");
   assert.equal(logic.formatResultNote("", "fail", "errors"), "2–4 题后回炉，并已加入高频复习");
+  assert.equal(logic.formatResultNote("", "fail", "starred"), "2–4 题后回炉，并已加入高频复习");
   assert.equal(logic.formatResultNote("双写错误", "fail", "learning"), "双写错误 · 2–4 题后回炉，并已加入高频复习");
 });
 test("different published version triggers an update", () => assert(logic.hasVersionUpdate("v2.11.1", "v2.11.2")));
 test("matching published version does not trigger an update", () => assert.equal(logic.hasVersionUpdate("v2.11.2", "v2.11.2"), false));
 test("intervals match spec", () => assert.deepEqual(logic.INTERVALS, [1, 3, 7, 14, 30, 60]));
-test("visible app version matches this release", () => assert.equal(logic.APP_VERSION, "v2.14.0"));
+test("visible app version matches this release", () => assert.equal(logic.APP_VERSION, "v2.15.0"));
 test("direction response limit is two seconds", () => assert.equal(logic.DIRECTION_RESPONSE_LIMIT_MS, 2000));
 test("hard direction response limit is one second", () => assert.equal(logic.HARD_DIRECTION_RESPONSE_LIMIT_MS, 1000));
 test("hard direction audio plays at one point four speed", () => assert.equal(logic.HARD_DIRECTION_PLAYBACK_RATE, 1.4));
@@ -388,6 +410,11 @@ test("plural progress and today's queue migrate to the singular card", () => {
       ],
       answeredBase: {}, outcomes: {}, retryCount: {},
     },
+    starredDaily: {
+      baseKeys: ["curtains:spelling"],
+      queue: [{ key: "curtains:spelling", isRetry: false }],
+      answeredBase: {}, outcomes: {}, retryCount: {},
+    },
   });
   logic.migrateNumberVariantState(state, source);
   assert.deepEqual(state.daily.baseKeys, ["curtain:spelling"]);
@@ -397,6 +424,7 @@ test("plural progress and today's queue migrate to the singular card", () => {
   assert.equal(state.progress["curtain:spelling"].due, "2026-08-24");
   assert(!state.progress["curtains:spelling"]);
   assert.deepEqual(state.starred, { curtain: true });
+  assert.deepEqual(state.starredDaily.baseKeys, ["curtain:spelling"]);
 });
 test("a locally added plural merges into the published singular item", () => {
   const source = [{

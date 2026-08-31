@@ -34,6 +34,20 @@ class VocabularyAdminTests(unittest.TestCase):
         }, merged, base, "2026-08-27")
         self.assertEqual(list(merged), ["certain"])
 
+    def test_singular_intake_rekeys_an_existing_plural_custom_card(self) -> None:
+        merged = {"calories": import_wrong_words.clean({
+            "term": "calories", "meaning": "卡路里；热量", "mode": "recognition",
+            "addedAt": "2026-08-26",
+        })}
+        imported = import_wrong_words.merge_intake({
+            "term": "calorie", "meaning": "卡路里；热量", "mode": "recognition",
+        }, merged, [], "2026-08-31")
+        self.assertEqual(imported, "calorie")
+        self.assertEqual(list(merged), ["calorie"])
+        self.assertEqual(merged["calorie"]["term"], "calorie")
+        self.assertEqual(merged["calorie"]["addedAt"], "2026-08-26")
+        self.assertEqual(merged["calorie"]["reportedCount"], 2)
+
     def test_repeated_manual_report_increments_count(self) -> None:
         merged = {"colossal": import_wrong_words.clean({
             "term": "colossal", "meaning": "巨大的", "mode": "recognition",

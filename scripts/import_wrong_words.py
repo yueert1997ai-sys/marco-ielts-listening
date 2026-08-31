@@ -131,11 +131,19 @@ def resolve_known(term: str, index: dict[str, dict]) -> dict | None:
 
 def merge_intake(raw: dict, merged: dict[str, dict], base_items: list[dict], today: str) -> str:
     incoming = clean(raw, today=today)
-    index = known_index(base_items, list(merged.values()))
-    known = resolve_known(incoming["term"], index)
-    canonical_id = str(known.get("id")) if known else incoming["id"]
-    canonical_term = str(known.get("term")) if known else incoming["term"]
-    previous = merged.get(canonical_id)
+    incoming_key = key_for(incoming["term"])
+    reverse_existing = next((item for item in merged.values()
+                             if incoming_key in {key_for(candidate) for candidate in singular_candidates(str(item.get("term") or ""))}), None)
+    if reverse_existing:
+        previous = merged.pop(str(reverse_existing.get("id") or key_for(reverse_existing["term"])))
+        canonical_id = incoming["id"]
+        canonical_term = incoming["term"]
+    else:
+        index = known_index(base_items, list(merged.values()))
+        known = resolve_known(incoming["term"], index)
+        canonical_id = str(known.get("id")) if known else incoming["id"]
+        canonical_term = str(known.get("term")) if known else incoming["term"]
+        previous = merged.get(canonical_id)
     if previous:
         incoming["meaning"] = incoming["meaning"] or previous["meaning"]
         incoming["modes"] = sorted(set(previous["modes"]) | set(incoming["modes"]))

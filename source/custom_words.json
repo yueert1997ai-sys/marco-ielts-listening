@@ -11,15 +11,43 @@
     "addedAt": "2026-08-25"
   },
   {
-    "id": "calories",
-    "term": "calories",
+    "id": "albeit",
+    "term": "albeit",
+    "meaning": "尽管；虽然",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "飞书薄弱词：必须秒懂",
+    "category": "0824 Weak Vocu",
+    "addedAt": "2026-08-31",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-08-31"
+  },
+  {
+    "id": "be-subject-to",
+    "term": "be subject to",
+    "meaning": "受……支配",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "飞书薄弱词：必须秒懂",
+    "category": "0824 Weak Vocu",
+    "addedAt": "2026-08-31",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-08-31"
+  },
+  {
+    "id": "calorie",
+    "term": "calorie",
     "meaning": "卡路里；热量",
     "modes": [
       "recognition"
     ],
-    "reason": "今日生词：识义；calorie 的复数",
-    "category": "我的同步错词",
-    "addedAt": "2026-08-26"
+    "reason": "飞书薄弱词：必须秒懂；calories 已归并到主词",
+    "category": "0824 Weak Vocu",
+    "addedAt": "2026-08-26",
+    "reportedCount": 2,
+    "lastReportedAt": "2026-08-31"
   },
   {
     "id": "capitalism",
@@ -28,9 +56,24 @@
     "modes": [
       "recognition"
     ],
-    "reason": "今日生词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-08-26"
+    "reason": "飞书薄弱词：必须秒懂",
+    "category": "0824 Weak Vocu",
+    "addedAt": "2026-08-26",
+    "reportedCount": 2,
+    "lastReportedAt": "2026-08-31"
+  },
+  {
+    "id": "claim",
+    "term": "claim",
+    "meaning": "声称；主张；索赔",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "飞书薄弱词：必须秒懂",
+    "category": "0824 Weak Vocu",
+    "addedAt": "2026-08-31",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-08-31"
   },
   {
     "id": "colony",
@@ -55,6 +98,45 @@
     "addedAt": "2026-08-27",
     "reportedCount": 1,
     "lastReportedAt": "2026-08-27"
+  },
+  {
+    "id": "comply-with",
+    "term": "comply with",
+    "meaning": "照做；遵守",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "飞书薄弱词：必须秒懂",
+    "category": "0824 Weak Vocu",
+    "addedAt": "2026-08-31",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-08-31"
+  },
+  {
+    "id": "consequent",
+    "term": "consequent",
+    "meaning": "随之发生的；结果",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "飞书薄弱词：必须秒懂",
+    "category": "0824 Weak Vocu",
+    "addedAt": "2026-08-31",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-08-31"
+  },
+  {
+    "id": "constrain",
+    "term": "constrain",
+    "meaning": "束缚；限制",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "飞书薄弱词：必须秒懂",
+    "category": "0824 Weak Vocu",
+    "addedAt": "2026-08-31",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-08-31"
   },
   {
     "id": "cottage",
@@ -132,6 +214,45 @@
     "lastReportedAt": "2026-08-28"
   },
   {
+    "id": "depict",
+    "term": "depict",
+    "meaning": "描绘；表现",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "飞书薄弱词：必须秒懂",
+    "category": "0824 Weak Vocu",
+    "addedAt": "2026-08-31",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-08-31"
+  },
+  {
+    "id": "determine",
+    "term": "determine",
+    "meaning": "决定",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "飞书薄弱词：必须秒懂",
+    "category": "0824 Weak Vocu",
+    "addedAt": "2026-08-31",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-08-31"
+  },
+  {
+    "id": "emphasize",
+    "term": "emphasize",
+    "meaning": "强调；着重",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "飞书薄弱词：必须秒懂",
+    "category": "0824 Weak Vocu",
+    "addedAt": "2026-08-31",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-08-31"
+  },
+  {
     "id": "end",
     "term": "end",
     "meaning": "目的；目标",
@@ -180,6 +301,32 @@
     "lastReportedAt": "2026-08-27"
   },
   {
+    "id": "extent",
+    "term": "extent",
+    "meaning": "程度；范围",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "飞书薄弱词：必须秒懂",
+    "category": "0824 Weak Vocu",
+    "addedAt": "2026-08-31",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-08-31"
+  },
+  {
+    "id": "factor",
+    "term": "factor",
+    "meaning": "因素；要素",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "飞书薄弱词：必须秒懂",
+    "category": "0824 Weak Vocu",
+    "addedAt": "2026-08-31",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-08-31"
+  },
+  {
     "id": "fast-paced",
     "term": "fast-paced",
     "meaning": "节奏快的；进展迅速的",
@@ -189,6 +336,19 @@
     "reason": "今日生词：识义；常见于 fast-paced environment",
     "category": "我的同步错词",
     "addedAt": "2026-08-25"
+  },
+  {
+    "id": "feasible",
+    "term": "feasible",
+    "meaning": "可行的",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "飞书薄弱词：必须秒懂",
+    "category": "0824 Weak Vocu",
+    "addedAt": "2026-08-31",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-08-31"
   },
   {
     "id": "field",
@@ -204,6 +364,45 @@
     "lastReportedAt": "2026-08-27"
   },
   {
+    "id": "fundamental",
+    "term": "fundamental",
+    "meaning": "基本的；基础的",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "飞书薄弱词：必须秒懂",
+    "category": "0824 Weak Vocu",
+    "addedAt": "2026-08-31",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-08-31"
+  },
+  {
+    "id": "give-rise-to",
+    "term": "give rise to",
+    "meaning": "导致；引起",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "飞书薄弱词：必须秒懂",
+    "category": "0824 Weak Vocu",
+    "addedAt": "2026-08-31",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-08-31"
+  },
+  {
+    "id": "grant",
+    "term": "grant",
+    "meaning": "拨款；授予",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "飞书薄弱词：必须秒懂",
+    "category": "0824 Weak Vocu",
+    "addedAt": "2026-08-31",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-08-31"
+  },
+  {
     "id": "grind",
     "term": "grind",
     "meaning": "磨碎；研磨；苦差事、单调劳作",
@@ -213,6 +412,123 @@
     "reason": "今日生词：识义；注意 the daily grind",
     "category": "我的同步错词",
     "addedAt": "2026-08-25"
+  },
+  {
+    "id": "hence",
+    "term": "hence",
+    "meaning": "因此；由此",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "飞书薄弱词：必须秒懂",
+    "category": "0824 Weak Vocu",
+    "addedAt": "2026-08-31",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-08-31"
+  },
+  {
+    "id": "hinder",
+    "term": "hinder",
+    "meaning": "阻碍",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "飞书薄弱词：必须秒懂",
+    "category": "0824 Weak Vocu",
+    "addedAt": "2026-08-31",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-08-31"
+  },
+  {
+    "id": "impair",
+    "term": "impair",
+    "meaning": "削弱；减少",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "飞书薄弱词：必须秒懂",
+    "category": "0824 Weak Vocu",
+    "addedAt": "2026-08-31",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-08-31"
+  },
+  {
+    "id": "in-accordance-with",
+    "term": "in accordance with",
+    "meaning": "依照；与……一致",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "飞书薄弱词：必须秒懂",
+    "category": "0824 Weak Vocu",
+    "addedAt": "2026-08-31",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-08-31"
+  },
+  {
+    "id": "in-terms-of",
+    "term": "in terms of",
+    "meaning": "就……而言",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "飞书薄弱词：必须秒懂",
+    "category": "0824 Weak Vocu",
+    "addedAt": "2026-08-31",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-08-31"
+  },
+  {
+    "id": "in-the-absence-of",
+    "term": "in the absence of",
+    "meaning": "在缺少……时",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "飞书薄弱词：必须秒懂",
+    "category": "0824 Weak Vocu",
+    "addedAt": "2026-08-31",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-08-31"
+  },
+  {
+    "id": "indicate",
+    "term": "indicate",
+    "meaning": "表明；指出",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "飞书薄弱词：必须秒懂",
+    "category": "0824 Weak Vocu",
+    "addedAt": "2026-08-31",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-08-31"
+  },
+  {
+    "id": "induce",
+    "term": "induce",
+    "meaning": "引起；引诱",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "飞书薄弱词：必须秒懂",
+    "category": "0824 Weak Vocu",
+    "addedAt": "2026-08-31",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-08-31"
+  },
+  {
+    "id": "integrate",
+    "term": "integrate",
+    "meaning": "使……成整体",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "飞书薄弱词：必须秒懂",
+    "category": "0824 Weak Vocu",
+    "addedAt": "2026-08-31",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-08-31"
   },
   {
     "id": "juggle",
@@ -228,13 +544,15 @@
   {
     "id": "lane",
     "term": "lane",
-    "meaning": "小路；车道；泳道",
+    "meaning": "车道；小路；航道",
     "modes": [
       "recognition"
     ],
-    "reason": "今日生词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-08-26"
+    "reason": "飞书薄弱词：必须秒懂",
+    "category": "0824 Weak Vocu",
+    "addedAt": "2026-08-26",
+    "reportedCount": 2,
+    "lastReportedAt": "2026-08-31"
   },
   {
     "id": "large-pans-of-sap-called-evaporators-are-heated-by-means-of-a-fire",
@@ -257,6 +575,19 @@
     "reason": "今日生词：整块识义；商业语境",
     "category": "我的同步错词",
     "addedAt": "2026-08-25"
+  },
+  {
+    "id": "maintain",
+    "term": "maintain",
+    "meaning": "维持；保持；主张",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "飞书薄弱词：必须秒懂",
+    "category": "0824 Weak Vocu",
+    "addedAt": "2026-08-31",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-08-31"
   },
   {
     "id": "means",
@@ -302,11 +633,37 @@
     "modes": [
       "recognition"
     ],
-    "reason": "今日生词：识义",
-    "category": "今日生词",
+    "reason": "飞书薄弱词：必须秒懂",
+    "category": "0824 Weak Vocu",
     "addedAt": "2026-08-27",
+    "reportedCount": 2,
+    "lastReportedAt": "2026-08-31"
+  },
+  {
+    "id": "nevertheless",
+    "term": "nevertheless",
+    "meaning": "然而；尽管如此",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "飞书薄弱词：必须秒懂",
+    "category": "0824 Weak Vocu",
+    "addedAt": "2026-08-31",
     "reportedCount": 1,
-    "lastReportedAt": "2026-08-27"
+    "lastReportedAt": "2026-08-31"
+  },
+  {
+    "id": "nonetheless",
+    "term": "nonetheless",
+    "meaning": "尽管如此",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "飞书薄弱词：必须秒懂",
+    "category": "0824 Weak Vocu",
+    "addedAt": "2026-08-31",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-08-31"
   },
   {
     "id": "obesity",
@@ -315,35 +672,37 @@
     "modes": [
       "recognition"
     ],
-    "reason": "今日生词：识义；名词",
-    "category": "我的同步错词",
-    "addedAt": "2026-08-26"
+    "reason": "飞书薄弱词：必须秒懂",
+    "category": "0824 Weak Vocu",
+    "addedAt": "2026-08-26",
+    "reportedCount": 2,
+    "lastReportedAt": "2026-08-31"
   },
   {
     "id": "pattern",
     "term": "pattern",
-    "meaning": "模式；规律；趋势",
+    "meaning": "模式；规律；分布特征",
     "modes": [
       "recognition"
     ],
-    "reason": "多义误解：原理解为图案；注意 behaviour pattern、a pattern emerges",
-    "category": "多义误解词",
+    "reason": "飞书薄弱词：必须秒懂",
+    "category": "0824 Weak Vocu",
     "addedAt": "2026-08-27",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-08-27"
+    "reportedCount": 2,
+    "lastReportedAt": "2026-08-31"
   },
   {
     "id": "period",
     "term": "period",
-    "meaning": "时期；一段时间",
+    "meaning": "时期；阶段；一段时间",
     "modes": [
       "recognition"
     ],
-    "reason": "多义误解：误联想到句号；注意 a period of time、historical period",
-    "category": "多义误解词",
+    "reason": "飞书薄弱词：必须秒懂",
+    "category": "0824 Weak Vocu",
     "addedAt": "2026-08-27",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-08-27"
+    "reportedCount": 2,
+    "lastReportedAt": "2026-08-31"
   },
   {
     "id": "perks",
@@ -416,6 +775,19 @@
     "lastReportedAt": "2026-08-27"
   },
   {
+    "id": "practice",
+    "term": "practice",
+    "meaning": "实践；惯例；练习",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "飞书薄弱词：必须秒懂",
+    "category": "0824 Weak Vocu",
+    "addedAt": "2026-08-31",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-08-31"
+  },
+  {
     "id": "practise",
     "term": "practise",
     "meaning": "练习；实践（英式动词拼写）",
@@ -479,6 +851,32 @@
     "lastReportedAt": "2026-08-27"
   },
   {
+    "id": "rather-than",
+    "term": "rather than",
+    "meaning": "而不是；而非",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "飞书薄弱词：必须秒懂",
+    "category": "0824 Weak Vocu",
+    "addedAt": "2026-08-31",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-08-31"
+  },
+  {
+    "id": "reflect",
+    "term": "reflect",
+    "meaning": "反映；体现；思考",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "飞书薄弱词：必须秒懂",
+    "category": "0824 Weak Vocu",
+    "addedAt": "2026-08-31",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-08-31"
+  },
+  {
     "id": "regard",
     "term": "regard",
     "meaning": "n. 关心, 注意, 尊敬, 关系, 问候\\nvt. 视为, 注意, 考虑, 和...有关, 看待\\nvi. 注视, 注意",
@@ -493,15 +891,43 @@
     "lastReportedAt": "2026-08-28"
   },
   {
-    "id": "resilience",
-    "term": "resilience",
-    "meaning": "韧性；恢复力；适应力",
+    "id": "relevant",
+    "term": "relevant",
+    "meaning": "相关的；切题的",
     "modes": [
       "recognition"
     ],
-    "reason": "今日生词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-08-26"
+    "reason": "飞书薄弱词：必须秒懂",
+    "category": "0824 Weak Vocu",
+    "addedAt": "2026-08-31",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-08-31"
+  },
+  {
+    "id": "resemble",
+    "term": "resemble",
+    "meaning": "像；与……相似",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "飞书薄弱词：必须秒懂",
+    "category": "0824 Weak Vocu",
+    "addedAt": "2026-08-31",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-08-31"
+  },
+  {
+    "id": "resilience",
+    "term": "resilience",
+    "meaning": "韧性；恢复力；复原力",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "飞书薄弱词：必须秒懂",
+    "category": "0824 Weak Vocu",
+    "addedAt": "2026-08-26",
+    "reportedCount": 2,
+    "lastReportedAt": "2026-08-31"
   },
   {
     "id": "resurfaced",
@@ -513,6 +939,32 @@
     "reason": "今日生词：识义；道路语境常指重新铺路面",
     "category": "我的同步错词",
     "addedAt": "2026-08-24"
+  },
+  {
+    "id": "retain",
+    "term": "retain",
+    "meaning": "保留；保持；记住",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "飞书薄弱词：必须秒懂",
+    "category": "0824 Weak Vocu",
+    "addedAt": "2026-08-31",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-08-31"
+  },
+  {
+    "id": "reveal",
+    "term": "reveal",
+    "meaning": "揭示；显示",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "飞书薄弱词：必须秒懂",
+    "category": "0824 Weak Vocu",
+    "addedAt": "2026-08-31",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-08-31"
   },
   {
     "id": "round",
@@ -539,15 +991,28 @@
   {
     "id": "scale",
     "term": "scale",
-    "meaning": "规模；程度；尺度",
+    "meaning": "规模；尺度；范围",
     "modes": [
       "recognition"
     ],
-    "reason": "多义误解：原理解为秤；注意 large scale、on a global scale",
-    "category": "多义误解词",
+    "reason": "飞书薄弱词：必须秒懂",
+    "category": "0824 Weak Vocu",
     "addedAt": "2026-08-27",
+    "reportedCount": 2,
+    "lastReportedAt": "2026-08-31"
+  },
+  {
+    "id": "shift",
+    "term": "shift",
+    "meaning": "转变；变化",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "飞书薄弱词：必须秒懂",
+    "category": "0824 Weak Vocu",
+    "addedAt": "2026-08-31",
     "reportedCount": 1,
-    "lastReportedAt": "2026-08-27"
+    "lastReportedAt": "2026-08-31"
   },
   {
     "id": "soak",
@@ -563,15 +1028,69 @@
     "lastReportedAt": "2026-08-27"
   },
   {
-    "id": "stoicism",
-    "term": "Stoicism",
-    "meaning": "斯多葛主义；斯多葛哲学",
+    "id": "state",
+    "term": "state",
+    "meaning": "状态；国家；陈述",
     "modes": [
       "recognition"
     ],
-    "reason": "今日生词：识义；专有名词",
-    "category": "我的同步错词",
-    "addedAt": "2026-08-26"
+    "reason": "飞书薄弱词：必须秒懂",
+    "category": "0824 Weak Vocu",
+    "addedAt": "2026-08-31",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-08-31"
+  },
+  {
+    "id": "stoicism",
+    "term": "Stoicism",
+    "meaning": "斯多葛主义；坚忍克己的人生态度",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "飞书薄弱词：必须秒懂",
+    "category": "0824 Weak Vocu",
+    "addedAt": "2026-08-26",
+    "reportedCount": 2,
+    "lastReportedAt": "2026-08-31"
+  },
+  {
+    "id": "strip",
+    "term": "strip",
+    "meaning": "剥去；去除",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "飞书薄弱词：必须秒懂",
+    "category": "0824 Weak Vocu",
+    "addedAt": "2026-08-31",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-08-31"
+  },
+  {
+    "id": "substitute",
+    "term": "substitute",
+    "meaning": "替代品；替代；代替品",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "飞书薄弱词：必须秒懂",
+    "category": "0824 Weak Vocu",
+    "addedAt": "2026-08-31",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-08-31"
+  },
+  {
+    "id": "term",
+    "term": "term",
+    "meaning": "术语；期限；条件",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "飞书薄弱词：必须秒懂",
+    "category": "0824 Weak Vocu",
+    "addedAt": "2026-08-31",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-08-31"
   },
   {
     "id": "tethered",
@@ -584,8 +1103,8 @@
     "category": "我的同步错词",
     "addedAt": "2026-08-28",
     "phonetic": "'teðә",
-    "lastReportedAt": "2026-08-28",
-    "reportedCount": 1
+    "reportedCount": 1,
+    "lastReportedAt": "2026-08-28"
   },
   {
     "id": "textile",
@@ -601,13 +1120,80 @@
   {
     "id": "therapy",
     "term": "therapy",
-    "meaning": "治疗；疗法",
+    "meaning": "治疗；理疗",
     "modes": [
       "recognition"
     ],
-    "reason": "今日生词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-08-26"
+    "reason": "飞书薄弱词：必须秒懂",
+    "category": "0824 Weak Vocu",
+    "addedAt": "2026-08-26",
+    "reportedCount": 2,
+    "lastReportedAt": "2026-08-31"
+  },
+  {
+    "id": "thereby",
+    "term": "thereby",
+    "meaning": "因而；从而",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "飞书薄弱词：必须秒懂",
+    "category": "0824 Weak Vocu",
+    "addedAt": "2026-08-31",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-08-31"
+  },
+  {
+    "id": "threaten",
+    "term": "threaten",
+    "meaning": "威胁；危及",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "飞书薄弱词：必须秒懂",
+    "category": "0824 Weak Vocu",
+    "addedAt": "2026-08-31",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-08-31"
+  },
+  {
+    "id": "trait",
+    "term": "trait",
+    "meaning": "特性；特征",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "飞书薄弱词：必须秒懂",
+    "category": "0824 Weak Vocu",
+    "addedAt": "2026-08-31",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-08-31"
+  },
+  {
+    "id": "transmit",
+    "term": "transmit",
+    "meaning": "传达；传输",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "飞书薄弱词：必须秒懂",
+    "category": "0824 Weak Vocu",
+    "addedAt": "2026-08-31",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-08-31"
+  },
+  {
+    "id": "underlie",
+    "term": "underlie",
+    "meaning": "成为……基础",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "飞书薄弱词：必须秒懂",
+    "category": "0824 Weak Vocu",
+    "addedAt": "2026-08-31",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-08-31"
   },
   {
     "id": "ventilation",
@@ -621,5 +1207,18 @@
     "addedAt": "2026-08-27",
     "reportedCount": 1,
     "lastReportedAt": "2026-08-27"
+  },
+  {
+    "id": "whereas",
+    "term": "whereas",
+    "meaning": "然而；鉴于（法律语境）",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "飞书薄弱词：必须秒懂",
+    "category": "0824 Weak Vocu",
+    "addedAt": "2026-08-31",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-08-31"
   }
 ]

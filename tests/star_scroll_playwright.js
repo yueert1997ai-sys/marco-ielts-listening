@@ -38,6 +38,16 @@ async (page) => {
     tagPresent: Boolean(element.closest(".word-card")?.querySelector("[data-star-tag]")),
   }));
 
+  await page.locator('[data-filter="errors"]').click();
+  const errorCard = page.locator(".word-card").nth(8);
+  await errorCard.scrollIntoViewIfNeeded();
+  const errorButton = errorCard.locator(".star-button");
+  const errorBefore = await page.evaluate(() => window.scrollY);
+  await errorButton.click();
+  await page.waitForTimeout(80);
+  const errorAfter = await page.evaluate(() => window.scrollY);
+  await errorButton.click();
+
   await page.evaluate(async () => {
     const state = JSON.parse(localStorage.getItem("marcoIeltsListening.v1"));
     const items = await fetch("./data/listening.json").then((response) => response.json());
@@ -57,6 +67,7 @@ async (page) => {
   const maxShift = Math.max(
     Math.abs(afterStar - before),
     Math.abs(afterUnstar - afterStar),
+    Math.abs(errorAfter - errorBefore),
     Math.abs(filteredAfter - filteredBefore),
   );
   if (before < 300
@@ -71,10 +82,11 @@ async (page) => {
     || unstarred.label !== "标为重点"
     || unstarred.cardStarred
     || unstarred.tagPresent
+    || errorBefore < 300
     || filteredBefore < 300
     || filteredCount !== 19) {
-    throw new Error(JSON.stringify({ before, afterStar, afterUnstar, filteredBefore, filteredAfter, filteredCount, maxShift, starred, unstarred }));
+    throw new Error(JSON.stringify({ before, afterStar, afterUnstar, errorBefore, errorAfter, filteredBefore, filteredAfter, filteredCount, maxShift, starred, unstarred }));
   }
 
-  return { ok: true, before, afterStar, afterUnstar, filteredBefore, filteredAfter, filteredCount, maxShift, starred, unstarred };
+  return { ok: true, before, afterStar, afterUnstar, errorBefore, errorAfter, filteredBefore, filteredAfter, filteredCount, maxShift, starred, unstarred };
 }
