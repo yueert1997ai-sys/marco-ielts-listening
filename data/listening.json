@@ -2011,6 +2011,32 @@
     "audioPath": "audio/means.mp3"
   },
   {
+    "id": "melt",
+    "term": "melt",
+    "meaning": "融化；熔化；使融化",
+    "note": "用户手工加入错词；未说明错误类型，按识义收录",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "melt"
+    ],
+    "errorNote": "用户手工加入错词；未说明错误类型，按识义收录",
+    "userAddedAt": "2026-08-31",
+    "sourceType": "user",
+    "partOfSpeech": "动词",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-08-31",
+    "sourceRevision": 4,
+    "audioText": "melt",
+    "audioPath": "audio/melt.mp3"
+  },
+  {
     "id": "meticulous",
     "term": "meticulous",
     "meaning": "一丝不苟的；非常仔细的",

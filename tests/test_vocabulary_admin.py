@@ -59,6 +59,16 @@ class VocabularyAdminTests(unittest.TestCase):
         self.assertEqual(merged["colossal"]["reportedCount"], 3)
         self.assertEqual(merged["colossal"]["addedAt"], "2026-08-20")
 
+    def test_manual_intake_preserves_explicit_part_of_speech(self) -> None:
+        merged = {"melt": import_wrong_words.clean({
+            "term": "melt", "meaning": "融化；熔化；使融化", "mode": "recognition",
+            "partOfSpeech": "动词", "addedAt": "2026-08-31",
+        })}
+        import_wrong_words.merge_intake({
+            "term": "melt", "meaning": "融化；熔化；使融化", "mode": "recognition",
+        }, merged, [], "2026-09-01")
+        self.assertEqual(merged["melt"]["partOfSpeech"], "动词")
+
     def test_override_can_archive_and_restore(self) -> None:
         known = {"curtain": {"id": "curtain", "term": "curtain", "meaning": "窗帘", "modes": ["spelling"]}}
         overrides = {}

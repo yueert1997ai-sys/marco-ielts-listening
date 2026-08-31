@@ -52,8 +52,12 @@ def main() -> None:
         fail("Listening homepage is missing the Confusions entry")
 
     listening = json.loads((ROOT / "data" / "listening.json").read_text(encoding="utf-8"))
-    if len(listening) != 733:
-        fail(f"Listening card count changed unexpectedly: {len(listening)}")
+    if not isinstance(listening, list) or not listening:
+        fail("Listening runtime must remain a non-empty card list")
+    if any(not item.get("id") or not item.get("term") or not item.get("modes") for item in listening):
+        fail("Listening runtime contains an invalid card")
+    if any(set(item) & {"chunk", "sentence", "confusionGroupId"} for item in listening):
+        fail("Confusions-only fields leaked into Listening runtime")
     print(json.dumps({"ok": True, "version": version, "groups": len(groups), "terms": len(terms), "listeningCards": len(listening)}, ensure_ascii=False))
 
 

@@ -15,7 +15,7 @@ OUTPUT = ROOT / "source" / "custom_words.json"
 OVERRIDES = ROOT / "source" / "vocabulary_overrides.json"
 BUILT_DATA = ROOT / "data" / "listening.json"
 ALLOWED_ISSUE_AUTHOR = "yueert1997ai-sys"
-ALLOWED_PATCH_FIELDS = {"meaning", "category", "modes", "reason", "note", "phonetic"}
+ALLOWED_PATCH_FIELDS = {"meaning", "category", "modes", "reason", "note", "phonetic", "partOfSpeech"}
 
 
 def key_for(value: str) -> str:
@@ -96,6 +96,9 @@ def clean(raw: dict, *, today: str | None = None) -> dict:
     phonetic = str(raw.get("phonetic") or "").strip()
     if phonetic:
         item["phonetic"] = phonetic
+    part_of_speech = str(raw.get("partOfSpeech") or raw.get("pos") or "").strip()
+    if part_of_speech:
+        item["partOfSpeech"] = part_of_speech
     reported_count = int(raw.get("reportedCount") or 0)
     if reported_count:
         item["reportedCount"] = reported_count
@@ -151,6 +154,8 @@ def merge_intake(raw: dict, merged: dict[str, dict], base_items: list[dict], tod
         incoming["reportedCount"] = int(previous.get("reportedCount") or 1) + 1
         if previous.get("phonetic") and not incoming.get("phonetic"):
             incoming["phonetic"] = previous["phonetic"]
+        if previous.get("partOfSpeech") and not incoming.get("partOfSpeech"):
+            incoming["partOfSpeech"] = previous["partOfSpeech"]
     else:
         incoming["reportedCount"] = 1
     incoming["id"] = canonical_id

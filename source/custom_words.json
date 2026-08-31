@@ -707,6 +707,20 @@
     "lastReportedAt": "2026-08-27"
   },
   {
+    "id": "melt",
+    "term": "melt",
+    "meaning": "融化；熔化；使融化",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "用户手工加入错词；未说明错误类型，按识义收录",
+    "category": "我的同步错词",
+    "addedAt": "2026-08-31",
+    "partOfSpeech": "动词",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-08-31"
+  },
+  {
     "id": "meticulous",
     "term": "meticulous",
     "meaning": "一丝不苟的；非常仔细的",
