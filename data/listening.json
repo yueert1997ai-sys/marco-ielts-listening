@@ -151,6 +151,32 @@
     "audioPath": "audio/anticipation.mp3"
   },
   {
+    "id": "appeal",
+    "term": "appeal",
+    "meaning": "呼吁；请求；吸引力；上诉；吸引",
+    "note": "C14-T2-P3 阅读高价值多义词：appeal 可作名词或动词，常见 appeal to = 呼吁/吸引；appeal = 吸引力/诉求。",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "appeal"
+    ],
+    "errorNote": "C14-T2-P3 阅读高价值多义词：appeal 可作名词或动词，常见 appeal to = 呼吁/吸引；appeal = 吸引力/诉求。",
+    "userAddedAt": "2026-09-01",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-01",
+    "partOfSpeech": "名词",
+    "sourceRevision": 4,
+    "audioText": "appeal",
+    "audioPath": "audio/appeal.mp3"
+  },
+  {
     "id": "appliances",
     "term": "appliances",
     "meaning": "家用电器；器具（appliance 的复数）",
@@ -479,6 +505,32 @@
     "audioPath": "audio/carpet.mp3"
   },
   {
+    "id": "certain",
+    "term": "certain",
+    "meaning": "某个；某种；某些；确定的",
+    "note": "C14-T2-P3 Heading：a certain approach = 某一种/某种特定做法；注意此处不是‘确定的’。",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "certain"
+    ],
+    "errorNote": "C14-T2-P3 Heading：a certain approach = 某一种/某种特定做法；注意此处不是‘确定的’。",
+    "userAddedAt": "2026-09-01",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-01",
+    "partOfSpeech": "形容词",
+    "sourceRevision": 4,
+    "audioText": "certain",
+    "audioPath": "audio/certain.mp3"
+  },
+  {
     "id": "claim",
     "term": "claim",
     "meaning": "声称；主张；索赔",
@@ -575,6 +627,32 @@
     "sourceRevision": 4,
     "audioText": "commitment",
     "audioPath": "audio/commitment.mp3"
+  },
+  {
+    "id": "complaint",
+    "term": "complaint",
+    "meaning": "抱怨；不满；投诉；负面意见",
+    "note": "C14-T2-P3 Heading 直接影响判断：Complaints about the impact... = 对某种做法影响的不满/负面评价；不要只理解成正式‘投诉’。",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "complaint"
+    ],
+    "errorNote": "C14-T2-P3 Heading 直接影响判断：Complaints about the impact... = 对某种做法影响的不满/负面评价；不要只理解成正式‘投诉’。",
+    "userAddedAt": "2026-09-01",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-01",
+    "partOfSpeech": "名词",
+    "sourceRevision": 4,
+    "audioText": "complaint",
+    "audioPath": "audio/complaint.mp3"
   },
   {
     "id": "comply-with",
@@ -679,6 +757,34 @@
     "sourceRevision": 4,
     "audioText": "compromised",
     "audioPath": "audio/compromised.mp3"
+  },
+  {
+    "id": "concern",
+    "term": "concern",
+    "meaning": "担忧；关心；关注；涉及；与……有关",
+    "note": "—",
+    "category": "情绪、态度与感受",
+    "sections": [
+      "P2 + P3 必会看懂词",
+      "常见第二义",
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "concern"
+    ],
+    "errorNote": "C14-T2-P3 高频多义词：不要只记‘关心’。concerning = 关于/涉及，≈ regarding/about；recommendations concerning business activities = 关于商业活动的建议。",
+    "userAddedAt": "2026-09-01",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-01",
+    "partOfSpeech": "名词",
+    "sourceRevision": 4,
+    "audioText": "concern",
+    "audioPath": "audio/concern.mp3"
   },
   {
     "id": "consequent",
@@ -1560,9 +1666,9 @@
   {
     "id": "fundamental",
     "term": "fundamental",
-    "meaning": "基本的；基础的",
-    "note": "飞书薄弱词：必须秒懂",
-    "category": "0824 Weak Vocu",
+    "meaning": "根本的；基础的；核心的；基本的",
+    "note": "C14-T2-P3 Q30 直接影响 Heading：fundamental beliefs ≈ basic assumptions = 根本观念/底层认知。",
+    "category": "我的同步错词",
     "sections": [
       "我的同步错词"
     ],
@@ -1573,11 +1679,11 @@
     "acceptedAnswers": [
       "fundamental"
     ],
-    "errorNote": "飞书薄弱词：必须秒懂",
+    "errorNote": "C14-T2-P3 Q30 直接影响 Heading：fundamental beliefs ≈ basic assumptions = 根本观念/底层认知。",
     "userAddedAt": "2026-08-31",
     "sourceType": "user",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-08-31",
+    "reportedCount": 2,
+    "lastReportedAt": "2026-09-01",
     "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "fundamental",
@@ -2870,6 +2976,32 @@
     "audioPath": "audio/nonetheless.mp3"
   },
   {
+    "id": "numerous",
+    "term": "numerous",
+    "meaning": "许多的；大量的；众多的",
+    "note": "C14-T2-P3 阅读生词：需快速识别 numerous = many/a large number of。",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "numerous"
+    ],
+    "errorNote": "C14-T2-P3 阅读生词：需快速识别 numerous = many/a large number of。",
+    "userAddedAt": "2026-09-01",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-01",
+    "partOfSpeech": "形容词",
+    "sourceRevision": 4,
+    "audioText": "numerous",
+    "audioPath": "audio/numerous.mp3"
+  },
+  {
     "id": "obesity",
     "term": "obesity",
     "meaning": "肥胖；肥胖症",
@@ -3964,6 +4096,32 @@
     "sourceRevision": 4,
     "audioText": "scale",
     "audioPath": "audio/scale.mp3"
+  },
+  {
+    "id": "session",
+    "term": "session",
+    "meaning": "一场；一次；会议；课程；一段活动时间",
+    "note": "C14-T2-P3 阅读生词：sessions 常指一场会议/课程/活动，复数 sessions 归并主词。",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "session"
+    ],
+    "errorNote": "C14-T2-P3 阅读生词：sessions 常指一场会议/课程/活动，复数 sessions 归并主词。",
+    "userAddedAt": "2026-09-01",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-01",
+    "partOfSpeech": "名词",
+    "sourceRevision": 4,
+    "audioText": "session",
+    "audioPath": "audio/session.mp3"
   },
   {
     "id": "shift",
@@ -7506,28 +7664,6 @@
     "sourceRevision": 4,
     "audioText": "computer",
     "audioPath": "audio/computer.mp3"
-  },
-  {
-    "id": "concern",
-    "term": "concern",
-    "meaning": "担忧；关切",
-    "note": "—",
-    "category": "情绪、态度与感受",
-    "sections": [
-      "P2 + P3 必会看懂词",
-      "常见第二义"
-    ],
-    "modes": [
-      "recognition"
-    ],
-    "isRealError": false,
-    "acceptedAnswers": [
-      "concern"
-    ],
-    "partOfSpeech": "名词",
-    "sourceRevision": 4,
-    "audioText": "concern",
-    "audioPath": "audio/concern.mp3"
   },
   {
     "id": "concrete",

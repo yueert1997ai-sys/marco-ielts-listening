@@ -63,6 +63,19 @@
     "lastReportedAt": "2026-09-01"
   },
   {
+    "id": "appeal",
+    "term": "appeal",
+    "meaning": "呼吁；请求；吸引力；上诉；吸引",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "C14-T2-P3 阅读高价值多义词：appeal 可作名词或动词，常见 appeal to = 呼吁/吸引；appeal = 吸引力/诉求。",
+    "category": "我的同步错词",
+    "addedAt": "2026-09-01",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-01"
+  },
+  {
     "id": "appliances",
     "term": "appliances",
     "meaning": "家用电器；器具（appliance 的复数）",
@@ -154,6 +167,19 @@
     "lastReportedAt": "2026-08-31"
   },
   {
+    "id": "certain",
+    "term": "certain",
+    "meaning": "某个；某种；某些；确定的",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "C14-T2-P3 Heading：a certain approach = 某一种/某种特定做法；注意此处不是‘确定的’。",
+    "category": "我的同步错词",
+    "addedAt": "2026-09-01",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-01"
+  },
+  {
     "id": "claim",
     "term": "claim",
     "meaning": "声称；主张；索赔",
@@ -189,6 +215,19 @@
     "addedAt": "2026-08-27",
     "reportedCount": 1,
     "lastReportedAt": "2026-08-27"
+  },
+  {
+    "id": "complaint",
+    "term": "complaint",
+    "meaning": "抱怨；不满；投诉；负面意见",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "C14-T2-P3 Heading 直接影响判断：Complaints about the impact... = 对某种做法影响的不满/负面评价；不要只理解成正式‘投诉’。",
+    "category": "我的同步错词",
+    "addedAt": "2026-09-01",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-01"
   },
   {
     "id": "comply-with",
@@ -237,6 +276,19 @@
       "recognition"
     ],
     "reason": "C14-T1-P3 Q32 直接致错：compromised employee morale = 士气受损/低落；本题曾因把 compromise 与 comprise 混淆而误判。重点反复刷",
+    "category": "我的同步错词",
+    "addedAt": "2026-09-01",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-01"
+  },
+  {
+    "id": "concern",
+    "term": "concern",
+    "meaning": "担忧；关心；关注；涉及；与……有关",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "C14-T2-P3 高频多义词：不要只记‘关心’。concerning = 关于/涉及，≈ regarding/about；recommendations concerning business activities = 关于商业活动的建议。",
     "category": "我的同步错词",
     "addedAt": "2026-09-01",
     "reportedCount": 1,
@@ -610,15 +662,15 @@
   {
     "id": "fundamental",
     "term": "fundamental",
-    "meaning": "基本的；基础的",
+    "meaning": "根本的；基础的；核心的；基本的",
     "modes": [
       "recognition"
     ],
-    "reason": "飞书薄弱词：必须秒懂",
-    "category": "0824 Weak Vocu",
+    "reason": "C14-T2-P3 Q30 直接影响 Heading：fundamental beliefs ≈ basic assumptions = 根本观念/底层认知。",
+    "category": "我的同步错词",
     "addedAt": "2026-08-31",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-08-31"
+    "reportedCount": 2,
+    "lastReportedAt": "2026-09-01"
   },
   {
     "id": "give-rise-to",
@@ -1094,6 +1146,19 @@
     "lastReportedAt": "2026-08-31"
   },
   {
+    "id": "numerous",
+    "term": "numerous",
+    "meaning": "许多的；大量的；众多的",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "C14-T2-P3 阅读生词：需快速识别 numerous = many/a large number of。",
+    "category": "我的同步错词",
+    "addedAt": "2026-09-01",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-01"
+  },
+  {
     "id": "obesity",
     "term": "obesity",
     "meaning": "肥胖；肥胖症",
@@ -1524,6 +1589,19 @@
     "addedAt": "2026-08-27",
     "reportedCount": 2,
     "lastReportedAt": "2026-08-31"
+  },
+  {
+    "id": "session",
+    "term": "session",
+    "meaning": "一场；一次；会议；课程；一段活动时间",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "C14-T2-P3 阅读生词：sessions 常指一场会议/课程/活动，复数 sessions 归并主词。",
+    "category": "我的同步错词",
+    "addedAt": "2026-09-01",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-01"
   },
   {
     "id": "shift",
