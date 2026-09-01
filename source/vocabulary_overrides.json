@@ -1,5 +1,20 @@
 [
   {
+    "id": "aim",
+    "snapshot": {
+      "id": "aim",
+      "term": "aim",
+      "meaning": "目标；目的",
+      "category": "原因、问题、优缺点与评价",
+      "modes": [
+        "recognition"
+      ]
+    },
+    "meaning": "想达到的目标；努力方向",
+    "partOfSpeech": "名词",
+    "updatedAt": "2026-09-01"
+  },
+  {
     "id": "end",
     "snapshot": {
       "id": "end",
@@ -27,6 +42,13 @@
     },
     "category": "多义误解词",
     "updatedAt": "2026-08-27"
+  },
+  {
+    "id": "neglecting",
+    "canonicalTerm": "neglect",
+    "meaning": "忽视；疏于照顾",
+    "partOfSpeech": "动词",
+    "updatedAt": "2026-09-01"
   },
   {
     "id": "practical",
@@ -69,28 +91,6 @@
     },
     "meaning": "用途；存在或行动的目的",
     "category": "多义误解词",
-    "updatedAt": "2026-09-01"
-  },
-  {
-    "id": "aim",
-    "snapshot": {
-      "id": "aim",
-      "term": "aim",
-      "meaning": "目标；目的",
-      "category": "原因、问题、优缺点与评价",
-      "modes": [
-        "recognition"
-      ]
-    },
-    "meaning": "想达到的目标；努力方向",
-    "partOfSpeech": "名词",
-    "updatedAt": "2026-09-01"
-  },
-  {
-    "id": "neglecting",
-    "canonicalTerm": "neglect",
-    "meaning": "忽视；疏于照顾",
-    "partOfSpeech": "动词",
     "updatedAt": "2026-09-01"
   },
   {

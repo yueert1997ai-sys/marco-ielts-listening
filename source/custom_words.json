@@ -178,6 +178,45 @@
     "lastReportedAt": "2026-08-31"
   },
   {
+    "id": "comprise",
+    "term": "comprise",
+    "meaning": "包含；由……组成；构成",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "高频混淆词：容易与 compromise 混淆。comprise 表示组成/包含，如 A comprises B；不是‘妥协’或‘受损’",
+    "category": "我的同步错词",
+    "addedAt": "2026-09-01",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-01"
+  },
+  {
+    "id": "compromise",
+    "term": "compromise",
+    "meaning": "妥协；折中；损害；削弱；危及",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "高频混淆词：长期与 comprise 混淆。除‘妥协’外，雅思阅读高频义为损害/削弱，如 compromise safety / health / security",
+    "category": "我的同步错词",
+    "addedAt": "2026-09-01",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-01"
+  },
+  {
+    "id": "compromised",
+    "term": "compromised",
+    "meaning": "受损的；被削弱的；受到威胁的",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "C14-T1-P3 Q32 直接致错：compromised employee morale = 士气受损/低落；本题曾因把 compromise 与 comprise 混淆而误判。重点反复刷",
+    "category": "我的同步错词",
+    "addedAt": "2026-09-01",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-01"
+  },
+  {
     "id": "consequent",
     "term": "consequent",
     "meaning": "随之发生的；结果",
@@ -366,9 +405,9 @@
     "reason": "C15-T4-P3 生词：原文 disposed，归并到原形 dispose；废弃物处置语境",
     "category": "我的同步错词",
     "addedAt": "2026-08-31",
+    "partOfSpeech": "动词",
     "reportedCount": 1,
     "lastReportedAt": "2026-08-31",
-    "partOfSpeech": "动词",
     "numberVariants": [
       "disposed"
     ]
@@ -422,9 +461,9 @@
     "reason": "C15-T2-P3 高价值同义词：energising → stimulating",
     "category": "我的同步错词",
     "addedAt": "2026-08-31",
+    "partOfSpeech": "形容词",
     "reportedCount": 1,
-    "lastReportedAt": "2026-08-31",
-    "partOfSpeech": "形容词"
+    "lastReportedAt": "2026-08-31"
   },
   {
     "id": "erect",
@@ -705,9 +744,9 @@
     "reason": "C15-T4-P3 生词：insulating material / 隔热语境不熟",
     "category": "我的同步错词",
     "addedAt": "2026-08-31",
+    "partOfSpeech": "形容词",
     "reportedCount": 1,
-    "lastReportedAt": "2026-08-31",
-    "partOfSpeech": "形容词"
+    "lastReportedAt": "2026-08-31"
   },
   {
     "id": "integrate",
@@ -1353,9 +1392,9 @@
     "reason": "C15-T2-P3 直接致错：误看成 simulating，且词义不熟；energising → stimulating",
     "category": "我的同步错词",
     "addedAt": "2026-08-31",
+    "partOfSpeech": "形容词",
     "reportedCount": 1,
-    "lastReportedAt": "2026-08-31",
-    "partOfSpeech": "形容词"
+    "lastReportedAt": "2026-08-31"
   },
   {
     "id": "stoicism",
@@ -1445,9 +1484,9 @@
     "reason": "后台录入生词：原文 tethered，归并到原形 tether",
     "category": "我的同步错词",
     "addedAt": "2026-08-28",
+    "partOfSpeech": "动词",
     "reportedCount": 1,
     "lastReportedAt": "2026-08-28",
-    "partOfSpeech": "动词",
     "numberVariants": [
       "tethered"
     ]
