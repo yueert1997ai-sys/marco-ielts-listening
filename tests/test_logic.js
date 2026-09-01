@@ -326,7 +326,7 @@ test("result note has no dangling separator when source note is empty", () => {
 test("different published version triggers an update", () => assert(logic.hasVersionUpdate("v2.11.1", "v2.11.2")));
 test("matching published version does not trigger an update", () => assert.equal(logic.hasVersionUpdate("v2.11.2", "v2.11.2"), false));
 test("intervals match spec", () => assert.deepEqual(logic.INTERVALS, [1, 3, 7, 14, 30, 60]));
-test("visible app version matches this release", () => assert.equal(logic.APP_VERSION, "v2.16.0"));
+test("visible app version matches this release", () => assert.equal(logic.APP_VERSION, "v2.17.0"));
 test("direction response limit is two seconds", () => assert.equal(logic.DIRECTION_RESPONSE_LIMIT_MS, 2000));
 test("hard direction response limit is one second", () => assert.equal(logic.HARD_DIRECTION_RESPONSE_LIMIT_MS, 1000));
 test("hard direction audio plays at one point four speed", () => assert.equal(logic.HARD_DIRECTION_PLAYBACK_RATE, 1.4));
@@ -435,6 +435,20 @@ test("unknown casual paste remains a preview draft needing a meaning", () => {
 test("numeric-leading vocabulary phrase is accepted", () => {
   const parsed = logic.parseWrongWordInput('[{"term":"12-month maternity cover contract","meaning":"产假替岗合同","mode":"recognition"}]');
   assert.equal(parsed[0].id, "12-month-maternity-cover-contract");
+});
+test("full sentences are rejected by structured and casual vocabulary intake", () => {
+  const sentence = "Large pans of sap called evaporators are heated by means of a fire";
+  assert.throws(() => logic.parseWrongWordInput(JSON.stringify([{
+    term: sentence, meaning: "装有树液的大锅用火加热", mode: "recognition",
+  }])), /完整句子不能加入词库/);
+  assert.throws(() => logic.parseWrongWordDrafts(sentence, []), /完整句子不能加入词库/);
+});
+test("legacy local full sentences are removed without breaking startup", () => {
+  const merged = logic.mergeCustomItems(items, [{
+    term: "Large pans of sap called evaporators are heated by means of a fire",
+    meaning: "装有树液的大锅用火加热", mode: "recognition",
+  }]);
+  assert.equal(merged.some((item) => item.term.startsWith("Large pans of sap")), false);
 });
 test("custom word merges with an existing item", () => {
   const merged = logic.mergeCustomItems(items, [{ term: "carpet", meaning: "地毯", mode: "both", reason: "又错了" }]);

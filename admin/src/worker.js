@@ -118,7 +118,8 @@ function validateModes(value) {
 }
 
 function validTerm(term) {
-  return /^[A-Za-z0-9][A-Za-z0-9 '&-]*$/.test(String(term || "").trim());
+  const clean = String(term || "").trim();
+  return clean.split(/\s+/).length <= 6 && /^[A-Za-z0-9][A-Za-z0-9 '&-]*$/.test(clean);
 }
 
 async function requireSession(request, env) {
@@ -264,7 +265,7 @@ async function vocabularyResponse(env) {
       entries: audit.uniqueEntries,
       sourceRevision: audit.sourceRevision,
       lastSyncedAt: pending.find((item) => item.status === "published")?.updated_at || null,
-      adminVersion: "v1.0.0",
+      adminVersion: "v1.0.1",
       trainingBaseUrl: base,
     },
   });

@@ -69,6 +69,24 @@ class VocabularyAdminTests(unittest.TestCase):
         }, merged, [], "2026-09-01")
         self.assertEqual(merged["melt"]["partOfSpeech"], "动词")
 
+    def test_manual_intake_rejects_full_sentences(self) -> None:
+        with self.assertRaisesRegex(SystemExit, "Full sentences cannot be added"):
+            import_wrong_words.clean({
+                "term": "Large pans of sap called evaporators are heated by means of a fire",
+                "meaning": "装有树液的大锅用火加热",
+                "mode": "recognition",
+            })
+
+    def test_build_rejects_full_sentences_from_any_source(self) -> None:
+        rows = [{
+            "term": "Large pans of sap called evaporators are heated by means of a fire",
+            "meaning": "装有树液的大锅用火加热", "note": "整句",
+            "section": "P2 + P3 必会看懂词", "category": "误录",
+        }]
+        with self.assertRaisesRegex(SystemExit, "full sentence"):
+            items, audit = build_listening.build(rows, 4, [], [])
+            build_listening.validate(items, audit)
+
     def test_override_can_archive_and_restore(self) -> None:
         known = {"curtain": {"id": "curtain", "term": "curtain", "meaning": "窗帘", "modes": ["spelling"]}}
         overrides = {}

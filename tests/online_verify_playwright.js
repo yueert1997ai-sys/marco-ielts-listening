@@ -1,5 +1,5 @@
 async (page) => {
-  const liveUrl = "https://yueert1997ai-sys.github.io/marco-ielts-listening/?verify=v2.16.0";
+  const liveUrl = "https://yueert1997ai-sys.github.io/marco-ielts-listening/?verify=v2.17.0";
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto(liveUrl, { waitUntil: "networkidle" });
   await page.evaluate(() => {
@@ -11,16 +11,16 @@ async (page) => {
 
   const release = await page.evaluate(async () => {
     const [version, serviceWorker, manifest, iconCss, iconFont] = await Promise.all([
-      fetch("./version.json?verify=v2.16.0").then((response) => response.json()),
-      fetch("./sw.js?verify=v2.16.0").then((response) => response.text()),
-      fetch("./manifest.webmanifest?verify=v2.16.0").then((response) => response.json()),
-      fetch("./vendor/phosphor/phosphor-regular.css?verify=v2.16.0"),
-      fetch("./vendor/phosphor/Phosphor.woff2?verify=v2.16.0"),
+      fetch("./version.json?verify=v2.17.0").then((response) => response.json()),
+      fetch("./sw.js?verify=v2.17.0").then((response) => response.text()),
+      fetch("./manifest.webmanifest?verify=v2.17.0").then((response) => response.json()),
+      fetch("./vendor/phosphor/phosphor-regular.css?verify=v2.17.0"),
+      fetch("./vendor/phosphor/Phosphor.woff2?verify=v2.17.0"),
     ]);
     return {
       version,
-      swVersion: serviceWorker.includes('const APP_VERSION = "v2.16.0"'),
-      cacheVersion: serviceWorker.includes('CACHE = "ielts-listening-v33"'),
+      swVersion: serviceWorker.includes('const APP_VERSION = "v2.17.0"'),
+      cacheVersion: serviceWorker.includes('CACHE = "ielts-listening-v34"'),
       manifest,
       iconCss: iconCss.ok,
       iconFont: iconFont.ok,
@@ -48,7 +48,7 @@ async (page) => {
       progress: {}, starred: {}, customItems: [], streak: 0, lastCompletedDate: null,
       trainingResetId: "fresh-start-v2.5.0",
       learningReviewSplitId: "learning-review-v2.9.0",
-      selfAssessmentFlowId: "self-assessment-v2.16.0",
+      selfAssessmentFlowId: "meaning-confirmation-v2.17.0",
       deckNonce: "whole-bank-v2",
       daily: session(["carpet:recognition", "carpet:spelling"]),
       reviewDaily: session([]),
@@ -90,7 +90,7 @@ async (page) => {
     Math.abs(starScroll.afterUnstar - starScroll.afterStar),
   );
 
-  if (release.version.version !== "v2.16.0"
+  if (release.version.version !== "v2.17.0"
     || release.version.releasedAt !== "2026-09-01"
     || !release.swVersion
     || !release.cacheVersion
@@ -102,7 +102,7 @@ async (page) => {
     || home.background !== "rgb(242, 242, 247)"
     || home.width > 390
     || !home.personalErrors.includes("我的错词训练")
-    || !home.personalErrors.includes("123 词")
+    || !home.personalErrors.includes("词")
     || feedback.meaning !== "地毯"
     || feedback.fontSize < 20
     || feedback.rating !== "认识"

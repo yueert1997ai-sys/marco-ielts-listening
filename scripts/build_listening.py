@@ -17,6 +17,7 @@ OVERRIDE_SOURCE = ROOT / "source" / "vocabulary_overrides.json"
 OUTPUT = ROOT / "data" / "listening.json"
 AUDIT = ROOT / "data" / "audit.json"
 ECDICT_LITE = ROOT / "admin" / "public" / "data" / "ecdict-lite.json"
+MAX_VOCABULARY_WORDS = 6
 
 SECTION_MODES = {
     "P1 + P4 必会听写词": {"spelling"},
@@ -58,6 +59,13 @@ def text_of(node: ET.Element) -> str:
 def normalise_term(value: str) -> str:
     value = value.replace("＝", "=").replace("’", "'")
     return re.sub(r"\s+", " ", value).strip()
+
+
+def validate_term_scope(term: str) -> None:
+    if len(term.split()) > MAX_VOCABULARY_WORDS:
+        raise SystemExit(
+            f"Vocabulary term is a full sentence, not a reusable word or chunk: {term!r}"
+        )
 
 
 def split_spelling_forms(term: str) -> list[str]:
@@ -245,6 +253,7 @@ def build(
 
     # Main sections establish the training purpose.
     for row in rows:
+        validate_term_scope(row["term"])
         if row["section"] == "我的真实错词":
             continue
         for mode in SECTION_MODES.get(row["section"], set()):
@@ -324,6 +333,7 @@ def build(
     # Codex, ChatGPT issue intake, and future source refreshes can share them.
     for row in custom_rows or []:
         term = normalise_term(str(row.get("term", "")))
+        validate_term_scope(term)
         meaning = str(row.get("meaning", "")).strip()
         modes = sorted(set(row.get("modes") or []))
         if not term or not meaning or not modes or any(mode not in {"spelling", "recognition"} for mode in modes):
@@ -465,6 +475,7 @@ def validate(items: list[dict], audit: dict) -> None:
     if audit["activities"].get("recognition", 0) < 200:
         raise SystemExit("Recognition deck is unexpectedly small")
     for item in items:
+        validate_term_scope(item["term"])
         if not item["term"] or not item["meaning"] or not item["modes"]:
             raise SystemExit(f"Incomplete entry: {item}")
         if "recognition" in item["modes"] and not item.get("partOfSpeech"):

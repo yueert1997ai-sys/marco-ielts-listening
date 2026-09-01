@@ -22,6 +22,7 @@ test("mode selector converts both into two activities", () => assert.deepEqual(m
 test("worker mode validation rejects empty lists", () => assert.equal(validateModes([]), null));
 test("terms allow IELTS phrases and numeric-leading contracts", () => {
   assert(validTerm("12-month maternity cover contract"));
+  assert(!validTerm("Large pans of sap called evaporators are heated by means of a fire"));
   assert(!validTerm("<script>"));
 });
 test("dictionary lookup follows lemma aliases", () => {

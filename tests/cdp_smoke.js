@@ -75,7 +75,7 @@ async function screenshot(send, name) {
     const registration = await navigator.serviceWorker.ready;
     await new Promise((resolve) => setTimeout(resolve, 5000));
     const names = await caches.keys();
-    const cache = names.includes('ielts-listening-v33') ? await caches.open('ielts-listening-v33') : null;
+    const cache = names.includes('ielts-listening-v34') ? await caches.open('ielts-listening-v34') : null;
     const keys = cache ? await cache.keys() : [];
     return {
       active: registration.active?.state || null,
@@ -206,6 +206,9 @@ async function screenshot(send, name) {
 
   await evaluate(send, "document.querySelector('.confidence-unknown').click(); true");
   await new Promise((resolve) => setTimeout(resolve, 50));
+  recognition.meaningChoices = await evaluate(send, "document.querySelectorAll('.choice').length");
+  await evaluate(send, "document.querySelector('.choice').click(); true");
+  await new Promise((resolve) => setTimeout(resolve, 50));
   await evaluate(send, "document.querySelector('#continue').click(); true");
   await evaluate(send, `(async () => {
     for (let index = 0; index < 20 && !document.querySelector('.confidence-actions'); index += 1) {
@@ -260,6 +263,9 @@ async function screenshot(send, name) {
   })()`);
   await evaluate(send, "document.querySelector('.confidence-unknown').click(); true");
   await new Promise((resolve) => setTimeout(resolve, 50));
+  shortRecognition.meaningChoices = await evaluate(send, "document.querySelectorAll('.choice').length");
+  await evaluate(send, "document.querySelector('.choice').click(); true");
+  await new Promise((resolve) => setTimeout(resolve, 50));
   shortRecognition.resultContinueVisible = await evaluate(send, `(() => {
     const rect = document.querySelector('#continue').getBoundingClientRect();
     return rect.top >= 0 && rect.bottom <= innerHeight;
@@ -276,8 +282,8 @@ async function screenshot(send, name) {
     || result.note.trim().startsWith('—')
     || confidencePass.rating !== '认识' || !confidencePass.meaning || !confidencePass.partOfSpeech
     || !confidencePass.advancedToQuestion || !confidencePass.resultGone
-    || recognition.confidenceButtons.length !== 3 || recognition.meaningLeaked
-    || shortRecognition.controls !== 3 || shortRecognition.fullyVisible !== 3
+    || recognition.confidenceButtons.length !== 2 || recognition.meaningLeaked || recognition.meaningChoices !== 4
+    || shortRecognition.controls !== 2 || shortRecognition.fullyVisible !== 2 || shortRecognition.meaningChoices !== 4
     || !shortRecognition.resultContinueVisible
     || reviewHome.disabled || !/\d+\s*题/.test(reviewHome.text)
     || !home.railHidden || !offline.phosphorCss || !offline.phosphorFont) {

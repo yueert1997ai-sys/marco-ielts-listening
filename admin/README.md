@@ -5,6 +5,9 @@ Listening PWA. The GitHub repository remains the source of truth.
 
 Production: <https://marco-vocabulary-admin.marco-vocabulary-admin.workers.dev>
 
+The intake accepts reusable words and chunks of up to six whitespace-delimited
+words. Full sentences are rejected before they enter the publish queue.
+
 ## Local setup
 
 1. `npm install`

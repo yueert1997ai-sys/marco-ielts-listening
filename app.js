@@ -2,18 +2,19 @@
   "use strict";
 
   const STORAGE_KEY = "marcoIeltsListening.v1";
-  const APP_VERSION = "v2.16.0";
+  const APP_VERSION = "v2.17.0";
   const AUTO_UPDATE_SESSION_KEY = "marcoIeltsListening.autoUpdateAttempt";
   const AUTO_UPDATE_THROTTLE_MS = 60 * 1000;
   const TRAINING_RESET_ID = "fresh-start-v2.5.0";
   const LEARNING_REVIEW_SPLIT_ID = "learning-review-v2.9.0";
-  const SELF_ASSESSMENT_FLOW_ID = "self-assessment-v2.16.0";
+  const SELF_ASSESSMENT_FLOW_ID = "meaning-confirmation-v2.17.0";
   const DECK_REVISION = "whole-bank-v2";
   const DAILY_PER_MODE = 25;
   const DAILY_REVIEW_LIMIT = 30;
   const PERSONAL_ERROR_POOL_ID = "personal-errors-v1";
   const STARRED_POOL_ID = "starred-words-v1";
   const BROWSE_PAGE_SIZE = 20;
+  const MAX_VOCABULARY_WORDS = 6;
   const RESPONSE_LIMIT_MS = 5000;
   const DIRECTION_RESPONSE_LIMIT_MS = 2000;
   const HARD_DIRECTION_RESPONSE_LIMIT_MS = 1000;
@@ -540,6 +541,10 @@
     return String(value || "").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
   }
 
+  function isVocabularySizedTerm(value) {
+    return String(value || "").trim().split(/\s+/).filter(Boolean).length <= MAX_VOCABULARY_WORDS;
+  }
+
   function numberVariantMap(sourceItems) {
     const aliases = new Map();
     sourceItems.forEach((item) => {
@@ -591,15 +596,18 @@
 
     const canonicalItems = new Map(sourceItems.map((item) => [item.id, item]));
     const customItems = new Map();
-    (state.customItems || []).map(cleanCustomEntry).forEach((entry) => {
-      const id = aliases.get(entry.id) || entry.id;
-      const canonical = canonicalItems.get(id);
-      const migrated = canonical ? { ...entry, id, term: canonical.term } : entry;
-      const existing = customItems.get(id);
-      customItems.set(id, existing
-        ? { ...existing, ...migrated, modes: [...new Set([...existing.modes, ...migrated.modes])] }
-        : migrated);
-    });
+    (state.customItems || [])
+      .filter((entry) => isVocabularySizedTerm(entry?.term || entry?.word))
+      .map(cleanCustomEntry)
+      .forEach((entry) => {
+        const id = aliases.get(entry.id) || entry.id;
+        const canonical = canonicalItems.get(id);
+        const migrated = canonical ? { ...entry, id, term: canonical.term } : entry;
+        const existing = customItems.get(id);
+        customItems.set(id, existing
+          ? { ...existing, ...migrated, modes: [...new Set([...existing.modes, ...migrated.modes])] }
+          : migrated);
+      });
     state.customItems = [...customItems.values()];
 
     const sessions = [state.daily, state.reviewDaily, state.errorDaily, state.starredDaily].filter(Boolean);
@@ -657,6 +665,7 @@
     const modes = normaliseModes(raw.modes || raw.mode || raw.type);
     if (!term || !meaning || !modes.length) throw new Error("每条错词都要有英文、中文意思和训练类型");
     if (!/^[A-Za-z0-9][A-Za-z0-9 '&\-]*$/.test(term)) throw new Error(`英文格式不正确：${term}`);
+    if (!isVocabularySizedTerm(term)) throw new Error(`完整句子不能加入词库，请拆成单词或短语：${term}`);
     const id = keyFor(term);
     return {
       id,
@@ -719,6 +728,7 @@
       const term = String(termValue || "").trim().replace(/^[`'\"]+|[`'\".,;:!?]+$/g, "");
       if (!term) return;
       if (!/^[A-Za-z0-9][A-Za-z0-9 '&\-]*$/.test(term)) throw new Error(`英文格式不正确：${term}`);
+      if (!isVocabularySizedTerm(term)) throw new Error(`完整句子不能加入词库，请拆成单词或短语：${term}`);
       const id = keyFor(term);
       const matched = known.get(id);
       const usageOnly = /^(?:作为|作|形容词|名词|动词|副词|不认识|不确定|听不懂|拼写)/.test(meaningValue.trim());
@@ -790,7 +800,7 @@
   function mergeCustomItems(sourceItems, customItems) {
     const merged = new Map(sourceItems.map((item) => [item.id, { ...item, modes: [...item.modes] }]));
     const aliases = numberVariantMap(sourceItems);
-    customItems.map(cleanCustomEntry).forEach((entry) => {
+    customItems.filter((entry) => isVocabularySizedTerm(entry?.term || entry?.word)).map(cleanCustomEntry).forEach((entry) => {
       const canonicalId = aliases.get(entry.id) || entry.id;
       const existing = merged.get(canonicalId);
       if (existing) {
@@ -861,6 +871,7 @@
     shouldConfirmRecognition, reinforcementDecision, insertRetry, buildChoices,
     partOfSpeechForMeaning, abbreviatePartOfSpeech,
     createBrowseDeck, parseWrongWordInput, parseWrongWordDrafts, mergeCustomItems, migrateNumberVariantState, seededShuffle,
+    isVocabularySizedTerm,
     createDirectionDeck, createHardDirectionDeck, judgeDirectionAttempt, isDirectionRunPassed,
     resetTrainingState, applyTrainingReset, applyLearningReviewSplit, applySelfAssessmentFlow, enqueueReviewActivity, shouldRevealAnswer,
     hasVersionUpdate, shouldAutoAdvance, formatResultNote,
@@ -870,7 +881,7 @@
     CONFIRM_MIN_DISTANCE, CONFIRM_MAX_DISTANCE, MIN_DISTINCT_RETRY_GAP,
     REQUIRED_CORRECT_STREAK, MAX_REINFORCEMENT_INSERTIONS, RECOGNITION_SPOTCHECK_PERCENT,
     DIRECTION_QUESTION_COUNT, HARD_DIRECTION_IDS,
-    INTERVALS, BROWSE_PAGE_SIZE, DAILY_REVIEW_LIMIT, PERSONAL_ERROR_POOL_ID, STARRED_POOL_ID, APP_VERSION,
+    INTERVALS, BROWSE_PAGE_SIZE, MAX_VOCABULARY_WORDS, DAILY_REVIEW_LIMIT, PERSONAL_ERROR_POOL_ID, STARRED_POOL_ID, APP_VERSION,
     TRAINING_RESET_ID, LEARNING_REVIEW_SPLIT_ID, SELF_ASSESSMENT_FLOW_ID, DECK_REVISION,
   };
 
@@ -1647,11 +1658,10 @@
             <h2 class="term">${escapeHtml(activity.term)}</h2>
             <button id="recognition-play" class="test-play" type="button" aria-label="再读一次">${icon("speaker-high")}再读</button>
           </div>
-          <p class="confidence-hint">选择后才会公布中文意思</p>
+          <p class="confidence-hint">不认识时，先从四个释义里确认意思</p>
           <div class="confidence-actions" role="group" aria-label="自评掌握程度">
             <button class="confidence-button confidence-known" data-confidence="known" type="button"><strong>认识</strong><small>一眼就知道</small></button>
-            <button class="confidence-button confidence-fuzzy" data-confidence="fuzzy" type="button"><strong>模糊</strong><small>想了一会儿</small></button>
-            <button class="confidence-button confidence-unknown" data-confidence="unknown" type="button"><strong>不认识</strong><small>完全没印象</small></button>
+            <button class="confidence-button confidence-unknown" data-confidence="unknown" type="button"><strong>不认识</strong><small>需要确认意思</small></button>
           </div>
         </div>
       </section>`;
@@ -1675,15 +1685,48 @@
       clearInterval(recognitionTimerId);
       const elapsed = recognitionStartedAt ? performance.now() - recognitionStartedAt : 0;
       const selectedRating = button.dataset.confidence;
-      const outcome = selectedRating === "known" && elapsed > RESPONSE_LIMIT_MS ? "fuzzy" : selectedRating;
-      recordAttempt(entry, activity, outcome, {
-        selfRating: outcome,
-        selectedRating,
-        elapsed,
-        autoDowngraded: selectedRating === "known" && outcome === "fuzzy",
-      });
+      if (selectedRating === "unknown") {
+        renderRecognitionMeaningCheck(entry, activity, elapsed);
+        return;
+      }
+      recordAttempt(entry, activity, "known", { selfRating: "known", selectedRating, elapsed });
     }));
     playAudio(activity, playButton).then(startTimer);
+  }
+
+  function renderRecognitionMeaningCheck(entry, activity, elapsed) {
+    window.scrollTo(0, 0);
+    const session = currentTrainingSession();
+    const attempt = (session?.retryCount?.[activity.key] || 0) + 1;
+    const choices = buildChoices(activity, activities, `${session?.date || dateKey()}:${attempt}:${entry.reason || "base"}`);
+    screen.innerHTML = `
+      <section class="session">
+        ${sessionMeta(entry, activity)}
+        <div class="question-card recognition-meaning-card">
+          <p class="prompt">不认识没关系，先确认它的意思</p>
+          <div class="recognition-term recognition-term-compact">
+            <h2 class="term">${escapeHtml(activity.term)}</h2>
+            <button id="recognition-play" class="test-play" type="button" aria-label="再读一次">${icon("speaker-high")}再读</button>
+          </div>
+          <div class="choices" role="group" aria-label="选择中文释义">
+            ${choices.map((choice) => `<button class="choice" data-choice="${escapeHtml(choice)}" type="button"><span class="choice-pos">${escapeHtml(abbreviatePartOfSpeech(partOfSpeechForMeaning(activity, choice, activities)))}</span><span class="choice-meaning">${escapeHtml(choice)}</span></button>`).join("")}
+          </div>
+        </div>
+      </section>`;
+    const playButton = document.getElementById("recognition-play");
+    bindSessionToolbar(activity);
+    playButton.addEventListener("click", () => playAudio(activity, playButton));
+    document.querySelectorAll(".choice").forEach((button) => button.addEventListener("click", () => {
+      const selected = button.dataset.choice;
+      recordAttempt(entry, activity, "unknown", {
+        selfRating: "unknown",
+        selectedRating: "unknown",
+        elapsed,
+        selected,
+        meaningCheckCorrect: selected === activity.meaning,
+        choiceIndex: choices.indexOf(activity.meaning),
+      });
+    }));
   }
 
   function renderCurrent(options = {}) {
@@ -1922,11 +1965,15 @@
     const record = state.progress[activity.key] || {};
     const confidenceLabels = { known: "认识", fuzzy: "模糊", unknown: "不认识" };
     const label = detail.selfRating
-      ? (detail.autoDowngraded ? "思考超过 5 秒 · 按模糊记录" : confidenceLabels[detail.selfRating])
+      ? (detail.selected !== undefined
+        ? (detail.meaningCheckCorrect ? "不认识 · 已确认释义" : "不认识 · 正确释义如下")
+        : confidenceLabels[detail.selfRating])
       : (detail.skipped ? "已加入复习" : (pass ? "正确" : (outcome === "slow" ? "再来一次 · 超过 5 秒" : "再来一次")));
     const labelClass = outcome === "fuzzy" ? "fuzzy" : (pass ? "pass" : "weak");
     const typed = detail.selfRating
-      ? `<p class="typed confidence-summary">你的判断：${escapeHtml(confidenceLabels[detail.selectedRating] || confidenceLabels[detail.selfRating])}</p>`
+      ? (detail.selected !== undefined
+        ? `<p class="typed confidence-summary">你选择的释义：${escapeHtml(detail.selected)}${detail.meaningCheckCorrect ? "（已确认）" : "（未选对）"}</p>`
+        : `<p class="typed confidence-summary">你的判断：${escapeHtml(confidenceLabels[detail.selectedRating] || confidenceLabels[detail.selfRating])}</p>`)
       : (detail.skipped
       ? `<p class="typed">这题先跳过了</p>`
       : (detail.typed !== undefined

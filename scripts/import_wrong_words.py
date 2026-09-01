@@ -16,6 +16,7 @@ OVERRIDES = ROOT / "source" / "vocabulary_overrides.json"
 BUILT_DATA = ROOT / "data" / "listening.json"
 ALLOWED_ISSUE_AUTHOR = "yueert1997ai-sys"
 ALLOWED_PATCH_FIELDS = {"meaning", "category", "modes", "reason", "note", "phonetic", "partOfSpeech"}
+MAX_VOCABULARY_WORDS = 6
 
 
 def key_for(value: str) -> str:
@@ -82,6 +83,8 @@ def clean(raw: dict, *, today: str | None = None) -> dict:
     modes = modes_for(raw.get("modes") or raw.get("mode") or raw.get("type"))
     if not re.fullmatch(r"[A-Za-z0-9][A-Za-z0-9 '&\-]*", term):
         raise SystemExit(f"Invalid English term: {term!r}")
+    if len(term.split()) > MAX_VOCABULARY_WORDS:
+        raise SystemExit(f"Full sentences cannot be added to the vocabulary deck: {term!r}")
     if not meaning or not modes:
         raise SystemExit(f"Missing meaning or mode: {raw}")
     item = {

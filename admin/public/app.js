@@ -114,7 +114,7 @@ function render() {
   $("#publishing-count").textContent = counts.publishing || 0;
   $("#failed-count").textContent = counts.failed || 0;
   $("#training-version").textContent = `训练端 ${state.meta.trainingVersion || "—"}`;
-  $("#admin-version").textContent = `后台 ${state.meta.adminVersion || "v1.0.0"}`;
+  $("#admin-version").textContent = `后台 ${state.meta.adminVersion || "v1.0.1"}`;
   $("#last-sync").textContent = `最后同步 ${formatDate(state.meta.lastSyncedAt)}`;
 }
 

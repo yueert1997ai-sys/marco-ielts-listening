@@ -86,9 +86,8 @@ async (page) => {
     || recognitionFeedback.fontSize < 20
     || recognitionFeedback.background !== "rgb(255, 255, 255)"
     || recognitionFeedback.rating?.trim() !== "认识"
-    || confidenceLabels.length !== 3
+    || confidenceLabels.length !== 2
     || !confidenceLabels.some((label) => label.includes("认识"))
-    || !confidenceLabels.some((label) => label.includes("模糊"))
     || !confidenceLabels.some((label) => label.includes("不认识"))) {
     throw new Error(JSON.stringify({ pool, spellingFeedback, recognitionFeedback, confidenceLabels }));
   }

@@ -36,7 +36,7 @@ async (page) => {
       progress: {}, starred: {}, customItems: [], streak: 0, lastCompletedDate: null,
       trainingResetId: "fresh-start-v2.5.0",
       learningReviewSplitId: "learning-review-v2.9.0",
-      selfAssessmentFlowId: "self-assessment-v2.16.0",
+      selfAssessmentFlowId: "meaning-confirmation-v2.17.0",
       deckNonce: "whole-bank-v2",
       daily: session,
       reviewDaily: { ...session, baseKeys: [], queue: [], completed: true },
@@ -64,7 +64,21 @@ async (page) => {
       return rect.top >= 0 && rect.bottom <= innerHeight;
     }).length,
   }));
-  await page.locator(".confidence-fuzzy").click();
+  await page.locator(".confidence-unknown").click();
+  await page.locator(".choice").first().waitFor();
+  const meaningCheck = await page.evaluate(async () => {
+    const term = document.querySelector(".term")?.textContent;
+    const items = await fetch("./data/listening.json").then((response) => response.json());
+    const expected = items.find((item) => item.term === term)?.meaning;
+    return {
+      term,
+      choices: document.querySelectorAll(".choice").length,
+      expected,
+      containsAnswer: [...document.querySelectorAll(".choice")]
+        .some((choice) => choice.dataset.choice === expected),
+    };
+  });
+  await page.locator(`.choice[data-choice="${meaningCheck.expected}"]`).click();
   await page.locator("#continue").waitFor();
   const result = await page.evaluate(() => ({
     rating: document.querySelector(".result-mark")?.textContent,
@@ -84,6 +98,24 @@ async (page) => {
       count: state.daily.retryCount[key],
     };
   });
+  await page.locator("#continue").click();
+  let retryQuestion = null;
+  for (let index = 0; index < 13; index += 1) {
+    await page.locator(".confidence-actions").waitFor();
+    const current = await page.evaluate(() => ({
+      term: document.querySelector(".term")?.textContent,
+      meta: document.querySelector(".session-meta")?.textContent,
+      buttons: [...document.querySelectorAll(".confidence-button")]
+        .map((button) => button.textContent.replace(/\s+/g, " ").trim()),
+    }));
+    if (current.term === meaningCheck.term && current.meta.includes("回炉题")) {
+      retryQuestion = current;
+      break;
+    }
+    await page.locator(".confidence-known").click();
+    await page.locator("#continue").waitFor();
+    await page.locator("#continue").click();
+  }
 
   const audio = await page.evaluate(async () => {
     const ids = ["dispose", "erect", "resurface", "standardise", "tether"];
@@ -103,28 +135,33 @@ async (page) => {
 
   if (home.width > 390
     || !home.progress.includes("0 / 50")
-    || !home.personalErrors.includes("123 词")
-    || home.version !== "v2.16.0"
+    || !home.personalErrors.includes("词")
+    || home.version !== "v2.17.0"
     || question.choices !== 0
-    || question.confidenceButtons.length !== 3
+    || question.confidenceButtons.length !== 2
     || !question.confidenceButtons.some((label) => label.startsWith("认识"))
-    || !question.confidenceButtons.some((label) => label.startsWith("模糊"))
     || !question.confidenceButtons.some((label) => label.startsWith("不认识"))
     || question.meaningLeaked
     || !question.hasAudio
     || shortScreen.scrollWidth > 320
-    || shortScreen.visible !== 3
-    || result.rating !== "模糊"
+    || shortScreen.visible !== 2
+    || meaningCheck.choices !== 4
+    || !meaningCheck.containsAnswer
+    || result.rating !== "不认识 · 已确认释义"
     || !result.meaning
     || !result.partOfSpeech
-    || !result.note.includes("10–14 题后")
+    || !result.note.includes("8–12 题后")
     || !result.continueVisible
-    || retry.index < 10
-    || retry.index > 14
+    || retry.index < 8
+    || retry.index > 12
     || retry.count !== 1
+    || !retryQuestion
+    || retryQuestion.buttons.length !== 2
+    || !retryQuestion.buttons.some((label) => label.startsWith("认识"))
+    || !retryQuestion.buttons.some((label) => label.startsWith("不认识"))
     || audio.some((item) => !item.loaded || !Number.isFinite(item.duration) || item.duration <= 0)) {
-    throw new Error(JSON.stringify({ home, question, shortScreen, result, retry, audio }));
+    throw new Error(JSON.stringify({ home, question, shortScreen, meaningCheck, result, retry, retryQuestion, audio }));
   }
 
-  return { ok: true, home, question, shortScreen, result, retry, audio };
+  return { ok: true, home, question, shortScreen, meaningCheck, result, retry, retryQuestion, audio };
 }

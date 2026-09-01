@@ -379,7 +379,7 @@ textarea:focus-visible, select:focus-visible { outline: 3px solid rgba(0, 122, 2
 .choice.choice-correct .choice-pos { color: #fff; background: rgba(255, 255, 255, .2); }
 .recognition-confidence-card .recognition-term { margin-bottom: auto; }
 .confidence-hint { margin: 0 0 10px; color: var(--muted); font-size: 12px; text-align: center; }
-.confidence-actions { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+.confidence-actions { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
 .confidence-button {
   min-width: 0;
   min-height: 70px;
@@ -394,8 +394,10 @@ textarea:focus-visible, select:focus-visible { outline: 3px solid rgba(0, 122, 2
 .confidence-button strong { font-size: 16px; line-height: 1; }
 .confidence-button small { color: var(--muted); font-size: 10px; font-weight: 550; line-height: 1.2; }
 .confidence-known { color: #248a3d; border-color: rgba(52, 199, 89, .38); background: var(--success-soft); }
-.confidence-fuzzy { color: var(--warning); border-color: rgba(199, 119, 0, .34); background: var(--warning-soft); }
 .confidence-unknown { color: var(--error); border-color: rgba(255, 59, 48, .3); background: var(--error-soft); }
+.recognition-meaning-card .prompt { margin-bottom: 10px; }
+.recognition-term-compact { margin: 0 0 14px; }
+.recognition-term-compact .term { font-size: clamp(30px, 10vw, 46px); }
 .question-card.quick-pass { border-color: rgba(52, 199, 89, .45); }
 .question-card.quick-pass-leave { opacity: 0; transform: translateY(-7px) scale(.995); }
 .question-card-enter { animation: question-card-enter .2s cubic-bezier(.2, .8, .2, 1) both; }
@@ -680,6 +682,10 @@ textarea:focus-visible, select:focus-visible { outline: 3px solid rgba(0, 122, 2
   .home-progress-ring { width: 102px; height: 102px; }
   .home-daily h2 { font-size: 23px; }
   .inbox-preview-fields { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 480px) and (max-height: 600px) {
+  .result .memory-strip { display: none; }
 }
 
 @media (min-width: 481px) { body { border-inline: .5px solid var(--line-soft); } }

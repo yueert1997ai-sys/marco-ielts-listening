@@ -2400,30 +2400,6 @@
     "audioPath": "audio/lane.mp3"
   },
   {
-    "id": "large-pans-of-sap-called-evaporators-are-heated-by-means-of-a-fire",
-    "term": "Large pans of sap called evaporators are heated by means of a fire",
-    "meaning": "装有树液、被称为蒸发器的大锅用火加热",
-    "note": "今日生词：整句听义；by means of 表示通过、借助",
-    "category": "我的同步错词",
-    "sections": [
-      "我的同步错词"
-    ],
-    "modes": [
-      "recognition"
-    ],
-    "isRealError": true,
-    "acceptedAnswers": [
-      "Large pans of sap called evaporators are heated by means of a fire"
-    ],
-    "errorNote": "今日生词：整句听义；by means of 表示通过、借助",
-    "userAddedAt": "2026-08-26",
-    "sourceType": "user",
-    "partOfSpeech": "短语",
-    "sourceRevision": 4,
-    "audioText": "Large pans of sap called evaporators are heated by means of a fire",
-    "audioPath": "audio/large-pans-of-sap-called-evaporators-are-heated-by-means-of-a-fire.mp3"
-  },
-  {
     "id": "lead",
     "term": "lead",
     "meaning": "铅",
