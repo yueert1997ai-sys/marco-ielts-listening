@@ -100,6 +100,39 @@ class VocabularyAdminTests(unittest.TestCase):
         self.assertEqual(items[0]["partOfSpeech"], "名词 / 动词")
         self.assertEqual(audit["partOfSpeechEntries"], 1)
 
+    def test_build_canonicalises_an_inflected_override_and_keeps_the_alias(self) -> None:
+        rows = [
+            {
+                "term": "neglect", "meaning": "忽视；疏于照顾", "note": "—",
+                "section": "P2 + P3 必会看懂词", "category": "动作",
+            },
+            {
+                "term": "neglecting", "meaning": "忽视；疏于照顾", "note": "真实卡点",
+                "section": "我的真实错词", "category": "动作",
+            },
+        ]
+        items, audit = build_listening.build(rows, 4, [], [{
+            "id": "neglecting", "canonicalTerm": "neglect", "partOfSpeech": "动词",
+            "updatedAt": "2026-09-01",
+        }])
+        self.assertEqual(len(items), 1)
+        self.assertEqual(items[0]["term"], "neglect")
+        self.assertEqual(items[0]["numberVariants"], ["neglecting"])
+        self.assertTrue(items[0]["isRealError"])
+        self.assertEqual(audit["overrideEntries"], 1)
+
+    def test_intake_preserves_known_inflection_aliases(self) -> None:
+        existing = import_wrong_words.clean({
+            "term": "dispose", "meaning": "处理；处置", "mode": "recognition",
+            "numberVariants": ["disposed"], "addedAt": "2026-08-31",
+        })
+        merged = {"dispose": existing}
+        import_wrong_words.merge_intake({
+            "term": "disposed", "meaning": "处理；处置", "mode": "recognition",
+        }, merged, [existing], "2026-09-01")
+        self.assertEqual(list(merged), ["dispose"])
+        self.assertEqual(merged["dispose"]["numberVariants"], ["disposed"])
+
 
 if __name__ == "__main__":
     unittest.main()

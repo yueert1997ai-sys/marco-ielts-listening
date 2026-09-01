@@ -105,6 +105,9 @@ def clean(raw: dict, *, today: str | None = None) -> dict:
     last_reported = str(raw.get("lastReportedAt") or "").strip()
     if last_reported:
         item["lastReportedAt"] = last_reported
+    variants = [str(value).strip() for value in (raw.get("numberVariants") or []) if str(value).strip()]
+    if variants:
+        item["numberVariants"] = sorted(set(variants), key=str.lower)
     return item
 
 
@@ -156,6 +159,9 @@ def merge_intake(raw: dict, merged: dict[str, dict], base_items: list[dict], tod
             incoming["phonetic"] = previous["phonetic"]
         if previous.get("partOfSpeech") and not incoming.get("partOfSpeech"):
             incoming["partOfSpeech"] = previous["partOfSpeech"]
+        variants = sorted(set(previous.get("numberVariants") or []) | set(incoming.get("numberVariants") or []), key=str.lower)
+        if variants:
+            incoming["numberVariants"] = variants
     else:
         incoming["reportedCount"] = 1
     incoming["id"] = canonical_id

@@ -56,13 +56,12 @@ async (page) => {
   await page.screenshot({ path: `${root}/wrong-result.png` });
 
   await page.locator("#continue").click();
-  await page.locator(".choice").first().waitFor();
+  await page.locator(".confidence-actions").waitFor();
   await page.screenshot({ path: `${root}/recognition.png` });
-  await page.locator(".choice").filter({ hasText: "地毯" }).click();
-  await page.locator(".quick-feedback").waitFor();
+  await page.locator(".confidence-known").click();
+  await page.locator(".result-card").waitFor();
   await page.screenshot({ path: `${root}/correct-feedback.png` });
-  await page.waitForTimeout(620);
-  await page.locator("#pause-session").click();
+  await page.locator("#result-home").click();
 
   await page.locator("#direction").click();
   await page.locator("#direction-start").waitFor();

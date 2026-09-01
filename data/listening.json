@@ -940,10 +940,10 @@
     "audioPath": "audio/discipline.mp3"
   },
   {
-    "id": "disposed",
-    "term": "disposed",
-    "meaning": "处理；处置（dispose 的过去式/过去分词）",
-    "note": "C15-T4-P3 生词：废弃物处置语境",
+    "id": "dispose",
+    "term": "dispose",
+    "meaning": "处理；处置",
+    "note": "C15-T4-P3 生词：原文 disposed，归并到原形 dispose；废弃物处置语境",
     "category": "我的同步错词",
     "sections": [
       "我的同步错词"
@@ -953,17 +953,20 @@
     ],
     "isRealError": true,
     "acceptedAnswers": [
+      "dispose"
+    ],
+    "numberVariants": [
       "disposed"
     ],
-    "errorNote": "C15-T4-P3 生词：废弃物处置语境",
+    "errorNote": "C15-T4-P3 生词：原文 disposed，归并到原形 dispose；废弃物处置语境",
     "userAddedAt": "2026-08-31",
     "sourceType": "user",
+    "partOfSpeech": "动词",
     "reportedCount": 1,
     "lastReportedAt": "2026-08-31",
-    "partOfSpeech": "形容词",
     "sourceRevision": 4,
-    "audioText": "disposed",
-    "audioPath": "audio/disposed.mp3"
+    "audioText": "dispose",
+    "audioPath": "audio/dispose.mp3"
   },
   {
     "id": "distinction",
@@ -1043,7 +1046,7 @@
   {
     "id": "end",
     "term": "end",
-    "meaning": "目的；目标",
+    "meaning": "意图；目的（to what end / means and ends）",
     "note": "—",
     "category": "多义误解词",
     "sections": [
@@ -1062,7 +1065,7 @@
     "sourceType": "user",
     "reportedCount": 1,
     "lastReportedAt": "2026-08-27",
-    "adminUpdatedAt": "2026-08-27",
+    "adminUpdatedAt": "2026-09-01",
     "partOfSpeech": "名词 / 动词",
     "sourceRevision": 4,
     "audioText": "end",
@@ -1087,9 +1090,9 @@
     "errorNote": "C15-T2-P3 高价值同义词：energising → stimulating",
     "userAddedAt": "2026-08-31",
     "sourceType": "user",
+    "partOfSpeech": "形容词",
     "reportedCount": 1,
     "lastReportedAt": "2026-08-31",
-    "partOfSpeech": "词性待补",
     "sourceRevision": 4,
     "audioText": "energising",
     "audioPath": "audio/energising.mp3"
@@ -1145,10 +1148,10 @@
     "audioPath": "audio/equipment.mp3"
   },
   {
-    "id": "erected",
-    "term": "erected",
-    "meaning": "建造；竖立（erect 的过去式/过去分词）",
-    "note": "今日生词：识义；常用于建筑物、纪念碑等被建造或竖立",
+    "id": "erect",
+    "term": "erect",
+    "meaning": "建造；竖立",
+    "note": "今日生词：原文 erected，归并到原形 erect；常用于建筑物、纪念碑等被建造或竖立",
     "category": "我的同步错词",
     "sections": [
       "我的同步错词"
@@ -1158,15 +1161,18 @@
     ],
     "isRealError": true,
     "acceptedAnswers": [
+      "erect"
+    ],
+    "numberVariants": [
       "erected"
     ],
-    "errorNote": "今日生词：识义；常用于建筑物、纪念碑等被建造或竖立",
+    "errorNote": "今日生词：原文 erected，归并到原形 erect；常用于建筑物、纪念碑等被建造或竖立",
     "userAddedAt": "2026-08-24",
     "sourceType": "user",
     "partOfSpeech": "动词",
     "sourceRevision": 4,
-    "audioText": "erected",
-    "audioPath": "audio/erected.mp3"
+    "audioText": "erect",
+    "audioPath": "audio/erect.mp3"
   },
   {
     "id": "estate",
@@ -1818,9 +1824,9 @@
     "errorNote": "C15-T4-P3 生词：insulating material / 隔热语境不熟",
     "userAddedAt": "2026-08-31",
     "sourceType": "user",
+    "partOfSpeech": "形容词",
     "reportedCount": 1,
     "lastReportedAt": "2026-08-31",
-    "partOfSpeech": "动词",
     "sourceRevision": 4,
     "audioText": "insulating",
     "audioPath": "audio/insulating.mp3"
@@ -2418,8 +2424,8 @@
     "audioPath": "audio/neatly.mp3"
   },
   {
-    "id": "neglecting",
-    "term": "neglecting",
+    "id": "neglect",
+    "term": "neglect",
     "meaning": "忽视；疏于照顾",
     "note": "—",
     "category": "行为与决策动作",
@@ -2432,13 +2438,17 @@
     ],
     "isRealError": true,
     "acceptedAnswers": [
+      "neglect"
+    ],
+    "numberVariants": [
       "neglecting"
     ],
     "errorNote": "真实卡点：加工慢",
     "partOfSpeech": "动词",
+    "adminUpdatedAt": "2026-09-01",
     "sourceRevision": 4,
-    "audioText": "neglecting",
-    "audioPath": "audio/neglecting.mp3"
+    "audioText": "neglect",
+    "audioPath": "audio/neglect.mp3"
   },
   {
     "id": "nevertheless",
@@ -3001,7 +3011,7 @@
   {
     "id": "purpose",
     "term": "purpose",
-    "meaning": "目的；用途",
+    "meaning": "用途；存在或行动的目的",
     "note": "—",
     "category": "多义误解词",
     "sections": [
@@ -3023,7 +3033,7 @@
     "sourceType": "user",
     "reportedCount": 1,
     "lastReportedAt": "2026-08-27",
-    "adminUpdatedAt": "2026-08-27",
+    "adminUpdatedAt": "2026-09-01",
     "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "purpose",
@@ -3308,10 +3318,10 @@
     "audioPath": "audio/resilience.mp3"
   },
   {
-    "id": "resurfaced",
-    "term": "resurfaced",
-    "meaning": "重新铺设表面；再次出现（resurface 的过去式/过去分词）",
-    "note": "今日生词：识义；道路语境常指重新铺路面",
+    "id": "resurface",
+    "term": "resurface",
+    "meaning": "重新铺设表面；再次出现",
+    "note": "今日生词：原文 resurfaced，归并到原形 resurface；道路语境常指重新铺路面",
     "category": "我的同步错词",
     "sections": [
       "我的同步错词"
@@ -3321,15 +3331,18 @@
     ],
     "isRealError": true,
     "acceptedAnswers": [
+      "resurface"
+    ],
+    "numberVariants": [
       "resurfaced"
     ],
-    "errorNote": "今日生词：识义；道路语境常指重新铺路面",
+    "errorNote": "今日生词：原文 resurfaced，归并到原形 resurface；道路语境常指重新铺路面",
     "userAddedAt": "2026-08-24",
     "sourceType": "user",
     "partOfSpeech": "动词",
     "sourceRevision": 4,
-    "audioText": "resurfaced",
-    "audioPath": "audio/resurfaced.mp3"
+    "audioText": "resurface",
+    "audioPath": "audio/resurface.mp3"
   },
   {
     "id": "retain",
@@ -3658,9 +3671,9 @@
     "errorNote": "C15-T2-P3 直接致错：误看成 simulating，且词义不熟；energising → stimulating",
     "userAddedAt": "2026-08-31",
     "sourceType": "user",
+    "partOfSpeech": "形容词",
     "reportedCount": 1,
     "lastReportedAt": "2026-08-31",
-    "partOfSpeech": "动词",
     "sourceRevision": 4,
     "audioText": "stimulating",
     "audioPath": "audio/stimulating.mp3"
@@ -3848,10 +3861,10 @@
     "audioPath": "audio/term.mp3"
   },
   {
-    "id": "tethered",
-    "term": "tethered",
-    "meaning": "n. 系绳, 系链, 界限, 范围\\nvt. 栓, 束缚, 限制",
-    "note": "后台录入生词",
+    "id": "tether",
+    "term": "tether",
+    "meaning": "拴住；系住；限制",
+    "note": "后台录入生词：原文 tethered，归并到原形 tether",
     "category": "我的同步错词",
     "sections": [
       "我的同步错词"
@@ -3861,18 +3874,20 @@
     ],
     "isRealError": true,
     "acceptedAnswers": [
+      "tether"
+    ],
+    "numberVariants": [
       "tethered"
     ],
-    "errorNote": "后台录入生词",
+    "errorNote": "后台录入生词：原文 tethered，归并到原形 tether",
     "userAddedAt": "2026-08-28",
     "sourceType": "user",
-    "phonetic": "'teðә",
+    "partOfSpeech": "动词",
     "reportedCount": 1,
     "lastReportedAt": "2026-08-28",
-    "partOfSpeech": "名词",
     "sourceRevision": 4,
-    "audioText": "tethered",
-    "audioPath": "audio/tethered.mp3"
+    "audioText": "tether",
+    "audioPath": "audio/tether.mp3"
   },
   {
     "id": "textile",
@@ -4587,7 +4602,7 @@
   {
     "id": "aim",
     "term": "aim",
-    "meaning": "目标；目的",
+    "meaning": "想达到的目标；努力方向",
     "note": "—",
     "category": "原因、问题、优缺点与评价",
     "sections": [
@@ -4601,6 +4616,7 @@
       "aim"
     ],
     "partOfSpeech": "名词",
+    "adminUpdatedAt": "2026-09-01",
     "sourceRevision": 4,
     "audioText": "aim",
     "audioPath": "audio/aim.mp3"
@@ -11735,27 +11751,6 @@
     "audioPath": "audio/negative.mp3"
   },
   {
-    "id": "neglect",
-    "term": "neglect",
-    "meaning": "忽视；疏于照顾",
-    "note": "—",
-    "category": "行为与决策动作",
-    "sections": [
-      "P2 + P3 必会看懂词"
-    ],
-    "modes": [
-      "recognition"
-    ],
-    "isRealError": false,
-    "acceptedAnswers": [
-      "neglect"
-    ],
-    "partOfSpeech": "名词",
-    "sourceRevision": 4,
-    "audioText": "neglect",
-    "audioPath": "audio/neglect.mp3"
-  },
-  {
     "id": "neighbour",
     "term": "neighbour",
     "meaning": "邻居",
@@ -15136,9 +15131,9 @@
     "audioPath": "audio/staff.mp3"
   },
   {
-    "id": "standardised",
-    "term": "standardised",
-    "meaning": "标准化的",
+    "id": "standardise",
+    "term": "standardise",
+    "meaning": "使标准化；使统一",
     "note": "—",
     "category": "原因、问题、优缺点与评价",
     "sections": [
@@ -15149,12 +15144,16 @@
     ],
     "isRealError": false,
     "acceptedAnswers": [
+      "standardise"
+    ],
+    "numberVariants": [
       "standardised"
     ],
     "partOfSpeech": "动词",
+    "adminUpdatedAt": "2026-09-01",
     "sourceRevision": 4,
-    "audioText": "standardised",
-    "audioPath": "audio/standardised.mp3"
+    "audioText": "standardise",
+    "audioPath": "audio/standardise.mp3"
   },
   {
     "id": "statistics",

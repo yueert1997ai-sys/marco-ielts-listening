@@ -1,18 +1,4 @@
 async (page) => {
-  const cdp = await page.context().newCDPSession(page);
-  await cdp.send("Network.setCacheDisabled", { cacheDisabled: true });
-  await cdp.send("Network.clearBrowserCache");
-  const advanceUntil = async (selector, limit = 30) => {
-    for (let index = 0; index < limit; index += 1) {
-      if (await page.locator(selector).count()) return true;
-      if (await page.locator("#continue").count()) await page.locator("#continue").click();
-      else if (await page.locator("#spelling-dont-know").count()) await page.locator("#spelling-dont-know").click();
-      else if (await page.locator("#recognition-dont-know").count()) await page.locator("#recognition-dont-know").click();
-      await page.waitForTimeout(40);
-    }
-    return false;
-  };
-
   await page.setViewportSize({ width: 390, height: 844 });
   await page.evaluate(async () => {
     localStorage.removeItem("marcoIeltsListening.v1");
@@ -24,198 +10,121 @@ async (page) => {
   });
   await page.reload();
   await page.locator("#start").waitFor();
+
   const home = await page.evaluate(() => ({
-    scrollHeight: document.documentElement.scrollHeight,
-    moreOpen: document.querySelector("#home-more")?.open,
-    coreActions: document.querySelectorAll(".home-task").length,
-    bodyBackground: getComputedStyle(document.body).backgroundColor,
-    primaryBackground: getComputedStyle(document.querySelector("#start")).backgroundColor,
+    width: document.documentElement.scrollWidth,
     progress: document.querySelector(".home-progress-inner")?.textContent.replace(/\s+/g, " ").trim(),
-    repeatsRemainingPressure: document.querySelector(".home")?.textContent.includes("剩余 50 题"),
-    localIconStylesheet: [...document.styleSheets].some((sheet) => sheet.href?.includes("/vendor/phosphor/phosphor-regular.css")),
+    personalErrors: document.querySelector("#error-training")?.textContent.replace(/\s+/g, " ").trim(),
+    version: document.querySelector("#app-version")?.textContent,
   }));
-  const manifestTheme = await page.evaluate(async () => fetch("./manifest.webmanifest").then((response) => response.json()).then((manifest) => ({
-    theme: manifest.theme_color,
-    background: manifest.background_color,
-  })));
-  const offline = await page.evaluate(async () => {
-    const registration = await navigator.serviceWorker.ready;
-    const cache = await caches.open("ielts-listening-v32");
-    const requests = await cache.keys();
-    const urls = requests.map((request) => request.url);
-    return {
-      active: registration.active?.state,
-      total: urls.length,
-      audio: urls.filter((url) => url.endsWith(".mp3")).length,
-      phosphorCss: urls.some((url) => url.includes("/vendor/phosphor/phosphor-regular.css")),
-      phosphorFont: urls.some((url) => url.includes("/vendor/phosphor/Phosphor.woff2")),
-      icons: ["apple-touch-icon.png", "icon-192.png", "icon-512.png"]
-        .every((filename) => urls.some((url) => url.endsWith(`/${filename}`))),
-    };
-  });
-  home.browseVisible = await page.locator("#browse").isVisible();
-  await page.screenshot({ path: "output/playwright/v2140/home.png" });
-  await page.locator("#home-more summary").click();
-  home.moreEntriesVisible = await page.locator("#error-training, #browse, #starred, #inbox, #export, #reset-training")
-    .evaluateAll((entries) => entries.every((entry) => entry.getClientRects().length > 0));
-  await page.screenshot({ path: "output/playwright/v2140/home-more.png", fullPage: true });
-  await page.locator("#home-more summary").click();
-  await page.locator("#start").click();
 
-  if (!await advanceUntil("#answer")) throw new Error("Could not reach a spelling question");
-  const trainingChrome = await page.evaluate(() => ({
-    active: document.querySelector("#app")?.classList.contains("active-session"),
-    versionVisible: Boolean(document.querySelector("#app-version")?.getClientRects().length),
-    meta: document.querySelector(".session-meta")?.textContent.trim(),
-  }));
-  const spelling = await page.locator("#answer").evaluate((input) => ({
-    focused: document.activeElement === input,
-    top: Math.round(input.getBoundingClientRect().top),
-    bottom: Math.round(input.getBoundingClientRect().bottom),
-  }));
-  await page.locator("#answer").fill("wrong");
-  await page.locator("#spelling-form").evaluate((form) => form.requestSubmit());
-  await page.locator("#continue").waitFor();
-  const wrongResult = {
-    note: await page.locator(".note").innerText(),
-    continueVisible: await page.locator("#continue").isVisible(),
-  };
-  await page.locator("#continue").click();
-
-  if (!await advanceUntil(".choice")) throw new Error("Could not reach a recognition question");
-  const correctMeaning = await page.evaluate(async () => {
-    const term = document.querySelector(".term")?.textContent;
+  await page.evaluate(async () => {
     const items = await fetch("./data/listening.json").then((response) => response.json());
-    return items.find((item) => item.term === term)?.meaning;
-  });
-  const choicePartsOfSpeech = await page.locator(".choice-pos").allTextContents();
-  const countBefore = await page.locator("#day-count").innerText();
-  await page.locator(".choice").filter({ hasText: correctMeaning }).click();
-  await page.waitForTimeout(100);
-  const quickPass = {
-    feedback: await page.locator(".quick-feedback").innerText(),
-    resultVisible: await page.locator(".result").count() > 0,
-  };
-  await page.screenshot({ path: "output/playwright/v2140/quick-pass.png" });
-  await page.waitForTimeout(850);
-  quickPass.advanced = await page.locator(".question-card").count() > 0;
-  quickPass.feedbackGone = await page.locator(".quick-feedback").count() === 0;
-  quickPass.countChanged = countBefore !== await page.locator("#day-count").innerText();
-
-  if (!await advanceUntil(".choice")) throw new Error("Could not reach a short-screen recognition question");
-  await page.setViewportSize({ width: 320, height: 568 });
-  await page.waitForTimeout(80);
-  const shortRecognition = await page.locator(".choice, #recognition-dont-know").evaluateAll((controls) => ({
-    count: controls.length,
-    fullyVisible: controls.filter((control) => {
-      const rect = control.getBoundingClientRect();
-      return rect.top >= 0 && rect.bottom <= innerHeight;
-    }).length,
-    scrollHeight: document.documentElement.scrollHeight,
-  }));
-  await page.screenshot({ path: "output/playwright/v2140/short-question.png" });
-  await page.locator("#recognition-dont-know").click();
-  await page.locator("#continue").waitFor();
-  shortRecognition.resultContinueVisible = await page.locator("#continue").evaluate((button) => {
-    const rect = button.getBoundingClientRect();
-    return rect.top >= 0 && rect.bottom <= innerHeight;
-  });
-  await page.screenshot({ path: "output/playwright/v2140/short-result.png" });
-
-  const widthChecks = {};
-  for (const width of [375, 430]) {
-    await page.setViewportSize({ width, height: 844 });
-    await page.waitForTimeout(40);
-    widthChecks[width] = await page.evaluate(() => ({
-      scrollWidth: document.documentElement.scrollWidth,
-      viewport: innerWidth,
-      continueVisible: Boolean(document.querySelector("#continue")?.getClientRects().length),
-    }));
-  }
-
-  await page.setViewportSize({ width: 390, height: 844 });
-  await page.evaluate(() => {
+    const keys = items.filter((item) => item.modes.includes("recognition")).slice(0, 24)
+      .map((item) => `${item.id}:recognition`);
     const now = new Date();
     const date = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, "0")}-${String(now.getDate()).padStart(2, "0")}`;
-    const session = (keys) => ({
+    const session = {
       date,
       baseKeys: keys,
       queue: keys.map((key) => ({ key, isRetry: false })),
-      answeredBase: {}, outcomes: {}, retryCount: {}, started: true, completed: false,
-    });
+      answeredBase: {}, outcomes: {}, retryCount: {}, correctStreak: {},
+      started: false, completed: false,
+    };
     localStorage.setItem("marcoIeltsListening.v1", JSON.stringify({
       version: 3,
       progress: {}, starred: {}, customItems: [], streak: 0, lastCompletedDate: null,
       trainingResetId: "fresh-start-v2.5.0",
       learningReviewSplitId: "learning-review-v2.9.0",
+      selfAssessmentFlowId: "self-assessment-v2.16.0",
       deckNonce: "whole-bank-v2",
-      daily: session(["carpet:recognition", "carpet:spelling"]),
-      reviewDaily: session([]),
-      errorDaily: session(["carpet:recognition", "carpet:spelling"]),
+      daily: session,
+      reviewDaily: { ...session, baseKeys: [], queue: [], completed: true },
+      errorDaily: null,
+      starredDaily: null,
     }));
   });
   await page.reload();
   await page.locator("#start").click();
-  const firstCarpetChoiceIndex = await page.locator(".choice").evaluateAll((choices) => choices.findIndex((choice) => choice.dataset.choice === "地毯"));
-  await page.locator(".choice").filter({ hasText: "地毯" }).click();
-  const confidenceFeedback = await page.locator(".quick-feedback").innerText();
-  const reinforcementCount = await page.locator("#day-count").innerText();
-  const keyboardPrimed = await page.locator(".keyboard-primer").count() === 1;
-  await page.locator("#answer").waitFor();
-  const switchedSpellingFocused = await page.locator("#answer").evaluate((input) => document.activeElement === input);
-  await page.locator("#answer").fill("carpet");
-  await page.locator("#spelling-form").evaluate((form) => form.requestSubmit());
-  const correctSpellingFeedback = await page.locator(".quick-feedback").innerText();
-  await page.locator(".choice").first().waitFor();
-  const confirmationMeta = await page.locator(".session-meta").innerText();
-  const confirmationChoiceIndex = await page.locator(".choice").evaluateAll((choices) => choices.findIndex((choice) => choice.dataset.choice === "地毯"));
-  await page.locator(".choice").filter({ hasText: "地毯" }).click();
-  const masteredFeedback = await page.locator(".quick-feedback").innerText();
+  await page.locator(".confidence-actions").waitFor();
 
-  if (home.scrollHeight > 844
-    || home.moreOpen
-    || home.browseVisible
-    || !home.moreEntriesVisible
-    || home.coreActions !== 5
-    || home.bodyBackground !== "rgb(242, 242, 247)"
-    || home.primaryBackground !== "rgb(0, 122, 255)"
+  const question = await page.evaluate(() => ({
+    choices: document.querySelectorAll(".choice").length,
+    confidenceButtons: [...document.querySelectorAll(".confidence-button")]
+      .map((button) => button.textContent.replace(/\s+/g, " ").trim()),
+    meaningLeaked: Boolean(document.querySelector(".meaning, .choice-meaning")),
+    hasAudio: Boolean(document.querySelector("#recognition-play")),
+  }));
+
+  await page.setViewportSize({ width: 320, height: 568 });
+  const shortScreen = await page.locator(".confidence-button").evaluateAll((buttons) => ({
+    scrollWidth: document.documentElement.scrollWidth,
+    visible: buttons.filter((button) => {
+      const rect = button.getBoundingClientRect();
+      return rect.top >= 0 && rect.bottom <= innerHeight;
+    }).length,
+  }));
+  await page.locator(".confidence-fuzzy").click();
+  await page.locator("#continue").waitFor();
+  const result = await page.evaluate(() => ({
+    rating: document.querySelector(".result-mark")?.textContent,
+    meaning: document.querySelector(".meaning")?.textContent,
+    partOfSpeech: document.querySelector(".result-pos")?.textContent,
+    note: document.querySelector(".note")?.textContent,
+    continueVisible: (() => {
+      const rect = document.querySelector("#continue")?.getBoundingClientRect();
+      return Boolean(rect && rect.top >= 0 && rect.bottom <= innerHeight);
+    })(),
+  }));
+  const retry = await page.evaluate(() => {
+    const state = JSON.parse(localStorage.getItem("marcoIeltsListening.v1"));
+    const key = state.daily.baseKeys[0];
+    return {
+      index: state.daily.queue.findIndex((entry) => entry.key === key && entry.isRetry),
+      count: state.daily.retryCount[key],
+    };
+  });
+
+  const audio = await page.evaluate(async () => {
+    const ids = ["dispose", "erect", "resurface", "standardise", "tether"];
+    const results = [];
+    for (const id of ids) {
+      const element = new Audio(`./audio/${id}.mp3`);
+      const loaded = await new Promise((resolve) => {
+        element.addEventListener("canplaythrough", () => resolve(true), { once: true });
+        element.addEventListener("error", () => resolve(false), { once: true });
+        setTimeout(() => resolve(false), 5000);
+        element.load();
+      });
+      results.push({ id, loaded, duration: element.duration });
+    }
+    return results;
+  });
+
+  if (home.width > 390
     || !home.progress.includes("0 / 50")
-    || home.repeatsRemainingPressure
-    || !home.localIconStylesheet
-    || manifestTheme.theme.toLowerCase() !== "#f2f2f7"
-    || manifestTheme.background.toLowerCase() !== "#f2f2f7"
-    || offline.active !== "activated"
-    || offline.audio !== 741
-    || !offline.phosphorCss
-    || !offline.phosphorFont
-    || !offline.icons
-    || !trainingChrome.active
-    || trainingChrome.versionVisible
-    || !["听写", "识义"].includes(trainingChrome.meta)
-    || !spelling.focused
-    || wrongResult.note.trim().startsWith("—")
-    || !wrongResult.continueVisible
-    || !quickPass.feedback.includes("正确")
-    || quickPass.resultVisible
-    || !quickPass.advanced
-    || !quickPass.feedbackGone
-    || !quickPass.countChanged
-    || choicePartsOfSpeech.length !== 4
-    || choicePartsOfSpeech.some((label) => !["n", "v", "adj", "adv", "prep", "phr", "abbr", "n/v", "aux", "—"].includes(label.trim()))
-    || shortRecognition.count !== 5
-    || shortRecognition.fullyVisible !== 5
-    || !shortRecognition.resultContinueVisible
-    || !keyboardPrimed
-    || !switchedSpellingFocused
-    || !correctSpellingFeedback.includes("地毯")
-    || !confidenceFeedback.includes("稍后换序再确认")
-    || !reinforcementCount.includes("+1")
-    || !confirmationMeta.includes("确认题")
-    || firstCarpetChoiceIndex === confirmationChoiceIndex
-    || Object.values(widthChecks).some((check) => check.scrollWidth > check.viewport || !check.continueVisible)
-    || !masteredFeedback.includes("已完成巩固")) {
-    throw new Error(JSON.stringify({ home, manifestTheme, offline, trainingChrome, spelling, wrongResult, quickPass, choicePartsOfSpeech, shortRecognition, widthChecks, keyboardPrimed, switchedSpellingFocused, correctSpellingFeedback, confidenceFeedback, reinforcementCount, confirmationMeta, firstCarpetChoiceIndex, confirmationChoiceIndex, masteredFeedback }));
+    || !home.personalErrors.includes("123 词")
+    || home.version !== "v2.16.0"
+    || question.choices !== 0
+    || question.confidenceButtons.length !== 3
+    || !question.confidenceButtons.some((label) => label.startsWith("认识"))
+    || !question.confidenceButtons.some((label) => label.startsWith("模糊"))
+    || !question.confidenceButtons.some((label) => label.startsWith("不认识"))
+    || question.meaningLeaked
+    || !question.hasAudio
+    || shortScreen.scrollWidth > 320
+    || shortScreen.visible !== 3
+    || result.rating !== "模糊"
+    || !result.meaning
+    || !result.partOfSpeech
+    || !result.note.includes("10–14 题后")
+    || !result.continueVisible
+    || retry.index < 10
+    || retry.index > 14
+    || retry.count !== 1
+    || audio.some((item) => !item.loaded || !Number.isFinite(item.duration) || item.duration <= 0)) {
+    throw new Error(JSON.stringify({ home, question, shortScreen, result, retry, audio }));
   }
 
-  return { ok: true, home, manifestTheme, offline, trainingChrome, spelling, wrongResult, quickPass, choicePartsOfSpeech, shortRecognition, widthChecks, keyboardPrimed, switchedSpellingFocused, correctSpellingFeedback, confidenceFeedback, reinforcementCount, confirmationMeta, firstCarpetChoiceIndex, confirmationChoiceIndex, masteredFeedback };
+  return { ok: true, home, question, shortScreen, result, retry, audio };
 }

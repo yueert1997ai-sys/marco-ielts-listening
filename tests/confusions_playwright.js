@@ -172,7 +172,7 @@ async (page) => {
   await page.waitForTimeout(700);
   const cacheNames = await page.evaluate(() => caches.keys());
   const cacheIsolation = {
-    listening: cacheNames.includes("ielts-listening-v32"),
+    listening: cacheNames.includes("ielts-listening-v33"),
     confusions: cacheNames.includes("ielts-confusions-v3"),
   };
   await page.context().setOffline(true);

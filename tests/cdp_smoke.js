@@ -75,7 +75,7 @@ async function screenshot(send, name) {
     const registration = await navigator.serviceWorker.ready;
     await new Promise((resolve) => setTimeout(resolve, 5000));
     const names = await caches.keys();
-    const cache = names.includes('ielts-listening-v32') ? await caches.open('ielts-listening-v32') : null;
+    const cache = names.includes('ielts-listening-v33') ? await caches.open('ielts-listening-v33') : null;
     const keys = cache ? await cache.keys() : [];
     return {
       active: registration.active?.state || null,
@@ -184,19 +184,19 @@ async function screenshot(send, name) {
   await screenshot(send, "mobile-cdp-home-progress.png");
   await evaluate(send, "document.querySelector('#start').click(); true");
   await evaluate(send, `(async () => {
-    for (let index = 0; index < 12 && !document.querySelector('.choice'); index += 1) {
+    for (let index = 0; index < 12 && !document.querySelector('.confidence-actions'); index += 1) {
       document.querySelector('#spelling-dont-know')?.click();
       await new Promise((resolve) => setTimeout(resolve, 30));
       document.querySelector('#continue')?.click();
       await new Promise((resolve) => setTimeout(resolve, 30));
     }
-    return Boolean(document.querySelector('.choice'));
+    return Boolean(document.querySelector('.confidence-actions'));
   })()`);
   await new Promise((resolve) => setTimeout(resolve, 100));
   const recognition = await evaluate(send, `(() => ({
     mode: document.querySelector('.mode-label')?.textContent,
-    choices: document.querySelectorAll('.choice').length,
-    partsOfSpeech: [...document.querySelectorAll('.choice-pos')].map((item) => item.textContent.trim()),
+    confidenceButtons: [...document.querySelectorAll('.confidence-button')].map((item) => item.textContent.replace(/\s+/g, ' ').trim()),
+    meaningLeaked: Boolean(document.querySelector('.meaning, .choice-meaning')),
     timer: Boolean(document.querySelector('.timer-bar')),
     timerText: document.querySelector('#timer-count')?.textContent
   }))()`);
@@ -204,52 +204,51 @@ async function screenshot(send, name) {
   recognition.expiredText = await evaluate(send, "document.querySelector('#timer-count')?.textContent");
   await screenshot(send, "mobile-cdp-recognition.png");
 
-  await evaluate(send, "document.querySelector('#recognition-dont-know').click(); true");
+  await evaluate(send, "document.querySelector('.confidence-unknown').click(); true");
   await new Promise((resolve) => setTimeout(resolve, 50));
   await evaluate(send, "document.querySelector('#continue').click(); true");
   await evaluate(send, `(async () => {
-    for (let index = 0; index < 20 && !document.querySelector('.choice'); index += 1) {
+    for (let index = 0; index < 20 && !document.querySelector('.confidence-actions'); index += 1) {
       document.querySelector('#spelling-dont-know')?.click();
       await new Promise((resolve) => setTimeout(resolve, 30));
       document.querySelector('#continue')?.click();
       await new Promise((resolve) => setTimeout(resolve, 30));
     }
-    return Boolean(document.querySelector('.choice'));
+    return Boolean(document.querySelector('.confidence-actions'));
   })()`);
-  const fastPass = await evaluate(send, `(async () => {
-    const term = document.querySelector('.term')?.textContent;
-    const items = await fetch('./data/listening.json').then((response) => response.json());
-    const meaning = items.find((item) => item.term === term)?.meaning;
-    const choice = [...document.querySelectorAll('.choice')].find((button) => button.dataset.choice === meaning);
+  const confidencePass = await evaluate(send, `(async () => {
     const before = document.querySelector('#day-count')?.textContent;
-    choice?.click();
+    document.querySelector('.confidence-known')?.click();
     await new Promise((resolve) => setTimeout(resolve, 100));
-    const feedback = document.querySelector('.quick-feedback')?.textContent;
-    const resultVisibleDuringFeedback = Boolean(document.querySelector('.result'));
-    await new Promise((resolve) => setTimeout(resolve, 650));
+    const rating = document.querySelector('.result-mark')?.textContent.trim();
+    const meaning = document.querySelector('.meaning')?.textContent.trim();
+    const partOfSpeech = document.querySelector('.result-pos')?.textContent.trim();
+    document.querySelector('#continue')?.click();
+    await new Promise((resolve) => setTimeout(resolve, 100));
     return {
       before,
       after: document.querySelector('#day-count')?.textContent,
-      feedback,
-      resultVisibleDuringFeedback,
+      rating,
+      meaning,
+      partOfSpeech,
       advancedToQuestion: Boolean(document.querySelector('.question-card')),
-      feedbackGone: !document.querySelector('.quick-feedback')
+      resultGone: !document.querySelector('.result-card')
     };
   })()`);
 
   await evaluate(send, `(async () => {
-    for (let index = 0; index < 20 && !document.querySelector('.choice'); index += 1) {
+    for (let index = 0; index < 20 && !document.querySelector('.confidence-actions'); index += 1) {
       document.querySelector('#spelling-dont-know')?.click();
       await new Promise((resolve) => setTimeout(resolve, 30));
       document.querySelector('#continue')?.click();
       await new Promise((resolve) => setTimeout(resolve, 30));
     }
-    return Boolean(document.querySelector('.choice'));
+    return Boolean(document.querySelector('.confidence-actions'));
   })()`);
   await send("Emulation.setDeviceMetricsOverride", { width: 320, height: 568, deviceScaleFactor: 2, mobile: true });
   await new Promise((resolve) => setTimeout(resolve, 100));
   const shortRecognition = await evaluate(send, `(() => {
-    const controls = [...document.querySelectorAll('.choice, #recognition-dont-know')];
+    const controls = [...document.querySelectorAll('.confidence-button')];
     return {
       scrollHeight: document.documentElement.scrollHeight,
       controls: controls.length,
@@ -259,7 +258,7 @@ async function screenshot(send, name) {
       }).length
     };
   })()`);
-  await evaluate(send, "document.querySelector('#recognition-dont-know').click(); true");
+  await evaluate(send, "document.querySelector('.confidence-unknown').click(); true");
   await new Promise((resolve) => setTimeout(resolve, 50));
   shortRecognition.resultContinueVisible = await evaluate(send, `(() => {
     const rect = document.querySelector('#continue').getBoundingClientRect();
@@ -275,17 +274,16 @@ async function screenshot(send, name) {
     || !directionSession.dailyUnchanged || result.learningRetries < 1
     || !spelling.focused || result.reviewPending < 1 || !result.note.includes('高频复习')
     || result.note.trim().startsWith('—')
-    || !fastPass.feedback?.includes('正确') || fastPass.resultVisibleDuringFeedback
-    || !fastPass.advancedToQuestion || !fastPass.feedbackGone || fastPass.before === fastPass.after
-    || recognition.partsOfSpeech.length !== 4
-    || recognition.partsOfSpeech.some((label) => !['n', 'v', 'adj', 'adv', 'prep', 'phr', 'abbr', 'n/v', 'aux', '—'].includes(label))
-    || shortRecognition.controls !== 5 || shortRecognition.fullyVisible !== 5
+    || confidencePass.rating !== '认识' || !confidencePass.meaning || !confidencePass.partOfSpeech
+    || !confidencePass.advancedToQuestion || !confidencePass.resultGone
+    || recognition.confidenceButtons.length !== 3 || recognition.meaningLeaked
+    || shortRecognition.controls !== 3 || shortRecognition.fullyVisible !== 3
     || !shortRecognition.resultContinueVisible
     || reviewHome.disabled || !/\d+\s*题/.test(reviewHome.text)
     || !home.railHidden || !offline.phosphorCss || !offline.phosphorFont) {
-    throw new Error(`Mobile direction mode smoke check failed: ${JSON.stringify({ home, offline, directionIntro, directionSession, browse, spelling, result, reviewHome, recognition, fastPass, shortRecognition })}`);
+    throw new Error(`Mobile direction mode smoke check failed: ${JSON.stringify({ home, offline, directionIntro, directionSession, browse, spelling, result, reviewHome, recognition, confidencePass, shortRecognition })}`);
   }
 
-  console.log(JSON.stringify({ ok: true, home, offline, directionIntro, directionSession, browse, spelling, result, reviewHome, recognition, fastPass, shortRecognition }));
+  console.log(JSON.stringify({ ok: true, home, offline, directionIntro, directionSession, browse, spelling, result, reviewHome, recognition, confidencePass, shortRecognition }));
   socket.close();
 })().catch((error) => { console.error(error); process.exit(1); });

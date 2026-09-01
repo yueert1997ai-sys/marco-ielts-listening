@@ -189,24 +189,29 @@ test("failure resets stage", () => {
   const record = logic.scheduleReview({ stage: 5 }, "fail", "2026-08-23");
   assert.equal(record.stage, 0); assert.equal(record.due, "2026-08-24");
 });
-test("a missed word returns two to four questions later", () => {
+test("a missed word returns eight to twelve questions later", () => {
   const daily = { date: "2026-08-23", queue: Array.from({ length: 20 }, (_, i) => ({ key: `x${i}`, isRetry: false })), retryCount: {} };
   const index = logic.insertRetry(daily, "carpet:spelling");
-  assert(index >= 2 && index <= 4); assert.equal(daily.queue[index].key, "carpet:spelling");
+  assert(index >= 8 && index <= 12); assert.equal(daily.queue[index].key, "carpet:spelling");
   assert.equal(daily.queue[index].reason, "retry");
 });
-test("a confidence check returns six to nine questions later", () => {
+test("a confidence check returns fifteen to twenty questions later", () => {
   const daily = { date: "2026-08-23", queue: Array.from({ length: 20 }, (_, i) => ({ key: `x${i}`, isRetry: false })), retryCount: {} };
   const index = logic.insertRetry(daily, "carpet:recognition", {
     reason: "confirm", minDistance: logic.CONFIRM_MIN_DISTANCE, maxDistance: logic.CONFIRM_MAX_DISTANCE, avoidChoiceIndex: 2,
   });
-  assert(index >= 6 && index <= 9); assert.equal(daily.queue[index].reason, "confirm");
+  assert(index >= 15 && index <= 20); assert.equal(daily.queue[index].reason, "confirm");
   assert.equal(daily.queue[index].avoidChoiceIndex, 2);
 });
 test("only one pending retry per item", () => {
-  const daily = { date: "2026-08-23", queue: [], retryCount: {} };
+  const daily = { date: "2026-08-23", queue: Array.from({ length: 20 }, (_, i) => ({ key: `x${i}`, isRetry: false })), retryCount: {} };
   logic.insertRetry(daily, "carpet:spelling"); logic.insertRetry(daily, "carpet:spelling");
   assert.equal(daily.queue.filter((entry) => entry.key === "carpet:spelling").length, 1);
+});
+test("a short retry tail is deferred instead of looping the same few words", () => {
+  const daily = { date: "2026-08-23", queue: Array.from({ length: 5 }, (_, i) => ({ key: `miss${i}`, isRetry: true })), retryCount: {} };
+  assert.equal(logic.insertRetry(daily, "carpet:spelling"), -1);
+  assert.equal(daily.queue.some((entry) => entry.key === "carpet:spelling"), false);
 });
 test("real-error recognition requires a later confidence check", () => {
   const activity = activities.find((item) => item.key === "carpet:recognition");
@@ -215,9 +220,26 @@ test("real-error recognition requires a later confidence check", () => {
 });
 test("first recognition pass can be provisional instead of mastered", () => {
   const activity = activities.find((item) => item.key === "carpet:recognition");
-  const decision = logic.reinforcementDecision({ key: activity.key, isRetry: false }, activity, "pass", null, 0, "2026-08-23");
+  const decision = logic.reinforcementDecision({ key: activity.key, isRetry: false }, activity, "known", null, 0, "2026-08-23");
   assert.equal(decision.recordOutcome, "practice");
   assert.equal(decision.streak, 1); assert.equal(decision.reason, "confirm");
+});
+test("fuzzy recognition returns sooner and one later known answer confirms it", () => {
+  const activity = activities.find((item) => item.key === "carpet:recognition");
+  const fuzzy = logic.reinforcementDecision({ key: activity.key, isRetry: false }, activity, "fuzzy", null, 0, "2026-08-23");
+  const recovered = logic.reinforcementDecision({ key: activity.key, isRetry: true, reason: "fuzzy" }, activity, "known", null, 0, "2026-08-23");
+  assert.equal(fuzzy.recordOutcome, "fail"); assert.equal(fuzzy.reason, "fuzzy");
+  assert.equal(fuzzy.minDistance, 10); assert.equal(fuzzy.maxDistance, 14);
+  assert.equal(recovered.recordOutcome, "pass"); assert.equal(recovered.retry, false);
+});
+test("unknown recognition needs two later known answers", () => {
+  const activity = activities.find((item) => item.key === "carpet:recognition");
+  const unknown = logic.reinforcementDecision({ key: activity.key, isRetry: false }, activity, "unknown", null, 0, "2026-08-23");
+  const firstKnown = logic.reinforcementDecision({ key: activity.key, isRetry: true, reason: "unknown" }, activity, "known", null, 0, "2026-08-23");
+  const secondKnown = logic.reinforcementDecision({ key: activity.key, isRetry: true, reason: "confirm" }, activity, "known", null, firstKnown.streak, "2026-08-23");
+  assert.equal(unknown.recordOutcome, "fail"); assert.equal(unknown.reason, "unknown");
+  assert.equal(firstKnown.recordOutcome, "practice"); assert(firstKnown.retry);
+  assert.equal(secondKnown.recordOutcome, "pass"); assert.equal(secondKnown.retry, false);
 });
 test("a miss needs two consecutive recovery passes", () => {
   const activity = activities.find((item) => item.key === "carpet:spelling");
@@ -242,6 +264,17 @@ test("choices contain target and four unique meanings", () => {
   const activity = activities.find((item) => item.key === "carpet:recognition");
   const choices = logic.buildChoices(activity, activities);
   assert.equal(choices.length, 4); assert.equal(new Set(choices).size, 4); assert(choices.includes("地毯"));
+});
+test("legacy choices never place overlapping Chinese glosses together", () => {
+  const overlapActivities = logic.makeActivities([
+    { id: "end", term: "end", meaning: "目的；目标", modes: ["recognition"] },
+    { id: "aim", term: "aim", meaning: "目标；目的", modes: ["recognition"] },
+    { id: "carpet", term: "carpet", meaning: "地毯", modes: ["recognition"] },
+    { id: "chair", term: "chair", meaning: "椅子", modes: ["recognition"] },
+    { id: "desk", term: "desk", meaning: "书桌", modes: ["recognition"] },
+  ]);
+  const end = overlapActivities.find((item) => item.key === "end:recognition");
+  assert.equal(logic.buildChoices(end, overlapActivities).includes("目标；目的"), false);
 });
 test("recognition choices expose the matched part of speech", () => {
   const activity = activities.find((item) => item.key === "carpet:recognition");
@@ -283,17 +316,17 @@ test("quick pass feedback stays long enough to read on a phone", () => {
   assert(logic.QUESTION_TRANSITION_MS >= 140 && logic.QUESTION_TRANSITION_MS <= 240);
 });
 test("result note has no dangling separator when source note is empty", () => {
-  assert.equal(logic.formatResultNote("", "fail", "learning"), "2–4 题后回炉，并已加入高频复习");
-  assert.equal(logic.formatResultNote("—", "fail", "learning"), "2–4 题后回炉，并已加入高频复习");
-  assert.equal(logic.formatResultNote("", "fail", "review"), "2–4 题后回炉");
-  assert.equal(logic.formatResultNote("", "fail", "errors"), "2–4 题后回炉，并已加入高频复习");
-  assert.equal(logic.formatResultNote("", "fail", "starred"), "2–4 题后回炉，并已加入高频复习");
-  assert.equal(logic.formatResultNote("双写错误", "fail", "learning"), "双写错误 · 2–4 题后回炉，并已加入高频复习");
+  assert.equal(logic.formatResultNote("", "fail", "learning"), "8–14 题后再练，并已加入高频复习");
+  assert.equal(logic.formatResultNote("—", "fail", "learning"), "8–14 题后再练，并已加入高频复习");
+  assert.equal(logic.formatResultNote("", "fail", "review"), "8–14 题后再练");
+  assert.equal(logic.formatResultNote("", "fail", "errors"), "8–14 题后再练，并已加入高频复习");
+  assert.equal(logic.formatResultNote("", "fail", "starred"), "8–14 题后再练，并已加入高频复习");
+  assert.equal(logic.formatResultNote("双写错误", "fail", "learning"), "双写错误 · 8–14 题后再练，并已加入高频复习");
 });
 test("different published version triggers an update", () => assert(logic.hasVersionUpdate("v2.11.1", "v2.11.2")));
 test("matching published version does not trigger an update", () => assert.equal(logic.hasVersionUpdate("v2.11.2", "v2.11.2"), false));
 test("intervals match spec", () => assert.deepEqual(logic.INTERVALS, [1, 3, 7, 14, 30, 60]));
-test("visible app version matches this release", () => assert.equal(logic.APP_VERSION, "v2.15.1"));
+test("visible app version matches this release", () => assert.equal(logic.APP_VERSION, "v2.16.0"));
 test("direction response limit is two seconds", () => assert.equal(logic.DIRECTION_RESPONSE_LIMIT_MS, 2000));
 test("hard direction response limit is one second", () => assert.equal(logic.HARD_DIRECTION_RESPONSE_LIMIT_MS, 1000));
 test("hard direction audio plays at one point four speed", () => assert.equal(logic.HARD_DIRECTION_PLAYBACK_RATE, 1.4));
@@ -308,6 +341,24 @@ test("learning-review migration preserves progress and rebuilds only task queues
   assert.equal(migrated.progress["carpet:spelling"].lapses, 4);
   assert(migrated.starred.carpet); assert.equal(migrated.daily, null); assert.equal(migrated.reviewDaily, null);
   assert.equal(migrated.learningReviewSplitId, logic.LEARNING_REVIEW_SPLIT_ID);
+});
+test("self-assessment migration removes old short retries without clearing progress", () => {
+  const migrated = logic.applySelfAssessmentFlow(logic.safeState({
+    progress: { "carpet:recognition": { lapses: 2, due: "2026-09-02" } },
+    daily: {
+      date: "2026-09-01", baseKeys: ["carpet:recognition", "r0:recognition"],
+      queue: [
+        { key: "carpet:recognition", isRetry: true, reason: "retry" },
+        { key: "r0:recognition", isRetry: false },
+      ],
+      answeredBase: { "carpet:recognition": true }, outcomes: {}, retryCount: { "carpet:recognition": 2 },
+    },
+  }));
+  assert.equal(migrated.daily.queue.length, 1);
+  assert.equal(migrated.daily.queue[0].key, "r0:recognition");
+  assert.equal(migrated.progress["carpet:recognition"].lapses, 2);
+  assert.deepEqual(migrated.daily.retryCount, {});
+  assert.equal(migrated.selfAssessmentFlowId, logic.SELF_ASSESSMENT_FLOW_ID);
 });
 test("release reset clears training but preserves personal words and stars", () => {
   const reset = logic.applyTrainingReset(logic.safeState({

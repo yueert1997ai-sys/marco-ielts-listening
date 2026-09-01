@@ -11,6 +11,8 @@
   --signal-soft: #e8f2ff;
   --error: #ff3b30;
   --error-soft: #fff0ef;
+  --warning: #c77700;
+  --warning-soft: #fff7e6;
   --success: #34c759;
   --success-soft: #edfaf0;
   --shadow: 0 2px 12px rgba(0, 0, 0, .055);
@@ -98,7 +100,7 @@ button { -webkit-appearance: none; }
   flex-direction: column;
 }
 
-.primary, .secondary, .play-button, .choice, .submit-button, .dont-know-button,
+.primary, .secondary, .play-button, .choice, .confidence-button, .submit-button, .dont-know-button,
 .home-task, .menu-entry, .test-play, .mini-play, .session-star, .star-button, .filter-chip {
   min-height: 44px;
   border-radius: 12px;
@@ -116,7 +118,7 @@ button { -webkit-appearance: none; }
   border: 1px solid var(--line-soft);
 }
 .primary:not(:disabled):active, .secondary:not(:disabled):active, .home-task:not(:disabled):active,
-.menu-entry:not(:disabled):active, .choice:not(:disabled):active, .test-play:not(:disabled):active,
+.menu-entry:not(:disabled):active, .choice:not(:disabled):active, .confidence-button:not(:disabled):active, .test-play:not(:disabled):active,
 .mini-play:not(:disabled):active, .play-button:not(:disabled):active, .filter-chip:not(:disabled):active {
   opacity: .72;
   transform: scale(.985);
@@ -375,6 +377,25 @@ textarea:focus-visible, select:focus-visible { outline: 3px solid rgba(0, 122, 2
 .choice.choice-correct { color: #fff; background: var(--success); border-color: var(--success); box-shadow: 0 8px 22px rgba(52, 199, 89, .22); transition: none; animation: correct-pop .28s ease both; }
 .choice.choice-correct:disabled { opacity: 1; }
 .choice.choice-correct .choice-pos { color: #fff; background: rgba(255, 255, 255, .2); }
+.recognition-confidence-card .recognition-term { margin-bottom: auto; }
+.confidence-hint { margin: 0 0 10px; color: var(--muted); font-size: 12px; text-align: center; }
+.confidence-actions { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+.confidence-button {
+  min-width: 0;
+  min-height: 70px;
+  padding: 10px 7px;
+  display: grid;
+  place-content: center;
+  gap: 5px;
+  background: var(--paper);
+  border: 1px solid var(--line-soft);
+  border-radius: 13px;
+}
+.confidence-button strong { font-size: 16px; line-height: 1; }
+.confidence-button small { color: var(--muted); font-size: 10px; font-weight: 550; line-height: 1.2; }
+.confidence-known { color: #248a3d; border-color: rgba(52, 199, 89, .38); background: var(--success-soft); }
+.confidence-fuzzy { color: var(--warning); border-color: rgba(199, 119, 0, .34); background: var(--warning-soft); }
+.confidence-unknown { color: var(--error); border-color: rgba(255, 59, 48, .3); background: var(--error-soft); }
 .question-card.quick-pass { border-color: rgba(52, 199, 89, .45); }
 .question-card.quick-pass-leave { opacity: 0; transform: translateY(-7px) scale(.995); }
 .question-card-enter { animation: question-card-enter .2s cubic-bezier(.2, .8, .2, 1) both; }
@@ -416,11 +437,14 @@ textarea:focus-visible, select:focus-visible { outline: 3px solid rgba(0, 122, 2
 .result-card { padding: 22px 20px; }
 .result-mark { margin: 0 0 16px; font-size: 15px; font-weight: 700; line-height: 1.2; }
 .result-mark.pass { color: var(--success); }
+.result-mark.fuzzy { color: var(--warning); }
 .result-mark.weak { color: var(--error); }
 .answer-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
 .answer { min-width: 0; margin: 0; font-size: clamp(34px, 11vw, 52px); line-height: 1.05; letter-spacing: -.045em; overflow-wrap: anywhere; }
 .answer-row .test-play { flex: 0 0 auto; }
-.meaning { margin: 12px 0 0; color: var(--translation); font-size: clamp(21px, 6vw, 24px); font-weight: 650; line-height: 1.4; }
+.meaning-row { margin-top: 12px; display: flex; align-items: flex-start; gap: 9px; }
+.result-pos { flex: 0 0 auto; min-width: 38px; margin-top: 3px; padding: 5px 6px; color: var(--muted); background: var(--mist); border-radius: 6px; font: 700 12px/1 ui-monospace, "SFMono-Regular", Menlo, monospace; text-align: center; }
+.meaning { min-width: 0; margin: 0; color: var(--translation); font-size: clamp(21px, 6vw, 24px); font-weight: 650; line-height: 1.4; }
 .typed { margin: 15px 0 0; font: 600 16px/1.45 ui-monospace, "SFMono-Regular", Menlo, monospace; }
 .wrong-char { color: var(--error); text-decoration: underline wavy; text-underline-offset: 4px; }
 .note { margin: 18px 0 0; padding-top: 14px; border-top: .5px solid var(--line-soft); color: var(--muted); font-size: 13px; line-height: 1.5; }
@@ -626,6 +650,9 @@ textarea:focus-visible, select:focus-visible { outline: 3px solid rgba(0, 122, 2
   .choices { gap: 5px; }
   .choice { min-height: 45px; padding: 6px 10px; border-radius: 10px; font-size: 16px; }
   .choice-pos { min-width: 36px; padding: 4px 5px; font-size: 11px; }
+  .confidence-actions { gap: 6px; }
+  .confidence-button { min-height: 58px; padding: 8px 4px; }
+  .confidence-button strong { font-size: 15px; }
   .question-card > .dont-know-button { min-height: 38px; margin-top: 5px; }
   .play-button { width: 82px; height: 82px; font-size: 33px; }
   .play-hint { font-size: 12px; }
@@ -636,7 +663,8 @@ textarea:focus-visible, select:focus-visible { outline: 3px solid rgba(0, 122, 2
   .result-card { padding: 14px; border-radius: 15px; }
   .result-mark { margin-bottom: 9px; }
   .answer { font-size: clamp(29px, 10vw, 40px); }
-  .meaning { margin-top: 7px; font-size: clamp(19px, 6vw, 21px); }
+  .meaning-row { margin-top: 7px; }
+  .meaning { font-size: clamp(19px, 6vw, 21px); }
   .typed { margin-top: 9px; font-size: 14px; }
   .note { margin-top: 10px; padding-top: 8px; }
   .memory-strip { gap: 6px; margin-top: 9px; padding-top: 8px; }

@@ -155,6 +155,44 @@ def find_number_canonical(merged: dict[str, dict], term: str) -> dict | None:
                  if term_key in {key_for(variant) for variant in candidate.get("numberVariants", [])}), None)
 
 
+def merge_canonical_item(merged: dict[str, dict], target_id: str, canonical_term: str) -> dict | None:
+    """Move an explicit inflected challenge to its lemma without losing history metadata."""
+    item = merged.pop(target_id, None)
+    if not item:
+        return None
+    old_term = item["term"]
+    canonical_term = normalise_term(canonical_term)
+    canonical_id = key_for(canonical_term)
+    if not canonical_id:
+        raise SystemExit(f"Invalid canonical term for {target_id}: {canonical_term!r}")
+    existing = merged.get(canonical_id)
+    if existing:
+        for mode in item.get("modes", []):
+            if mode not in existing["modes"]:
+                existing["modes"].append(mode)
+        for section in item.get("sections", []):
+            if section not in existing["sections"]:
+                existing["sections"].append(section)
+        if item.get("isRealError"):
+            existing["isRealError"] = True
+            existing["errorNote"] = item.get("errorNote") or item.get("note")
+        for field in ("sourceType", "userAddedAt", "reportedCount", "lastReportedAt", "phonetic"):
+            if item.get(field) and not existing.get(field):
+                existing[field] = item[field]
+        target = existing
+    else:
+        item["id"] = canonical_id
+        item["term"] = canonical_term
+        item["acceptedAnswers"] = [canonical_term]
+        target = item
+        merged[canonical_id] = target
+    variants = [old_term, *(item.get("numberVariants") or [])]
+    for variant in variants:
+        if key_for(variant) != canonical_id and variant not in target.setdefault("numberVariants", []):
+            target["numberVariants"].append(variant)
+    return target
+
+
 def parse_rows(content: str) -> list[dict]:
     root = ET.fromstring(f"<root>{content}</root>")
     rows: list[dict] = []
@@ -312,6 +350,10 @@ def build(
             "acceptedAnswers": [term],
             "numberVariants": [],
         })
+        for variant in row.get("numberVariants") or []:
+            variant = normalise_term(str(variant))
+            if variant and key_for(variant) != key and variant not in item["numberVariants"]:
+                item["numberVariants"].append(variant)
         for variant in number_variants:
             if variant != item["term"] and variant not in item["numberVariants"]:
                 item["numberVariants"].append(variant)
@@ -341,7 +383,13 @@ def build(
         target_id = str(override.get("id") or "")
         if not target_id:
             raise SystemExit(f"Invalid vocabulary override: {override}")
-        item = merged.get(target_id)
+        canonical_term = str(override.get("canonicalTerm") or "").strip()
+        item = merge_canonical_item(merged, target_id, canonical_term) if canonical_term else merged.get(target_id)
+        if item and canonical_term:
+            real_errors.discard(target_id)
+            if item.get("isRealError"):
+                real_errors.add(item["id"])
+            target_id = item["id"]
         if override.get("archived"):
             if item:
                 merged.pop(target_id)

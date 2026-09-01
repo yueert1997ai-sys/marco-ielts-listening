@@ -357,17 +357,21 @@
     "lastReportedAt": "2026-08-31"
   },
   {
-    "id": "disposed",
-    "term": "disposed",
-    "meaning": "处理；处置（dispose 的过去式/过去分词）",
+    "id": "dispose",
+    "term": "dispose",
+    "meaning": "处理；处置",
     "modes": [
       "recognition"
     ],
-    "reason": "C15-T4-P3 生词：废弃物处置语境",
+    "reason": "C15-T4-P3 生词：原文 disposed，归并到原形 dispose；废弃物处置语境",
     "category": "我的同步错词",
     "addedAt": "2026-08-31",
     "reportedCount": 1,
-    "lastReportedAt": "2026-08-31"
+    "lastReportedAt": "2026-08-31",
+    "partOfSpeech": "动词",
+    "numberVariants": [
+      "disposed"
+    ]
   },
   {
     "id": "distinction",
@@ -419,18 +423,23 @@
     "category": "我的同步错词",
     "addedAt": "2026-08-31",
     "reportedCount": 1,
-    "lastReportedAt": "2026-08-31"
+    "lastReportedAt": "2026-08-31",
+    "partOfSpeech": "形容词"
   },
   {
-    "id": "erected",
-    "term": "erected",
-    "meaning": "建造；竖立（erect 的过去式/过去分词）",
+    "id": "erect",
+    "term": "erect",
+    "meaning": "建造；竖立",
     "modes": [
       "recognition"
     ],
-    "reason": "今日生词：识义；常用于建筑物、纪念碑等被建造或竖立",
+    "reason": "今日生词：原文 erected，归并到原形 erect；常用于建筑物、纪念碑等被建造或竖立",
     "category": "我的同步错词",
-    "addedAt": "2026-08-24"
+    "addedAt": "2026-08-24",
+    "partOfSpeech": "动词",
+    "numberVariants": [
+      "erected"
+    ]
   },
   {
     "id": "estate",
@@ -697,7 +706,8 @@
     "category": "我的同步错词",
     "addedAt": "2026-08-31",
     "reportedCount": 1,
-    "lastReportedAt": "2026-08-31"
+    "lastReportedAt": "2026-08-31",
+    "partOfSpeech": "形容词"
   },
   {
     "id": "integrate",
@@ -1205,15 +1215,19 @@
     "lastReportedAt": "2026-08-31"
   },
   {
-    "id": "resurfaced",
-    "term": "resurfaced",
-    "meaning": "重新铺设表面；再次出现（resurface 的过去式/过去分词）",
+    "id": "resurface",
+    "term": "resurface",
+    "meaning": "重新铺设表面；再次出现",
     "modes": [
       "recognition"
     ],
-    "reason": "今日生词：识义；道路语境常指重新铺路面",
+    "reason": "今日生词：原文 resurfaced，归并到原形 resurface；道路语境常指重新铺路面",
     "category": "我的同步错词",
-    "addedAt": "2026-08-24"
+    "addedAt": "2026-08-24",
+    "partOfSpeech": "动词",
+    "numberVariants": [
+      "resurfaced"
+    ]
   },
   {
     "id": "retain",
@@ -1340,7 +1354,8 @@
     "category": "我的同步错词",
     "addedAt": "2026-08-31",
     "reportedCount": 1,
-    "lastReportedAt": "2026-08-31"
+    "lastReportedAt": "2026-08-31",
+    "partOfSpeech": "形容词"
   },
   {
     "id": "stoicism",
@@ -1421,18 +1436,21 @@
     "lastReportedAt": "2026-08-31"
   },
   {
-    "id": "tethered",
-    "term": "tethered",
-    "meaning": "n. 系绳, 系链, 界限, 范围\\nvt. 栓, 束缚, 限制",
+    "id": "tether",
+    "term": "tether",
+    "meaning": "拴住；系住；限制",
     "modes": [
       "recognition"
     ],
-    "reason": "后台录入生词",
+    "reason": "后台录入生词：原文 tethered，归并到原形 tether",
     "category": "我的同步错词",
     "addedAt": "2026-08-28",
-    "phonetic": "'teðә",
     "reportedCount": 1,
-    "lastReportedAt": "2026-08-28"
+    "lastReportedAt": "2026-08-28",
+    "partOfSpeech": "动词",
+    "numberVariants": [
+      "tethered"
+    ]
   },
   {
     "id": "textile",

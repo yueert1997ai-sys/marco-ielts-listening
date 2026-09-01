@@ -2,11 +2,12 @@
   "use strict";
 
   const STORAGE_KEY = "marcoIeltsListening.v1";
-  const APP_VERSION = "v2.15.1";
+  const APP_VERSION = "v2.16.0";
   const AUTO_UPDATE_SESSION_KEY = "marcoIeltsListening.autoUpdateAttempt";
   const AUTO_UPDATE_THROTTLE_MS = 60 * 1000;
   const TRAINING_RESET_ID = "fresh-start-v2.5.0";
   const LEARNING_REVIEW_SPLIT_ID = "learning-review-v2.9.0";
+  const SELF_ASSESSMENT_FLOW_ID = "self-assessment-v2.16.0";
   const DECK_REVISION = "whole-bank-v2";
   const DAILY_PER_MODE = 25;
   const DAILY_REVIEW_LIMIT = 30;
@@ -23,13 +24,16 @@
   const QUICK_PASS_DELAY_MS = 760;
   const SPELLING_MEANING_DELAY_MS = 1350;
   const QUESTION_TRANSITION_MS = 180;
-  const RETRY_MIN_DISTANCE = 2;
-  const RETRY_MAX_DISTANCE = 4;
-  const CONFIRM_MIN_DISTANCE = 6;
-  const CONFIRM_MAX_DISTANCE = 9;
+  const RETRY_MIN_DISTANCE = 8;
+  const RETRY_MAX_DISTANCE = 12;
+  const FUZZY_MIN_DISTANCE = 10;
+  const FUZZY_MAX_DISTANCE = 14;
+  const CONFIRM_MIN_DISTANCE = 15;
+  const CONFIRM_MAX_DISTANCE = 20;
+  const MIN_DISTINCT_RETRY_GAP = 6;
   const REQUIRED_CORRECT_STREAK = 2;
-  const MAX_REINFORCEMENT_INSERTIONS = 4;
-  const RECOGNITION_SPOTCHECK_PERCENT = 40;
+  const MAX_REINFORCEMENT_INSERTIONS = 3;
+  const RECOGNITION_SPOTCHECK_PERCENT = 100;
   const INTERVALS = [1, 3, 7, 14, 30, 60];
   const REPOSITORY_URL = "https://github.com/yueert1997ai-sys/marco-ielts-listening";
 
@@ -91,6 +95,7 @@
       trainingResetId: null,
       deckNonce: DECK_REVISION,
       learningReviewSplitId: null,
+      selfAssessmentFlowId: null,
     };
     if (!raw || typeof raw !== "object") return base;
     return {
@@ -140,6 +145,19 @@
       reviewDaily: null,
       learningReviewSplitId: LEARNING_REVIEW_SPLIT_ID,
     };
+  }
+
+  function applySelfAssessmentFlow(current) {
+    const safe = safeState(current);
+    if (safe.selfAssessmentFlowId === SELF_ASSESSMENT_FLOW_ID) return safe;
+    [safe.daily, safe.reviewDaily, safe.errorDaily, safe.starredDaily].filter(Boolean).forEach((session) => {
+      session.queue = (session.queue || []).filter((entry) => !entry.isRetry);
+      session.retryCount = {};
+      session.correctStreak = {};
+      session.completed = session.queue.length === 0;
+    });
+    safe.selfAssessmentFlowId = SELF_ASSESSMENT_FLOW_ID;
+    return safe;
   }
 
   function activityRank(activity, progress, today, starred = {}, tieBreaker = activity.key, prioritiseRealErrors = true) {
@@ -390,20 +408,22 @@
 
   function shouldConfirmRecognition(entry, activity, record, sessionDate = dateKey()) {
     if (entry.isRetry || activity.mode !== "recognition") return false;
-    if (activity.isRealError || (record?.lapses || 0) > 0) return true;
-    return hashString(`${sessionDate}:confidence:${activity.key}`) % 100 < RECOGNITION_SPOTCHECK_PERCENT;
+    return true;
   }
 
   function reinforcementDecision(entry, activity, outcome, record, currentStreak = 0, sessionDate = dateKey()) {
-    if (outcome !== "pass") {
+    const positive = outcome === "pass" || outcome === "known";
+    if (!positive) {
+      const fuzzy = outcome === "fuzzy";
+      const unknown = outcome === "unknown";
       return {
         recordOutcome: "fail",
         streak: 0,
         retry: true,
-        reason: "retry",
-        minDistance: RETRY_MIN_DISTANCE,
-        maxDistance: RETRY_MAX_DISTANCE,
-        feedback: "",
+        reason: fuzzy ? "fuzzy" : (unknown ? "unknown" : "retry"),
+        minDistance: fuzzy ? FUZZY_MIN_DISTANCE : RETRY_MIN_DISTANCE,
+        maxDistance: fuzzy ? FUZZY_MAX_DISTANCE : RETRY_MAX_DISTANCE,
+        feedback: fuzzy ? "10–14 题后再确认" : "8–12 题后回炉",
       };
     }
     if (shouldConfirmRecognition(entry, activity, record, sessionDate)) {
@@ -415,10 +435,13 @@
         minDistance: CONFIRM_MIN_DISTANCE,
         maxDistance: CONFIRM_MAX_DISTANCE,
         pendingConfirmation: true,
-        feedback: "稍后换序再确认",
+        feedback: "15–20 题后再确认",
       };
     }
     if (entry.isRetry) {
+      if (activity.mode === "recognition" && entry.reason === "fuzzy") {
+        return { recordOutcome: "pass", streak: 0, retry: false, feedback: "已确认掌握" };
+      }
       const streak = currentStreak + 1;
       if (streak < REQUIRED_CORRECT_STREAK) {
         return {
@@ -426,8 +449,8 @@
           streak,
           retry: true,
           reason: "confirm",
-          minDistance: RETRY_MIN_DISTANCE,
-          maxDistance: RETRY_MAX_DISTANCE,
+          minDistance: CONFIRM_MIN_DISTANCE,
+          maxDistance: CONFIRM_MAX_DISTANCE,
           feedback: "再对一次才算掌握",
         };
       }
@@ -441,6 +464,8 @@
     const minDistance = Number.isFinite(options.minDistance) ? options.minDistance : RETRY_MIN_DISTANCE;
     const maxDistance = Number.isFinite(options.maxDistance) ? options.maxDistance : RETRY_MAX_DISTANCE;
     daily.queue = daily.queue.filter((entry) => !(entry.isRetry && entry.key === key));
+    const distinctAhead = new Set(daily.queue.slice(0, maxDistance).map((entry) => entry.key).filter((entryKey) => entryKey !== key));
+    if (daily.queue.length < minDistance || distinctAhead.size < Math.min(MIN_DISTINCT_RETRY_GAP, minDistance)) return -1;
     daily.retryCount = daily.retryCount || {};
     const count = (daily.retryCount[key] || 0) + 1;
     daily.retryCount[key] = count;
@@ -455,8 +480,12 @@
 
   function buildChoices(activity, activities, seed = activity.key) {
     const target = activity.meaning;
+    const targetTokens = new Set(String(target).split(/[；;，、/（）()\s]+/).filter((token) => token.length >= 2));
     const candidates = activities.filter((item) =>
-      item.mode === "recognition" && item.key !== activity.key && item.meaning !== target
+      item.mode === "recognition"
+      && item.key !== activity.key
+      && item.meaning !== target
+      && !String(item.meaning).split(/[；;，、/（）()\s]+/).some((token) => token.length >= 2 && targetTokens.has(token))
     );
     candidates.sort((a, b) => {
       const categoryDelta = Number(a.category !== activity.category) - Number(b.category !== activity.category);
@@ -514,7 +543,8 @@
   function numberVariantMap(sourceItems) {
     const aliases = new Map();
     sourceItems.forEach((item) => {
-      (item.numberVariants || []).forEach((variant) => aliases.set(keyFor(variant), item.id));
+      [...(item.numberVariants || []), ...(item.formVariants || [])]
+        .forEach((variant) => aliases.set(keyFor(variant), item.id));
     });
     return aliases;
   }
@@ -587,7 +617,7 @@
       result[canonical] = canonical in result ? combine(result[canonical], entry) : entry;
       return result;
     }, {});
-    const outcomeRank = { pass: 0, slow: 1, fail: 2 };
+    const outcomeRank = { pass: 0, known: 0, slow: 1, fuzzy: 2, fail: 3, unknown: 3 };
     sessions.forEach((session) => {
       session.baseKeys = uniqueKeys(session.baseKeys);
       const queueSeen = new Set();
@@ -815,11 +845,11 @@
   function formatResultNote(note, outcome, sessionKind) {
     const rawDetail = String(note || "").trim();
     const detail = /^[—–-]+$/.test(rawDetail) ? "" : rawDetail;
-    const followUp = outcome === "pass"
+    const followUp = ["pass", "known"].includes(outcome)
       ? ""
       : (["learning", "errors", "starred"].includes(sessionKind)
-        ? "2–4 题后回炉，并已加入高频复习"
-        : "2–4 题后回炉");
+        ? "8–14 题后再练，并已加入高频复习"
+        : "8–14 题后再练");
     return [detail, followUp].filter(Boolean).join(" · ");
   }
 
@@ -832,15 +862,16 @@
     partOfSpeechForMeaning, abbreviatePartOfSpeech,
     createBrowseDeck, parseWrongWordInput, parseWrongWordDrafts, mergeCustomItems, migrateNumberVariantState, seededShuffle,
     createDirectionDeck, createHardDirectionDeck, judgeDirectionAttempt, isDirectionRunPassed,
-    resetTrainingState, applyTrainingReset, applyLearningReviewSplit, enqueueReviewActivity, shouldRevealAnswer,
+    resetTrainingState, applyTrainingReset, applyLearningReviewSplit, applySelfAssessmentFlow, enqueueReviewActivity, shouldRevealAnswer,
     hasVersionUpdate, shouldAutoAdvance, formatResultNote,
     RESPONSE_LIMIT_MS, DIRECTION_RESPONSE_LIMIT_MS, HARD_DIRECTION_RESPONSE_LIMIT_MS,
     AUDIO_PLAYBACK_RATE, HARD_DIRECTION_PLAYBACK_RATE, QUICK_PASS_DELAY_MS, SPELLING_MEANING_DELAY_MS, QUESTION_TRANSITION_MS,
-    RETRY_MIN_DISTANCE, RETRY_MAX_DISTANCE, CONFIRM_MIN_DISTANCE, CONFIRM_MAX_DISTANCE,
+    RETRY_MIN_DISTANCE, RETRY_MAX_DISTANCE, FUZZY_MIN_DISTANCE, FUZZY_MAX_DISTANCE,
+    CONFIRM_MIN_DISTANCE, CONFIRM_MAX_DISTANCE, MIN_DISTINCT_RETRY_GAP,
     REQUIRED_CORRECT_STREAK, MAX_REINFORCEMENT_INSERTIONS, RECOGNITION_SPOTCHECK_PERCENT,
     DIRECTION_QUESTION_COUNT, HARD_DIRECTION_IDS,
     INTERVALS, BROWSE_PAGE_SIZE, DAILY_REVIEW_LIMIT, PERSONAL_ERROR_POOL_ID, STARRED_POOL_ID, APP_VERSION,
-    TRAINING_RESET_ID, LEARNING_REVIEW_SPLIT_ID, DECK_REVISION,
+    TRAINING_RESET_ID, LEARNING_REVIEW_SPLIT_ID, SELF_ASSESSMENT_FLOW_ID, DECK_REVISION,
   };
 
   if (typeof module !== "undefined" && module.exports) module.exports = api;
@@ -1605,28 +1636,23 @@
     window.scrollTo(0, 0);
     clearInterval(recognitionTimerId);
     recognitionStartedAt = 0;
-    const choices = buildChoices(activity, activities, `${Date.now()}:${Math.random()}`);
-    const previousChoiceIndex = entry.avoidChoiceIndex;
-    const currentChoiceIndex = choices.indexOf(activity.meaning);
-    if (Number.isInteger(previousChoiceIndex) && currentChoiceIndex === previousChoiceIndex) {
-      const [target] = choices.splice(currentChoiceIndex, 1);
-      choices.splice((currentChoiceIndex + 1) % 4, 0, target);
-    }
     screen.innerHTML = `
       <section class="session">
         ${sessionMeta(entry, activity)}
-        <div class="question-card">
-          <div class="timer-label"><span>反应时间</span><strong id="timer-count">5</strong></div>
+        <div class="question-card recognition-confidence-card">
+          <div class="timer-label"><span>凭第一反应判断</span><strong id="timer-count">5</strong></div>
           <div class="timer"><div id="timer-bar" class="timer-bar paused"></div></div>
-          <p class="prompt">选中文</p>
+          <p class="prompt">先别看释义，你真的认识这个词吗？</p>
           <div class="recognition-term">
             <h2 class="term">${escapeHtml(activity.term)}</h2>
             <button id="recognition-play" class="test-play" type="button" aria-label="再读一次">${icon("speaker-high")}再读</button>
           </div>
-          <div class="choices">
-            ${choices.map((choice) => `<button class="choice" data-choice="${escapeHtml(choice)}"><span class="choice-pos">${escapeHtml(abbreviatePartOfSpeech(partOfSpeechForMeaning(activity, choice, activities)))}</span><span class="choice-meaning">${escapeHtml(choice)}</span></button>`).join("")}
+          <p class="confidence-hint">选择后才会公布中文意思</p>
+          <div class="confidence-actions" role="group" aria-label="自评掌握程度">
+            <button class="confidence-button confidence-known" data-confidence="known" type="button"><strong>认识</strong><small>一眼就知道</small></button>
+            <button class="confidence-button confidence-fuzzy" data-confidence="fuzzy" type="button"><strong>模糊</strong><small>想了一会儿</small></button>
+            <button class="confidence-button confidence-unknown" data-confidence="unknown" type="button"><strong>不认识</strong><small>完全没印象</small></button>
           </div>
-          <button id="recognition-dont-know" class="dont-know-button" type="button">先跳过</button>
         </div>
       </section>`;
     const timerCount = document.getElementById("timer-count");
@@ -1645,18 +1671,18 @@
       }, 100);
     };
     playButton.addEventListener("click", () => playAudio(activity, playButton));
-    document.querySelectorAll(".choice").forEach((button) => button.addEventListener("click", () => {
+    document.querySelectorAll(".confidence-button").forEach((button) => button.addEventListener("click", () => {
       clearInterval(recognitionTimerId);
       const elapsed = recognitionStartedAt ? performance.now() - recognitionStartedAt : 0;
-      const selected = button.dataset.choice;
-      const correct = selected === activity.meaning;
-      const outcome = correct && elapsed <= RESPONSE_LIMIT_MS ? "pass" : (correct ? "slow" : "fail");
-      recordAttempt(entry, activity, outcome, { selected, elapsed, choiceIndex: choices.indexOf(activity.meaning) });
+      const selectedRating = button.dataset.confidence;
+      const outcome = selectedRating === "known" && elapsed > RESPONSE_LIMIT_MS ? "fuzzy" : selectedRating;
+      recordAttempt(entry, activity, outcome, {
+        selfRating: outcome,
+        selectedRating,
+        elapsed,
+        autoDowngraded: selectedRating === "known" && outcome === "fuzzy",
+      });
     }));
-    document.getElementById("recognition-dont-know").addEventListener("click", () => {
-      clearInterval(recognitionTimerId);
-      recordAttempt(entry, activity, "fail", { skipped: true });
-    });
     playAudio(activity, playButton).then(startTimer);
   }
 
@@ -1836,7 +1862,11 @@
       state.progress[activity.key] = scheduleReview(previousRecord, decision.recordOutcome, session.date);
     }
     if (decision.retry && (session.retryCount[activity.key] || 0) < MAX_REINFORCEMENT_INSERTIONS) {
-      insertRetry(session, activity.key, { ...decision, avoidChoiceIndex: detail.choiceIndex });
+      const retryIndex = insertRetry(session, activity.key, { ...decision, avoidChoiceIndex: detail.choiceIndex });
+      if (retryIndex < 0) {
+        enqueueReviewActivity(state.reviewDaily, activity.key);
+        decision.feedback = "本轮间隔不足，不再连刷；已转入高频复习";
+      }
     }
     if (decision.recordOutcome === "fail") {
       if (["errors", "learning", "starred"].includes(sessionKind)) {
@@ -1887,16 +1917,25 @@
 
   function renderResult() {
     window.scrollTo(0, 0);
-    const { activity, outcome, detail, sessionKind } = currentResult;
-    const pass = outcome === "pass";
+    const { activity, outcome, detail, sessionKind, feedback } = currentResult;
+    const pass = outcome === "pass" || outcome === "known";
     const record = state.progress[activity.key] || {};
-    const label = detail.skipped ? "已加入复习" : (pass ? "正确" : (outcome === "slow" ? "再来一次 · 超过 5 秒" : "再来一次"));
-    const typed = detail.skipped
+    const confidenceLabels = { known: "认识", fuzzy: "模糊", unknown: "不认识" };
+    const label = detail.selfRating
+      ? (detail.autoDowngraded ? "思考超过 5 秒 · 按模糊记录" : confidenceLabels[detail.selfRating])
+      : (detail.skipped ? "已加入复习" : (pass ? "正确" : (outcome === "slow" ? "再来一次 · 超过 5 秒" : "再来一次")));
+    const labelClass = outcome === "fuzzy" ? "fuzzy" : (pass ? "pass" : "weak");
+    const typed = detail.selfRating
+      ? `<p class="typed confidence-summary">你的判断：${escapeHtml(confidenceLabels[detail.selectedRating] || confidenceLabels[detail.selfRating])}</p>`
+      : (detail.skipped
       ? `<p class="typed">这题先跳过了</p>`
       : (detail.typed !== undefined
       ? `<p class="typed">你写的是：${diffAnswer(detail.typed, activity.term)}</p>`
-      : (detail.selected ? `<p class="typed">你选的是：${escapeHtml(detail.selected)}</p>` : ""));
-    const resultNote = formatResultNote(activity.errorNote || activity.note, outcome, sessionKind);
+      : (detail.selected ? `<p class="typed">你选的是：${escapeHtml(detail.selected)}</p>` : "")));
+    const sourceNote = String(activity.errorNote || activity.note || "").trim();
+    const cleanSourceNote = /^[—–-]+$/.test(sourceNote) ? "" : sourceNote;
+    const resultNote = [cleanSourceNote, feedback].filter(Boolean).join(" · ")
+      || formatResultNote("", outcome, sessionKind);
     screen.innerHTML = `
       <section class="result">
         <div class="result-toolbar">
@@ -1904,12 +1943,12 @@
           ${starButton(activity, "session-star")}
         </div>
         <div class="result-card">
-          <p class="result-mark ${pass ? "pass" : "weak"}">${label}</p>
+          <p class="result-mark ${labelClass}">${label}</p>
           <div class="answer-row">
             <h2 class="answer">${escapeHtml(activity.term)}</h2>
             <button id="result-play" class="test-play" type="button" aria-label="再读一次">${icon("speaker-high")}再读</button>
           </div>
-          <p class="meaning">${escapeHtml(activity.meaning)}</p>
+          <div class="meaning-row"><span class="result-pos">${escapeHtml(abbreviatePartOfSpeech(activity.partOfSpeech))}</span><p class="meaning">${escapeHtml(activity.meaning)}</p></div>
           ${typed}
           ${resultNote ? `<p class="note">${escapeHtml(resultNote)}</p>` : ""}
           <div class="memory-strip">
@@ -2211,6 +2250,7 @@
         if (![1, 2, 3].includes(parsed.version) || !parsed.progress) throw new Error("invalid");
         state = safeState(parsed);
         state = applyLearningReviewSplit(state);
+        state = applySelfAssessmentFlow(state);
         migrateNumberVariantState(state, sourceItems);
         rebuildDecks();
         prepareDaily(state, activities);
@@ -2235,6 +2275,7 @@
       loadState();
       state = applyTrainingReset(state);
       state = applyLearningReviewSplit(state);
+      state = applySelfAssessmentFlow(state);
       migrateNumberVariantState(state, sourceItems);
       reconcileSyncedCustomItems();
       rebuildDecks();

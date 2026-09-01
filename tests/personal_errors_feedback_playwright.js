@@ -58,45 +58,40 @@ async (page) => {
   await setOnlyQuestion(`${pool.recognition.id}:recognition`);
   await page.reload({ waitUntil: "networkidle" });
   await page.locator("#error-training").click();
-  await page.locator(".choice").first().waitFor();
-  const posLabels = await page.locator(".choice-pos").allTextContents();
-  const correctChoice = page.locator(".choice").filter({ hasText: pool.recognition.meaning });
-  await correctChoice.click();
-  await page.locator(".quick-feedback").waitFor();
-  const recognitionFeedback = await page.locator(".quick-feedback").evaluate((feedback) => ({
-    meaning: feedback.querySelector("strong")?.textContent,
-    fontSize: Number.parseFloat(getComputedStyle(feedback.querySelector("strong")).fontSize),
-    background: getComputedStyle(feedback).backgroundColor,
-  }));
-  const correctChoiceStyle = await correctChoice.evaluate((choice) => ({
-    color: getComputedStyle(choice).color,
-    background: getComputedStyle(choice).backgroundColor,
-    opacity: getComputedStyle(choice).opacity,
+  await page.locator(".confidence-actions").waitFor();
+  const confidenceLabels = await page.locator(".confidence-button").allTextContents();
+  await page.locator(".confidence-known").click();
+  await page.locator(".result-card").waitFor();
+  const recognitionFeedback = await page.locator(".result-card").evaluate((result) => ({
+    rating: result.querySelector(".result-mark")?.textContent,
+    meaning: result.querySelector(".meaning")?.textContent,
+    partOfSpeech: result.querySelector(".result-pos")?.textContent,
+    fontSize: Number.parseFloat(getComputedStyle(result.querySelector(".meaning")).fontSize),
+    background: getComputedStyle(result).backgroundColor,
   }));
   await page.screenshot({ path: "output/playwright/v2140/recognition-meaning-feedback.png" });
 
   const expected = [...pool.expectedKeys].sort();
   const actual = [...pool.actualKeys].sort();
-  const allowedPos = new Set(["n", "v", "adj", "adv", "prep", "phr", "abbr", "n/v", "aux", "—"]);
-  if (pool.words !== 97
-    || pool.buttonDisabled
+  if (pool.buttonDisabled
     || !pool.buttonText.includes("我的错词训练")
-    || !pool.buttonText.includes("97 词")
+    || !pool.buttonText.includes(`${pool.words} 词`)
     || JSON.stringify(actual) !== JSON.stringify(expected)
     || spellingFeedback.meaning !== pool.spelling.meaning
     || spellingFeedback.fontSize < 20
     || spellingFeedback.background !== "rgb(52, 199, 89)"
     || spellingFeedback.height < 68
     || recognitionFeedback.meaning !== pool.recognition.meaning
+    || !recognitionFeedback.partOfSpeech
     || recognitionFeedback.fontSize < 20
-    || recognitionFeedback.background !== "rgb(52, 199, 89)"
-    || correctChoiceStyle.color !== "rgb(255, 255, 255)"
-    || correctChoiceStyle.background !== "rgb(52, 199, 89)"
-    || correctChoiceStyle.opacity !== "1"
-    || posLabels.length !== 4
-    || posLabels.some((label) => !allowedPos.has(label.trim()))) {
-    throw new Error(JSON.stringify({ pool, spellingFeedback, recognitionFeedback, correctChoiceStyle, posLabels }));
+    || recognitionFeedback.background !== "rgb(255, 255, 255)"
+    || recognitionFeedback.rating?.trim() !== "认识"
+    || confidenceLabels.length !== 3
+    || !confidenceLabels.some((label) => label.includes("认识"))
+    || !confidenceLabels.some((label) => label.includes("模糊"))
+    || !confidenceLabels.some((label) => label.includes("不认识"))) {
+    throw new Error(JSON.stringify({ pool, spellingFeedback, recognitionFeedback, confidenceLabels }));
   }
 
-  return { ok: true, pool: { words: pool.words, tasks: pool.actualKeys.length, buttonText: pool.buttonText }, spellingFeedback, recognitionFeedback, correctChoiceStyle, posLabels };
+  return { ok: true, pool: { words: pool.words, tasks: pool.actualKeys.length, buttonText: pool.buttonText }, spellingFeedback, recognitionFeedback, confidenceLabels };
 }

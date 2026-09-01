@@ -1,5 +1,5 @@
 async (page) => {
-  const liveUrl = "https://yueert1997ai-sys.github.io/marco-ielts-listening/?verify=v2.15.1";
+  const liveUrl = "https://yueert1997ai-sys.github.io/marco-ielts-listening/?verify=v2.16.0";
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto(liveUrl, { waitUntil: "networkidle" });
   await page.evaluate(() => {
@@ -11,16 +11,16 @@ async (page) => {
 
   const release = await page.evaluate(async () => {
     const [version, serviceWorker, manifest, iconCss, iconFont] = await Promise.all([
-      fetch("./version.json?verify=v2.15.1").then((response) => response.json()),
-      fetch("./sw.js?verify=v2.15.1").then((response) => response.text()),
-      fetch("./manifest.webmanifest?verify=v2.15.1").then((response) => response.json()),
-      fetch("./vendor/phosphor/phosphor-regular.css?verify=v2.15.1"),
-      fetch("./vendor/phosphor/Phosphor.woff2?verify=v2.15.1"),
+      fetch("./version.json?verify=v2.16.0").then((response) => response.json()),
+      fetch("./sw.js?verify=v2.16.0").then((response) => response.text()),
+      fetch("./manifest.webmanifest?verify=v2.16.0").then((response) => response.json()),
+      fetch("./vendor/phosphor/phosphor-regular.css?verify=v2.16.0"),
+      fetch("./vendor/phosphor/Phosphor.woff2?verify=v2.16.0"),
     ]);
     return {
       version,
-      swVersion: serviceWorker.includes('const APP_VERSION = "v2.15.1"'),
-      cacheVersion: serviceWorker.includes('CACHE = "ielts-listening-v32"'),
+      swVersion: serviceWorker.includes('const APP_VERSION = "v2.16.0"'),
+      cacheVersion: serviceWorker.includes('CACHE = "ielts-listening-v33"'),
       manifest,
       iconCss: iconCss.ok,
       iconFont: iconFont.ok,
@@ -48,6 +48,7 @@ async (page) => {
       progress: {}, starred: {}, customItems: [], streak: 0, lastCompletedDate: null,
       trainingResetId: "fresh-start-v2.5.0",
       learningReviewSplitId: "learning-review-v2.9.0",
+      selfAssessmentFlowId: "self-assessment-v2.16.0",
       deckNonce: "whole-bank-v2",
       daily: session(["carpet:recognition", "carpet:spelling"]),
       reviewDaily: session([]),
@@ -56,14 +57,15 @@ async (page) => {
   });
   await page.reload({ waitUntil: "networkidle" });
   await page.locator("#start").click();
-  await page.locator(".choice").filter({ hasText: "地毯" }).click();
-  const feedback = await page.locator(".quick-feedback").evaluate((element) => ({
+  await page.locator(".confidence-known").click();
+  const feedback = await page.locator(".result-card").evaluate((element) => ({
     text: element.innerText,
-    meaning: element.querySelector("strong")?.textContent,
-    fontSize: Number.parseFloat(getComputedStyle(element.querySelector("strong")).fontSize),
-    background: getComputedStyle(element).backgroundColor,
+    meaning: element.querySelector(".meaning")?.textContent,
+    fontSize: Number.parseFloat(getComputedStyle(element.querySelector(".meaning")).fontSize),
+    rating: element.querySelector(".result-mark")?.textContent,
+    partOfSpeech: element.querySelector(".result-pos")?.textContent,
   }));
-  await page.waitForTimeout(850);
+  await page.locator("#continue").click();
   const spellingFocused = await page.locator("#answer").evaluate((input) => document.activeElement === input);
   await page.locator("#pause-session").click();
 
@@ -88,8 +90,8 @@ async (page) => {
     Math.abs(starScroll.afterUnstar - starScroll.afterStar),
   );
 
-  if (release.version.version !== "v2.15.1"
-    || release.version.releasedAt !== "2026-08-31"
+  if (release.version.version !== "v2.16.0"
+    || release.version.releasedAt !== "2026-09-01"
     || !release.swVersion
     || !release.cacheVersion
     || release.manifest.theme_color.toLowerCase() !== "#f2f2f7"
@@ -100,10 +102,11 @@ async (page) => {
     || home.background !== "rgb(242, 242, 247)"
     || home.width > 390
     || !home.personalErrors.includes("我的错词训练")
-    || !home.personalErrors.includes("97 词")
+    || !home.personalErrors.includes("123 词")
     || feedback.meaning !== "地毯"
     || feedback.fontSize < 20
-    || feedback.background !== "rgb(52, 199, 89)"
+    || feedback.rating !== "认识"
+    || feedback.partOfSpeech !== "n"
     || !spellingFocused
     || directionTargets !== 8
     || browseCards !== 20

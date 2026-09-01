@@ -19,7 +19,7 @@ DIRECTION_MANIFEST = json.loads((ROOT / "audio" / "directions-manifest.json").re
 REQUIRED_ERRORS = {
     "litter", "meal", "midday", "beginner", "bilingual", "waitress", "reference", "mild",
     "string", "wax", "lead", "prescription", "pharmacy", "relief", "disbelief", "gratitude",
-    "homesickness", "spectator", "excessive sweating", "fellow students", "neglecting",
+    "homesickness", "spectator", "excessive sweating", "fellow students", "neglect",
     "reorganising shifts", "equipment", "make their own", "mass-produced", "purpose", "bend",
     "entrance", "beyond", "alongside", "carpet", "electrician", "oven", "curtain", "vacuum",
     "thorough", "retention", "morale", "resentful", "preferential",
@@ -59,7 +59,11 @@ def main() -> None:
     aliases = {alias.lower() for item in ITEMS for alias in item.get("numberVariants", [])}
     duplicate_number_forms = sorted(item["term"] for item in ITEMS if item["term"].lower() in aliases)
     if duplicate_number_forms:
-        fail(f"Singular/plural forms remain separate challenges: {duplicate_number_forms}")
+        fail(f"Inflected forms remain separate challenges: {duplicate_number_forms}")
+    prohibited_inflections = {"disposed", "erected", "neglecting", "resurfaced", "standardised", "tethered"}
+    remaining_inflections = sorted(prohibited_inflections & ids)
+    if remaining_inflections:
+        fail(f"Rule inflections remain separate challenges: {remaining_inflections}")
 
     spelling = [item for item in ITEMS if "spelling" in item["modes"]]
     recognition = [item for item in ITEMS if "recognition" in item["modes"]]
@@ -129,7 +133,7 @@ def main() -> None:
         fail("The offline Phosphor icon stylesheet is not wired into the app shell and cache")
     if web_manifest.get("theme_color", "").lower() != "#f2f2f7" or web_manifest.get("background_color", "").lower() != "#f2f2f7":
         fail("The PWA manifest must use the light system grouped background")
-    if 'CACHE = "ielts-listening-v32"' not in service_worker:
+    if 'CACHE = "ielts-listening-v33"' not in service_worker:
         fail("Unexpected Service Worker cache version")
     expected_icon_sizes = {
         "apple-touch-icon.png": (180, 180),
