@@ -154,6 +154,19 @@
     "lastReportedAt": "2026-08-31"
   },
   {
+    "id": "campaign",
+    "term": "campaign",
+    "meaning": "宣传活动；倡议活动；运动；竞选活动；开展宣传/倡议",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "C15-T3-P2 听力生词：campaigning 表示开展宣传、倡议或争取支持的活动；不只是简单‘宣讲’。常见 campaign for/against...。",
+    "category": "我的同步错词",
+    "addedAt": "2026-09-01",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-01"
+  },
+  {
     "id": "capitalism",
     "term": "capitalism",
     "meaning": "资本主义",
@@ -1578,6 +1591,19 @@
     "addedAt": "2026-08-27",
     "reportedCount": 2,
     "lastReportedAt": "2026-08-31"
+  },
+  {
+    "id": "scheme",
+    "term": "scheme",
+    "meaning": "计划；方案；项目；安排；（有时）阴谋",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "C15-T3-P2 听力生词：Street Play Scheme = 街区活动/街道项目方案。雅思中 scheme 高频表示计划、项目、方案，不要默认理解成‘阴谋’。",
+    "category": "我的同步错词",
+    "addedAt": "2026-09-01",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-01"
   },
   {
     "id": "session",

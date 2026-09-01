@@ -452,6 +452,32 @@
     "audioPath": "audio/calorie.mp3"
   },
   {
+    "id": "campaign",
+    "term": "campaign",
+    "meaning": "宣传活动；倡议活动；运动；竞选活动；开展宣传/倡议",
+    "note": "C15-T3-P2 听力生词：campaigning 表示开展宣传、倡议或争取支持的活动；不只是简单‘宣讲’。常见 campaign for/against...。",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "campaign"
+    ],
+    "errorNote": "C15-T3-P2 听力生词：campaigning 表示开展宣传、倡议或争取支持的活动；不只是简单‘宣讲’。常见 campaign for/against...。",
+    "userAddedAt": "2026-09-01",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-01",
+    "partOfSpeech": "名词",
+    "sourceRevision": 4,
+    "audioText": "campaign",
+    "audioPath": "audio/campaign.mp3"
+  },
+  {
     "id": "capitalism",
     "term": "capitalism",
     "meaning": "资本主义",
@@ -4072,6 +4098,32 @@
     "sourceRevision": 4,
     "audioText": "scale",
     "audioPath": "audio/scale.mp3"
+  },
+  {
+    "id": "scheme",
+    "term": "scheme",
+    "meaning": "计划；方案；项目；安排；（有时）阴谋",
+    "note": "C15-T3-P2 听力生词：Street Play Scheme = 街区活动/街道项目方案。雅思中 scheme 高频表示计划、项目、方案，不要默认理解成‘阴谋’。",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "scheme"
+    ],
+    "errorNote": "C15-T3-P2 听力生词：Street Play Scheme = 街区活动/街道项目方案。雅思中 scheme 高频表示计划、项目、方案，不要默认理解成‘阴谋’。",
+    "userAddedAt": "2026-09-01",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-01",
+    "partOfSpeech": "名词",
+    "sourceRevision": 4,
+    "audioText": "scheme",
+    "audioPath": "audio/scheme.mp3"
   },
   {
     "id": "session",
