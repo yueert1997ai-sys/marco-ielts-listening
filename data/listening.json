@@ -1101,6 +1101,32 @@
     "audioPath": "audio/deliberately.mp3"
   },
   {
+    "id": "demonstration",
+    "term": "demonstration",
+    "meaning": "示威；游行；演示；示范",
+    "note": "C15-T2-P2 听力生词：原文 petitions and demonstrations，语境中指公众示威/抗议活动；同时保留演示/示范义。复数 demonstrations 归并主词。",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "demonstration"
+    ],
+    "errorNote": "C15-T2-P2 听力生词：原文 petitions and demonstrations，语境中指公众示威/抗议活动；同时保留演示/示范义。复数 demonstrations 归并主词。",
+    "userAddedAt": "2026-09-01",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-01",
+    "partOfSpeech": "名词",
+    "sourceRevision": 4,
+    "audioText": "demonstration",
+    "audioPath": "audio/demonstration.mp3"
+  },
+  {
     "id": "department",
     "term": "department",
     "meaning": "n. 部门, 系, 机关\\n[医] 部, 科",
@@ -3030,6 +3056,32 @@
     "audioPath": "audio/obesity.mp3"
   },
   {
+    "id": "occasion",
+    "term": "occasion",
+    "meaning": "场合；时机；某次事件；机会",
+    "note": "C15-T2-P2 词族补充：occasion = 场合/时机；occasional = 偶尔的；occasionally = 偶尔地。原文 occasional public meetings = 偶尔举行的公众集会。",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "occasion"
+    ],
+    "errorNote": "C15-T2-P2 词族补充：occasion = 场合/时机；occasional = 偶尔的；occasionally = 偶尔地。原文 occasional public meetings = 偶尔举行的公众集会。",
+    "userAddedAt": "2026-09-01",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-01",
+    "partOfSpeech": "名词",
+    "sourceRevision": 4,
+    "audioText": "occasion",
+    "audioPath": "audio/occasion.mp3"
+  },
+  {
     "id": "ordinary",
     "term": "ordinary",
     "meaning": "普通的；一般的；平常的",
@@ -3202,6 +3254,32 @@
     "sourceRevision": 4,
     "audioText": "persuasive",
     "audioPath": "audio/persuasive.mp3"
+  },
+  {
+    "id": "petition",
+    "term": "petition",
+    "meaning": "请愿；请愿书；正式请求",
+    "note": "C15-T2-P2 听力生词：原文 petitions and demonstrations。petition 常指向政府/机构提出的正式请愿或请愿书，注意复数 petitions 归并主词。",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "petition"
+    ],
+    "errorNote": "C15-T2-P2 听力生词：原文 petitions and demonstrations。petition 常指向政府/机构提出的正式请愿或请愿书，注意复数 petitions 归并主词。",
+    "userAddedAt": "2026-09-01",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-01",
+    "partOfSpeech": "名词",
+    "sourceRevision": 4,
+    "audioText": "petition",
+    "audioPath": "audio/petition.mp3"
   },
   {
     "id": "pharmacy",

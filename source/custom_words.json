@@ -448,6 +448,19 @@
     "addedAt": "2026-08-25"
   },
   {
+    "id": "demonstration",
+    "term": "demonstration",
+    "meaning": "示威；游行；演示；示范",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "C15-T2-P2 听力生词：原文 petitions and demonstrations，语境中指公众示威/抗议活动；同时保留演示/示范义。复数 demonstrations 归并主词。",
+    "category": "我的同步错词",
+    "addedAt": "2026-09-01",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-01"
+  },
+  {
     "id": "department",
     "term": "department",
     "meaning": "n. 部门, 系, 机关\\n[医] 部, 科",
@@ -1174,6 +1187,19 @@
     "lastReportedAt": "2026-08-31"
   },
   {
+    "id": "occasion",
+    "term": "occasion",
+    "meaning": "场合；时机；某次事件；机会",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "C15-T2-P2 词族补充：occasion = 场合/时机；occasional = 偶尔的；occasionally = 偶尔地。原文 occasional public meetings = 偶尔举行的公众集会。",
+    "category": "我的同步错词",
+    "addedAt": "2026-09-01",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-01"
+  },
+  {
     "id": "ordinary",
     "term": "ordinary",
     "meaning": "普通的；一般的；平常的",
@@ -1244,6 +1270,19 @@
     "reason": "今日生词：识义",
     "category": "我的同步错词",
     "addedAt": "2026-08-26"
+  },
+  {
+    "id": "petition",
+    "term": "petition",
+    "meaning": "请愿；请愿书；正式请求",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "C15-T2-P2 听力生词：原文 petitions and demonstrations。petition 常指向政府/机构提出的正式请愿或请愿书，注意复数 petitions 归并主词。",
+    "category": "我的同步错词",
+    "addedAt": "2026-09-01",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-01"
   },
   {
     "id": "popularity",
