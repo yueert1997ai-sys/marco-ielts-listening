@@ -37,6 +37,32 @@
     "lastReportedAt": "2026-08-31"
   },
   {
+    "id": "anticipate",
+    "term": "anticipate",
+    "meaning": "预期；预料；预计；预先想到",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "超级高频识别错词：长期反复认不出来，需重点反复刷；anticipate = expect / predict in advance，阅读中看到需秒反应",
+    "category": "我的同步错词",
+    "addedAt": "2026-09-01",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-01"
+  },
+  {
+    "id": "anticipation",
+    "term": "anticipation",
+    "meaning": "预期；期待；预料",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "anticipate 词族补充：帮助稳定识别词根，避免只会动词却认不出名词形式",
+    "category": "我的同步错词",
+    "addedAt": "2026-09-01",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-01"
+  },
+  {
     "id": "appliances",
     "term": "appliances",
     "meaning": "家用电器；器具（appliance 的复数）",

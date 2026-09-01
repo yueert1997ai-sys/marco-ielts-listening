@@ -99,6 +99,58 @@
     "audioPath": "audio/amusing.mp3"
   },
   {
+    "id": "anticipate",
+    "term": "anticipate",
+    "meaning": "预期；预料；预计；预先想到",
+    "note": "超级高频识别错词：长期反复认不出来，需重点反复刷；anticipate = expect / predict in advance，阅读中看到需秒反应",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "anticipate"
+    ],
+    "errorNote": "超级高频识别错词：长期反复认不出来，需重点反复刷；anticipate = expect / predict in advance，阅读中看到需秒反应",
+    "userAddedAt": "2026-09-01",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-01",
+    "partOfSpeech": "动词",
+    "sourceRevision": 4,
+    "audioText": "anticipate",
+    "audioPath": "audio/anticipate.mp3"
+  },
+  {
+    "id": "anticipation",
+    "term": "anticipation",
+    "meaning": "预期；期待；预料",
+    "note": "anticipate 词族补充：帮助稳定识别词根，避免只会动词却认不出名词形式",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "anticipation"
+    ],
+    "errorNote": "anticipate 词族补充：帮助稳定识别词根，避免只会动词却认不出名词形式",
+    "userAddedAt": "2026-09-01",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-01",
+    "partOfSpeech": "名词",
+    "sourceRevision": 4,
+    "audioText": "anticipation",
+    "audioPath": "audio/anticipation.mp3"
+  },
+  {
     "id": "appliances",
     "term": "appliances",
     "meaning": "家用电器；器具（appliance 的复数）",
