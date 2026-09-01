@@ -1806,6 +1806,32 @@
     "audioPath": "audio/in-the-absence-of.mp3"
   },
   {
+    "id": "inclination",
+    "term": "inclination",
+    "meaning": "倾向；意愿；爱好",
+    "note": "与 predisposition / tendency 联动记忆：inclination to do sth = 做某事的倾向或意愿；语气通常比 predisposition 更普通、更主观",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "inclination"
+    ],
+    "errorNote": "与 predisposition / tendency 联动记忆：inclination to do sth = 做某事的倾向或意愿；语气通常比 predisposition 更普通、更主观",
+    "userAddedAt": "2026-09-01",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-01",
+    "partOfSpeech": "名词",
+    "sourceRevision": 4,
+    "audioText": "inclination",
+    "audioPath": "audio/inclination.mp3"
+  },
+  {
     "id": "indicate",
     "term": "indicate",
     "meaning": "表明；指出",
@@ -2934,6 +2960,32 @@
     "audioPath": "audio/practise.mp3"
   },
   {
+    "id": "predisposition",
+    "term": "predisposition",
+    "meaning": "倾向；易有某种倾向；易患某种情况的倾向",
+    "note": "C14-T1-P3 Q33 直接影响定位：predisposition to view the work environment negatively ≈ tendency / inclination to do sth。重点掌握‘预先存在的倾向’",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "predisposition"
+    ],
+    "errorNote": "C14-T1-P3 Q33 直接影响定位：predisposition to view the work environment negatively ≈ tendency / inclination to do sth。重点掌握‘预先存在的倾向’",
+    "userAddedAt": "2026-09-01",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-01",
+    "partOfSpeech": "名词",
+    "sourceRevision": 4,
+    "audioText": "predisposition",
+    "audioPath": "audio/predisposition.mp3"
+  },
+  {
     "id": "preferential",
     "term": "preferential",
     "meaning": "优先的；给予优待的",
@@ -3883,6 +3935,32 @@
     "sourceRevision": 4,
     "audioText": "substitute",
     "audioPath": "audio/substitute.mp3"
+  },
+  {
+    "id": "succinctly",
+    "term": "succinctly",
+    "meaning": "简洁地；言简意赅地",
+    "note": "C14-T1-P3 人物观点匹配定位词：was succinctly summarized by... = 被……简洁概括；需快速识别 summary/概括关系",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "succinctly"
+    ],
+    "errorNote": "C14-T1-P3 人物观点匹配定位词：was succinctly summarized by... = 被……简洁概括；需快速识别 summary/概括关系",
+    "userAddedAt": "2026-09-01",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-01",
+    "partOfSpeech": "词性待补",
+    "sourceRevision": 4,
+    "audioText": "succinctly",
+    "audioPath": "audio/succinctly.mp3"
   },
   {
     "id": "tedious",

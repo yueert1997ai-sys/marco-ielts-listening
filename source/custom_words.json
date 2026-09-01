@@ -696,6 +696,19 @@
     "lastReportedAt": "2026-08-31"
   },
   {
+    "id": "inclination",
+    "term": "inclination",
+    "meaning": "倾向；意愿；爱好",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "与 predisposition / tendency 联动记忆：inclination to do sth = 做某事的倾向或意愿；语气通常比 predisposition 更普通、更主观",
+    "category": "我的同步错词",
+    "addedAt": "2026-09-01",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-01"
+  },
+  {
     "id": "indicate",
     "term": "indicate",
     "meaning": "表明；指出",
@@ -1096,6 +1109,19 @@
     "addedAt": "2026-08-26"
   },
   {
+    "id": "predisposition",
+    "term": "predisposition",
+    "meaning": "倾向；易有某种倾向；易患某种情况的倾向",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "C14-T1-P3 Q33 直接影响定位：predisposition to view the work environment negatively ≈ tendency / inclination to do sth。重点掌握‘预先存在的倾向’",
+    "category": "我的同步错词",
+    "addedAt": "2026-09-01",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-01"
+  },
+  {
     "id": "premises",
     "term": "premises",
     "meaning": "经营场所；公司场地；办公或厂区",
@@ -1447,6 +1473,19 @@
     "addedAt": "2026-08-31",
     "reportedCount": 1,
     "lastReportedAt": "2026-08-31"
+  },
+  {
+    "id": "succinctly",
+    "term": "succinctly",
+    "meaning": "简洁地；言简意赅地",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "C14-T1-P3 人物观点匹配定位词：was succinctly summarized by... = 被……简洁概括；需快速识别 summary/概括关系",
+    "category": "我的同步错词",
+    "addedAt": "2026-09-01",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-01"
   },
   {
     "id": "tedious",
