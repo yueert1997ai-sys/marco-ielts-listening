@@ -1,15 +1,15 @@
 {
   "sourceRevision": 4,
   "sourceRows": 749,
-  "uniqueEntries": 764,
+  "uniqueEntries": 776,
   "realErrorRows": 46,
-  "realErrorEntries": 173,
-  "customEntries": 129,
+  "realErrorEntries": 187,
+  "customEntries": 143,
   "overrideEntries": 8,
   "archivedEntries": 0,
   "activities": {
-    "recognition": 543,
-    "spelling": 274
+    "recognition": 557,
+    "spelling": 276
   },
   "sectionRows": {
     "P1 + P4 必会听写词": 275,
@@ -21,5 +21,5 @@
   "untraceableEntries": 0,
   "duplicateIds": 0,
   "numberVariantAliases": 30,
-  "partOfSpeechEntries": 764
+  "partOfSpeechEntries": 776
 }

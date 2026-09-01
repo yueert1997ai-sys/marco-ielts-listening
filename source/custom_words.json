@@ -76,6 +76,32 @@
     "lastReportedAt": "2026-08-31"
   },
   {
+    "id": "architectural",
+    "term": "architectural",
+    "meaning": "建筑的；建筑学的；建筑设计方面的",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "C14-T2-P2 Q19：architectural design = 建筑设计。需快速识别词性和固定搭配。",
+    "category": "我的同步错词",
+    "addedAt": "2026-09-01",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-01"
+  },
+  {
+    "id": "asthma",
+    "term": "asthma",
+    "meaning": "哮喘",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "与 cough/coughing 区分：cough = 咳嗽；asthma = 哮喘。",
+    "category": "我的同步错词",
+    "addedAt": "2026-09-01",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-01"
+  },
+  {
     "id": "awful",
     "term": "awful",
     "meaning": "糟糕的；可怕的；很坏的",
@@ -291,6 +317,20 @@
     "reason": "今日生词：识义",
     "category": "我的同步错词",
     "addedAt": "2026-08-25"
+  },
+  {
+    "id": "cough",
+    "term": "cough",
+    "meaning": "咳嗽；咳嗽声",
+    "modes": [
+      "recognition",
+      "spelling"
+    ],
+    "reason": "C14-T2-P2 Q21：coughing = 咳嗽，不是哮喘。与 asthma 区分。",
+    "category": "我的同步错词",
+    "addedAt": "2026-09-01",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-01"
   },
   {
     "id": "could",
@@ -618,6 +658,32 @@
     "addedAt": "2026-08-25"
   },
   {
+    "id": "habitable",
+    "term": "habitable",
+    "meaning": "适合居住的；可居住的",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "C14-T2-P2 阅读生词：make buildings habitable = 让建筑适合居住。与 habitat / inhabit 联动记忆。",
+    "category": "我的同步错词",
+    "addedAt": "2026-09-01",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-01"
+  },
+  {
+    "id": "habitat",
+    "term": "habitat",
+    "meaning": "栖息地；生存环境；居住环境",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "与 habitable 同词族；不要与 habit=习惯 混淆。",
+    "category": "我的同步错词",
+    "addedAt": "2026-09-01",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-01"
+  },
+  {
     "id": "hence",
     "term": "hence",
     "meaning": "因此；由此",
@@ -655,6 +721,19 @@
     "addedAt": "2026-08-31",
     "reportedCount": 1,
     "lastReportedAt": "2026-08-31"
+  },
+  {
+    "id": "implication",
+    "term": "implication",
+    "meaning": "含义；暗示；言外之意；可能产生的影响",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "C14-T2-P2 Q18 直接影响定位：an implication that... = 暗示/隐含说明……；不要与 inclination=倾向 混淆。题干出现 implication 时，要找可推出该关系的信息，不一定有原句直述。",
+    "category": "我的同步错词",
+    "addedAt": "2026-09-01",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-01"
   },
   {
     "id": "in-accordance-with",
@@ -775,6 +854,32 @@
     "lastReportedAt": "2026-08-31"
   },
   {
+    "id": "inventor",
+    "term": "inventor",
+    "meaning": "发明者；创造者",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "C14-T2-P2 Q18 混淆词：inventor = 发明者，不是 investor。原文 inventors marketed air-conditioning systems。",
+    "category": "我的同步错词",
+    "addedAt": "2026-09-01",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-01"
+  },
+  {
+    "id": "investor",
+    "term": "investor",
+    "meaning": "投资者",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "与 inventor 高频混淆：investor 投资者；inventor 发明者。",
+    "category": "我的同步错词",
+    "addedAt": "2026-09-01",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-01"
+  },
+  {
     "id": "irresponsibly",
     "term": "irresponsibly",
     "meaning": "不负责任地",
@@ -847,6 +952,19 @@
     "lastReportedAt": "2026-08-31"
   },
   {
+    "id": "market",
+    "term": "market",
+    "meaning": "市场；营销；推销（动词）",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "C14-T2-P2 Q18 关键熟词僻义：be aggressively marketed = 被大力营销/推销，可与 advertising 建立同义映射。",
+    "category": "我的同步错词",
+    "addedAt": "2026-09-01",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-01"
+  },
+  {
     "id": "means",
     "term": "means",
     "meaning": "手段；方法（名词）",
@@ -896,6 +1014,19 @@
     "addedAt": "2026-08-27",
     "reportedCount": 1,
     "lastReportedAt": "2026-08-27"
+  },
+  {
+    "id": "model",
+    "term": "model",
+    "meaning": "模型；建模；模拟；模仿",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "C14-T2-P2 阅读熟词僻义：digitally modelled / modelled for someone with TB = 用数字方式建模、模拟。",
+    "category": "我的同步错词",
+    "addedAt": "2026-09-01",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-01"
   },
   {
     "id": "moral",
@@ -1048,6 +1179,32 @@
     "addedAt": "2026-08-26"
   },
   {
+    "id": "popularity",
+    "term": "popularity",
+    "meaning": "受欢迎程度；流行程度；普及度",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "C14-T2-P2 Q15 混淆词：曾粗暴理解为‘流行’，并与 population 看混。重点与 population 对照记忆。",
+    "category": "我的同步错词",
+    "addedAt": "2026-09-01",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-01"
+  },
+  {
+    "id": "population",
+    "term": "population",
+    "meaning": "人口；种群；人口数量",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "与 popularity 高频混淆：population = 人口/种群；popularity = 受欢迎程度。",
+    "category": "我的同步错词",
+    "addedAt": "2026-09-01",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-01"
+  },
+  {
     "id": "post",
     "term": "post",
     "meaning": "柱子；桩；标杆",
@@ -1133,6 +1290,19 @@
     "addedAt": "2026-08-31",
     "reportedCount": 1,
     "lastReportedAt": "2026-08-31"
+  },
+  {
+    "id": "prestige",
+    "term": "prestige",
+    "meaning": "声望；威望；地位；社会声誉",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "C14-T2-P2 Q15 直接致错：prestige ≈ status。看到 popularity of tall buildings linked to prestige，应能映射到 symbols of status。",
+    "category": "我的同步错词",
+    "addedAt": "2026-09-01",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-01"
   },
   {
     "id": "principle",
@@ -1605,6 +1775,20 @@
     "addedAt": "2026-08-31",
     "reportedCount": 1,
     "lastReportedAt": "2026-08-31"
+  },
+  {
+    "id": "tuberculosis",
+    "term": "tuberculosis",
+    "meaning": "结核病；肺结核；缩写 TB",
+    "modes": [
+      "recognition",
+      "spelling"
+    ],
+    "reason": "C14-T2-P2 Q21 直接致错：tuberculosis (TB) 是疾病名词；patients suffering from ___ 要填疾病，正确为 tuberculosis。",
+    "category": "我的同步错词",
+    "addedAt": "2026-09-01",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-01"
   },
   {
     "id": "underlie",
