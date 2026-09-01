@@ -4414,6 +4414,32 @@
     "audioPath": "audio/substitute.mp3"
   },
   {
+    "id": "suburban",
+    "term": "suburban",
+    "meaning": "郊区的；城郊的；市郊住宅区的",
+    "note": "C15-T3-P2 听力错词：quiet suburban areas = 安静的郊区/城郊住宅区。注意 suburb = 郊区，suburban = 郊区的。",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "suburban"
+    ],
+    "errorNote": "C15-T3-P2 听力错词：quiet suburban areas = 安静的郊区/城郊住宅区。注意 suburb = 郊区，suburban = 郊区的。",
+    "userAddedAt": "2026-09-01",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-01",
+    "partOfSpeech": "形容词",
+    "sourceRevision": 4,
+    "audioText": "suburban",
+    "audioPath": "audio/suburban.mp3"
+  },
+  {
     "id": "succinctly",
     "term": "succinctly",
     "meaning": "简洁地；言简意赅地",
@@ -4849,6 +4875,32 @@
     "sourceRevision": 4,
     "audioText": "waitress",
     "audioPath": "audio/waitress.mp3"
+  },
+  {
+    "id": "warden",
+    "term": "warden",
+    "meaning": "管理员；看守人；巡查员；（此题）负责街区/道路管理的人",
+    "note": "C15-T3-P2 听力错词：原题选项 local wardens，二听能识别，但首次做题时光标和选项跟踪没跟上。复数 wardens 归并主词 warden。",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "warden"
+    ],
+    "errorNote": "C15-T3-P2 听力错词：原题选项 local wardens，二听能识别，但首次做题时光标和选项跟踪没跟上。复数 wardens 归并主词 warden。",
+    "userAddedAt": "2026-09-01",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-01",
+    "partOfSpeech": "名词",
+    "sourceRevision": 4,
+    "audioText": "warden",
+    "audioPath": "audio/warden.mp3"
   },
   {
     "id": "wax",

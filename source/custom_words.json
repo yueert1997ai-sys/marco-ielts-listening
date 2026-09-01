@@ -1712,6 +1712,19 @@
     "lastReportedAt": "2026-08-31"
   },
   {
+    "id": "suburban",
+    "term": "suburban",
+    "meaning": "郊区的；城郊的；市郊住宅区的",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "C15-T3-P2 听力错词：quiet suburban areas = 安静的郊区/城郊住宅区。注意 suburb = 郊区，suburban = 郊区的。",
+    "category": "我的同步错词",
+    "addedAt": "2026-09-01",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-01"
+  },
+  {
     "id": "succinctly",
     "term": "succinctly",
     "meaning": "简洁地；言简意赅地",
@@ -1895,6 +1908,19 @@
     "addedAt": "2026-08-27",
     "reportedCount": 1,
     "lastReportedAt": "2026-08-27"
+  },
+  {
+    "id": "warden",
+    "term": "warden",
+    "meaning": "管理员；看守人；巡查员；（此题）负责街区/道路管理的人",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "C15-T3-P2 听力错词：原题选项 local wardens，二听能识别，但首次做题时光标和选项跟踪没跟上。复数 wardens 归并主词 warden。",
+    "category": "我的同步错词",
+    "addedAt": "2026-09-01",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-01"
   },
   {
     "id": "whereas",
