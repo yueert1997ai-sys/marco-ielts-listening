@@ -50,6 +50,19 @@
     "lastReportedAt": "2026-08-31"
   },
   {
+    "id": "awful",
+    "term": "awful",
+    "meaning": "糟糕的；可怕的；很坏的",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "C14-T1-P2 生词：阅读中需快速识义",
+    "category": "我的同步错词",
+    "addedAt": "2026-09-01",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-01"
+  },
+  {
     "id": "be-subject-to",
     "term": "be subject to",
     "meaning": "受……支配",
@@ -163,6 +176,45 @@
     "addedAt": "2026-08-31",
     "reportedCount": 1,
     "lastReportedAt": "2026-08-31"
+  },
+  {
+    "id": "contradict",
+    "term": "contradict",
+    "meaning": "与……矛盾；反驳；否定某说法",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "高频混淆词：contradict 表示两个说法/事实相互冲突，不是单纯‘不同’；注意 contradict a statement/evidence",
+    "category": "我的同步错词",
+    "addedAt": "2026-09-01",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-01"
+  },
+  {
+    "id": "contradiction",
+    "term": "contradiction",
+    "meaning": "矛盾；冲突；自相矛盾",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "重点反复刷：容易与 contrast 混淆。contradiction = 两者不能同时成立/相互冲突；in contradiction with = 与……矛盾",
+    "category": "我的同步错词",
+    "addedAt": "2026-09-01",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-01"
+  },
+  {
+    "id": "contrast",
+    "term": "contrast",
+    "meaning": "对比；差异；反差；形成对照",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "重点反复刷：容易与 contradict/contradiction 混淆。contrast 只表示差异或对照，不代表两者逻辑上互相矛盾；in contrast to / contrast A with B",
+    "category": "我的同步错词",
+    "addedAt": "2026-09-01",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-01"
   },
   {
     "id": "cottage",
@@ -594,6 +646,19 @@
     "addedAt": "2026-08-31",
     "reportedCount": 1,
     "lastReportedAt": "2026-08-31"
+  },
+  {
+    "id": "inevitably",
+    "term": "inevitably",
+    "meaning": "不可避免地；必然地",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "C14-T1-P2 生词：inevitable 的副词形式，阅读中需快速识义",
+    "category": "我的同步错词",
+    "addedAt": "2026-09-01",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-01"
   },
   {
     "id": "insulating",
