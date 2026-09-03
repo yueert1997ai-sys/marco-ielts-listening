@@ -37,11 +37,27 @@ jobs:
       - name: Update project handoff docs
         run: python scripts/update_project_docs.py --github-event "$GITHUB_EVENT_PATH"
       - run: python scripts/check_docs_sync.py
+      - name: Stamp vocabulary revision
+        env:
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
+        run: |
+          python - <<'PY'
+          import json
+          import os
+          from datetime import datetime, timezone
+          from pathlib import Path
+
+          path = Path("version.json")
+          data = json.loads(path.read_text(encoding="utf-8"))
+          data["contentRevision"] = f"词库#{os.environ['ISSUE_NUMBER']}"
+          data["contentUpdatedAt"] = datetime.now(timezone.utc).date().isoformat()
+          path.write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+          PY
       - name: Commit vocabulary update
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add source/custom_words.json source/vocabulary_overrides.json data/listening.json data/audit.json audio CHANGELOG.md docs/HANDOFF.md
+          git add source/custom_words.json source/vocabulary_overrides.json data/listening.json data/audit.json audio CHANGELOG.md docs/HANDOFF.md version.json
           if git diff --cached --quiet; then
             echo "No vocabulary change"
           else
