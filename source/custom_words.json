@@ -323,6 +323,19 @@
     "lastReportedAt": "2026-09-01"
   },
   {
+    "id": "artistic-achievement",
+    "term": "artistic achievement",
+    "meaning": "艺术成就；艺术成果",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "C13-T1-P3 Q32 词形/句意误解。artistic 是‘艺术的’形容词，不是 artist‘艺术家’；comparing the artistic achievements of humans and computers = 比较人类与计算机的艺术成就。",
+    "category": "我的同步错词",
+    "addedAt": "2026-09-03",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03"
+  },
+  {
     "id": "as-expected",
     "term": "as expected",
     "meaning": "如预期",
@@ -5232,6 +5245,19 @@
       "recognition"
     ],
     "reason": "0903 错题词：识义",
+    "category": "我的同步错词",
+    "addedAt": "2026-09-03",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03"
+  },
+  {
+    "id": "ultimately",
+    "term": "ultimately",
+    "meaning": "最终；最后；归根结底",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "C13-T1-P3 Q28 选项词汇。may ultimately supersede human art = 最终可能取代人类艺术。",
     "category": "我的同步错词",
     "addedAt": "2026-09-03",
     "reportedCount": 1,

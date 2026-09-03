@@ -671,6 +671,32 @@
     "audioPath": "audio/architectural.mp3"
   },
   {
+    "id": "artistic-achievement",
+    "term": "artistic achievement",
+    "meaning": "艺术成就；艺术成果",
+    "note": "C13-T1-P3 Q32 词形/句意误解。artistic 是‘艺术的’形容词，不是 artist‘艺术家’；comparing the artistic achievements of humans and computers = 比较人类与计算机的艺术成就。",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "artistic achievement"
+    ],
+    "errorNote": "C13-T1-P3 Q32 词形/句意误解。artistic 是‘艺术的’形容词，不是 artist‘艺术家’；comparing the artistic achievements of humans and computers = 比较人类与计算机的艺术成就。",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "短语",
+    "sourceRevision": 4,
+    "audioText": "artistic achievement",
+    "audioPath": "audio/artistic-achievement.mp3"
+  },
+  {
     "id": "as-expected",
     "term": "as expected",
     "meaning": "如预期",
@@ -11472,6 +11498,32 @@
     "sourceRevision": 4,
     "audioText": "turn down",
     "audioPath": "audio/turn-down.mp3"
+  },
+  {
+    "id": "ultimately",
+    "term": "ultimately",
+    "meaning": "最终；最后；归根结底",
+    "note": "C13-T1-P3 Q28 选项词汇。may ultimately supersede human art = 最终可能取代人类艺术。",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "ultimately"
+    ],
+    "errorNote": "C13-T1-P3 Q28 选项词汇。may ultimately supersede human art = 最终可能取代人类艺术。",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "副词",
+    "sourceRevision": 4,
+    "audioText": "ultimately",
+    "audioPath": "audio/ultimately.mp3"
   },
   {
     "id": "unacceptable",
