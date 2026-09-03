@@ -11,136 +11,6 @@
     "addedAt": "2026-08-25"
   },
   {
-    "id": "abroad",
-    "term": "abroad",
-    "meaning": "国外；海外",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
-    "id": "absence-of-pain",
-    "term": "absence of pain",
-    "meaning": "没有痛苦",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
-    "id": "acceptable",
-    "term": "acceptable",
-    "meaning": "可接受的",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
-    "id": "adapt",
-    "term": "adapt",
-    "meaning": "适应/调整",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
-    "id": "additional-transport",
-    "term": "additional transport",
-    "meaning": "额外交通方式",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
-    "id": "aesthetically",
-    "term": "aesthetically",
-    "meaning": "在审美上；从美学角度",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "C13-T1-P3 Q28 选项词汇。aesthetically inferior to human art = 在审美上不如人类艺术。",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
-    "id": "after-all",
-    "term": "after all",
-    "meaning": "毕竟",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
-    "id": "age-range",
-    "term": "age range",
-    "meaning": "年龄区间",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
-    "id": "aggressively",
-    "term": "aggressively",
-    "meaning": "凶猛地/攻击性地",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
-    "id": "agricultural-practices",
-    "term": "agricultural practices",
-    "meaning": "农业/耕作方式",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
     "id": "albeit",
     "term": "albeit",
     "meaning": "尽管；虽然",
@@ -154,58 +24,6 @@
     "lastReportedAt": "2026-08-31"
   },
   {
-    "id": "alter",
-    "term": "alter",
-    "meaning": "改变",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
-    "id": "although",
-    "term": "although",
-    "meaning": "尽管",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
-    "id": "amazed",
-    "term": "amazed",
-    "meaning": "非常惊讶",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义；同义词 surprised",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
-    "id": "amenity",
-    "term": "amenity",
-    "meaning": "便利设施/公共设施",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
     "id": "amusing",
     "term": "amusing",
     "meaning": "有趣的；逗人发笑的",
@@ -217,32 +35,6 @@
     "addedAt": "2026-08-31",
     "reportedCount": 1,
     "lastReportedAt": "2026-08-31"
-  },
-  {
-    "id": "animal-keeper",
-    "term": "animal keeper",
-    "meaning": "动物饲养员/管理员",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
-    "id": "answer-to",
-    "term": "answer to",
-    "meaning": "解决办法",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义；同义词 intended to solve",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
   },
   {
     "id": "anticipate",
@@ -297,19 +89,6 @@
     "lastReportedAt": "2026-08-31"
   },
   {
-    "id": "archaeologist",
-    "term": "archaeologist",
-    "meaning": "考古学家",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
     "id": "architectural",
     "term": "architectural",
     "meaning": "建筑的；建筑学的；建筑设计方面的",
@@ -321,45 +100,6 @@
     "addedAt": "2026-09-01",
     "reportedCount": 1,
     "lastReportedAt": "2026-09-01"
-  },
-  {
-    "id": "artistic-achievement",
-    "term": "artistic achievement",
-    "meaning": "艺术成就；艺术成果",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "C13-T1-P3 Q32 词形/句意误解。artistic 是‘艺术的’形容词，不是 artist‘艺术家’；comparing the artistic achievements of humans and computers = 比较人类与计算机的艺术成就。",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
-    "id": "as-expected",
-    "term": "as expected",
-    "meaning": "如预期",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义；同义词 predictions were correct",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
-    "id": "aspect",
-    "term": "aspect",
-    "meaning": "方面/元素",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
   },
   {
     "id": "asthma",
@@ -375,19 +115,6 @@
     "lastReportedAt": "2026-09-01"
   },
   {
-    "id": "attitude",
-    "term": "attitude",
-    "meaning": "态度",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
     "id": "awful",
     "term": "awful",
     "meaning": "糟糕的；可怕的；很坏的",
@@ -401,45 +128,6 @@
     "lastReportedAt": "2026-09-01"
   },
   {
-    "id": "banknote",
-    "term": "banknote",
-    "meaning": "纸币",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
-    "id": "be-aware",
-    "term": "be aware",
-    "meaning": "意识到",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
-    "id": "be-responsible-for",
-    "term": "be responsible for",
-    "meaning": "负责",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
     "id": "be-subject-to",
     "term": "be subject to",
     "meaning": "受……支配",
@@ -451,123 +139,6 @@
     "addedAt": "2026-08-31",
     "reportedCount": 1,
     "lastReportedAt": "2026-08-31"
-  },
-  {
-    "id": "behaviour",
-    "term": "behaviour",
-    "meaning": "行为",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
-    "id": "belief",
-    "term": "belief",
-    "meaning": "信念",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
-    "id": "belong-to-the-past",
-    "term": "belong to the past",
-    "meaning": "属于过去",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
-    "id": "benefit-from",
-    "term": "benefit from",
-    "meaning": "受益",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
-    "id": "bike-sharing",
-    "term": "bike-sharing",
-    "meaning": "共享单车",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
-    "id": "biological-approach",
-    "term": "biological approach",
-    "meaning": "生物学方法",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
-    "id": "body-and-mind",
-    "term": "body and mind",
-    "meaning": "身心",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
-    "id": "boring",
-    "term": "boring",
-    "meaning": "无聊的",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义；同义词 tedious",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
-    "id": "busy-road",
-    "term": "busy road",
-    "meaning": "繁忙道路",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
   },
   {
     "id": "calorie",
@@ -609,58 +180,6 @@
     "lastReportedAt": "2026-08-31"
   },
   {
-    "id": "captive-animal",
-    "term": "captive animal",
-    "meaning": "圈养动物",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义；同义词 zoo animal",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
-    "id": "captivity",
-    "term": "captivity",
-    "meaning": "圈养状态",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
-    "id": "cast-doubt-on",
-    "term": "cast doubt on",
-    "meaning": "质疑；使人怀疑……是否正确",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "C13-T1-P3 Q40 固定搭配。Kruger 的发现实际上支持 Bloom，因此题目说 cast doubt on 与原文相反。",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
-    "id": "cautionary-message",
-    "term": "cautionary message",
-    "meaning": "警示信息",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
     "id": "certain",
     "term": "certain",
     "meaning": "某个；某种；某些；确定的",
@@ -674,32 +193,6 @@
     "lastReportedAt": "2026-09-01"
   },
   {
-    "id": "choice-of-reading-content",
-    "term": "choice of reading content",
-    "meaning": "阅读内容的选择",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义；同义词 what we read",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
-    "id": "circumstances",
-    "term": "circumstances",
-    "meaning": "情况；环境",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
     "id": "claim",
     "term": "claim",
     "meaning": "声称；主张；索赔",
@@ -711,58 +204,6 @@
     "addedAt": "2026-08-31",
     "reportedCount": 1,
     "lastReportedAt": "2026-08-31"
-  },
-  {
-    "id": "clear-distinction",
-    "term": "clear distinction",
-    "meaning": "明确区分",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义；同义词 right or wrong / good guy or bad guy",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
-    "id": "climate",
-    "term": "climate",
-    "meaning": "气候",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
-    "id": "climatic-conditions",
-    "term": "climatic conditions",
-    "meaning": "气候条件",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
-    "id": "close-the-road",
-    "term": "close the road",
-    "meaning": "封路",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
   },
   {
     "id": "colony",
@@ -800,19 +241,6 @@
     "addedAt": "2026-09-01",
     "reportedCount": 1,
     "lastReportedAt": "2026-09-01"
-  },
-  {
-    "id": "complexity",
-    "term": "complexity",
-    "meaning": "复杂性",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
   },
   {
     "id": "comply-with",
@@ -893,45 +321,6 @@
     "lastReportedAt": "2026-08-31"
   },
   {
-    "id": "conservation-project",
-    "term": "conservation project",
-    "meaning": "保护项目",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
-    "id": "conservation-worker",
-    "term": "conservation worker",
-    "meaning": "保护工作者",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
-    "id": "considerably",
-    "term": "considerably",
-    "meaning": "显著地",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
     "id": "constrain",
     "term": "constrain",
     "meaning": "束缚；限制",
@@ -943,19 +332,6 @@
     "addedAt": "2026-08-31",
     "reportedCount": 1,
     "lastReportedAt": "2026-08-31"
-  },
-  {
-    "id": "contextual-factors",
-    "term": "contextual factors",
-    "meaning": "情境因素",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
   },
   {
     "id": "contradict",
@@ -995,32 +371,6 @@
     "addedAt": "2026-09-01",
     "reportedCount": 1,
     "lastReportedAt": "2026-09-01"
-  },
-  {
-    "id": "control",
-    "term": "control",
-    "meaning": "控制",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
-    "id": "cost-only-10-percent",
-    "term": "cost only 10 percent",
-    "meaning": "成本仅为10%",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义；同义词 potential savings",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
   },
   {
     "id": "cottage",
@@ -1073,84 +423,6 @@
     "addedAt": "2026-08-24"
   },
   {
-    "id": "counterfeit",
-    "term": "counterfeit",
-    "meaning": "伪造的；假冒的",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
-    "id": "counterpart",
-    "term": "counterpart",
-    "meaning": "对应物",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义；同义词 animal in the wild",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
-    "id": "creative-impulse",
-    "term": "creative impulse",
-    "meaning": "创作冲动；创作灵感；创造驱动力",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "C13-T1-P3 Q35。creative impulses ≈ imagination；rely completely on the original artist's creative impulses ≈ entirely dependent on the imagination of its creator。",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
-    "id": "crop",
-    "term": "crop",
-    "meaning": "作物",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
-    "id": "crude",
-    "term": "crude",
-    "meaning": "粗浅/粗糙",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义；同义词 ignorant about ideas they should be considering",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
-    "id": "cultivate",
-    "term": "cultivate",
-    "meaning": "种植/耕作",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
     "id": "curtain",
     "term": "curtain",
     "meaning": "窗帘",
@@ -1163,32 +435,6 @@
     "addedAt": "2026-08-27",
     "reportedCount": 1,
     "lastReportedAt": "2026-08-27"
-  },
-  {
-    "id": "cycle-friendly",
-    "term": "cycle-friendly",
-    "meaning": "骑行友好",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义；同义词 welcomes cyclists",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
-    "id": "decline",
-    "term": "decline",
-    "meaning": "衰落",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
   },
   {
     "id": "deliberately",
@@ -1242,45 +488,6 @@
     "lastReportedAt": "2026-08-31"
   },
   {
-    "id": "destruction",
-    "term": "destruction",
-    "meaning": "破坏",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
-    "id": "destructive-policy",
-    "term": "destructive policy",
-    "meaning": "破坏性政策",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
-    "id": "deterioration",
-    "term": "deterioration",
-    "meaning": "恶化；退化；变差",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "C13-T1-P3 Q28 选项词汇。lead to a deterioration in human ability = 导致人类能力退化。",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
     "id": "determine",
     "term": "determine",
     "meaning": "决定",
@@ -1294,32 +501,6 @@
     "lastReportedAt": "2026-08-31"
   },
   {
-    "id": "different-parts",
-    "term": "different parts",
-    "meaning": "不同地区",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义；同义词 considerable global variation",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
-    "id": "disadvantage",
-    "term": "disadvantage",
-    "meaning": "不利",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
     "id": "discipline",
     "term": "discipline",
     "meaning": "学科；纪律；训练",
@@ -1331,19 +512,6 @@
     "addedAt": "2026-08-31",
     "reportedCount": 1,
     "lastReportedAt": "2026-08-31"
-  },
-  {
-    "id": "discover",
-    "term": "discover",
-    "meaning": "发现；得知；查明",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "C13-T1-P3 Q36 熟词义误判。这里 discovering that it was the product of a computer program = 得知/发现它其实由电脑程序创作，不是‘探索’。",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
   },
   {
     "id": "dispose",
@@ -1374,58 +542,6 @@
     "addedAt": "2026-08-31",
     "reportedCount": 1,
     "lastReportedAt": "2026-08-31"
-  },
-  {
-    "id": "distrust",
-    "term": "distrust",
-    "meaning": "不信任",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
-    "id": "dominant",
-    "term": "dominant",
-    "meaning": "支配型",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
-    "id": "educate",
-    "term": "educate",
-    "meaning": "教育/培训",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义；同义词 teach people involved with conservation projects",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
-    "id": "eerie",
-    "term": "eerie",
-    "meaning": "诡异的；阴森的；令人不安的",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "C13-T1-P3 Q31 生词。原文 eerie, ghostlike quality 描述意外产生的艺术效果，不是批评。",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
   },
   {
     "id": "emphasize",
@@ -1468,19 +584,6 @@
     "lastReportedAt": "2026-08-31"
   },
   {
-    "id": "equipment",
-    "term": "equipment",
-    "meaning": "设备",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
     "id": "erect",
     "term": "erect",
     "meaning": "建造；竖立",
@@ -1505,84 +608,6 @@
     "reason": "今日生词：识义；按语境区分 estate / housing estate",
     "category": "我的同步错词",
     "addedAt": "2026-08-25"
-  },
-  {
-    "id": "exact-age",
-    "term": "exact age",
-    "meaning": "精确年龄",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
-    "id": "excessive-attention",
-    "term": "excessive attention",
-    "meaning": "过度关注",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
-    "id": "exist-in-captivity",
-    "term": "exist in captivity",
-    "meaning": "只存在于圈养环境",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义；同义词 can no longer be found in the wild",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
-    "id": "existence",
-    "term": "existence",
-    "meaning": "存在",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
-    "id": "existing-data",
-    "term": "existing data",
-    "meaning": "现有数据",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
-    "id": "expect",
-    "term": "expect",
-    "meaning": "期待；预期",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
   },
   {
     "id": "expedition",
@@ -1624,58 +649,6 @@
     "lastReportedAt": "2026-08-31"
   },
   {
-    "id": "fail-to-meet",
-    "term": "fail to meet",
-    "meaning": "未会合",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义；同义词 miss each other",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
-    "id": "failure",
-    "term": "failure",
-    "meaning": "失败",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
-    "id": "fake",
-    "term": "fake",
-    "meaning": "假的；伪造的",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
-    "id": "false-information",
-    "term": "false information",
-    "meaning": "虚假信息",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
     "id": "fast-paced",
     "term": "fast-paced",
     "meaning": "节奏快的；进展迅速的",
@@ -1700,32 +673,6 @@
     "lastReportedAt": "2026-08-31"
   },
   {
-    "id": "fewest-variations",
-    "term": "fewest variations",
-    "meaning": "最少变化",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义；同义词 alter least",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
-    "id": "fiction",
-    "term": "fiction",
-    "meaning": "虚构/非事实",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
     "id": "field",
     "term": "field",
     "meaning": "领域；学科",
@@ -1739,134 +686,17 @@
     "lastReportedAt": "2026-08-27"
   },
   {
-    "id": "fieldwork",
-    "term": "fieldwork",
-    "meaning": "野外工作",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
-    "id": "focus-on",
-    "term": "focus on",
-    "meaning": "聚焦于",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
-    "id": "forge",
-    "term": "forge",
-    "meaning": "伪造",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义；同义词 fake/counterfeit",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
-    "id": "forgeable",
-    "term": "forgeable",
-    "meaning": "可伪造的",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
-    "id": "form",
-    "term": "form",
-    "meaning": "形式；形态",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
-    "id": "found-in-the-wild",
-    "term": "found in the wild",
-    "meaning": "在野外发现",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义；同义词 only exist in captivity",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
-    "id": "fruit-fly",
-    "term": "fruit fly",
-    "meaning": "果蝇",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
-    "id": "function",
-    "term": "function",
-    "meaning": "作用；运作方式",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
     "id": "fundamental",
     "term": "fundamental",
-    "meaning": "根本的；基本的；核心的",
+    "meaning": "根本的；基础的；核心的；基本的",
     "modes": [
       "recognition"
     ],
-    "reason": "C13-T1-P3 Q28 选项词汇。fundamental human quality = 人类根本特质。",
+    "reason": "C14-T2-P3 Q30 直接影响 Heading：fundamental beliefs ≈ basic assumptions = 根本观念/底层认知。",
     "category": "我的同步错词",
     "addedAt": "2026-08-31",
-    "reportedCount": 3,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
-    "id": "geographic-location",
-    "term": "geographic location",
-    "meaning": "地理位置",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
+    "reportedCount": 2,
+    "lastReportedAt": "2026-09-01"
   },
   {
     "id": "give-rise-to",
@@ -1880,32 +710,6 @@
     "addedAt": "2026-08-31",
     "reportedCount": 1,
     "lastReportedAt": "2026-08-31"
-  },
-  {
-    "id": "global-variation",
-    "term": "global variation",
-    "meaning": "全球差异",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义；同义词 a variety of forms in different parts of the world",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
-    "id": "grain",
-    "term": "grain",
-    "meaning": "谷物；谷粒",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
   },
   {
     "id": "grant",
@@ -1930,19 +734,6 @@
     "reason": "今日生词：识义；注意 the daily grind",
     "category": "我的同步错词",
     "addedAt": "2026-08-25"
-  },
-  {
-    "id": "group-setting",
-    "term": "group setting",
-    "meaning": "群体环境",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
   },
   {
     "id": "habitable",
@@ -1971,58 +762,6 @@
     "lastReportedAt": "2026-09-01"
   },
   {
-    "id": "hadn-t-expected",
-    "term": "hadn't expected",
-    "meaning": "没想到",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义；同义词 surprised",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
-    "id": "harbour",
-    "term": "harbour",
-    "meaning": "港口",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
-    "id": "hard-to-understand",
-    "term": "hard to understand",
-    "meaning": "难以理解",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
-    "id": "heavy-traffic",
-    "term": "heavy traffic",
-    "meaning": "交通繁忙/车流量大",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
     "id": "hence",
     "term": "hence",
     "meaning": "因此；由此",
@@ -2036,45 +775,6 @@
     "lastReportedAt": "2026-08-31"
   },
   {
-    "id": "high-status",
-    "term": "high-status",
-    "meaning": "高地位的",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
-    "id": "highlight",
-    "term": "highlight",
-    "meaning": "突出",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
-    "id": "hiking",
-    "term": "hiking",
-    "meaning": "徒步",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
     "id": "hinder",
     "term": "hinder",
     "meaning": "阻碍",
@@ -2086,45 +786,6 @@
     "addedAt": "2026-08-31",
     "reportedCount": 1,
     "lastReportedAt": "2026-08-31"
-  },
-  {
-    "id": "humility",
-    "term": "humility",
-    "meaning": "谦逊",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
-    "id": "humour",
-    "term": "humour",
-    "meaning": "幽默",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义；同义词 amusing",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
-    "id": "ignorant",
-    "term": "ignorant",
-    "meaning": "不了解/无知",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义；同义词 crude / simple-minded / oblivious to philosophical literature",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
   },
   {
     "id": "impair",
@@ -2166,32 +827,6 @@
     "lastReportedAt": "2026-08-31"
   },
   {
-    "id": "in-fact",
-    "term": "in fact",
-    "meaning": "事实上",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
-    "id": "in-general",
-    "term": "in general",
-    "meaning": "总体上",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
     "id": "in-terms-of",
     "term": "in terms of",
     "meaning": "就……而言",
@@ -2218,45 +853,6 @@
     "lastReportedAt": "2026-08-31"
   },
   {
-    "id": "in-the-past",
-    "term": "in the past",
-    "meaning": "过去",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
-    "id": "in-the-wild",
-    "term": "in the wild",
-    "meaning": "野外",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义；同义词 wild counterpart",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
-    "id": "inaccuracy",
-    "term": "inaccuracy",
-    "meaning": "不准确之处/错误",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
     "id": "inclination",
     "term": "inclination",
     "meaning": "倾向；意愿；爱好",
@@ -2268,19 +864,6 @@
     "addedAt": "2026-09-01",
     "reportedCount": 1,
     "lastReportedAt": "2026-09-01"
-  },
-  {
-    "id": "including",
-    "term": "including",
-    "meaning": "包括",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
   },
   {
     "id": "indicate",
@@ -2322,58 +905,6 @@
     "lastReportedAt": "2026-09-01"
   },
   {
-    "id": "inferior-to",
-    "term": "inferior to",
-    "meaning": "不如；劣于",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "C13-T1-P3 Q28 选项词汇。inferior to human art = 比人类艺术差。",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
-    "id": "influence",
-    "term": "influence",
-    "meaning": "影响",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
-    "id": "inhabitant",
-    "term": "inhabitant",
-    "meaning": "居民（不要和 archaeologist 混）",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
-    "id": "instruct",
-    "term": "instruct",
-    "meaning": "指示",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
     "id": "insulating",
     "term": "insulating",
     "meaning": "隔热的；起隔热作用的",
@@ -2399,45 +930,6 @@
     "addedAt": "2026-08-31",
     "reportedCount": 1,
     "lastReportedAt": "2026-08-31"
-  },
-  {
-    "id": "intellectual-humility",
-    "term": "intellectual humility",
-    "meaning": "智识谦逊",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义；同义词 modesty",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
-    "id": "intended-to",
-    "term": "intended to",
-    "meaning": "旨在",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
-    "id": "intended-to-solve",
-    "term": "intended to solve",
-    "meaning": "旨在解决",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义；同义词 was an answer to",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
   },
   {
     "id": "inventor",
@@ -2466,19 +958,6 @@
     "lastReportedAt": "2026-09-01"
   },
   {
-    "id": "involve-users",
-    "term": "involve users",
-    "meaning": "让用户参与",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
     "id": "irresponsibly",
     "term": "irresponsibly",
     "meaning": "不负责任地",
@@ -2492,19 +971,6 @@
     "lastReportedAt": "2026-08-31"
   },
   {
-    "id": "isolated",
-    "term": "isolated",
-    "meaning": "孤立的",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
     "id": "juggle",
     "term": "juggle",
     "meaning": "同时应付（多件事）；玩杂耍",
@@ -2514,19 +980,6 @@
     "reason": "今日生词：识义；工作语境常指同时处理多项任务",
     "category": "我的同步错词",
     "addedAt": "2026-08-25"
-  },
-  {
-    "id": "lack-of-confidence",
-    "term": "lack of confidence",
-    "meaning": "缺乏信心",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
   },
   {
     "id": "lane",
@@ -2540,175 +993,6 @@
     "addedAt": "2026-08-26",
     "reportedCount": 2,
     "lastReportedAt": "2026-08-31"
-  },
-  {
-    "id": "laud",
-    "term": "laud",
-    "meaning": "赞扬；称赞",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "C13-T1-P3 Q31 词形误认。lauded=受到赞扬/被称赞；不要看成 laughed=笑。",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
-    "id": "laugh-track",
-    "term": "laugh track",
-    "meaning": "罐头笑声/笑声轨",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
-    "id": "lead",
-    "term": "lead",
-    "meaning": "带头/领导",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
-    "id": "lesson",
-    "term": "lesson",
-    "meaning": "教训",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
-    "id": "life-expectancy",
-    "term": "life expectancy",
-    "meaning": "预期寿命",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义；同义词 live longer",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
-    "id": "limit",
-    "term": "limit",
-    "meaning": "局限；限制",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
-    "id": "limited-extent",
-    "term": "limited extent",
-    "meaning": "有限程度",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义；同义词 a small positive relationship",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
-    "id": "link",
-    "term": "link",
-    "meaning": "联系；关联",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
-    "id": "living-creature",
-    "term": "living creature",
-    "meaning": "生物",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
-    "id": "local-community",
-    "term": "local community",
-    "meaning": "当地社区/居民",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
-    "id": "location",
-    "term": "location",
-    "meaning": "地点",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
-    "id": "logging-company",
-    "term": "logging company",
-    "meaning": "伐木公司",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
-    "id": "lose-interest",
-    "term": "lose interest",
-    "meaning": "失去兴趣",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
   },
   {
     "id": "low-profit-margins",
@@ -2748,58 +1032,6 @@
     "lastReportedAt": "2026-09-01"
   },
   {
-    "id": "material-culture",
-    "term": "material culture",
-    "meaning": "物质文化",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
-    "id": "matter",
-    "term": "matter",
-    "meaning": "重要",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义；同义词 have significance",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
-    "id": "may",
-    "term": "may",
-    "meaning": "可能；可以",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
-    "id": "may-be-wrong",
-    "term": "may be wrong",
-    "meaning": "可能是错的",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
     "id": "means",
     "term": "means",
     "meaning": "手段；方法（名词）",
@@ -2827,32 +1059,6 @@
     "lastReportedAt": "2026-08-31"
   },
   {
-    "id": "metaphysics",
-    "term": "metaphysics",
-    "meaning": "形而上学",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
-    "id": "method",
-    "term": "method",
-    "meaning": "方法",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
     "id": "meticulous",
     "term": "meticulous",
     "meaning": "一丝不苟的；非常仔细的",
@@ -2862,19 +1068,6 @@
     "reason": "自动同步链路验收；阅读识词",
     "category": "我的同步错词",
     "addedAt": "2026-08-24"
-  },
-  {
-    "id": "millennium",
-    "term": "millennium",
-    "meaning": "一千年；millennia 为复数，表示数千年",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "C13-T1-P3 Q32 生词。humans have had millennia to develop our skills = 人类经历了数千年来发展技能。",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 2,
-    "lastReportedAt": "2026-09-03"
   },
   {
     "id": "mine",
@@ -2890,45 +1083,6 @@
     "lastReportedAt": "2026-08-27"
   },
   {
-    "id": "mining",
-    "term": "mining",
-    "meaning": "采矿",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
-    "id": "miss-each-other",
-    "term": "miss each other",
-    "meaning": "彼此错过/未碰上",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义；同义词 fail to meet",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
-    "id": "misunderstanding",
-    "term": "misunderstanding",
-    "meaning": "误解",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
     "id": "model",
     "term": "model",
     "meaning": "模型；建模；模拟；模仿",
@@ -2940,32 +1094,6 @@
     "addedAt": "2026-09-01",
     "reportedCount": 1,
     "lastReportedAt": "2026-09-01"
-  },
-  {
-    "id": "modesty",
-    "term": "modesty",
-    "meaning": "谦逊",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
-    "id": "modify",
-    "term": "modify",
-    "meaning": "修改",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
   },
   {
     "id": "moral",
@@ -2994,32 +1122,6 @@
     "lastReportedAt": "2026-08-31"
   },
   {
-    "id": "most-needed",
-    "term": "most needed",
-    "meaning": "最需要",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
-    "id": "naked-mole-rat",
-    "term": "naked mole rat",
-    "meaning": "裸鼹鼠",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
     "id": "neatly",
     "term": "neatly",
     "meaning": "整齐地；有条理地",
@@ -3033,32 +1135,6 @@
     "lastReportedAt": "2026-08-31"
   },
   {
-    "id": "negative-effect",
-    "term": "negative effect",
-    "meaning": "负面影响",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
-    "id": "network",
-    "term": "network",
-    "meaning": "网络；联系网",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
     "id": "nevertheless",
     "term": "nevertheless",
     "meaning": "然而；尽管如此",
@@ -3070,19 +1146,6 @@
     "addedAt": "2026-08-31",
     "reportedCount": 1,
     "lastReportedAt": "2026-08-31"
-  },
-  {
-    "id": "noise-pollution",
-    "term": "noise pollution",
-    "meaning": "噪音污染",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
   },
   {
     "id": "nonetheless",
@@ -3124,45 +1187,6 @@
     "lastReportedAt": "2026-08-31"
   },
   {
-    "id": "object",
-    "term": "object",
-    "meaning": "物件/实物/对象",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
-    "id": "objective",
-    "term": "objective",
-    "meaning": "客观的（别混）",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
-    "id": "oblivious-to",
-    "term": "oblivious to",
-    "meaning": "没意识到/不了解",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义；同义词 ignorant about ideas they should be considering",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
     "id": "occasion",
     "term": "occasion",
     "meaning": "场合；时机；某次事件；机会",
@@ -3174,84 +1198,6 @@
     "addedAt": "2026-09-01",
     "reportedCount": 1,
     "lastReportedAt": "2026-09-01"
-  },
-  {
-    "id": "occasional",
-    "term": "occasional",
-    "meaning": "偶尔的",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义；同义词 public meetings held sometimes, not often",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
-    "id": "occasionally",
-    "term": "occasionally",
-    "meaning": "偶尔地",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
-    "id": "only-known",
-    "term": "only known",
-    "meaning": "唯一已知",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
-    "id": "openness",
-    "term": "openness",
-    "meaning": "开放透明",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义；同义词 reveal more / transparency",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
-    "id": "opinion",
-    "term": "opinion",
-    "meaning": "观点",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
-    "id": "oral-tradition",
-    "term": "oral tradition",
-    "meaning": "口述传统",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
   },
   {
     "id": "ordinary",
@@ -3267,110 +1213,6 @@
     "lastReportedAt": "2026-08-31"
   },
   {
-    "id": "ordinary-people",
-    "term": "ordinary people",
-    "meaning": "普通人",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
-    "id": "organise",
-    "term": "organise",
-    "meaning": "组织",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
-    "id": "original-artist",
-    "term": "original artist",
-    "meaning": "原始的人类艺术家；被模仿或被复制风格的原作者",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "C13-T1-P3 Q35 指代理解错误。original artist's creative impulses 指原作者的创作灵感，不是 EMI 的创作者本身。",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
-    "id": "originally",
-    "term": "originally",
-    "meaning": "最初",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
-    "id": "otherwise",
-    "term": "otherwise",
-    "meaning": "并非如此",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
-    "id": "overfishing",
-    "term": "overfishing",
-    "meaning": "过度捕捞",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义；同义词 unmanaged fishery without quotas",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
-    "id": "overseas",
-    "term": "overseas",
-    "meaning": "海外的；国外",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
-    "id": "part",
-    "term": "part",
-    "meaning": "部分",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
     "id": "pattern",
     "term": "pattern",
     "meaning": "模式；规律；分布特征",
@@ -3382,32 +1224,6 @@
     "addedAt": "2026-08-27",
     "reportedCount": 2,
     "lastReportedAt": "2026-08-31"
-  },
-  {
-    "id": "people-living-nearby",
-    "term": "people living nearby",
-    "meaning": "附近居民",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
-    "id": "perceived-threats",
-    "term": "perceived threats",
-    "meaning": "被认为的威胁",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义；同义词 problems",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
   },
   {
     "id": "period",
@@ -3445,45 +1261,6 @@
     "addedAt": "2026-08-25"
   },
   {
-    "id": "persist",
-    "term": "persist",
-    "meaning": "坚持/持续",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
-    "id": "personal-profit",
-    "term": "personal profit",
-    "meaning": "个人利润",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
-    "id": "perspective",
-    "term": "perspective",
-    "meaning": "视角/观点",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
     "id": "persuasive",
     "term": "persuasive",
     "meaning": "有说服力的；能劝服人的",
@@ -3506,58 +1283,6 @@
     "addedAt": "2026-09-01",
     "reportedCount": 1,
     "lastReportedAt": "2026-09-01"
-  },
-  {
-    "id": "philosophical-literature",
-    "term": "philosophical literature",
-    "meaning": "哲学文献",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
-    "id": "phrase",
-    "term": "phrase",
-    "meaning": "短语",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
-    "id": "physical-difficulty",
-    "term": "physical difficulty",
-    "meaning": "实际/体力困难",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
-    "id": "pleasure",
-    "term": "pleasure",
-    "meaning": "快乐",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
   },
   {
     "id": "popularity",
@@ -3586,19 +1311,6 @@
     "lastReportedAt": "2026-09-01"
   },
   {
-    "id": "possibility",
-    "term": "possibility",
-    "meaning": "可能性",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
     "id": "post",
     "term": "post",
     "meaning": "柱子；桩；标杆",
@@ -3621,32 +1333,6 @@
     "reason": "今日生词：识义；postpone = 推迟",
     "category": "我的同步错词",
     "addedAt": "2026-08-24"
-  },
-  {
-    "id": "potential-savings",
-    "term": "potential savings",
-    "meaning": "潜在节省",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义；同义词 cost only 10%",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
-    "id": "pottery",
-    "term": "pottery",
-    "meaning": "陶器/陶片",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
   },
   {
     "id": "practical",
@@ -3684,58 +1370,6 @@
     "reason": "今日生词：识义；保留英式动词拼写",
     "category": "我的同步错词",
     "addedAt": "2026-08-26"
-  },
-  {
-    "id": "precise-age",
-    "term": "precise age",
-    "meaning": "精确年龄",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
-    "id": "predict",
-    "term": "predict",
-    "meaning": "预测；预料",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
-    "id": "predictable",
-    "term": "predictable",
-    "meaning": "可预测的；可以预料的",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "C13-T1-P3 Q39。responded in a predictable way = 反应符合预期/以可预料的方式反应。注意原文 tend to 不能推出 all。",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
-    "id": "prediction",
-    "term": "prediction",
-    "meaning": "预测",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
   },
   {
     "id": "predisposition",
@@ -3777,58 +1411,6 @@
     "lastReportedAt": "2026-09-01"
   },
   {
-    "id": "prevent-damage",
-    "term": "prevent damage",
-    "meaning": "防止破坏",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
-    "id": "previous",
-    "term": "previous",
-    "meaning": "先前的/以前的",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
-    "id": "previous-study",
-    "term": "previous study",
-    "meaning": "以往研究",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
-    "id": "prey",
-    "term": "prey",
-    "meaning": "猎物",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
     "id": "principle",
     "term": "principle",
     "meaning": "原则；原理",
@@ -3855,32 +1437,6 @@
     "lastReportedAt": "2026-08-27"
   },
   {
-    "id": "problem",
-    "term": "problem",
-    "meaning": "问题",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
-    "id": "process",
-    "term": "process",
-    "meaning": "过程",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
     "id": "proposal",
     "term": "proposal",
     "meaning": "提议；方案；研究计划",
@@ -3892,97 +1448,6 @@
     "addedAt": "2026-08-27",
     "reportedCount": 1,
     "lastReportedAt": "2026-08-27"
-  },
-  {
-    "id": "proposed-explanations",
-    "term": "proposed explanations",
-    "meaning": "提出的解释",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
-    "id": "proposed-plan",
-    "term": "proposed plan",
-    "meaning": "提议的计划",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
-    "id": "proposed-scheme",
-    "term": "proposed scheme",
-    "meaning": "提议的方案",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
-    "id": "protect",
-    "term": "protect",
-    "meaning": "保护",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
-    "id": "public-meeting",
-    "term": "public meeting",
-    "meaning": "公众集会",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
-    "id": "public-transport-users",
-    "term": "public transport users",
-    "meaning": "公共交通使用者",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
-    "id": "published",
-    "term": "published",
-    "meaning": "已发表的",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
   },
   {
     "id": "purpose",
@@ -3998,84 +1463,6 @@
     "lastReportedAt": "2026-08-27"
   },
   {
-    "id": "pursuit",
-    "term": "pursuit",
-    "meaning": "追求",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
-    "id": "quality",
-    "term": "quality",
-    "meaning": "特质；品质；性质；也可指质量",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "C13-T1-P3 Q28 熟词多义。fundamental human quality 中不是‘质量’，而是‘人类根本特质’。",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
-    "id": "quickly",
-    "term": "quickly",
-    "meaning": "快速地",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
-    "id": "quieter",
-    "term": "quieter",
-    "meaning": "更安静",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义；同义词 less noise",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
-    "id": "quota",
-    "term": "quota",
-    "meaning": "配额",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
-    "id": "race-the-clock",
-    "term": "race the clock",
-    "meaning": "争分夺秒",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义；同义词 be under pressure to work quickly",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
     "id": "rather-than",
     "term": "rather than",
     "meaning": "而不是；而非",
@@ -4089,58 +1476,6 @@
     "lastReportedAt": "2026-08-31"
   },
   {
-    "id": "reason-wisely",
-    "term": "reason wisely",
-    "meaning": "明智地推理",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
-    "id": "recognition",
-    "term": "recognition",
-    "meaning": "认识",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
-    "id": "recommended-strategy",
-    "term": "recommended strategy",
-    "meaning": "推荐策略",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
-    "id": "reconcile",
-    "term": "reconcile",
-    "meaning": "调和",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
     "id": "reflect",
     "term": "reflect",
     "meaning": "反映；体现；思考",
@@ -4152,19 +1487,6 @@
     "addedAt": "2026-08-31",
     "reportedCount": 1,
     "lastReportedAt": "2026-08-31"
-  },
-  {
-    "id": "refusal",
-    "term": "refusal",
-    "meaning": "拒绝",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
   },
   {
     "id": "regard",
@@ -4181,58 +1503,6 @@
     "lastReportedAt": "2026-08-28"
   },
   {
-    "id": "reject",
-    "term": "reject",
-    "meaning": "拒绝",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
-    "id": "rejection",
-    "term": "rejection",
-    "meaning": "拒绝",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
-    "id": "related-fairy-tales",
-    "term": "related fairy tales",
-    "meaning": "相关童话",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义；同义词 many different forms of the same basic story",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
-    "id": "relationship",
-    "term": "relationship",
-    "meaning": "关联",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
     "id": "relevant",
     "term": "relevant",
     "meaning": "相关的；切题的",
@@ -4244,19 +1514,6 @@
     "addedAt": "2026-08-31",
     "reportedCount": 1,
     "lastReportedAt": "2026-08-31"
-  },
-  {
-    "id": "reliable",
-    "term": "reliable",
-    "meaning": "可靠的",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
   },
   {
     "id": "remarkably",
@@ -4273,19 +1530,6 @@
     "lastReportedAt": "2026-08-31"
   },
   {
-    "id": "require",
-    "term": "require",
-    "meaning": "要求；需要",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
     "id": "resemble",
     "term": "resemble",
     "meaning": "像；与……相似",
@@ -4299,19 +1543,6 @@
     "lastReportedAt": "2026-08-31"
   },
   {
-    "id": "resident",
-    "term": "resident",
-    "meaning": "居民",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
     "id": "resilience",
     "term": "resilience",
     "meaning": "韧性；恢复力；复原力",
@@ -4323,32 +1554,6 @@
     "addedAt": "2026-08-26",
     "reportedCount": 2,
     "lastReportedAt": "2026-08-31"
-  },
-  {
-    "id": "responsibility",
-    "term": "responsibility",
-    "meaning": "责任",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
-    "id": "result",
-    "term": "result",
-    "meaning": "结果",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
   },
   {
     "id": "resurface",
@@ -4392,32 +1597,6 @@
     "lastReportedAt": "2026-08-31"
   },
   {
-    "id": "right",
-    "term": "right",
-    "meaning": "正确的；对的",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
-    "id": "risky",
-    "term": "risky",
-    "meaning": "有风险的",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
     "id": "round",
     "term": "round",
     "meaning": "圆的；球形的",
@@ -4438,32 +1617,6 @@
     "reason": "今日生词：识义；与 urban（城市的）相对",
     "category": "我的同步错词",
     "addedAt": "2026-08-25"
-  },
-  {
-    "id": "sales-went-up",
-    "term": "sales went up",
-    "meaning": "销售额上升",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义；同义词 unexpected positive result",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
-    "id": "save-time",
-    "term": "save time",
-    "meaning": "节省时间",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
   },
   {
     "id": "scale",
@@ -4492,71 +1645,6 @@
     "lastReportedAt": "2026-09-01"
   },
   {
-    "id": "scheme-failed",
-    "term": "scheme failed",
-    "meaning": "方案失败",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
-    "id": "season",
-    "term": "season",
-    "meaning": "季节",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
-    "id": "security",
-    "term": "security",
-    "meaning": "安全性",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
-    "id": "self-realisation",
-    "term": "self-realisation",
-    "meaning": "自我实现",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
-    "id": "sentence-beginning",
-    "term": "sentence beginning",
-    "meaning": "句子开头",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
     "id": "session",
     "term": "session",
     "meaning": "一场；一次；会议；课程；一段活动时间",
@@ -4568,19 +1656,6 @@
     "addedAt": "2026-09-01",
     "reportedCount": 1,
     "lastReportedAt": "2026-09-01"
-  },
-  {
-    "id": "shared-area",
-    "term": "shared area",
-    "meaning": "共同使用的区域",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
   },
   {
     "id": "shift",
@@ -4596,71 +1671,6 @@
     "lastReportedAt": "2026-08-31"
   },
   {
-    "id": "significance",
-    "term": "significance",
-    "meaning": "意义",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义；同义词 matter",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
-    "id": "simple-minded",
-    "term": "simple-minded",
-    "meaning": "头脑简单/思维简单",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义；同义词 ignorant about ideas they should be considering",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
-    "id": "simulating",
-    "term": "simulating",
-    "meaning": "模拟的",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
-    "id": "situation",
-    "term": "situation",
-    "meaning": "情境；情况",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
-    "id": "small-positive-relationship",
-    "term": "small positive relationship",
-    "meaning": "轻微正相关",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义；同义词 only to a very limited extent",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
     "id": "soak",
     "term": "soak",
     "meaning": "浸泡；使湿透；吸收水分",
@@ -4672,19 +1682,6 @@
     "addedAt": "2026-08-27",
     "reportedCount": 1,
     "lastReportedAt": "2026-08-27"
-  },
-  {
-    "id": "social-situation",
-    "term": "social situation",
-    "meaning": "社交情境",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
   },
   {
     "id": "spectrum",
@@ -4700,32 +1697,6 @@
     "lastReportedAt": "2026-08-31"
   },
   {
-    "id": "spoken",
-    "term": "spoken",
-    "meaning": "口头的",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义；同义词 oral",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
-    "id": "spring",
-    "term": "spring",
-    "meaning": "春季",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
     "id": "state",
     "term": "state",
     "meaning": "状态；国家；陈述",
@@ -4737,19 +1708,6 @@
     "addedAt": "2026-08-31",
     "reportedCount": 1,
     "lastReportedAt": "2026-08-31"
-  },
-  {
-    "id": "stick",
-    "term": "stick",
-    "meaning": "留存/流传",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义；同义词 survive",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
   },
   {
     "id": "stimulating",
@@ -4793,32 +1751,6 @@
     "lastReportedAt": "2026-08-31"
   },
   {
-    "id": "stressful",
-    "term": "stressful",
-    "meaning": "有压力的",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
-    "id": "striking-effect",
-    "term": "striking effect",
-    "meaning": "引人注目的效果；给人强烈印象的效果",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "C13-T1-P3 Q31 选项表达。striking 不是‘意料之外’，而是显著的、醒目的、令人印象深刻的；effect=效果。",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
     "id": "strip",
     "term": "strip",
     "meaning": "剥去；去除",
@@ -4830,19 +1762,6 @@
     "addedAt": "2026-08-31",
     "reportedCount": 1,
     "lastReportedAt": "2026-08-31"
-  },
-  {
-    "id": "submissive",
-    "term": "submissive",
-    "meaning": "顺从型",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
   },
   {
     "id": "substitute",
@@ -4884,110 +1803,6 @@
     "lastReportedAt": "2026-09-01"
   },
   {
-    "id": "supersede",
-    "term": "supersede",
-    "meaning": "取代；替代；替换掉",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "C13-T1-P3 Q28 选项词汇。may ultimately supersede human art = 最终可能取代人类艺术。",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
-    "id": "surprised",
-    "term": "surprised",
-    "meaning": "惊讶",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义；同义词 hadn't expected / amazed",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
-    "id": "survival-relevant",
-    "term": "survival-relevant",
-    "meaning": "与生存有关",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
-    "id": "survive",
-    "term": "survive",
-    "meaning": "存续",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义；同义词 stick",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
-    "id": "susceptible-to",
-    "term": "susceptible to",
-    "meaning": "容易受……影响",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
-    "id": "take-into-account",
-    "term": "take into account",
-    "meaning": "考虑",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
-    "id": "take-possession",
-    "term": "take possession",
-    "meaning": "接管/取得所有权",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
-    "id": "target",
-    "term": "target",
-    "meaning": "题目真正要找的对象",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
     "id": "tedious",
     "term": "tedious",
     "meaning": "冗长乏味的；无聊的",
@@ -4999,19 +1814,6 @@
     "addedAt": "2026-08-31",
     "reportedCount": 1,
     "lastReportedAt": "2026-08-31"
-  },
-  {
-    "id": "tend-to",
-    "term": "tend to",
-    "meaning": "往往；倾向于；通常会",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "C13-T1-P3 Q39 关键逻辑词。tend to 只表示倾向，不能等于 all/everyone。",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
   },
   {
     "id": "term",
@@ -5081,19 +1883,6 @@
     "lastReportedAt": "2026-08-31"
   },
   {
-    "id": "third-party-perspective",
-    "term": "third-party perspective",
-    "meaning": "第三方视角",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
     "id": "threaten",
     "term": "threaten",
     "meaning": "威胁；危及",
@@ -5105,32 +1894,6 @@
     "addedAt": "2026-08-31",
     "reportedCount": 1,
     "lastReportedAt": "2026-08-31"
-  },
-  {
-    "id": "trade-routes",
-    "term": "trade routes",
-    "meaning": "贸易路线",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
-    "id": "traded-items",
-    "term": "traded items",
-    "meaning": "被交易的物品",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
   },
   {
     "id": "trait",
@@ -5159,58 +1922,6 @@
     "lastReportedAt": "2026-08-31"
   },
   {
-    "id": "transparency",
-    "term": "transparency",
-    "meaning": "透明度",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义；同义词 openness",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
-    "id": "tree",
-    "term": "tree",
-    "meaning": "树木",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
-    "id": "tropical-rainforest",
-    "term": "tropical rainforest",
-    "meaning": "热带雨林",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
-    "id": "try-harder",
-    "term": "try harder",
-    "meaning": "更努力",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
     "id": "tuberculosis",
     "term": "tuberculosis",
     "meaning": "结核病；肺结核；缩写 TB",
@@ -5223,71 +1934,6 @@
     "addedAt": "2026-09-01",
     "reportedCount": 1,
     "lastReportedAt": "2026-09-01"
-  },
-  {
-    "id": "tunnel",
-    "term": "tunnel",
-    "meaning": "隧道",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
-    "id": "turn-down",
-    "term": "turn down",
-    "meaning": "拒绝；调低",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
-    "id": "ultimately",
-    "term": "ultimately",
-    "meaning": "最终；最后；归根结底",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "C13-T1-P3 Q28 选项词汇。may ultimately supersede human art = 最终可能取代人类艺术。",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
-    "id": "unacceptable",
-    "term": "unacceptable",
-    "meaning": "不可接受的",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
-    "id": "under-pressure",
-    "term": "under pressure",
-    "meaning": "承受压力",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义；同义词 race the clock",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
   },
   {
     "id": "underlie",
@@ -5303,58 +1949,6 @@
     "lastReportedAt": "2026-08-31"
   },
   {
-    "id": "undermine",
-    "term": "undermine",
-    "meaning": "削弱；损害；动摇",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "C13-T1-P3 Q28 选项词汇。undermines a fundamental human quality = 削弱一种根本的人类特质。",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
-    "id": "unforgeable",
-    "term": "unforgeable",
-    "meaning": "不可伪造的",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义；同义词 greater security",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
-    "id": "unlike",
-    "term": "unlike",
-    "meaning": "不同于",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
-    "id": "unmanaged-fishery",
-    "term": "unmanaged fishery",
-    "meaning": "无管理渔业",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义；同义词 overfishing",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
     "id": "unprofitable",
     "term": "unprofitable",
     "meaning": "无利可图的；不赚钱的",
@@ -5366,45 +1960,6 @@
     "addedAt": "2026-08-31",
     "reportedCount": 1,
     "lastReportedAt": "2026-08-31"
-  },
-  {
-    "id": "variable",
-    "term": "variable",
-    "meaning": "变量",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
-    "id": "variant",
-    "term": "variant",
-    "meaning": "变体；变种",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
-    "id": "variety",
-    "term": "variety",
-    "meaning": "多样；种类",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
   },
   {
     "id": "ventilation",
@@ -5420,19 +1975,6 @@
     "lastReportedAt": "2026-08-27"
   },
   {
-    "id": "visualize",
-    "term": "visualize",
-    "meaning": "想象",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
     "id": "warden",
     "term": "warden",
     "meaning": "管理员；看守人；巡查员；（此题）负责街区/道路管理的人",
@@ -5446,58 +1988,6 @@
     "lastReportedAt": "2026-09-01"
   },
   {
-    "id": "waste-land",
-    "term": "waste land",
-    "meaning": "荒地/废地",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义；同义词 shared area",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
-    "id": "water-requirement",
-    "term": "water requirement",
-    "meaning": "需水量",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
-    "id": "weather",
-    "term": "weather",
-    "meaning": "天气",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
-    "id": "what-we-read",
-    "term": "what we read",
-    "meaning": "我们读什么",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义；同义词 choice of reading content",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
     "id": "whereas",
     "term": "whereas",
     "meaning": "然而；鉴于（法律语境）",
@@ -5509,148 +1999,5 @@
     "addedAt": "2026-08-31",
     "reportedCount": 1,
     "lastReportedAt": "2026-08-31"
-  },
-  {
-    "id": "widespread",
-    "term": "widespread",
-    "meaning": "广泛传播/普遍存在",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
-    "id": "will",
-    "term": "will",
-    "meaning": "将会",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
-    "id": "wisdom",
-    "term": "wisdom",
-    "meaning": "智慧",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
-    "id": "wise-reasoning",
-    "term": "wise reasoning",
-    "meaning": "明智推理",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
-    "id": "withdraw-support",
-    "term": "withdraw support",
-    "meaning": "撤回支持",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
-    "id": "word-spotting",
-    "term": "word-spotting",
-    "meaning": "只抓单词",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
-    "id": "workable",
-    "term": "workable",
-    "meaning": "可行的；行得通的",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
-    "id": "writer-s-function",
-    "term": "writer's function",
-    "meaning": "作者在这里的作用",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
-    "id": "written",
-    "term": "written",
-    "meaning": "书面的",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
-    "id": "wrong",
-    "term": "wrong",
-    "meaning": "错误的；错的",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
-  },
-  {
-    "id": "zoo-animal",
-    "term": "zoo animal",
-    "meaning": "动物园动物",
-    "modes": [
-      "recognition"
-    ],
-    "reason": "0903 错题词：识义；同义词 captive animal",
-    "category": "我的同步错词",
-    "addedAt": "2026-09-03",
-    "reportedCount": 1,
-    "lastReportedAt": "2026-09-03"
   }
 ]
