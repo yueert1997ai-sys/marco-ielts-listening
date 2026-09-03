@@ -13,6 +13,20 @@
   <link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png">
   <link rel="stylesheet" href="./vendor/phosphor/phosphor-regular.css?v=v2.17.0">
   <link rel="stylesheet" href="./style.css?v=v2.17.0">
+  <style>
+    .home-build-version {
+      display: none;
+      min-height: 32px;
+      align-items: center;
+      color: #6c6c70;
+      font-size: 12px;
+      font-weight: 600;
+      line-height: 1;
+      white-space: nowrap;
+      font-variant-numeric: tabular-nums;
+    }
+    .home-mode .home-build-version { display: flex; }
+  </style>
   <title>IELTS Listening 50</title>
 </head>
 <body>
@@ -24,6 +38,7 @@
       </div>
       <div class="topbar-meta">
         <button id="app-version" class="version-badge" type="button" aria-label="当前版本 v2.17.0，点击检查更新">v2.17.0</button>
+        <div id="home-build-version" class="home-build-version" aria-label="当前发布版本">v2.17.0 · 词库#19</div>
         <div id="day-count" class="day-count" aria-label="今日进度">0/50</div>
       </div>
     </header>
@@ -32,5 +47,6 @@
   </div>
   <noscript>需要开启 JavaScript 才能训练。</noscript>
   <script src="./app.js?v=v2.17.0"></script>
+  <script src="./build-version.js?v=1"></script>
 </body>
 </html>
