@@ -76,6 +76,19 @@
     "lastReportedAt": "2026-09-03"
   },
   {
+    "id": "aesthetically",
+    "term": "aesthetically",
+    "meaning": "在审美上；从美学角度",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "C13-T1-P3 Q28 选项词汇。aesthetically inferior to human art = 在审美上不如人类艺术。",
+    "category": "我的同步错词",
+    "addedAt": "2026-09-03",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03"
+  },
+  {
     "id": "after-all",
     "term": "after all",
     "meaning": "毕竟",
@@ -609,6 +622,19 @@
     "lastReportedAt": "2026-09-03"
   },
   {
+    "id": "cast-doubt-on",
+    "term": "cast doubt on",
+    "meaning": "质疑；使人怀疑……是否正确",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "C13-T1-P3 Q40 固定搭配。Kruger 的发现实际上支持 Bloom，因此题目说 cast doubt on 与原文相反。",
+    "category": "我的同步错词",
+    "addedAt": "2026-09-03",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03"
+  },
+  {
     "id": "cautionary-message",
     "term": "cautionary message",
     "meaning": "警示信息",
@@ -1060,6 +1086,19 @@
     "lastReportedAt": "2026-09-03"
   },
   {
+    "id": "creative-impulse",
+    "term": "creative impulse",
+    "meaning": "创作冲动；创作灵感；创造驱动力",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "C13-T1-P3 Q35。creative impulses ≈ imagination；rely completely on the original artist's creative impulses ≈ entirely dependent on the imagination of its creator。",
+    "category": "我的同步错词",
+    "addedAt": "2026-09-03",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03"
+  },
+  {
     "id": "crop",
     "term": "crop",
     "meaning": "作物",
@@ -1216,6 +1255,19 @@
     "lastReportedAt": "2026-09-03"
   },
   {
+    "id": "deterioration",
+    "term": "deterioration",
+    "meaning": "恶化；退化；变差",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "C13-T1-P3 Q28 选项词汇。lead to a deterioration in human ability = 导致人类能力退化。",
+    "category": "我的同步错词",
+    "addedAt": "2026-09-03",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03"
+  },
+  {
     "id": "determine",
     "term": "determine",
     "meaning": "决定",
@@ -1266,6 +1318,19 @@
     "addedAt": "2026-08-31",
     "reportedCount": 1,
     "lastReportedAt": "2026-08-31"
+  },
+  {
+    "id": "discover",
+    "term": "discover",
+    "meaning": "发现；得知；查明",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "C13-T1-P3 Q36 熟词义误判。这里 discovering that it was the product of a computer program = 得知/发现它其实由电脑程序创作，不是‘探索’。",
+    "category": "我的同步错词",
+    "addedAt": "2026-09-03",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03"
   },
   {
     "id": "dispose",
@@ -1331,6 +1396,19 @@
       "recognition"
     ],
     "reason": "0903 错题词：识义；同义词 teach people involved with conservation projects",
+    "category": "我的同步错词",
+    "addedAt": "2026-09-03",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03"
+  },
+  {
+    "id": "eerie",
+    "term": "eerie",
+    "meaning": "诡异的；阴森的；令人不安的",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "C13-T1-P3 Q31 生词。原文 eerie, ghostlike quality 描述意外产生的艺术效果，不是批评。",
     "category": "我的同步错词",
     "addedAt": "2026-09-03",
     "reportedCount": 1,
@@ -1754,15 +1832,15 @@
   {
     "id": "fundamental",
     "term": "fundamental",
-    "meaning": "根本的；基础的；核心的；基本的",
+    "meaning": "根本的；基本的；核心的",
     "modes": [
       "recognition"
     ],
-    "reason": "C14-T2-P3 Q30 直接影响 Heading：fundamental beliefs ≈ basic assumptions = 根本观念/底层认知。",
+    "reason": "C13-T1-P3 Q28 选项词汇。fundamental human quality = 人类根本特质。",
     "category": "我的同步错词",
     "addedAt": "2026-08-31",
-    "reportedCount": 2,
-    "lastReportedAt": "2026-09-01"
+    "reportedCount": 3,
+    "lastReportedAt": "2026-09-03"
   },
   {
     "id": "geographic-location",
@@ -2231,6 +2309,19 @@
     "lastReportedAt": "2026-09-01"
   },
   {
+    "id": "inferior-to",
+    "term": "inferior to",
+    "meaning": "不如；劣于",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "C13-T1-P3 Q28 选项词汇。inferior to human art = 比人类艺术差。",
+    "category": "我的同步错词",
+    "addedAt": "2026-09-03",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03"
+  },
+  {
     "id": "influence",
     "term": "influence",
     "meaning": "影响",
@@ -2436,6 +2527,19 @@
     "addedAt": "2026-08-26",
     "reportedCount": 2,
     "lastReportedAt": "2026-08-31"
+  },
+  {
+    "id": "laud",
+    "term": "laud",
+    "meaning": "赞扬；称赞",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "C13-T1-P3 Q31 词形误认。lauded=受到赞扬/被称赞；不要看成 laughed=笑。",
+    "category": "我的同步错词",
+    "addedAt": "2026-09-03",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03"
   },
   {
     "id": "laugh-track",
@@ -2749,14 +2853,14 @@
   {
     "id": "millennium",
     "term": "millennium",
-    "meaning": "一千年；千周年（复数 millennia）",
+    "meaning": "一千年；millennia 为复数，表示数千年",
     "modes": [
       "recognition"
     ],
-    "reason": "0903 错题词：识义",
+    "reason": "C13-T1-P3 Q32 生词。humans have had millennia to develop our skills = 人类经历了数千年来发展技能。",
     "category": "我的同步错词",
     "addedAt": "2026-09-03",
-    "reportedCount": 1,
+    "reportedCount": 2,
     "lastReportedAt": "2026-09-03"
   },
   {
@@ -3176,6 +3280,19 @@
     "lastReportedAt": "2026-09-03"
   },
   {
+    "id": "original-artist",
+    "term": "original artist",
+    "meaning": "原始的人类艺术家；被模仿或被复制风格的原作者",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "C13-T1-P3 Q35 指代理解错误。original artist's creative impulses 指原作者的创作灵感，不是 EMI 的创作者本身。",
+    "category": "我的同步错词",
+    "addedAt": "2026-09-03",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03"
+  },
+  {
     "id": "originally",
     "term": "originally",
     "meaning": "最初",
@@ -3582,6 +3699,19 @@
     "lastReportedAt": "2026-09-03"
   },
   {
+    "id": "predictable",
+    "term": "predictable",
+    "meaning": "可预测的；可以预料的",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "C13-T1-P3 Q39。responded in a predictable way = 反应符合预期/以可预料的方式反应。注意原文 tend to 不能推出 all。",
+    "category": "我的同步错词",
+    "addedAt": "2026-09-03",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03"
+  },
+  {
     "id": "prediction",
     "term": "prediction",
     "meaning": "预测",
@@ -3862,6 +3992,19 @@
       "recognition"
     ],
     "reason": "0903 错题词：识义",
+    "category": "我的同步错词",
+    "addedAt": "2026-09-03",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03"
+  },
+  {
+    "id": "quality",
+    "term": "quality",
+    "meaning": "特质；品质；性质；也可指质量",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "C13-T1-P3 Q28 熟词多义。fundamental human quality 中不是‘质量’，而是‘人类根本特质’。",
     "category": "我的同步错词",
     "addedAt": "2026-09-03",
     "reportedCount": 1,
@@ -4650,6 +4793,19 @@
     "lastReportedAt": "2026-09-03"
   },
   {
+    "id": "striking-effect",
+    "term": "striking effect",
+    "meaning": "引人注目的效果；给人强烈印象的效果",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "C13-T1-P3 Q31 选项表达。striking 不是‘意料之外’，而是显著的、醒目的、令人印象深刻的；effect=效果。",
+    "category": "我的同步错词",
+    "addedAt": "2026-09-03",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03"
+  },
+  {
     "id": "strip",
     "term": "strip",
     "meaning": "剥去；去除",
@@ -4713,6 +4869,19 @@
     "addedAt": "2026-09-01",
     "reportedCount": 1,
     "lastReportedAt": "2026-09-01"
+  },
+  {
+    "id": "supersede",
+    "term": "supersede",
+    "meaning": "取代；替代；替换掉",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "C13-T1-P3 Q28 选项词汇。may ultimately supersede human art = 最终可能取代人类艺术。",
+    "category": "我的同步错词",
+    "addedAt": "2026-09-03",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03"
   },
   {
     "id": "surprised",
@@ -4817,6 +4986,19 @@
     "addedAt": "2026-08-31",
     "reportedCount": 1,
     "lastReportedAt": "2026-08-31"
+  },
+  {
+    "id": "tend-to",
+    "term": "tend to",
+    "meaning": "往往；倾向于；通常会",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "C13-T1-P3 Q39 关键逻辑词。tend to 只表示倾向，不能等于 all/everyone。",
+    "category": "我的同步错词",
+    "addedAt": "2026-09-03",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03"
   },
   {
     "id": "term",
@@ -5093,6 +5275,19 @@
     "addedAt": "2026-08-31",
     "reportedCount": 1,
     "lastReportedAt": "2026-08-31"
+  },
+  {
+    "id": "undermine",
+    "term": "undermine",
+    "meaning": "削弱；损害；动摇",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "C13-T1-P3 Q28 选项词汇。undermines a fundamental human quality = 削弱一种根本的人类特质。",
+    "category": "我的同步错词",
+    "addedAt": "2026-09-03",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03"
   },
   {
     "id": "unforgeable",

@@ -154,6 +154,32 @@
     "audioPath": "audio/additional-transport.mp3"
   },
   {
+    "id": "aesthetically",
+    "term": "aesthetically",
+    "meaning": "在审美上；从美学角度",
+    "note": "C13-T1-P3 Q28 选项词汇。aesthetically inferior to human art = 在审美上不如人类艺术。",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "aesthetically"
+    ],
+    "errorNote": "C13-T1-P3 Q28 选项词汇。aesthetically inferior to human art = 在审美上不如人类艺术。",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "词性待补",
+    "sourceRevision": 4,
+    "audioText": "aesthetically",
+    "audioPath": "audio/aesthetically.mp3"
+  },
+  {
     "id": "after-all",
     "term": "after all",
     "meaning": "毕竟",
@@ -1391,6 +1417,32 @@
     "audioPath": "audio/carpet.mp3"
   },
   {
+    "id": "cast-doubt-on",
+    "term": "cast doubt on",
+    "meaning": "质疑；使人怀疑……是否正确",
+    "note": "C13-T1-P3 Q40 固定搭配。Kruger 的发现实际上支持 Bloom，因此题目说 cast doubt on 与原文相反。",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "cast doubt on"
+    ],
+    "errorNote": "C13-T1-P3 Q40 固定搭配。Kruger 的发现实际上支持 Bloom，因此题目说 cast doubt on 与原文相反。",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "短语",
+    "sourceRevision": 4,
+    "audioText": "cast doubt on",
+    "audioPath": "audio/cast-doubt-on.mp3"
+  },
+  {
     "id": "cautionary-message",
     "term": "cautionary message",
     "meaning": "警示信息",
@@ -2323,6 +2375,32 @@
     "audioPath": "audio/counterpart.mp3"
   },
   {
+    "id": "creative-impulse",
+    "term": "creative impulse",
+    "meaning": "创作冲动；创作灵感；创造驱动力",
+    "note": "C13-T1-P3 Q35。creative impulses ≈ imagination；rely completely on the original artist's creative impulses ≈ entirely dependent on the imagination of its creator。",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "creative impulse"
+    ],
+    "errorNote": "C13-T1-P3 Q35。creative impulses ≈ imagination；rely completely on the original artist's creative impulses ≈ entirely dependent on the imagination of its creator。",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "短语",
+    "sourceRevision": 4,
+    "audioText": "creative impulse",
+    "audioPath": "audio/creative-impulse.mp3"
+  },
+  {
     "id": "crop",
     "term": "crop",
     "meaning": "作物",
@@ -2641,6 +2719,32 @@
     "audioPath": "audio/destructive-policy.mp3"
   },
   {
+    "id": "deterioration",
+    "term": "deterioration",
+    "meaning": "恶化；退化；变差",
+    "note": "C13-T1-P3 Q28 选项词汇。lead to a deterioration in human ability = 导致人类能力退化。",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "deterioration"
+    ],
+    "errorNote": "C13-T1-P3 Q28 选项词汇。lead to a deterioration in human ability = 导致人类能力退化。",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "名词",
+    "sourceRevision": 4,
+    "audioText": "deterioration",
+    "audioPath": "audio/deterioration.mp3"
+  },
+  {
     "id": "determine",
     "term": "determine",
     "meaning": "决定",
@@ -2767,6 +2871,32 @@
     "sourceRevision": 4,
     "audioText": "discipline",
     "audioPath": "audio/discipline.mp3"
+  },
+  {
+    "id": "discover",
+    "term": "discover",
+    "meaning": "发现；得知；查明",
+    "note": "C13-T1-P3 Q36 熟词义误判。这里 discovering that it was the product of a computer program = 得知/发现它其实由电脑程序创作，不是‘探索’。",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "discover"
+    ],
+    "errorNote": "C13-T1-P3 Q36 熟词义误判。这里 discovering that it was the product of a computer program = 得知/发现它其实由电脑程序创作，不是‘探索’。",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "动词",
+    "sourceRevision": 4,
+    "audioText": "discover",
+    "audioPath": "audio/discover.mp3"
   },
   {
     "id": "dispose",
@@ -2900,6 +3030,32 @@
     "sourceRevision": 4,
     "audioText": "educate",
     "audioPath": "audio/educate.mp3"
+  },
+  {
+    "id": "eerie",
+    "term": "eerie",
+    "meaning": "诡异的；阴森的；令人不安的",
+    "note": "C13-T1-P3 Q31 生词。原文 eerie, ghostlike quality 描述意外产生的艺术效果，不是批评。",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "eerie"
+    ],
+    "errorNote": "C13-T1-P3 Q31 生词。原文 eerie, ghostlike quality 描述意外产生的艺术效果，不是批评。",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "形容词",
+    "sourceRevision": 4,
+    "audioText": "eerie",
+    "audioPath": "audio/eerie.mp3"
   },
   {
     "id": "electrician",
@@ -3836,8 +3992,8 @@
   {
     "id": "fundamental",
     "term": "fundamental",
-    "meaning": "根本的；基础的；核心的；基本的",
-    "note": "C14-T2-P3 Q30 直接影响 Heading：fundamental beliefs ≈ basic assumptions = 根本观念/底层认知。",
+    "meaning": "根本的；基本的；核心的",
+    "note": "C13-T1-P3 Q28 选项词汇。fundamental human quality = 人类根本特质。",
     "category": "我的同步错词",
     "sections": [
       "我的同步错词"
@@ -3849,11 +4005,11 @@
     "acceptedAnswers": [
       "fundamental"
     ],
-    "errorNote": "C14-T2-P3 Q30 直接影响 Heading：fundamental beliefs ≈ basic assumptions = 根本观念/底层认知。",
+    "errorNote": "C13-T1-P3 Q28 选项词汇。fundamental human quality = 人类根本特质。",
     "userAddedAt": "2026-08-31",
     "sourceType": "user",
-    "reportedCount": 2,
-    "lastReportedAt": "2026-09-01",
+    "reportedCount": 3,
+    "lastReportedAt": "2026-09-03",
     "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "fundamental",
@@ -4866,6 +5022,32 @@
     "audioPath": "audio/inevitably.mp3"
   },
   {
+    "id": "inferior-to",
+    "term": "inferior to",
+    "meaning": "不如；劣于",
+    "note": "C13-T1-P3 Q28 选项词汇。inferior to human art = 比人类艺术差。",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "inferior to"
+    ],
+    "errorNote": "C13-T1-P3 Q28 选项词汇。inferior to human art = 比人类艺术差。",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "短语",
+    "sourceRevision": 4,
+    "audioText": "inferior to",
+    "audioPath": "audio/inferior-to.mp3"
+  },
+  {
     "id": "influence",
     "term": "influence",
     "meaning": "影响",
@@ -5323,6 +5505,32 @@
     "sourceRevision": 4,
     "audioText": "lane",
     "audioPath": "audio/lane.mp3"
+  },
+  {
+    "id": "laud",
+    "term": "laud",
+    "meaning": "赞扬；称赞",
+    "note": "C13-T1-P3 Q31 词形误认。lauded=受到赞扬/被称赞；不要看成 laughed=笑。",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "laud"
+    ],
+    "errorNote": "C13-T1-P3 Q31 词形误认。lauded=受到赞扬/被称赞；不要看成 laughed=笑。",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "名词",
+    "sourceRevision": 4,
+    "audioText": "laud",
+    "audioPath": "audio/laud.mp3"
   },
   {
     "id": "laugh-track",
@@ -6096,8 +6304,8 @@
   {
     "id": "millennium",
     "term": "millennium",
-    "meaning": "一千年；千周年（复数 millennia）",
-    "note": "0903 错题词：识义",
+    "meaning": "一千年；millennia 为复数，表示数千年",
+    "note": "C13-T1-P3 Q32 生词。humans have had millennia to develop our skills = 人类经历了数千年来发展技能。",
     "category": "我的同步错词",
     "sections": [
       "我的同步错词"
@@ -6109,10 +6317,10 @@
     "acceptedAnswers": [
       "millennium"
     ],
-    "errorNote": "0903 错题词：识义",
+    "errorNote": "C13-T1-P3 Q32 生词。humans have had millennia to develop our skills = 人类经历了数千年来发展技能。",
     "userAddedAt": "2026-09-03",
     "sourceType": "user",
-    "reportedCount": 1,
+    "reportedCount": 2,
     "lastReportedAt": "2026-09-03",
     "partOfSpeech": "名词",
     "sourceRevision": 4,
@@ -7004,6 +7212,32 @@
     "audioPath": "audio/organise.mp3"
   },
   {
+    "id": "original-artist",
+    "term": "original artist",
+    "meaning": "原始的人类艺术家；被模仿或被复制风格的原作者",
+    "note": "C13-T1-P3 Q35 指代理解错误。original artist's creative impulses 指原作者的创作灵感，不是 EMI 的创作者本身。",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "original artist"
+    ],
+    "errorNote": "C13-T1-P3 Q35 指代理解错误。original artist's creative impulses 指原作者的创作灵感，不是 EMI 的创作者本身。",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "短语",
+    "sourceRevision": 4,
+    "audioText": "original artist",
+    "audioPath": "audio/original-artist.mp3"
+  },
+  {
     "id": "originally",
     "term": "originally",
     "meaning": "最初",
@@ -7879,6 +8113,32 @@
     "audioPath": "audio/predict.mp3"
   },
   {
+    "id": "predictable",
+    "term": "predictable",
+    "meaning": "可预测的；可以预料的",
+    "note": "C13-T1-P3 Q39。responded in a predictable way = 反应符合预期/以可预料的方式反应。注意原文 tend to 不能推出 all。",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "predictable"
+    ],
+    "errorNote": "C13-T1-P3 Q39。responded in a predictable way = 反应符合预期/以可预料的方式反应。注意原文 tend to 不能推出 all。",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "形容词",
+    "sourceRevision": 4,
+    "audioText": "predictable",
+    "audioPath": "audio/predictable.mp3"
+  },
+  {
     "id": "prediction",
     "term": "prediction",
     "meaning": "预测",
@@ -8507,6 +8767,33 @@
     "sourceRevision": 4,
     "audioText": "pursuit",
     "audioPath": "audio/pursuit.mp3"
+  },
+  {
+    "id": "quality",
+    "term": "quality",
+    "meaning": "特质；品质；性质；也可指质量",
+    "note": "—",
+    "category": "原因、问题、优缺点与评价",
+    "sections": [
+      "P2 + P3 必会看懂词",
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "quality"
+    ],
+    "errorNote": "C13-T1-P3 Q28 熟词多义。fundamental human quality 中不是‘质量’，而是‘人类根本特质’。",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "名词",
+    "sourceRevision": 4,
+    "audioText": "quality",
+    "audioPath": "audio/quality.mp3"
   },
   {
     "id": "quickly",
@@ -10251,6 +10538,32 @@
     "audioPath": "audio/stressful.mp3"
   },
   {
+    "id": "striking-effect",
+    "term": "striking effect",
+    "meaning": "引人注目的效果；给人强烈印象的效果",
+    "note": "C13-T1-P3 Q31 选项表达。striking 不是‘意料之外’，而是显著的、醒目的、令人印象深刻的；effect=效果。",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "striking effect"
+    ],
+    "errorNote": "C13-T1-P3 Q31 选项表达。striking 不是‘意料之外’，而是显著的、醒目的、令人印象深刻的；effect=效果。",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "短语",
+    "sourceRevision": 4,
+    "audioText": "striking effect",
+    "audioPath": "audio/striking-effect.mp3"
+  },
+  {
     "id": "string",
     "term": "string",
     "meaning": "细绳；一串",
@@ -10403,6 +10716,32 @@
     "sourceRevision": 4,
     "audioText": "succinctly",
     "audioPath": "audio/succinctly.mp3"
+  },
+  {
+    "id": "supersede",
+    "term": "supersede",
+    "meaning": "取代；替代；替换掉",
+    "note": "C13-T1-P3 Q28 选项词汇。may ultimately supersede human art = 最终可能取代人类艺术。",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "supersede"
+    ],
+    "errorNote": "C13-T1-P3 Q28 选项词汇。may ultimately supersede human art = 最终可能取代人类艺术。",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "动词",
+    "sourceRevision": 4,
+    "audioText": "supersede",
+    "audioPath": "audio/supersede.mp3"
   },
   {
     "id": "surprised",
@@ -10612,6 +10951,33 @@
     "sourceRevision": 4,
     "audioText": "tedious",
     "audioPath": "audio/tedious.mp3"
+  },
+  {
+    "id": "tend-to",
+    "term": "tend to",
+    "meaning": "往往；倾向于；通常会",
+    "note": "—",
+    "category": "逻辑、态度与选择",
+    "sections": [
+      "高频短语 / Chunk",
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "tend to"
+    ],
+    "errorNote": "C13-T1-P3 Q39 关键逻辑词。tend to 只表示倾向，不能等于 all/everyone。",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "短语",
+    "sourceRevision": 4,
+    "audioText": "tend to",
+    "audioPath": "audio/tend-to.mp3"
   },
   {
     "id": "term",
@@ -11184,6 +11550,32 @@
     "sourceRevision": 4,
     "audioText": "underlie",
     "audioPath": "audio/underlie.mp3"
+  },
+  {
+    "id": "undermine",
+    "term": "undermine",
+    "meaning": "削弱；损害；动摇",
+    "note": "C13-T1-P3 Q28 选项词汇。undermines a fundamental human quality = 削弱一种根本的人类特质。",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "undermine"
+    ],
+    "errorNote": "C13-T1-P3 Q28 选项词汇。undermines a fundamental human quality = 削弱一种根本的人类特质。",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "动词",
+    "sourceRevision": 4,
+    "audioText": "undermine",
+    "audioPath": "audio/undermine.mp3"
   },
   {
     "id": "unforgeable",
@@ -20868,27 +21260,6 @@
     "audioPath": "audio/qualification.mp3"
   },
   {
-    "id": "quality",
-    "term": "quality",
-    "meaning": "质量；品质",
-    "note": "—",
-    "category": "原因、问题、优缺点与评价",
-    "sections": [
-      "P2 + P3 必会看懂词"
-    ],
-    "modes": [
-      "recognition"
-    ],
-    "isRealError": false,
-    "acceptedAnswers": [
-      "quality"
-    ],
-    "partOfSpeech": "名词",
-    "sourceRevision": 4,
-    "audioText": "quality",
-    "audioPath": "audio/quality.mp3"
-  },
-  {
     "id": "questionnaire",
     "term": "questionnaire",
     "meaning": "问卷",
@@ -22979,27 +23350,6 @@
     "sourceRevision": 4,
     "audioText": "temperature",
     "audioPath": "audio/temperature.mp3"
-  },
-  {
-    "id": "tend-to",
-    "term": "tend to",
-    "meaning": "倾向于……",
-    "note": "—",
-    "category": "逻辑、态度与选择",
-    "sections": [
-      "高频短语 / Chunk"
-    ],
-    "modes": [
-      "recognition"
-    ],
-    "isRealError": false,
-    "acceptedAnswers": [
-      "tend to"
-    ],
-    "partOfSpeech": "短语",
-    "sourceRevision": 4,
-    "audioText": "tend to",
-    "audioPath": "audio/tend-to.mp3"
   },
   {
     "id": "theatre",
