@@ -11,6 +11,32 @@
     "addedAt": "2026-08-25"
   },
   {
+    "id": "absence-of",
+    "term": "absence of",
+    "meaning": "缺乏；没有；不存在",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "C13-T4-P3 Q28 生词短语；absence of pain=没有痛苦。",
+    "category": "我的同步错词",
+    "addedAt": "2026-09-03",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03"
+  },
+  {
+    "id": "aesthetically",
+    "term": "aesthetically",
+    "meaning": "在审美上；从美学角度",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "C13-T1-P3 Q28 选项词汇不懂。",
+    "category": "我的同步错词",
+    "addedAt": "2026-09-03",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03"
+  },
+  {
     "id": "albeit",
     "term": "albeit",
     "meaning": "尽管；虽然",
@@ -22,6 +48,19 @@
     "addedAt": "2026-08-31",
     "reportedCount": 1,
     "lastReportedAt": "2026-08-31"
+  },
+  {
+    "id": "amenity",
+    "term": "amenity",
+    "meaning": "便利设施；公共设施",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "C15-T2-P2 直接错词：不认识/语义映射失败。",
+    "category": "我的同步错词",
+    "addedAt": "2026-09-03",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03"
   },
   {
     "id": "amusing",
@@ -102,6 +141,19 @@
     "lastReportedAt": "2026-09-01"
   },
   {
+    "id": "artistic-achievement",
+    "term": "artistic achievement",
+    "meaning": "艺术成就；艺术成果",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "C13-T1-P3 Q32 把 artistic 误当成 artist，导致答案句解码失败。",
+    "category": "我的同步错词",
+    "addedAt": "2026-09-03",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03"
+  },
+  {
     "id": "asthma",
     "term": "asthma",
     "meaning": "哮喘",
@@ -126,6 +178,19 @@
     "addedAt": "2026-09-01",
     "reportedCount": 1,
     "lastReportedAt": "2026-09-01"
+  },
+  {
+    "id": "be-anxious-to",
+    "term": "be anxious to",
+    "meaning": "急于做；很想做",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "C13-T2-P3 Q28 熟词短语义不稳：只知道 anxious=焦虑。",
+    "category": "我的同步错词",
+    "addedAt": "2026-09-03",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03"
   },
   {
     "id": "be-subject-to",
@@ -178,6 +243,19 @@
     "addedAt": "2026-08-26",
     "reportedCount": 2,
     "lastReportedAt": "2026-08-31"
+  },
+  {
+    "id": "cast-doubt-on",
+    "term": "cast doubt on",
+    "meaning": "质疑；使人怀疑……是否正确",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "C13-T1-P3 Q40 固定搭配不认识。",
+    "category": "我的同步错词",
+    "addedAt": "2026-09-03",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03"
   },
   {
     "id": "certain",
@@ -423,6 +501,19 @@
     "addedAt": "2026-08-24"
   },
   {
+    "id": "creative-impulse",
+    "term": "creative impulse",
+    "meaning": "创作冲动；创作灵感；创造驱动力",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "C13-T1-P3 Q35 句意关键表达。",
+    "category": "我的同步错词",
+    "addedAt": "2026-09-03",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03"
+  },
+  {
     "id": "curtain",
     "term": "curtain",
     "meaning": "窗帘",
@@ -488,6 +579,19 @@
     "lastReportedAt": "2026-08-31"
   },
   {
+    "id": "deterioration",
+    "term": "deterioration",
+    "meaning": "恶化；退化；变坏",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "C13-T1-P3 Q28 选项词汇不懂。",
+    "category": "我的同步错词",
+    "addedAt": "2026-09-03",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03"
+  },
+  {
     "id": "determine",
     "term": "determine",
     "meaning": "决定",
@@ -512,6 +616,19 @@
     "addedAt": "2026-08-31",
     "reportedCount": 1,
     "lastReportedAt": "2026-08-31"
+  },
+  {
+    "id": "discover",
+    "term": "discover",
+    "meaning": "发现；得知；查明",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "C13-T1-P3 Q36 熟词义误判：脑中固定成‘探索’，导致排除正确答案。",
+    "category": "我的同步错词",
+    "addedAt": "2026-09-03",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03"
   },
   {
     "id": "dispose",
@@ -542,6 +659,19 @@
     "addedAt": "2026-08-31",
     "reportedCount": 1,
     "lastReportedAt": "2026-08-31"
+  },
+  {
+    "id": "eerie",
+    "term": "eerie",
+    "meaning": "诡异的；阴森的；令人不安的",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "C13-T1-P3 Q31 生词。",
+    "category": "我的同步错词",
+    "addedAt": "2026-09-03",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03"
   },
   {
     "id": "emphasize",
@@ -673,6 +803,19 @@
     "lastReportedAt": "2026-08-31"
   },
   {
+    "id": "fiction",
+    "term": "fiction",
+    "meaning": "虚构；杜撰；非事实",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "C13-T4-P3 Q28 生词。",
+    "category": "我的同步错词",
+    "addedAt": "2026-09-03",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03"
+  },
+  {
     "id": "field",
     "term": "field",
     "meaning": "领域；学科",
@@ -710,6 +853,19 @@
     "addedAt": "2026-08-31",
     "reportedCount": 1,
     "lastReportedAt": "2026-08-31"
+  },
+  {
+    "id": "grain",
+    "term": "grain",
+    "meaning": "谷物；谷粒；粮食作物",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "C13-T3-P3 Q35 直接致错词。",
+    "category": "我的同步错词",
+    "addedAt": "2026-09-03",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03"
   },
   {
     "id": "grant",
@@ -786,6 +942,19 @@
     "addedAt": "2026-08-31",
     "reportedCount": 1,
     "lastReportedAt": "2026-08-31"
+  },
+  {
+    "id": "humility",
+    "term": "humility",
+    "meaning": "谦逊；谦虚",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "C16-T2-P3 直接致错词。",
+    "category": "我的同步错词",
+    "addedAt": "2026-09-03",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03"
   },
   {
     "id": "impair",
@@ -866,6 +1035,19 @@
     "lastReportedAt": "2026-09-01"
   },
   {
+    "id": "including",
+    "term": "including",
+    "meaning": "包括；其中包括",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "C13-T3-P3 Q36 生词，影响 objects including ___ 结构理解。",
+    "category": "我的同步错词",
+    "addedAt": "2026-09-03",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03"
+  },
+  {
     "id": "indicate",
     "term": "indicate",
     "meaning": "表明；指出",
@@ -903,6 +1085,19 @@
     "addedAt": "2026-09-01",
     "reportedCount": 1,
     "lastReportedAt": "2026-09-01"
+  },
+  {
+    "id": "inferior-to",
+    "term": "inferior to",
+    "meaning": "不如；劣于",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "C13-T1-P3 Q28 选项词汇不懂。",
+    "category": "我的同步错词",
+    "addedAt": "2026-09-03",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03"
   },
   {
     "id": "insulating",
@@ -995,6 +1190,19 @@
     "lastReportedAt": "2026-08-31"
   },
   {
+    "id": "laud",
+    "term": "laud",
+    "meaning": "赞扬；称赞",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "C13-T1-P3 Q31 词形误认：lauded 被看成 laughed。",
+    "category": "我的同步错词",
+    "addedAt": "2026-09-03",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03"
+  },
+  {
     "id": "low-profit-margins",
     "term": "low profit margins",
     "meaning": "低利润率；利润空间小",
@@ -1017,6 +1225,19 @@
     "addedAt": "2026-08-31",
     "reportedCount": 1,
     "lastReportedAt": "2026-08-31"
+  },
+  {
+    "id": "manufacturer",
+    "term": "manufacturer",
+    "meaning": "制造商；生产商",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "C13-T2-P3 Q28 选项词汇不熟。",
+    "category": "我的同步错词",
+    "addedAt": "2026-09-03",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03"
   },
   {
     "id": "market",
@@ -1059,6 +1280,19 @@
     "lastReportedAt": "2026-08-31"
   },
   {
+    "id": "metaphysics",
+    "term": "metaphysics",
+    "meaning": "形而上学",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "C13-T4-P3 Q28 生词。",
+    "category": "我的同步错词",
+    "addedAt": "2026-09-03",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03"
+  },
+  {
     "id": "meticulous",
     "term": "meticulous",
     "meaning": "一丝不苟的；非常仔细的",
@@ -1068,6 +1302,19 @@
     "reason": "自动同步链路验收；阅读识词",
     "category": "我的同步错词",
     "addedAt": "2026-08-24"
+  },
+  {
+    "id": "millennium",
+    "term": "millennium",
+    "meaning": "一千年；millennia 为复数，表示数千年",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "C13-T1-P3 Q32 生词 millennia。",
+    "category": "我的同步错词",
+    "addedAt": "2026-09-03",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03"
   },
   {
     "id": "mine",
@@ -1094,6 +1341,19 @@
     "addedAt": "2026-09-01",
     "reportedCount": 1,
     "lastReportedAt": "2026-09-01"
+  },
+  {
+    "id": "modesty",
+    "term": "modesty",
+    "meaning": "谦逊；谦虚",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "C16-T2-P3 直接致错词。",
+    "category": "我的同步错词",
+    "addedAt": "2026-09-03",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03"
   },
   {
     "id": "moral",
@@ -1187,6 +1447,19 @@
     "lastReportedAt": "2026-08-31"
   },
   {
+    "id": "object",
+    "term": "object",
+    "meaning": "物体；物件；对象",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "C13-T3-P3 Q36 熟词义误判：误与 objective=客观的 混淆。",
+    "category": "我的同步错词",
+    "addedAt": "2026-09-03",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03"
+  },
+  {
     "id": "occasion",
     "term": "occasion",
     "meaning": "场合；时机；某次事件；机会",
@@ -1211,6 +1484,19 @@
     "addedAt": "2026-08-31",
     "reportedCount": 1,
     "lastReportedAt": "2026-08-31"
+  },
+  {
+    "id": "original-artist",
+    "term": "original artist",
+    "meaning": "原作者；被模仿/复制风格的原始人类艺术家",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "C13-T1-P3 Q35 人物身份理解错误。",
+    "category": "我的同步错词",
+    "addedAt": "2026-09-03",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03"
   },
   {
     "id": "pattern",
@@ -1335,6 +1621,19 @@
     "addedAt": "2026-08-24"
   },
   {
+    "id": "pottery",
+    "term": "pottery",
+    "meaning": "陶器；陶制品；考古语境可指陶片/陶器遗存",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "C13-T3-P3 Q36 直接致错词。",
+    "category": "我的同步错词",
+    "addedAt": "2026-09-03",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03"
+  },
+  {
     "id": "practical",
     "term": "practical",
     "meaning": "可行的；实用的；行得通的",
@@ -1370,6 +1669,19 @@
     "reason": "今日生词：识义；保留英式动词拼写",
     "category": "我的同步错词",
     "addedAt": "2026-08-26"
+  },
+  {
+    "id": "predictable",
+    "term": "predictable",
+    "meaning": "可预测的；可以预料的",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "C13-T1-P3 Q39 题干词义不稳。",
+    "category": "我的同步错词",
+    "addedAt": "2026-09-03",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03"
   },
   {
     "id": "predisposition",
@@ -1437,6 +1749,19 @@
     "lastReportedAt": "2026-08-27"
   },
   {
+    "id": "profound",
+    "term": "profound",
+    "meaning": "深远的；重大的；影响很深的",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "C13-T2-P3 Q27 生词，导致 less obvious but profound ways 误读。",
+    "category": "我的同步错词",
+    "addedAt": "2026-09-03",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03"
+  },
+  {
     "id": "proposal",
     "term": "proposal",
     "meaning": "提议；方案；研究计划",
@@ -1463,6 +1788,32 @@
     "lastReportedAt": "2026-08-27"
   },
   {
+    "id": "pursuit",
+    "term": "pursuit",
+    "meaning": "追求",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "C13-T4-P3 Q28 生词；pursuit of happiness=对幸福的追求。",
+    "category": "我的同步错词",
+    "addedAt": "2026-09-03",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03"
+  },
+  {
+    "id": "quality",
+    "term": "quality",
+    "meaning": "特质；品质；质量（本题 human quality=人的特质）",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "C13-T1-P3 Q28 熟词多义不稳。",
+    "category": "我的同步错词",
+    "addedAt": "2026-09-03",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03"
+  },
+  {
     "id": "rather-than",
     "term": "rather than",
     "meaning": "而不是；而非",
@@ -1474,6 +1825,19 @@
     "addedAt": "2026-08-31",
     "reportedCount": 1,
     "lastReportedAt": "2026-08-31"
+  },
+  {
+    "id": "reconcile",
+    "term": "reconcile",
+    "meaning": "调和；使协调；reconcile A with B=调和A与B",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "C13-T4-P3 Q28 生词。",
+    "category": "我的同步错词",
+    "addedAt": "2026-09-03",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03"
   },
   {
     "id": "reflect",
@@ -1528,6 +1892,19 @@
     "addedAt": "2026-08-31",
     "reportedCount": 1,
     "lastReportedAt": "2026-08-31"
+  },
+  {
+    "id": "reputation",
+    "term": "reputation",
+    "meaning": "名声；声誉；口碑",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "C13-T2-P3 Q28 词义误判：误以为是‘决心’。",
+    "category": "我的同步错词",
+    "addedAt": "2026-09-03",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03"
   },
   {
     "id": "resemble",
@@ -1619,6 +1996,19 @@
     "addedAt": "2026-08-25"
   },
   {
+    "id": "safeguard",
+    "term": "safeguard",
+    "meaning": "保护；维护",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "C13-T2-P3 Q28 选项词汇不熟；safeguard reputation=维护声誉。",
+    "category": "我的同步错词",
+    "addedAt": "2026-09-03",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03"
+  },
+  {
     "id": "scale",
     "term": "scale",
     "meaning": "规模；尺度；范围",
@@ -1643,6 +2033,19 @@
     "addedAt": "2026-09-01",
     "reportedCount": 1,
     "lastReportedAt": "2026-09-01"
+  },
+  {
+    "id": "self-realisation",
+    "term": "self-realisation",
+    "meaning": "自我实现",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "C13-T4-P3 Q28 生词，阻断 happiness 观点理解。",
+    "category": "我的同步错词",
+    "addedAt": "2026-09-03",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03"
   },
   {
     "id": "session",
@@ -1751,6 +2154,19 @@
     "lastReportedAt": "2026-08-31"
   },
   {
+    "id": "striking-effect",
+    "term": "striking effect",
+    "meaning": "引人注目的效果；给人强烈印象的效果",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "C13-T1-P3 Q31 选项表达不认识。",
+    "category": "我的同步错词",
+    "addedAt": "2026-09-03",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03"
+  },
+  {
     "id": "strip",
     "term": "strip",
     "meaning": "剥去；去除",
@@ -1801,6 +2217,19 @@
     "addedAt": "2026-09-01",
     "reportedCount": 1,
     "lastReportedAt": "2026-09-01"
+  },
+  {
+    "id": "supersede",
+    "term": "supersede",
+    "meaning": "取代；替代",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "C13-T1-P3 Q28 选项词汇不懂。",
+    "category": "我的同步错词",
+    "addedAt": "2026-09-03",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03"
   },
   {
     "id": "tedious",
@@ -1936,6 +2365,19 @@
     "lastReportedAt": "2026-09-01"
   },
   {
+    "id": "ultimately",
+    "term": "ultimately",
+    "meaning": "最终；最后；归根结底",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "C13-T1-P3 Q28 选项词汇不懂。",
+    "category": "我的同步错词",
+    "addedAt": "2026-09-03",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03"
+  },
+  {
     "id": "underlie",
     "term": "underlie",
     "meaning": "成为……基础",
@@ -1947,6 +2389,32 @@
     "addedAt": "2026-08-31",
     "reportedCount": 1,
     "lastReportedAt": "2026-08-31"
+  },
+  {
+    "id": "undermine",
+    "term": "undermine",
+    "meaning": "削弱；损害；动摇",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "C13-T1-P3 Q28 选项词汇不懂。",
+    "category": "我的同步错词",
+    "addedAt": "2026-09-03",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03"
+  },
+  {
+    "id": "unforgeable",
+    "term": "unforgeable",
+    "meaning": "不可伪造的",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "C13-T4-P3 Q31 直接致错：没认出 unforgeable banknotes → security。",
+    "category": "我的同步错词",
+    "addedAt": "2026-09-03",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03"
   },
   {
     "id": "unprofitable",
@@ -1986,6 +2454,19 @@
     "addedAt": "2026-09-01",
     "reportedCount": 1,
     "lastReportedAt": "2026-09-01"
+  },
+  {
+    "id": "waste-land",
+    "term": "waste land",
+    "meaning": "荒地；废地",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "C15-T2-P2 Q11 语义理解障碍。",
+    "category": "我的同步错词",
+    "addedAt": "2026-09-03",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03"
   },
   {
     "id": "whereas",
