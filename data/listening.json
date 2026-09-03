@@ -24,6 +24,240 @@
     "audioPath": "audio/12-month-maternity-cover-contract.mp3"
   },
   {
+    "id": "abroad",
+    "term": "abroad",
+    "meaning": "国外；海外",
+    "note": "0903 错题词：识义",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "abroad"
+    ],
+    "errorNote": "0903 错题词：识义",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "副词",
+    "sourceRevision": 4,
+    "audioText": "abroad",
+    "audioPath": "audio/abroad.mp3"
+  },
+  {
+    "id": "absence-of-pain",
+    "term": "absence of pain",
+    "meaning": "没有痛苦",
+    "note": "0903 错题词：识义",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "absence of pain"
+    ],
+    "errorNote": "0903 错题词：识义",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "短语",
+    "sourceRevision": 4,
+    "audioText": "absence of pain",
+    "audioPath": "audio/absence-of-pain.mp3"
+  },
+  {
+    "id": "acceptable",
+    "term": "acceptable",
+    "meaning": "可接受的",
+    "note": "0903 错题词：识义",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "acceptable"
+    ],
+    "errorNote": "0903 错题词：识义",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "形容词",
+    "sourceRevision": 4,
+    "audioText": "acceptable",
+    "audioPath": "audio/acceptable.mp3"
+  },
+  {
+    "id": "adapt",
+    "term": "adapt",
+    "meaning": "适应/调整",
+    "note": "0903 错题词：识义",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "adapt"
+    ],
+    "errorNote": "0903 错题词：识义",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "动词",
+    "sourceRevision": 4,
+    "audioText": "adapt",
+    "audioPath": "audio/adapt.mp3"
+  },
+  {
+    "id": "additional-transport",
+    "term": "additional transport",
+    "meaning": "额外交通方式",
+    "note": "0903 错题词：识义",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "additional transport"
+    ],
+    "errorNote": "0903 错题词：识义",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "短语",
+    "sourceRevision": 4,
+    "audioText": "additional transport",
+    "audioPath": "audio/additional-transport.mp3"
+  },
+  {
+    "id": "after-all",
+    "term": "after all",
+    "meaning": "毕竟",
+    "note": "0903 错题词：识义",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "after all"
+    ],
+    "errorNote": "0903 错题词：识义",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "短语",
+    "sourceRevision": 4,
+    "audioText": "after all",
+    "audioPath": "audio/after-all.mp3"
+  },
+  {
+    "id": "age-range",
+    "term": "age range",
+    "meaning": "年龄区间",
+    "note": "0903 错题词：识义",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "age range"
+    ],
+    "errorNote": "0903 错题词：识义",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "短语",
+    "sourceRevision": 4,
+    "audioText": "age range",
+    "audioPath": "audio/age-range.mp3"
+  },
+  {
+    "id": "aggressively",
+    "term": "aggressively",
+    "meaning": "凶猛地/攻击性地",
+    "note": "0903 错题词：识义",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "aggressively"
+    ],
+    "errorNote": "0903 错题词：识义",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "词性待补",
+    "sourceRevision": 4,
+    "audioText": "aggressively",
+    "audioPath": "audio/aggressively.mp3"
+  },
+  {
+    "id": "agricultural-practices",
+    "term": "agricultural practices",
+    "meaning": "农业/耕作方式",
+    "note": "0903 错题词：识义",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "agricultural practices"
+    ],
+    "errorNote": "0903 错题词：识义",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "短语",
+    "sourceRevision": 4,
+    "audioText": "agricultural practices",
+    "audioPath": "audio/agricultural-practices.mp3"
+  },
+  {
     "id": "albeit",
     "term": "albeit",
     "meaning": "尽管；虽然",
@@ -73,6 +307,110 @@
     "audioPath": "audio/alongside.mp3"
   },
   {
+    "id": "alter",
+    "term": "alter",
+    "meaning": "改变",
+    "note": "0903 错题词：识义",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "alter"
+    ],
+    "errorNote": "0903 错题词：识义",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "动词",
+    "sourceRevision": 4,
+    "audioText": "alter",
+    "audioPath": "audio/alter.mp3"
+  },
+  {
+    "id": "although",
+    "term": "although",
+    "meaning": "尽管",
+    "note": "0903 错题词：识义",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "although"
+    ],
+    "errorNote": "0903 错题词：识义",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "连词",
+    "sourceRevision": 4,
+    "audioText": "although",
+    "audioPath": "audio/although.mp3"
+  },
+  {
+    "id": "amazed",
+    "term": "amazed",
+    "meaning": "非常惊讶",
+    "note": "0903 错题词：识义；同义词 surprised",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "amazed"
+    ],
+    "errorNote": "0903 错题词：识义；同义词 surprised",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "形容词",
+    "sourceRevision": 4,
+    "audioText": "amazed",
+    "audioPath": "audio/amazed.mp3"
+  },
+  {
+    "id": "amenity",
+    "term": "amenity",
+    "meaning": "便利设施/公共设施",
+    "note": "0903 错题词：识义",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "amenity"
+    ],
+    "errorNote": "0903 错题词：识义",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "名词",
+    "sourceRevision": 4,
+    "audioText": "amenity",
+    "audioPath": "audio/amenity.mp3"
+  },
+  {
     "id": "amusing",
     "term": "amusing",
     "meaning": "有趣的；逗人发笑的",
@@ -97,6 +435,58 @@
     "sourceRevision": 4,
     "audioText": "amusing",
     "audioPath": "audio/amusing.mp3"
+  },
+  {
+    "id": "animal-keeper",
+    "term": "animal keeper",
+    "meaning": "动物饲养员/管理员",
+    "note": "0903 错题词：识义",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "animal keeper"
+    ],
+    "errorNote": "0903 错题词：识义",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "短语",
+    "sourceRevision": 4,
+    "audioText": "animal keeper",
+    "audioPath": "audio/animal-keeper.mp3"
+  },
+  {
+    "id": "answer-to",
+    "term": "answer to",
+    "meaning": "解决办法",
+    "note": "0903 错题词：识义；同义词 intended to solve",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "answer to"
+    ],
+    "errorNote": "0903 错题词：识义；同义词 intended to solve",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "短语",
+    "sourceRevision": 4,
+    "audioText": "answer to",
+    "audioPath": "audio/answer-to.mp3"
   },
   {
     "id": "anticipate",
@@ -203,6 +593,32 @@
     "audioPath": "audio/appliances.mp3"
   },
   {
+    "id": "archaeologist",
+    "term": "archaeologist",
+    "meaning": "考古学家",
+    "note": "0903 错题词：识义",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "archaeologist"
+    ],
+    "errorNote": "0903 错题词：识义",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "名词",
+    "sourceRevision": 4,
+    "audioText": "archaeologist",
+    "audioPath": "audio/archaeologist.mp3"
+  },
+  {
     "id": "architectural",
     "term": "architectural",
     "meaning": "建筑的；建筑学的；建筑设计方面的",
@@ -227,6 +643,58 @@
     "sourceRevision": 4,
     "audioText": "architectural",
     "audioPath": "audio/architectural.mp3"
+  },
+  {
+    "id": "as-expected",
+    "term": "as expected",
+    "meaning": "如预期",
+    "note": "0903 错题词：识义；同义词 predictions were correct",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "as expected"
+    ],
+    "errorNote": "0903 错题词：识义；同义词 predictions were correct",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "短语",
+    "sourceRevision": 4,
+    "audioText": "as expected",
+    "audioPath": "audio/as-expected.mp3"
+  },
+  {
+    "id": "aspect",
+    "term": "aspect",
+    "meaning": "方面/元素",
+    "note": "0903 错题词：识义",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "aspect"
+    ],
+    "errorNote": "0903 错题词：识义",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "名词",
+    "sourceRevision": 4,
+    "audioText": "aspect",
+    "audioPath": "audio/aspect.mp3"
   },
   {
     "id": "asthma",
@@ -255,6 +723,32 @@
     "audioPath": "audio/asthma.mp3"
   },
   {
+    "id": "attitude",
+    "term": "attitude",
+    "meaning": "态度",
+    "note": "0903 错题词：识义",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "attitude"
+    ],
+    "errorNote": "0903 错题词：识义",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "名词",
+    "sourceRevision": 4,
+    "audioText": "attitude",
+    "audioPath": "audio/attitude.mp3"
+  },
+  {
     "id": "awful",
     "term": "awful",
     "meaning": "糟糕的；可怕的；很坏的",
@@ -279,6 +773,85 @@
     "sourceRevision": 4,
     "audioText": "awful",
     "audioPath": "audio/awful.mp3"
+  },
+  {
+    "id": "banknote",
+    "term": "banknote",
+    "meaning": "纸币",
+    "note": "0903 错题词：识义",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "banknote"
+    ],
+    "errorNote": "0903 错题词：识义",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "词性待补",
+    "sourceRevision": 4,
+    "audioText": "banknote",
+    "audioPath": "audio/banknote.mp3"
+  },
+  {
+    "id": "be-aware",
+    "term": "be aware",
+    "meaning": "意识到",
+    "note": "0903 错题词：识义",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "be aware"
+    ],
+    "errorNote": "0903 错题词：识义",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "短语",
+    "sourceRevision": 4,
+    "audioText": "be aware",
+    "audioPath": "audio/be-aware.mp3"
+  },
+  {
+    "id": "be-responsible-for",
+    "term": "be responsible for",
+    "meaning": "负责",
+    "note": "—",
+    "category": "学校、工作与解决问题",
+    "sections": [
+      "高频短语 / Chunk",
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "be responsible for"
+    ],
+    "errorNote": "0903 错题词：识义",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "短语",
+    "sourceRevision": 4,
+    "audioText": "be responsible for",
+    "audioPath": "audio/be-responsible-for.mp3"
   },
   {
     "id": "be-subject-to",
@@ -335,6 +908,84 @@
     "audioPath": "audio/beginner.mp3"
   },
   {
+    "id": "behaviour",
+    "term": "behaviour",
+    "meaning": "行为",
+    "note": "0903 错题词：识义",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "behaviour"
+    ],
+    "errorNote": "0903 错题词：识义",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "名词",
+    "sourceRevision": 4,
+    "audioText": "behaviour",
+    "audioPath": "audio/behaviour.mp3"
+  },
+  {
+    "id": "belief",
+    "term": "belief",
+    "meaning": "信念",
+    "note": "0903 错题词：识义",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "belief"
+    ],
+    "errorNote": "0903 错题词：识义",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "名词",
+    "sourceRevision": 4,
+    "audioText": "belief",
+    "audioPath": "audio/belief.mp3"
+  },
+  {
+    "id": "belong-to-the-past",
+    "term": "belong to the past",
+    "meaning": "属于过去",
+    "note": "0903 错题词：识义",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "belong to the past"
+    ],
+    "errorNote": "0903 错题词：识义",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "短语",
+    "sourceRevision": 4,
+    "audioText": "belong to the past",
+    "audioPath": "audio/belong-to-the-past.mp3"
+  },
+  {
     "id": "bend",
     "term": "bend",
     "meaning": "弯道；弯曲处",
@@ -356,6 +1007,32 @@
     "sourceRevision": 4,
     "audioText": "bend",
     "audioPath": "audio/bend.mp3"
+  },
+  {
+    "id": "benefit-from",
+    "term": "benefit from",
+    "meaning": "受益",
+    "note": "0903 错题词：识义",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "benefit from"
+    ],
+    "errorNote": "0903 错题词：识义",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "短语",
+    "sourceRevision": 4,
+    "audioText": "benefit from",
+    "audioPath": "audio/benefit-from.mp3"
   },
   {
     "id": "beyond",
@@ -381,6 +1058,32 @@
     "audioPath": "audio/beyond.mp3"
   },
   {
+    "id": "bike-sharing",
+    "term": "bike-sharing",
+    "meaning": "共享单车",
+    "note": "0903 错题词：识义",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "bike-sharing"
+    ],
+    "errorNote": "0903 错题词：识义",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "词性待补",
+    "sourceRevision": 4,
+    "audioText": "bike-sharing",
+    "audioPath": "audio/bike-sharing.mp3"
+  },
+  {
     "id": "bilingual",
     "term": "bilingual",
     "meaning": "双语的",
@@ -404,6 +1107,58 @@
     "audioPath": "audio/bilingual.mp3"
   },
   {
+    "id": "biological-approach",
+    "term": "biological approach",
+    "meaning": "生物学方法",
+    "note": "0903 错题词：识义",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "biological approach"
+    ],
+    "errorNote": "0903 错题词：识义",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "短语",
+    "sourceRevision": 4,
+    "audioText": "biological approach",
+    "audioPath": "audio/biological-approach.mp3"
+  },
+  {
+    "id": "body-and-mind",
+    "term": "body and mind",
+    "meaning": "身心",
+    "note": "0903 错题词：识义",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "body and mind"
+    ],
+    "errorNote": "0903 错题词：识义",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "短语",
+    "sourceRevision": 4,
+    "audioText": "body and mind",
+    "audioPath": "audio/body-and-mind.mp3"
+  },
+  {
     "id": "bolder-move",
     "term": "bolder move",
     "meaning": "更大胆的举措",
@@ -424,6 +1179,59 @@
     "sourceRevision": 4,
     "audioText": "bolder move",
     "audioPath": "audio/bolder-move.mp3"
+  },
+  {
+    "id": "boring",
+    "term": "boring",
+    "meaning": "无聊的",
+    "note": "—",
+    "category": "原因、问题、优缺点与评价",
+    "sections": [
+      "P2 + P3 必会看懂词",
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "boring"
+    ],
+    "errorNote": "0903 错题词：识义；同义词 tedious",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "形容词",
+    "sourceRevision": 4,
+    "audioText": "boring",
+    "audioPath": "audio/boring.mp3"
+  },
+  {
+    "id": "busy-road",
+    "term": "busy road",
+    "meaning": "繁忙道路",
+    "note": "0903 错题词：识义",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "busy road"
+    ],
+    "errorNote": "0903 错题词：识义",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "短语",
+    "sourceRevision": 4,
+    "audioText": "busy road",
+    "audioPath": "audio/busy-road.mp3"
   },
   {
     "id": "calorie",
@@ -504,6 +1312,58 @@
     "audioPath": "audio/capitalism.mp3"
   },
   {
+    "id": "captive-animal",
+    "term": "captive animal",
+    "meaning": "圈养动物",
+    "note": "0903 错题词：识义；同义词 zoo animal",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "captive animal"
+    ],
+    "errorNote": "0903 错题词：识义；同义词 zoo animal",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "短语",
+    "sourceRevision": 4,
+    "audioText": "captive animal",
+    "audioPath": "audio/captive-animal.mp3"
+  },
+  {
+    "id": "captivity",
+    "term": "captivity",
+    "meaning": "圈养状态",
+    "note": "0903 错题词：识义",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "captivity"
+    ],
+    "errorNote": "0903 错题词：识义",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "名词",
+    "sourceRevision": 4,
+    "audioText": "captivity",
+    "audioPath": "audio/captivity.mp3"
+  },
+  {
     "id": "carpet",
     "term": "carpet",
     "meaning": "地毯",
@@ -529,6 +1389,32 @@
     "sourceRevision": 4,
     "audioText": "carpet",
     "audioPath": "audio/carpet.mp3"
+  },
+  {
+    "id": "cautionary-message",
+    "term": "cautionary message",
+    "meaning": "警示信息",
+    "note": "0903 错题词：识义",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "cautionary message"
+    ],
+    "errorNote": "0903 错题词：识义",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "短语",
+    "sourceRevision": 4,
+    "audioText": "cautionary message",
+    "audioPath": "audio/cautionary-message.mp3"
   },
   {
     "id": "certain",
@@ -557,6 +1443,58 @@
     "audioPath": "audio/certain.mp3"
   },
   {
+    "id": "choice-of-reading-content",
+    "term": "choice of reading content",
+    "meaning": "阅读内容的选择",
+    "note": "0903 错题词：识义；同义词 what we read",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "choice of reading content"
+    ],
+    "errorNote": "0903 错题词：识义；同义词 what we read",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "短语",
+    "sourceRevision": 4,
+    "audioText": "choice of reading content",
+    "audioPath": "audio/choice-of-reading-content.mp3"
+  },
+  {
+    "id": "circumstances",
+    "term": "circumstances",
+    "meaning": "情况；环境",
+    "note": "0903 错题词：识义",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "circumstances"
+    ],
+    "errorNote": "0903 错题词：识义",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "名词",
+    "sourceRevision": 4,
+    "audioText": "circumstances",
+    "audioPath": "audio/circumstances.mp3"
+  },
+  {
     "id": "claim",
     "term": "claim",
     "meaning": "声称；主张；索赔",
@@ -581,6 +1519,112 @@
     "sourceRevision": 4,
     "audioText": "claim",
     "audioPath": "audio/claim.mp3"
+  },
+  {
+    "id": "clear-distinction",
+    "term": "clear distinction",
+    "meaning": "明确区分",
+    "note": "0903 错题词：识义；同义词 right or wrong / good guy or bad guy",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "clear distinction"
+    ],
+    "errorNote": "0903 错题词：识义；同义词 right or wrong / good guy or bad guy",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "短语",
+    "sourceRevision": 4,
+    "audioText": "clear distinction",
+    "audioPath": "audio/clear-distinction.mp3"
+  },
+  {
+    "id": "climate",
+    "term": "climate",
+    "meaning": "气候",
+    "note": "—",
+    "category": "环境、自然、材料与科学",
+    "sections": [
+      "P1 + P4 必会听写词",
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition",
+      "spelling"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "climate"
+    ],
+    "errorNote": "0903 错题词：识义",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "名词",
+    "sourceRevision": 4,
+    "audioText": "climate",
+    "audioPath": "audio/climate.mp3"
+  },
+  {
+    "id": "climatic-conditions",
+    "term": "climatic conditions",
+    "meaning": "气候条件",
+    "note": "0903 错题词：识义",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "climatic conditions"
+    ],
+    "errorNote": "0903 错题词：识义",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "短语",
+    "sourceRevision": 4,
+    "audioText": "climatic conditions",
+    "audioPath": "audio/climatic-conditions.mp3"
+  },
+  {
+    "id": "close-the-road",
+    "term": "close the road",
+    "meaning": "封路",
+    "note": "0903 错题词：识义",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "close the road"
+    ],
+    "errorNote": "0903 错题词：识义",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "短语",
+    "sourceRevision": 4,
+    "audioText": "close the road",
+    "audioPath": "audio/close-the-road.mp3"
   },
   {
     "id": "colony",
@@ -679,6 +1723,32 @@
     "sourceRevision": 4,
     "audioText": "complaint",
     "audioPath": "audio/complaint.mp3"
+  },
+  {
+    "id": "complexity",
+    "term": "complexity",
+    "meaning": "复杂性",
+    "note": "0903 错题词：识义",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "complexity"
+    ],
+    "errorNote": "0903 错题词：识义",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "名词",
+    "sourceRevision": 4,
+    "audioText": "complexity",
+    "audioPath": "audio/complexity.mp3"
   },
   {
     "id": "comply-with",
@@ -839,6 +1909,84 @@
     "audioPath": "audio/consequent.mp3"
   },
   {
+    "id": "conservation-project",
+    "term": "conservation project",
+    "meaning": "保护项目",
+    "note": "0903 错题词：识义",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "conservation project"
+    ],
+    "errorNote": "0903 错题词：识义",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "短语",
+    "sourceRevision": 4,
+    "audioText": "conservation project",
+    "audioPath": "audio/conservation-project.mp3"
+  },
+  {
+    "id": "conservation-worker",
+    "term": "conservation worker",
+    "meaning": "保护工作者",
+    "note": "0903 错题词：识义",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "conservation worker"
+    ],
+    "errorNote": "0903 错题词：识义",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "短语",
+    "sourceRevision": 4,
+    "audioText": "conservation worker",
+    "audioPath": "audio/conservation-worker.mp3"
+  },
+  {
+    "id": "considerably",
+    "term": "considerably",
+    "meaning": "显著地",
+    "note": "0903 错题词：识义",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "considerably"
+    ],
+    "errorNote": "0903 错题词：识义",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "副词",
+    "sourceRevision": 4,
+    "audioText": "considerably",
+    "audioPath": "audio/considerably.mp3"
+  },
+  {
     "id": "constrain",
     "term": "constrain",
     "meaning": "束缚；限制",
@@ -863,6 +2011,32 @@
     "sourceRevision": 4,
     "audioText": "constrain",
     "audioPath": "audio/constrain.mp3"
+  },
+  {
+    "id": "contextual-factors",
+    "term": "contextual factors",
+    "meaning": "情境因素",
+    "note": "0903 错题词：识义",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "contextual factors"
+    ],
+    "errorNote": "0903 错题词：识义",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "短语",
+    "sourceRevision": 4,
+    "audioText": "contextual factors",
+    "audioPath": "audio/contextual-factors.mp3"
   },
   {
     "id": "contradict",
@@ -941,6 +2115,58 @@
     "sourceRevision": 4,
     "audioText": "contrast",
     "audioPath": "audio/contrast.mp3"
+  },
+  {
+    "id": "control",
+    "term": "control",
+    "meaning": "控制",
+    "note": "0903 错题词：识义",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "control"
+    ],
+    "errorNote": "0903 错题词：识义",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "名词",
+    "sourceRevision": 4,
+    "audioText": "control",
+    "audioPath": "audio/control.mp3"
+  },
+  {
+    "id": "cost-only-10-percent",
+    "term": "cost only 10 percent",
+    "meaning": "成本仅为10%",
+    "note": "0903 错题词：识义；同义词 potential savings",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "cost only 10 percent"
+    ],
+    "errorNote": "0903 错题词：识义；同义词 potential savings",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "短语",
+    "sourceRevision": 4,
+    "audioText": "cost only 10 percent",
+    "audioPath": "audio/cost-only-10-percent.mp3"
   },
   {
     "id": "cottage",
@@ -1045,6 +2271,136 @@
     "audioPath": "audio/council.mp3"
   },
   {
+    "id": "counterfeit",
+    "term": "counterfeit",
+    "meaning": "伪造的；假冒的",
+    "note": "0903 错题词：识义",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "counterfeit"
+    ],
+    "errorNote": "0903 错题词：识义",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "名词",
+    "sourceRevision": 4,
+    "audioText": "counterfeit",
+    "audioPath": "audio/counterfeit.mp3"
+  },
+  {
+    "id": "counterpart",
+    "term": "counterpart",
+    "meaning": "对应物",
+    "note": "0903 错题词：识义；同义词 animal in the wild",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "counterpart"
+    ],
+    "errorNote": "0903 错题词：识义；同义词 animal in the wild",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "名词",
+    "sourceRevision": 4,
+    "audioText": "counterpart",
+    "audioPath": "audio/counterpart.mp3"
+  },
+  {
+    "id": "crop",
+    "term": "crop",
+    "meaning": "作物",
+    "note": "0903 错题词：识义",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "crop"
+    ],
+    "errorNote": "0903 错题词：识义",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "名词",
+    "sourceRevision": 4,
+    "audioText": "crop",
+    "audioPath": "audio/crop.mp3"
+  },
+  {
+    "id": "crude",
+    "term": "crude",
+    "meaning": "粗浅/粗糙",
+    "note": "0903 错题词：识义；同义词 ignorant about ideas they should be considering",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "crude"
+    ],
+    "errorNote": "0903 错题词：识义；同义词 ignorant about ideas they should be considering",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "形容词",
+    "sourceRevision": 4,
+    "audioText": "crude",
+    "audioPath": "audio/crude.mp3"
+  },
+  {
+    "id": "cultivate",
+    "term": "cultivate",
+    "meaning": "种植/耕作",
+    "note": "0903 错题词：识义",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "cultivate"
+    ],
+    "errorNote": "0903 错题词：识义",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "动词",
+    "sourceRevision": 4,
+    "audioText": "cultivate",
+    "audioPath": "audio/cultivate.mp3"
+  },
+  {
     "id": "curtain",
     "term": "curtain",
     "meaning": "窗帘",
@@ -1075,6 +2431,59 @@
     "sourceRevision": 4,
     "audioText": "curtain",
     "audioPath": "audio/curtain.mp3"
+  },
+  {
+    "id": "cycle-friendly",
+    "term": "cycle-friendly",
+    "meaning": "骑行友好",
+    "note": "0903 错题词：识义；同义词 welcomes cyclists",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "cycle-friendly"
+    ],
+    "errorNote": "0903 错题词：识义；同义词 welcomes cyclists",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "词性待补",
+    "sourceRevision": 4,
+    "audioText": "cycle-friendly",
+    "audioPath": "audio/cycle-friendly.mp3"
+  },
+  {
+    "id": "decline",
+    "term": "decline",
+    "meaning": "衰落",
+    "note": "—",
+    "category": "原因、问题、优缺点与评价",
+    "sections": [
+      "P2 + P3 必会看懂词",
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "decline"
+    ],
+    "errorNote": "0903 错题词：识义",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "名词",
+    "sourceRevision": 4,
+    "audioText": "decline",
+    "audioPath": "audio/decline.mp3"
   },
   {
     "id": "deliberately",
@@ -1180,6 +2589,58 @@
     "audioPath": "audio/depict.mp3"
   },
   {
+    "id": "destruction",
+    "term": "destruction",
+    "meaning": "破坏",
+    "note": "0903 错题词：识义",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "destruction"
+    ],
+    "errorNote": "0903 错题词：识义",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "名词",
+    "sourceRevision": 4,
+    "audioText": "destruction",
+    "audioPath": "audio/destruction.mp3"
+  },
+  {
+    "id": "destructive-policy",
+    "term": "destructive policy",
+    "meaning": "破坏性政策",
+    "note": "0903 错题词：识义",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "destructive policy"
+    ],
+    "errorNote": "0903 错题词：识义",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "短语",
+    "sourceRevision": 4,
+    "audioText": "destructive policy",
+    "audioPath": "audio/destructive-policy.mp3"
+  },
+  {
     "id": "determine",
     "term": "determine",
     "meaning": "决定",
@@ -1204,6 +2665,59 @@
     "sourceRevision": 4,
     "audioText": "determine",
     "audioPath": "audio/determine.mp3"
+  },
+  {
+    "id": "different-parts",
+    "term": "different parts",
+    "meaning": "不同地区",
+    "note": "0903 错题词：识义；同义词 considerable global variation",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "different parts"
+    ],
+    "errorNote": "0903 错题词：识义；同义词 considerable global variation",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "短语",
+    "sourceRevision": 4,
+    "audioText": "different parts",
+    "audioPath": "audio/different-parts.mp3"
+  },
+  {
+    "id": "disadvantage",
+    "term": "disadvantage",
+    "meaning": "不利",
+    "note": "—",
+    "category": "原因、问题、优缺点与评价",
+    "sections": [
+      "P2 + P3 必会看懂词",
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "disadvantage"
+    ],
+    "errorNote": "0903 错题词：识义",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "名词",
+    "sourceRevision": 4,
+    "audioText": "disadvantage",
+    "audioPath": "audio/disadvantage.mp3"
   },
   {
     "id": "disbelief",
@@ -1308,6 +2822,84 @@
     "sourceRevision": 4,
     "audioText": "distinction",
     "audioPath": "audio/distinction.mp3"
+  },
+  {
+    "id": "distrust",
+    "term": "distrust",
+    "meaning": "不信任",
+    "note": "0903 错题词：识义",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "distrust"
+    ],
+    "errorNote": "0903 错题词：识义",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "词性待补",
+    "sourceRevision": 4,
+    "audioText": "distrust",
+    "audioPath": "audio/distrust.mp3"
+  },
+  {
+    "id": "dominant",
+    "term": "dominant",
+    "meaning": "支配型",
+    "note": "0903 错题词：识义",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "dominant"
+    ],
+    "errorNote": "0903 错题词：识义",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "形容词",
+    "sourceRevision": 4,
+    "audioText": "dominant",
+    "audioPath": "audio/dominant.mp3"
+  },
+  {
+    "id": "educate",
+    "term": "educate",
+    "meaning": "教育/培训",
+    "note": "0903 错题词：识义；同义词 teach people involved with conservation projects",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "educate"
+    ],
+    "errorNote": "0903 错题词：识义；同义词 teach people involved with conservation projects",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "动词",
+    "sourceRevision": 4,
+    "audioText": "educate",
+    "audioPath": "audio/educate.mp3"
   },
   {
     "id": "electrician",
@@ -1446,7 +3038,8 @@
     "sections": [
       "P1 + P4 必会听写词",
       "P2 + P3 必会看懂词",
-      "我的真实错词"
+      "我的真实错词",
+      "我的同步错词"
     ],
     "modes": [
       "recognition",
@@ -1456,7 +3049,11 @@
     "acceptedAnswers": [
       "equipment"
     ],
-    "errorNote": "真实卡点：拼写 / 不可数",
+    "errorNote": "0903 错题词：识义",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
     "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "equipment",
@@ -1514,6 +3111,58 @@
     "audioPath": "audio/estate.mp3"
   },
   {
+    "id": "exact-age",
+    "term": "exact age",
+    "meaning": "精确年龄",
+    "note": "0903 错题词：识义",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "exact age"
+    ],
+    "errorNote": "0903 错题词：识义",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "短语",
+    "sourceRevision": 4,
+    "audioText": "exact age",
+    "audioPath": "audio/exact-age.mp3"
+  },
+  {
+    "id": "excessive-attention",
+    "term": "excessive attention",
+    "meaning": "过度关注",
+    "note": "0903 错题词：识义",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "excessive attention"
+    ],
+    "errorNote": "0903 错题词：识义",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "短语",
+    "sourceRevision": 4,
+    "audioText": "excessive attention",
+    "audioPath": "audio/excessive-attention.mp3"
+  },
+  {
     "id": "excessive-sweating",
     "term": "excessive sweating",
     "meaning": "出汗过多",
@@ -1534,6 +3183,110 @@
     "sourceRevision": 4,
     "audioText": "excessive sweating",
     "audioPath": "audio/excessive-sweating.mp3"
+  },
+  {
+    "id": "exist-in-captivity",
+    "term": "exist in captivity",
+    "meaning": "只存在于圈养环境",
+    "note": "0903 错题词：识义；同义词 can no longer be found in the wild",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "exist in captivity"
+    ],
+    "errorNote": "0903 错题词：识义；同义词 can no longer be found in the wild",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "短语",
+    "sourceRevision": 4,
+    "audioText": "exist in captivity",
+    "audioPath": "audio/exist-in-captivity.mp3"
+  },
+  {
+    "id": "existence",
+    "term": "existence",
+    "meaning": "存在",
+    "note": "0903 错题词：识义",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "existence"
+    ],
+    "errorNote": "0903 错题词：识义",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "名词",
+    "sourceRevision": 4,
+    "audioText": "existence",
+    "audioPath": "audio/existence.mp3"
+  },
+  {
+    "id": "existing-data",
+    "term": "existing data",
+    "meaning": "现有数据",
+    "note": "0903 错题词：识义",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "existing data"
+    ],
+    "errorNote": "0903 错题词：识义",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "短语",
+    "sourceRevision": 4,
+    "audioText": "existing data",
+    "audioPath": "audio/existing-data.mp3"
+  },
+  {
+    "id": "expect",
+    "term": "expect",
+    "meaning": "期待；预期",
+    "note": "0903 错题词：识义",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "expect"
+    ],
+    "errorNote": "0903 错题词：识义",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "动词",
+    "sourceRevision": 4,
+    "audioText": "expect",
+    "audioPath": "audio/expect.mp3"
   },
   {
     "id": "expedition",
@@ -1614,6 +3367,110 @@
     "audioPath": "audio/factor.mp3"
   },
   {
+    "id": "fail-to-meet",
+    "term": "fail to meet",
+    "meaning": "未会合",
+    "note": "0903 错题词：识义；同义词 miss each other",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "fail to meet"
+    ],
+    "errorNote": "0903 错题词：识义；同义词 miss each other",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "短语",
+    "sourceRevision": 4,
+    "audioText": "fail to meet",
+    "audioPath": "audio/fail-to-meet.mp3"
+  },
+  {
+    "id": "failure",
+    "term": "failure",
+    "meaning": "失败",
+    "note": "0903 错题词：识义",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "failure"
+    ],
+    "errorNote": "0903 错题词：识义",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "名词",
+    "sourceRevision": 4,
+    "audioText": "failure",
+    "audioPath": "audio/failure.mp3"
+  },
+  {
+    "id": "fake",
+    "term": "fake",
+    "meaning": "假的；伪造的",
+    "note": "0903 错题词：识义",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "fake"
+    ],
+    "errorNote": "0903 错题词：识义",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "名词",
+    "sourceRevision": 4,
+    "audioText": "fake",
+    "audioPath": "audio/fake.mp3"
+  },
+  {
+    "id": "false-information",
+    "term": "false information",
+    "meaning": "虚假信息",
+    "note": "0903 错题词：识义",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "false information"
+    ],
+    "errorNote": "0903 错题词：识义",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "短语",
+    "sourceRevision": 4,
+    "audioText": "false information",
+    "audioPath": "audio/false-information.mp3"
+  },
+  {
     "id": "fast-paced",
     "term": "fast-paced",
     "meaning": "节奏快的；进展迅速的",
@@ -1688,6 +3545,58 @@
     "audioPath": "audio/fellow-students.mp3"
   },
   {
+    "id": "fewest-variations",
+    "term": "fewest variations",
+    "meaning": "最少变化",
+    "note": "0903 错题词：识义；同义词 alter least",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "fewest variations"
+    ],
+    "errorNote": "0903 错题词：识义；同义词 alter least",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "短语",
+    "sourceRevision": 4,
+    "audioText": "fewest variations",
+    "audioPath": "audio/fewest-variations.mp3"
+  },
+  {
+    "id": "fiction",
+    "term": "fiction",
+    "meaning": "虚构/非事实",
+    "note": "0903 错题词：识义",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "fiction"
+    ],
+    "errorNote": "0903 错题词：识义",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "名词",
+    "sourceRevision": 4,
+    "audioText": "fiction",
+    "audioPath": "audio/fiction.mp3"
+  },
+  {
     "id": "field",
     "term": "field",
     "meaning": "领域；学科",
@@ -1716,6 +3625,215 @@
     "audioPath": "audio/field.mp3"
   },
   {
+    "id": "fieldwork",
+    "term": "fieldwork",
+    "meaning": "野外工作",
+    "note": "0903 错题词：识义",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "fieldwork"
+    ],
+    "errorNote": "0903 错题词：识义",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "词性待补",
+    "sourceRevision": 4,
+    "audioText": "fieldwork",
+    "audioPath": "audio/fieldwork.mp3"
+  },
+  {
+    "id": "focus-on",
+    "term": "focus on",
+    "meaning": "聚焦于",
+    "note": "0903 错题词：识义",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "focus on"
+    ],
+    "errorNote": "0903 错题词：识义",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "短语",
+    "sourceRevision": 4,
+    "audioText": "focus on",
+    "audioPath": "audio/focus-on.mp3"
+  },
+  {
+    "id": "forge",
+    "term": "forge",
+    "meaning": "伪造",
+    "note": "0903 错题词：识义；同义词 fake/counterfeit",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "forge"
+    ],
+    "errorNote": "0903 错题词：识义；同义词 fake/counterfeit",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "名词",
+    "sourceRevision": 4,
+    "audioText": "forge",
+    "audioPath": "audio/forge.mp3"
+  },
+  {
+    "id": "forgeable",
+    "term": "forgeable",
+    "meaning": "可伪造的",
+    "note": "0903 错题词：识义",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "forgeable"
+    ],
+    "errorNote": "0903 错题词：识义",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "词性待补",
+    "sourceRevision": 4,
+    "audioText": "forgeable",
+    "audioPath": "audio/forgeable.mp3"
+  },
+  {
+    "id": "form",
+    "term": "form",
+    "meaning": "形式；形态",
+    "note": "application form",
+    "category": "常见第二义",
+    "sections": [
+      "常见第二义",
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "form"
+    ],
+    "errorNote": "0903 错题词：识义",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "名词",
+    "sourceRevision": 4,
+    "audioText": "form",
+    "audioPath": "audio/form.mp3"
+  },
+  {
+    "id": "found-in-the-wild",
+    "term": "found in the wild",
+    "meaning": "在野外发现",
+    "note": "0903 错题词：识义；同义词 only exist in captivity",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "found in the wild"
+    ],
+    "errorNote": "0903 错题词：识义；同义词 only exist in captivity",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "短语",
+    "sourceRevision": 4,
+    "audioText": "found in the wild",
+    "audioPath": "audio/found-in-the-wild.mp3"
+  },
+  {
+    "id": "fruit-fly",
+    "term": "fruit fly",
+    "meaning": "果蝇",
+    "note": "0903 错题词：识义",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "fruit fly"
+    ],
+    "errorNote": "0903 错题词：识义",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "短语",
+    "sourceRevision": 4,
+    "audioText": "fruit fly",
+    "audioPath": "audio/fruit-fly.mp3"
+  },
+  {
+    "id": "function",
+    "term": "function",
+    "meaning": "作用；运作方式",
+    "note": "0903 错题词：识义",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "function"
+    ],
+    "errorNote": "0903 错题词：识义",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "名词",
+    "sourceRevision": 4,
+    "audioText": "function",
+    "audioPath": "audio/function.mp3"
+  },
+  {
     "id": "fundamental",
     "term": "fundamental",
     "meaning": "根本的；基础的；核心的；基本的",
@@ -1740,6 +3858,32 @@
     "sourceRevision": 4,
     "audioText": "fundamental",
     "audioPath": "audio/fundamental.mp3"
+  },
+  {
+    "id": "geographic-location",
+    "term": "geographic location",
+    "meaning": "地理位置",
+    "note": "0903 错题词：识义",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "geographic location"
+    ],
+    "errorNote": "0903 错题词：识义",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "短语",
+    "sourceRevision": 4,
+    "audioText": "geographic location",
+    "audioPath": "audio/geographic-location.mp3"
   },
   {
     "id": "get-to-grips-with",
@@ -1788,6 +3932,58 @@
     "sourceRevision": 4,
     "audioText": "give rise to",
     "audioPath": "audio/give-rise-to.mp3"
+  },
+  {
+    "id": "global-variation",
+    "term": "global variation",
+    "meaning": "全球差异",
+    "note": "0903 错题词：识义；同义词 a variety of forms in different parts of the world",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "global variation"
+    ],
+    "errorNote": "0903 错题词：识义；同义词 a variety of forms in different parts of the world",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "短语",
+    "sourceRevision": 4,
+    "audioText": "global variation",
+    "audioPath": "audio/global-variation.mp3"
+  },
+  {
+    "id": "grain",
+    "term": "grain",
+    "meaning": "谷物；谷粒",
+    "note": "0903 错题词：识义",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "grain"
+    ],
+    "errorNote": "0903 错题词：识义",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "名词",
+    "sourceRevision": 4,
+    "audioText": "grain",
+    "audioPath": "audio/grain.mp3"
   },
   {
     "id": "grant",
@@ -1863,6 +4059,32 @@
     "audioPath": "audio/grind.mp3"
   },
   {
+    "id": "group-setting",
+    "term": "group setting",
+    "meaning": "群体环境",
+    "note": "0903 错题词：识义",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "group setting"
+    ],
+    "errorNote": "0903 错题词：识义",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "短语",
+    "sourceRevision": 4,
+    "audioText": "group setting",
+    "audioPath": "audio/group-setting.mp3"
+  },
+  {
     "id": "habitable",
     "term": "habitable",
     "meaning": "适合居住的；可居住的",
@@ -1917,6 +4139,110 @@
     "audioPath": "audio/habitat.mp3"
   },
   {
+    "id": "hadn-t-expected",
+    "term": "hadn't expected",
+    "meaning": "没想到",
+    "note": "0903 错题词：识义；同义词 surprised",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "hadn't expected"
+    ],
+    "errorNote": "0903 错题词：识义；同义词 surprised",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "短语",
+    "sourceRevision": 4,
+    "audioText": "hadn't expected",
+    "audioPath": "audio/hadn-t-expected.mp3"
+  },
+  {
+    "id": "harbour",
+    "term": "harbour",
+    "meaning": "港口",
+    "note": "0903 错题词：识义",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "harbour"
+    ],
+    "errorNote": "0903 错题词：识义",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "名词",
+    "sourceRevision": 4,
+    "audioText": "harbour",
+    "audioPath": "audio/harbour.mp3"
+  },
+  {
+    "id": "hard-to-understand",
+    "term": "hard to understand",
+    "meaning": "难以理解",
+    "note": "0903 错题词：识义",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "hard to understand"
+    ],
+    "errorNote": "0903 错题词：识义",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "短语",
+    "sourceRevision": 4,
+    "audioText": "hard to understand",
+    "audioPath": "audio/hard-to-understand.mp3"
+  },
+  {
+    "id": "heavy-traffic",
+    "term": "heavy traffic",
+    "meaning": "交通繁忙/车流量大",
+    "note": "0903 错题词：识义",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "heavy traffic"
+    ],
+    "errorNote": "0903 错题词：识义",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "短语",
+    "sourceRevision": 4,
+    "audioText": "heavy traffic",
+    "audioPath": "audio/heavy-traffic.mp3"
+  },
+  {
     "id": "hence",
     "term": "hence",
     "meaning": "因此；由此",
@@ -1941,6 +4267,84 @@
     "sourceRevision": 4,
     "audioText": "hence",
     "audioPath": "audio/hence.mp3"
+  },
+  {
+    "id": "high-status",
+    "term": "high-status",
+    "meaning": "高地位的",
+    "note": "0903 错题词：识义",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "high-status"
+    ],
+    "errorNote": "0903 错题词：识义",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "词性待补",
+    "sourceRevision": 4,
+    "audioText": "high-status",
+    "audioPath": "audio/high-status.mp3"
+  },
+  {
+    "id": "highlight",
+    "term": "highlight",
+    "meaning": "突出",
+    "note": "0903 错题词：识义",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "highlight"
+    ],
+    "errorNote": "0903 错题词：识义",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "名词",
+    "sourceRevision": 4,
+    "audioText": "highlight",
+    "audioPath": "audio/highlight.mp3"
+  },
+  {
+    "id": "hiking",
+    "term": "hiking",
+    "meaning": "徒步",
+    "note": "0903 错题词：识义",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "hiking"
+    ],
+    "errorNote": "0903 错题词：识义",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "名词",
+    "sourceRevision": 4,
+    "audioText": "hiking",
+    "audioPath": "audio/hiking.mp3"
   },
   {
     "id": "hinder",
@@ -1990,6 +4394,84 @@
     "sourceRevision": 4,
     "audioText": "homesickness",
     "audioPath": "audio/homesickness.mp3"
+  },
+  {
+    "id": "humility",
+    "term": "humility",
+    "meaning": "谦逊",
+    "note": "0903 错题词：识义",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "humility"
+    ],
+    "errorNote": "0903 错题词：识义",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "名词",
+    "sourceRevision": 4,
+    "audioText": "humility",
+    "audioPath": "audio/humility.mp3"
+  },
+  {
+    "id": "humour",
+    "term": "humour",
+    "meaning": "幽默",
+    "note": "0903 错题词：识义；同义词 amusing",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "humour"
+    ],
+    "errorNote": "0903 错题词：识义；同义词 amusing",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "名词",
+    "sourceRevision": 4,
+    "audioText": "humour",
+    "audioPath": "audio/humour.mp3"
+  },
+  {
+    "id": "ignorant",
+    "term": "ignorant",
+    "meaning": "不了解/无知",
+    "note": "0903 错题词：识义；同义词 crude / simple-minded / oblivious to philosophical literature",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "ignorant"
+    ],
+    "errorNote": "0903 错题词：识义；同义词 crude / simple-minded / oblivious to philosophical literature",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "形容词",
+    "sourceRevision": 4,
+    "audioText": "ignorant",
+    "audioPath": "audio/ignorant.mp3"
   },
   {
     "id": "impair",
@@ -2070,6 +4552,59 @@
     "audioPath": "audio/in-accordance-with.mp3"
   },
   {
+    "id": "in-fact",
+    "term": "in fact",
+    "meaning": "事实上",
+    "note": "可能修正前文",
+    "category": "逻辑、态度与选择",
+    "sections": [
+      "高频短语 / Chunk",
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "in fact"
+    ],
+    "errorNote": "0903 错题词：识义",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "短语",
+    "sourceRevision": 4,
+    "audioText": "in fact",
+    "audioPath": "audio/in-fact.mp3"
+  },
+  {
+    "id": "in-general",
+    "term": "in general",
+    "meaning": "总体上",
+    "note": "0903 错题词：识义",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "in general"
+    ],
+    "errorNote": "0903 错题词：识义",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "短语",
+    "sourceRevision": 4,
+    "audioText": "in general",
+    "audioPath": "audio/in-general.mp3"
+  },
+  {
     "id": "in-terms-of",
     "term": "in terms of",
     "meaning": "就……而言",
@@ -2123,6 +4658,84 @@
     "audioPath": "audio/in-the-absence-of.mp3"
   },
   {
+    "id": "in-the-past",
+    "term": "in the past",
+    "meaning": "过去",
+    "note": "0903 错题词：识义",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "in the past"
+    ],
+    "errorNote": "0903 错题词：识义",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "短语",
+    "sourceRevision": 4,
+    "audioText": "in the past",
+    "audioPath": "audio/in-the-past.mp3"
+  },
+  {
+    "id": "in-the-wild",
+    "term": "in the wild",
+    "meaning": "野外",
+    "note": "0903 错题词：识义；同义词 wild counterpart",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "in the wild"
+    ],
+    "errorNote": "0903 错题词：识义；同义词 wild counterpart",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "短语",
+    "sourceRevision": 4,
+    "audioText": "in the wild",
+    "audioPath": "audio/in-the-wild.mp3"
+  },
+  {
+    "id": "inaccuracy",
+    "term": "inaccuracy",
+    "meaning": "不准确之处/错误",
+    "note": "0903 错题词：识义",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "inaccuracy"
+    ],
+    "errorNote": "0903 错题词：识义",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "词性待补",
+    "sourceRevision": 4,
+    "audioText": "inaccuracy",
+    "audioPath": "audio/inaccuracy.mp3"
+  },
+  {
     "id": "inclination",
     "term": "inclination",
     "meaning": "倾向；意愿；爱好",
@@ -2147,6 +4760,32 @@
     "sourceRevision": 4,
     "audioText": "inclination",
     "audioPath": "audio/inclination.mp3"
+  },
+  {
+    "id": "including",
+    "term": "including",
+    "meaning": "包括",
+    "note": "0903 错题词：识义",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "including"
+    ],
+    "errorNote": "0903 错题词：识义",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "介词",
+    "sourceRevision": 4,
+    "audioText": "including",
+    "audioPath": "audio/including.mp3"
   },
   {
     "id": "indicate",
@@ -2227,6 +4866,84 @@
     "audioPath": "audio/inevitably.mp3"
   },
   {
+    "id": "influence",
+    "term": "influence",
+    "meaning": "影响",
+    "note": "0903 错题词：识义",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "influence"
+    ],
+    "errorNote": "0903 错题词：识义",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "名词",
+    "sourceRevision": 4,
+    "audioText": "influence",
+    "audioPath": "audio/influence.mp3"
+  },
+  {
+    "id": "inhabitant",
+    "term": "inhabitant",
+    "meaning": "居民（不要和 archaeologist 混）",
+    "note": "0903 错题词：识义",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "inhabitant"
+    ],
+    "errorNote": "0903 错题词：识义",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "名词",
+    "sourceRevision": 4,
+    "audioText": "inhabitant",
+    "audioPath": "audio/inhabitant.mp3"
+  },
+  {
+    "id": "instruct",
+    "term": "instruct",
+    "meaning": "指示",
+    "note": "0903 错题词：识义",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "instruct"
+    ],
+    "errorNote": "0903 错题词：识义",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "动词",
+    "sourceRevision": 4,
+    "audioText": "instruct",
+    "audioPath": "audio/instruct.mp3"
+  },
+  {
     "id": "insulating",
     "term": "insulating",
     "meaning": "隔热的；起隔热作用的",
@@ -2277,6 +4994,84 @@
     "sourceRevision": 4,
     "audioText": "integrate",
     "audioPath": "audio/integrate.mp3"
+  },
+  {
+    "id": "intellectual-humility",
+    "term": "intellectual humility",
+    "meaning": "智识谦逊",
+    "note": "0903 错题词：识义；同义词 modesty",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "intellectual humility"
+    ],
+    "errorNote": "0903 错题词：识义；同义词 modesty",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "短语",
+    "sourceRevision": 4,
+    "audioText": "intellectual humility",
+    "audioPath": "audio/intellectual-humility.mp3"
+  },
+  {
+    "id": "intended-to",
+    "term": "intended to",
+    "meaning": "旨在",
+    "note": "0903 错题词：识义",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "intended to"
+    ],
+    "errorNote": "0903 错题词：识义",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "短语",
+    "sourceRevision": 4,
+    "audioText": "intended to",
+    "audioPath": "audio/intended-to.mp3"
+  },
+  {
+    "id": "intended-to-solve",
+    "term": "intended to solve",
+    "meaning": "旨在解决",
+    "note": "0903 错题词：识义；同义词 was an answer to",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "intended to solve"
+    ],
+    "errorNote": "0903 错题词：识义；同义词 was an answer to",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "短语",
+    "sourceRevision": 4,
+    "audioText": "intended to solve",
+    "audioPath": "audio/intended-to-solve.mp3"
   },
   {
     "id": "interest-rates",
@@ -2376,6 +5171,32 @@
     "audioPath": "audio/investor.mp3"
   },
   {
+    "id": "involve-users",
+    "term": "involve users",
+    "meaning": "让用户参与",
+    "note": "0903 错题词：识义",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "involve users"
+    ],
+    "errorNote": "0903 错题词：识义",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "短语",
+    "sourceRevision": 4,
+    "audioText": "involve users",
+    "audioPath": "audio/involve-users.mp3"
+  },
+  {
     "id": "irresponsibly",
     "term": "irresponsibly",
     "meaning": "不负责任地",
@@ -2402,6 +5223,32 @@
     "audioPath": "audio/irresponsibly.mp3"
   },
   {
+    "id": "isolated",
+    "term": "isolated",
+    "meaning": "孤立的",
+    "note": "0903 错题词：识义",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "isolated"
+    ],
+    "errorNote": "0903 错题词：识义",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "形容词",
+    "sourceRevision": 4,
+    "audioText": "isolated",
+    "audioPath": "audio/isolated.mp3"
+  },
+  {
     "id": "juggle",
     "term": "juggle",
     "meaning": "同时应付（多件事）；玩杂耍",
@@ -2424,6 +5271,32 @@
     "sourceRevision": 4,
     "audioText": "juggle",
     "audioPath": "audio/juggle.mp3"
+  },
+  {
+    "id": "lack-of-confidence",
+    "term": "lack of confidence",
+    "meaning": "缺乏信心",
+    "note": "0903 错题词：识义",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "lack of confidence"
+    ],
+    "errorNote": "0903 错题词：识义",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "短语",
+    "sourceRevision": 4,
+    "audioText": "lack of confidence",
+    "audioPath": "audio/lack-of-confidence.mp3"
   },
   {
     "id": "lane",
@@ -2452,15 +5325,42 @@
     "audioPath": "audio/lane.mp3"
   },
   {
+    "id": "laugh-track",
+    "term": "laugh track",
+    "meaning": "罐头笑声/笑声轨",
+    "note": "0903 错题词：识义",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "laugh track"
+    ],
+    "errorNote": "0903 错题词：识义",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "短语",
+    "sourceRevision": 4,
+    "audioText": "laugh track",
+    "audioPath": "audio/laugh-track.mp3"
+  },
+  {
     "id": "lead",
     "term": "lead",
-    "meaning": "铅",
+    "meaning": "带头/领导",
     "note": "作金属读 /led/",
     "category": "环境、自然、材料与科学",
     "sections": [
       "P1 + P4 必会听写词",
       "常见第二义",
-      "我的真实错词"
+      "我的真实错词",
+      "我的同步错词"
     ],
     "modes": [
       "recognition",
@@ -2470,11 +5370,145 @@
     "acceptedAnswers": [
       "lead"
     ],
-    "errorNote": "真实卡点：第二义，读 /led/",
+    "errorNote": "0903 错题词：识义",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
     "partOfSpeech": "名词",
     "sourceRevision": 4,
     "audioText": "lead",
     "audioPath": "audio/lead.mp3"
+  },
+  {
+    "id": "lesson",
+    "term": "lesson",
+    "meaning": "教训",
+    "note": "0903 错题词：识义",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "lesson"
+    ],
+    "errorNote": "0903 错题词：识义",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "名词",
+    "sourceRevision": 4,
+    "audioText": "lesson",
+    "audioPath": "audio/lesson.mp3"
+  },
+  {
+    "id": "life-expectancy",
+    "term": "life expectancy",
+    "meaning": "预期寿命",
+    "note": "0903 错题词：识义；同义词 live longer",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "life expectancy"
+    ],
+    "errorNote": "0903 错题词：识义；同义词 live longer",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "短语",
+    "sourceRevision": 4,
+    "audioText": "life expectancy",
+    "audioPath": "audio/life-expectancy.mp3"
+  },
+  {
+    "id": "limit",
+    "term": "limit",
+    "meaning": "局限；限制",
+    "note": "0903 错题词：识义",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "limit"
+    ],
+    "errorNote": "0903 错题词：识义",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "名词",
+    "sourceRevision": 4,
+    "audioText": "limit",
+    "audioPath": "audio/limit.mp3"
+  },
+  {
+    "id": "limited-extent",
+    "term": "limited extent",
+    "meaning": "有限程度",
+    "note": "0903 错题词：识义；同义词 a small positive relationship",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "limited extent"
+    ],
+    "errorNote": "0903 错题词：识义；同义词 a small positive relationship",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "短语",
+    "sourceRevision": 4,
+    "audioText": "limited extent",
+    "audioPath": "audio/limited-extent.mp3"
+  },
+  {
+    "id": "link",
+    "term": "link",
+    "meaning": "联系；关联",
+    "note": "0903 错题词：识义",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "link"
+    ],
+    "errorNote": "0903 错题词：识义",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "名词",
+    "sourceRevision": 4,
+    "audioText": "link",
+    "audioPath": "audio/link.mp3"
   },
   {
     "id": "litter",
@@ -2499,6 +5533,136 @@
     "sourceRevision": 4,
     "audioText": "litter",
     "audioPath": "audio/litter.mp3"
+  },
+  {
+    "id": "living-creature",
+    "term": "living creature",
+    "meaning": "生物",
+    "note": "0903 错题词：识义",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "living creature"
+    ],
+    "errorNote": "0903 错题词：识义",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "短语",
+    "sourceRevision": 4,
+    "audioText": "living creature",
+    "audioPath": "audio/living-creature.mp3"
+  },
+  {
+    "id": "local-community",
+    "term": "local community",
+    "meaning": "当地社区/居民",
+    "note": "0903 错题词：识义",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "local community"
+    ],
+    "errorNote": "0903 错题词：识义",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "短语",
+    "sourceRevision": 4,
+    "audioText": "local community",
+    "audioPath": "audio/local-community.mp3"
+  },
+  {
+    "id": "location",
+    "term": "location",
+    "meaning": "地点",
+    "note": "0903 错题词：识义",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "location"
+    ],
+    "errorNote": "0903 错题词：识义",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "名词",
+    "sourceRevision": 4,
+    "audioText": "location",
+    "audioPath": "audio/location.mp3"
+  },
+  {
+    "id": "logging-company",
+    "term": "logging company",
+    "meaning": "伐木公司",
+    "note": "0903 错题词：识义",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "logging company"
+    ],
+    "errorNote": "0903 错题词：识义",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "短语",
+    "sourceRevision": 4,
+    "audioText": "logging company",
+    "audioPath": "audio/logging-company.mp3"
+  },
+  {
+    "id": "lose-interest",
+    "term": "lose interest",
+    "meaning": "失去兴趣",
+    "note": "0903 错题词：识义",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "lose interest"
+    ],
+    "errorNote": "0903 错题词：识义",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "短语",
+    "sourceRevision": 4,
+    "audioText": "lose interest",
+    "audioPath": "audio/lose-interest.mp3"
   },
   {
     "id": "low-profit-margins",
@@ -2624,6 +5788,110 @@
     "audioPath": "audio/mass-produced.mp3"
   },
   {
+    "id": "material-culture",
+    "term": "material culture",
+    "meaning": "物质文化",
+    "note": "0903 错题词：识义",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "material culture"
+    ],
+    "errorNote": "0903 错题词：识义",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "短语",
+    "sourceRevision": 4,
+    "audioText": "material culture",
+    "audioPath": "audio/material-culture.mp3"
+  },
+  {
+    "id": "matter",
+    "term": "matter",
+    "meaning": "重要",
+    "note": "0903 错题词：识义；同义词 have significance",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "matter"
+    ],
+    "errorNote": "0903 错题词：识义；同义词 have significance",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "名词",
+    "sourceRevision": 4,
+    "audioText": "matter",
+    "audioPath": "audio/matter.mp3"
+  },
+  {
+    "id": "may",
+    "term": "may",
+    "meaning": "可能；可以",
+    "note": "0903 错题词：识义",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "may"
+    ],
+    "errorNote": "0903 错题词：识义",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "名词",
+    "sourceRevision": 4,
+    "audioText": "may",
+    "audioPath": "audio/may.mp3"
+  },
+  {
+    "id": "may-be-wrong",
+    "term": "may be wrong",
+    "meaning": "可能是错的",
+    "note": "0903 错题词：识义",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "may be wrong"
+    ],
+    "errorNote": "0903 错题词：识义",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "短语",
+    "sourceRevision": 4,
+    "audioText": "may be wrong",
+    "audioPath": "audio/may-be-wrong.mp3"
+  },
+  {
     "id": "meal",
     "term": "meal",
     "meaning": "一餐；饭",
@@ -2700,6 +5968,60 @@
     "audioPath": "audio/melt.mp3"
   },
   {
+    "id": "metaphysics",
+    "term": "metaphysics",
+    "meaning": "形而上学",
+    "note": "0903 错题词：识义",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "metaphysics"
+    ],
+    "errorNote": "0903 错题词：识义",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "名词",
+    "sourceRevision": 4,
+    "audioText": "metaphysics",
+    "audioPath": "audio/metaphysics.mp3"
+  },
+  {
+    "id": "method",
+    "term": "method",
+    "meaning": "方法",
+    "note": "—",
+    "category": "工作、学校与学术",
+    "sections": [
+      "P1 + P4 必会听写词",
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition",
+      "spelling"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "method"
+    ],
+    "errorNote": "0903 错题词：识义",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "名词",
+    "sourceRevision": 4,
+    "audioText": "method",
+    "audioPath": "audio/method.mp3"
+  },
+  {
     "id": "meticulous",
     "term": "meticulous",
     "meaning": "一丝不苟的；非常仔细的",
@@ -2772,6 +6094,32 @@
     "audioPath": "audio/mild.mp3"
   },
   {
+    "id": "millennium",
+    "term": "millennium",
+    "meaning": "一千年；千周年（复数 millennia）",
+    "note": "0903 错题词：识义",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "millennium"
+    ],
+    "errorNote": "0903 错题词：识义",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "名词",
+    "sourceRevision": 4,
+    "audioText": "millennium",
+    "audioPath": "audio/millennium.mp3"
+  },
+  {
     "id": "mine",
     "term": "mine",
     "meaning": "矿井；开采",
@@ -2798,6 +6146,84 @@
     "audioPath": "audio/mine.mp3"
   },
   {
+    "id": "mining",
+    "term": "mining",
+    "meaning": "采矿",
+    "note": "0903 错题词：识义",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "mining"
+    ],
+    "errorNote": "0903 错题词：识义",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "名词",
+    "sourceRevision": 4,
+    "audioText": "mining",
+    "audioPath": "audio/mining.mp3"
+  },
+  {
+    "id": "miss-each-other",
+    "term": "miss each other",
+    "meaning": "彼此错过/未碰上",
+    "note": "0903 错题词：识义；同义词 fail to meet",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "miss each other"
+    ],
+    "errorNote": "0903 错题词：识义；同义词 fail to meet",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "短语",
+    "sourceRevision": 4,
+    "audioText": "miss each other",
+    "audioPath": "audio/miss-each-other.mp3"
+  },
+  {
+    "id": "misunderstanding",
+    "term": "misunderstanding",
+    "meaning": "误解",
+    "note": "0903 错题词：识义",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "misunderstanding"
+    ],
+    "errorNote": "0903 错题词：识义",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "动词",
+    "sourceRevision": 4,
+    "audioText": "misunderstanding",
+    "audioPath": "audio/misunderstanding.mp3"
+  },
+  {
     "id": "model",
     "term": "model",
     "meaning": "模型；建模；模拟；模仿",
@@ -2822,6 +6248,58 @@
     "sourceRevision": 4,
     "audioText": "model",
     "audioPath": "audio/model.mp3"
+  },
+  {
+    "id": "modesty",
+    "term": "modesty",
+    "meaning": "谦逊",
+    "note": "0903 错题词：识义",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "modesty"
+    ],
+    "errorNote": "0903 错题词：识义",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "名词",
+    "sourceRevision": 4,
+    "audioText": "modesty",
+    "audioPath": "audio/modesty.mp3"
+  },
+  {
+    "id": "modify",
+    "term": "modify",
+    "meaning": "修改",
+    "note": "0903 错题词：识义",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "modify"
+    ],
+    "errorNote": "0903 错题词：识义",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "动词",
+    "sourceRevision": 4,
+    "audioText": "modify",
+    "audioPath": "audio/modify.mp3"
   },
   {
     "id": "moral",
@@ -2899,6 +6377,58 @@
     "audioPath": "audio/moralistic.mp3"
   },
   {
+    "id": "most-needed",
+    "term": "most needed",
+    "meaning": "最需要",
+    "note": "0903 错题词：识义",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "most needed"
+    ],
+    "errorNote": "0903 错题词：识义",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "短语",
+    "sourceRevision": 4,
+    "audioText": "most needed",
+    "audioPath": "audio/most-needed.mp3"
+  },
+  {
+    "id": "naked-mole-rat",
+    "term": "naked mole rat",
+    "meaning": "裸鼹鼠",
+    "note": "0903 错题词：识义",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "naked mole rat"
+    ],
+    "errorNote": "0903 错题词：识义",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "短语",
+    "sourceRevision": 4,
+    "audioText": "naked mole rat",
+    "audioPath": "audio/naked-mole-rat.mp3"
+  },
+  {
     "id": "neatly",
     "term": "neatly",
     "meaning": "整齐地；有条理地",
@@ -2923,6 +6453,32 @@
     "sourceRevision": 4,
     "audioText": "neatly",
     "audioPath": "audio/neatly.mp3"
+  },
+  {
+    "id": "negative-effect",
+    "term": "negative effect",
+    "meaning": "负面影响",
+    "note": "0903 错题词：识义",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "negative effect"
+    ],
+    "errorNote": "0903 错题词：识义",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "短语",
+    "sourceRevision": 4,
+    "audioText": "negative effect",
+    "audioPath": "audio/negative-effect.mp3"
   },
   {
     "id": "neglect",
@@ -2952,6 +6508,32 @@
     "audioPath": "audio/neglect.mp3"
   },
   {
+    "id": "network",
+    "term": "network",
+    "meaning": "网络；联系网",
+    "note": "0903 错题词：识义",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "network"
+    ],
+    "errorNote": "0903 错题词：识义",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "名词",
+    "sourceRevision": 4,
+    "audioText": "network",
+    "audioPath": "audio/network.mp3"
+  },
+  {
     "id": "nevertheless",
     "term": "nevertheless",
     "meaning": "然而；尽管如此",
@@ -2976,6 +6558,32 @@
     "sourceRevision": 4,
     "audioText": "nevertheless",
     "audioPath": "audio/nevertheless.mp3"
+  },
+  {
+    "id": "noise-pollution",
+    "term": "noise pollution",
+    "meaning": "噪音污染",
+    "note": "0903 错题词：识义",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "noise pollution"
+    ],
+    "errorNote": "0903 错题词：识义",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "短语",
+    "sourceRevision": 4,
+    "audioText": "noise pollution",
+    "audioPath": "audio/noise-pollution.mp3"
   },
   {
     "id": "nonetheless",
@@ -3056,6 +6664,84 @@
     "audioPath": "audio/obesity.mp3"
   },
   {
+    "id": "object",
+    "term": "object",
+    "meaning": "物件/实物/对象",
+    "note": "0903 错题词：识义",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "object"
+    ],
+    "errorNote": "0903 错题词：识义",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "名词",
+    "sourceRevision": 4,
+    "audioText": "object",
+    "audioPath": "audio/object.mp3"
+  },
+  {
+    "id": "objective",
+    "term": "objective",
+    "meaning": "客观的（别混）",
+    "note": "0903 错题词：识义",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "objective"
+    ],
+    "errorNote": "0903 错题词：识义",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "名词",
+    "sourceRevision": 4,
+    "audioText": "objective",
+    "audioPath": "audio/objective.mp3"
+  },
+  {
+    "id": "oblivious-to",
+    "term": "oblivious to",
+    "meaning": "没意识到/不了解",
+    "note": "0903 错题词：识义；同义词 ignorant about ideas they should be considering",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "oblivious to"
+    ],
+    "errorNote": "0903 错题词：识义；同义词 ignorant about ideas they should be considering",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "短语",
+    "sourceRevision": 4,
+    "audioText": "oblivious to",
+    "audioPath": "audio/oblivious-to.mp3"
+  },
+  {
     "id": "occasion",
     "term": "occasion",
     "meaning": "场合；时机；某次事件；机会",
@@ -3080,6 +6766,163 @@
     "sourceRevision": 4,
     "audioText": "occasion",
     "audioPath": "audio/occasion.mp3"
+  },
+  {
+    "id": "occasional",
+    "term": "occasional",
+    "meaning": "偶尔的",
+    "note": "—",
+    "category": "地图、空间与程度词",
+    "sections": [
+      "P2 + P3 必会看懂词",
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "occasional"
+    ],
+    "errorNote": "0903 错题词：识义；同义词 public meetings held sometimes, not often",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "形容词",
+    "sourceRevision": 4,
+    "audioText": "occasional",
+    "audioPath": "audio/occasional.mp3"
+  },
+  {
+    "id": "occasionally",
+    "term": "occasionally",
+    "meaning": "偶尔地",
+    "note": "0903 错题词：识义",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "occasionally"
+    ],
+    "errorNote": "0903 错题词：识义",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "副词",
+    "sourceRevision": 4,
+    "audioText": "occasionally",
+    "audioPath": "audio/occasionally.mp3"
+  },
+  {
+    "id": "only-known",
+    "term": "only known",
+    "meaning": "唯一已知",
+    "note": "0903 错题词：识义",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "only known"
+    ],
+    "errorNote": "0903 错题词：识义",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "短语",
+    "sourceRevision": 4,
+    "audioText": "only known",
+    "audioPath": "audio/only-known.mp3"
+  },
+  {
+    "id": "openness",
+    "term": "openness",
+    "meaning": "开放透明",
+    "note": "0903 错题词：识义；同义词 reveal more / transparency",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "openness"
+    ],
+    "errorNote": "0903 错题词：识义；同义词 reveal more / transparency",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "词性待补",
+    "sourceRevision": 4,
+    "audioText": "openness",
+    "audioPath": "audio/openness.mp3"
+  },
+  {
+    "id": "opinion",
+    "term": "opinion",
+    "meaning": "观点",
+    "note": "0903 错题词：识义",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "opinion"
+    ],
+    "errorNote": "0903 错题词：识义",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "名词",
+    "sourceRevision": 4,
+    "audioText": "opinion",
+    "audioPath": "audio/opinion.mp3"
+  },
+  {
+    "id": "oral-tradition",
+    "term": "oral tradition",
+    "meaning": "口述传统",
+    "note": "0903 错题词：识义",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "oral tradition"
+    ],
+    "errorNote": "0903 错题词：识义",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "短语",
+    "sourceRevision": 4,
+    "audioText": "oral tradition",
+    "audioPath": "audio/oral-tradition.mp3"
   },
   {
     "id": "ordinary",
@@ -3108,6 +6951,111 @@
     "audioPath": "audio/ordinary.mp3"
   },
   {
+    "id": "ordinary-people",
+    "term": "ordinary people",
+    "meaning": "普通人",
+    "note": "0903 错题词：识义",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "ordinary people"
+    ],
+    "errorNote": "0903 错题词：识义",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "短语",
+    "sourceRevision": 4,
+    "audioText": "ordinary people",
+    "audioPath": "audio/ordinary-people.mp3"
+  },
+  {
+    "id": "organise",
+    "term": "organise",
+    "meaning": "组织",
+    "note": "英式拼写",
+    "category": "行为与决策动作",
+    "sections": [
+      "P2 + P3 必会看懂词",
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "organise"
+    ],
+    "errorNote": "0903 错题词：识义",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "动词",
+    "sourceRevision": 4,
+    "audioText": "organise",
+    "audioPath": "audio/organise.mp3"
+  },
+  {
+    "id": "originally",
+    "term": "originally",
+    "meaning": "最初",
+    "note": "0903 错题词：识义",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "originally"
+    ],
+    "errorNote": "0903 错题词：识义",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "副词",
+    "sourceRevision": 4,
+    "audioText": "originally",
+    "audioPath": "audio/originally.mp3"
+  },
+  {
+    "id": "otherwise",
+    "term": "otherwise",
+    "meaning": "并非如此",
+    "note": "0903 错题词：识义",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "otherwise"
+    ],
+    "errorNote": "0903 错题词：识义",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "副词",
+    "sourceRevision": 4,
+    "audioText": "otherwise",
+    "audioPath": "audio/otherwise.mp3"
+  },
+  {
     "id": "oven",
     "term": "oven",
     "meaning": "烤箱",
@@ -3130,6 +7078,84 @@
     "sourceRevision": 4,
     "audioText": "oven",
     "audioPath": "audio/oven.mp3"
+  },
+  {
+    "id": "overfishing",
+    "term": "overfishing",
+    "meaning": "过度捕捞",
+    "note": "0903 错题词：识义；同义词 unmanaged fishery without quotas",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "overfishing"
+    ],
+    "errorNote": "0903 错题词：识义；同义词 unmanaged fishery without quotas",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "词性待补",
+    "sourceRevision": 4,
+    "audioText": "overfishing",
+    "audioPath": "audio/overfishing.mp3"
+  },
+  {
+    "id": "overseas",
+    "term": "overseas",
+    "meaning": "海外的；国外",
+    "note": "0903 错题词：识义",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "overseas"
+    ],
+    "errorNote": "0903 错题词：识义",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "形容词",
+    "sourceRevision": 4,
+    "audioText": "overseas",
+    "audioPath": "audio/overseas.mp3"
+  },
+  {
+    "id": "part",
+    "term": "part",
+    "meaning": "部分",
+    "note": "0903 错题词：识义",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "part"
+    ],
+    "errorNote": "0903 错题词：识义",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "名词",
+    "sourceRevision": 4,
+    "audioText": "part",
+    "audioPath": "audio/part.mp3"
   },
   {
     "id": "pattern",
@@ -3156,6 +7182,58 @@
     "sourceRevision": 4,
     "audioText": "pattern",
     "audioPath": "audio/pattern.mp3"
+  },
+  {
+    "id": "people-living-nearby",
+    "term": "people living nearby",
+    "meaning": "附近居民",
+    "note": "0903 错题词：识义",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "people living nearby"
+    ],
+    "errorNote": "0903 错题词：识义",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "短语",
+    "sourceRevision": 4,
+    "audioText": "people living nearby",
+    "audioPath": "audio/people-living-nearby.mp3"
+  },
+  {
+    "id": "perceived-threats",
+    "term": "perceived threats",
+    "meaning": "被认为的威胁",
+    "note": "0903 错题词：识义；同义词 problems",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "perceived threats"
+    ],
+    "errorNote": "0903 错题词：识义；同义词 problems",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "短语",
+    "sourceRevision": 4,
+    "audioText": "perceived threats",
+    "audioPath": "audio/perceived-threats.mp3"
   },
   {
     "id": "period",
@@ -3232,6 +7310,84 @@
     "audioPath": "audio/permanent.mp3"
   },
   {
+    "id": "persist",
+    "term": "persist",
+    "meaning": "坚持/持续",
+    "note": "0903 错题词：识义",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "persist"
+    ],
+    "errorNote": "0903 错题词：识义",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "动词",
+    "sourceRevision": 4,
+    "audioText": "persist",
+    "audioPath": "audio/persist.mp3"
+  },
+  {
+    "id": "personal-profit",
+    "term": "personal profit",
+    "meaning": "个人利润",
+    "note": "0903 错题词：识义",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "personal profit"
+    ],
+    "errorNote": "0903 错题词：识义",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "短语",
+    "sourceRevision": 4,
+    "audioText": "personal profit",
+    "audioPath": "audio/personal-profit.mp3"
+  },
+  {
+    "id": "perspective",
+    "term": "perspective",
+    "meaning": "视角/观点",
+    "note": "0903 错题词：识义",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "perspective"
+    ],
+    "errorNote": "0903 错题词：识义",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "名词",
+    "sourceRevision": 4,
+    "audioText": "perspective",
+    "audioPath": "audio/perspective.mp3"
+  },
+  {
     "id": "persuasive",
     "term": "persuasive",
     "meaning": "有说服力的；能劝服人的",
@@ -3305,6 +7461,110 @@
     "audioPath": "audio/pharmacy.mp3"
   },
   {
+    "id": "philosophical-literature",
+    "term": "philosophical literature",
+    "meaning": "哲学文献",
+    "note": "0903 错题词：识义",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "philosophical literature"
+    ],
+    "errorNote": "0903 错题词：识义",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "短语",
+    "sourceRevision": 4,
+    "audioText": "philosophical literature",
+    "audioPath": "audio/philosophical-literature.mp3"
+  },
+  {
+    "id": "phrase",
+    "term": "phrase",
+    "meaning": "短语",
+    "note": "0903 错题词：识义",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "phrase"
+    ],
+    "errorNote": "0903 错题词：识义",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "名词",
+    "sourceRevision": 4,
+    "audioText": "phrase",
+    "audioPath": "audio/phrase.mp3"
+  },
+  {
+    "id": "physical-difficulty",
+    "term": "physical difficulty",
+    "meaning": "实际/体力困难",
+    "note": "0903 错题词：识义",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "physical difficulty"
+    ],
+    "errorNote": "0903 错题词：识义",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "短语",
+    "sourceRevision": 4,
+    "audioText": "physical difficulty",
+    "audioPath": "audio/physical-difficulty.mp3"
+  },
+  {
+    "id": "pleasure",
+    "term": "pleasure",
+    "meaning": "快乐",
+    "note": "0903 错题词：识义",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "pleasure"
+    ],
+    "errorNote": "0903 错题词：识义",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "名词",
+    "sourceRevision": 4,
+    "audioText": "pleasure",
+    "audioPath": "audio/pleasure.mp3"
+  },
+  {
     "id": "popularity",
     "term": "popularity",
     "meaning": "受欢迎程度；流行程度；普及度",
@@ -3359,6 +7619,32 @@
     "audioPath": "audio/population.mp3"
   },
   {
+    "id": "possibility",
+    "term": "possibility",
+    "meaning": "可能性",
+    "note": "0903 错题词：识义",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "possibility"
+    ],
+    "errorNote": "0903 错题词：识义",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "名词",
+    "sourceRevision": 4,
+    "audioText": "possibility",
+    "audioPath": "audio/possibility.mp3"
+  },
+  {
     "id": "post",
     "term": "post",
     "meaning": "柱子；桩；标杆",
@@ -3408,6 +7694,58 @@
     "sourceRevision": 4,
     "audioText": "postpone",
     "audioPath": "audio/postpone.mp3"
+  },
+  {
+    "id": "potential-savings",
+    "term": "potential savings",
+    "meaning": "潜在节省",
+    "note": "0903 错题词：识义；同义词 cost only 10%",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "potential savings"
+    ],
+    "errorNote": "0903 错题词：识义；同义词 cost only 10%",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "短语",
+    "sourceRevision": 4,
+    "audioText": "potential savings",
+    "audioPath": "audio/potential-savings.mp3"
+  },
+  {
+    "id": "pottery",
+    "term": "pottery",
+    "meaning": "陶器/陶片",
+    "note": "0903 错题词：识义",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "pottery"
+    ],
+    "errorNote": "0903 错题词：识义",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "名词",
+    "sourceRevision": 4,
+    "audioText": "pottery",
+    "audioPath": "audio/pottery.mp3"
   },
   {
     "id": "practical",
@@ -3487,6 +7825,84 @@
     "sourceRevision": 4,
     "audioText": "practise",
     "audioPath": "audio/practise.mp3"
+  },
+  {
+    "id": "precise-age",
+    "term": "precise age",
+    "meaning": "精确年龄",
+    "note": "0903 错题词：识义",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "precise age"
+    ],
+    "errorNote": "0903 错题词：识义",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "短语",
+    "sourceRevision": 4,
+    "audioText": "precise age",
+    "audioPath": "audio/precise-age.mp3"
+  },
+  {
+    "id": "predict",
+    "term": "predict",
+    "meaning": "预测；预料",
+    "note": "0903 错题词：识义",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "predict"
+    ],
+    "errorNote": "0903 错题词：识义",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "动词",
+    "sourceRevision": 4,
+    "audioText": "predict",
+    "audioPath": "audio/predict.mp3"
+  },
+  {
+    "id": "prediction",
+    "term": "prediction",
+    "meaning": "预测",
+    "note": "0903 错题词：识义",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "prediction"
+    ],
+    "errorNote": "0903 错题词：识义",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "名词",
+    "sourceRevision": 4,
+    "audioText": "prediction",
+    "audioPath": "audio/prediction.mp3"
   },
   {
     "id": "predisposition",
@@ -3613,6 +8029,110 @@
     "audioPath": "audio/prestige.mp3"
   },
   {
+    "id": "prevent-damage",
+    "term": "prevent damage",
+    "meaning": "防止破坏",
+    "note": "0903 错题词：识义",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "prevent damage"
+    ],
+    "errorNote": "0903 错题词：识义",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "短语",
+    "sourceRevision": 4,
+    "audioText": "prevent damage",
+    "audioPath": "audio/prevent-damage.mp3"
+  },
+  {
+    "id": "previous",
+    "term": "previous",
+    "meaning": "先前的/以前的",
+    "note": "0903 错题词：识义",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "previous"
+    ],
+    "errorNote": "0903 错题词：识义",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "形容词",
+    "sourceRevision": 4,
+    "audioText": "previous",
+    "audioPath": "audio/previous.mp3"
+  },
+  {
+    "id": "previous-study",
+    "term": "previous study",
+    "meaning": "以往研究",
+    "note": "0903 错题词：识义",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "previous study"
+    ],
+    "errorNote": "0903 错题词：识义",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "短语",
+    "sourceRevision": 4,
+    "audioText": "previous study",
+    "audioPath": "audio/previous-study.mp3"
+  },
+  {
+    "id": "prey",
+    "term": "prey",
+    "meaning": "猎物",
+    "note": "0903 错题词：识义",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "prey"
+    ],
+    "errorNote": "0903 错题词：识义",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "名词",
+    "sourceRevision": 4,
+    "audioText": "prey",
+    "audioPath": "audio/prey.mp3"
+  },
+  {
     "id": "principle",
     "term": "principle",
     "meaning": "原则；原理",
@@ -3665,6 +8185,61 @@
     "audioPath": "audio/principled.mp3"
   },
   {
+    "id": "problem",
+    "term": "problem",
+    "meaning": "问题",
+    "note": "—",
+    "category": "原因、问题、优缺点与评价",
+    "sections": [
+      "P2 + P3 必会看懂词",
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "problem"
+    ],
+    "errorNote": "0903 错题词：识义",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "名词",
+    "sourceRevision": 4,
+    "audioText": "problem",
+    "audioPath": "audio/problem.mp3"
+  },
+  {
+    "id": "process",
+    "term": "process",
+    "meaning": "过程",
+    "note": "—",
+    "category": "环境、自然、材料与科学",
+    "sections": [
+      "P1 + P4 必会听写词",
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition",
+      "spelling"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "process"
+    ],
+    "errorNote": "0903 错题词：识义",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "名词",
+    "sourceRevision": 4,
+    "audioText": "process",
+    "audioPath": "audio/process.mp3"
+  },
+  {
     "id": "proposal",
     "term": "proposal",
     "meaning": "提议；方案；研究计划",
@@ -3692,6 +8267,189 @@
     "sourceRevision": 4,
     "audioText": "proposal",
     "audioPath": "audio/proposal.mp3"
+  },
+  {
+    "id": "proposed-explanations",
+    "term": "proposed explanations",
+    "meaning": "提出的解释",
+    "note": "0903 错题词：识义",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "proposed explanations"
+    ],
+    "errorNote": "0903 错题词：识义",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "短语",
+    "sourceRevision": 4,
+    "audioText": "proposed explanations",
+    "audioPath": "audio/proposed-explanations.mp3"
+  },
+  {
+    "id": "proposed-plan",
+    "term": "proposed plan",
+    "meaning": "提议的计划",
+    "note": "0903 错题词：识义",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "proposed plan"
+    ],
+    "errorNote": "0903 错题词：识义",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "短语",
+    "sourceRevision": 4,
+    "audioText": "proposed plan",
+    "audioPath": "audio/proposed-plan.mp3"
+  },
+  {
+    "id": "proposed-scheme",
+    "term": "proposed scheme",
+    "meaning": "提议的方案",
+    "note": "0903 错题词：识义",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "proposed scheme"
+    ],
+    "errorNote": "0903 错题词：识义",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "短语",
+    "sourceRevision": 4,
+    "audioText": "proposed scheme",
+    "audioPath": "audio/proposed-scheme.mp3"
+  },
+  {
+    "id": "protect",
+    "term": "protect",
+    "meaning": "保护",
+    "note": "—",
+    "category": "行为与决策动作",
+    "sections": [
+      "P2 + P3 必会看懂词",
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "protect"
+    ],
+    "errorNote": "0903 错题词：识义",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "动词",
+    "sourceRevision": 4,
+    "audioText": "protect",
+    "audioPath": "audio/protect.mp3"
+  },
+  {
+    "id": "public-meeting",
+    "term": "public meeting",
+    "meaning": "公众集会",
+    "note": "0903 错题词：识义",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "public meeting"
+    ],
+    "errorNote": "0903 错题词：识义",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "短语",
+    "sourceRevision": 4,
+    "audioText": "public meeting",
+    "audioPath": "audio/public-meeting.mp3"
+  },
+  {
+    "id": "public-transport-users",
+    "term": "public transport users",
+    "meaning": "公共交通使用者",
+    "note": "0903 错题词：识义",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "public transport users"
+    ],
+    "errorNote": "0903 错题词：识义",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "短语",
+    "sourceRevision": 4,
+    "audioText": "public transport users",
+    "audioPath": "audio/public-transport-users.mp3"
+  },
+  {
+    "id": "published",
+    "term": "published",
+    "meaning": "已发表的",
+    "note": "0903 错题词：识义",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "published"
+    ],
+    "errorNote": "0903 错题词：识义",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "动词",
+    "sourceRevision": 4,
+    "audioText": "published",
+    "audioPath": "audio/published.mp3"
   },
   {
     "id": "purpose",
@@ -3725,6 +8483,136 @@
     "audioPath": "audio/purpose.mp3"
   },
   {
+    "id": "pursuit",
+    "term": "pursuit",
+    "meaning": "追求",
+    "note": "0903 错题词：识义",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "pursuit"
+    ],
+    "errorNote": "0903 错题词：识义",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "名词",
+    "sourceRevision": 4,
+    "audioText": "pursuit",
+    "audioPath": "audio/pursuit.mp3"
+  },
+  {
+    "id": "quickly",
+    "term": "quickly",
+    "meaning": "快速地",
+    "note": "0903 错题词：识义",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "quickly"
+    ],
+    "errorNote": "0903 错题词：识义",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "副词",
+    "sourceRevision": 4,
+    "audioText": "quickly",
+    "audioPath": "audio/quickly.mp3"
+  },
+  {
+    "id": "quieter",
+    "term": "quieter",
+    "meaning": "更安静",
+    "note": "0903 错题词：识义；同义词 less noise",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "quieter"
+    ],
+    "errorNote": "0903 错题词：识义；同义词 less noise",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "名词",
+    "sourceRevision": 4,
+    "audioText": "quieter",
+    "audioPath": "audio/quieter.mp3"
+  },
+  {
+    "id": "quota",
+    "term": "quota",
+    "meaning": "配额",
+    "note": "0903 错题词：识义",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "quota"
+    ],
+    "errorNote": "0903 错题词：识义",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "名词",
+    "sourceRevision": 4,
+    "audioText": "quota",
+    "audioPath": "audio/quota.mp3"
+  },
+  {
+    "id": "race-the-clock",
+    "term": "race the clock",
+    "meaning": "争分夺秒",
+    "note": "0903 错题词：识义；同义词 be under pressure to work quickly",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "race the clock"
+    ],
+    "errorNote": "0903 错题词：识义；同义词 be under pressure to work quickly",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "短语",
+    "sourceRevision": 4,
+    "audioText": "race the clock",
+    "audioPath": "audio/race-the-clock.mp3"
+  },
+  {
     "id": "rather-than",
     "term": "rather than",
     "meaning": "而不是；而非",
@@ -3750,6 +8638,110 @@
     "sourceRevision": 4,
     "audioText": "rather than",
     "audioPath": "audio/rather-than.mp3"
+  },
+  {
+    "id": "reason-wisely",
+    "term": "reason wisely",
+    "meaning": "明智地推理",
+    "note": "0903 错题词：识义",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "reason wisely"
+    ],
+    "errorNote": "0903 错题词：识义",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "短语",
+    "sourceRevision": 4,
+    "audioText": "reason wisely",
+    "audioPath": "audio/reason-wisely.mp3"
+  },
+  {
+    "id": "recognition",
+    "term": "recognition",
+    "meaning": "认识",
+    "note": "0903 错题词：识义",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "recognition"
+    ],
+    "errorNote": "0903 错题词：识义",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "名词",
+    "sourceRevision": 4,
+    "audioText": "recognition",
+    "audioPath": "audio/recognition.mp3"
+  },
+  {
+    "id": "recommended-strategy",
+    "term": "recommended strategy",
+    "meaning": "推荐策略",
+    "note": "0903 错题词：识义",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "recommended strategy"
+    ],
+    "errorNote": "0903 错题词：识义",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "短语",
+    "sourceRevision": 4,
+    "audioText": "recommended strategy",
+    "audioPath": "audio/recommended-strategy.mp3"
+  },
+  {
+    "id": "reconcile",
+    "term": "reconcile",
+    "meaning": "调和",
+    "note": "0903 错题词：识义",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "reconcile"
+    ],
+    "errorNote": "0903 错题词：识义",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "动词",
+    "sourceRevision": 4,
+    "audioText": "reconcile",
+    "audioPath": "audio/reconcile.mp3"
   },
   {
     "id": "reference",
@@ -3803,6 +8795,32 @@
     "audioPath": "audio/reflect.mp3"
   },
   {
+    "id": "refusal",
+    "term": "refusal",
+    "meaning": "拒绝",
+    "note": "0903 错题词：识义",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "refusal"
+    ],
+    "errorNote": "0903 错题词：识义",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "名词",
+    "sourceRevision": 4,
+    "audioText": "refusal",
+    "audioPath": "audio/refusal.mp3"
+  },
+  {
     "id": "regard",
     "term": "regard",
     "meaning": "n. 关心, 注意, 尊敬, 关系, 问候\\nvt. 视为, 注意, 考虑, 和...有关, 看待\\nvi. 注视, 注意",
@@ -3830,6 +8848,111 @@
     "audioPath": "audio/regard.mp3"
   },
   {
+    "id": "reject",
+    "term": "reject",
+    "meaning": "拒绝",
+    "note": "—",
+    "category": "行为与决策动作",
+    "sections": [
+      "P2 + P3 必会看懂词",
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "reject"
+    ],
+    "errorNote": "0903 错题词：识义",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "名词",
+    "sourceRevision": 4,
+    "audioText": "reject",
+    "audioPath": "audio/reject.mp3"
+  },
+  {
+    "id": "rejection",
+    "term": "rejection",
+    "meaning": "拒绝",
+    "note": "0903 错题词：识义",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "rejection"
+    ],
+    "errorNote": "0903 错题词：识义",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "名词",
+    "sourceRevision": 4,
+    "audioText": "rejection",
+    "audioPath": "audio/rejection.mp3"
+  },
+  {
+    "id": "related-fairy-tales",
+    "term": "related fairy tales",
+    "meaning": "相关童话",
+    "note": "0903 错题词：识义；同义词 many different forms of the same basic story",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "related fairy tales"
+    ],
+    "errorNote": "0903 错题词：识义；同义词 many different forms of the same basic story",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "短语",
+    "sourceRevision": 4,
+    "audioText": "related fairy tales",
+    "audioPath": "audio/related-fairy-tales.mp3"
+  },
+  {
+    "id": "relationship",
+    "term": "relationship",
+    "meaning": "关联",
+    "note": "0903 错题词：识义",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "relationship"
+    ],
+    "errorNote": "0903 错题词：识义",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "名词",
+    "sourceRevision": 4,
+    "audioText": "relationship",
+    "audioPath": "audio/relationship.mp3"
+  },
+  {
     "id": "relevant",
     "term": "relevant",
     "meaning": "相关的；切题的",
@@ -3854,6 +8977,32 @@
     "sourceRevision": 4,
     "audioText": "relevant",
     "audioPath": "audio/relevant.mp3"
+  },
+  {
+    "id": "reliable",
+    "term": "reliable",
+    "meaning": "可靠的",
+    "note": "0903 错题词：识义",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "reliable"
+    ],
+    "errorNote": "0903 错题词：识义",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "形容词",
+    "sourceRevision": 4,
+    "audioText": "reliable",
+    "audioPath": "audio/reliable.mp3"
   },
   {
     "id": "relief",
@@ -3928,6 +9077,33 @@
     "audioPath": "audio/reorganising-shifts.mp3"
   },
   {
+    "id": "require",
+    "term": "require",
+    "meaning": "要求；需要",
+    "note": "—",
+    "category": "行为与决策动作",
+    "sections": [
+      "P2 + P3 必会看懂词",
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "require"
+    ],
+    "errorNote": "0903 错题词：识义",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "动词",
+    "sourceRevision": 4,
+    "audioText": "require",
+    "audioPath": "audio/require.mp3"
+  },
+  {
     "id": "resemble",
     "term": "resemble",
     "meaning": "像；与……相似",
@@ -3977,6 +9153,33 @@
     "audioPath": "audio/resentful.mp3"
   },
   {
+    "id": "resident",
+    "term": "resident",
+    "meaning": "居民",
+    "note": "—",
+    "category": "人物、关系与身份",
+    "sections": [
+      "P2 + P3 必会看懂词",
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "resident"
+    ],
+    "errorNote": "0903 错题词：识义",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "名词",
+    "sourceRevision": 4,
+    "audioText": "resident",
+    "audioPath": "audio/resident.mp3"
+  },
+  {
     "id": "resilience",
     "term": "resilience",
     "meaning": "韧性；恢复力；复原力",
@@ -4001,6 +9204,65 @@
     "sourceRevision": 4,
     "audioText": "resilience",
     "audioPath": "audio/resilience.mp3"
+  },
+  {
+    "id": "responsibility",
+    "term": "responsibility",
+    "meaning": "责任",
+    "note": "—",
+    "category": "学校、工作与项目",
+    "sections": [
+      "P2 + P3 必会看懂词",
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "responsibility"
+    ],
+    "errorNote": "0903 错题词：识义",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "名词",
+    "sourceRevision": 4,
+    "audioText": "responsibility",
+    "audioPath": "audio/responsibility.mp3"
+  },
+  {
+    "id": "result",
+    "term": "result",
+    "meaning": "结果",
+    "note": "检查复数",
+    "category": "工作、学校与学术",
+    "sections": [
+      "P1 + P4 必会听写词",
+      "P2 + P3 必会看懂词",
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition",
+      "spelling"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "result"
+    ],
+    "numberVariants": [
+      "results"
+    ],
+    "errorNote": "0903 错题词：识义",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "名词",
+    "sourceRevision": 4,
+    "audioText": "result",
+    "audioPath": "audio/result.mp3"
   },
   {
     "id": "resurface",
@@ -4104,6 +9366,58 @@
     "audioPath": "audio/reveal.mp3"
   },
   {
+    "id": "right",
+    "term": "right",
+    "meaning": "正确的；对的",
+    "note": "0903 错题词：识义",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "right"
+    ],
+    "errorNote": "0903 错题词：识义",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "名词",
+    "sourceRevision": 4,
+    "audioText": "right",
+    "audioPath": "audio/right.mp3"
+  },
+  {
+    "id": "risky",
+    "term": "risky",
+    "meaning": "有风险的",
+    "note": "0903 错题词：识义",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "risky"
+    ],
+    "errorNote": "0903 错题词：识义",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "形容词",
+    "sourceRevision": 4,
+    "audioText": "risky",
+    "audioPath": "audio/risky.mp3"
+  },
+  {
     "id": "round",
     "term": "round",
     "meaning": "圆的；球形的",
@@ -4150,6 +9464,58 @@
     "sourceRevision": 4,
     "audioText": "rural",
     "audioPath": "audio/rural.mp3"
+  },
+  {
+    "id": "sales-went-up",
+    "term": "sales went up",
+    "meaning": "销售额上升",
+    "note": "0903 错题词：识义；同义词 unexpected positive result",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "sales went up"
+    ],
+    "errorNote": "0903 错题词：识义；同义词 unexpected positive result",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "短语",
+    "sourceRevision": 4,
+    "audioText": "sales went up",
+    "audioPath": "audio/sales-went-up.mp3"
+  },
+  {
+    "id": "save-time",
+    "term": "save time",
+    "meaning": "节省时间",
+    "note": "0903 错题词：识义",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "save time"
+    ],
+    "errorNote": "0903 错题词：识义",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "短语",
+    "sourceRevision": 4,
+    "audioText": "save time",
+    "audioPath": "audio/save-time.mp3"
   },
   {
     "id": "scale",
@@ -4204,6 +9570,136 @@
     "audioPath": "audio/scheme.mp3"
   },
   {
+    "id": "scheme-failed",
+    "term": "scheme failed",
+    "meaning": "方案失败",
+    "note": "0903 错题词：识义",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "scheme failed"
+    ],
+    "errorNote": "0903 错题词：识义",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "短语",
+    "sourceRevision": 4,
+    "audioText": "scheme failed",
+    "audioPath": "audio/scheme-failed.mp3"
+  },
+  {
+    "id": "season",
+    "term": "season",
+    "meaning": "季节",
+    "note": "0903 错题词：识义",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "season"
+    ],
+    "errorNote": "0903 错题词：识义",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "名词",
+    "sourceRevision": 4,
+    "audioText": "season",
+    "audioPath": "audio/season.mp3"
+  },
+  {
+    "id": "security",
+    "term": "security",
+    "meaning": "安全性",
+    "note": "0903 错题词：识义",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "security"
+    ],
+    "errorNote": "0903 错题词：识义",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "名词",
+    "sourceRevision": 4,
+    "audioText": "security",
+    "audioPath": "audio/security.mp3"
+  },
+  {
+    "id": "self-realisation",
+    "term": "self-realisation",
+    "meaning": "自我实现",
+    "note": "0903 错题词：识义",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "self-realisation"
+    ],
+    "errorNote": "0903 错题词：识义",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "词性待补",
+    "sourceRevision": 4,
+    "audioText": "self-realisation",
+    "audioPath": "audio/self-realisation.mp3"
+  },
+  {
+    "id": "sentence-beginning",
+    "term": "sentence beginning",
+    "meaning": "句子开头",
+    "note": "0903 错题词：识义",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "sentence beginning"
+    ],
+    "errorNote": "0903 错题词：识义",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "短语",
+    "sourceRevision": 4,
+    "audioText": "sentence beginning",
+    "audioPath": "audio/sentence-beginning.mp3"
+  },
+  {
     "id": "session",
     "term": "session",
     "meaning": "一场；一次；会议；课程；一段活动时间",
@@ -4228,6 +9724,32 @@
     "sourceRevision": 4,
     "audioText": "session",
     "audioPath": "audio/session.mp3"
+  },
+  {
+    "id": "shared-area",
+    "term": "shared area",
+    "meaning": "共同使用的区域",
+    "note": "0903 错题词：识义",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "shared area"
+    ],
+    "errorNote": "0903 错题词：识义",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "短语",
+    "sourceRevision": 4,
+    "audioText": "shared area",
+    "audioPath": "audio/shared-area.mp3"
   },
   {
     "id": "shift",
@@ -4263,6 +9785,136 @@
     "audioPath": "audio/shift.mp3"
   },
   {
+    "id": "significance",
+    "term": "significance",
+    "meaning": "意义",
+    "note": "0903 错题词：识义；同义词 matter",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "significance"
+    ],
+    "errorNote": "0903 错题词：识义；同义词 matter",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "名词",
+    "sourceRevision": 4,
+    "audioText": "significance",
+    "audioPath": "audio/significance.mp3"
+  },
+  {
+    "id": "simple-minded",
+    "term": "simple-minded",
+    "meaning": "头脑简单/思维简单",
+    "note": "0903 错题词：识义；同义词 ignorant about ideas they should be considering",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "simple-minded"
+    ],
+    "errorNote": "0903 错题词：识义；同义词 ignorant about ideas they should be considering",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "词性待补",
+    "sourceRevision": 4,
+    "audioText": "simple-minded",
+    "audioPath": "audio/simple-minded.mp3"
+  },
+  {
+    "id": "simulating",
+    "term": "simulating",
+    "meaning": "模拟的",
+    "note": "0903 错题词：识义",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "simulating"
+    ],
+    "errorNote": "0903 错题词：识义",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "动词",
+    "sourceRevision": 4,
+    "audioText": "simulating",
+    "audioPath": "audio/simulating.mp3"
+  },
+  {
+    "id": "situation",
+    "term": "situation",
+    "meaning": "情境；情况",
+    "note": "0903 错题词：识义",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "situation"
+    ],
+    "errorNote": "0903 错题词：识义",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "名词",
+    "sourceRevision": 4,
+    "audioText": "situation",
+    "audioPath": "audio/situation.mp3"
+  },
+  {
+    "id": "small-positive-relationship",
+    "term": "small positive relationship",
+    "meaning": "轻微正相关",
+    "note": "0903 错题词：识义；同义词 only to a very limited extent",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "small positive relationship"
+    ],
+    "errorNote": "0903 错题词：识义；同义词 only to a very limited extent",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "短语",
+    "sourceRevision": 4,
+    "audioText": "small positive relationship",
+    "audioPath": "audio/small-positive-relationship.mp3"
+  },
+  {
     "id": "soak",
     "term": "soak",
     "meaning": "浸泡；使湿透；吸收水分",
@@ -4287,6 +9939,32 @@
     "sourceRevision": 4,
     "audioText": "soak",
     "audioPath": "audio/soak.mp3"
+  },
+  {
+    "id": "social-situation",
+    "term": "social situation",
+    "meaning": "社交情境",
+    "note": "0903 错题词：识义",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "social situation"
+    ],
+    "errorNote": "0903 错题词：识义",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "短语",
+    "sourceRevision": 4,
+    "audioText": "social situation",
+    "audioPath": "audio/social-situation.mp3"
   },
   {
     "id": "spectator",
@@ -4341,6 +10019,58 @@
     "audioPath": "audio/spectrum.mp3"
   },
   {
+    "id": "spoken",
+    "term": "spoken",
+    "meaning": "口头的",
+    "note": "0903 错题词：识义；同义词 oral",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "spoken"
+    ],
+    "errorNote": "0903 错题词：识义；同义词 oral",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "形容词",
+    "sourceRevision": 4,
+    "audioText": "spoken",
+    "audioPath": "audio/spoken.mp3"
+  },
+  {
+    "id": "spring",
+    "term": "spring",
+    "meaning": "春季",
+    "note": "0903 错题词：识义",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "spring"
+    ],
+    "errorNote": "0903 错题词：识义",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "名词",
+    "sourceRevision": 4,
+    "audioText": "spring",
+    "audioPath": "audio/spring.mp3"
+  },
+  {
     "id": "stalled",
     "term": "stalled",
     "meaning": "停滞的；受阻的",
@@ -4387,6 +10117,32 @@
     "sourceRevision": 4,
     "audioText": "state",
     "audioPath": "audio/state.mp3"
+  },
+  {
+    "id": "stick",
+    "term": "stick",
+    "meaning": "留存/流传",
+    "note": "0903 错题词：识义；同义词 survive",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "stick"
+    ],
+    "errorNote": "0903 错题词：识义；同义词 survive",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "名词",
+    "sourceRevision": 4,
+    "audioText": "stick",
+    "audioPath": "audio/stick.mp3"
   },
   {
     "id": "stimulating",
@@ -4468,6 +10224,33 @@
     "audioPath": "audio/straw.mp3"
   },
   {
+    "id": "stressful",
+    "term": "stressful",
+    "meaning": "有压力的",
+    "note": "—",
+    "category": "原因、问题、优缺点与评价",
+    "sections": [
+      "P2 + P3 必会看懂词",
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "stressful"
+    ],
+    "errorNote": "0903 错题词：识义",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "形容词",
+    "sourceRevision": 4,
+    "audioText": "stressful",
+    "audioPath": "audio/stressful.mp3"
+  },
+  {
     "id": "string",
     "term": "string",
     "meaning": "细绳；一串",
@@ -4516,6 +10299,32 @@
     "sourceRevision": 4,
     "audioText": "strip",
     "audioPath": "audio/strip.mp3"
+  },
+  {
+    "id": "submissive",
+    "term": "submissive",
+    "meaning": "顺从型",
+    "note": "0903 错题词：识义",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "submissive"
+    ],
+    "errorNote": "0903 错题词：识义",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "形容词",
+    "sourceRevision": 4,
+    "audioText": "submissive",
+    "audioPath": "audio/submissive.mp3"
   },
   {
     "id": "substitute",
@@ -4594,6 +10403,189 @@
     "sourceRevision": 4,
     "audioText": "succinctly",
     "audioPath": "audio/succinctly.mp3"
+  },
+  {
+    "id": "surprised",
+    "term": "surprised",
+    "meaning": "惊讶",
+    "note": "—",
+    "category": "情绪、态度与感受",
+    "sections": [
+      "P2 + P3 必会看懂词",
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "surprised"
+    ],
+    "errorNote": "0903 错题词：识义；同义词 hadn't expected / amazed",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "形容词",
+    "sourceRevision": 4,
+    "audioText": "surprised",
+    "audioPath": "audio/surprised.mp3"
+  },
+  {
+    "id": "survival-relevant",
+    "term": "survival-relevant",
+    "meaning": "与生存有关",
+    "note": "0903 错题词：识义",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "survival-relevant"
+    ],
+    "errorNote": "0903 错题词：识义",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "词性待补",
+    "sourceRevision": 4,
+    "audioText": "survival-relevant",
+    "audioPath": "audio/survival-relevant.mp3"
+  },
+  {
+    "id": "survive",
+    "term": "survive",
+    "meaning": "存续",
+    "note": "0903 错题词：识义；同义词 stick",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "survive"
+    ],
+    "errorNote": "0903 错题词：识义；同义词 stick",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "动词",
+    "sourceRevision": 4,
+    "audioText": "survive",
+    "audioPath": "audio/survive.mp3"
+  },
+  {
+    "id": "susceptible-to",
+    "term": "susceptible to",
+    "meaning": "容易受……影响",
+    "note": "0903 错题词：识义",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "susceptible to"
+    ],
+    "errorNote": "0903 错题词：识义",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "短语",
+    "sourceRevision": 4,
+    "audioText": "susceptible to",
+    "audioPath": "audio/susceptible-to.mp3"
+  },
+  {
+    "id": "take-into-account",
+    "term": "take into account",
+    "meaning": "考虑",
+    "note": "0903 错题词：识义",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "take into account"
+    ],
+    "errorNote": "0903 错题词：识义",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "短语",
+    "sourceRevision": 4,
+    "audioText": "take into account",
+    "audioPath": "audio/take-into-account.mp3"
+  },
+  {
+    "id": "take-possession",
+    "term": "take possession",
+    "meaning": "接管/取得所有权",
+    "note": "0903 错题词：识义",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "take possession"
+    ],
+    "errorNote": "0903 错题词：识义",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "短语",
+    "sourceRevision": 4,
+    "audioText": "take possession",
+    "audioPath": "audio/take-possession.mp3"
+  },
+  {
+    "id": "target",
+    "term": "target",
+    "meaning": "题目真正要找的对象",
+    "note": "0903 错题词：识义",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "target"
+    ],
+    "errorNote": "0903 错题词：识义",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "名词",
+    "sourceRevision": 4,
+    "audioText": "target",
+    "audioPath": "audio/target.mp3"
   },
   {
     "id": "tedious",
@@ -4755,6 +10747,32 @@
     "audioPath": "audio/thereby.mp3"
   },
   {
+    "id": "third-party-perspective",
+    "term": "third-party perspective",
+    "meaning": "第三方视角",
+    "note": "0903 错题词：识义",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "third-party perspective"
+    ],
+    "errorNote": "0903 错题词：识义",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "短语",
+    "sourceRevision": 4,
+    "audioText": "third-party perspective",
+    "audioPath": "audio/third-party-perspective.mp3"
+  },
+  {
     "id": "thorough",
     "term": "thorough",
     "meaning": "彻底的；全面的",
@@ -4801,6 +10819,58 @@
     "sourceRevision": 4,
     "audioText": "threaten",
     "audioPath": "audio/threaten.mp3"
+  },
+  {
+    "id": "trade-routes",
+    "term": "trade routes",
+    "meaning": "贸易路线",
+    "note": "0903 错题词：识义",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "trade routes"
+    ],
+    "errorNote": "0903 错题词：识义",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "短语",
+    "sourceRevision": 4,
+    "audioText": "trade routes",
+    "audioPath": "audio/trade-routes.mp3"
+  },
+  {
+    "id": "traded-items",
+    "term": "traded items",
+    "meaning": "被交易的物品",
+    "note": "0903 错题词：识义",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "traded items"
+    ],
+    "errorNote": "0903 错题词：识义",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "短语",
+    "sourceRevision": 4,
+    "audioText": "traded items",
+    "audioPath": "audio/traded-items.mp3"
   },
   {
     "id": "trait",
@@ -4855,6 +10925,110 @@
     "audioPath": "audio/transmit.mp3"
   },
   {
+    "id": "transparency",
+    "term": "transparency",
+    "meaning": "透明度",
+    "note": "0903 错题词：识义；同义词 openness",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "transparency"
+    ],
+    "errorNote": "0903 错题词：识义；同义词 openness",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "词性待补",
+    "sourceRevision": 4,
+    "audioText": "transparency",
+    "audioPath": "audio/transparency.mp3"
+  },
+  {
+    "id": "tree",
+    "term": "tree",
+    "meaning": "树木",
+    "note": "0903 错题词：识义",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "tree"
+    ],
+    "errorNote": "0903 错题词：识义",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "名词",
+    "sourceRevision": 4,
+    "audioText": "tree",
+    "audioPath": "audio/tree.mp3"
+  },
+  {
+    "id": "tropical-rainforest",
+    "term": "tropical rainforest",
+    "meaning": "热带雨林",
+    "note": "0903 错题词：识义",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "tropical rainforest"
+    ],
+    "errorNote": "0903 错题词：识义",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "短语",
+    "sourceRevision": 4,
+    "audioText": "tropical rainforest",
+    "audioPath": "audio/tropical-rainforest.mp3"
+  },
+  {
+    "id": "try-harder",
+    "term": "try harder",
+    "meaning": "更努力",
+    "note": "0903 错题词：识义",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "try harder"
+    ],
+    "errorNote": "0903 错题词：识义",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "短语",
+    "sourceRevision": 4,
+    "audioText": "try harder",
+    "audioPath": "audio/try-harder.mp3"
+  },
+  {
     "id": "tuberculosis",
     "term": "tuberculosis",
     "meaning": "结核病；肺结核；缩写 TB",
@@ -4882,6 +11056,110 @@
     "audioPath": "audio/tuberculosis.mp3"
   },
   {
+    "id": "tunnel",
+    "term": "tunnel",
+    "meaning": "隧道",
+    "note": "0903 错题词：识义",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "tunnel"
+    ],
+    "errorNote": "0903 错题词：识义",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "名词",
+    "sourceRevision": 4,
+    "audioText": "tunnel",
+    "audioPath": "audio/tunnel.mp3"
+  },
+  {
+    "id": "turn-down",
+    "term": "turn down",
+    "meaning": "拒绝；调低",
+    "note": "0903 错题词：识义",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "turn down"
+    ],
+    "errorNote": "0903 错题词：识义",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "短语",
+    "sourceRevision": 4,
+    "audioText": "turn down",
+    "audioPath": "audio/turn-down.mp3"
+  },
+  {
+    "id": "unacceptable",
+    "term": "unacceptable",
+    "meaning": "不可接受的",
+    "note": "0903 错题词：识义",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "unacceptable"
+    ],
+    "errorNote": "0903 错题词：识义",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "形容词",
+    "sourceRevision": 4,
+    "audioText": "unacceptable",
+    "audioPath": "audio/unacceptable.mp3"
+  },
+  {
+    "id": "under-pressure",
+    "term": "under pressure",
+    "meaning": "承受压力",
+    "note": "0903 错题词：识义；同义词 race the clock",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "under pressure"
+    ],
+    "errorNote": "0903 错题词：识义；同义词 race the clock",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "短语",
+    "sourceRevision": 4,
+    "audioText": "under pressure",
+    "audioPath": "audio/under-pressure.mp3"
+  },
+  {
     "id": "underlie",
     "term": "underlie",
     "meaning": "成为……基础",
@@ -4906,6 +11184,84 @@
     "sourceRevision": 4,
     "audioText": "underlie",
     "audioPath": "audio/underlie.mp3"
+  },
+  {
+    "id": "unforgeable",
+    "term": "unforgeable",
+    "meaning": "不可伪造的",
+    "note": "0903 错题词：识义；同义词 greater security",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "unforgeable"
+    ],
+    "errorNote": "0903 错题词：识义；同义词 greater security",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "词性待补",
+    "sourceRevision": 4,
+    "audioText": "unforgeable",
+    "audioPath": "audio/unforgeable.mp3"
+  },
+  {
+    "id": "unlike",
+    "term": "unlike",
+    "meaning": "不同于",
+    "note": "0903 错题词：识义",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "unlike"
+    ],
+    "errorNote": "0903 错题词：识义",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "形容词",
+    "sourceRevision": 4,
+    "audioText": "unlike",
+    "audioPath": "audio/unlike.mp3"
+  },
+  {
+    "id": "unmanaged-fishery",
+    "term": "unmanaged fishery",
+    "meaning": "无管理渔业",
+    "note": "0903 错题词：识义；同义词 overfishing",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "unmanaged fishery"
+    ],
+    "errorNote": "0903 错题词：识义；同义词 overfishing",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "短语",
+    "sourceRevision": 4,
+    "audioText": "unmanaged fishery",
+    "audioPath": "audio/unmanaged-fishery.mp3"
   },
   {
     "id": "unprofitable",
@@ -4958,6 +11314,84 @@
     "audioPath": "audio/vacuum.mp3"
   },
   {
+    "id": "variable",
+    "term": "variable",
+    "meaning": "变量",
+    "note": "0903 错题词：识义",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "variable"
+    ],
+    "errorNote": "0903 错题词：识义",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "名词",
+    "sourceRevision": 4,
+    "audioText": "variable",
+    "audioPath": "audio/variable.mp3"
+  },
+  {
+    "id": "variant",
+    "term": "variant",
+    "meaning": "变体；变种",
+    "note": "0903 错题词：识义",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "variant"
+    ],
+    "errorNote": "0903 错题词：识义",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "名词",
+    "sourceRevision": 4,
+    "audioText": "variant",
+    "audioPath": "audio/variant.mp3"
+  },
+  {
+    "id": "variety",
+    "term": "variety",
+    "meaning": "多样；种类",
+    "note": "0903 错题词：识义",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "variety"
+    ],
+    "errorNote": "0903 错题词：识义",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "名词",
+    "sourceRevision": 4,
+    "audioText": "variety",
+    "audioPath": "audio/variety.mp3"
+  },
+  {
     "id": "ventilation",
     "term": "ventilation",
     "meaning": "通风；通风系统",
@@ -4982,6 +11416,32 @@
     "sourceRevision": 4,
     "audioText": "ventilation",
     "audioPath": "audio/ventilation.mp3"
+  },
+  {
+    "id": "visualize",
+    "term": "visualize",
+    "meaning": "想象",
+    "note": "0903 错题词：识义",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "visualize"
+    ],
+    "errorNote": "0903 错题词：识义",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "动词",
+    "sourceRevision": 4,
+    "audioText": "visualize",
+    "audioPath": "audio/visualize.mp3"
   },
   {
     "id": "waitress",
@@ -5033,6 +11493,58 @@
     "audioPath": "audio/warden.mp3"
   },
   {
+    "id": "waste-land",
+    "term": "waste land",
+    "meaning": "荒地/废地",
+    "note": "0903 错题词：识义；同义词 shared area",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "waste land"
+    ],
+    "errorNote": "0903 错题词：识义；同义词 shared area",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "短语",
+    "sourceRevision": 4,
+    "audioText": "waste land",
+    "audioPath": "audio/waste-land.mp3"
+  },
+  {
+    "id": "water-requirement",
+    "term": "water requirement",
+    "meaning": "需水量",
+    "note": "0903 错题词：识义",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "water requirement"
+    ],
+    "errorNote": "0903 错题词：识义",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "短语",
+    "sourceRevision": 4,
+    "audioText": "water requirement",
+    "audioPath": "audio/water-requirement.mp3"
+  },
+  {
     "id": "wax",
     "term": "wax",
     "meaning": "蜡",
@@ -5055,6 +11567,60 @@
     "sourceRevision": 4,
     "audioText": "wax",
     "audioPath": "audio/wax.mp3"
+  },
+  {
+    "id": "weather",
+    "term": "weather",
+    "meaning": "天气",
+    "note": "与 whether 区分",
+    "category": "环境、自然、材料与科学",
+    "sections": [
+      "P1 + P4 必会听写词",
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition",
+      "spelling"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "weather"
+    ],
+    "errorNote": "0903 错题词：识义",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "名词",
+    "sourceRevision": 4,
+    "audioText": "weather",
+    "audioPath": "audio/weather.mp3"
+  },
+  {
+    "id": "what-we-read",
+    "term": "what we read",
+    "meaning": "我们读什么",
+    "note": "0903 错题词：识义；同义词 choice of reading content",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "what we read"
+    ],
+    "errorNote": "0903 错题词：识义；同义词 choice of reading content",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "短语",
+    "sourceRevision": 4,
+    "audioText": "what we read",
+    "audioPath": "audio/what-we-read.mp3"
   },
   {
     "id": "whereas",
@@ -5081,6 +11647,292 @@
     "sourceRevision": 4,
     "audioText": "whereas",
     "audioPath": "audio/whereas.mp3"
+  },
+  {
+    "id": "widespread",
+    "term": "widespread",
+    "meaning": "广泛传播/普遍存在",
+    "note": "0903 错题词：识义",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "widespread"
+    ],
+    "errorNote": "0903 错题词：识义",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "形容词",
+    "sourceRevision": 4,
+    "audioText": "widespread",
+    "audioPath": "audio/widespread.mp3"
+  },
+  {
+    "id": "will",
+    "term": "will",
+    "meaning": "将会",
+    "note": "0903 错题词：识义",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "will"
+    ],
+    "errorNote": "0903 错题词：识义",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "名词",
+    "sourceRevision": 4,
+    "audioText": "will",
+    "audioPath": "audio/will.mp3"
+  },
+  {
+    "id": "wisdom",
+    "term": "wisdom",
+    "meaning": "智慧",
+    "note": "0903 错题词：识义",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "wisdom"
+    ],
+    "errorNote": "0903 错题词：识义",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "名词",
+    "sourceRevision": 4,
+    "audioText": "wisdom",
+    "audioPath": "audio/wisdom.mp3"
+  },
+  {
+    "id": "wise-reasoning",
+    "term": "wise reasoning",
+    "meaning": "明智推理",
+    "note": "0903 错题词：识义",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "wise reasoning"
+    ],
+    "errorNote": "0903 错题词：识义",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "短语",
+    "sourceRevision": 4,
+    "audioText": "wise reasoning",
+    "audioPath": "audio/wise-reasoning.mp3"
+  },
+  {
+    "id": "withdraw-support",
+    "term": "withdraw support",
+    "meaning": "撤回支持",
+    "note": "0903 错题词：识义",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "withdraw support"
+    ],
+    "errorNote": "0903 错题词：识义",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "短语",
+    "sourceRevision": 4,
+    "audioText": "withdraw support",
+    "audioPath": "audio/withdraw-support.mp3"
+  },
+  {
+    "id": "word-spotting",
+    "term": "word-spotting",
+    "meaning": "只抓单词",
+    "note": "0903 错题词：识义",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "word-spotting"
+    ],
+    "errorNote": "0903 错题词：识义",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "词性待补",
+    "sourceRevision": 4,
+    "audioText": "word-spotting",
+    "audioPath": "audio/word-spotting.mp3"
+  },
+  {
+    "id": "workable",
+    "term": "workable",
+    "meaning": "可行的；行得通的",
+    "note": "0903 错题词：识义",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "workable"
+    ],
+    "errorNote": "0903 错题词：识义",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "词性待补",
+    "sourceRevision": 4,
+    "audioText": "workable",
+    "audioPath": "audio/workable.mp3"
+  },
+  {
+    "id": "writer-s-function",
+    "term": "writer's function",
+    "meaning": "作者在这里的作用",
+    "note": "0903 错题词：识义",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "writer's function"
+    ],
+    "errorNote": "0903 错题词：识义",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "短语",
+    "sourceRevision": 4,
+    "audioText": "writer's function",
+    "audioPath": "audio/writer-s-function.mp3"
+  },
+  {
+    "id": "written",
+    "term": "written",
+    "meaning": "书面的",
+    "note": "0903 错题词：识义",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "written"
+    ],
+    "errorNote": "0903 错题词：识义",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "形容词",
+    "sourceRevision": 4,
+    "audioText": "written",
+    "audioPath": "audio/written.mp3"
+  },
+  {
+    "id": "wrong",
+    "term": "wrong",
+    "meaning": "错误的；错的",
+    "note": "0903 错题词：识义",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "wrong"
+    ],
+    "errorNote": "0903 错题词：识义",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "形容词",
+    "sourceRevision": 4,
+    "audioText": "wrong",
+    "audioPath": "audio/wrong.mp3"
+  },
+  {
+    "id": "zoo-animal",
+    "term": "zoo animal",
+    "meaning": "动物园动物",
+    "note": "0903 错题词：识义；同义词 captive animal",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "zoo animal"
+    ],
+    "errorNote": "0903 错题词：识义；同义词 captive animal",
+    "userAddedAt": "2026-09-03",
+    "sourceType": "user",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-03",
+    "partOfSpeech": "短语",
+    "sourceRevision": 4,
+    "audioText": "zoo animal",
+    "audioPath": "audio/zoo-animal.mp3"
   },
   {
     "id": "accept",
@@ -6478,27 +13330,6 @@
     "audioPath": "audio/be-reluctant-to.mp3"
   },
   {
-    "id": "be-responsible-for",
-    "term": "be responsible for",
-    "meaning": "负责",
-    "note": "—",
-    "category": "学校、工作与解决问题",
-    "sections": [
-      "高频短语 / Chunk"
-    ],
-    "modes": [
-      "recognition"
-    ],
-    "isRealError": false,
-    "acceptedAnswers": [
-      "be responsible for"
-    ],
-    "partOfSpeech": "短语",
-    "sourceRevision": 4,
-    "audioText": "be responsible for",
-    "audioPath": "audio/be-responsible-for.mp3"
-  },
-  {
     "id": "be-satisfied-with",
     "term": "be satisfied with",
     "meaning": "对……满意",
@@ -6749,27 +13580,6 @@
     "sourceRevision": 4,
     "audioText": "boredom",
     "audioPath": "audio/boredom.mp3"
-  },
-  {
-    "id": "boring",
-    "term": "boring",
-    "meaning": "无聊的",
-    "note": "—",
-    "category": "原因、问题、优缺点与评价",
-    "sections": [
-      "P2 + P3 必会看懂词"
-    ],
-    "modes": [
-      "recognition"
-    ],
-    "isRealError": false,
-    "acceptedAnswers": [
-      "boring"
-    ],
-    "partOfSpeech": "形容词",
-    "sourceRevision": 4,
-    "audioText": "boring",
-    "audioPath": "audio/boring.mp3"
   },
   {
     "id": "breakfast",
@@ -7505,27 +14315,6 @@
     "sourceRevision": 4,
     "audioText": "client",
     "audioPath": "audio/client.mp3"
-  },
-  {
-    "id": "climate",
-    "term": "climate",
-    "meaning": "气候",
-    "note": "—",
-    "category": "环境、自然、材料与科学",
-    "sections": [
-      "P1 + P4 必会听写词"
-    ],
-    "modes": [
-      "spelling"
-    ],
-    "isRealError": false,
-    "acceptedAnswers": [
-      "climate"
-    ],
-    "partOfSpeech": "名词",
-    "sourceRevision": 4,
-    "audioText": "climate",
-    "audioPath": "audio/climate.mp3"
   },
   {
     "id": "clinic",
@@ -8400,27 +15189,6 @@
     "audioPath": "audio/decide.mp3"
   },
   {
-    "id": "decline",
-    "term": "decline",
-    "meaning": "下降；衰退",
-    "note": "—",
-    "category": "原因、问题、优缺点与评价",
-    "sections": [
-      "P2 + P3 必会看懂词"
-    ],
-    "modes": [
-      "recognition"
-    ],
-    "isRealError": false,
-    "acceptedAnswers": [
-      "decline"
-    ],
-    "partOfSpeech": "名词",
-    "sourceRevision": 4,
-    "audioText": "decline",
-    "audioPath": "audio/decline.mp3"
-  },
-  {
     "id": "decoration",
     "term": "decoration",
     "meaning": "装饰物",
@@ -8655,27 +15423,6 @@
     "sourceRevision": 4,
     "audioText": "dinner",
     "audioPath": "audio/dinner.mp3"
-  },
-  {
-    "id": "disadvantage",
-    "term": "disadvantage",
-    "meaning": "缺点；劣势",
-    "note": "—",
-    "category": "原因、问题、优缺点与评价",
-    "sections": [
-      "P2 + P3 必会看懂词"
-    ],
-    "modes": [
-      "recognition"
-    ],
-    "isRealError": false,
-    "acceptedAnswers": [
-      "disadvantage"
-    ],
-    "partOfSpeech": "名词",
-    "sourceRevision": 4,
-    "audioText": "disadvantage",
-    "audioPath": "audio/disadvantage.mp3"
   },
   {
     "id": "disagree-with",
@@ -10130,27 +16877,6 @@
     "audioPath": "audio/forest.mp3"
   },
   {
-    "id": "form",
-    "term": "form",
-    "meaning": "表格；形式",
-    "note": "application form",
-    "category": "常见第二义",
-    "sections": [
-      "常见第二义"
-    ],
-    "modes": [
-      "recognition"
-    ],
-    "isRealError": false,
-    "acceptedAnswers": [
-      "form"
-    ],
-    "partOfSpeech": "名词",
-    "sourceRevision": 4,
-    "audioText": "form",
-    "audioPath": "audio/form.mp3"
-  },
-  {
     "id": "fortnight",
     "term": "fortnight",
     "meaning": "两周",
@@ -10929,27 +17655,6 @@
     "sourceRevision": 4,
     "audioText": "improvement",
     "audioPath": "audio/improvement.mp3"
-  },
-  {
-    "id": "in-fact",
-    "term": "in fact",
-    "meaning": "事实上",
-    "note": "可能修正前文",
-    "category": "逻辑、态度与选择",
-    "sections": [
-      "高频短语 / Chunk"
-    ],
-    "modes": [
-      "recognition"
-    ],
-    "isRealError": false,
-    "acceptedAnswers": [
-      "in fact"
-    ],
-    "partOfSpeech": "短语",
-    "sourceRevision": 4,
-    "audioText": "in fact",
-    "audioPath": "audio/in-fact.mp3"
   },
   {
     "id": "in-front-of",
@@ -12277,27 +18982,6 @@
     "audioPath": "audio/metal.mp3"
   },
   {
-    "id": "method",
-    "term": "method",
-    "meaning": "方法",
-    "note": "—",
-    "category": "工作、学校与学术",
-    "sections": [
-      "P1 + P4 必会听写词"
-    ],
-    "modes": [
-      "spelling"
-    ],
-    "isRealError": false,
-    "acceptedAnswers": [
-      "method"
-    ],
-    "partOfSpeech": "名词",
-    "sourceRevision": 4,
-    "audioText": "method",
-    "audioPath": "audio/method.mp3"
-  },
-  {
     "id": "microwave",
     "term": "microwave",
     "meaning": "微波炉",
@@ -12718,27 +19402,6 @@
     "audioPath": "audio/observer.mp3"
   },
   {
-    "id": "occasional",
-    "term": "occasional",
-    "meaning": "偶尔的",
-    "note": "—",
-    "category": "地图、空间与程度词",
-    "sections": [
-      "P2 + P3 必会看懂词"
-    ],
-    "modes": [
-      "recognition"
-    ],
-    "isRealError": false,
-    "acceptedAnswers": [
-      "occasional"
-    ],
-    "partOfSpeech": "形容词",
-    "sourceRevision": 4,
-    "audioText": "occasional",
-    "audioPath": "audio/occasional.mp3"
-  },
-  {
     "id": "occupation",
     "term": "occupation",
     "meaning": "职业",
@@ -13052,27 +19715,6 @@
     "sourceRevision": 4,
     "audioText": "orange",
     "audioPath": "audio/orange.mp3"
-  },
-  {
-    "id": "organise",
-    "term": "organise",
-    "meaning": "组织；安排",
-    "note": "英式拼写",
-    "category": "行为与决策动作",
-    "sections": [
-      "P2 + P3 必会看懂词"
-    ],
-    "modes": [
-      "recognition"
-    ],
-    "isRealError": false,
-    "acceptedAnswers": [
-      "organise"
-    ],
-    "partOfSpeech": "动词",
-    "sourceRevision": 4,
-    "audioText": "organise",
-    "audioPath": "audio/organise.mp3"
   },
   {
     "id": "originality",
@@ -14013,27 +20655,6 @@
     "audioPath": "audio/priority.mp3"
   },
   {
-    "id": "problem",
-    "term": "problem",
-    "meaning": "问题",
-    "note": "—",
-    "category": "原因、问题、优缺点与评价",
-    "sections": [
-      "P2 + P3 必会看懂词"
-    ],
-    "modes": [
-      "recognition"
-    ],
-    "isRealError": false,
-    "acceptedAnswers": [
-      "problem"
-    ],
-    "partOfSpeech": "名词",
-    "sourceRevision": 4,
-    "audioText": "problem",
-    "audioPath": "audio/problem.mp3"
-  },
-  {
     "id": "procedure",
     "term": "procedure",
     "meaning": "程序；步骤",
@@ -14053,27 +20674,6 @@
     "sourceRevision": 4,
     "audioText": "procedure",
     "audioPath": "audio/procedure.mp3"
-  },
-  {
-    "id": "process",
-    "term": "process",
-    "meaning": "过程；步骤",
-    "note": "—",
-    "category": "环境、自然、材料与科学",
-    "sections": [
-      "P1 + P4 必会听写词"
-    ],
-    "modes": [
-      "spelling"
-    ],
-    "isRealError": false,
-    "acceptedAnswers": [
-      "process"
-    ],
-    "partOfSpeech": "名词",
-    "sourceRevision": 4,
-    "audioText": "process",
-    "audioPath": "audio/process.mp3"
   },
   {
     "id": "production",
@@ -14161,27 +20761,6 @@
     "sourceRevision": 4,
     "audioText": "project management",
     "audioPath": "audio/project-management.mp3"
-  },
-  {
-    "id": "protect",
-    "term": "protect",
-    "meaning": "保护",
-    "note": "—",
-    "category": "行为与决策动作",
-    "sections": [
-      "P2 + P3 必会看懂词"
-    ],
-    "modes": [
-      "recognition"
-    ],
-    "isRealError": false,
-    "acceptedAnswers": [
-      "protect"
-    ],
-    "partOfSpeech": "动词",
-    "sourceRevision": 4,
-    "audioText": "protect",
-    "audioPath": "audio/protect.mp3"
   },
   {
     "id": "protection",
@@ -14673,27 +21252,6 @@
     "audioPath": "audio/regret.mp3"
   },
   {
-    "id": "reject",
-    "term": "reject",
-    "meaning": "拒绝",
-    "note": "—",
-    "category": "行为与决策动作",
-    "sections": [
-      "P2 + P3 必会看懂词"
-    ],
-    "modes": [
-      "recognition"
-    ],
-    "isRealError": false,
-    "acceptedAnswers": [
-      "reject"
-    ],
-    "partOfSpeech": "名词",
-    "sourceRevision": 4,
-    "audioText": "reject",
-    "audioPath": "audio/reject.mp3"
-  },
-  {
     "id": "relevance",
     "term": "relevance",
     "meaning": "相关性",
@@ -14883,27 +21441,6 @@
     "audioPath": "audio/representative.mp3"
   },
   {
-    "id": "require",
-    "term": "require",
-    "meaning": "需要；要求",
-    "note": "—",
-    "category": "行为与决策动作",
-    "sections": [
-      "P2 + P3 必会看懂词"
-    ],
-    "modes": [
-      "recognition"
-    ],
-    "isRealError": false,
-    "acceptedAnswers": [
-      "require"
-    ],
-    "partOfSpeech": "动词",
-    "sourceRevision": 4,
-    "audioText": "require",
-    "audioPath": "audio/require.mp3"
-  },
-  {
     "id": "requirement",
     "term": "requirement",
     "meaning": "要求；必要条件",
@@ -15051,27 +21588,6 @@
     "audioPath": "audio/reserve.mp3"
   },
   {
-    "id": "resident",
-    "term": "resident",
-    "meaning": "居民；住户",
-    "note": "—",
-    "category": "人物、关系与身份",
-    "sections": [
-      "P2 + P3 必会看懂词"
-    ],
-    "modes": [
-      "recognition"
-    ],
-    "isRealError": false,
-    "acceptedAnswers": [
-      "resident"
-    ],
-    "partOfSpeech": "名词",
-    "sourceRevision": 4,
-    "audioText": "resident",
-    "audioPath": "audio/resident.mp3"
-  },
-  {
     "id": "respondent",
     "term": "respondent",
     "meaning": "调查受访者",
@@ -15091,27 +21607,6 @@
     "sourceRevision": 4,
     "audioText": "respondent",
     "audioPath": "audio/respondent.mp3"
-  },
-  {
-    "id": "responsibility",
-    "term": "responsibility",
-    "meaning": "职责；责任",
-    "note": "—",
-    "category": "学校、工作与项目",
-    "sections": [
-      "P2 + P3 必会看懂词"
-    ],
-    "modes": [
-      "recognition"
-    ],
-    "isRealError": false,
-    "acceptedAnswers": [
-      "responsibility"
-    ],
-    "partOfSpeech": "名词",
-    "sourceRevision": 4,
-    "audioText": "responsibility",
-    "audioPath": "audio/responsibility.mp3"
   },
   {
     "id": "restaurant",
@@ -15154,32 +21649,6 @@
     "sourceRevision": 4,
     "audioText": "restrict",
     "audioPath": "audio/restrict.mp3"
-  },
-  {
-    "id": "result",
-    "term": "result",
-    "meaning": "结果",
-    "note": "检查复数",
-    "category": "工作、学校与学术",
-    "sections": [
-      "P1 + P4 必会听写词",
-      "P2 + P3 必会看懂词"
-    ],
-    "modes": [
-      "recognition",
-      "spelling"
-    ],
-    "isRealError": false,
-    "acceptedAnswers": [
-      "result"
-    ],
-    "numberVariants": [
-      "results"
-    ],
-    "partOfSpeech": "名词",
-    "sourceRevision": 4,
-    "audioText": "result",
-    "audioPath": "audio/result.mp3"
   },
   {
     "id": "risk",
@@ -15999,27 +22468,6 @@
     "audioPath": "audio/strength.mp3"
   },
   {
-    "id": "stressful",
-    "term": "stressful",
-    "meaning": "压力大的",
-    "note": "—",
-    "category": "原因、问题、优缺点与评价",
-    "sections": [
-      "P2 + P3 必会看懂词"
-    ],
-    "modes": [
-      "recognition"
-    ],
-    "isRealError": false,
-    "acceptedAnswers": [
-      "stressful"
-    ],
-    "partOfSpeech": "形容词",
-    "sourceRevision": 4,
-    "audioText": "stressful",
-    "audioPath": "audio/stressful.mp3"
-  },
-  {
     "id": "structure",
     "term": "structure",
     "meaning": "结构",
@@ -16274,27 +22722,6 @@
     "sourceRevision": 4,
     "audioText": "surname",
     "audioPath": "audio/surname.mp3"
-  },
-  {
-    "id": "surprised",
-    "term": "surprised",
-    "meaning": "惊讶的",
-    "note": "—",
-    "category": "情绪、态度与感受",
-    "sections": [
-      "P2 + P3 必会看懂词"
-    ],
-    "modes": [
-      "recognition"
-    ],
-    "isRealError": false,
-    "acceptedAnswers": [
-      "surprised"
-    ],
-    "partOfSpeech": "形容词",
-    "sourceRevision": 4,
-    "audioText": "surprised",
-    "audioPath": "audio/surprised.mp3"
   },
   {
     "id": "survey",
@@ -17231,27 +23658,6 @@
     "sourceRevision": 4,
     "audioText": "weakness",
     "audioPath": "audio/weakness.mp3"
-  },
-  {
-    "id": "weather",
-    "term": "weather",
-    "meaning": "天气",
-    "note": "与 whether 区分",
-    "category": "环境、自然、材料与科学",
-    "sections": [
-      "P1 + P4 必会听写词"
-    ],
-    "modes": [
-      "spelling"
-    ],
-    "isRealError": false,
-    "acceptedAnswers": [
-      "weather"
-    ],
-    "partOfSpeech": "名词",
-    "sourceRevision": 4,
-    "audioText": "weather",
-    "audioPath": "audio/weather.mp3"
   },
   {
     "id": "wednesday",
