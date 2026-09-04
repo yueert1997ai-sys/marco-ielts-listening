@@ -126,3 +126,5 @@ cd admin && npm test
 - 易混词使用独立 `marcoIeltsConfusions.v1`；其学习、冷测和强化记录不进入 Listening 进度、streak 或词库统计。
 - 本地模型只在词典缺失且浏览器支持 WebGPU 时按需使用；模型资源不随仓库发布。
 - 当前没有已确认的技术待办；新需求以 GitHub 最新 `main` 为起点重新评估。
+
+- v2.18.0 QA：普通训练错误只作为近期错误提升优先级，只有明确真实错题证据才设置 `causedIeltsError`；赦免会同步刷新当日背错词队列；`id:vocab` 复习进度每次以永久错词档案的掌握阶段与 nextReview 为基准，防止状态分叉。

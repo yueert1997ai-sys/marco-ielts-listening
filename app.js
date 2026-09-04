@@ -595,7 +595,9 @@
     if (result === "weak") {
       return registerErrorWord(current, { source: "vocabulary", sourceDetail: "错词复习再次选择不认识", errorType: "review", fromReview: true }, today, progressRecord);
     }
-    const masteryLevel = Number.isInteger(progressRecord?.stage) ? progressRecord.stage : current.masteryLevel;
+    const masteryLevel = Number.isInteger(progressRecord?.stage)
+      ? Math.max(0, Math.min(progressRecord.stage, INTERVALS.length - 1))
+      : current.masteryLevel;
     const updated = {
       ...current,
       isErrorWord: true,
@@ -675,6 +677,18 @@
 
   function syncVocabErrorSession(current, today, keys) {
     return syncTrainingPoolSession(current, today, keys, VOCAB_ERROR_POOL_ID);
+  }
+
+  function progressFromErrorArchive(record, existing = {}) {
+    const stage = Number.isInteger(record?.masteryLevel)
+      ? Math.max(0, Math.min(record.masteryLevel, INTERVALS.length - 1))
+      : 0;
+    return {
+      ...existing,
+      stage,
+      due: record?.nextReviewAt || existing?.due || "",
+      lastSeen: record?.lastReviewAt || existing?.lastSeen || "",
+    };
   }
 
   function shouldConfirmRecognition(entry, activity, record, sessionDate = dateKey()) {
@@ -1151,7 +1165,7 @@
     masteryStatus, sanitizeErrorSources, sanitizeErrorWordRecords, isActiveErrorWord,
     deriveErrorPriority, initialErrorWordRecord, seedErrorArchive,
     registerErrorWord, reviewErrorWord, pardonErrorWord, mergeErrorWordRecords,
-    createVocabErrorDeck, syncVocabNewSession, syncVocabErrorSession,
+    createVocabErrorDeck, syncVocabNewSession, syncVocabErrorSession, progressFromErrorArchive,
     shouldConfirmRecognition, reinforcementDecision, insertRetry, buildChoices,
     partOfSpeechForMeaning, abbreviatePartOfSpeech,
     createBrowseDeck, parseWrongWordInput, parseWrongWordDrafts, mergeCustomItems, migrateNumberVariantState, seededShuffle,
@@ -2259,7 +2273,7 @@
         source: activity.mode === "spelling" ? "listening" : "vocabulary",
         sourceDetail: `${sessionLabels[sessionKind] || "训练"}·${modeLabel}${detail?.skipped ? "·先跳过" : "答错"}`,
         errorType: activity.mode,
-        causedIeltsError: true,
+        causedIeltsError: itemCausedIeltsError(activity),
       }, session.date, state.progress[activity.key]);
     }
     if (sessionKind === "learning" && activity.mode === "recognition" && state.vocabNewDaily) {
@@ -2467,9 +2481,12 @@
     session.queue.shift();
     session.answeredBase[activity.key] = true;
     session.outcomes[activity.key] = known ? "pass" : "fail";
-    const progressKey = activity.key;
-    state.progress[progressKey] = scheduleReview(state.progress[progressKey], known ? "pass" : "fail", session.date);
     const id = activity.id;
+    const progressKey = activity.key;
+    const progressBase = kind === "vocabErrors"
+      ? progressFromErrorArchive(state.errorWords[id], state.progress[progressKey])
+      : state.progress[progressKey];
+    state.progress[progressKey] = scheduleReview(progressBase, known ? "pass" : "fail", session.date);
     if (known) {
       if (isActiveErrorWord(state.errorWords[id])) {
         state.errorWords[id] = reviewErrorWord(state.errorWords[id], "known", session.date, state.progress[progressKey]);
@@ -2479,7 +2496,7 @@
         source: "vocabulary",
         sourceDetail: kind === "vocabErrors" ? "背错词·选择不认识" : "背新词·选择不认识",
         errorType: "self-assessment",
-        causedIeltsError: true,
+        causedIeltsError: itemCausedIeltsError(activity),
       }, session.date, state.progress[progressKey]);
       if (kind === "vocabNew") enqueueReviewActivity(state.reviewDaily, activity.key);
     }
@@ -2635,6 +2652,8 @@
       const record = state.errorWords[id];
       if (!isActiveErrorWord(record)) return;
       state.errorWords[id] = pardonErrorWord(record);
+      const vocabErrorKeys = createVocabErrorDeck([...itemMap.values()], state.errorWords, dateKey());
+      state.vocabErrorDaily = syncVocabErrorSession(state.vocabErrorDaily, dateKey(), vocabErrorKeys);
       saveState();
       errorLibraryScreen();
     }));
@@ -2848,7 +2867,7 @@
               source: "manual",
               sourceDetail: `错词收件箱·${entry.reason}`,
               errorType: "import",
-              causedIeltsError: true,
+              causedIeltsError: itemCausedIeltsError({ errorNote: entry.reason }),
             }, dateKey());
             state.errorWords[entry.id] = { ...seededRecord, nextReviewAt: dateKey() };
           });

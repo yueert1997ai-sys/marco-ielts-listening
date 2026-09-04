@@ -646,4 +646,44 @@ test("mergeErrorWordRecords combines duplicate ids without losing history", () =
   assert.equal(merged.sources.length, 2);
 });
 
+
+
+test("ordinary training miss is not permanently tagged as an IELTS-caused error", () => {
+  let record = logic.registerErrorWord(null, { source: "vocabulary", sourceDetail: "背新词·选择不认识", causedIeltsError: false }, "2026-09-04");
+  assert.equal(record.causedIeltsError, false);
+  record = logic.reviewErrorWord(record, "known", "2026-09-08", { stage: 3, due: "2026-09-15" });
+  assert.equal(record.priority, "B");
+});
+
+test("pardon immediately removes a word from the existing daily error queue", () => {
+  const items = [{ id: "a" }, { id: "b" }];
+  const records = logic.sanitizeErrorWordRecords({
+    a: { isErrorWord: true, priority: "S", wrongCount: 1, nextReviewAt: "2026-09-04" },
+    b: { isErrorWord: true, priority: "S", wrongCount: 1, nextReviewAt: "2026-09-04" },
+  });
+  let session = logic.syncVocabErrorSession(null, "2026-09-04", logic.createVocabErrorDeck(items, records, "2026-09-04", 2));
+  records.a = logic.pardonErrorWord(records.a, "2026-09-04T10:00:00.000Z");
+  session = logic.syncVocabErrorSession(session, "2026-09-04", logic.createVocabErrorDeck(items, records, "2026-09-04", 2));
+  assert(!session.baseKeys.includes("a:vocab"));
+  assert(!session.queue.some((entry) => entry.key === "a:vocab"));
+});
+
+test("error vocab progress starts from archive mastery instead of stale vocab state", () => {
+  const archive = { masteryLevel: 5, nextReviewAt: "2026-10-01", lastReviewAt: "2026-09-01" };
+  const base = logic.progressFromErrorArchive(archive, { stage: 1, due: "2026-09-05", passes: 7 });
+  assert.equal(base.stage, 5);
+  assert.equal(base.due, "2026-10-01");
+  const passed = logic.scheduleReview(base, "pass", "2026-10-01");
+  let record = logic.sanitizeErrorWordRecords({ x: { isErrorWord: true, masteryLevel: 5, priority: "B", wrongCount: 1 } }).x;
+  record = logic.reviewErrorWord(record, "known", "2026-10-01", passed);
+  assert.equal(record.masteryLevel, 5);
+  assert.equal(record.reviewStatus, "mastered");
+});
+
+test("reactivated error ignores stale high vocab stage and restarts from archive stage", () => {
+  const base = logic.progressFromErrorArchive({ masteryLevel: 0, nextReviewAt: "2026-09-05" }, { stage: 5, due: "2026-10-01" });
+  assert.equal(base.stage, 0);
+  assert.equal(base.due, "2026-09-05");
+});
+
 console.log(JSON.stringify({ ok: true, tests }));
