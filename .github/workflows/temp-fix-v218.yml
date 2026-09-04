@@ -1,0 +1,155 @@
+name: One-time v2.18 QA fix
+
+on:
+  push:
+    branches: [codex/error-word-mainline]
+    paths: [.github/workflows/temp-fix-v218.yml]
+
+permissions:
+  contents: write
+
+jobs:
+  fix:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: codex/error-word-mainline
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Patch reviewed v2.18 issues
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          app_path = Path('app.js')
+          app = app_path.read_text(encoding='utf-8')
+
+          def replace_once(old, new, label):
+              global app
+              count = app.count(old)
+              if count != 1:
+                  raise SystemExit(f'{label}: expected 1 match, got {count}')
+              app = app.replace(old, new, 1)
+
+          replace_once(
+          '''        errorType: activity.mode,\n        causedIeltsError: true,\n      }, session.date, state.progress[activity.key]);''',
+          '''        errorType: activity.mode,\n        causedIeltsError: itemCausedIeltsError(activity),\n      }, session.date, state.progress[activity.key]);''',
+          'regular training causedIeltsError')
+
+          replace_once(
+          '''  function syncVocabErrorSession(current, today, keys) {\n    return syncTrainingPoolSession(current, today, keys, VOCAB_ERROR_POOL_ID);\n  }\n\n  function shouldConfirmRecognition''',
+          '''  function syncVocabErrorSession(current, today, keys) {\n    return syncTrainingPoolSession(current, today, keys, VOCAB_ERROR_POOL_ID);\n  }\n\n  function progressFromErrorArchive(record, existing = {}) {\n    const stage = Number.isInteger(record?.masteryLevel)\n      ? Math.max(0, Math.min(record.masteryLevel, INTERVALS.length - 1))\n      : 0;\n    return {\n      ...existing,\n      stage,\n      due: record?.nextReviewAt || existing?.due || \"\",\n      lastSeen: record?.lastReviewAt || existing?.lastSeen || \"\",\n    };\n  }\n\n  function shouldConfirmRecognition''',
+          'progressFromErrorArchive helper')
+
+          replace_once(
+          '''    const masteryLevel = Number.isInteger(progressRecord?.stage) ? progressRecord.stage : current.masteryLevel;''',
+          '''    const masteryLevel = Number.isInteger(progressRecord?.stage)\n      ? Math.max(0, Math.min(progressRecord.stage, INTERVALS.length - 1))\n      : current.masteryLevel;''',
+          'mastery clamp')
+
+          replace_once(
+          '''    createVocabErrorDeck, syncVocabNewSession, syncVocabErrorSession,\n    shouldConfirmRecognition''',
+          '''    createVocabErrorDeck, syncVocabNewSession, syncVocabErrorSession, progressFromErrorArchive,\n    shouldConfirmRecognition''',
+          'api export')
+
+          replace_once(
+          '''    const progressKey = activity.key;\n    state.progress[progressKey] = scheduleReview(state.progress[progressKey], known ? \"pass\" : \"fail\", session.date);\n    const id = activity.id;''',
+          '''    const id = activity.id;\n    const progressKey = activity.key;\n    const progressBase = kind === \"vocabErrors\"\n      ? progressFromErrorArchive(state.errorWords[id], state.progress[progressKey])\n      : state.progress[progressKey];\n    state.progress[progressKey] = scheduleReview(progressBase, known ? \"pass\" : \"fail\", session.date);''',
+          'vocab error progress sync')
+
+          replace_once(
+          '''        errorType: \"self-assessment\",\n        causedIeltsError: true,\n      }, session.date, state.progress[progressKey]);''',
+          '''        errorType: \"self-assessment\",\n        causedIeltsError: itemCausedIeltsError(activity),\n      }, session.date, state.progress[progressKey]);''',
+          'vocab self-assessment causedIeltsError')
+
+          replace_once(
+          '''      state.errorWords[id] = pardonErrorWord(record);\n      saveState();\n      errorLibraryScreen();''',
+          '''      state.errorWords[id] = pardonErrorWord(record);\n      const vocabErrorKeys = createVocabErrorDeck([...itemMap.values()], state.errorWords, dateKey());\n      state.vocabErrorDaily = syncVocabErrorSession(state.vocabErrorDaily, dateKey(), vocabErrorKeys);\n      saveState();\n      errorLibraryScreen();''',
+          'pardon queue sync')
+
+          replace_once(
+          '''              errorType: \"import\",\n              causedIeltsError: true,\n            }, dateKey());''',
+          '''              errorType: \"import\",\n              causedIeltsError: itemCausedIeltsError({ errorNote: entry.reason }),\n            }, dateKey());''',
+          'inbox causedIeltsError')
+
+          app_path.write_text(app, encoding='utf-8')
+
+          test_path = Path('tests/test_logic.js')
+          tests = test_path.read_text(encoding='utf-8')
+          marker = 'console.log(JSON.stringify({ ok: true, tests }));'
+          if marker not in tests:
+              raise SystemExit('test marker missing')
+          extra = r'''
+
+test("ordinary training miss is not permanently tagged as an IELTS-caused error", () => {
+  let record = logic.registerErrorWord(null, { source: "vocabulary", sourceDetail: "背新词·选择不认识", causedIeltsError: false }, "2026-09-04");
+  assert.equal(record.causedIeltsError, false);
+  record = logic.reviewErrorWord(record, "known", "2026-09-08", { stage: 3, due: "2026-09-15" });
+  assert.equal(record.priority, "B");
+});
+
+test("pardon immediately removes a word from the existing daily error queue", () => {
+  const items = [{ id: "a" }, { id: "b" }];
+  const records = logic.sanitizeErrorWordRecords({
+    a: { isErrorWord: true, priority: "S", wrongCount: 1, nextReviewAt: "2026-09-04" },
+    b: { isErrorWord: true, priority: "S", wrongCount: 1, nextReviewAt: "2026-09-04" },
+  });
+  let session = logic.syncVocabErrorSession(null, "2026-09-04", logic.createVocabErrorDeck(items, records, "2026-09-04", 2));
+  records.a = logic.pardonErrorWord(records.a, "2026-09-04T10:00:00.000Z");
+  session = logic.syncVocabErrorSession(session, "2026-09-04", logic.createVocabErrorDeck(items, records, "2026-09-04", 2));
+  assert(!session.baseKeys.includes("a:vocab"));
+  assert(!session.queue.some((entry) => entry.key === "a:vocab"));
+});
+
+test("error vocab progress starts from archive mastery instead of stale vocab state", () => {
+  const archive = { masteryLevel: 5, nextReviewAt: "2026-10-01", lastReviewAt: "2026-09-01" };
+  const base = logic.progressFromErrorArchive(archive, { stage: 1, due: "2026-09-05", passes: 7 });
+  assert.equal(base.stage, 5);
+  assert.equal(base.due, "2026-10-01");
+  const passed = logic.scheduleReview(base, "pass", "2026-10-01");
+  let record = logic.sanitizeErrorWordRecords({ x: { isErrorWord: true, masteryLevel: 5, priority: "B", wrongCount: 1 } }).x;
+  record = logic.reviewErrorWord(record, "known", "2026-10-01", passed);
+  assert.equal(record.masteryLevel, 5);
+  assert.equal(record.reviewStatus, "mastered");
+});
+
+test("reactivated error ignores stale high vocab stage and restarts from archive stage", () => {
+  const base = logic.progressFromErrorArchive({ masteryLevel: 0, nextReviewAt: "2026-09-05" }, { stage: 5, due: "2026-10-01" });
+  assert.equal(base.stage, 0);
+  assert.equal(base.due, "2026-09-05");
+});
+'''
+          tests = tests.replace(marker, extra + '\n' + marker, 1)
+          test_path.write_text(tests, encoding='utf-8')
+
+          changelog = Path('CHANGELOG.md')
+          text = changelog.read_text(encoding='utf-8')
+          anchor = '<!-- CHANGELOG_ENTRIES -->\n'
+          note = '- 2026-09-04 `[Listening v2.18.0 QA]` 修复上线前代码审查发现的 3 个状态问题：普通训练失误不再错误标记为“致 IELTS 错题”；手动赦免后立即从当日背错词队列移除；背错词 SRS 以永久错词档案的 mastery/nextReview 为真相源，避免旧词首次复习降级或赦免后复活继承陈旧 `:vocab` 阶段。\n'
+          if note not in text:
+              text = text.replace(anchor, anchor + note, 1)
+          changelog.write_text(text, encoding='utf-8')
+
+          handoff = Path('docs/HANDOFF.md')
+          text = handoff.read_text(encoding='utf-8')
+          note = '\n- v2.18.0 QA：普通训练错误只作为近期错误提升优先级，只有明确真实错题证据才设置 `causedIeltsError`；赦免会同步刷新当日背错词队列；`id:vocab` 复习进度每次以永久错词档案的掌握阶段与 nextReview 为基准，防止状态分叉。\n'
+          if note.strip() not in text:
+              text += note
+          handoff.write_text(text, encoding='utf-8')
+          PY
+      - name: Run focused logic tests
+        run: node tests/test_logic.js
+      - name: Validate release
+        run: python scripts/validate_release.py
+      - name: Commit reviewed fixes
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git rm .github/workflows/temp-fix-v218.yml
+          git add app.js tests/test_logic.js CHANGELOG.md docs/HANDOFF.md
+          git commit -m "Fix v2.18 error-word review state handling"
+          git push origin HEAD:codex/error-word-mainline
