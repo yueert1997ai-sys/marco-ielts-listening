@@ -12,12 +12,14 @@
 ## 当前发布状态
 
 <!-- VOCAB_STATUS_START -->
-- 训练端程序版本：`v2.17.0`
+- 训练端程序版本：`v2.18.0`
 - 后台程序版本：`v1.0.1`
 - 正式词库：823 张主卡；听写 276 项；识词 604 项
 - 个人错词：192 条；基础词覆盖：8 条；已停用：0 条
 - 最后自动词库同步：2026-09-03，GitHub Issue #20
 <!-- VOCAB_STATUS_END -->
+
+- Listening `v2.18.0` 本地候选：新增「背新词 0/25」（今日新词识义子集，双入口共享进度）与「背错词 0/18」（永久错词档案每日队列）两条词汇主线，均为先「认识 / 不认识」再公布释义的两阶段自评；新增浏览器端 `state.errorWords` 永久错词档案（wrongCount、sources、S/A/B、masteryLevel/reviewStatus、nextReviewAt、赦免历史），错词身份永不自动洗白，仅手动赦免退出活跃池且历史保留，赦免后再错自动恢复为 S 级；新增「个人错词库」页（全部 / 高频复习 / 稳定掌握 / 已赦免）。实现移植自 marco-ielts-cards 已验证逻辑，数据与 UI 按本仓库架构重做。
 
 - 最后完成线上运行态验收的功能提交：`552a7b1`（Listening `v2.16.0`）
 - Listening `v2.17.0` 本地候选：识义首屏收敛为“认识 / 不认识”；不认识后进入四选一释义确认，确认后在 8–12 题回炉，回炉仍先做认识度判断。已移除误录的完整句子 `Large pans of sap called evaporators are heated by means of a fire`，并在网页同步、后台和构建三层拒绝超过 6 词的完整句子。
@@ -31,6 +33,20 @@
 - 首页“重点词随机训练”读取当前浏览器的重点标记，使用独立可暂停队列；一轮完成后重建并重新打乱，答错同样进入高频复习。
 - 识义首屏不显示中文候选项，只问“认识 / 不认识”；不认识时再显示四个中文释义用于确认。认识词在 15–20 题后确认，不认识词在 8–12 题后回炉；回炉仍先问认识度。剩余题不足以形成至少 6 个不同词的间隔时，不在本轮强制循环。
 - `melt` 已作为个人识义错词收录，释义为“融化；熔化；使融化”，词性为动词并带英式发音。
+
+## 永久错词档案（v2.18.0 新增）
+
+`state.errorWords[itemId]` 以词条 `id` 为唯一键，跨训练模式只维护一条主记录：
+
+- `isErrorWord`：永久历史身份；只有手动赦免会置 `false`，掌握度提升永不自动洗白。
+- `sources`：`source(listening/vocabulary/reading/manual) / sourceDetail / errorType / wrongAt` 历史，去重保留最近 100 条。
+- `wrongCount / firstWrongAt / lastWrongAt`：错误累计。
+- `priority`：S/A/B 动态优先级（近 2 天错、wrongCount≥2、致 IELTS 错题、上次再错均为 S）。
+- `masteryLevel / reviewStatus`：学习中 / 稳定掌握 / 长期维持，只代表当前会不会。
+- `nextReviewAt / lastReviewAt`：背错词 SRS 排期（沿用 1/3/7/14/30/60 天 INTERVALS）。
+- `pardoned / pardonedAt / pardonHistory`：手动赦免记录；再错自动复活并保留赦免历史。
+
+登记入口：任何训练会话答错或点「不认识」、错词收件箱确认加入、已发布个人错词（`sourceType=user`）自动播种。每日「背错词」队列最多 18 词，排序为到期 → S/A/B → 最近错误 → 错误次数 → 复习再错 → 久未复习。「背新词」取自今日新词识义子集，与今日新词共享 `id:recognition` 进度，双入口作答互相跳过。
 
 ## 系统结构
 
@@ -110,3 +126,5 @@ cd admin && npm test
 - 易混词使用独立 `marcoIeltsConfusions.v1`；其学习、冷测和强化记录不进入 Listening 进度、streak 或词库统计。
 - 本地模型只在词典缺失且浏览器支持 WebGPU 时按需使用；模型资源不随仓库发布。
 - 当前没有已确认的技术待办；新需求以 GitHub 最新 `main` 为起点重新评估。
+
+- v2.18.0 QA：普通训练错误只作为近期错误提升优先级，只有明确真实错题证据才设置 `causedIeltsError`；赦免会同步刷新当日背错词队列；`id:vocab` 复习进度每次以永久错词档案的掌握阶段与 nextReview 为基准，防止状态分叉。

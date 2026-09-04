@@ -689,3 +689,59 @@ textarea:focus-visible, select:focus-visible { outline: 3px solid rgba(0, 122, 2
 }
 
 @media (min-width: 481px) { body { border-inline: .5px solid var(--line-soft); } }
+
+/* 词汇主线：背新词 / 背错词 */
+.home-vocab { margin-top: 12px; }
+.home-vocab-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.vocab-path {
+  grid-template-columns: 38px minmax(0, 1fr);
+  grid-template-rows: auto auto;
+  align-items: start;
+  padding: 12px 14px;
+  border-radius: 16px;
+  box-shadow: var(--shadow);
+  row-gap: 8px;
+}
+.vocab-path .home-task-icon { grid-row: 1; }
+.vocab-path .home-task-copy { grid-row: 1; }
+.vocab-path .home-task-copy strong { font-size: 18px; }
+.vocab-path .home-task-copy small { min-height: 2.5em; }
+.vocab-path-progress {
+  grid-row: 2;
+  grid-column: 1 / -1;
+  display: inline-flex;
+  align-items: baseline;
+  gap: 1px;
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+.vocab-path-progress b { color: var(--ink); font-size: 24px; font-weight: 800; }
+.vocab-path.error-path .home-task-icon { color: var(--error); background: var(--error-soft); border-radius: 10px; }
+.vocab-path:disabled { opacity: .45; }
+.vocab-path + .vocab-path { border-top: 0; }
+@media (max-width: 359px) {
+  .home-vocab-grid { grid-template-columns: 1fr; }
+}
+
+/* 两阶段词汇卡 */
+.vocab-card .confidence-hint { margin: 10px 0 0; color: var(--muted); font-size: 13px; }
+.vocab-reveal-card .meaning-row { margin-top: 10px; }
+.vocab-archive-note { margin: 10px 0 0; color: var(--muted); font-size: 13px; line-height: 1.5; }
+
+/* 个人错词库 */
+.error-library-card h2 { word-break: break-word; }
+.pardon-button {
+  min-height: 34px;
+  padding: 0 12px;
+  border-radius: 17px;
+  border: .5px solid var(--line-soft);
+  background: var(--paper);
+  color: var(--signal);
+  font-size: 13px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+.pardon-button:active { background: var(--signal-soft); }
+.error-library .browse-intro p { margin: 0; }
