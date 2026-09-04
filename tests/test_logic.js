@@ -326,7 +326,7 @@ test("result note has no dangling separator when source note is empty", () => {
 test("different published version triggers an update", () => assert(logic.hasVersionUpdate("v2.11.1", "v2.11.2")));
 test("matching published version does not trigger an update", () => assert.equal(logic.hasVersionUpdate("v2.11.2", "v2.11.2"), false));
 test("intervals match spec", () => assert.deepEqual(logic.INTERVALS, [1, 3, 7, 14, 30, 60]));
-test("visible app version matches this release", () => assert.equal(logic.APP_VERSION, "v2.17.0"));
+test("visible app version matches this release", () => assert.equal(logic.APP_VERSION, "v2.18.0"));
 test("direction response limit is two seconds", () => assert.equal(logic.DIRECTION_RESPONSE_LIMIT_MS, 2000));
 test("hard direction response limit is one second", () => assert.equal(logic.HARD_DIRECTION_RESPONSE_LIMIT_MS, 1000));
 test("hard direction audio plays at one point four speed", () => assert.equal(logic.HARD_DIRECTION_PLAYBACK_RATE, 1.4));
@@ -504,5 +504,146 @@ test("a locally added plural merges into the published singular item", () => {
   assert.deepEqual(merged[0].modes.sort(), ["recognition", "spelling"]);
 });
 test("browse page size is twenty", () => assert.equal(logic.BROWSE_PAGE_SIZE, 20));
+
+// ===== 永久错词档案（移植自 marco-ielts-cards 已验证实现）=====
+
+test("first error creates an active permanent error record", () => {
+  const record = logic.registerErrorWord(null, { source: "listening", sourceDetail: "今日新词·听写答错", errorType: "spelling", causedIeltsError: true }, "2026-09-04");
+  assert.equal(logic.isActiveErrorWord(record), true);
+  assert.equal(record.wrongCount, 1);
+  assert.equal(record.priority, "S");
+  assert.equal(record.firstWrongAt, "2026-09-04");
+  assert.equal(record.lastWrongAt, "2026-09-04");
+  assert.equal(record.reviewStatus, "learning");
+});
+
+test("repeated errors update the same record instead of duplicating", () => {
+  const first = logic.registerErrorWord(null, { source: "listening", sourceDetail: "听写错", causedIeltsError: true }, "2026-09-04");
+  const second = logic.registerErrorWord(first, { source: "vocabulary", sourceDetail: "背新词·不认识", causedIeltsError: true }, "2026-09-05", { stage: 0, due: "2026-09-06" });
+  assert.equal(second.wrongCount, 2);
+  assert.equal(second.firstWrongAt, "2026-09-04");
+  assert.equal(second.lastWrongAt, "2026-09-05");
+  assert.equal(second.priority, "S");
+  assert.equal(second.nextReviewAt, "2026-09-06");
+  assert.equal(second.sources.length, 2);
+});
+
+test("consecutive passes raise mastery but never erase error identity", () => {
+  let record = logic.registerErrorWord(null, { source: "vocabulary", sourceDetail: "不认识", causedIeltsError: true }, "2026-09-04");
+  record = logic.reviewErrorWord(record, "known", "2026-09-05", { stage: 3, due: "2026-09-12" });
+  assert.equal(record.isErrorWord, true);
+  assert.equal(record.masteryLevel, 3);
+  assert.equal(record.reviewStatus, "stable");
+  assert.equal(record.wrongCount, 1);
+  record = logic.reviewErrorWord(record, "known", "2026-09-12", { stage: 5, due: "2026-10-11" });
+  assert.equal(record.reviewStatus, "mastered");
+  assert.equal(record.isErrorWord, true);
+  assert.equal(logic.isActiveErrorWord(record), true);
+});
+
+test("only manual pardon exits the active pool and history is preserved", () => {
+  let record = logic.registerErrorWord(null, { source: "listening", sourceDetail: "听写错", causedIeltsError: true }, "2026-09-04");
+  record = logic.registerErrorWord(record, { source: "vocabulary", sourceDetail: "又不认识" }, "2026-09-05");
+  const pardoned = logic.pardonErrorWord(record, "2026-09-06T08:00:00.000Z");
+  assert.equal(logic.isActiveErrorWord(pardoned), false);
+  assert.equal(pardoned.pardoned, true);
+  assert.equal(pardoned.wrongCount, 2);
+  assert.equal(pardoned.firstWrongAt, "2026-09-04");
+  assert.equal(pardoned.sources.length, 2);
+  assert.equal(pardoned.isErrorWord, false);
+});
+
+test("re-error after pardon auto revives as S with history kept", () => {
+  let record = logic.registerErrorWord(null, { source: "listening", sourceDetail: "听写错", causedIeltsError: true }, "2026-09-01");
+  record = logic.pardonErrorWord(record, "2026-09-02T08:00:00.000Z");
+  const revived = logic.registerErrorWord(record, { source: "vocabulary", sourceDetail: "背错词·不认识", causedIeltsError: true }, "2026-09-04", { stage: 0, due: "2026-09-05" });
+  assert.equal(logic.isActiveErrorWord(revived), true);
+  assert.equal(revived.pardoned, false);
+  assert.equal(revived.wrongCount, 2);
+  assert.equal(revived.priority, "S");
+  assert.equal(revived.masteryLevel, 0);
+  assert.equal(revived.nextReviewAt, "2026-09-05");
+  assert(revived.pardonHistory.includes("2026-09-02T08:00:00.000Z"));
+});
+
+test("error deck orders by due, priority, recency and wrong count", () => {
+  const vocabItems = ["due-s", "due-a", "future-s", "future-b"].map((id) => ({ id }));
+  const records = logic.sanitizeErrorWordRecords({
+    "future-s": { isErrorWord: true, priority: "S", wrongCount: 1, nextReviewAt: "2026-09-10", lastWrongAt: "2026-09-04" },
+    "due-a": { isErrorWord: true, priority: "A", wrongCount: 1, nextReviewAt: "2026-09-03", lastWrongAt: "2026-09-01" },
+    "due-s": { isErrorWord: true, priority: "S", wrongCount: 3, nextReviewAt: "2026-09-04", lastWrongAt: "2026-09-02" },
+    "future-b": { isErrorWord: true, priority: "B", wrongCount: 1, nextReviewAt: "2026-10-01", masteryLevel: 5, reviewStatus: "mastered" },
+  });
+  const deck = logic.createVocabErrorDeck(vocabItems, records, "2026-09-04", 4);
+  assert.deepEqual(deck, ["due-s:vocab", "due-a:vocab", "future-s:vocab", "future-b:vocab"]);
+});
+
+test("error deck excludes pardoned and caps at the daily target", () => {
+  const vocabItems = Array.from({ length: 25 }, (_, index) => ({ id: `w${index}` }));
+  const raw = {};
+  vocabItems.forEach((item, index) => {
+    raw[item.id] = { isErrorWord: true, priority: "S", wrongCount: 1, nextReviewAt: "2026-09-04" };
+    if (index === 0) { raw[item.id].pardoned = true; raw[item.id].isErrorWord = false; }
+  });
+  const deck = logic.createVocabErrorDeck(vocabItems, raw, "2026-09-04");
+  assert.equal(deck.length, logic.ERROR_VOCAB_DAILY_TARGET);
+  assert(!deck.includes("w0:vocab"));
+});
+
+test("mastered B-level records stay in the active pool", () => {
+  const record = logic.sanitizeErrorWordRecords({ x: { isErrorWord: true, priority: "B", wrongCount: 1, masteryLevel: 5, reviewStatus: "mastered" } }).x;
+  assert.equal(logic.isActiveErrorWord(record), true);
+});
+
+test("seedErrorArchive imports personal error items once with progress lapses", () => {
+  const vocabItems = [
+    { id: "carpet", term: "carpet", meaning: "地毯", modes: ["spelling", "recognition"], isRealError: true, sourceType: "user", errorNote: "剑桥真题错题" },
+    { id: "plain", term: "plain", meaning: "平的", modes: ["recognition"], isRealError: false },
+  ];
+  const progress = { "carpet:spelling": { stage: 2, lapses: 3, due: "2026-09-06", lastSeen: "2026-09-01" } };
+  const seeded = logic.seedErrorArchive({}, vocabItems, progress, "2026-09-04");
+  assert.equal(Object.keys(seeded).length, 1);
+  assert.equal(seeded.carpet.wrongCount, 3);
+  assert.equal(seeded.carpet.priority, "S");
+  assert.equal(seeded.carpet.nextReviewAt, "2026-09-06");
+  assert.equal(seeded.carpet.masteryLevel, 2);
+  const reseeded = logic.seedErrorArchive(seeded, vocabItems, progress, "2026-09-05");
+  assert.equal(reseeded.carpet.wrongCount, 3);
+});
+
+test("vocab new session reuses the daily recognition subset", () => {
+  const progress = {};
+  const deck = logic.createLearningDeck(activities, progress, "2026-09-04");
+  const recognitionKeys = deck.filter((key) => key.endsWith(":recognition"));
+  const session = logic.syncVocabNewSession(null, "2026-09-04", recognitionKeys);
+  assert.equal(session.poolId, logic.VOCAB_NEW_POOL_ID);
+  assert.equal(session.queue.length, 25);
+  const synced = logic.syncVocabNewSession(session, "2026-09-04", recognitionKeys);
+  assert.equal(synced, session);
+});
+
+test("safeState keeps error archive and vocab sessions", () => {
+  const state = logic.safeState({
+    errorWords: { carpet: { isErrorWord: true, wrongCount: 2 } },
+    vocabNewDaily: { date: "2026-09-04" },
+    vocabErrorDaily: { date: "2026-09-04" },
+  });
+  assert.equal(state.errorWords.carpet.wrongCount, 2);
+  assert.equal(state.vocabNewDaily.date, "2026-09-04");
+  assert.equal(state.vocabErrorDaily.date, "2026-09-04");
+  const fresh = logic.safeState(null);
+  assert.deepEqual(fresh.errorWords, {});
+  assert.equal(fresh.vocabNewDaily, null);
+});
+
+test("mergeErrorWordRecords combines duplicate ids without losing history", () => {
+  const first = logic.registerErrorWord(null, { source: "listening", sourceDetail: "听写错" }, "2026-09-01");
+  const second = logic.registerErrorWord(null, { source: "vocabulary", sourceDetail: "不认识" }, "2026-09-03");
+  const merged = logic.mergeErrorWordRecords(first, second);
+  assert.equal(merged.wrongCount, 2);
+  assert.equal(merged.firstWrongAt, "2026-09-01");
+  assert.equal(merged.lastWrongAt, "2026-09-03");
+  assert.equal(merged.sources.length, 2);
+});
 
 console.log(JSON.stringify({ ok: true, tests }));

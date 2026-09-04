@@ -2,17 +2,21 @@
   "use strict";
 
   const STORAGE_KEY = "marcoIeltsListening.v1";
-  const APP_VERSION = "v2.17.0";
+  const APP_VERSION = "v2.18.0";
   const AUTO_UPDATE_SESSION_KEY = "marcoIeltsListening.autoUpdateAttempt";
   const AUTO_UPDATE_THROTTLE_MS = 60 * 1000;
   const TRAINING_RESET_ID = "fresh-start-v2.5.0";
   const LEARNING_REVIEW_SPLIT_ID = "learning-review-v2.9.0";
-  const SELF_ASSESSMENT_FLOW_ID = "meaning-confirmation-v2.17.0";
+  const SELF_ASSESSMENT_FLOW_ID = "meaning-confirmation-v2.18.0";
   const DECK_REVISION = "whole-bank-v2";
   const DAILY_PER_MODE = 25;
   const DAILY_REVIEW_LIMIT = 30;
   const PERSONAL_ERROR_POOL_ID = "personal-errors-v1";
   const STARRED_POOL_ID = "starred-words-v1";
+  const VOCAB_NEW_POOL_ID = "vocab-new-v1";
+  const VOCAB_ERROR_POOL_ID = "vocab-errors-v1";
+  const ERROR_VOCAB_DAILY_TARGET = 18;
+  const ERROR_PRIORITY_ORDER = ["S", "A", "B"];
   const BROWSE_PAGE_SIZE = 20;
   const MAX_VOCABULARY_WORDS = 6;
   const RESPONSE_LIMIT_MS = 5000;
@@ -91,6 +95,9 @@
       reviewDaily: null,
       errorDaily: null,
       starredDaily: null,
+      vocabNewDaily: null,
+      vocabErrorDaily: null,
+      errorWords: {},
       streak: 0,
       lastCompletedDate: null,
       trainingResetId: null,
@@ -110,6 +117,9 @@
       reviewDaily: raw.reviewDaily && typeof raw.reviewDaily === "object" ? raw.reviewDaily : null,
       errorDaily: raw.errorDaily && typeof raw.errorDaily === "object" ? raw.errorDaily : null,
       starredDaily: raw.starredDaily && typeof raw.starredDaily === "object" ? raw.starredDaily : null,
+      vocabNewDaily: raw.vocabNewDaily && typeof raw.vocabNewDaily === "object" ? raw.vocabNewDaily : null,
+      vocabErrorDaily: raw.vocabErrorDaily && typeof raw.vocabErrorDaily === "object" ? raw.vocabErrorDaily : null,
+      errorWords: raw.errorWords && typeof raw.errorWords === "object" && !Array.isArray(raw.errorWords) ? raw.errorWords : {},
     };
   }
 
@@ -122,6 +132,8 @@
       reviewDaily: null,
       errorDaily: null,
       starredDaily: null,
+      vocabNewDaily: null,
+      vocabErrorDaily: null,
       streak: 0,
       lastCompletedDate: null,
       trainingResetId: resetId,
@@ -367,6 +379,11 @@
     state.errorDaily = syncPersonalErrorSession(state.errorDaily, today, errorKeys);
     const starredKeys = createStarredTrainingDeck(activities, `${today}:starred`, state.starred);
     state.starredDaily = syncStarredSession(state.starredDaily, today, starredKeys);
+    const vocabNewKeys = state.daily.baseKeys.filter((key) => key.endsWith(":recognition"));
+    state.vocabNewDaily = syncVocabNewSession(state.vocabNewDaily, today, vocabNewKeys);
+    const uniqueItems = [...new Map(activities.map((activity) => [activity.id, activity])).values()];
+    const vocabErrorKeys = createVocabErrorDeck(uniqueItems, state.errorWords, today);
+    state.vocabErrorDaily = syncVocabErrorSession(state.vocabErrorDaily, today, vocabErrorKeys);
     return state;
   }
 
@@ -407,7 +424,261 @@
     };
   }
 
+  function masteryStatus(level) {
+    if (level >= 5) return "mastered";
+    if (level >= 3) return "stable";
+    return "learning";
+  }
+
+  function sanitizeErrorSources(rawSources) {
+    if (!Array.isArray(rawSources)) return [];
+    const seen = new Set();
+    return rawSources.flatMap((raw) => {
+      const source = ["reading", "listening", "vocabulary", "manual"].includes(raw?.source) ? raw.source : "vocabulary";
+      const sourceDetail = String(raw?.sourceDetail || "").trim().slice(0, 200);
+      const errorType = String(raw?.errorType || "self-assessment").trim().slice(0, 40);
+      const wrongAt = typeof raw?.wrongAt === "string" && /^\d{4}-\d{2}-\d{2}$/.test(raw.wrongAt) ? raw.wrongAt : "";
+      const key = `${source}|${sourceDetail}|${errorType}|${wrongAt}`;
+      if (seen.has(key)) return [];
+      seen.add(key);
+      return [{ source, sourceDetail, errorType, wrongAt }];
+    }).slice(-100);
+  }
+
+  function sanitizeErrorWordRecords(rawRecords) {
+    if (!rawRecords || typeof rawRecords !== "object" || Array.isArray(rawRecords)) return {};
+    const records = {};
+    Object.entries(rawRecords).forEach(([id, raw]) => {
+      if (!id || !raw || typeof raw !== "object") return;
+      const masteryLevel = Number.isInteger(raw.masteryLevel)
+        ? Math.max(0, Math.min(raw.masteryLevel, INTERVALS.length - 1))
+        : 0;
+      const pardoned = Boolean(raw.pardoned);
+      const isDate = (value) => typeof value === "string" && /^\d{4}-\d{2}-\d{2}$/.test(value);
+      records[id] = {
+        isErrorWord: pardoned ? false : raw.isErrorWord !== false,
+        sources: sanitizeErrorSources(raw.sources),
+        wrongCount: Number.isInteger(raw.wrongCount) && raw.wrongCount >= 0 ? raw.wrongCount : 0,
+        firstWrongAt: isDate(raw.firstWrongAt) ? raw.firstWrongAt : "",
+        lastWrongAt: isDate(raw.lastWrongAt) ? raw.lastWrongAt : "",
+        lastReviewAt: isDate(raw.lastReviewAt) ? raw.lastReviewAt : "",
+        nextReviewAt: isDate(raw.nextReviewAt) ? raw.nextReviewAt : "",
+        priority: ERROR_PRIORITY_ORDER.includes(raw.priority) ? raw.priority : "S",
+        masteryLevel,
+        reviewStatus: ["learning", "stable", "mastered"].includes(raw.reviewStatus)
+          ? raw.reviewStatus
+          : masteryStatus(masteryLevel),
+        lastReviewResult: ["known", "weak"].includes(raw.lastReviewResult) ? raw.lastReviewResult : "",
+        causedIeltsError: Boolean(raw.causedIeltsError),
+        pardoned,
+        pardonedAt: typeof raw.pardonedAt === "string" ? raw.pardonedAt : "",
+        pardonHistory: Array.isArray(raw.pardonHistory)
+          ? raw.pardonHistory.filter((item) => typeof item === "string").slice(-20)
+          : [],
+      };
+    });
+    return records;
+  }
+
+  function isActiveErrorWord(record) {
+    return Boolean(record?.isErrorWord && !record?.pardoned);
+  }
+
+  function itemCausedIeltsError(item) {
+    const details = [item?.errorNote, item?.note, ...(Array.isArray(item?.sections) ? item.sections : [])].join(" ");
+    return /(?:真实)?错题|直接致错|Q\d+[^\d]*(?:→|->)/i.test(details);
+  }
+
+  function deriveErrorPriority(record, today) {
+    const recentBoundary = addDays(today, -2);
+    if ((record.wrongCount || 0) >= 2
+      || record.causedIeltsError
+      || (record.lastWrongAt && record.lastWrongAt >= recentBoundary)
+      || record.lastReviewResult === "weak") return "S";
+    if ((record.masteryLevel || 0) >= 3) return "B";
+    return "A";
+  }
+
+  function initialErrorWordRecord(item, today, progressRecords = []) {
+    const lapses = progressRecords.reduce((sum, record) => sum + (record?.lapses || 0), 0);
+    const best = progressRecords.reduce((acc, record) => ({
+      stage: Math.max(acc.stage, record?.stage || 0),
+      due: !acc.due || (record?.due && record.due < acc.due) ? record.due : acc.due,
+      lastSeen: (record?.lastSeen || "") > acc.lastSeen ? record.lastSeen : acc.lastSeen,
+    }), { stage: 0, due: "", lastSeen: "" });
+    const masteryLevel = Math.min(best.stage, INTERVALS.length - 1);
+    const rawNote = String(item.errorNote || item.note || "").trim();
+    const record = sanitizeErrorWordRecords({
+      [item.id]: {
+        isErrorWord: true,
+        sources: [{
+          source: "manual",
+          sourceDetail: /^[—–-]+$/.test(rawNote) || !rawNote ? "个人错词" : rawNote,
+          errorType: "import",
+          wrongAt: "",
+        }],
+        wrongCount: Math.max(1, lapses),
+        lastReviewAt: best.lastSeen,
+        nextReviewAt: best.due || today,
+        masteryLevel,
+        reviewStatus: masteryStatus(masteryLevel),
+        causedIeltsError: itemCausedIeltsError(item),
+        pardoned: false,
+      },
+    })[item.id];
+    record.priority = deriveErrorPriority(record, today);
+    return record;
+  }
+
+  function seedErrorArchive(rawRecords, items, progress = {}, today = dateKey()) {
+    const records = sanitizeErrorWordRecords(rawRecords);
+    items.forEach((item) => {
+      if (!item?.id || !isPersonalErrorActivity(item) || records[item.id]) return;
+      const progressRecords = (item.modes || []).map((mode) => progress[`${item.id}:${mode}`]).filter(Boolean);
+      records[item.id] = initialErrorWordRecord(item, today, progressRecords);
+    });
+    Object.values(records).forEach((record) => {
+      if (isActiveErrorWord(record)) record.priority = deriveErrorPriority(record, today);
+    });
+    return records;
+  }
+
+  function registerErrorWord(rawRecord, event = {}, today = dateKey(), progressRecord = null) {
+    const current = sanitizeErrorWordRecords({ word: rawRecord }).word || {
+      isErrorWord: true,
+      sources: [],
+      wrongCount: 0,
+      firstWrongAt: "",
+      lastWrongAt: "",
+      lastReviewAt: "",
+      nextReviewAt: "",
+      priority: "S",
+      masteryLevel: 0,
+      reviewStatus: "learning",
+      lastReviewResult: "",
+      causedIeltsError: false,
+      pardoned: false,
+      pardonedAt: "",
+      pardonHistory: [],
+    };
+    const pardonHistory = [...current.pardonHistory];
+    if (current.pardonedAt && !pardonHistory.includes(current.pardonedAt)) pardonHistory.push(current.pardonedAt);
+    const sourceEvent = {
+      source: ["reading", "listening", "vocabulary", "manual"].includes(event.source) ? event.source : "vocabulary",
+      sourceDetail: String(event.sourceDetail || "训练时选择不认识").trim(),
+      errorType: String(event.errorType || "self-assessment"),
+      wrongAt: today,
+    };
+    return {
+      ...current,
+      isErrorWord: true,
+      sources: sanitizeErrorSources([...current.sources, sourceEvent]),
+      wrongCount: current.wrongCount + 1,
+      firstWrongAt: current.firstWrongAt || today,
+      lastWrongAt: today,
+      lastReviewAt: event.fromReview ? today : current.lastReviewAt,
+      nextReviewAt: progressRecord?.due || addDays(today, INTERVALS[0]),
+      priority: "S",
+      masteryLevel: 0,
+      reviewStatus: "learning",
+      lastReviewResult: "weak",
+      causedIeltsError: current.causedIeltsError || Boolean(event.causedIeltsError),
+      pardoned: false,
+      pardonedAt: "",
+      pardonHistory: pardonHistory.slice(-20),
+    };
+  }
+
+  function reviewErrorWord(rawRecord, result, today = dateKey(), progressRecord = null) {
+    const current = sanitizeErrorWordRecords({ word: rawRecord }).word;
+    if (!current || !isActiveErrorWord(current)) return current || null;
+    if (result === "weak") {
+      return registerErrorWord(current, { source: "vocabulary", sourceDetail: "错词复习再次选择不认识", errorType: "review", fromReview: true }, today, progressRecord);
+    }
+    const masteryLevel = Number.isInteger(progressRecord?.stage) ? progressRecord.stage : current.masteryLevel;
+    const updated = {
+      ...current,
+      isErrorWord: true,
+      lastReviewAt: today,
+      nextReviewAt: progressRecord?.due || current.nextReviewAt,
+      masteryLevel,
+      reviewStatus: masteryStatus(masteryLevel),
+      lastReviewResult: "known",
+      pardoned: false,
+    };
+    updated.priority = deriveErrorPriority(updated, today);
+    return updated;
+  }
+
+  function pardonErrorWord(rawRecord, pardonedAt = new Date().toISOString()) {
+    const current = sanitizeErrorWordRecords({ word: rawRecord }).word;
+    if (!current) return null;
+    return {
+      ...current,
+      isErrorWord: false,
+      pardoned: true,
+      pardonedAt,
+      pardonHistory: [...new Set([...current.pardonHistory, pardonedAt])].slice(-20),
+    };
+  }
+
+  function mergeErrorWordRecords(first, second) {
+    if (!first) return { ...second };
+    if (!second) return { ...first };
+    const a = sanitizeErrorWordRecords({ a: first }).a;
+    const b = sanitizeErrorWordRecords({ b: second }).b;
+    const pardoned = a.pardoned && b.pardoned;
+    return {
+      ...a,
+      isErrorWord: a.isErrorWord || b.isErrorWord,
+      sources: sanitizeErrorSources([...a.sources, ...b.sources]),
+      wrongCount: (a.wrongCount || 0) + (b.wrongCount || 0),
+      firstWrongAt: [a.firstWrongAt, b.firstWrongAt].filter(Boolean).sort()[0] || "",
+      lastWrongAt: [a.lastWrongAt, b.lastWrongAt].filter(Boolean).sort().at(-1) || "",
+      lastReviewAt: [a.lastReviewAt, b.lastReviewAt].filter(Boolean).sort().at(-1) || "",
+      nextReviewAt: [a.nextReviewAt, b.nextReviewAt].filter(Boolean).sort()[0] || "",
+      priority: a.wrongCount + b.wrongCount >= 2 || a.priority === "S" || b.priority === "S" ? "S" : a.priority,
+      masteryLevel: Math.max(a.masteryLevel || 0, b.masteryLevel || 0),
+      reviewStatus: masteryStatus(Math.max(a.masteryLevel || 0, b.masteryLevel || 0)),
+      causedIeltsError: a.causedIeltsError || b.causedIeltsError,
+      pardoned,
+      pardonHistory: [...new Set([...a.pardonHistory, ...b.pardonHistory])].slice(-20),
+    };
+  }
+
+  function createVocabErrorDeck(items, rawRecords, today = dateKey(), count = ERROR_VOCAB_DAILY_TARGET) {
+    const records = sanitizeErrorWordRecords(rawRecords);
+    const itemIds = new Set((items || []).map((item) => item.id));
+    const candidates = Object.entries(records)
+      .filter(([id, record]) => itemIds.has(id) && isActiveErrorWord(record))
+      .map(([id, record]) => ({ id, record }));
+    const priorityIndex = (value) => Math.max(0, ERROR_PRIORITY_ORDER.indexOf(value));
+    candidates.sort((left, right) => {
+      const first = left.record;
+      const second = right.record;
+      const firstDue = !first.nextReviewAt || first.nextReviewAt <= today ? 0 : 1;
+      const secondDue = !second.nextReviewAt || second.nextReviewAt <= today ? 0 : 1;
+      return firstDue - secondDue
+        || priorityIndex(first.priority) - priorityIndex(second.priority)
+        || (second.lastWrongAt || "").localeCompare(first.lastWrongAt || "")
+        || (second.wrongCount || 0) - (first.wrongCount || 0)
+        || Number(second.lastReviewResult === "weak") - Number(first.lastReviewResult === "weak")
+        || (first.lastReviewAt || "").localeCompare(second.lastReviewAt || "")
+        || hashString(`${today}:vocab-error:${left.id}`) - hashString(`${today}:vocab-error:${right.id}`);
+    });
+    return candidates.slice(0, Math.min(count, candidates.length)).map((entry) => `${entry.id}:vocab`);
+  }
+
+  function syncVocabNewSession(current, today, keys) {
+    return syncTrainingPoolSession(current, today, keys, VOCAB_NEW_POOL_ID);
+  }
+
+  function syncVocabErrorSession(current, today, keys) {
+    return syncTrainingPoolSession(current, today, keys, VOCAB_ERROR_POOL_ID);
+  }
+
   function shouldConfirmRecognition(entry, activity, record, sessionDate = dateKey()) {
+
     if (entry.isRetry || activity.mode !== "recognition") return false;
     return true;
   }
@@ -572,7 +843,7 @@
   }
 
   function remapActivityKey(activityKey, aliases) {
-    const match = String(activityKey || "").match(/^(.*):(spelling|recognition)$/);
+    const match = String(activityKey || "").match(/^(.*):(spelling|recognition|vocab)$/);
     if (!match) return activityKey;
     return `${aliases.get(match[1]) || match[1]}:${match[2]}`;
   }
@@ -610,7 +881,16 @@
       });
     state.customItems = [...customItems.values()];
 
-    const sessions = [state.daily, state.reviewDaily, state.errorDaily, state.starredDaily].filter(Boolean);
+    const errorWords = {};
+    Object.entries(state.errorWords || {}).forEach(([id, record]) => {
+      const canonical = aliases.get(id) || id;
+      errorWords[canonical] = errorWords[canonical]
+        ? mergeErrorWordRecords(errorWords[canonical], record)
+        : record;
+    });
+    state.errorWords = errorWords;
+
+    const sessions = [state.daily, state.reviewDaily, state.errorDaily, state.starredDaily, state.vocabNewDaily, state.vocabErrorDaily].filter(Boolean);
     if (!sessions.length) return state;
     const uniqueKeys = (values) => {
       const seen = new Set();
@@ -868,6 +1148,10 @@
     createDailyDeck, createLearningDeck, createReviewDeck, createErrorTrainingDeck, createStarredTrainingDeck,
     isPersonalErrorActivity, syncPersonalErrorSession, syncStarredSession,
     prepareDaily, scheduleReview, recordPracticePass,
+    masteryStatus, sanitizeErrorSources, sanitizeErrorWordRecords, isActiveErrorWord,
+    deriveErrorPriority, initialErrorWordRecord, seedErrorArchive,
+    registerErrorWord, reviewErrorWord, pardonErrorWord, mergeErrorWordRecords,
+    createVocabErrorDeck, syncVocabNewSession, syncVocabErrorSession,
     shouldConfirmRecognition, reinforcementDecision, insertRetry, buildChoices,
     partOfSpeechForMeaning, abbreviatePartOfSpeech,
     createBrowseDeck, parseWrongWordInput, parseWrongWordDrafts, mergeCustomItems, migrateNumberVariantState, seededShuffle,
@@ -882,6 +1166,7 @@
     REQUIRED_CORRECT_STREAK, MAX_REINFORCEMENT_INSERTIONS, RECOGNITION_SPOTCHECK_PERCENT,
     DIRECTION_QUESTION_COUNT, HARD_DIRECTION_IDS,
     INTERVALS, BROWSE_PAGE_SIZE, MAX_VOCABULARY_WORDS, DAILY_REVIEW_LIMIT, PERSONAL_ERROR_POOL_ID, STARRED_POOL_ID, APP_VERSION,
+    VOCAB_NEW_POOL_ID, VOCAB_ERROR_POOL_ID, ERROR_VOCAB_DAILY_TARGET, ERROR_PRIORITY_ORDER,
     TRAINING_RESET_ID, LEARNING_REVIEW_SPLIT_ID, SELF_ASSESSMENT_FLOW_ID, DECK_REVISION,
   };
 
@@ -893,6 +1178,7 @@
   let items = [];
   let activities = [];
   let activityMap = new Map();
+  let itemMap = new Map();
   let state = safeState(null);
   let recognitionStartedAt = 0;
   let recognitionTimerId = null;
@@ -1045,6 +1331,7 @@
     items = mergeCustomItems(sourceItems, state.customItems);
     activities = makeActivities(items);
     activityMap = new Map(activities.map((activity) => [activity.key, activity]));
+    itemMap = new Map(items.map((item) => [item.id, item]));
   }
 
   function reconcileSyncedCustomItems() {
@@ -1091,6 +1378,8 @@
     if (activeTrainingKind === "review") return state.reviewDaily;
     if (activeTrainingKind === "errors") return state.errorDaily;
     if (activeTrainingKind === "starred") return state.starredDaily;
+    if (activeTrainingKind === "vocabNew") return state.vocabNewDaily;
+    if (activeTrainingKind === "vocabErrors") return state.vocabErrorDaily;
     return state.daily;
   }
 
@@ -1142,11 +1431,13 @@
     const reviewing = mode === "review";
     const errorTraining = mode === "errors";
     const starredTraining = mode === "starred";
+    const vocabNew = mode === "vocabNew";
+    const vocabErrors = mode === "vocabErrors";
     appShell.classList.toggle("active-session", activeSession);
     appShell.classList.remove("home-mode");
     appShell.classList.toggle("browse-mode", browsing);
     appShell.classList.toggle("direction-mode", direction);
-    screenTitle.textContent = browsing ? "随便刷" : (direction ? "方位检测" : (reviewing ? "高频复习" : (errorTraining ? "我的错词" : (starredTraining ? "重点词" : "今日新词"))));
+    screenTitle.textContent = browsing ? "随便刷" : (direction ? "方位检测" : (reviewing ? "高频复习" : (errorTraining ? "我的错词" : (starredTraining ? "重点词" : (vocabNew ? "背新词" : (vocabErrors ? "背错词" : "今日新词"))))));
     if (browsing) dayCount.textContent = "∞";
     else if (direction) updateDirectionChrome();
     else updateChrome();
@@ -1176,6 +1467,14 @@
       .filter(([, record]) => (record.lapses || 0) > 0)
       .map(([key]) => key.replace(/:(spelling|recognition)$/, ""))).size;
     const starredCount = items.filter((item) => state.starred[item.id]).length;
+    const activeErrorRecords = Object.entries(state.errorWords || {})
+      .filter(([id, record]) => itemMap.has(id) && isActiveErrorWord(record));
+    const activeErrorCount = activeErrorRecords.length;
+    const highPriorityErrorCount = activeErrorRecords.filter(([, record]) => record.priority === "S").length;
+    const vocabNewDone = sessionDone(state.vocabNewDaily);
+    const vocabNewTotal = state.vocabNewDaily?.baseKeys?.length || 0;
+    const vocabErrorDone = sessionDone(state.vocabErrorDaily);
+    const vocabErrorTotal = state.vocabErrorDaily?.baseKeys?.length || 0;
     screen.innerHTML = `
       <section class="home">
         <p class="home-date">${escapeHtml(state.daily.date)}</p>
@@ -1192,6 +1491,20 @@
           </div>
         </section>
         <button id="start" class="primary home-start" ${state.daily.completed ? "disabled" : ""}>${buttonText}</button>
+        <section class="home-vocab" aria-label="每日词汇主线">
+          <div class="home-vocab-grid">
+            <button id="vocab-new" class="home-task vocab-path" ${vocabNewTotal ? "" : "disabled"}>
+              <span class="home-task-icon">${icon("book-open-text")}</span>
+              <span class="home-task-copy"><strong>背新词</strong><small>${vocabNewTotal ? "先判断认识，再公布释义" : "今日新词已全部完成"}</small></span>
+              <span class="vocab-path-progress"><b>${vocabNewDone}</b><span>/</span><b>${vocabNewTotal}</b></span>
+            </button>
+            <button id="vocab-errors" class="home-task vocab-path error-path" ${activeErrorCount ? "" : "disabled"}>
+              <span class="home-task-icon">${icon("bookmark-simple")}</span>
+              <span class="home-task-copy"><strong>背错词</strong><small>${activeErrorCount ? `${highPriorityErrorCount} 个 S 级 · 共 ${activeErrorCount} 词` : "训练中答错会自动收进来"}</small></span>
+              <span class="vocab-path-progress"><b>${vocabErrorDone}</b><span>/</span><b>${vocabErrorTotal}</b></span>
+            </button>
+          </div>
+        </section>
         <section class="home-secondary" aria-label="其他练习">
           <div class="home-core-actions">
             <button id="review" class="home-task review-task" ${reviewPending ? "" : "disabled"}>
@@ -1226,6 +1539,7 @@
           <summary><span class="home-task-icon">${icon("gear")}</span><span>更多练习与设置</span><span class="home-task-caret">${icon("caret-right")}</span></summary>
           <div class="home-menu">
             <button id="browse" class="menu-entry"><span>${icon("books")}浏览词库</span><small>${items.length} 条</small></button>
+            <button id="error-library" class="menu-entry"><span>${icon("bookmark-simple")}个人错词库</span><small>${activeErrorCount} 个活跃</small></button>
             <button id="starred" class="menu-entry"><span>${icon("star")}浏览重点词</span><small>${starredCount} 个</small></button>
             <button id="inbox" class="menu-entry"><span>${icon("tray")}错词收件箱</span><small>${state.customItems.length} 条待同步</small></button>
           </div>
@@ -1270,6 +1584,23 @@
       renderCurrent();
     });
     document.getElementById("browse")?.addEventListener("click", browseScreen);
+    document.getElementById("error-library")?.addEventListener("click", errorLibraryScreen);
+    document.getElementById("vocab-new")?.addEventListener("click", () => {
+      activeTrainingKind = "vocabNew";
+      state.vocabNewDaily.started = true;
+      saveState();
+      renderVocabCurrent();
+    });
+    document.getElementById("vocab-errors")?.addEventListener("click", () => {
+      activeTrainingKind = "vocabErrors";
+      if (!state.vocabErrorDaily.queue.length) {
+        const uniqueItems = [...new Map(activities.map((activity) => [activity.id, activity])).values()];
+        state.vocabErrorDaily = syncVocabErrorSession(null, dateKey(), createVocabErrorDeck(uniqueItems, state.errorWords, dateKey()));
+      }
+      state.vocabErrorDaily.started = true;
+      saveState();
+      renderVocabCurrent();
+    });
     document.getElementById("inbox")?.addEventListener("click", inboxScreen);
     document.getElementById("starred")?.addEventListener("click", () => {
       browseFilter = "starred";
@@ -1916,6 +2247,32 @@
         enqueueReviewActivity(state.reviewDaily, activity.key);
       }
     }
+    const positive = outcome === "pass" || outcome === "known";
+    if (positive) {
+      if (isActiveErrorWord(state.errorWords[activity.id])) {
+        state.errorWords[activity.id] = reviewErrorWord(state.errorWords[activity.id], "known", session.date, state.progress[activity.key]);
+      }
+    } else {
+      const sessionLabels = { learning: "今日新词", review: "高频复习", errors: "我的错词训练", starred: "重点词训练" };
+      const modeLabel = activity.mode === "spelling" ? "听写" : "识义";
+      state.errorWords[activity.id] = registerErrorWord(state.errorWords[activity.id], {
+        source: activity.mode === "spelling" ? "listening" : "vocabulary",
+        sourceDetail: `${sessionLabels[sessionKind] || "训练"}·${modeLabel}${detail?.skipped ? "·先跳过" : "答错"}`,
+        errorType: activity.mode,
+        causedIeltsError: true,
+      }, session.date, state.progress[activity.key]);
+    }
+    if (sessionKind === "learning" && activity.mode === "recognition" && state.vocabNewDaily) {
+      const vocabSession = state.vocabNewDaily;
+      vocabSession.queue = vocabSession.queue.filter((queueEntry) => queueEntry.key !== activity.key);
+      if (!vocabSession.answeredBase[activity.key]) {
+        vocabSession.answeredBase[activity.key] = true;
+        vocabSession.outcomes[activity.key] = decision.recordOutcome === "fail" ? "fail" : (decision.recordOutcome === "practice" ? "pending" : outcome);
+      } else if (decision.recordOutcome === "fail") {
+        vocabSession.outcomes[activity.key] = "fail";
+      }
+      vocabSession.completed = vocabSession.queue.length === 0;
+    }
     currentResult = { entry, activity, outcome, detail, sessionKind, feedback: decision.feedback };
     saveState();
     preloadUpcomingAudio();
@@ -2018,6 +2375,269 @@
       const active = toggleStar(activity.id);
       updateStarButton(event.currentTarget, active);
     });
+  }
+
+  function vocabActivityFor(key) {
+    const id = String(key || "").replace(/:vocab$/, "");
+    const item = itemMap.get(id);
+    if (!item) return null;
+    return { ...item, key, mode: "vocab" };
+  }
+
+  function renderVocabCurrent() {
+    window.scrollTo(0, 0);
+    const kind = activeTrainingKind === "vocabErrors" ? "vocabErrors" : "vocabNew";
+    const session = currentTrainingSession();
+    setShellMode(kind, Boolean(session.queue[0]));
+    updateChrome();
+    const entry = session.queue[0];
+    if (!entry) {
+      session.completed = true;
+      saveState();
+      const isErrors = kind === "vocabErrors";
+      screen.innerHTML = `
+        <section class="finished">
+          <div class="hero-number">${icon("check-circle")}</div>
+          <h2>${isErrors ? "这一轮错词复习完成" : "今天的新词背完了"}</h2>
+          <p>${isErrors ? "答“不认识”的词已回到短周期并升为 S 级，明天会优先排到队首。" : "这些词同时计入今日新词进度，听写部分不受影响。"}</p>
+          ${isErrors ? '<button id="vocab-restart" class="primary">再练一轮</button>' : ""}
+          <button id="back-home" class="secondary">返回首页</button>
+        </section>`;
+      document.getElementById("back-home").addEventListener("click", homeScreen);
+      document.getElementById("vocab-restart")?.addEventListener("click", () => {
+        const uniqueItems = [...new Map(activities.map((activity) => [activity.id, activity])).values()];
+        state.vocabErrorDaily = syncVocabErrorSession(null, dateKey(), createVocabErrorDeck(uniqueItems, state.errorWords, dateKey()));
+        state.vocabErrorDaily.started = true;
+        saveState();
+        renderVocabCurrent();
+      });
+      return;
+    }
+    let activity = null;
+    if (kind === "vocabNew") activity = activityMap.get(entry.key);
+    else activity = vocabActivityFor(entry.key);
+    if (!activity) {
+      session.queue.shift();
+      saveState();
+      renderVocabCurrent();
+      return;
+    }
+    renderVocabCard(entry, activity, kind);
+  }
+
+  function renderVocabCard(entry, activity, kind) {
+    window.scrollTo(0, 0);
+    screen.innerHTML = `
+      <section class="session">
+        <div class="session-toolbar">
+          <button id="pause-session" class="text-button">${icon("arrow-left")}暂停</button>
+          <div class="session-meta"><span class="mode-label">${kind === "vocabErrors" ? "背错词" : "背新词"}</span></div>
+          ${starButton(activity, "session-star")}
+        </div>
+        <div class="question-card vocab-card recognition-confidence-card">
+          <p class="prompt">先别看释义，你认识这个词吗？</p>
+          <div class="recognition-term">
+            <h2 class="term">${escapeHtml(activity.term)}</h2>
+            <button id="vocab-play" class="test-play" type="button" aria-label="播放发音">${icon("speaker-high")}再读</button>
+          </div>
+          <p class="confidence-hint">判断之后才会公布释义和错词档案</p>
+          <div class="confidence-actions" role="group" aria-label="自评是否认识">
+            <button class="confidence-button confidence-known" id="vocab-known" type="button"><strong>认识</strong><small>一眼就知道</small></button>
+            <button class="confidence-button confidence-unknown" id="vocab-unknown" type="button"><strong>不认识</strong><small>需要再看</small></button>
+          </div>
+        </div>
+      </section>`;
+    const playButton = document.getElementById("vocab-play");
+    playButton.addEventListener("click", () => playAudio(activity, playButton));
+    document.getElementById("pause-session")?.addEventListener("click", () => {
+      saveState();
+      homeScreen();
+    });
+    document.querySelector(".session-star")?.addEventListener("click", (event) => {
+      const active = toggleStar(activity.id);
+      updateStarButton(event.currentTarget, active);
+    });
+    document.getElementById("vocab-known").addEventListener("click", () => recordVocabAttempt(entry, activity, true, kind));
+    document.getElementById("vocab-unknown").addEventListener("click", () => recordVocabAttempt(entry, activity, false, kind));
+    playAudio(activity, playButton);
+  }
+
+  function recordVocabAttempt(entry, activity, known, kind) {
+    const session = currentTrainingSession();
+    session.queue.shift();
+    session.answeredBase[activity.key] = true;
+    session.outcomes[activity.key] = known ? "pass" : "fail";
+    const progressKey = activity.key;
+    state.progress[progressKey] = scheduleReview(state.progress[progressKey], known ? "pass" : "fail", session.date);
+    const id = activity.id;
+    if (known) {
+      if (isActiveErrorWord(state.errorWords[id])) {
+        state.errorWords[id] = reviewErrorWord(state.errorWords[id], "known", session.date, state.progress[progressKey]);
+      }
+    } else {
+      state.errorWords[id] = registerErrorWord(state.errorWords[id], {
+        source: "vocabulary",
+        sourceDetail: kind === "vocabErrors" ? "背错词·选择不认识" : "背新词·选择不认识",
+        errorType: "self-assessment",
+        causedIeltsError: true,
+      }, session.date, state.progress[progressKey]);
+      if (kind === "vocabNew") enqueueReviewActivity(state.reviewDaily, activity.key);
+    }
+    if (kind === "vocabNew") {
+      const daily = state.daily;
+      daily.queue = daily.queue.filter((queueEntry) => queueEntry.key !== activity.key);
+      if (!daily.answeredBase[activity.key]) {
+        daily.answeredBase[activity.key] = true;
+        daily.outcomes[activity.key] = known ? "pass" : "fail";
+      } else if (!known) {
+        daily.outcomes[activity.key] = "fail";
+      }
+    }
+    session.completed = session.queue.length === 0;
+    saveState();
+    renderVocabReveal(activity, known, kind);
+  }
+
+  function renderVocabReveal(activity, known, kind) {
+    window.scrollTo(0, 0);
+    const record = state.errorWords[activity.id];
+    const progressRecord = state.progress[activity.key] || {};
+    const priorityLabels = { S: "S 级 · 必须秒懂", A: "A 级 · 重点掌握", B: "B 级 · 扩展积累" };
+    const statusLabels = { learning: "学习中", stable: "稳定掌握", mastered: "长期维持" };
+    const rawNote = String(activity.errorNote || activity.note || "").trim();
+    const note = /^[—–-]+$/.test(rawNote) ? "" : rawNote;
+    const latestSource = record?.sources?.length ? record.sources[record.sources.length - 1] : null;
+    const archiveMarkup = record ? `
+      <div class="memory-strip vocab-archive-strip">
+        <span><b>${record.wrongCount}</b>历史错误</span>
+        <span><b>${escapeHtml(record.priority)}</b>优先级</span>
+        <span><b>${escapeHtml(statusLabels[record.reviewStatus] || "学习中")}</b>复习阶段</span>
+        <span><b>${escapeHtml(record.nextReviewAt || "—")}</b>下次复习</span>
+      </div>
+      <p class="note vocab-archive-note">${escapeHtml(priorityLabels[record.priority] || "")}${latestSource?.sourceDetail ? ` · 来源：${escapeHtml(latestSource.sourceDetail)}` : ""}${record.pardoned ? " · 已赦免（本次再错已恢复）" : ""}</p>`
+      : `
+      <div class="memory-strip vocab-archive-strip">
+        <span><b>${progressRecord.passes || 0}</b>累计答对</span>
+        <span><b>${progressRecord.stage || 0}/6</b>记忆阶段</span>
+        <span><b>${escapeHtml(progressRecord.due || "—")}</b>下次复习</span>
+      </div>`;
+    screen.innerHTML = `
+      <section class="result">
+        <div class="result-toolbar">
+          <button id="result-home" class="text-button">${icon("arrow-left")}暂停</button>
+          <span class="mode-label">${kind === "vocabErrors" ? "背错词" : "背新词"}</span>
+        </div>
+        <div class="result-card vocab-reveal-card">
+          <p class="result-mark ${known ? "pass" : "weak"}">${known ? "认识" : "不认识"}</p>
+          <div class="answer-row">
+            <h2 class="answer">${escapeHtml(activity.term)}</h2>
+            <button id="result-play" class="test-play" type="button" aria-label="再读一次">${icon("speaker-high")}再读</button>
+          </div>
+          <div class="meaning-row"><span class="result-pos">${escapeHtml(abbreviatePartOfSpeech(activity.partOfSpeech))}</span><p class="meaning">${escapeHtml(activity.meaning)}</p></div>
+          ${note ? `<p class="note">${escapeHtml(note)}</p>` : ""}
+          ${archiveMarkup}
+        </div>
+        <button id="vocab-next" class="primary">下一词</button>
+      </section>`;
+    document.getElementById("vocab-next").addEventListener("click", renderVocabCurrent);
+    const playButton = document.getElementById("result-play");
+    playButton.addEventListener("click", () => playAudio(activity, playButton));
+    document.getElementById("result-home").addEventListener("click", () => {
+      saveState();
+      homeScreen();
+    });
+  }
+
+  let errorLibraryFilter = "all";
+
+  function matchesErrorLibraryFilter(id, record, filter) {
+    if (filter === "pardoned") return Boolean(record.pardoned);
+    if (!isActiveErrorWord(record)) return false;
+    if (filter === "high") return record.priority === "S";
+    if (filter === "stable") return record.reviewStatus === "stable" || record.reviewStatus === "mastered";
+    return true;
+  }
+
+  function errorLibraryScreen() {
+    window.scrollTo(0, 0);
+    setShellMode("browse");
+    screenTitle.textContent = "个人错词库";
+    const statusLabels = { learning: "学习中", stable: "稳定掌握", mastered: "长期维持" };
+    const allRecords = Object.entries(state.errorWords || {})
+      .filter(([id]) => itemMap.has(id))
+      .map(([id, record]) => ({ id, item: itemMap.get(id), record }));
+    const activeCount = allRecords.filter(({ record }) => isActiveErrorWord(record)).length;
+    const filtered = allRecords
+      .filter(({ record }) => matchesErrorLibraryFilter(null, record, errorLibraryFilter))
+      .sort((a, b) => Number(b.record.pardoned) - Number(a.record.pardoned)
+        || Math.max(0, ERROR_PRIORITY_ORDER.indexOf(a.record.priority)) - Math.max(0, ERROR_PRIORITY_ORDER.indexOf(b.record.priority))
+        || (b.record.wrongCount || 0) - (a.record.wrongCount || 0)
+        || (b.record.lastWrongAt || "").localeCompare(a.record.lastWrongAt || ""));
+    const filters = [
+      ["all", "全部错词"],
+      ["high", "高频复习"],
+      ["stable", "稳定掌握"],
+      ["pardoned", "已赦免"],
+    ];
+    dayCount.textContent = `${filtered.length} 词`;
+    screen.innerHTML = `
+      <section class="browse error-library">
+        <div class="browse-toolbar">
+          <button id="library-back" class="text-button">${icon("arrow-left")}今日任务</button>
+          <span class="mode-label">${activeCount} 个活跃错词</span>
+        </div>
+        <div class="browse-intro">
+          <p>错词身份永久保留：连续答对只会降低优先级，不会自动洗白。只有手动赦免才退出每日背错词。</p>
+          <span>${allRecords.length} 条档案</span>
+        </div>
+        <div class="filter-strip" role="group" aria-label="错词分组">
+          ${filters.map(([value, label]) => `<button class="filter-chip${errorLibraryFilter === value ? " active" : ""}" data-error-filter="${value}">${label}</button>`).join("")}
+        </div>
+        <div class="word-stream">
+          ${filtered.length ? filtered.map(({ id, item, record }) => {
+            const latestSource = record.sources.length ? record.sources[record.sources.length - 1] : null;
+            const tags = [
+              record.pardoned ? "已赦免" : `${record.priority} 级`,
+              `错 ${record.wrongCount} 次`,
+              statusLabels[record.reviewStatus] || "学习中",
+              record.nextReviewAt ? `复习 ${record.nextReviewAt}` : "",
+            ].filter(Boolean);
+            return `
+            <article class="word-card real-error error-library-card">
+              <div class="word-main">
+                <div>
+                  <h2>${escapeHtml(item.term)}</h2>
+                  <p>${escapeHtml(item.meaning)}</p>
+                </div>
+                <div class="word-actions">
+                  <button class="mini-play" data-id="${escapeHtml(id)}" aria-label="播放 ${escapeHtml(item.term)}">${icon("speaker-high")}</button>
+                  ${record.pardoned ? "" : `<button class="pardon-button text-button" data-pardon="${escapeHtml(id)}" type="button">赦免</button>`}
+                </div>
+              </div>
+              ${latestSource?.sourceDetail ? `<p class="word-note">来源：${escapeHtml(latestSource.sourceDetail)}</p>` : ""}
+              <div class="word-tags">${tags.map((tag) => `<span>${escapeHtml(tag)}</span>`).join("")}</div>
+              ${record.pardoned && record.pardonedAt ? `<div class="word-stats"><span>赦免于 ${escapeHtml(record.pardonedAt.slice(0, 10))}</span><span>历史保留 · 再错自动恢复</span></div>` : ""}
+            </article>`;
+          }).join("") : '<div class="empty-card"><strong>这一组暂时没有词</strong><p>训练中答错或点“不认识”的词会自动收进个人错词库。</p></div>'}
+        </div>
+      </section>`;
+    document.getElementById("library-back").addEventListener("click", homeScreen);
+    document.querySelectorAll("[data-error-filter]").forEach((button) => button.addEventListener("click", () => {
+      errorLibraryFilter = button.dataset.errorFilter;
+      errorLibraryScreen();
+    }));
+    document.querySelectorAll(".mini-play").forEach((button) => button.addEventListener("click", () => {
+      const item = itemMap.get(button.dataset.id);
+      if (item) playAudio(item, button);
+    }));
+    document.querySelectorAll("[data-pardon]").forEach((button) => button.addEventListener("click", () => {
+      const id = button.dataset.pardon;
+      const record = state.errorWords[id];
+      if (!isActiveErrorWord(record)) return;
+      state.errorWords[id] = pardonErrorWord(record);
+      saveState();
+      errorLibraryScreen();
+    }));
   }
 
   function preloadUpcomingAudio() {
@@ -2222,6 +2842,16 @@
             merged.set(entry.id, existing ? { ...existing, ...entry, modes: [...new Set([...existing.modes, ...entry.modes])] } : entry);
           });
           state.customItems = [...merged.values()];
+          entries.forEach((entry) => {
+            if (state.errorWords[entry.id]) return;
+            const seededRecord = registerErrorWord(null, {
+              source: "manual",
+              sourceDetail: `错词收件箱·${entry.reason}`,
+              errorType: "import",
+              causedIeltsError: true,
+            }, dateKey());
+            state.errorWords[entry.id] = { ...seededRecord, nextReviewAt: dateKey() };
+          });
           rebuildDecks();
           prepareDaily(state, activities);
           saveState();
@@ -2300,6 +2930,7 @@
         state = applySelfAssessmentFlow(state);
         migrateNumberVariantState(state, sourceItems);
         rebuildDecks();
+        state.errorWords = seedErrorArchive(state.errorWords, items, state.progress);
         prepareDaily(state, activities);
         saveState();
         homeScreen();
@@ -2326,6 +2957,7 @@
       migrateNumberVariantState(state, sourceItems);
       reconcileSyncedCustomItems();
       rebuildDecks();
+      state.errorWords = seedErrorArchive(state.errorWords, items, state.progress);
       prepareDaily(state, activities);
       saveState();
       homeScreen();
