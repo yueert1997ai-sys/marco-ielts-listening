@@ -19,7 +19,7 @@
 - 2026-09-01 `[词库]` Issue #12：同步一批错词操作，构建后 764 张主卡（听写 274 / 识词 543）；训练端版本保持 `v2.16.0`。 <!-- vocabulary-issue:12 -->
 - 2026-09-01 `[词库]` Issue #11：同步一批错词操作，构建后 761 张主卡（听写 274 / 识词 540）；训练端版本保持 `v2.16.0`。 <!-- vocabulary-issue:11 -->
 - 2026-09-01 `[协作]` 完成 Listening `v2.16.0` 的 GitHub Pages 发布与线上回读，功能提交为 `552a7b1`；GitHub 文档守卫和 Pages 工作流均成功，公开站点确认程序版本、`ielts-listening-v33` 缓存、758 张主卡、词形归并、三档识义自评与新增发音均已上线。
-- 2026-09-01 `[Listening v2.16.0 / 词库质量]` 识义题改为先显示英文与发音，再由用户选择“认识 / 模糊 / 不认识”，选择后立即揭示词性与中文义；认识词 15–20 题后确认，模糊词 10–14 题后再考，不认识及听写错误 8–12 题后回炉，每词每轮最多插入 3 次，队尾不足 6 个不同单词时停止本轮连刷并转入高频复习。清理规则词形：`disposed / erected / neglecting / resurfaced / standardised / tethered` 归并到原形并迁移旧进度，保留 `demanding / energising / insulating / stimulating` 等具有独立形容词义的派生词；细化 `end / purpose / aim` 中文义并避免语义重叠选项同屏。构建后 758 张主卡（听写 274 / 识词 537），个人错词仍为 123 条；5 个新原形使用本机 Daniel 英式语音离线补音，并新增纯离线音频清单刷新模式。
+- 2026-09-01 `[Listening v2.16.0 / 词库质量]` 识义题改为先显示英文与发音，再由用户选择“认识 / 模糊 / 不认识”，选择后立即揭示词性与中文义；认识词 15–20 题后确认，模糊词 10–14 题后再考，不认识及听写错误 8–12 题后回炉，每词每轮最多插入 3 次，队尾不足 6 个不同词时停止本轮连刷并转入高频复习。清理规则词形：`disposed / erected / neglecting / resurfaced / standardised / tethered` 归并到原形并迁移旧进度，保留 `demanding / energising / insulating / stimulating` 等具有独立形容词义的派生词；细化 `end / purpose / aim` 中文义并避免语义重叠选项同屏。构建后 758 张主卡（听写 274 / 识词 537），个人错词仍为 123 条；5 个新原形使用本机 Daniel 英式语音离线补音，并新增纯离线音频清单刷新模式。
 - 2026-09-01 `[词库]` Issue #10：同步一批错词操作，构建后 759 张主卡（听写 274 / 识词 538）；训练端版本保持 `v2.15.1`。 <!-- vocabulary-issue:10 -->
 - 2026-09-01 `[词库]` Issue #9：同步一批错词操作，构建后 757 张主卡（听写 274 / 识词 536）；训练端版本保持 `v2.15.1`。 <!-- vocabulary-issue:9 -->
 - 2026-08-31 `[协作]` 完成 Confusions `v1.1.0` 的 GitHub Pages 发布与线上完整流程验收，功能提交为 `a46ce00`；公开页面确认标准/舒缓节奏持久化、暂停冻结与继续、12 题冷测、错词强化、320px 窄屏、减少动态效果、双 Cache 共存、离线重载和故障隔离均正常，往返前后 Listening localStorage 字节级不变。
@@ -29,7 +29,7 @@
 - 2026-08-31 `[词库]` Issue #7：同步一批错词操作，构建后 751 张主卡（听写 274 / 识词 530）；训练端版本保持 `v2.15.1`。 <!-- vocabulary-issue:7 -->
 - 2026-08-31 `[词库]` Issue #6：同步一批错词操作，构建后 745 张主卡（听写 274 / 识词 524）；训练端版本保持 `v2.15.1`。 <!-- vocabulary-issue:6 -->
 - 2026-08-31 `[协作]` 完成 Confusions `v1.0.1` 的 GitHub Pages 发布与线上验收，功能提交为 `c4af30e`；线上确认学习首屏左右各 4 项、核心组标识、`ielts-confusions-v2` 离线缓存与 Listening Cache 共存均正常，页面往返前后 Listening localStorage 字节级不变。
-- 2026-08-31 `[Confusions v1.0.1]` 学习阶段的词义匹配、Chunk 匹配和组末回忆改为每屏至少同时辨析 4 个词；2～3 词组会按词性和词形相似度加入补位词，4～5 词组保留完整成员。补位词只提高当屏辨析难度，不改写核心组的学习归属、cold test 成绩或 confusion pair。
+- 2026-08-31 `[Confusions v1.0.1]` 学习阶段的词义匹配、Chunk 匹配和组末回忆改为每屏至少同时辨析 4 个词；2～3 词组会按词性与词形相似度加入补位词，4～5 词组保留完整成员。补位词只提高当屏辨析难度，不改写核心组的学习归属、cold test 成绩或 confusion pair。
 - 2026-08-31 `[协作]` 完成 Listening `v2.15.1` 与 Confusions `v1.0.0` 的 GitHub Pages 发布及线上验收，功能提交为 `72b2661`；线上确认 733 张 Listening 主卡、32 组 84 个易混词、学习/冷测/强化流程、故障隔离、双 Service Worker/Cache 边界和 Confusions 离线加载均正常，Confusions 操作前后 Listening localStorage 字节级不变。
 - 2026-08-31 `[Listening v2.15.1 / Confusions v1.0.0]` 新增完全隔离的 `/confusions/` 易混词子应用：独立维护 32 组 84 词、版本、运行时数据、`marcoIeltsConfusions.v1` 和 `ielts-confusions-*` Cache；提供词义/Chunk 匹配、组末回忆、12 题 cold test、first-attempt 计分、pairwise confusion、滚动掌握状态与错题强化。Listening 仅增加首页入口并收窄根 Service Worker 的缓存清理范围，正式词库仍为 733 张主卡，训练 state schema 与三个 reset/deck 常量均未修改。
 - 2026-08-31 `[协作]` 完成训练端 `v2.15.0` 的 GitHub Pages 发布与线上运行态验收，功能提交为 `8932586`；线上确认 733 张主卡（听写 272 / 识词 512）、97 条个人错词、飞书薄弱词批次及新增英式发音均已生效，`calories` 仅归并为主词 `calorie`。
