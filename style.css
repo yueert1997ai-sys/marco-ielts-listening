@@ -378,6 +378,8 @@ textarea:focus-visible, select:focus-visible { outline: 3px solid rgba(0, 122, 2
 .choice.choice-correct:disabled { opacity: 1; }
 .choice.choice-correct .choice-pos { color: #fff; background: rgba(255, 255, 255, .2); }
 .recognition-confidence-card .recognition-term { margin-bottom: auto; }
+.result-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; align-items: stretch; }
+.result-actions .correct-known { color: var(--error); border-color: var(--error); margin-top: 7px; min-height: 46px; }
 .confidence-hint { margin: 0 0 10px; color: var(--muted); font-size: 12px; text-align: center; }
 .confidence-actions { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
 .confidence-button {

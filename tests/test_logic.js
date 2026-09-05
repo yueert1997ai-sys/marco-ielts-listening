@@ -852,4 +852,49 @@ test("upgrading an already-shared base preserves old mixed-only pending retries"
   assert.equal(state.daily.queue.length,0);
 });
 
+test("correcting known replaces the answer and preserves permanent history and stars", () => {
+  const state=logic.safeState(null), date="2026-09-06";
+  const activity={id:"a",key:"a:vocab",mode:"vocab",term:"a",meaning:"甲"};
+  const session={date,baseKeys:[activity.key],queue:Array.from({length:20},(_,i)=>({key:`other${i}:vocab`,isRetry:false})),answeredBase:{[activity.key]:true},outcomes:{},correctStreak:{},retryCount:{}};
+  state.errorWords.a=logic.registerErrorWord(null,{sourceDetail:"原始错误"},"2026-09-01");
+  state.errorWords.a.masteryLevel=2;state.errorWords.a.nextReviewAt=date;
+  state.progress[activity.key]={stage:2,passes:7,attempts:9,lapses:2,due:date};
+  const before=logic.captureKnownAttempt(state,session,activity);
+  state.progress[activity.key]=logic.scheduleReview(state.progress[activity.key],"pass",date);
+  state.starred.a=true;
+  const feedback=logic.correctKnownAttempt(state,session,activity,before,date);
+  assert(feedback.includes("8–12"));
+  assert.equal(state.progress[activity.key].passes,7);assert.equal(state.progress[activity.key].attempts,10);
+  assert.equal(state.progress[activity.key].lapses,3);assert.equal(state.progress[activity.key].stage,0);
+  assert.equal(state.errorWords.a.wrongCount,before.archive.wrongCount+1);
+  assert.equal(state.errorWords.a.priority,"S");assert.equal(state.errorWords.a.nextReviewAt,"2026-09-07");
+  assert(state.errorWords.a.sources.some(s=>s.sourceDetail==="原始错误"));assert(state.starred.a);
+  assert.equal(logic.sessionDone(session),1);
+  const saved=JSON.stringify(state);assert.equal(logic.correctKnownAttempt(state,session,activity,before,date),null);assert.equal(JSON.stringify(state),saved);
+});
+
+test("correction replaces confirmation retry and defers short or capped tails", () => {
+  for(const count of [0,3]) {
+    const state=logic.safeState(null),date="2026-09-06",activity={id:"a",key:"a:recognition",mode:"recognition"};
+    const session={date,queue:[],answeredBase:{},outcomes:{},correctStreak:{},retryCount:{[activity.key]:count}};
+    const before=logic.captureKnownAttempt(state,session,activity);
+    session.queue=[{key:activity.key,isRetry:true,reason:"confirm"}];
+    const feedback=logic.correctKnownAttempt(state,session,activity,before,date);
+    assert(feedback.includes("后续复习"));assert.equal(session.queue.length,0);
+    assert.equal(state.progress[activity.key].attempts,1);assert.equal(state.progress[activity.key].passes || 0,0);
+  }
+});
+
+test("correction respects date boundary and reactivates pardoned errors without losing pardon history", () => {
+  const state=logic.safeState(null),date="2026-09-06",activity={id:"a",key:"a:vocab",mode:"vocab"};
+  const session={date,queue:[],answeredBase:{},outcomes:{},correctStreak:{},retryCount:{}};
+  state.errorWords.a=logic.pardonErrorWord(logic.registerErrorWord(null,{},"2026-09-01"),"2026-09-02");
+  const before=logic.captureKnownAttempt(state,session,activity);
+  assert.equal(logic.correctKnownAttempt(state,session,activity,before,"2026-09-07"),null);
+  assert(state.errorWords.a.pardoned);
+  logic.correctKnownAttempt(state,session,activity,before,date);
+  assert(!state.errorWords.a.pardoned);assert(state.errorWords.a.isErrorWord);
+  assert.deepEqual(state.errorWords.a.pardonHistory,before.archive.pardonHistory);
+});
+
 console.log(JSON.stringify({ ok: true, tests }));

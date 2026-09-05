@@ -2,7 +2,7 @@
   "use strict";
 
   const STORAGE_KEY = "marcoIeltsListening.v1";
-  const APP_VERSION = "v2.19.0";
+  const APP_VERSION = "v2.19.1";
   const AUTO_UPDATE_SESSION_KEY = "marcoIeltsListening.autoUpdateAttempt";
   const AUTO_UPDATE_THROTTLE_MS = 60 * 1000;
   const TRAINING_RESET_ID = "fresh-start-v2.5.0";
@@ -889,6 +889,41 @@
     return index;
   }
 
+  function captureKnownAttempt(state, session, activity) {
+    return JSON.parse(JSON.stringify({
+      key: activity.key, date: session.date,
+      progress: state.progress[activity.key] || null,
+      archive: state.errorWords[activity.id] || null,
+      retryCount: session.retryCount?.[activity.key] || 0,
+    }));
+  }
+
+  function correctKnownAttempt(state, session, activity, before, today = dateKey()) {
+    if (!before || before.consumed || before.key !== activity.key || before.date !== today || session.date !== today) return null;
+    before.consumed = true;
+    const key = activity.key;
+    const baseline = isActiveErrorWord(before.archive)
+      ? progressFromErrorArchive(before.archive, before.progress || {}) : before.progress;
+    // Replace the same answer; do not add a second attempt or retain its pass/stage gain.
+    state.progress[key] = scheduleReview(baseline, "fail", today);
+    state.errorWords[activity.id] = registerErrorWord(before.archive, {
+      source: "vocabulary", sourceDetail: "揭义后纠正：其实不认识", errorType: "self-assessment",
+      causedIeltsError: itemCausedIeltsError(activity),
+    }, today, state.progress[key]);
+    session.outcomes[key] = "fail";
+    session.correctStreak[key] = 0;
+    session.queue = session.queue.filter(entry => !(entry.key === key && entry.isRetry));
+    session.retryCount[key] = before.retryCount;
+    const decision = reinforcementDecision({isRetry: false}, activity, "unknown", baseline, 0, today);
+    let feedback = "已改为不认识；8–12 题后回炉";
+    if (before.retryCount >= MAX_REINFORCEMENT_INSERTIONS || insertRetry(session, key, decision) < 0) {
+      feedback = "已改为不认识；本轮不再连刷，保留到后续复习";
+    }
+    if (activity.mode !== "vocab") enqueueReviewActivity(state.reviewDaily, key);
+    session.completed = session.queue.length === 0;
+    return feedback;
+  }
+
   function buildChoices(activity, activities, seed = activity.key) {
     const target = activity.meaning;
     const targetTokens = new Set(String(target).split(/[；;，、/（）()\s]+/).filter((token) => token.length >= 2));
@@ -1319,6 +1354,7 @@
     createVocabErrorDeck, syncVocabNewSession, syncVocabErrorSession, progressFromErrorArchive,
     errorLibraryEntries, errorLibraryCounts, matchesErrorLibraryFilter,
     shouldConfirmRecognition, reinforcementDecision, insertRetry, buildChoices, syncLearningRecognition,
+    captureKnownAttempt, correctKnownAttempt,
     partOfSpeechForMeaning, abbreviatePartOfSpeech,
     createBrowseDeck, parseWrongWordInput, parseWrongWordDrafts, mergeCustomItems, migrateNumberVariantState, seededShuffle,
     isVocabularySizedTerm,
@@ -2406,6 +2442,8 @@
       ? state.vocabNewDaily : displayedSession;
     if (session.queue[0]?.key !== entry.key) return;
     if (entry.meaningCheck && ["known", "pass"].includes(outcome)) return;
+    const beforeKnown = outcome === "known" && activity.mode !== "spelling"
+      ? captureKnownAttempt(state, session, activity) : null;
     session.queue.shift();
     session.correctStreak = session.correctStreak || {};
     session.retryCount = session.retryCount || {};
@@ -2473,7 +2511,7 @@
       syncLearningRecognition(state);
       if (state.daily.completed) finishDay();
     }
-    currentResult = { entry, activity, outcome, detail, sessionKind, feedback: decision.feedback };
+    currentResult = { entry, activity, outcome, detail, sessionKind, feedback: decision.feedback, beforeKnown };
     saveState();
     preloadUpcomingAudio();
     if (["vocabNew", "vocabErrors"].includes(sessionKind)) renderVocabReveal(activity, positive, sessionKind, decision.feedback, detail);
@@ -2516,13 +2554,35 @@
     window.setTimeout(() => renderCurrent({ animate: true }), delay);
   }
 
+  function resultActions(nextId, nextLabel) {
+    const next = `<button id="${nextId}" class="primary">${nextLabel}</button>`;
+    return currentResult?.beforeKnown && !currentResult.beforeKnown.consumed
+      ? `<div class="result-actions"><button id="correct-known" class="secondary correct-known" type="button">其实不认识</button>${next}</div>` : next;
+  }
+
+  function bindKnownCorrection() {
+    const result = currentResult;
+    document.getElementById("correct-known")?.addEventListener("click", (event) => {
+      if (!screen.contains(event.currentTarget) || currentResult !== result || activeTrainingKind !== result.sessionKind) return;
+      const session = result.sessionKind === "learning" ? state.vocabNewDaily : currentTrainingSession();
+      if (session.date !== dateKey()) { renderActiveTraining(); return; }
+      const feedback = correctKnownAttempt(state, session, result.activity, result.beforeKnown);
+      if (!feedback) return;
+      if (["learning", "vocabNew"].includes(result.sessionKind)) syncLearningRecognition(state);
+      Object.assign(result, { outcome: "unknown", detail: {selfRating: "unknown", corrected: true}, feedback });
+      saveState();
+      if (["vocabNew", "vocabErrors"].includes(result.sessionKind)) renderVocabReveal(result.activity, false, result.sessionKind, feedback, result.detail);
+      else renderResult();
+    });
+  }
+
   function renderResult() {
     window.scrollTo(0, 0);
     const { activity, outcome, detail, sessionKind, feedback } = currentResult;
     const pass = outcome === "pass" || outcome === "known";
     const record = state.progress[activity.key] || {};
     const confidenceLabels = { known: "认识", fuzzy: "模糊", unknown: "不认识" };
-    const label = detail.selfRating
+    const label = detail.corrected ? "已改为不认识" : detail.selfRating
       ? (detail.selected !== undefined
         ? (detail.meaningCheckCorrect ? "不认识 · 已确认释义" : "不认识 · 正确释义如下")
         : confidenceLabels[detail.selfRating])
@@ -2563,8 +2623,9 @@
             <span><b>${escapeHtml(record.due || "—")}</b>下次复习</span>
           </div>
         </div>
-        <button id="continue" class="primary">继续</button>
+        ${resultActions("continue", "继续")}
       </section>`;
+    bindKnownCorrection();
     document.getElementById("continue").addEventListener("click", renderCurrent);
     const resultPlayButton = document.getElementById("result-play");
     resultPlayButton.addEventListener("click", () => playAudio(activity, resultPlayButton));
@@ -2706,7 +2767,7 @@
           ${starButton(activity, "session-star")}
         </div>
         <div class="result-card vocab-reveal-card">
-          <p class="result-mark ${known ? "pass" : "weak"}">${known ? "认识" : (detail.meaningCheckCorrect ? "不认识 · 已确认释义" : "不认识 · 请记住正确释义")}</p>
+          <p class="result-mark ${known ? "pass" : "weak"}">${detail.corrected ? "已改为不认识" : (known ? "认识" : (detail.meaningCheckCorrect ? "不认识 · 已确认释义" : "不认识 · 请记住正确释义"))}</p>
           <div class="answer-row">
             <h2 class="answer">${escapeHtml(activity.term)}</h2>
             <button id="result-play" class="test-play" type="button" aria-label="再读一次">${icon("speaker-high")}再读</button>
@@ -2716,8 +2777,9 @@
           ${archiveMarkup}
           ${feedback ? `<p class="note reinforcement-feedback">${escapeHtml(feedback)}</p>` : ""}
         </div>
-        <button id="vocab-next" class="primary">下一词</button>
+        ${resultActions("vocab-next", "下一词")}
       </section>`;
+    bindKnownCorrection();
     document.getElementById("vocab-next").addEventListener("click", renderVocabCurrent);
     document.querySelector(".session-star").addEventListener("click", (event) => {
       updateStarButton(event.currentTarget, toggleStar(activity.id));
