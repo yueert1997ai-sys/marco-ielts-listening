@@ -1,4 +1,4 @@
-const APP_VERSION = "v2.18.4";
+const APP_VERSION = "v2.19.0";
 const CACHE_PREFIX = "ielts-listening-";
 const CACHE = `${CACHE_PREFIX}${APP_VERSION}`;
 const CORE = [

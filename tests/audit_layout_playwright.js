@@ -37,6 +37,8 @@ async (page) => {
   await check('long-term-reveal','#vocab-next');
   await page.locator('#vocab-next').click();
   await page.locator('#vocab-unknown').click();
+  await check('long-meaning-choices','.choice:last-child');
+  await page.locator('.choice').first().click();
   await check('long-meaning-reveal','#vocab-next');
   await page.setViewportSize({width:390,height:844});
   await page.locator('#result-home').scrollIntoViewIfNeeded();

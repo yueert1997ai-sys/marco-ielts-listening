@@ -2,7 +2,7 @@
   "use strict";
 
   const STORAGE_KEY = "marcoIeltsListening.v1";
-  const APP_VERSION = "v2.18.4";
+  const APP_VERSION = "v2.19.0";
   const AUTO_UPDATE_SESSION_KEY = "marcoIeltsListening.autoUpdateAttempt";
   const AUTO_UPDATE_THROTTLE_MS = 60 * 1000;
   const TRAINING_RESET_ID = "fresh-start-v2.5.0";
@@ -434,6 +434,7 @@
     state.starredDaily = syncStarredSession(state.starredDaily, today, starredKeys);
     const vocabNewKeys = state.daily.baseKeys.filter((key) => key.endsWith(":recognition"));
     state.vocabNewDaily = syncVocabNewSession(state.vocabNewDaily, today, vocabNewKeys);
+    syncLearningRecognition(state, true);
     const uniqueItems = [...new Map(activities.map((activity) => [activity.id, activity])).values()];
     const vocabErrorKeys = createVocabErrorDeck(uniqueItems, state.errorWords, today);
     const activeKeys = uniqueItems.filter((item) => isActiveErrorWord(state.errorWords[item.id])).map((item) => `${item.id}:vocab`);
@@ -741,6 +742,43 @@
     return syncTrainingPoolSession(current, today, keys, VOCAB_NEW_POOL_ID);
   }
 
+  // Both new-word entrances share one recognition queue, including pending checks.
+  // Keep spelling slots intact when projecting that queue into the mixed session.
+  function syncLearningRecognition(state, recoverPending = false) {
+    const daily = state.daily;
+    const vocab = state.vocabNewDaily;
+    if (!daily || !vocab) return;
+    for (const field of ["outcomes", "correctStreak", "retryCount"]) vocab[field] = vocab[field] || {};
+    if (recoverPending) {
+      daily.queue.filter(entry => entry.key.endsWith(":recognition")).forEach((entry, index) => {
+        if (!entry.isRetry || !vocab.baseKeys.includes(entry.key) || vocab.queue.some(candidate => candidate.key === entry.key)) return;
+        vocab.queue.splice(Math.min(index, vocab.queue.length), 0, entry);
+        for (const field of ["correctStreak", "retryCount"]) vocab[field][entry.key] = daily[field]?.[entry.key] || 0;
+      });
+    }
+    for (const key of vocab.baseKeys) {
+      if (daily.answeredBase[key] && !vocab.answeredBase[key]) {
+        vocab.answeredBase[key] = true;
+        vocab.outcomes[key] = daily.outcomes[key];
+        vocab.correctStreak[key] = daily.correctStreak?.[key] || 0;
+        vocab.retryCount[key] = daily.retryCount?.[key] || 0;
+        vocab.queue = vocab.queue.filter(entry => entry.key !== key);
+        const pending = daily.queue.find(entry => entry.key === key && entry.isRetry);
+        if (pending) vocab.queue.push(pending);
+      }
+      if (vocab.answeredBase[key]) daily.answeredBase[key] = true;
+      for (const field of ["outcomes", "correctStreak", "retryCount"]) {
+        daily[field] = daily[field] || {};
+        if (vocab[field]?.[key] !== undefined) daily[field][key] = vocab[field][key];
+      }
+    }
+    const pending = [...vocab.queue];
+    daily.queue = daily.queue.flatMap(entry => entry.key.endsWith(":recognition")
+      ? (pending.length ? [pending.shift()] : []) : [entry]).concat(pending);
+    daily.completed = daily.queue.length === 0;
+    vocab.completed = vocab.queue.length === 0;
+  }
+
   function syncVocabErrorSession(current, today, keys, activeKeys = keys) {
     if (!current || current.date !== today || current.poolId !== VOCAB_ERROR_POOL_ID || !Array.isArray(current.queue)
       || (!current.started && !sessionDone(current) && !current.baseKeys?.length)) {
@@ -772,13 +810,14 @@
       ...existing,
       stage,
       due: record?.nextReviewAt || existing?.due || "",
-      lastSeen: record?.lastReviewAt || existing?.lastSeen || "",
+      lastSeen: [record?.lastReviewAt, existing?.lastSeen].filter(Boolean).sort().at(-1) || "",
     };
   }
 
   function shouldConfirmRecognition(entry, activity, record, sessionDate = dateKey()) {
-
-    if (entry.isRetry || activity.mode !== "recognition") return false;
+    if (entry.isRetry || !["recognition", "vocab"].includes(activity.mode)) return false;
+    if ((record?.stage || 0) > 0 && !record?.pendingConfirmation) return false;
+    if (record?.pendingConfirmation && record.lastSeen && record.lastSeen < sessionDate) return false;
     return true;
   }
 
@@ -822,6 +861,7 @@
           reason: "confirm",
           minDistance: CONFIRM_MIN_DISTANCE,
           maxDistance: CONFIRM_MAX_DISTANCE,
+          pendingConfirmation: true,
           feedback: "再对一次才算掌握",
         };
       }
@@ -1278,7 +1318,7 @@
     registerErrorWord, reviewErrorWord, pardonErrorWord, mergeErrorWordRecords,
     createVocabErrorDeck, syncVocabNewSession, syncVocabErrorSession, progressFromErrorArchive,
     errorLibraryEntries, errorLibraryCounts, matchesErrorLibraryFilter,
-    shouldConfirmRecognition, reinforcementDecision, insertRetry, buildChoices,
+    shouldConfirmRecognition, reinforcementDecision, insertRetry, buildChoices, syncLearningRecognition,
     partOfSpeechForMeaning, abbreviatePartOfSpeech,
     createBrowseDeck, parseWrongWordInput, parseWrongWordDrafts, mergeCustomItems, migrateNumberVariantState, seededShuffle,
     isVocabularySizedTerm,
@@ -2114,6 +2154,7 @@
   }
 
   function renderRecognition(entry, activity) {
+    if (entry.meaningCheck) { renderRecognitionMeaningCheck(entry, activity, 0); return; }
     window.scrollTo(0, 0);
     clearInterval(recognitionTimerId);
     recognitionStartedAt = 0;
@@ -2167,6 +2208,11 @@
   function renderRecognitionMeaningCheck(entry, activity, elapsed) {
     window.scrollTo(0, 0);
     const session = currentTrainingSession();
+    if (session.queue[0] !== entry) return;
+    if (session.date !== dateKey()) { renderActiveTraining(); return; }
+    entry.meaningCheck = true;
+    // Persist the original judgment: refreshing cannot turn answer exposure into a pass.
+    saveState();
     const attempt = (session?.retryCount?.[activity.key] || 0) + 1;
     const choices = buildChoices(activity, activities, `${session?.date || dateKey()}:${attempt}:${entry.reason || "base"}`);
     screen.innerHTML = `
@@ -2346,16 +2392,25 @@
       </article>`;
   }
 
+  function renderActiveTraining() {
+    if (["vocabNew", "vocabErrors"].includes(activeTrainingKind)) renderVocabCurrent();
+    else renderCurrent();
+  }
+
   function recordAttempt(entry, activity, outcome, detail) {
     const sessionKind = activeTrainingKind;
-    const session = currentTrainingSession();
-    if (session.queue[0] !== entry) return;
-    if (session.date !== dateKey()) { renderCurrent(); return; }
+    const displayedSession = currentTrainingSession();
+    if (displayedSession.queue[0] !== entry) return;
+    if (displayedSession.date !== dateKey()) { renderActiveTraining(); return; }
+    const session = sessionKind === "learning" && activity.mode === "recognition"
+      ? state.vocabNewDaily : displayedSession;
+    if (session.queue[0]?.key !== entry.key) return;
+    if (entry.meaningCheck && ["known", "pass"].includes(outcome)) return;
     session.queue.shift();
     session.correctStreak = session.correctStreak || {};
     session.retryCount = session.retryCount || {};
     const firstBaseAttempt = !entry.isRetry && !session.answeredBase[activity.key];
-    const previousRecord = activity.mode === "recognition" && isActiveErrorWord(state.errorWords[activity.id])
+    const previousRecord = activity.mode !== "spelling" && isActiveErrorWord(state.errorWords[activity.id])
       ? progressFromErrorArchive(state.errorWords[activity.id], state.progress[activity.key]) : state.progress[activity.key];
     const decision = reinforcementDecision(
       entry,
@@ -2382,12 +2437,14 @@
     if (decision.retry && (session.retryCount[activity.key] || 0) < MAX_REINFORCEMENT_INSERTIONS) {
       const retryIndex = insertRetry(session, activity.key, { ...decision, avoidChoiceIndex: detail.choiceIndex });
       if (retryIndex < 0) {
-        enqueueReviewActivity(state.reviewDaily, activity.key);
-        decision.feedback = "本轮间隔不足，不再连刷；已转入高频复习";
+        if (activity.mode !== "vocab") enqueueReviewActivity(state.reviewDaily, activity.key);
+        decision.feedback = "本轮间隔不足，不再连刷；保留到后续复习";
       }
+    } else if (decision.retry) {
+      decision.feedback = "本轮已达回炉上限；保留到后续复习";
     }
     if (decision.recordOutcome === "fail") {
-      if (["errors", "learning", "starred"].includes(sessionKind)) {
+      if (["errors", "learning", "starred", "vocabNew"].includes(sessionKind)) {
         enqueueReviewActivity(state.reviewDaily, activity.key);
       }
     }
@@ -2395,9 +2452,14 @@
     if (positive) {
       if (isActiveErrorWord(state.errorWords[activity.id]) && decision.recordOutcome === "pass") {
         state.errorWords[activity.id] = reviewErrorWord(state.errorWords[activity.id], "known", session.date, state.progress[activity.key]);
+      } else if (isActiveErrorWord(state.errorWords[activity.id]) && decision.recordOutcome === "practice") {
+        const archive = state.errorWords[activity.id];
+        archive.lastReviewAt = session.date;
+        archive.lastReviewResult = "known";
+        if (!archive.nextReviewAt || archive.nextReviewAt <= session.date) archive.nextReviewAt = state.progress[activity.key].due;
       }
     } else {
-      const sessionLabels = { learning: "今日新词", review: "高频复习", errors: "我的错词训练", starred: "重点词训练" };
+      const sessionLabels = { learning: "今日新词", review: "高频复习", errors: "我的错词训练", starred: "重点词训练", vocabNew: "背新词", vocabErrors: "背错词" };
       const modeLabel = activity.mode === "spelling" ? "听写" : "识义";
       state.errorWords[activity.id] = registerErrorWord(state.errorWords[activity.id], {
         source: activity.mode === "spelling" ? "listening" : "vocabulary",
@@ -2406,21 +2468,16 @@
         causedIeltsError: itemCausedIeltsError(activity),
       }, session.date, state.progress[activity.key]);
     }
-    if (sessionKind === "learning" && activity.mode === "recognition" && state.vocabNewDaily) {
-      const vocabSession = state.vocabNewDaily;
-      vocabSession.queue = vocabSession.queue.filter((queueEntry) => queueEntry.key !== activity.key);
-      if (!vocabSession.answeredBase[activity.key]) {
-        vocabSession.answeredBase[activity.key] = true;
-        vocabSession.outcomes[activity.key] = decision.recordOutcome === "fail" ? "fail" : (decision.recordOutcome === "practice" ? "pending" : outcome);
-      } else if (decision.recordOutcome === "fail") {
-        vocabSession.outcomes[activity.key] = "fail";
-      }
-      vocabSession.completed = vocabSession.queue.length === 0;
+    session.completed = session.queue.length === 0;
+    if (sessionKind === "vocabNew" || (sessionKind === "learning" && activity.mode === "recognition")) {
+      syncLearningRecognition(state);
+      if (state.daily.completed) finishDay();
     }
     currentResult = { entry, activity, outcome, detail, sessionKind, feedback: decision.feedback };
     saveState();
     preloadUpcomingAudio();
-    if (shouldAutoAdvance(outcome)) showQuickPass(activity, decision.feedback);
+    if (["vocabNew", "vocabErrors"].includes(sessionKind)) renderVocabReveal(activity, positive, sessionKind, decision.feedback, detail);
+    else if (shouldAutoAdvance(outcome)) showQuickPass(activity, decision.feedback);
     else renderResult();
   }
 
@@ -2577,6 +2634,7 @@
   }
 
   function renderVocabCard(entry, activity, kind) {
+    if (entry.meaningCheck) { renderRecognitionMeaningCheck(entry, activity, 0); return; }
     window.scrollTo(0, 0);
     screen.innerHTML = `
       <section class="session">
@@ -2591,7 +2649,7 @@
             <h2 class="term">${escapeHtml(activity.term)}</h2>
             <button id="vocab-play" class="test-play" type="button" aria-label="播放发音">${icon("speaker-high")}再读</button>
           </div>
-          <p class="confidence-hint">判断之后才会公布释义和错词档案</p>
+          <p class="confidence-hint">${entry.isRetry ? "间隔回炉：再凭第一反应判断" : "不认识时，先从四个释义里确认意思"}</p>
           <div class="confidence-actions" role="group" aria-label="自评是否认识">
             <button class="confidence-button confidence-known" id="vocab-known" type="button"><strong>认识</strong><small>一眼就知道</small></button>
             <button class="confidence-button confidence-unknown" id="vocab-unknown" type="button"><strong>不认识</strong><small>需要再看</small></button>
@@ -2609,53 +2667,15 @@
       updateStarButton(event.currentTarget, active);
     });
     document.getElementById("vocab-known").addEventListener("click", () => recordVocabAttempt(entry, activity, true, kind));
-    document.getElementById("vocab-unknown").addEventListener("click", () => recordVocabAttempt(entry, activity, false, kind));
+    document.getElementById("vocab-unknown").addEventListener("click", () => renderRecognitionMeaningCheck(entry, activity, 0));
     playAudio(activity, playButton);
   }
 
   function recordVocabAttempt(entry, activity, known, kind) {
-    const session = currentTrainingSession();
-    if (session.queue[0] !== entry) return;
-    if (session.date !== dateKey()) { renderVocabCurrent(); return; }
-    session.queue.shift();
-    session.answeredBase[activity.key] = true;
-    session.outcomes[activity.key] = known ? "pass" : "fail";
-    const id = activity.id;
-    const progressKey = activity.key;
-    const progressBase = isActiveErrorWord(state.errorWords[id])
-      ? progressFromErrorArchive(state.errorWords[id], state.progress[progressKey])
-      : state.progress[progressKey];
-    state.progress[progressKey] = scheduleReview(progressBase, known ? "pass" : "fail", session.date);
-    if (known) {
-      if (isActiveErrorWord(state.errorWords[id])) {
-        state.errorWords[id] = reviewErrorWord(state.errorWords[id], "known", session.date, state.progress[progressKey]);
-      }
-    } else {
-      state.errorWords[id] = registerErrorWord(state.errorWords[id], {
-        source: "vocabulary",
-        sourceDetail: kind === "vocabErrors" ? "背错词·选择不认识" : "背新词·选择不认识",
-        errorType: "self-assessment",
-        causedIeltsError: itemCausedIeltsError(activity),
-      }, session.date, state.progress[progressKey]);
-      if (kind === "vocabNew") enqueueReviewActivity(state.reviewDaily, activity.key);
-    }
-    if (kind === "vocabNew") {
-      const daily = state.daily;
-      daily.queue = daily.queue.filter((queueEntry) => queueEntry.key !== activity.key);
-      if (!daily.answeredBase[activity.key]) {
-        daily.answeredBase[activity.key] = true;
-        daily.outcomes[activity.key] = known ? "pass" : "fail";
-      } else if (!known) {
-        daily.outcomes[activity.key] = "fail";
-      }
-      if (!daily.queue.length) finishDay();
-    }
-    session.completed = session.queue.length === 0;
-    saveState();
-    renderVocabReveal(activity, known, kind);
+    recordAttempt(entry, activity, known ? "known" : "unknown", { selfRating: known ? "known" : "unknown" });
   }
 
-  function renderVocabReveal(activity, known, kind) {
+  function renderVocabReveal(activity, known, kind, feedback = "", detail = {}) {
     window.scrollTo(0, 0);
     const record = state.errorWords[activity.id];
     const progressRecord = state.progress[activity.key] || {};
@@ -2686,7 +2706,7 @@
           ${starButton(activity, "session-star")}
         </div>
         <div class="result-card vocab-reveal-card">
-          <p class="result-mark ${known ? "pass" : "weak"}">${known ? "认识" : "不认识"}</p>
+          <p class="result-mark ${known ? "pass" : "weak"}">${known ? "认识" : (detail.meaningCheckCorrect ? "不认识 · 已确认释义" : "不认识 · 请记住正确释义")}</p>
           <div class="answer-row">
             <h2 class="answer">${escapeHtml(activity.term)}</h2>
             <button id="result-play" class="test-play" type="button" aria-label="再读一次">${icon("speaker-high")}再读</button>
@@ -2694,6 +2714,7 @@
           <div class="meaning-row"><span class="result-pos">${escapeHtml(abbreviatePartOfSpeech(activity.partOfSpeech))}</span><p class="meaning">${escapeHtml(activity.meaning)}</p></div>
           ${note ? `<p class="note">${escapeHtml(note)}</p>` : ""}
           ${archiveMarkup}
+          ${feedback ? `<p class="note reinforcement-feedback">${escapeHtml(feedback)}</p>` : ""}
         </div>
         <button id="vocab-next" class="primary">下一词</button>
       </section>`;

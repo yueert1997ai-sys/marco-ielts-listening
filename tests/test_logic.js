@@ -788,4 +788,68 @@ test("historical high-risk words can cool down without erasing their errors", ()
   assert.equal(logic.deriveErrorPriority({...record,lastReviewResult:"weak"},"2026-09-05"),"S");
 });
 
+test("vocab and recognition use the same unknown and confirmation decisions", () => {
+  for (const outcome of ["known", "unknown"]) {
+    assert.deepEqual(logic.reinforcementDecision({isRetry:false},{mode:"vocab"},outcome,null),
+      logic.reinforcementDecision({isRetry:false},{mode:"recognition"},outcome,null));
+  }
+});
+
+test("established words do not need redundant same-session confirmation", () => {
+  for(const mode of ["vocab","recognition"]) {
+    const decision=logic.reinforcementDecision({isRetry:false},{mode},"known",{stage:2},0,"2026-09-05");
+    assert.equal(decision.recordOutcome,"pass");assert.equal(decision.retry,false);
+  }
+});
+
+test("deferred confirmation can finish the next day without an endless tail", () => {
+  const record={stage:0,pendingConfirmation:true,lastSeen:"2026-09-04"};
+  assert.equal(logic.reinforcementDecision({isRetry:false},{mode:"vocab"},"known",record,0,"2026-09-05").recordOutcome,"pass");
+  assert.equal(logic.reinforcementDecision({isRetry:false},{mode:"vocab"},"known",record,0,"2026-09-04").recordOutcome,"practice");
+});
+
+test("first recovery keeps confirmation pending until a later known judgment", () => {
+  const decision=logic.reinforcementDecision({isRetry:true,reason:"unknown"},{mode:"vocab"},"known",null,0);
+  assert.equal(decision.recordOutcome,"practice");assert.equal(decision.pendingConfirmation,true);
+});
+
+test("new-word entrances share retries and first judgments without touching spelling", () => {
+  const state=logic.safeState(null);
+  const activities=logic.makeActivities([{id:"a",term:"a",meaning:"甲",modes:["recognition","spelling"]},{id:"b",term:"b",meaning:"乙",modes:["recognition"]}]);
+  logic.prepareDaily(state,activities,"2026-09-05");
+  const vocab=state.vocabNewDaily, key=vocab.queue[0].key;
+  vocab.queue.shift();vocab.answeredBase[key]=true;vocab.outcomes[key]="fail";
+  vocab.retryCount[key]=1;vocab.correctStreak[key]=0;vocab.queue.push({key,isRetry:true,reason:"unknown",meaningCheck:true});
+  const spelling=state.daily.queue.filter(e=>e.key.endsWith(":spelling"));
+  logic.syncLearningRecognition(state);
+  assert.deepEqual(state.daily.queue.filter(e=>e.key.endsWith(":recognition")),vocab.queue);
+  assert.deepEqual(state.daily.queue.filter(e=>e.key.endsWith(":spelling")),spelling);
+  const restored=JSON.parse(JSON.stringify(state));logic.prepareDaily(restored,activities,"2026-09-05");
+  assert.deepEqual(restored.vocabNewDaily.queue,vocab.queue);
+  assert.equal(restored.daily.outcomes[key],"fail");assert.equal(logic.sessionDone(restored.daily),1);
+});
+
+test("archive baseline cannot backdate an unconfirmed practice and grant same-day mastery", () => {
+  const record=logic.progressFromErrorArchive({masteryLevel:0,lastReviewAt:"2026-09-04"},
+    {lastSeen:"2026-09-05",pendingConfirmation:true});
+  assert.equal(record.lastSeen,"2026-09-05");
+  assert.equal(logic.reinforcementDecision({isRetry:false},{mode:"vocab"},"known",record,0,"2026-09-05").recordOutcome,"practice");
+});
+
+test("upgrading an already-shared base preserves old mixed-only pending retries", () => {
+  const state=logic.safeState(null);
+  const activities=logic.makeActivities([{id:"a",term:"a",meaning:"甲",modes:["recognition"]}]);
+  logic.prepareDaily(state,activities,"2026-09-05");
+  const key="a:recognition";
+  state.daily.answeredBase[key]=state.vocabNewDaily.answeredBase[key]=true;
+  state.daily.queue=[{key,isRetry:true,reason:"confirm"}];
+  state.daily.correctStreak[key]=1;state.daily.retryCount[key]=1;
+  state.vocabNewDaily.queue=[];
+  logic.prepareDaily(state,activities,"2026-09-05");
+  assert.equal(state.vocabNewDaily.queue.length,1);
+  assert.equal(state.vocabNewDaily.correctStreak[key],1);
+  state.vocabNewDaily.queue.shift();logic.syncLearningRecognition(state);
+  assert.equal(state.daily.queue.length,0);
+});
+
 console.log(JSON.stringify({ ok: true, tests }));
