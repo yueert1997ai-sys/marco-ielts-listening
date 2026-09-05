@@ -2,7 +2,7 @@
   "use strict";
 
   const STORAGE_KEY = "marcoIeltsListening.v1";
-  const APP_VERSION = "v2.18.2";
+  const APP_VERSION = "v2.18.3";
   const AUTO_UPDATE_SESSION_KEY = "marcoIeltsListening.autoUpdateAttempt";
   const AUTO_UPDATE_THROTTLE_MS = 60 * 1000;
   const TRAINING_RESET_ID = "fresh-start-v2.5.0";
@@ -164,13 +164,14 @@
       if (isVocabularySizedTerm(entry.term || entry.word)) cleanCustomEntry(entry);
     });
     for (const name of ["daily", "reviewDaily", "errorDaily", "starredDaily", "vocabNewDaily", "vocabErrorDaily"]) {
-      const session = raw[name];
+      for (const session of [raw[name], raw[name]?.extra]) {
       if (session == null) continue;
       if (!object(session) || !Array.isArray(session.baseKeys) || !Array.isArray(session.queue)
         || session.baseKeys.some((key) => typeof key !== "string")
         || session.queue.some((entry) => !object(entry) || typeof entry.key !== "string")) throw new Error(`${name} 队列无效`);
       for (const field of ["answeredBase", "outcomes", "retryCount", "correctStreak"]) {
         if (session[field] !== undefined && !object(session[field])) throw new Error(`${name} 进度无效`);
+      }
       }
     }
     return raw;
@@ -315,10 +316,10 @@
     return seededShuffle([...pick("spelling"), ...pick("recognition")], `${today}:learning:${deckNonce}`);
   }
 
-  function createReviewDeck(activities, progress, today = dateKey(), limit = DAILY_REVIEW_LIMIT) {
+  function createReviewDeck(activities, progress, today = dateKey(), limit = DAILY_REVIEW_LIMIT, errorWords = {}) {
     const candidates = activities.filter((activity) => {
       const record = progress[activity.key];
-      return record && (record.lapses || 0) > 0 && (!record.due || record.due <= today);
+      return !errorWords[activity.id]?.pardoned && record && (record.lapses || 0) > 0 && (!record.due || record.due <= today);
     });
     candidates.sort((a, b) => {
       const first = progress[a.key];
@@ -337,9 +338,9 @@
       || activity.sections?.includes("我的同步错词");
   }
 
-  function createErrorTrainingDeck(activities, today = dateKey(), starred = {}, limitPerMode = Infinity) {
+  function createErrorTrainingDeck(activities, today = dateKey(), starred = {}, limitPerMode = Infinity, errorWords = {}) {
     function pick(mode) {
-      const candidates = activities.filter((activity) => activity.mode === mode && isPersonalErrorActivity(activity));
+      const candidates = activities.filter((activity) => activity.mode === mode && isPersonalErrorActivity(activity) && !errorWords[activity.id]?.pardoned);
       const important = candidates.filter((activity) => starred[activity.id]);
       const ordinary = candidates.filter((activity) => !starred[activity.id]);
       return [
@@ -421,10 +422,10 @@
       state.daily = makeDailySession(today, learningKeys);
     }
     if (!state.reviewDaily || state.reviewDaily.date !== today || !Array.isArray(state.reviewDaily.queue)) {
-      const reviewKeys = createReviewDeck(activities, state.progress, today);
+      const reviewKeys = createReviewDeck(activities, state.progress, today, DAILY_REVIEW_LIMIT, state.errorWords);
       state.reviewDaily = makeDailySession(today, reviewKeys);
     }
-    const errorKeys = createErrorTrainingDeck(activities, today, state.starred);
+    const errorKeys = createErrorTrainingDeck(activities, today, state.starred, Infinity, state.errorWords);
     state.errorDaily = syncPersonalErrorSession(state.errorDaily, today, errorKeys);
     const starredKeys = createStarredTrainingDeck(activities, `${today}:starred`, state.starred);
     state.starredDaily = syncStarredSession(state.starredDaily, today, starredKeys);
@@ -432,7 +433,9 @@
     state.vocabNewDaily = syncVocabNewSession(state.vocabNewDaily, today, vocabNewKeys);
     const uniqueItems = [...new Map(activities.map((activity) => [activity.id, activity])).values()];
     const vocabErrorKeys = createVocabErrorDeck(uniqueItems, state.errorWords, today);
-    state.vocabErrorDaily = syncVocabErrorSession(state.vocabErrorDaily, today, vocabErrorKeys);
+    const activeKeys = uniqueItems.filter((item) => isActiveErrorWord(state.errorWords[item.id])).map((item) => `${item.id}:vocab`);
+    state.vocabErrorDaily = syncVocabErrorSession(state.vocabErrorDaily, today, vocabErrorKeys, activeKeys);
+    state.reviewDaily.queue = state.reviewDaily.queue.filter((entry) => !state.errorWords[entry.key.replace(/:(spelling|recognition)$/, "")]?.pardoned);
     return state;
   }
 
@@ -730,8 +733,27 @@
     return syncTrainingPoolSession(current, today, keys, VOCAB_NEW_POOL_ID);
   }
 
-  function syncVocabErrorSession(current, today, keys) {
-    return syncTrainingPoolSession(current, today, keys, VOCAB_ERROR_POOL_ID);
+  function syncVocabErrorSession(current, today, keys, activeKeys = keys) {
+    if (!current || current.date !== today || current.poolId !== VOCAB_ERROR_POOL_ID || !Array.isArray(current.queue)
+      || (!current.started && !sessionDone(current) && !current.baseKeys?.length)) {
+      return {...syncTrainingPoolSession(null, today, keys, VOCAB_ERROR_POOL_ID), frozenPool: true};
+    }
+    const answered = Object.keys(current.answeredBase || {}).filter((key) => current.answeredBase[key]);
+    // Repair v2.18 queues which replaced the original batch after it was answered.
+    const base = current.frozenPool ? current.baseKeys : [...new Set([...answered, ...(current.baseKeys || [])])]
+      .slice(0, Math.max(ERROR_VOCAB_DAILY_TARGET, answered.length));
+    const active = new Set(activeKeys);
+    current.baseKeys = base.filter((key) => active.has(key) || answered.includes(key));
+    const allowed = new Set(current.baseKeys);
+    current.queue = current.queue.filter((entry) => allowed.has(entry.key) && active.has(entry.key)
+      && (entry.isRetry || !current.answeredBase?.[entry.key]));
+    if (current.extra) {
+      current.extra.queue = current.extra.queue.filter((entry) => active.has(entry.key));
+      current.extra.baseKeys = current.extra.baseKeys.filter((key) => active.has(key) || current.extra.answeredBase?.[key]);
+    }
+    current.frozenPool = true;
+    current.completed = current.queue.length === 0;
+    return current;
   }
 
   function progressFromErrorArchive(record, existing = {}) {
@@ -959,7 +981,7 @@
     });
     state.errorWords = errorWords;
 
-    const sessions = [state.daily, state.reviewDaily, state.errorDaily, state.starredDaily, state.vocabNewDaily, state.vocabErrorDaily].filter(Boolean);
+    const sessions = [state.daily, state.reviewDaily, state.errorDaily, state.starredDaily, state.vocabNewDaily, state.vocabErrorDaily, state.vocabErrorDaily?.extra].filter(Boolean);
     if (!sessions.length) return state;
     const uniqueKeys = (values) => {
       const seen = new Set();
@@ -1234,11 +1256,15 @@
       .map((filter) => [filter, entries.filter(({id, record}) => matchesErrorLibraryFilter(id, record, filter, starred)).length]));
   }
 
+  function sessionDone(session) {
+    return session ? [...new Set(session.baseKeys || [])].filter((key) => session.answeredBase?.[key]).length : 0;
+  }
+
   const api = {
     dateKey, addDays, hashString, normaliseAnswer, makeActivities, safeState, validateProgressBackup, prepareImportedState,
     createDailyDeck, createLearningDeck, createReviewDeck, createErrorTrainingDeck, createStarredTrainingDeck,
     isPersonalErrorActivity, syncPersonalErrorSession, syncStarredSession,
-    prepareDaily, scheduleReview, recordPracticePass,
+    prepareDaily, scheduleReview, recordPracticePass, sessionDone,
     masteryStatus, sanitizeErrorSources, sanitizeErrorWordRecords, isActiveErrorWord,
     deriveErrorPriority, initialErrorWordRecord, seedErrorArchive,
     registerErrorWord, reviewErrorWord, pardonErrorWord, mergeErrorWordRecords,
@@ -1295,6 +1321,7 @@
   let lastAutomaticUpdateCheckAt = 0;
   let appReloading = false;
   let hasUnsavedChanges = false;
+  let extraVocabPractice = false;
   const directionModes = {
     standard: {
       id: "standard",
@@ -1490,12 +1517,8 @@
     if (activeTrainingKind === "errors") return state.errorDaily;
     if (activeTrainingKind === "starred") return state.starredDaily;
     if (activeTrainingKind === "vocabNew") return state.vocabNewDaily;
-    if (activeTrainingKind === "vocabErrors") return state.vocabErrorDaily;
+    if (activeTrainingKind === "vocabErrors") return extraVocabPractice && state.vocabErrorDaily.extra ? state.vocabErrorDaily.extra : state.vocabErrorDaily;
     return state.daily;
-  }
-
-  function sessionDone(session) {
-    return session ? Object.keys(session.answeredBase || {}).length : 0;
   }
 
   function baseDone() {
@@ -1557,6 +1580,9 @@
   function homeScreen() {
     window.scrollTo(0, 0);
     activeTrainingKind = "learning";
+    extraVocabPractice = false;
+    prepareDaily(state, activities);
+    saveState();
     const starredKeys = createStarredTrainingDeck(activities, `${dateKey()}:starred`, state.starred);
     state.starredDaily = syncStarredSession(state.starredDaily, dateKey(), starredKeys);
     setShellMode("daily");
@@ -1567,7 +1593,7 @@
     const learningRecognition = state.daily.baseKeys.filter((key) => key.endsWith(":recognition")).length;
     const reviewPending = state.reviewDaily.queue.length;
     const errorTrainingPending = state.errorDaily.queue.length;
-    const personalErrorItems = items.filter(isPersonalErrorActivity);
+    const personalErrorItems = items.filter((item) => isPersonalErrorActivity(item) && !state.errorWords[item.id]?.pardoned);
     const personalErrorCount = personalErrorItems.length;
     const personalErrorTasks = state.errorDaily.baseKeys.length;
     const starredTrainingPending = state.starredDaily.queue.length;
@@ -1675,7 +1701,7 @@
     document.getElementById("error-training")?.addEventListener("click", () => {
       activeTrainingKind = "errors";
       if (!state.errorDaily.queue.length) {
-        state.errorDaily = syncPersonalErrorSession(null, dateKey(), createErrorTrainingDeck(activities, dateKey(), state.starred));
+        state.errorDaily = syncPersonalErrorSession(null, dateKey(), createErrorTrainingDeck(activities, dateKey(), state.starred, Infinity, state.errorWords));
       }
       state.errorDaily.started = true;
       saveState();
@@ -1701,10 +1727,7 @@
     });
     document.getElementById("vocab-errors")?.addEventListener("click", () => {
       activeTrainingKind = "vocabErrors";
-      if (!state.vocabErrorDaily.queue.length) {
-        const uniqueItems = [...new Map(activities.map((activity) => [activity.id, activity])).values()];
-        state.vocabErrorDaily = syncVocabErrorSession(null, dateKey(), createVocabErrorDeck(uniqueItems, state.errorWords, dateKey()));
-      }
+      extraVocabPractice = false;
       state.vocabErrorDaily.started = true;
       saveState();
       renderVocabCurrent();
@@ -2169,6 +2192,7 @@
   }
 
   function renderCurrent(options = {}) {
+    if (currentTrainingSession()?.date !== dateKey()) prepareDaily(state, activities);
     const session = currentTrainingSession();
     const shellMode = activeTrainingKind === "review"
       ? "review"
@@ -2317,6 +2341,8 @@
   function recordAttempt(entry, activity, outcome, detail) {
     const sessionKind = activeTrainingKind;
     const session = currentTrainingSession();
+    if (session.queue[0] !== entry) return;
+    if (session.date !== dateKey()) { renderCurrent(); return; }
     session.queue.shift();
     session.correctStreak = session.correctStreak || {};
     session.retryCount = session.retryCount || {};
@@ -2495,6 +2521,10 @@
 
   function renderVocabCurrent() {
     window.scrollTo(0, 0);
+    if (state.vocabErrorDaily.date !== dateKey() || state.vocabNewDaily.date !== dateKey()) {
+      extraVocabPractice = false;
+      prepareDaily(state, activities);
+    }
     const kind = activeTrainingKind === "vocabErrors" ? "vocabErrors" : "vocabNew";
     const session = currentTrainingSession();
     setShellMode(kind, Boolean(session.queue[0]));
@@ -2507,16 +2537,19 @@
       screen.innerHTML = `
         <section class="finished">
           <div class="hero-number">${icon("check-circle")}</div>
-          <h2>${isErrors ? "这一轮错词复习完成" : "今天的新词背完了"}</h2>
+          <h2>${isErrors ? (extraVocabPractice ? "这一轮加练完成" : "今日错词复习完成") : "今天的新词背完了"}</h2>
           <p>${isErrors ? "答“不认识”的词已回到短周期并升为 S 级，明天会优先排到队首。" : "这些词同时计入今日新词进度，听写部分不受影响。"}</p>
-          ${isErrors ? '<button id="vocab-restart" class="primary">再练一轮</button>' : ""}
+          ${isErrors ? `<p>加练不会改变今日完成数量。</p><button id="vocab-restart" class="primary">${state.vocabErrorDaily.extra?.queue.length ? "继续加练" : "再练一轮"}</button>` : ""}
           <button id="back-home" class="secondary">返回首页</button>
         </section>`;
       document.getElementById("back-home").addEventListener("click", homeScreen);
       document.getElementById("vocab-restart")?.addEventListener("click", () => {
         const uniqueItems = [...new Map(activities.map((activity) => [activity.id, activity])).values()];
-        state.vocabErrorDaily = syncVocabErrorSession(null, dateKey(), createVocabErrorDeck(uniqueItems, state.errorWords, dateKey()));
-        state.vocabErrorDaily.started = true;
+        if (!state.vocabErrorDaily.extra?.queue.length) {
+          state.vocabErrorDaily.extra = makeDailySession(dateKey(), createVocabErrorDeck(uniqueItems, state.errorWords, dateKey()));
+        }
+        extraVocabPractice = true;
+        state.vocabErrorDaily.extra.started = true;
         saveState();
         renderVocabCurrent();
       });
@@ -2573,6 +2606,8 @@
 
   function recordVocabAttempt(entry, activity, known, kind) {
     const session = currentTrainingSession();
+    if (session.queue[0] !== entry) return;
+    if (session.date !== dateKey()) { renderVocabCurrent(); return; }
     session.queue.shift();
     session.answeredBase[activity.key] = true;
     session.outcomes[activity.key] = known ? "pass" : "fail";
@@ -2604,6 +2639,7 @@
       } else if (!known) {
         daily.outcomes[activity.key] = "fail";
       }
+      if (!daily.queue.length) finishDay();
     }
     session.completed = session.queue.length === 0;
     saveState();
@@ -2771,8 +2807,7 @@
       const record = state.errorWords[id];
       if (!isActiveErrorWord(record)) return;
       state.errorWords[id] = pardonErrorWord(record);
-      const vocabErrorKeys = createVocabErrorDeck([...itemMap.values()], state.errorWords, dateKey());
-      state.vocabErrorDaily = syncVocabErrorSession(state.vocabErrorDaily, dateKey(), vocabErrorKeys);
+      prepareDaily(state, activities);
       saveState();
       errorLibraryScreen({preserveScroll: true});
     }));

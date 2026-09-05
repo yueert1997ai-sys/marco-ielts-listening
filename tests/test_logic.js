@@ -728,4 +728,38 @@ test("archive counts and browsing share all active pardoned and important member
   assert.equal(logic.createBrowseDeck(source,"errors","test",{},records).length,3);
 });
 
+test("daily error batch stays fixed after all answers and refresh", () => {
+  const all=Array.from({length:36},(_,i)=>`w${i}:vocab`);
+  let session=logic.syncVocabErrorSession(null,"2026-09-05",all.slice(0,18),all);
+  session.started=true;session.queue=[];
+  session.answeredBase=Object.fromEntries(session.baseKeys.map(key=>[key,true]));
+  session=logic.syncVocabErrorSession(session,"2026-09-05",all.slice(18),all);
+  assert.deepEqual(session.baseKeys,all.slice(0,18));
+  assert.equal(session.queue.length,0);assert.equal(logic.sessionDone(session),18);
+  assert.equal(logic.syncVocabErrorSession(session,"2026-09-06",all.slice(18),all).queue.length,18);
+});
+
+test("legacy churning queues keep answered history instead of adding eighteen more", () => {
+  const keys=Array.from({length:36},(_,i)=>`w${i}:vocab`);
+  let session=logic.syncVocabErrorSession(null,"2026-09-05",keys.slice(18),keys);
+  delete session.frozenPool;
+  session.answeredBase=Object.fromEntries(keys.slice(0,18).map(key=>[key,true]));
+  session=logic.syncVocabErrorSession(session,"2026-09-05",keys.slice(18),keys);
+  assert.equal(logic.sessionDone(session),18);assert.equal(session.queue.length,0);
+});
+
+test("pardon removes unattempted cards without replacing them and preserves answered totals", () => {
+  let session=logic.syncVocabErrorSession(null,"2026-09-05",["a:vocab","b:vocab"]);
+  session.answeredBase["a:vocab"]=true;session.queue.shift();
+  session=logic.syncVocabErrorSession(session,"2026-09-05",["c:vocab"],["c:vocab"]);
+  assert.deepEqual(session.baseKeys,["a:vocab"]);assert.equal(logic.sessionDone(session),1);assert(session.completed);
+  assert.equal(logic.sessionDone({baseKeys:["a","a"],answeredBase:{a:true,outside:true}}),1);
+});
+
+test("pardoned words are excluded from supplemental error and due review pools", () => {
+  const errors={carpet:{isErrorWord:true,pardoned:true}};
+  assert(!logic.createErrorTrainingDeck(activities,"2026-09-05",{},Infinity,errors).some(k=>k.startsWith("carpet:")));
+  assert(!logic.createReviewDeck(activities,{"carpet:recognition":{lapses:3}},"2026-09-05",30,errors).length);
+});
+
 console.log(JSON.stringify({ ok: true, tests }));
