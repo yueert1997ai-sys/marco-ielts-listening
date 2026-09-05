@@ -59,6 +59,8 @@ async (page) => {
   }));
 
   await page.setViewportSize({ width: 320, height: 568 });
+  // Chromium acknowledges viewport changes before the next responsive layout frame.
+  await page.evaluate(() => new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve))));
   const shortScreen = await page.locator(".confidence-button").evaluateAll((buttons) => ({
     scrollWidth: document.documentElement.scrollWidth,
     visible: buttons.filter((button) => {
