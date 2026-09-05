@@ -326,7 +326,7 @@ test("result note has no dangling separator when source note is empty", () => {
 test("different published version triggers an update", () => assert(logic.hasVersionUpdate("v2.11.1", "v2.11.2")));
 test("matching published version does not trigger an update", () => assert.equal(logic.hasVersionUpdate("v2.11.2", "v2.11.2"), false));
 test("intervals match spec", () => assert.deepEqual(logic.INTERVALS, [1, 3, 7, 14, 30, 60]));
-test("visible app version matches this release", () => assert.equal(logic.APP_VERSION, "v2.18.0"));
+test("visible app version matches release metadata", () => assert.equal(logic.APP_VERSION, require("../version.json").version));
 test("direction response limit is two seconds", () => assert.equal(logic.DIRECTION_RESPONSE_LIMIT_MS, 2000));
 test("hard direction response limit is one second", () => assert.equal(logic.HARD_DIRECTION_RESPONSE_LIMIT_MS, 1000));
 test("hard direction audio plays at one point four speed", () => assert.equal(logic.HARD_DIRECTION_PLAYBACK_RATE, 1.4));
@@ -684,6 +684,20 @@ test("reactivated error ignores stale high vocab stage and restarts from archive
   const base = logic.progressFromErrorArchive({ masteryLevel: 0, nextReviewAt: "2026-09-05" }, { stage: 5, due: "2026-10-01" });
   assert.equal(base.stage, 0);
   assert.equal(base.due, "2026-09-05");
+});
+
+test("backup validation rejects partial sessions and corrupt records", () => {
+  assert.throws(() => logic.validateProgressBackup({version:3, progress:{bad:null}}));
+  assert.throws(() => logic.validateProgressBackup({version:3, progress:{}, daily:{queue:[]}}));
+  assert.throws(() => logic.validateProgressBackup({version:3, progress:{}, customItems:[{term:"carpet",meaning:"",mode:"recognition"}]}));
+});
+
+test("restored old backups survive the historical reset migration", () => {
+  const raw = {version:1, progress:{"carpet:recognition":{stage:2,lapses:3}},starred:{carpet:true}};
+  const restored = logic.prepareImportedState(raw, items, "2026-09-05");
+  assert.equal(logic.applyTrainingReset(restored).progress["carpet:recognition"].lapses,3);
+  assert(restored.starred.carpet);
+  assert.equal(raw.trainingResetId,undefined);
 });
 
 console.log(JSON.stringify({ ok: true, tests }));

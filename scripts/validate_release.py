@@ -133,8 +133,8 @@ def main() -> None:
         fail("The offline Phosphor icon stylesheet is not wired into the app shell and cache")
     if web_manifest.get("theme_color", "").lower() != "#f2f2f7" or web_manifest.get("background_color", "").lower() != "#f2f2f7":
         fail("The PWA manifest must use the light system grouped background")
-    if 'CACHE = "ielts-listening-v35"' not in service_worker:
-        fail("Unexpected Service Worker cache version")
+    if 'CACHE = `${CACHE_PREFIX}${APP_VERSION}`' not in service_worker:
+        fail("Service Worker cache must follow the app version")
     expected_icon_sizes = {
         "apple-touch-icon.png": (180, 180),
         "icon-192.png": (192, 192),

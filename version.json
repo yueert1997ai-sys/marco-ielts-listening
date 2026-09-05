@@ -1,7 +1,7 @@
 {
-  "version": "v2.18.0",
-  "releasedAt": "2026-09-04",
-  "label": "背新词背错词与永久错词库",
+  "version": "v2.18.1",
+  "releasedAt": "2026-09-05",
+  "label": "学习记录导入与保存保护",
   "contentRevision": "词库#20",
   "contentUpdatedAt": "2026-09-03"
 }

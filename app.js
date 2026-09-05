@@ -2,7 +2,7 @@
   "use strict";
 
   const STORAGE_KEY = "marcoIeltsListening.v1";
-  const APP_VERSION = "v2.18.0";
+  const APP_VERSION = "v2.18.1";
   const AUTO_UPDATE_SESSION_KEY = "marcoIeltsListening.autoUpdateAttempt";
   const AUTO_UPDATE_THROTTLE_MS = 60 * 1000;
   const TRAINING_RESET_ID = "fresh-start-v2.5.0";
@@ -140,6 +140,55 @@
       deckNonce,
       learningReviewSplitId: LEARNING_REVIEW_SPLIT_ID,
     };
+  }
+
+  function validateProgressBackup(raw) {
+    const object = (value) => value && typeof value === "object" && !Array.isArray(value);
+    if (!object(raw) || ![1, 2, 3].includes(raw.version) || !object(raw.progress)) throw new Error("进度备份结构无效");
+    for (const name of ["progress", "starred", "errorWords"]) {
+      if (raw[name] !== undefined && !object(raw[name])) throw new Error(`${name} 不是有效记录`);
+    }
+    Object.values(raw.progress).forEach((record) => {
+      if (!object(record)) throw new Error("训练记录无效");
+      for (const field of ["stage", "lapses", "passes", "attempts"]) {
+        if (record[field] !== undefined && (!Number.isInteger(record[field]) || record[field] < 0)) throw new Error(`训练记录 ${field} 无效`);
+      }
+    });
+    Object.values(raw.errorWords || {}).forEach((record) => {
+      if (!object(record)) throw new Error("错词档案无效");
+    });
+    if (raw.customItems !== undefined && !Array.isArray(raw.customItems)) throw new Error("自定义词库无效");
+    (raw.customItems || []).forEach((entry) => {
+      if (!object(entry)) throw new Error("自定义词条无效");
+      // Old sentence cards are quarantined by the existing vocabulary migration.
+      if (isVocabularySizedTerm(entry.term || entry.word)) cleanCustomEntry(entry);
+    });
+    for (const name of ["daily", "reviewDaily", "errorDaily", "starredDaily", "vocabNewDaily", "vocabErrorDaily"]) {
+      const session = raw[name];
+      if (session == null) continue;
+      if (!object(session) || !Array.isArray(session.baseKeys) || !Array.isArray(session.queue)
+        || session.baseKeys.some((key) => typeof key !== "string")
+        || session.queue.some((entry) => !object(entry) || typeof entry.key !== "string")) throw new Error(`${name} 队列无效`);
+      for (const field of ["answeredBase", "outcomes", "retryCount", "correctStreak"]) {
+        if (session[field] !== undefined && !object(session[field])) throw new Error(`${name} 进度无效`);
+      }
+    }
+    return raw;
+  }
+
+  function prepareImportedState(raw, source, today = dateKey()) {
+    validateProgressBackup(raw);
+    if (!source.length) throw new Error("请先加载词库，再恢复备份");
+    let candidate = safeState(JSON.parse(JSON.stringify(raw)));
+    // Import is an explicit restore, not consent to the historical v2.5 reset.
+    candidate.trainingResetId = TRAINING_RESET_ID;
+    candidate = applyLearningReviewSplit(candidate);
+    candidate = applySelfAssessmentFlow(candidate);
+    migrateNumberVariantState(candidate, source);
+    const importedItems = mergeCustomItems(source, candidate.customItems);
+    candidate.errorWords = seedErrorArchive(candidate.errorWords, importedItems, candidate.progress, today);
+    prepareDaily(candidate, makeActivities(importedItems), today);
+    return candidate;
   }
 
   function applyTrainingReset(current) {
@@ -1158,7 +1207,7 @@
   }
 
   const api = {
-    dateKey, addDays, hashString, normaliseAnswer, makeActivities, safeState,
+    dateKey, addDays, hashString, normaliseAnswer, makeActivities, safeState, validateProgressBackup, prepareImportedState,
     createDailyDeck, createLearningDeck, createReviewDeck, createErrorTrainingDeck, createStarredTrainingDeck,
     isPersonalErrorActivity, syncPersonalErrorSession, syncStarredSession,
     prepareDaily, scheduleReview, recordPracticePass,
@@ -1216,6 +1265,7 @@
   let automaticUpdateCheckInFlight = false;
   let lastAutomaticUpdateCheckAt = 0;
   let appReloading = false;
+  let hasUnsavedChanges = false;
   const directionModes = {
     standard: {
       id: "standard",
@@ -1242,13 +1292,31 @@
   const versionButton = document.getElementById("app-version");
 
   function loadState() {
-    try { state = safeState(JSON.parse(localStorage.getItem(STORAGE_KEY))); }
-    catch (_) { state = safeState(null); }
+    const raw = JSON.parse(localStorage.getItem(STORAGE_KEY));
+    if (raw !== null) validateProgressBackup(raw);
+    state = safeState(raw);
   }
 
   function saveState() {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+      hasUnsavedChanges = false;
+      document.getElementById("storage-warning")?.remove();
+    } catch (_) {
+      hasUnsavedChanges = true;
+      if (!document.getElementById("storage-warning")) {
+        const notice = document.createElement("aside");
+        notice.id = "storage-warning";
+        notice.className = "empty-card";
+        notice.setAttribute("role", "alert");
+        notice.innerHTML = '<p>本次改动尚未保存到设备。请先导出备份，不要刷新或关闭页面。</p><button id="save-backup" class="secondary">导出当前进度</button><button id="retry-save" class="secondary">重试保存</button>';
+        screen.before(notice);
+        notice.querySelector("#save-backup").addEventListener("click", exportProgress);
+        notice.querySelector("#retry-save").addEventListener("click", saveState);
+      }
+    }
     updateChrome();
+    return !hasUnsavedChanges;
   }
 
   async function fetchLatestVersion() {
@@ -1270,7 +1338,7 @@
   }
 
   function canApplyAutomaticUpdate() {
-    return Boolean(screen.querySelector(".home"));
+    return !hasUnsavedChanges && Boolean(screen.querySelector(".home"));
   }
 
   async function showVersionStatus({ autoApply = false } = {}) {
@@ -2928,7 +2996,11 @@
   }
 
   function exportProgress() {
-    const blob = new Blob([JSON.stringify(state, null, 2)], { type: "application/json" });
+    downloadProgress(JSON.stringify(state, null, 2));
+  }
+
+  function downloadProgress(text) {
+    const blob = new Blob([text], { type: "application/json" });
     const link = document.createElement("a");
     link.href = URL.createObjectURL(blob);
     link.download = `ielts-listening-progress-${dateKey()}.json`;
@@ -2942,20 +3014,18 @@
     const reader = new FileReader();
     reader.onload = () => {
       try {
-        const parsed = JSON.parse(reader.result);
-        if (![1, 2, 3].includes(parsed.version) || !parsed.progress) throw new Error("invalid");
-        state = safeState(parsed);
-        state = applyLearningReviewSplit(state);
-        state = applySelfAssessmentFlow(state);
-        migrateNumberVariantState(state, sourceItems);
+        const candidate = prepareImportedState(JSON.parse(reader.result), sourceItems);
+        // setItem is atomic. Publish the new in-memory state only after it succeeds.
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(candidate));
+        state = candidate;
+        hasUnsavedChanges = false;
+        document.getElementById("storage-warning")?.remove();
         rebuildDecks();
-        state.errorWords = seedErrorArchive(state.errorWords, items, state.progress);
-        prepareDaily(state, activities);
-        saveState();
         homeScreen();
       } catch (_) {
-        alert("这个文件不是有效的听力进度备份。");
+        alert("导入未完成：请检查备份内容和设备存储空间。原有进度未被替换。");
       }
+      event.target.value = "";
     };
     reader.readAsText(file);
   }
@@ -2983,7 +3053,7 @@
       if ("serviceWorker" in navigator) {
         const hadController = Boolean(navigator.serviceWorker.controller);
         navigator.serviceWorker.addEventListener("controllerchange", () => {
-          if (hadController && !appReloading) {
+          if (hadController && !appReloading && canApplyAutomaticUpdate()) {
             appReloading = true;
             window.location.reload();
           }
@@ -2998,7 +3068,12 @@
       document.addEventListener("visibilitychange", () => requestAutomaticUpdateCheck());
       requestAutomaticUpdateCheck({ force: true });
     } catch (error) {
-      screen.innerHTML = `<section class="finished"><h2>词库没有加载成功</h2><p>${escapeHtml(error.message)}。联网后刷新页面再试。</p></section>`;
+      screen.innerHTML = `<section class="finished"><h2>暂时无法打开学习记录</h2><p>${escapeHtml(error.message)}。没有覆盖原始记录；请先备份，再检查网络或导入有效备份。</p><button id="raw-backup" class="secondary">导出原始记录</button><label class="secondary file-label">导入有效备份<input id="import" type="file" accept="application/json"></label></section>`;
+      document.getElementById("raw-backup").addEventListener("click", () => {
+        try { downloadProgress(localStorage.getItem(STORAGE_KEY) || "{}"); }
+        catch (_) { alert("设备不允许读取存储，请检查浏览器存储权限。"); }
+      });
+      document.getElementById("import").addEventListener("change", importProgress);
     }
   }
 

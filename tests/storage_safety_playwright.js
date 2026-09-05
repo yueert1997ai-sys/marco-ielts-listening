@@ -1,0 +1,62 @@
+async (page) => {
+  const assert = (value, message) => { if (!value) throw new Error(message); };
+  const key = 'marcoIeltsListening.v1';
+  await page.goto('http://127.0.0.1:4173/');
+  await page.evaluate(key=>localStorage.removeItem(key),key);
+  await page.reload();
+  await page.locator('#vocab-new').waitFor();
+  await page.setViewportSize({width:390,height:844});
+  const read = () => page.evaluate(key=>JSON.parse(localStorage.getItem(key)),key);
+  await page.locator('#vocab-new').click();
+  await page.locator('#vocab-known').click();
+  await page.locator('.session-star').click();
+  await page.locator('#result-home').click();
+  const original = await read();
+  const recordKey = Object.keys(original.progress)[0];
+  const importFile = async data => {
+    await page.evaluate(()=>{window.auditAlert=null;window.alert=message=>window.auditAlert=message;});
+    await page.locator('#import').evaluate((input, data)=>{
+      const transfer = new DataTransfer();
+      transfer.items.add(new File([JSON.stringify(data)], 'backup.json', {type:'application/json'}));
+      input.files=transfer.files;
+      input.dispatchEvent(new Event('change',{bubbles:true}));
+    },data);
+  };
+  await page.locator('#home-more summary').click();
+  const before = await page.evaluate(key=>localStorage.getItem(key),key);
+  await importFile({...original,progress:{},customItems:[{term:'carpet',meaning:'',mode:'recognition'}]});
+  await page.waitForFunction(()=>Boolean(window.auditAlert));
+  assert(await page.evaluate(key=>localStorage.getItem(key),key)===before,'failed import changed disk');
+  await page.locator('#browse').click();
+  await page.locator('[data-star]').first().click();
+  assert((await read()).progress[recordKey].attempts===original.progress[recordKey].attempts,'failed import changed memory');
+  await page.locator('#browse-back').click();
+  await page.locator('#home-more summary').click();
+  await importFile({version:1,progress:original.progress,starred:original.starred});
+  await page.waitForFunction(()=>!document.querySelector('#home-more')?.open);
+  await page.reload();
+  await page.locator('#vocab-new').waitFor();
+  assert((await read()).progress[recordKey].attempts===original.progress[recordKey].attempts,'old backup reset on reload');
+  assert(Object.keys((await read()).starred).length===Object.keys(original.starred).length,'stars lost after restore');
+  await page.evaluate(key=>{
+    window.auditSetItem=Storage.prototype.setItem;
+    Storage.prototype.setItem=function(k,v){if(k===key) throw new DOMException('full','QuotaExceededError');return window.auditSetItem.call(this,k,v);};
+  },key);
+  await page.locator('#vocab-new').click();
+  await page.locator('#storage-warning').waitFor();
+  await page.locator('#vocab-known').click();
+  assert(await page.locator('.meaning').count()===1,'storage full breaks training UI');
+  assert(await page.locator('#save-backup').count()===1,'unsaved progress has no export');
+  assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),'warning overflows mobile');
+  await page.evaluate(()=>{Storage.prototype.setItem=window.auditSetItem;});
+  await page.locator('#retry-save').click();
+  assert(await page.locator('#storage-warning').count()===0,'retry failed');
+  const saved = await read();
+  await page.evaluate(key=>localStorage.setItem(key,'{broken'),key);
+  await page.reload();
+  await page.locator('#raw-backup').waitFor();
+  assert(await page.evaluate(key=>localStorage.getItem(key),key)==='{broken','corrupt JSON overwritten');
+  await importFile(saved);
+  await page.locator('#vocab-new').waitFor();
+  return {ok:true, cases:['failed-import-disk','failed-import-memory','legacy-restore-refresh','stars-retained','quota-warning-retry','corrupt-json-recovery'], viewport:'390x844'};
+}
