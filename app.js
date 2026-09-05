@@ -2,7 +2,7 @@
   "use strict";
 
   const STORAGE_KEY = "marcoIeltsListening.v1";
-  const APP_VERSION = "v2.18.3";
+  const APP_VERSION = "v2.18.4";
   const AUTO_UPDATE_SESSION_KEY = "marcoIeltsListening.autoUpdateAttempt";
   const AUTO_UPDATE_THROTTLE_MS = 60 * 1000;
   const TRAINING_RESET_ID = "fresh-start-v2.5.0";
@@ -417,6 +417,9 @@
   }
 
   function prepareDaily(state, activities, today = dateKey()) {
+    Object.values(state.errorWords || {}).forEach((record) => {
+      if (isActiveErrorWord(record)) record.priority = deriveErrorPriority(record, today);
+    });
     if (!state.daily || state.daily.date !== today || !Array.isArray(state.daily.queue)) {
       const learningKeys = createLearningDeck(activities, state.progress, today, state.starred, state.deckNonce || DECK_REVISION);
       state.daily = makeDailySession(today, learningKeys);
@@ -442,7 +445,8 @@
   function scheduleReview(record, outcome, today = dateKey()) {
     const current = record && typeof record === "object" ? record : { stage: 0, lapses: 0, passes: 0, attempts: 0 };
     if (outcome === "pass") {
-      const stage = Math.min((current.stage || 0) + 1, INTERVALS.length);
+      const earlyPractice = (current.stage || 0) > 0 && current.due && current.due > today;
+      const stage = earlyPractice ? current.stage : Math.min((current.stage || 0) + 1, INTERVALS.length);
       return {
         ...current,
         stage,
@@ -450,7 +454,7 @@
         attempts: (current.attempts || 0) + 1,
         passes: (current.passes || 0) + 1,
         lastSeen: today,
-        due: addDays(today, INTERVALS[Math.max(0, stage - 1)]),
+        due: earlyPractice ? current.due : addDays(today, INTERVALS[Math.max(0, stage - 1)]),
       };
     }
     return {
@@ -544,10 +548,11 @@
 
   function deriveErrorPriority(record, today) {
     const recentBoundary = addDays(today, -2);
-    if ((record.wrongCount || 0) >= 2
-      || record.causedIeltsError
-      || (record.lastWrongAt && record.lastWrongAt >= recentBoundary)
+    if ((record.lastWrongAt && record.lastWrongAt >= recentBoundary)
       || record.lastReviewResult === "weak") return "S";
+    const historicalRisk = (record.wrongCount || 0) >= 2 || record.causedIeltsError;
+    if ((record.masteryLevel || 0) >= 5) return "B";
+    if (historicalRisk) return (record.masteryLevel || 0) >= 3 ? "A" : "S";
     if ((record.masteryLevel || 0) >= 3) return "B";
     return "A";
   }
@@ -634,7 +639,7 @@
       wrongCount: current.wrongCount + 1,
       firstWrongAt: current.firstWrongAt || today,
       lastWrongAt: today,
-      lastReviewAt: event.fromReview ? today : current.lastReviewAt,
+      lastReviewAt: event.source === "manual" ? current.lastReviewAt : today,
       nextReviewAt: progressRecord?.due || addDays(today, INTERVALS[0]),
       priority: "S",
       masteryLevel: 0,
@@ -653,14 +658,16 @@
     if (result === "weak") {
       return registerErrorWord(current, { source: "vocabulary", sourceDetail: "错词复习再次选择不认识", errorType: "review", fromReview: true }, today, progressRecord);
     }
-    const masteryLevel = Number.isInteger(progressRecord?.stage)
-      ? Math.max(0, Math.min(progressRecord.stage, INTERVALS.length - 1))
-      : current.masteryLevel;
+    const proposedStage = Number.isInteger(progressRecord?.stage) ? progressRecord.stage : current.masteryLevel;
+    const earlyPractice = current.nextReviewAt && current.nextReviewAt > today && current.masteryLevel > 0;
+    const canAdvance = !earlyPractice && proposedStage > current.masteryLevel;
+    const nextStage = canAdvance ? Math.min(current.masteryLevel + 1, INTERVALS.length) : current.masteryLevel;
+    const masteryLevel = Math.min(nextStage, INTERVALS.length - 1);
     const updated = {
       ...current,
       isErrorWord: true,
       lastReviewAt: today,
-      nextReviewAt: progressRecord?.due || current.nextReviewAt,
+      nextReviewAt: canAdvance ? addDays(today, INTERVALS[Math.max(0, nextStage - 1)]) : (current.nextReviewAt || progressRecord?.due || today),
       masteryLevel,
       reviewStatus: masteryStatus(masteryLevel),
       lastReviewResult: "known",
@@ -706,11 +713,12 @@
     };
   }
 
-  function createVocabErrorDeck(items, rawRecords, today = dateKey(), count = ERROR_VOCAB_DAILY_TARGET) {
+  function createVocabErrorDeck(items, rawRecords, today = dateKey(), count = ERROR_VOCAB_DAILY_TARGET, includeFuture = false) {
     const records = sanitizeErrorWordRecords(rawRecords);
     const itemIds = new Set((items || []).map((item) => item.id));
     const candidates = Object.entries(records)
-      .filter(([id, record]) => itemIds.has(id) && isActiveErrorWord(record))
+      .filter(([id, record]) => itemIds.has(id) && isActiveErrorWord(record)
+        && (includeFuture || !record.nextReviewAt || record.nextReviewAt <= today))
       .map(([id, record]) => ({ id, record }));
     const priorityIndex = (value) => Math.max(0, ERROR_PRIORITY_ORDER.indexOf(value));
     candidates.sort((left, right) => {
@@ -2347,7 +2355,8 @@
     session.correctStreak = session.correctStreak || {};
     session.retryCount = session.retryCount || {};
     const firstBaseAttempt = !entry.isRetry && !session.answeredBase[activity.key];
-    const previousRecord = state.progress[activity.key];
+    const previousRecord = activity.mode === "recognition" && isActiveErrorWord(state.errorWords[activity.id])
+      ? progressFromErrorArchive(state.errorWords[activity.id], state.progress[activity.key]) : state.progress[activity.key];
     const decision = reinforcementDecision(
       entry,
       activity,
@@ -2384,7 +2393,7 @@
     }
     const positive = outcome === "pass" || outcome === "known";
     if (positive) {
-      if (isActiveErrorWord(state.errorWords[activity.id])) {
+      if (isActiveErrorWord(state.errorWords[activity.id]) && decision.recordOutcome === "pass") {
         state.errorWords[activity.id] = reviewErrorWord(state.errorWords[activity.id], "known", session.date, state.progress[activity.key]);
       }
     } else {
@@ -2537,7 +2546,7 @@
       screen.innerHTML = `
         <section class="finished">
           <div class="hero-number">${icon("check-circle")}</div>
-          <h2>${isErrors ? (extraVocabPractice ? "这一轮加练完成" : "今日错词复习完成") : "今天的新词背完了"}</h2>
+          <h2>${isErrors ? (extraVocabPractice ? "这一轮加练完成" : (session.baseKeys.length ? "今日错词复习完成" : "今天暂无到期错词")) : "今天的新词背完了"}</h2>
           <p>${isErrors ? "答“不认识”的词已回到短周期并升为 S 级，明天会优先排到队首。" : "这些词同时计入今日新词进度，听写部分不受影响。"}</p>
           ${isErrors ? `<p>加练不会改变今日完成数量。</p><button id="vocab-restart" class="primary">${state.vocabErrorDaily.extra?.queue.length ? "继续加练" : "再练一轮"}</button>` : ""}
           <button id="back-home" class="secondary">返回首页</button>
@@ -2546,7 +2555,7 @@
       document.getElementById("vocab-restart")?.addEventListener("click", () => {
         const uniqueItems = [...new Map(activities.map((activity) => [activity.id, activity])).values()];
         if (!state.vocabErrorDaily.extra?.queue.length) {
-          state.vocabErrorDaily.extra = makeDailySession(dateKey(), createVocabErrorDeck(uniqueItems, state.errorWords, dateKey()));
+          state.vocabErrorDaily.extra = makeDailySession(dateKey(), createVocabErrorDeck(uniqueItems, state.errorWords, dateKey(), ERROR_VOCAB_DAILY_TARGET, true));
         }
         extraVocabPractice = true;
         state.vocabErrorDaily.extra.started = true;
@@ -2613,7 +2622,7 @@
     session.outcomes[activity.key] = known ? "pass" : "fail";
     const id = activity.id;
     const progressKey = activity.key;
-    const progressBase = kind === "vocabErrors"
+    const progressBase = isActiveErrorWord(state.errorWords[id])
       ? progressFromErrorArchive(state.errorWords[id], state.progress[progressKey])
       : state.progress[progressKey];
     state.progress[progressKey] = scheduleReview(progressBase, known ? "pass" : "fail", session.date);

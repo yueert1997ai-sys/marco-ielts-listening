@@ -530,12 +530,12 @@ test("repeated errors update the same record instead of duplicating", () => {
 
 test("consecutive passes raise mastery but never erase error identity", () => {
   let record = logic.registerErrorWord(null, { source: "vocabulary", sourceDetail: "不认识", causedIeltsError: true }, "2026-09-04");
-  record = logic.reviewErrorWord(record, "known", "2026-09-05", { stage: 3, due: "2026-09-12" });
+  for (let stage=1;stage<=3;stage++) record = logic.reviewErrorWord(record, "known", record.nextReviewAt, {stage});
   assert.equal(record.isErrorWord, true);
   assert.equal(record.masteryLevel, 3);
   assert.equal(record.reviewStatus, "stable");
   assert.equal(record.wrongCount, 1);
-  record = logic.reviewErrorWord(record, "known", "2026-09-12", { stage: 5, due: "2026-10-11" });
+  for (let stage=4;stage<=5;stage++) record = logic.reviewErrorWord(record, "known", record.nextReviewAt, {stage});
   assert.equal(record.reviewStatus, "mastered");
   assert.equal(record.isErrorWord, true);
   assert.equal(logic.isActiveErrorWord(record), true);
@@ -575,7 +575,8 @@ test("error deck orders by due, priority, recency and wrong count", () => {
     "future-b": { isErrorWord: true, priority: "B", wrongCount: 1, nextReviewAt: "2026-10-01", masteryLevel: 5, reviewStatus: "mastered" },
   });
   const deck = logic.createVocabErrorDeck(vocabItems, records, "2026-09-04", 4);
-  assert.deepEqual(deck, ["due-s:vocab", "due-a:vocab", "future-s:vocab", "future-b:vocab"]);
+  assert.deepEqual(deck, ["due-s:vocab", "due-a:vocab"]);
+  assert.deepEqual(logic.createVocabErrorDeck(vocabItems, records, "2026-09-04", 4, true), ["due-s:vocab", "due-a:vocab", "future-s:vocab", "future-b:vocab"]);
 });
 
 test("error deck excludes pardoned and caps at the daily target", () => {
@@ -651,7 +652,7 @@ test("mergeErrorWordRecords combines duplicate ids without losing history", () =
 test("ordinary training miss is not permanently tagged as an IELTS-caused error", () => {
   let record = logic.registerErrorWord(null, { source: "vocabulary", sourceDetail: "背新词·选择不认识", causedIeltsError: false }, "2026-09-04");
   assert.equal(record.causedIeltsError, false);
-  record = logic.reviewErrorWord(record, "known", "2026-09-08", { stage: 3, due: "2026-09-15" });
+  for (let stage=1;stage<=3;stage++) record = logic.reviewErrorWord(record, "known", record.nextReviewAt, {stage});
   assert.equal(record.priority, "B");
 });
 
@@ -760,6 +761,31 @@ test("pardoned words are excluded from supplemental error and due review pools",
   const errors={carpet:{isErrorWord:true,pardoned:true}};
   assert(!logic.createErrorTrainingDeck(activities,"2026-09-05",{},Infinity,errors).some(k=>k.startsWith("carpet:")));
   assert(!logic.createReviewDeck(activities,{"carpet:recognition":{lapses:3}},"2026-09-05",30,errors).length);
+});
+
+test("early repeat passes count practice without advancing the interval", () => {
+  let record=logic.scheduleReview(null,"pass","2026-09-05");
+  for(let i=0;i<10;i++) record=logic.scheduleReview(record,"pass","2026-09-05");
+  assert.equal(record.stage,1);assert.equal(record.due,"2026-09-06");assert.equal(record.passes,11);
+  assert.equal(logic.scheduleReview(record,"pass","2026-09-06").stage,2);
+});
+
+test("cross-mode reviews cannot skip mastery stages or demote a stable archive", () => {
+  let record=logic.registerErrorWord(null,{},"2026-09-04");
+  record=logic.reviewErrorWord(record,"known","2026-09-05",{stage:5});
+  assert.equal(record.masteryLevel,1);
+  record=logic.reviewErrorWord(record,"known","2026-09-05",{stage:5});
+  assert.equal(record.masteryLevel,1);assert.equal(record.nextReviewAt,"2026-09-06");
+  const stable={...record,masteryLevel:3,nextReviewAt:"2026-10-01"};
+  const lower=logic.reviewErrorWord(stable,"known","2026-09-06",{stage:1,due:"2026-09-07"});
+  assert.equal(lower.masteryLevel,3);assert.equal(lower.nextReviewAt,"2026-10-01");
+});
+
+test("historical high-risk words can cool down without erasing their errors", () => {
+  const record={wrongCount:9,causedIeltsError:true,lastWrongAt:"2026-08-01",lastReviewResult:"known",masteryLevel:3};
+  assert.equal(logic.deriveErrorPriority(record,"2026-09-05"),"A");
+  assert.equal(logic.deriveErrorPriority({...record,masteryLevel:5},"2026-09-05"),"B");
+  assert.equal(logic.deriveErrorPriority({...record,lastReviewResult:"weak"},"2026-09-05"),"S");
 });
 
 console.log(JSON.stringify({ ok: true, tests }));

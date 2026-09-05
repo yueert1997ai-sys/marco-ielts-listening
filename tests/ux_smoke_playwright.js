@@ -1,4 +1,6 @@
 async (page) => {
+  await page.goto('http://127.0.0.1:4173/');
+  const expectedVersion = await page.evaluate(() => fetch('./version.json').then(r => r.json()).then(data => data.version));
   await page.setViewportSize({ width: 390, height: 844 });
   await page.evaluate(async () => {
     localStorage.removeItem("marcoIeltsListening.v1");
@@ -36,7 +38,7 @@ async (page) => {
       progress: {}, starred: {}, customItems: [], streak: 0, lastCompletedDate: null,
       trainingResetId: "fresh-start-v2.5.0",
       learningReviewSplitId: "learning-review-v2.9.0",
-      selfAssessmentFlowId: "meaning-confirmation-v2.17.0",
+      selfAssessmentFlowId: JSON.parse(localStorage.getItem("marcoIeltsListening.v1")).selfAssessmentFlowId,
       deckNonce: "whole-bank-v2",
       daily: session,
       reviewDaily: { ...session, baseKeys: [], queue: [], completed: true },
@@ -136,7 +138,7 @@ async (page) => {
   if (home.width > 390
     || !home.progress.includes("0 / 50")
     || !home.personalErrors.includes("词")
-    || home.version !== "v2.17.0"
+    || home.version !== expectedVersion
     || question.choices !== 0
     || question.confidenceButtons.length !== 2
     || !question.confidenceButtons.some((label) => label.startsWith("认识"))

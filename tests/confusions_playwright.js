@@ -4,6 +4,7 @@ async (page) => {
     ? "https://yueert1997ai-sys.github.io/marco-ielts-listening/"
     : "http://127.0.0.1:4173/";
   await page.goto(baseUrl, { waitUntil: "networkidle" });
+  const listeningVersion = await page.evaluate(() => fetch('./version.json').then(r => r.json()).then(data => data.version));
   await page.evaluate(async () => {
     localStorage.clear();
     sessionStorage.clear();
@@ -172,7 +173,7 @@ async (page) => {
   await page.waitForTimeout(700);
   const cacheNames = await page.evaluate(() => caches.keys());
   const cacheIsolation = {
-    listening: cacheNames.includes("ielts-listening-v34"),
+    listening: cacheNames.includes(`ielts-listening-${listeningVersion}`),
     confusions: cacheNames.includes("ielts-confusions-v3"),
   };
   await page.context().setOffline(true);

@@ -4,11 +4,13 @@
 
 ## 本轮本地审计（未发布）
 
-2026-09-05 从 origin/main `0db8f71` 建立 `codex/learning-system-audit-20260905`。本地 v2.18.3 修复存储保护、永久错词/重点统计、每日固定题单与独立加练。详见 [自检报告](AUDIT-2026-09-05.md)。本轮不以历史发布记录证明当前生产版本，没有 push 或部署；下述线上描述为历史交接信息，发布前须重新回读。
+2026-09-05 从 origin/main `0db8f71` 建立 `codex/learning-system-audit-20260905`。本地 v2.18.4 修复存储保护、永久错词/重点统计、每日固定题单及到期/加练排期。详见 [自检报告](AUDIT-2026-09-05.md)。本轮不以历史发布记录证明当前生产版本，没有 push 或部署；下述线上描述为历史交接信息，发布前须重新回读。
 
 进度仍保存在 `marcoIeltsListening.v1`；导入先验证再写入，失败不改原进度。坏 JSON 不会清空，启动页提供原始备份导出与导入恢复。保存失败时页面显示未保存提示并提供导出/重试；此时禁止自动刷新更新。
 
 `vocabErrorDaily.frozenPool` 标记固定当日题单；`vocabErrorDaily.extra` 是用户主动加练的独立 session，仍随主存档保存，刷新后可继续，不重置或增加主线完成数。未答赦免词从当日题单移出，不自动补位；已答赦免词保留当天完成记账。次日重选新题单。
+
+日常背错词只选到期词，上限 18；没有到期词显示空状态，不强凑任务。主动加练可包含未来到期词，但提前答对不连续升级或延后原到期日；到期验证每次最多升一级，静态迁移保留原阶段。听写仍保留独立模式记录，永久档案不会被陈旧模式阶段拖低。
 
 ## 线上入口
 
@@ -49,7 +51,7 @@
 - `isErrorWord`：永久历史身份，赦免也保持 true；活跃状态唯一判断为 isErrorWord && !pardoned。
 - `sources`：`source(listening/vocabulary/reading/manual) / sourceDetail / errorType / wrongAt` 历史，去重，不因答对或赦免丢弃；旧版本已截断的历史无法凭空恢复。
 - `wrongCount / firstWrongAt / lastWrongAt`：错误累计。
-- `priority`：S/A/B 动态优先级（近 2 天错、wrongCount≥2、致 IELTS 错题、上次再错均为 S）。
+- `priority`：近 2 天错或上次再错为 S；历史错多/致 IELTS 错题且未稳定仍 S，阶段≥3 降 A，阶段≥5 降 B；普通词阶段≥3 为 B。分级影响到期词选题顺序。
 - `masteryLevel / reviewStatus`：学习中 / 稳定掌握 / 长期维持，只代表当前会不会。
 - `nextReviewAt / lastReviewAt`：背错词 SRS 排期（沿用 1/3/7/14/30/60 天 INTERVALS）。
 - `pardoned / pardonedAt / pardonHistory`：手动赦免记录；再错自动复活并保留赦免历史。
