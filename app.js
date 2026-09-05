@@ -2,7 +2,7 @@
   "use strict";
 
   const STORAGE_KEY = "marcoIeltsListening.v1";
-  const APP_VERSION = "v2.18.1";
+  const APP_VERSION = "v2.18.2";
   const AUTO_UPDATE_SESSION_KEY = "marcoIeltsListening.autoUpdateAttempt";
   const AUTO_UPDATE_THROTTLE_MS = 60 * 1000;
   const TRAINING_RESET_ID = "fresh-start-v2.5.0";
@@ -491,7 +491,7 @@
       if (seen.has(key)) return [];
       seen.add(key);
       return [{ source, sourceDetail, errorType, wrongAt }];
-    }).slice(-100);
+    });
   }
 
   function sanitizeErrorWordRecords(rawRecords) {
@@ -505,7 +505,8 @@
       const pardoned = Boolean(raw.pardoned);
       const isDate = (value) => typeof value === "string" && /^\d{4}-\d{2}-\d{2}$/.test(value);
       records[id] = {
-        isErrorWord: pardoned ? false : raw.isErrorWord !== false,
+        ...raw,
+        isErrorWord: raw.isErrorWord !== false || pardoned || (raw.wrongCount || 0) > 0,
         sources: sanitizeErrorSources(raw.sources),
         wrongCount: Number.isInteger(raw.wrongCount) && raw.wrongCount >= 0 ? raw.wrongCount : 0,
         firstWrongAt: isDate(raw.firstWrongAt) ? raw.firstWrongAt : "",
@@ -522,7 +523,7 @@
         pardoned,
         pardonedAt: typeof raw.pardonedAt === "string" ? raw.pardonedAt : "",
         pardonHistory: Array.isArray(raw.pardonHistory)
-          ? raw.pardonHistory.filter((item) => typeof item === "string").slice(-20)
+          ? raw.pardonHistory.filter((item) => typeof item === "string")
           : [],
       };
     });
@@ -582,9 +583,14 @@
   function seedErrorArchive(rawRecords, items, progress = {}, today = dateKey()) {
     const records = sanitizeErrorWordRecords(rawRecords);
     items.forEach((item) => {
-      if (!item?.id || !isPersonalErrorActivity(item) || records[item.id]) return;
-      const progressRecords = (item.modes || []).map((mode) => progress[`${item.id}:${mode}`]).filter(Boolean);
+      if (!item?.id || records[item.id]) return;
+      const progressRecords = [...new Set([...(item.modes || []), "vocab"])]
+        .map((mode) => progress[`${item.id}:${mode}`]).filter(Boolean);
+      if (!isPersonalErrorActivity(item) && !item.isRealError && !progressRecords.some((record) => record.lapses > 0)) return;
       records[item.id] = initialErrorWordRecord(item, today, progressRecords);
+      if (!isPersonalErrorActivity(item) && !item.isRealError) {
+        records[item.id].sources = [{source: "vocabulary", sourceDetail: "旧版训练错误记录", errorType: "migration", wrongAt: ""}];
+      }
     });
     Object.values(records).forEach((record) => {
       if (isActiveErrorWord(record)) record.priority = deriveErrorPriority(record, today);
@@ -634,7 +640,7 @@
       causedIeltsError: current.causedIeltsError || Boolean(event.causedIeltsError),
       pardoned: false,
       pardonedAt: "",
-      pardonHistory: pardonHistory.slice(-20),
+      pardonHistory,
     };
   }
 
@@ -666,10 +672,10 @@
     if (!current) return null;
     return {
       ...current,
-      isErrorWord: false,
+      isErrorWord: true,
       pardoned: true,
       pardonedAt,
-      pardonHistory: [...new Set([...current.pardonHistory, pardonedAt])].slice(-20),
+      pardonHistory: [...new Set([...current.pardonHistory, pardonedAt])],
     };
   }
 
@@ -693,7 +699,7 @@
       reviewStatus: masteryStatus(Math.max(a.masteryLevel || 0, b.masteryLevel || 0)),
       causedIeltsError: a.causedIeltsError || b.causedIeltsError,
       pardoned,
-      pardonHistory: [...new Set([...a.pardonHistory, ...b.pardonHistory])].slice(-20),
+      pardonHistory: [...new Set([...a.pardonHistory, ...b.pardonHistory])],
     };
   }
 
@@ -858,12 +864,12 @@
     return labels[value] || "—";
   }
 
-  function createBrowseDeck(sourceItems, filter = "all", seed = "default", starred = {}) {
+  function createBrowseDeck(sourceItems, filter = "all", seed = "default", starred = {}, errorWords = null) {
     return sourceItems
       .filter((item) => {
         if (filter === "spelling") return item.modes.includes("spelling");
         if (filter === "recognition") return item.modes.includes("recognition");
-        if (filter === "errors") return item.isRealError;
+        if (filter === "errors") return errorWords ? Boolean(errorWords[item.id]?.isErrorWord) : item.isRealError;
         if (filter === "starred") return Boolean(starred[item.id]);
         return true;
       })
@@ -1206,6 +1212,28 @@
     return [detail, followUp].filter(Boolean).join(" · ");
   }
 
+  function errorLibraryEntries(items, records) {
+    return items.filter((item) => records[item.id]?.isErrorWord)
+      .map((item) => ({id: item.id, item, record: records[item.id]}));
+  }
+
+  function matchesErrorLibraryFilter(id, record, filter, starred = {}) {
+    if (filter === "all") return Boolean(record.isErrorWord);
+    if (filter === "starred") return Boolean(record.isErrorWord && starred[id]);
+    if (filter === "pardoned") return Boolean(record.isErrorWord && record.pardoned);
+    if (!isActiveErrorWord(record)) return false;
+    if (filter === "high" || filter === "S") return record.priority === "S";
+    if (filter === "A" || filter === "B") return record.priority === filter;
+    if (filter === "stable") return record.reviewStatus === "stable" || record.reviewStatus === "mastered";
+    return true;
+  }
+
+  function errorLibraryCounts(items, records, starred = {}) {
+    const entries = errorLibraryEntries(items, records);
+    return Object.fromEntries(["all", "active", "pardoned", "S", "A", "B", "starred", "stable"]
+      .map((filter) => [filter, entries.filter(({id, record}) => matchesErrorLibraryFilter(id, record, filter, starred)).length]));
+  }
+
   const api = {
     dateKey, addDays, hashString, normaliseAnswer, makeActivities, safeState, validateProgressBackup, prepareImportedState,
     createDailyDeck, createLearningDeck, createReviewDeck, createErrorTrainingDeck, createStarredTrainingDeck,
@@ -1215,6 +1243,7 @@
     deriveErrorPriority, initialErrorWordRecord, seedErrorArchive,
     registerErrorWord, reviewErrorWord, pardonErrorWord, mergeErrorWordRecords,
     createVocabErrorDeck, syncVocabNewSession, syncVocabErrorSession, progressFromErrorArchive,
+    errorLibraryEntries, errorLibraryCounts, matchesErrorLibraryFilter,
     shouldConfirmRecognition, reinforcementDecision, insertRetry, buildChoices,
     partOfSpeechForMeaning, abbreviatePartOfSpeech,
     createBrowseDeck, parseWrongWordInput, parseWrongWordDrafts, mergeCustomItems, migrateNumberVariantState, seededShuffle,
@@ -1446,7 +1475,7 @@
   }
 
   function itemStats(item) {
-    const records = item.modes.map((mode) => state.progress[`${item.id}:${mode}`]).filter(Boolean);
+    const records = [...new Set([...item.modes, "vocab"])].map((mode) => state.progress[`${item.id}:${mode}`]).filter(Boolean);
     return records.reduce((summary, record) => ({
       attempts: summary.attempts + (record.attempts || (record.passes || 0) + (record.lapses || 0)),
       passes: summary.passes + (record.passes || 0),
@@ -1545,14 +1574,10 @@
     const starredTasks = state.starredDaily.baseKeys.length;
     const buttonText = state.daily.completed ? "今日已完成" : (state.daily.started ? "继续训练" : "开始训练");
     const completionPercent = learningTotal ? Math.min(100, Math.round((done / learningTotal) * 100)) : 0;
-    const errorPoolCount = new Set(Object.entries(state.progress)
-      .filter(([, record]) => (record.lapses || 0) > 0)
-      .map(([key]) => key.replace(/:(spelling|recognition)$/, ""))).size;
     const starredCount = items.filter((item) => state.starred[item.id]).length;
-    const activeErrorRecords = Object.entries(state.errorWords || {})
-      .filter(([id, record]) => itemMap.has(id) && isActiveErrorWord(record));
-    const activeErrorCount = activeErrorRecords.length;
-    const highPriorityErrorCount = activeErrorRecords.filter(([, record]) => record.priority === "S").length;
+    const errorCounts = errorLibraryCounts(items, state.errorWords, state.starred);
+    const activeErrorCount = errorCounts.active;
+    const highPriorityErrorCount = errorCounts.S;
     const vocabNewDone = sessionDone(state.vocabNewDaily);
     const vocabNewTotal = state.vocabNewDaily?.baseKeys?.length || 0;
     const vocabErrorDone = sessionDone(state.vocabErrorDaily);
@@ -1564,11 +1589,11 @@
           <div class="home-progress-ring" style="--progress:${completionPercent * 3.6}deg" role="img" aria-label="今日完成 ${done} / ${learningTotal}">
             <div class="home-progress-inner">
               <p><strong>${done}</strong><span>&nbsp;/ ${learningTotal}</span></p>
-              <small>${state.daily.completed ? "今日完成" : "今日进度"}</small>
+              <small>${state.daily.completed ? "听写/识义完成" : "听写/识义进度"}</small>
             </div>
           </div>
           <div class="home-daily-copy">
-            <h2 id="home-daily-title">今日新词</h2>
+            <h2 id="home-daily-title">听写与识义</h2>
             <p class="home-mode-summary">${learningSpelling} 听写 · ${learningRecognition} 识义</p>
           </div>
         </section>
@@ -1616,12 +1641,13 @@
             </a>
           </div>
         </section>
-        <p class="status-line">连续 ${state.streak || 0} 天 · 复习池 ${errorPoolCount} 项</p>
+        <p class="status-line">连续 ${state.streak || 0} 天 · 词库 ${items.length} · 重点 ${starredCount}</p>
+        <p class="status-line" id="error-counts">错词 ${errorCounts.all} · 活跃 ${activeErrorCount} · 已赦免 ${errorCounts.pardoned}</p>
         <details id="home-more" class="home-more">
           <summary><span class="home-task-icon">${icon("gear")}</span><span>更多练习与设置</span><span class="home-task-caret">${icon("caret-right")}</span></summary>
           <div class="home-menu">
             <button id="browse" class="menu-entry"><span>${icon("books")}浏览词库</span><small>${items.length} 条</small></button>
-            <button id="error-library" class="menu-entry"><span>${icon("bookmark-simple")}个人错词库</span><small>${activeErrorCount} 个活跃</small></button>
+            <button id="error-library" class="menu-entry"><span>${icon("bookmark-simple")}个人错词库</span><small>${errorCounts.all} 档案 · ${activeErrorCount} 活跃</small></button>
             <button id="starred" class="menu-entry"><span>${icon("star")}浏览重点词</span><small>${starredCount} 个</small></button>
             <button id="inbox" class="menu-entry"><span>${icon("tray")}错词收件箱</span><small>${state.customItems.length} 条待同步</small></button>
           </div>
@@ -2187,7 +2213,7 @@
     const preservedScrollY = options.preserveScroll ? window.scrollY : null;
     if (preservedScrollY === null) window.scrollTo(0, 0);
     setShellMode("browse");
-    const deck = createBrowseDeck(items, browseFilter, browseSeed, state.starred);
+    const deck = createBrowseDeck(items, browseFilter, browseSeed, state.starred, state.errorWords);
     const pageCount = Math.max(1, Math.ceil(deck.length / BROWSE_PAGE_SIZE));
     browsePage = Math.min(Math.max(1, browsePage), pageCount);
     const pageItems = deck.slice((browsePage - 1) * BROWSE_PAGE_SIZE, browsePage * BROWSE_PAGE_SIZE);
@@ -2252,25 +2278,26 @@
     if (preservedScrollY !== null) window.scrollTo(0, preservedScrollY);
   }
 
-  function pagination(pageCount) {
+  function pagination(pageCount, currentPage = browsePage) {
     return `<nav class="pagination" aria-label="词表翻页">
-      <button class="secondary" data-page="${Math.max(1, browsePage - 1)}" ${browsePage === 1 ? "disabled" : ""}>上一页</button>
-      <span><strong>${browsePage}</strong> / ${pageCount}</span>
-      <button class="secondary" data-page="${Math.min(pageCount, browsePage + 1)}" ${browsePage === pageCount ? "disabled" : ""}>下一页</button>
+      <button class="secondary" data-page="${Math.max(1, currentPage - 1)}" ${currentPage === 1 ? "disabled" : ""}>上一页</button>
+      <span><strong>${currentPage}</strong> / ${pageCount}</span>
+      <button class="secondary" data-page="${Math.min(pageCount, currentPage + 1)}" ${currentPage === pageCount ? "disabled" : ""}>下一页</button>
     </nav>`;
   }
 
   function browseCard(item) {
+    const errorRecord = state.errorWords[item.id];
     const tags = [];
     if (item.modes.includes("spelling")) tags.push("听写");
     if (item.modes.includes("recognition")) tags.push("看懂");
-    if (item.isRealError) tags.push("错词");
+    if (errorRecord?.isErrorWord) tags.push(errorRecord.pardoned ? "已赦免错词" : "错词");
     if (state.starred[item.id]) tags.push("重点");
     const rawNote = String(item.errorNote || item.note || "").trim();
     const note = /^[-—–]+$/.test(rawNote) ? "" : rawNote;
     const stats = itemStats(item);
     return `
-      <article class="word-card${item.isRealError ? " real-error" : ""}${state.starred[item.id] ? " starred" : ""}">
+      <article class="word-card${errorRecord?.isErrorWord ? " real-error" : ""}${state.starred[item.id] ? " starred" : ""}">
         <div class="word-main">
           <div>
             <h2>${escapeHtml(item.term)}</h2>
@@ -2283,7 +2310,7 @@
         </div>
         ${note ? `<p class="word-note">${escapeHtml(note)}</p>` : ""}
         <div class="word-tags">${tags.map((tag) => `<span${tag === "重点" ? " data-star-tag" : ""}>${tag}</span>`).join("")}</div>
-        ${stats.attempts ? `<div class="word-stats"><span>错 ${stats.lapses}</span><span>对 ${stats.passes}</span><span>阶段 ${stats.stage}/6</span>${stats.due ? `<span>复习 ${escapeHtml(stats.due)}</span>` : ""}</div>` : ""}
+        ${stats.attempts || errorRecord ? `<div class="word-stats"><span>历史错 ${errorRecord?.wrongCount ?? stats.lapses}</span><span>累计对 ${stats.passes}</span><span>阶段 ${errorRecord?.masteryLevel ?? stats.stage}/6</span>${(errorRecord?.nextReviewAt || stats.due) ? `<span>复习 ${escapeHtml(errorRecord?.nextReviewAt || stats.due)}</span>` : ""}</div>` : ""}
       </article>`;
   }
 
@@ -2611,6 +2638,7 @@
         <div class="result-toolbar">
           <button id="result-home" class="text-button">${icon("arrow-left")}暂停</button>
           <span class="mode-label">${kind === "vocabErrors" ? "背错词" : "背新词"}</span>
+          ${starButton(activity, "session-star")}
         </div>
         <div class="result-card vocab-reveal-card">
           <p class="result-mark ${known ? "pass" : "weak"}">${known ? "认识" : "不认识"}</p>
@@ -2625,6 +2653,9 @@
         <button id="vocab-next" class="primary">下一词</button>
       </section>`;
     document.getElementById("vocab-next").addEventListener("click", renderVocabCurrent);
+    document.querySelector(".session-star").addEventListener("click", (event) => {
+      updateStarButton(event.currentTarget, toggleStar(activity.id));
+    });
     const playButton = document.getElementById("result-play");
     playButton.addEventListener("click", () => playAudio(activity, playButton));
     document.getElementById("result-home").addEventListener("click", () => {
@@ -2634,36 +2665,36 @@
   }
 
   let errorLibraryFilter = "all";
+  let errorLibraryQuery = "";
+  let errorLibraryPage = 1;
 
-  function matchesErrorLibraryFilter(id, record, filter) {
-    if (filter === "pardoned") return Boolean(record.pardoned);
-    if (!isActiveErrorWord(record)) return false;
-    if (filter === "high") return record.priority === "S";
-    if (filter === "stable") return record.reviewStatus === "stable" || record.reviewStatus === "mastered";
-    return true;
-  }
-
-  function errorLibraryScreen() {
-    window.scrollTo(0, 0);
+  function errorLibraryScreen(options = {}) {
+    const scrollY = options.preserveScroll ? window.scrollY : 0;
+    window.scrollTo(0, scrollY);
     setShellMode("browse");
     screenTitle.textContent = "个人错词库";
     const statusLabels = { learning: "学习中", stable: "稳定掌握", mastered: "长期维持" };
-    const allRecords = Object.entries(state.errorWords || {})
-      .filter(([id]) => itemMap.has(id))
-      .map(([id, record]) => ({ id, item: itemMap.get(id), record }));
-    const activeCount = allRecords.filter(({ record }) => isActiveErrorWord(record)).length;
+    const allRecords = errorLibraryEntries(items, state.errorWords);
+    const counts = errorLibraryCounts(items, state.errorWords, state.starred);
+    const activeCount = counts.active;
     const filtered = allRecords
-      .filter(({ record }) => matchesErrorLibraryFilter(null, record, errorLibraryFilter))
+      .filter(({id, record}) => matchesErrorLibraryFilter(id, record, errorLibraryFilter, state.starred))
+      .filter(({item, record}) => `${item.term} ${item.meaning} ${record.sources.map((source) => source.sourceDetail).join(" ")}`.toLowerCase().includes(errorLibraryQuery.trim().toLowerCase()))
       .sort((a, b) => Number(b.record.pardoned) - Number(a.record.pardoned)
         || Math.max(0, ERROR_PRIORITY_ORDER.indexOf(a.record.priority)) - Math.max(0, ERROR_PRIORITY_ORDER.indexOf(b.record.priority))
         || (b.record.wrongCount || 0) - (a.record.wrongCount || 0)
         || (b.record.lastWrongAt || "").localeCompare(a.record.lastWrongAt || ""));
     const filters = [
       ["all", "全部错词"],
-      ["high", "高频复习"],
+      ["active", "活跃错词"],
+      ["S", "S 级"], ["A", "A 级"], ["B", "B 级"],
       ["stable", "稳定掌握"],
       ["pardoned", "已赦免"],
+      ["starred", "重点词"],
     ];
+    const pageCount = Math.max(1, Math.ceil(filtered.length / BROWSE_PAGE_SIZE));
+    errorLibraryPage = Math.min(errorLibraryPage, pageCount);
+    const pageEntries = filtered.slice((errorLibraryPage - 1) * BROWSE_PAGE_SIZE, errorLibraryPage * BROWSE_PAGE_SIZE);
     dayCount.textContent = `${filtered.length} 词`;
     screen.innerHTML = `
       <section class="browse error-library">
@@ -2675,17 +2706,19 @@
           <p>错词身份永久保留：连续答对只会降低优先级，不会自动洗白。只有手动赦免才退出每日背错词。</p>
           <span>${allRecords.length} 条档案</span>
         </div>
+        <label class="library-search">搜索英文、中文或来源<input id="error-search" type="search" value="${escapeHtml(errorLibraryQuery)}" placeholder="搜索错词"></label>
         <div class="filter-strip" role="group" aria-label="错词分组">
-          ${filters.map(([value, label]) => `<button class="filter-chip${errorLibraryFilter === value ? " active" : ""}" data-error-filter="${value}">${label}</button>`).join("")}
+          ${filters.map(([value, label]) => `<button class="filter-chip${errorLibraryFilter === value ? " active" : ""}" data-error-filter="${value}">${label} ${counts[value]}</button>`).join("")}
         </div>
         <div class="word-stream">
-          ${filtered.length ? filtered.map(({ id, item, record }) => {
+          ${pageEntries.length ? pageEntries.map(({ id, item, record }) => {
             const latestSource = record.sources.length ? record.sources[record.sources.length - 1] : null;
             const tags = [
               record.pardoned ? "已赦免" : `${record.priority} 级`,
               `错 ${record.wrongCount} 次`,
               statusLabels[record.reviewStatus] || "学习中",
               record.nextReviewAt ? `复习 ${record.nextReviewAt}` : "",
+              state.starred[id] ? "重点" : "",
             ].filter(Boolean);
             return `
             <article class="word-card real-error error-library-card">
@@ -2696,20 +2729,38 @@
                 </div>
                 <div class="word-actions">
                   <button class="mini-play" data-id="${escapeHtml(id)}" aria-label="播放 ${escapeHtml(item.term)}">${icon("speaker-high")}</button>
+                  ${starButton(item)}
                   ${record.pardoned ? "" : `<button class="pardon-button text-button" data-pardon="${escapeHtml(id)}" type="button">赦免</button>`}
                 </div>
               </div>
               ${latestSource?.sourceDetail ? `<p class="word-note">来源：${escapeHtml(latestSource.sourceDetail)}</p>` : ""}
               <div class="word-tags">${tags.map((tag) => `<span>${escapeHtml(tag)}</span>`).join("")}</div>
+              <div class="word-stats"><span>首次错误 ${escapeHtml(record.firstWrongAt || "未记录")}</span><span>最近训练 ${escapeHtml(record.lastReviewAt || "未训练")}</span></div>
               ${record.pardoned && record.pardonedAt ? `<div class="word-stats"><span>赦免于 ${escapeHtml(record.pardonedAt.slice(0, 10))}</span><span>历史保留 · 再错自动恢复</span></div>` : ""}
             </article>`;
           }).join("") : '<div class="empty-card"><strong>这一组暂时没有词</strong><p>训练中答错或点“不认识”的词会自动收进个人错词库。</p></div>'}
         </div>
+        ${pagination(pageCount, errorLibraryPage)}
       </section>`;
     document.getElementById("library-back").addEventListener("click", homeScreen);
     document.querySelectorAll("[data-error-filter]").forEach((button) => button.addEventListener("click", () => {
       errorLibraryFilter = button.dataset.errorFilter;
+      errorLibraryPage = 1;
       errorLibraryScreen();
+    }));
+    document.getElementById("error-search").addEventListener("input", (event) => {
+      errorLibraryQuery = event.target.value;
+      errorLibraryPage = 1;
+      errorLibraryScreen({preserveScroll: true});
+      document.getElementById("error-search").focus({preventScroll: true});
+    });
+    document.querySelectorAll("[data-page]").forEach((button) => button.addEventListener("click", () => {
+      errorLibraryPage = Number(button.dataset.page);
+      errorLibraryScreen();
+    }));
+    document.querySelectorAll("[data-star]").forEach((button) => button.addEventListener("click", () => {
+      toggleStar(button.dataset.star);
+      errorLibraryScreen({preserveScroll: true});
     }));
     document.querySelectorAll(".mini-play").forEach((button) => button.addEventListener("click", () => {
       const item = itemMap.get(button.dataset.id);
@@ -2723,8 +2774,9 @@
       const vocabErrorKeys = createVocabErrorDeck([...itemMap.values()], state.errorWords, dateKey());
       state.vocabErrorDaily = syncVocabErrorSession(state.vocabErrorDaily, dateKey(), vocabErrorKeys);
       saveState();
-      errorLibraryScreen();
+      errorLibraryScreen({preserveScroll: true});
     }));
+    window.scrollTo(0, scrollY);
   }
 
   function preloadUpcomingAudio() {

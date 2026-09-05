@@ -550,7 +550,7 @@ test("only manual pardon exits the active pool and history is preserved", () => 
   assert.equal(pardoned.wrongCount, 2);
   assert.equal(pardoned.firstWrongAt, "2026-09-04");
   assert.equal(pardoned.sources.length, 2);
-  assert.equal(pardoned.isErrorWord, false);
+  assert.equal(pardoned.isErrorWord, true);
 });
 
 test("re-error after pardon auto revives as S with history kept", () => {
@@ -698,6 +698,34 @@ test("restored old backups survive the historical reset migration", () => {
   assert.equal(logic.applyTrainingReset(restored).progress["carpet:recognition"].lapses,3);
   assert(restored.starred.carpet);
   assert.equal(raw.trainingResetId,undefined);
+});
+
+test("old pardons regain permanent identity without losing history or stars", () => {
+  const state = logic.safeState({starred:{x:true},errorWords:{x:{isErrorWord:false,pardoned:true,wrongCount:4,history:["kept"]}}});
+  state.errorWords = logic.seedErrorArchive(state.errorWords,[{id:"x",modes:["recognition"]}],{},"2026-09-05");
+  assert(state.errorWords.x.isErrorWord);
+  assert(!logic.isActiveErrorWord(state.errorWords.x));
+  assert.deepEqual(state.errorWords.x.history,["kept"]);
+  assert(state.starred.x);
+});
+
+test("archive migration includes static real errors and ordinary legacy misses once", () => {
+  const source=[{id:"static",isRealError:true,modes:["recognition"]},{id:"ordinary",modes:["recognition"]}];
+  const progress={"ordinary:recognition":{lapses:3},"ordinary:vocab":{lapses:2}};
+  const records=logic.seedErrorArchive({},source,progress,"2026-09-05");
+  assert.equal(records.static.wrongCount,1);
+  assert.equal(records.ordinary.wrongCount,5);
+  assert.equal(records.ordinary.firstWrongAt,"");
+  assert.equal(logic.seedErrorArchive(records,source,progress,"2026-09-06").ordinary.wrongCount,5);
+});
+
+test("archive counts and browsing share all active pardoned and important membership", () => {
+  const source=[{id:"a",modes:[]},{id:"b",modes:[]},{id:"c",modes:[]}];
+  const records=logic.sanitizeErrorWordRecords({a:{wrongCount:2,priority:"S"},b:{pardoned:true,isErrorWord:false,wrongCount:1},c:{wrongCount:1,priority:"B"}});
+  const counts=logic.errorLibraryCounts(source,records,{b:true,c:true});
+  assert.equal(counts.all,3);assert.equal(counts.active,2);assert.equal(counts.pardoned,1);
+  assert.equal(counts.S,1);assert.equal(counts.B,1);assert.equal(counts.starred,2);
+  assert.equal(logic.createBrowseDeck(source,"errors","test",{},records).length,3);
 });
 
 console.log(JSON.stringify({ ok: true, tests }));

@@ -732,6 +732,10 @@ textarea:focus-visible, select:focus-visible { outline: 3px solid rgba(0, 122, 2
 
 /* 个人错词库 */
 .error-library-card h2 { word-break: break-word; }
+.error-library-card .word-actions { flex-wrap: wrap; width: 92px; justify-content: flex-end; }
+.error-library-card .pardon-button { min-height: 44px; }
+.library-search { display: grid; gap: 6px; margin-top: 14px; color: var(--muted); font-size: 13px; }
+.library-search input { min-width: 0; width: 100%; min-height: 44px; padding: 10px 12px; border: 1px solid var(--line); border-radius: 10px; color: var(--ink); background: var(--paper); font: inherit; }
 .pardon-button {
   min-height: 34px;
   padding: 0 12px;

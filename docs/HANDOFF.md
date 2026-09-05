@@ -4,7 +4,7 @@
 
 ## 本轮本地审计（未发布）
 
-2026-09-05 从 origin/main `0db8f71` 建立 `codex/learning-system-audit-20260905`。本地 v2.18.1 修复导入原子性与存储失败保护。详见 [自检报告](AUDIT-2026-09-05.md)。本轮不以历史发布记录证明当前生产版本，没有 push 或部署；下述线上描述为历史交接信息，发布前须重新回读。
+2026-09-05 从 origin/main `0db8f71` 建立 `codex/learning-system-audit-20260905`。本地 v2.18.2 修复存储保护、永久错词与重点入口/统计。详见 [自检报告](AUDIT-2026-09-05.md)。本轮不以历史发布记录证明当前生产版本，没有 push 或部署；下述线上描述为历史交接信息，发布前须重新回读。
 
 进度仍保存在 `marcoIeltsListening.v1`；导入先验证再写入，失败不改原进度。坏 JSON 不会清空，启动页提供原始备份导出与导入恢复。保存失败时页面显示未保存提示并提供导出/重试；此时禁止自动刷新更新。
 
@@ -44,8 +44,8 @@
 
 `state.errorWords[itemId]` 以词条 `id` 为唯一键，跨训练模式只维护一条主记录：
 
-- `isErrorWord`：永久历史身份；只有手动赦免会置 `false`，掌握度提升永不自动洗白。
-- `sources`：`source(listening/vocabulary/reading/manual) / sourceDetail / errorType / wrongAt` 历史，去重保留最近 100 条。
+- `isErrorWord`：永久历史身份，赦免也保持 true；活跃状态唯一判断为 isErrorWord && !pardoned。
+- `sources`：`source(listening/vocabulary/reading/manual) / sourceDetail / errorType / wrongAt` 历史，去重，不因答对或赦免丢弃；旧版本已截断的历史无法凭空恢复。
 - `wrongCount / firstWrongAt / lastWrongAt`：错误累计。
 - `priority`：S/A/B 动态优先级（近 2 天错、wrongCount≥2、致 IELTS 错题、上次再错均为 S）。
 - `masteryLevel / reviewStatus`：学习中 / 稳定掌握 / 长期维持，只代表当前会不会。
