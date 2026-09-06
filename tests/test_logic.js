@@ -897,4 +897,22 @@ test("correction respects date boundary and reactivates pardoned errors without 
   assert.deepEqual(state.errorWords.a.pardonHistory,before.archive.pardonHistory);
 });
 
+test("daily completion records once even if session already says completed", () => {
+  const state={daily:{date:"2026-09-06",baseKeys:["a"],queue:[],answeredBase:{a:true},completed:true},streak:3,lastCompletedDate:"2026-09-05"};
+  assert(logic.recordDailyCompletion(state,"2026-09-06"));assert.equal(state.streak,4);
+  assert.equal(state.lastCompletedDate,"2026-09-06");
+  assert(!logic.recordDailyCompletion(state,"2026-09-06"));assert.equal(state.streak,4);
+});
+test("daily completion requires base answers and all reinforcement finished", () => {
+  const state={daily:{date:"2026-09-06",baseKeys:["a"],queue:[{key:"a",isRetry:true}],answeredBase:{a:true}},streak:3};
+  assert(!logic.recordDailyCompletion(state,"2026-09-06"));
+  state.daily.queue=[];state.daily.answeredBase={};assert(!logic.recordDailyCompletion(state,"2026-09-06"));
+  state.daily.baseKeys=[];assert(!logic.recordDailyCompletion(state,"2026-09-06"));
+});
+test("daily completion resets a broken streak and cannot credit yesterday to today", () => {
+  const state={daily:{date:"2026-09-06",baseKeys:["a"],queue:[],answeredBase:{a:true}},streak:9,lastCompletedDate:"2026-09-03"};
+  assert(!logic.recordDailyCompletion(state,"2026-09-07"));assert.equal(state.streak,9);
+  assert(logic.recordDailyCompletion(state,"2026-09-06"));assert.equal(state.streak,1);
+});
+
 console.log(JSON.stringify({ ok: true, tests }));

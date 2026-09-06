@@ -443,6 +443,16 @@
     return state;
   }
 
+  function recordDailyCompletion(state, today = dateKey()) {
+    const daily = state.daily;
+    if (!daily || daily.date !== today || !daily.baseKeys?.length || daily.queue?.length !== 0
+      || !daily.baseKeys.every(key => daily.answeredBase?.[key]) || state.lastCompletedDate === today) return false;
+    state.streak = state.lastCompletedDate === addDays(today, -1) ? (state.streak || 0) + 1 : 1;
+    state.lastCompletedDate = today;
+    daily.completed = true;
+    return true;
+  }
+
   function scheduleReview(record, outcome, today = dateKey()) {
     const current = record && typeof record === "object" ? record : { stage: 0, lapses: 0, passes: 0, attempts: 0 };
     if (outcome === "pass") {
@@ -1347,7 +1357,7 @@
     dateKey, addDays, hashString, normaliseAnswer, makeActivities, safeState, validateProgressBackup, prepareImportedState,
     createDailyDeck, createLearningDeck, createReviewDeck, createErrorTrainingDeck, createStarredTrainingDeck,
     isPersonalErrorActivity, syncPersonalErrorSession, syncStarredSession,
-    prepareDaily, scheduleReview, recordPracticePass, sessionDone,
+    prepareDaily, recordDailyCompletion, scheduleReview, recordPracticePass, sessionDone,
     masteryStatus, sanitizeErrorSources, sanitizeErrorWordRecords, isActiveErrorWord,
     deriveErrorPriority, initialErrorWordRecord, seedErrorArchive,
     registerErrorWord, reviewErrorWord, pardonErrorWord, mergeErrorWordRecords,
@@ -1635,12 +1645,7 @@
   }
 
   function finishDay() {
-    if (state.daily.completed) return;
-    const yesterday = addDays(state.daily.date, -1);
-    state.streak = state.lastCompletedDate === yesterday ? (state.streak || 0) + 1 : 1;
-    state.lastCompletedDate = state.daily.date;
-    state.daily.completed = true;
-    saveState();
+    if (recordDailyCompletion(state)) saveState();
   }
 
   function setShellMode(mode, activeSession = false) {
@@ -1666,6 +1671,7 @@
     activeTrainingKind = "learning";
     extraVocabPractice = false;
     prepareDaily(state, activities);
+    recordDailyCompletion(state);
     saveState();
     const starredKeys = createStarredTrainingDeck(activities, `${dateKey()}:starred`, state.starred);
     state.starredDaily = syncStarredSession(state.starredDaily, dateKey(), starredKeys);
@@ -2509,8 +2515,8 @@
     session.completed = session.queue.length === 0;
     if (sessionKind === "vocabNew" || (sessionKind === "learning" && activity.mode === "recognition")) {
       syncLearningRecognition(state);
-      if (state.daily.completed) finishDay();
     }
+    if (["learning", "vocabNew"].includes(sessionKind)) finishDay();
     currentResult = { entry, activity, outcome, detail, sessionKind, feedback: decision.feedback, beforeKnown };
     saveState();
     preloadUpcomingAudio();
