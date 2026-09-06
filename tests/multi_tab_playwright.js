@@ -1,5 +1,5 @@
 async (page) => {
-  const base='http://127.0.0.1:4173/', key='marcoIeltsListening.v1';
+  const base=page.url().includes('github.io/marco-ielts-listening') ? 'https://yueert1997ai-sys.github.io/marco-ielts-listening/' : 'http://127.0.0.1:4173/', key='marcoIeltsListening.v1';
   const assert=(v,m)=>{if(!v)throw new Error(m);};
   const read=tab=>tab.evaluate(k=>localStorage.getItem(k),key);
   await page.goto(base);await page.locator('#vocab-new').waitFor();

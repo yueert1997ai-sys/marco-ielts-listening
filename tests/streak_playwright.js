@@ -1,6 +1,7 @@
 async (page) => {
   const assert=(v,m)=>{if(!v)throw new Error(m);}, key='marcoIeltsListening.v1';
-  await page.goto('http://127.0.0.1:4173/');await page.locator('#vocab-new').waitFor();
+  const base=page.url().includes('github.io/marco-ielts-listening') ? 'https://yueert1997ai-sys.github.io/marco-ielts-listening/' : 'http://127.0.0.1:4173/';
+  await page.goto(base);await page.locator('#vocab-new').waitFor();
   const results=[];
   for(const mode of ['vocab-new','recognition','spelling']) {
     await page.evaluate(k=>localStorage.removeItem(k),key);await page.reload();await page.locator('#vocab-new').waitFor();

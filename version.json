@@ -1,7 +1,7 @@
 {
-  "version": "v2.19.1",
-  "releasedAt": "2026-09-06",
-  "label": "揭义后纠正误判认识",
+  "version": "v2.19.2",
+  "releasedAt": "2026-09-07",
+  "label": "多页面记录保护与连续天数修复",
   "contentRevision": "词库#20",
   "contentUpdatedAt": "2026-09-03"
 }
