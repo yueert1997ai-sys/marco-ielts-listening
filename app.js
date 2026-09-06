@@ -1415,6 +1415,10 @@
   let lastAutomaticUpdateCheckAt = 0;
   let appReloading = false;
   let hasUnsavedChanges = false;
+  let lastSavedRaw;
+  let storageConflict = false;
+  let hasWriteLease = false;
+  let releaseWriteLease = null;
   let extraVocabPractice = false;
   const directionModes = {
     standard: {
@@ -1442,14 +1446,83 @@
   const versionButton = document.getElementById("app-version");
 
   function loadState() {
-    const raw = JSON.parse(localStorage.getItem(STORAGE_KEY));
+    lastSavedRaw = localStorage.getItem(STORAGE_KEY);
+    const raw = JSON.parse(lastSavedRaw);
     if (raw !== null) validateProgressBackup(raw);
     state = safeState(raw);
   }
 
+  function showStorageConflict(message = "学习记录已在其他页面更新。为避免覆盖，已暂停此页面的操作。") {
+    storageConflict = true;
+    hasUnsavedChanges = true;
+    clearInterval(recognitionTimerId);
+    clearInterval(directionTimerId);
+    clearTimeout(directionDeadlineId);
+    clearTimeout(directionFeedbackId);
+    activeAudio?.pause();
+    directionAudio?.pause();
+    if (document.getElementById("progress-conflict")) return;
+    const dialog = document.createElement("dialog");
+    dialog.id = "progress-conflict";
+    dialog.className = "progress-conflict";
+    dialog.setAttribute("aria-labelledby", "progress-conflict-title");
+    dialog.innerHTML = `<h2 id="progress-conflict-title">学习记录保护</h2><p>${escapeHtml(message)}</p><p>请关闭另一个学习页面，再载入最新记录。${lastSavedRaw !== undefined ? '此页面未保存的操作不会自动合并；如需保留，请先导出。' : '已保存的进度和重点标记不会改变。'}</p><button id="reload-progress" class="primary">载入最新记录</button>${lastSavedRaw !== undefined ? '<button id="export-conflict" class="secondary">导出此页面记录</button>' : ''}`;
+    document.body.append(dialog);
+    dialog.addEventListener("cancel", event => event.preventDefault());
+    dialog.querySelector("#reload-progress").addEventListener("click", () => window.location.reload());
+    dialog.querySelector("#export-conflict")?.addEventListener("click", exportProgress);
+    dialog.showModal();
+  }
+
+  // One document owns synchronous localStorage writes. Locks are automatically
+  // released on document destruction; pagehide also handles the back/forward cache.
+  async function acquireWriteLease() {
+    if (!navigator.locks?.request) {
+      showStorageConflict("当前浏览器不支持安全写入保护，请使用新版浏览器打开。原有记录没有改变。");
+      return false;
+    }
+    return new Promise(resolve => {
+      navigator.locks.request(`${STORAGE_KEY}:writer`, {ifAvailable: true}, async lock => {
+        if (!lock) { showStorageConflict("另一个学习页面正在使用记录。此页面暂不写入，避免进度互相覆盖。"); resolve(false); return; }
+        hasWriteLease = true;
+        await new Promise(release => { releaseWriteLease = release; resolve(true); });
+        hasWriteLease = false;
+      }).catch(() => { showStorageConflict("暂时无法取得安全写入权限。请重新载入，原有记录没有改变。"); resolve(false); });
+    });
+  }
+
+  function canWriteProgress() {
+    if (storageConflict || !hasWriteLease) return false;
+    // Also catch an older app version or external writer that does not use locks.
+    if (localStorage.getItem(STORAGE_KEY) !== lastSavedRaw) { showStorageConflict(); return false; }
+    return true;
+  }
+
+  window.addEventListener("pagehide", () => {
+    hasWriteLease = false;
+    releaseWriteLease?.();
+  });
+  window.addEventListener("pageshow", event => {
+    if (event.persisted) showStorageConflict("页面已从后台恢复，请载入最新记录后继续，避免使用旧进度。");
+  });
+  window.addEventListener("storage", event => {
+    if (event.storageArea !== localStorage || (event.key !== STORAGE_KEY && event.key !== null) || lastSavedRaw === undefined) return;
+    if (localStorage.getItem(STORAGE_KEY) !== lastSavedRaw) showStorageConflict();
+  });
+  for (const type of ["click", "submit", "change", "input", "keydown"]) {
+    document.addEventListener(type, event => {
+      if (storageConflict && !document.getElementById("progress-conflict")?.contains(event.target)) {
+        event.preventDefault(); event.stopImmediatePropagation();
+      }
+    }, true);
+  }
+
   function saveState() {
     try {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+      if (!canWriteProgress()) return false;
+      const nextRaw = JSON.stringify(state);
+      localStorage.setItem(STORAGE_KEY, nextRaw);
+      lastSavedRaw = nextRaw;
       hasUnsavedChanges = false;
       document.getElementById("storage-warning")?.remove();
     } catch (_) {
@@ -3200,8 +3273,11 @@
     reader.onload = () => {
       try {
         const candidate = prepareImportedState(JSON.parse(reader.result), sourceItems);
+        if (!canWriteProgress()) return;
         // setItem is atomic. Publish the new in-memory state only after it succeeds.
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(candidate));
+        const nextRaw = JSON.stringify(candidate);
+        localStorage.setItem(STORAGE_KEY, nextRaw);
+        lastSavedRaw = nextRaw;
         state = candidate;
         hasUnsavedChanges = false;
         document.getElementById("storage-warning")?.remove();
@@ -3224,6 +3300,7 @@
       ]);
       if (!response.ok || !directionResponse.ok) throw new Error(`HTTP ${response.status}/${directionResponse.status}`);
       [sourceItems, directions] = await Promise.all([response.json(), directionResponse.json()]);
+      if (!await acquireWriteLease()) return;
       loadState();
       state = applyTrainingReset(state);
       state = applyLearningReviewSplit(state);

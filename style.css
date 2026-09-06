@@ -751,3 +751,17 @@ textarea:focus-visible, select:focus-visible { outline: 3px solid rgba(0, 122, 2
 }
 .pardon-button:active { background: var(--signal-soft); }
 .error-library .browse-intro p { margin: 0; }
+.progress-conflict {
+  width: min(420px, calc(100vw - 32px));
+  max-height: calc(100dvh - 32px);
+  overflow: auto;
+  box-sizing: border-box;
+  border: 0;
+  border-radius: 18px;
+  padding: 20px;
+  color: var(--ink);
+  background: var(--paper);
+}
+.progress-conflict::backdrop { background: rgba(0, 0, 0, .35); }
+.progress-conflict p { line-height: 1.6; }
+.progress-conflict button { width: 100%; margin-top: 8px; min-height: 46px; }
