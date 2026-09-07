@@ -34,13 +34,15 @@
     document.head.appendChild(style);
   }
 
+  function setText(element, value) {
+    if (element && element.textContent !== value) element.textContent = value;
+  }
+
   function enhanceAdvancedEntry() {
     const advanced = document.getElementById("confusions");
     if (!advanced) return;
-    const title = advanced.querySelector("strong");
-    const copy = advanced.querySelector("small");
-    if (title) title.textContent = "易混辨析";
-    if (copy) copy.textContent = "匹配 · 冷测 · 错词强化";
+    setText(advanced.querySelector("strong"), "易混辨析");
+    setText(advanced.querySelector("small"), "匹配 · 冷测 · 错词强化");
   }
 
   function renderCard() {
@@ -54,12 +56,14 @@
       card.id = "vocab-confusions";
       card.className = "home-task vocab-path confusion-path";
       card.href = "./confusions/?mode=flash";
+      card.innerHTML = `
+        <span class="home-task-icon">${icon("cards-three")}</span>
+        <span class="home-task-copy"><strong>易混词</strong><small></small></span>
+        <span class="vocab-path-progress"><b data-confusions-seen></b><span>/</span><b>${TOTAL_TERMS}</b></span>`;
       grid.appendChild(card);
     }
-    card.innerHTML = `
-      <span class="home-task-icon">${icon("intersect-three")}</span>
-      <span class="home-task-copy"><strong>易混词</strong><small>专练长得像、意思容易串的词 · ${mastered} 个较熟练</small></span>
-      <span class="vocab-path-progress"><b>${seen}</b><span>/</span><b>${TOTAL_TERMS}</b></span>`;
+    setText(card.querySelector(".home-task-copy small"), `专练长得像、意思容易串的词 · ${mastered} 个较熟练`);
+    setText(card.querySelector("[data-confusions-seen]"), String(seen));
     enhanceAdvancedEntry();
   }
 
