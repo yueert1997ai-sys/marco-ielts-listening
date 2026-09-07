@@ -4,7 +4,7 @@
   "uniqueEntries": 832,
   "realErrorRows": 46,
   "realErrorEntries": 247,
-  "customEntries": 203,
+  "customEntries": 204,
   "overrideEntries": 8,
   "archivedEntries": 0,
   "activities": {
@@ -20,6 +20,6 @@
   },
   "untraceableEntries": 0,
   "duplicateIds": 0,
-  "numberVariantAliases": 30,
+  "numberVariantAliases": 31,
   "partOfSpeechEntries": 832
 }

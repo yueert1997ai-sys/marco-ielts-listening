@@ -3662,6 +3662,7 @@
     "category": "行为与决策动作",
     "sections": [
       "P2 + P3 必会看懂词",
+      "我的同步错词",
       "我的真实错词"
     ],
     "modes": [
@@ -3672,10 +3673,15 @@
       "neglect"
     ],
     "numberVariants": [
+      "neglected",
       "neglecting"
     ],
     "errorNote": "真实卡点：加工慢",
+    "userAddedAt": "2026-09-07",
+    "sourceType": "user",
     "partOfSpeech": "动词",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-07",
     "adminUpdatedAt": "2026-09-01",
     "sourceRevision": 4,
     "audioText": "neglect",

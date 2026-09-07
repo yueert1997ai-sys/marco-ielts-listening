@@ -3,6 +3,7 @@
 本文件记录所有会影响代码、配置、数据、发布流程或协作文档的改动。最新记录放在最上方；README 只维护当前用法，历史不重复堆入 README。
 
 <!-- CHANGELOG_ENTRIES -->
+- 2026-09-07 `[词库#22]` 用户补充 neglected 不认识，按 recognition 导入并归入已有 neglect 主卡，新增 neglected 词形及“被忽视的；未受照顾的；无人照管的”说明，保留原“真实卡点：加工慢”。不增加重复卡或重置个人进度；主卡仍832张，复用现有英音，程序版本不变。
 - 2026-09-07 `[词库#21]` 导入用户阅读识义错词11项：comparable、expense、arise、assess、condition、impression、improvement按S级错题语境入库，raise按A级，raw/indication/viable未指定等级暂按A级。assessed归assess；condition与improvement复用原卡，其余新增9卡。保留原有词义并补充易错点，全部进入独立识义错词来源。正式词库832卡（听写276/识词613），程序版本保持v2.20.0。
 - 2026-09-07 `[生产验证]` main 已正常推送功能发布提交 `4984562d15fadfd6bc50bf7e79d59f00d914c018`，Pages 34125786003 与文档守卫成功。生产 Chrome 通过 807 全轮31次作答、易混刷词21次作答与纠正刷新、音频播放进度、三尺寸、quota/坏JSON/多页面/下载后离线、原匹配5组/冷测暂停/强化及主线统一训练回归；线上回读三版本与2,017条音频映射正确。补独立匹配听读不选答案与 Chunk 播放断言。未做 iPhone Safari 实机或全部词人工发音审听；后台未变。
 - 2026-09-07 `[发布候选]` 统一 Listening v2.20.0、Confusions v1.2.0、807 v1.1.0 与独立缓存标识；README 补充站内合成音、固定第三方快照、答案变体、离线下载及模块备份说明。全轮浏览器与故障复验通过，准备正常推送 main 并等待 Pages/生产回读；Cloudflare 后台无改动。
