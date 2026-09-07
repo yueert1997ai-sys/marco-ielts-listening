@@ -6,6 +6,7 @@
   const screenLabel = document.getElementById("screen-label");
   const params = new URLSearchParams(window.location.search);
   const isFlashMode = params.get("mode") === "flash";
+  const store = isFlashMode ? ModuleStore.create(logic.STORAGE_KEY, value => value?.schemaVersion === 1 && ModuleStore.recordsValid(value.stats, ["attempts", "known", "unknown", "lapses", "mastery", "streak"]) && ModuleStore.sessionValid(value.session)) : null;
   let groups = [];
   let state = null;
 
@@ -53,6 +54,8 @@
       .flash-summary strong { display: block; color: var(--accent); font: 760 20px/1 ui-monospace, "SFMono-Regular", monospace; }
       .flash-summary small { display: block; margin-top: 5px; color: var(--muted); font-size: 10px; }
       .flash-home-card { order: -1; }
+      .flash-reveal-word, .flash-peer b { overflow-wrap: anywhere; }
+      .match-option.term { width: 100%; }
       @media (max-width: 350px) {
         .flash-actions { grid-template-columns: 1fr; }
         .flash-card { min-height: 420px; }
@@ -62,6 +65,7 @@
   }
 
   function loadState() {
+    if (store) return logic.safeState(store.read(logic.defaultState));
     try {
       const raw = localStorage.getItem(logic.STORAGE_KEY);
       return raw ? logic.safeState(JSON.parse(raw)) : logic.defaultState();
@@ -71,11 +75,7 @@
   }
 
   function saveState() {
-    try {
-      localStorage.setItem(logic.STORAGE_KEY, JSON.stringify(state));
-    } catch (_error) {
-      // 刷词记录失败也不能破坏 Confusions 主应用；当前内存流程仍可继续。
-    }
+    store.write(state);
   }
 
   function allTerms() {
@@ -95,12 +95,7 @@
   }
 
   function speak(term) {
-    if (!("speechSynthesis" in window) || typeof SpeechSynthesisUtterance === "undefined") return;
-    window.speechSynthesis.cancel();
-    const utterance = new SpeechSynthesisUtterance(term);
-    utterance.lang = "en-GB";
-    utterance.rate = 0.88;
-    window.speechSynthesis.speak(utterance);
+    ModuleAudio.play(term, document.getElementById("flash-speak"), 1);
   }
 
   function progressHeader(term) {
@@ -118,18 +113,19 @@
         <div><strong>${logic.seenCount(state)}</strong><small>已刷 / 84</small></div>
         <div><strong>${logic.masteredCount(state)}</strong><small>较熟练</small></div>
         <div><strong>${state.session?.results?.filter((item) => !item.known).length || 0}</strong><small>本轮不认识</small></div>
-      </div>`;
+      </div><button id="flash-download" class="timer-control">下载本轮音频</button>`;
   }
 
   function ensureSession() {
     state = loadState();
-    if (!state.session || state.session.completed || !logic.currentEntry(state)) {
+    if (!state.session) {
       state = logic.buildSession(groups, state, `${Date.now()}:${Math.random()}`);
       saveState();
     }
   }
 
   function renderFlash() {
+    ModuleAudio.stop();
     installStyles();
     window.scrollTo(0, 0);
     screenLabel.textContent = "刷易混词";
@@ -140,6 +136,10 @@
     if (state.session.phase === "meaning") renderMeaningCheck();
     else if (state.session.phase === "reveal") renderReveal();
     else renderQuestion();
+    document.getElementById("flash-download")?.addEventListener("click", event => {
+      const texts = state.session.queue.flatMap(entry => { const item = termByName(entry.term); return [entry.term, item.chunk]; });
+      ModuleAudio.download(texts, event.currentTarget);
+    });
   }
 
   function renderQuestion() {
@@ -162,15 +162,18 @@
       <a class="secondary" style="display:grid;place-items:center;text-decoration:none" href="./">去匹配 / 冷测</a>`;
     document.getElementById("flash-speak").addEventListener("click", () => speak(term.term));
     document.getElementById("flash-known").addEventListener("click", () => {
+      if (logic.currentEntry(state) !== entry || state.session.phase !== "question") return;
       state = logic.answerKnown(state);
       saveState();
       renderFlash();
     });
     document.getElementById("flash-unknown").addEventListener("click", () => {
+      if (logic.currentEntry(state) !== entry || state.session.phase !== "question") return;
       state = logic.answerUnknown(state);
       saveState();
       renderFlash();
     });
+    speak(term.term);
   }
 
   function renderMeaningCheck() {
@@ -191,6 +194,7 @@
       </section>`;
     document.getElementById("flash-speak").addEventListener("click", () => speak(term.term));
     document.querySelectorAll("[data-meaning]").forEach((button) => button.addEventListener("click", () => {
+      if (logic.currentEntry(state) !== entry || state.session.phase !== "meaning") return;
       state = logic.confirmMeaning(state, button.dataset.meaning, term.meaning);
       saveState();
       renderFlash();
@@ -215,9 +219,17 @@
         <div class="flash-detail"><small>高价值 CHUNK</small><strong>${escapeHtml(term.chunk)}</strong></div>
         <div class="flash-detail"><small>语境</small><p>${escapeHtml(fillSentence(term.sentence, term.term))}</p></div>
         ${peers.length ? `<div class="flash-detail"><small>同组易混</small><div class="flash-peers">${peers.map((peer) => `<div class="flash-peer"><b>${escapeHtml(peer.term)}</b><span>${escapeHtml(peer.meaning)}</span></div>`).join("")}</div></div>` : ""}
+        <button id="flash-speak" class="secondary" type="button">重听 · 合成英音</button>
+        <button data-audio="${escapeHtml(term.chunk)}" class="secondary" type="button">听 Chunk</button>
+        ${peers.map(peer => `<button class="secondary" data-audio="${escapeHtml(peer.term)}">听 ${escapeHtml(peer.term)}</button>`).join("")}
+        ${pending.known && pending.previous ? '<button id="flash-correct" class="secondary">其实不认识</button>' : ''}
         <button id="flash-next" class="primary flash-next" type="button">下一词</button>
       </section>`;
+    document.getElementById("flash-speak").onclick = () => speak(term.term);
+    screen.querySelectorAll("[data-audio]").forEach(button => { button.onclick = () => ModuleAudio.play(button.dataset.audio, button); });
+    document.getElementById("flash-correct")?.addEventListener("click", () => { if (logic.currentEntry(state) !== entry) return; state = logic.correctKnown(state); saveState(); renderFlash(); });
     document.getElementById("flash-next").addEventListener("click", () => {
+      if (logic.currentEntry(state) !== entry || state.session.phase !== "reveal") return;
       state = logic.advance(state);
       saveState();
       renderFlash();
@@ -272,6 +284,7 @@
     const payload = await response.json();
     groups = payload.groups || [];
     ensureSession();
+    store.controls();
     renderFlash();
   }
 

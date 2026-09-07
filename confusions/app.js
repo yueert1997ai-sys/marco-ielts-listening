@@ -4,6 +4,8 @@
   const logic = window.ConfusionsLogic;
   const screen = document.getElementById("screen");
   const screenLabel = document.getElementById("screen-label");
+  const isFlash = new URLSearchParams(location.search).get("mode") === "flash";
+  const store = !isFlash ? ModuleStore.create(logic.STORAGE_KEY, value => value?.schemaVersion === 1 && value.termStats && Array.isArray(value.testHistory)) : null;
   let groups = [];
   let groupMap = new Map();
   let state = null;
@@ -26,6 +28,8 @@
   }
 
   function loadState() {
+    if (isFlash) return logic.defaultState();
+    if (store) return logic.safeState(store.read(logic.defaultState));
     const raw = localStorage.getItem(logic.STORAGE_KEY);
     if (raw === null) return logic.defaultState();
     const parsed = JSON.parse(raw);
@@ -34,7 +38,7 @@
   }
 
   function saveState() {
-    localStorage.setItem(logic.STORAGE_KEY, JSON.stringify(state));
+    if (store) store.write(state);
   }
 
   function statusName(status) {
@@ -53,6 +57,8 @@
   }
 
   function renderHome() {
+    ModuleAudio.stop();
+    study = null;
     window.scrollTo(0, 0);
     screenLabel.textContent = "学习与冷测";
     const familiar = Object.values(state.learning).filter((record) => record?.status === "familiar").length;
@@ -139,6 +145,7 @@
   }
 
   function renderStudyStage() {
+    ModuleAudio.stop();
     window.scrollTo(0, 0);
     screenLabel.textContent = "学习";
     if (study.stage === "meaning" || study.stage === "chunk") renderMatching();
@@ -156,7 +163,7 @@
       <section class="panel">
         <div class="match-grid">
           <div class="match-column">
-            ${left.map((term) => `<button class="match-option term" data-left="${escapeHtml(term.term)}">${escapeHtml(term.term)}</button>`).join("")}
+            ${left.map((term) => `<div><button class="match-option term" data-left="${escapeHtml(term.term)}">${escapeHtml(term.term)}</button><button type="button" class="timer-control" data-speak="${escapeHtml(term.term)}" aria-label="朗读 ${escapeHtml(term.term)}">听读</button></div>`).join("")}
           </div>
           <div class="match-column">
             ${right.map((term) => `<button class="match-option" data-right="${escapeHtml(term.term)}">
@@ -167,6 +174,7 @@
         <div id="match-feedback" class="match-feedback empty">还剩 ${remaining.length} 对</div>
       </section>
       <button id="leave-study" class="secondary" type="button">返回首页</button>`;
+    document.querySelectorAll("[data-speak]").forEach(button => { button.onclick = () => ModuleAudio.play(button.dataset.speak, button); });
     document.querySelectorAll("[data-left]").forEach((button) => button.addEventListener("click", () => {
       document.querySelectorAll("[data-left]").forEach((item) => item.classList.remove("selected"));
       study.selectedLeft = button.dataset.left;
@@ -205,7 +213,9 @@
     feedback.innerHTML = `<strong>${escapeHtml(term.term)}</strong><span>${escapeHtml(term.partOfSpeech)} ${escapeHtml(term.meaning)}</span><small>${escapeHtml(term.chunk)}</small>`;
     study.selectedLeft = null;
     study.selectedRight = null;
+    const currentStudy = study;
     setTimeout(() => {
+      if (!study || study !== currentStudy || !feedback.isConnected) return;
       if (study.matched.size === currentLearningPool().length) {
         study.stage = study.stage === "meaning" ? "chunk" : "recall";
         study.matched = new Set();
@@ -259,7 +269,8 @@
       button.classList.add("selected");
       document.querySelectorAll("[data-answer]").forEach((choice) => { choice.disabled = true; });
       document.getElementById("recall-feedback").textContent = `${question.expected} · ${question.chunk}`;
-      setTimeout(advanceRecall, 500);
+      const currentStudy = study;
+      setTimeout(() => { if (study === currentStudy && button.isConnected) advanceRecall(); }, 500);
     }));
     document.getElementById("leave-study").addEventListener("click", renderHome);
   }
@@ -373,6 +384,7 @@
   }
 
   function renderColdQuestion() {
+    ModuleAudio.stop();
     if (testRun.index >= testRun.deck.length) {
       finishColdTest();
       return;
@@ -450,10 +462,12 @@
       ${Object.keys(pairs).length ? `<h3 class="list-title">本轮混淆</h3><div class="result-list">${Object.entries(pairs).map(([pair, count]) => `<div class="result-row"><span>${escapeHtml(pair.replace("->", " → "))}</span><strong>×${count}</strong></div>`).join("")}</div>` : ""}
       <h3 class="list-title">反应最慢</h3><div class="result-list">${slowest.map((answer) => `<div class="result-row"><span>${escapeHtml(answer.expected)}</span><strong>${(answer.responseMs / 1000).toFixed(2)}s</strong></div>`).join("")}</div>
       <h3 class="list-title">当前总体状态</h3>${renderStatusGrid()}
+      <details><summary>重听本轮单词 · 合成英音</summary>${[...new Set(lastResult.answers.map(answer => answer.expected))].map(term => `<button class="secondary" data-result-audio="${escapeHtml(term)}">听 ${escapeHtml(term)}</button>`).join("")}</details>
       ${wrong.length ? `<button id="reinforce" class="primary" type="button">强化本轮错词</button>` : ""}
       <button id="result-home" class="secondary" type="button">返回首页</button>`;
     document.getElementById("reinforce")?.addEventListener("click", startReinforcement);
     document.getElementById("result-home").addEventListener("click", renderHome);
+    screen.querySelectorAll("[data-result-audio]").forEach(button => { button.onclick = () => ModuleAudio.play(button.dataset.resultAudio, button); });
   }
 
   function startReinforcement() {
@@ -575,6 +589,7 @@
     groups = payload.groups;
     groupMap = new Map(groups.map((group) => [group.id, group]));
     state = loadState();
+    store?.controls();
     renderHome();
     if ("serviceWorker" in navigator) {
       navigator.serviceWorker.register("./sw.js", { scope: "./", updateViaCache: "none" }).catch(() => {});

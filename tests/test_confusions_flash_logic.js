@@ -95,4 +95,38 @@ test("seen and mastered counters are separate", () => {
   assert.equal(logic.masteredCount(state), 1);
 });
 
+test("correction replaces one known after serialization and is idempotent", () => {
+  let state = logic.buildSession(groups, logic.defaultState(), "correction");
+  const term = logic.currentEntry(state).term;
+  state = logic.answerKnown(state, "2026-09-07T00:00:00Z");
+  state = logic.correctKnown(JSON.parse(JSON.stringify(state)));
+  state = logic.correctKnown(state);
+  assert.equal(state.stats[term].attempts, 1);
+  assert.equal(state.stats[term].known, 0);
+  assert.equal(state.stats[term].unknown, 1);
+  assert.equal(state.stats[term].mastery, 0);
+  assert.equal(state.session.results.length, 1);
+});
+test("mastery can advance only once per distinct day", () => {
+  let state = logic.buildSession(groups, logic.defaultState(), "daily", 1);
+  const term = logic.currentEntry(state).term;
+  for (const day of ["07", "07", "08"]) {
+    state.session.phase = "question";
+    state = logic.answerKnown(state, `2026-09-${day}T00:00:00Z`);
+    assert.equal(state.stats[term].mastery, day === "08" ? 2 : 1);
+  }
+});
+test("short tails are not immediately repeated", () => {
+  let state = logic.buildSession(groups, logic.defaultState(), "tail", 3);
+  state = logic.answerUnknown(state);
+  assert.equal(state.session.queue.length, 3);
+});
+const variants = require("../807/variants.js");
+test("reviewed variants accept only exact equivalents", () => {
+  assert(variants.check("centre", "center").correct);
+  assert(variants.check("stationery", "stationary").correct);
+  assert(!variants.check("centre", "centres").correct);
+  assert(!variants.check("travel", "travelled").correct);
+  assert(!variants.check("accommodation", "acommodation").correct);
+});
 console.log(JSON.stringify({ ok: true, tests, termsChecked: terms.length }));

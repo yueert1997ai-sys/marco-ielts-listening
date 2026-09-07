@@ -100,7 +100,8 @@
   border-radius: 50%;
   display: grid;
   place-items: center;
-  font-size: 34px;
+  font-size: 15px;
+  padding: 8px;
   color: #fff;
   background: #007aff;
   box-shadow: 0 12px 28px rgba(0, 122, 255, 0.22);
@@ -215,3 +216,16 @@
   .vocab807-stats strong { font-size: 19px; }
   .audio-button { width: 80px; height: 80px; }
 }
+
+@media (max-height: 650px) {
+  .vocab807-question { min-height: 0; gap: 10px; padding: 12px; }
+  .audio-stage { gap: 5px; }
+  .audio-button { width: 64px; height: 64px; font-size: 12px; }
+  .coverage-line { margin: 0; }
+}
+.vocab807-question select { min-height: 36px; font-size: 16px; }
+.vocab807-mode .app-title { font-size: 12px; }
+.vocab807-mode .screen-title { margin-top: 5px; }
+.vocab807-mode .version-badge { font-size: 10px; }
+.vocab807-mode .spelling-actions { grid-template-columns: 1fr 1fr; }
+.spelling-actions { position: sticky; bottom: env(safe-area-inset-bottom, 0px); background: var(--card, white); padding-block: 6px; }

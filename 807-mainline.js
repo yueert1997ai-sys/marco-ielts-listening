@@ -12,13 +12,13 @@
   function stats() {
     let seen = 0;
     let wrong = 0;
-    let total = 0;
+    let total = 1854;
     try {
       const state = JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}");
       seen = Object.values(state?.records || {}).filter((record) => (record?.attempts || 0) > 0).length;
       wrong = Object.keys(state?.wrongTerms || {}).length;
       const cache = JSON.parse(localStorage.getItem(TERMS_CACHE_KEY) || "{}");
-      total = Array.isArray(cache?.terms) ? cache.terms.length : 0;
+      total = 1854;
     } catch (_error) {
       // Keep zeroed stats when local storage is unavailable.
     }
@@ -58,9 +58,10 @@
     const description = wrong
       ? `王陆807 · 听音拼写 · ${wrong} 个错词待复练`
       : "王陆807 · 听音拼写 · 独立训练进度";
-    card.querySelector(".home-task-copy small").textContent = description;
-    card.querySelector("[data-807-seen]").textContent = String(seen);
-    card.querySelector("[data-807-total]").textContent = total ? String(total) : "807";
+    const setText = (selector, text) => { const node = card.querySelector(selector); if (node.textContent !== text) node.textContent = text; };
+    setText(".home-task-copy small", description);
+    setText("[data-807-seen]", String(seen));
+    setText("[data-807-total]", String(total));
   }
 
   if (!screen) return;

@@ -2,11 +2,8 @@
   "use strict";
 
   const STORAGE_KEY = "marcoIelts807.v1";
-  const TERMS_CACHE_KEY = "marcoIelts807.terms.v1";
-  const TERMS_CACHE_VERSION = 1;
-  const SOURCE_URL = "https://raw.githubusercontent.com/golowper/807WordsRepo/main/807.txt";
+  const SOURCE_URL = "./data/terms.json";
   const SESSION_SIZE = 30;
-  const AUDIO_RATE = 1.2;
   const QUICK_PASS_DELAY_MS = 760;
   const RETRY_MIN_DISTANCE = 8;
   const RETRY_MAX_DISTANCE = 12;
@@ -18,9 +15,13 @@
   const versionBadge = document.getElementById("app-version");
 
   let terms = [];
+  const store = ModuleStore.create(STORAGE_KEY, value => value?.version === 1 && ModuleStore.recordsValid(value.records, ["attempts", "correct", "wrong", "streak"]) && ModuleStore.recordsValid(value.wrongTerms, ["wrong"]) && ModuleStore.sessionValid(value.session));
   let state = loadState();
   let activeSession = null;
   let transitionTimer = 0;
+  let questionToken = 0;
+  let heard = false;
+  let rate = 1.2;
 
   function escapeHtml(value) {
     return String(value ?? "")
@@ -41,20 +42,6 @@
       .toLowerCase()
       .replace(/[’‘]/g, "'")
       .replace(/\s+/g, " ");
-  }
-
-  function parseTerms(text) {
-    const seen = new Set();
-    return String(text || "")
-      .split(/\r?\n/)
-      .map((line) => line.trim())
-      .filter((line) => line && !line.startsWith("#"))
-      .filter((line) => {
-        const key = normalise(line);
-        if (!key || seen.has(key)) return false;
-        seen.add(key);
-        return true;
-      });
   }
 
   function defaultState() {
@@ -87,16 +74,12 @@
   }
 
   function loadState() {
-    try {
-      return sanitiseState(JSON.parse(localStorage.getItem(STORAGE_KEY) || "null"));
-    } catch (_error) {
-      return defaultState();
-    }
+    return sanitiseState(store.read(defaultState));
   }
 
   function saveState() {
     if (activeSession) state.session = activeSession;
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+    store.write(state);
   }
 
   function seededRank(term, salt) {
@@ -113,31 +96,12 @@
     return values.slice().sort((left, right) => seededRank(left, salt) - seededRank(right, salt));
   }
 
-  function loadCachedTerms() {
-    try {
-      const cached = JSON.parse(localStorage.getItem(TERMS_CACHE_KEY) || "null");
-      if (cached?.version === TERMS_CACHE_VERSION && Array.isArray(cached.terms) && cached.terms.length > 1000) {
-        return cached.terms.filter((term) => typeof term === "string" && term.trim());
-      }
-    } catch (_error) {
-      // Ignore broken cache and retry the public source.
-    }
-    return [];
-  }
-
   async function loadTerms() {
-    const cached = loadCachedTerms();
-    if (cached.length) terms = cached;
-    try {
-      const response = await fetch(SOURCE_URL, { cache: "no-store" });
-      if (!response.ok) throw new Error(`HTTP ${response.status}`);
-      const parsed = parseTerms(await response.text());
-      if (parsed.length < 1000) throw new Error("词库条目异常偏少");
-      terms = parsed;
-      localStorage.setItem(TERMS_CACHE_KEY, JSON.stringify({ version: TERMS_CACHE_VERSION, terms }));
-    } catch (error) {
-      if (!terms.length) throw error;
-    }
+    const response = await fetch(SOURCE_URL);
+    if (!response.ok) throw new Error(`HTTP ${response.status}`);
+    const parsed = (await response.json()).terms;
+    if (!Array.isArray(parsed) || parsed.length !== 1854 || parsed.some(term => typeof term !== "string" || !term.trim()) || new Set(parsed).size !== 1854) throw new Error("词库快照不完整");
+    terms = parsed;
     return terms;
   }
 
@@ -212,8 +176,8 @@
 
   function sanitiseSession(session) {
     if (!session || typeof session !== "object" || !Array.isArray(session.queue)) return null;
-    const queue = session.queue.filter((entry) => entry && typeof entry.term === "string");
-    if (!queue.length) return null;
+    const queue = session.queue.filter((entry) => entry && typeof entry.term === "string").map(entry => ({ ...entry, retryCount: Number.isInteger(entry.retryCount) ? Math.max(0, entry.retryCount) : 0 }));
+    if (!queue.length && !session.feedback) return null;
     return {
       ...session,
       mode: session.mode === "wrong" ? "wrong" : "all",
@@ -225,42 +189,31 @@
     };
   }
 
-  function availableVoice() {
-    if (!("speechSynthesis" in window)) return null;
-    const voices = speechSynthesis.getVoices();
-    return voices.find((voice) => voice.lang.toLowerCase().startsWith("en-gb"))
-      || voices.find((voice) => voice.lang.toLowerCase().startsWith("en"))
-      || null;
-  }
-
   function speak(term, button) {
-    if (!("speechSynthesis" in window)) return false;
-    speechSynthesis.cancel();
-    const utterance = new SpeechSynthesisUtterance(term);
-    utterance.lang = "en-GB";
-    utterance.rate = AUDIO_RATE;
-    const voice = availableVoice();
-    if (voice) utterance.voice = voice;
-    button?.classList.add("playing");
-    const finish = () => button?.classList.remove("playing");
-    utterance.onend = finish;
-    utterance.onerror = finish;
-    speechSynthesis.speak(utterance);
-    return true;
+    const token = questionToken;
+    return ModuleAudio.play(term, button, rate, () => {
+      if (token === questionToken) {
+        heard = true;
+        screen.querySelectorAll('#skip, [type="submit"]').forEach(b => { b.disabled = false; });
+      }
+    });
   }
 
   function scheduleRetry(entry) {
     if (entry.retryCount >= MAX_RETRIES_PER_TERM) return;
+    if (activeSession.queue.length < RETRY_MIN_DISTANCE) return;
     const nextRetry = entry.retryCount + 1;
     const min = Math.min(RETRY_MIN_DISTANCE, activeSession.queue.length);
     const max = Math.min(RETRY_MAX_DISTANCE, activeSession.queue.length);
     const distance = max > min ? min + Math.floor(Math.random() * (max - min + 1)) : min;
+    const between = activeSession.queue.slice(0, distance).map(item => item.term);
+    if (between.includes(entry.term) || new Set(between).size < 6) return;
     activeSession.queue.splice(distance, 0, { term: entry.term, isRetry: true, retryCount: nextRetry });
   }
 
   function sessionProgressText() {
     if (!activeSession) return "";
-    return `${Math.min(activeSession.answeredBase + 1, activeSession.totalBase)}/${activeSession.totalBase}`;
+    return `${Math.min(activeSession.answeredBase + (activeSession.phase === "feedback" ? 0 : 1), activeSession.totalBase)}/${activeSession.totalBase}`;
   }
 
   function setHeader(title, count) {
@@ -270,6 +223,8 @@
 
   function homeScreen() {
     clearTimeout(transitionTimer);
+    questionToken++;
+    ModuleAudio.stop();
     if ("speechSynthesis" in window) speechSynthesis.cancel();
     activeSession = sanitiseSession(state.session);
     setHeader("807 听写", `${seenCount()}/${terms.length || "?"}`);
@@ -293,22 +248,28 @@
           <button id="wrong" class="secondary" ${wrong ? "" : "disabled"}>${icon("arrow-counter-clockwise")}错词重听 ${wrong ? `(${wrong})` : ""}</button>
         </div>
         <div class="vocab807-note">
-          <span>${icon("speaker-high")} 英音优先 · ${AUDIO_RATE.toFixed(1)}x</span>
+          <span>${icon("speaker-high")} 站内合成英音 · ${rate.toFixed(1)}x（非教材原音）</span>
           <span>词库 ${terms.length} 条去重词项</span>
         </div>
         <a class="back-link" href="../">${icon("arrow-left")}返回 IELTS Listening</a>
       </section>`;
     document.getElementById("resume")?.addEventListener("click", () => {
       activeSession = sanitiseSession(state.session);
-      renderQuestion();
+      if (activeSession?.feedback) {
+        const feedback = activeSession.feedback;
+        if (feedback.correct) renderCorrect(feedback.entry.term);
+        else renderWrong(feedback.entry, feedback.typed, feedback.skipped);
+      } else renderQuestion();
     });
     document.getElementById("start").addEventListener("click", () => {
+      if (activeSession && !confirm("替换未完成的队列？已有历史统计会保留。")) return;
       activeSession = createSession("all");
       state.session = activeSession;
       saveState();
       renderQuestion();
     });
     document.getElementById("wrong").addEventListener("click", () => {
+      if (activeSession && !confirm("替换未完成的队列？已有历史统计会保留。")) return;
       activeSession = createSession("wrong");
       state.session = activeSession;
       saveState();
@@ -317,7 +278,11 @@
   }
 
   function finishSession() {
+    ModuleAudio.stop();
+    clearTimeout(transitionTimer);
     const completed = activeSession;
+    if (!completed) return homeScreen();
+    state.lastCompleted = completed;
     state.session = null;
     activeSession = null;
     saveState();
@@ -351,7 +316,12 @@
   }
 
   function handleAnswer(entry, typed, skipped = false) {
-    const correct = !skipped && normalise(typed) === normalise(entry.term);
+    if (!activeSession || activeSession.phase !== "question" || activeSession.queue[0] !== entry || !heard) return;
+    if (!skipped && !normalise(typed)) return;
+    activeSession.phase = "feedback";
+    ModuleAudio.stop();
+    const verdict = DictationVariants.check(entry.term, typed);
+    const correct = !skipped && verdict.correct;
     activeSession.queue.shift();
     updateRecord(entry.term, correct);
     if (!entry.isRetry) {
@@ -360,13 +330,16 @@
       else activeSession.wrongBase += 1;
     }
     if (!correct) scheduleRetry(entry);
+    activeSession.feedback = { entry, typed, skipped, correct, reason: verdict.reason };
     saveState();
     if (correct) {
       renderCorrect(entry.term);
       transitionTimer = window.setTimeout(() => {
+        if (!screen.querySelector(".quick-correct")) return;
+        activeSession.feedback = null;
         if (!activeSession?.queue.length) finishSession();
         else renderQuestion();
-      }, QUICK_PASS_DELAY_MS);
+      }, verdict.reason ? 4000 : QUICK_PASS_DELAY_MS);
       return;
     }
     renderWrong(entry, typed, skipped);
@@ -379,8 +352,17 @@
         <div class="result-mark correct">${icon("check-circle")}</div>
         <p class="feedback-label">正确</p>
         <h2 class="answer-word">${escapeHtml(term)}</h2>
+        ${activeSession?.feedback?.reason ? `<p>接受 ${escapeHtml(activeSession.feedback.typed)}：${escapeHtml(activeSession.feedback.reason)}。上方为题库原词。</p>` : ""}
         <p class="feedback-sub">下一题马上开始</p>
+        <button id="correct-continue" class="primary">继续</button>
       </section>`;
+    const feedback = activeSession?.feedback;
+    document.getElementById("correct-continue").onclick = () => {
+      if (!activeSession || activeSession.feedback !== feedback) return;
+      clearTimeout(transitionTimer);
+      activeSession.feedback = null;
+      if (!activeSession.queue.length) finishSession(); else renderQuestion();
+    };
   }
 
   function renderWrong(entry, typed, skipped) {
@@ -391,7 +373,7 @@
         <p class="feedback-label">${skipped ? "先跳过" : "拼写不对"}</p>
         <h2 class="answer-word">${escapeHtml(entry.term)}</h2>
         ${skipped ? "" : `<p class="typed-answer">你写的是：<strong>${escapeHtml(typed || "（空）")}</strong></p>`}
-        <p class="feedback-sub">这个词会在后面回炉，不用立刻死磕。</p>
+        <p class="feedback-sub">已保留到错词池；间隔足够才在本轮回炉，不会马上重复。</p>
         <div class="result-actions">
           <button id="replay" class="secondary">${icon("speaker-high")}再听一次</button>
           <button id="continue" class="primary">继续</button>
@@ -401,6 +383,8 @@
     const replay = document.getElementById("replay");
     replay.addEventListener("click", () => speak(entry.term, replay));
     document.getElementById("continue").addEventListener("click", () => {
+      if (!activeSession?.feedback || activeSession.feedback.entry !== entry) return;
+      activeSession.feedback = null;
       if (!activeSession?.queue.length) finishSession();
       else renderQuestion();
     });
@@ -412,34 +396,47 @@
 
   function renderQuestion() {
     clearTimeout(transitionTimer);
+    ModuleAudio.stop();
+    const token = ++questionToken;
+    heard = false;
+    if (!activeSession) { homeScreen(); return; }
     if (!activeSession || !activeSession.queue.length) {
       finishSession();
       return;
     }
     const entry = activeSession.queue[0];
+    activeSession.phase = "question";
+    activeSession.feedback = null;
+    saveState();
     setHeader(activeSession.mode === "wrong" ? "807 错词重听" : "807 听写", sessionProgressText());
     screen.innerHTML = `
       <section class="training-card spelling-card vocab807-question">
         <div class="training-toolbar">
           <button id="pause" class="text-button">${icon("arrow-left")}暂停</button>
-          <span class="mode-label">${entry.isRetry ? "回炉题" : "听写"} · ${AUDIO_RATE.toFixed(1)}x</span>
+          <span class="mode-label">${entry.isRetry ? "回炉题" : "听写"}</span>
         </div>
         <div class="audio-stage">
           <button id="play" class="audio-button" type="button" aria-label="播放单词">${icon("speaker-high")}</button>
           <p>听声音，输入你听到的英文</p>
+          <label>合成英音 · <select id="audio-rate" aria-label="朗读速度"><option value="0.8">0.8 倍</option><option value="1">1.0 倍</option><option value="1.2">1.2 倍</option></select></label>
+          <button id="download-audio" type="button" class="text-button">下载本轮音频</button>
         </div>
         <form id="spelling-form" class="spelling-form" autocomplete="off">
           <label class="answer-label" for="answer">拼写</label>
           <input id="answer" class="spelling-input" type="text" inputmode="text" autocapitalize="none" autocomplete="off" autocorrect="off" spellcheck="false" enterkeyhint="done" aria-label="输入听到的英文">
           <div class="spelling-actions">
-            <button class="primary" type="submit">提交</button>
-            <button id="skip" class="secondary" type="button">不会</button>
+            <button class="primary" type="submit" disabled>提交</button>
+            <button id="skip" class="secondary" type="button" disabled>不会</button>
           </div>
         </form>
         <p class="coverage-line">已覆盖 ${seenCount()}/${terms.length} · 错词 ${wrongCount()}</p>
       </section>`;
     const play = document.getElementById("play");
     const answer = document.getElementById("answer");
+    const speed = document.getElementById("audio-rate");
+    speed.value = String(rate);
+    speed.addEventListener("change", () => { rate = Number(speed.value); state.audioRate = rate; saveState(); speak(entry.term, play); });
+    document.getElementById("download-audio").onclick = event => ModuleAudio.download(activeSession.queue.map(item => item.term), event.currentTarget);
     play.addEventListener("click", () => speak(entry.term, play));
     document.getElementById("spelling-form").addEventListener("submit", (event) => {
       event.preventDefault();
@@ -451,7 +448,7 @@
       homeScreen();
     });
     answer.focus({ preventScroll: true });
-    window.setTimeout(() => speak(entry.term, play), 60);
+    transitionTimer = window.setTimeout(() => { if (token === questionToken && !document.hidden) speak(entry.term, play); }, 60);
   }
 
   function loadingScreen() {
@@ -479,25 +476,22 @@
 
   async function boot() {
     loadingScreen();
-    versionBadge.textContent = "807 v1.0.0";
+    versionBadge.textContent = "807 v1.1.0";
     try {
       await loadTerms();
       state = loadState();
+      rate = [0.8, 1, 1.2].includes(state.audioRate) ? state.audioRate : 1.2;
       activeSession = sanitiseSession(state.session);
       if (activeSession) state.session = activeSession;
-      homeScreen();
+      if (!activeSession && state.lastCompleted) { activeSession = state.lastCompleted; finishSession(); }
+      else homeScreen();
     } catch (error) {
       loadErrorScreen(error);
     }
   }
 
-  window.addEventListener("beforeunload", saveState);
-  window.addEventListener("pageshow", () => {
-    if (document.visibilityState === "visible" && terms.length) state = loadState();
-  });
-  if ("speechSynthesis" in window) {
-    speechSynthesis.addEventListener?.("voiceschanged", () => availableVoice());
-  }
-
+  document.addEventListener("visibilitychange", () => { if (document.hidden) { clearTimeout(transitionTimer); questionToken++; } });
+  store.controls();
+  if ("serviceWorker" in navigator) navigator.serviceWorker.register("./sw.js", { scope: "./", updateViaCache: "none" }).catch(() => {});
   boot();
 })();

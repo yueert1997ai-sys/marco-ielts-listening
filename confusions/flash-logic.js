@@ -9,7 +9,7 @@
   const SESSION_SIZE = 20;
   const RETRY_MIN_DISTANCE = 8;
   const RETRY_MAX_DISTANCE = 12;
-  const MAX_RETRIES = 2;
+  const MAX_RETRIES = 3;
 
   function nowIso() {
     return new Date().toISOString();
@@ -61,6 +61,7 @@
       mastery: Number.isInteger(current.mastery) ? Math.max(0, Math.min(3, current.mastery)) : 0,
       streak: Number.isInteger(current.streak) ? Math.max(0, current.streak) : 0,
       lastSeen: typeof current.lastSeen === "string" ? current.lastSeen : null,
+      knownDates: Array.isArray(current.knownDates) ? current.knownDates : [],
     };
   }
 
@@ -129,6 +130,8 @@
     const span = RETRY_MAX_DISTANCE - RETRY_MIN_DISTANCE + 1;
     const distance = RETRY_MIN_DISTANCE + (hashString(`${session.id}:${term}:${count}`) % span);
     const insertAt = Math.min(session.queue.length, session.cursor + 1 + distance);
+    const intervening = session.queue.slice(session.cursor + 1, insertAt).map(entry => entry.term);
+    if (intervening.includes(term) || new Set(intervening).size < 6) return false;
     session.queue.splice(insertAt, 0, { term, isRetry: true });
     session.retryCount[term] = count + 1;
     return true;
@@ -140,14 +143,20 @@
     if (session.phase !== "question") throw new Error("当前不是认识度判断阶段");
     const entry = session.queue[session.cursor];
     const stat = statFor(state, entry.term);
+    const previous = JSON.parse(JSON.stringify(stat));
     stat.attempts += 1;
     stat.known += 1;
     stat.streak += 1;
-    stat.mastery = Math.min(3, stat.mastery + 1);
+    const date = new Date(timestamp);
+    const day = `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, "0")}-${String(date.getDate()).padStart(2, "0")}`;
+    if (!stat.knownDates.includes(day)) {
+      stat.knownDates.push(day);
+      stat.mastery = Math.min(3, stat.mastery + 1, stat.knownDates.length);
+    }
     stat.lastSeen = timestamp;
     state.stats[entry.term] = stat;
     markBaseAnswered(session, entry);
-    session.pending = { term: entry.term, known: true, meaningChoice: null, meaningCorrect: null };
+    session.pending = { term: entry.term, known: true, previous, meaningChoice: null, meaningCorrect: null };
     session.results.push({ term: entry.term, known: true, isRetry: Boolean(entry.isRetry), timestamp });
     session.phase = "reveal";
     return state;
@@ -172,6 +181,16 @@
     session.results.push({ term: entry.term, known: false, isRetry: Boolean(entry.isRetry), retryScheduled, timestamp });
     session.phase = "meaning";
     return state;
+  }
+
+  function correctKnown(rawState, timestamp = nowIso()) {
+    const state = safeState(rawState);
+    const session = ensureActiveSession(state);
+    if (session.phase !== "reveal" || !session.pending?.known || !session.pending.previous) return state;
+    state.stats[session.pending.term] = session.pending.previous;
+    session.results.pop();
+    session.phase = "question";
+    return answerUnknown(state, timestamp);
   }
 
   function confirmMeaning(rawState, selectedMeaning, correctMeaning) {
@@ -264,6 +283,7 @@
     currentEntry,
     answerKnown,
     answerUnknown,
+    correctKnown,
     confirmMeaning,
     advance,
     makeMeaningChoices,
