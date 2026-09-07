@@ -44,6 +44,18 @@
     return numbers.length % 2 ? numbers[middle] : (numbers[middle - 1] + numbers[middle]) / 2;
   }
 
+  function escapeRegExp(value) {
+    return String(value).replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  }
+
+  function maskChunkTerm(chunk, term) {
+    const source = String(chunk ?? "");
+    const target = String(term ?? "").trim();
+    if (!source || !target) return source;
+    const pattern = new RegExp(`(^|[^A-Za-z0-9])${escapeRegExp(target)}(?=$|[^A-Za-z0-9])`, "i");
+    return source.replace(pattern, (_match, prefix) => `${prefix}___`);
+  }
+
   function defaultState() {
     return {
       schemaVersion: 1,
@@ -374,6 +386,7 @@
     hashString,
     seededShuffle,
     median,
+    maskChunkTerm,
     flattenTerms,
     computeGroupStatus,
     statusCounts,
