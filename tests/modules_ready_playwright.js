@@ -59,6 +59,8 @@ async (page) => {
   assert((await flashRead()).stats[term].mastery === 0, 'meaning promoted mastery');
   await page.locator('#flash-speak').click();
   await page.waitForFunction(() => document.querySelector('#flash-speak')?.textContent.includes('正在播放'));
+  await page.locator('[data-audio]').first().click();
+  await page.waitForFunction(() => document.querySelector('[data-audio]')?.textContent.includes('正在播放'));
   for (const viewport of [{width:320,height:568},{width:390,height:844},{width:1440,height:900}]) {
     await page.setViewportSize(viewport);
     await page.evaluate(() => new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve))));

@@ -61,6 +61,9 @@ async (page) => {
   });
 
   await page.locator("#start-learning").click();
+  await page.locator('[data-speak]').first().click();
+  await page.waitForFunction(() => document.querySelector('[data-speak]')?.textContent.includes('正在播放'));
+  if (await page.locator('[data-left].selected, [data-right].selected').count()) throw new Error('Audio button selected a match answer');
   const learningBoards = { matchingStarts: {}, recallMinimum: Infinity };
   for (let guard = 0; guard < 90; guard += 1) {
     if (await page.locator("#learning-home").count()) break;
