@@ -4,6 +4,8 @@
 
 ## 本轮统一与发布
 
+neglect注意事项：`neglecting`的canonical override在构建后段合并旧词，因此neglected的新说明同时维护在该override的reason，避免被旧errorNote覆盖。
+
 2026-09-07 词库#22：neglected“不认识”已通过导入脚本归并已有neglect主卡，增加词形和过去分词/形容词说明，原卡备注保留；832张主卡不变，个人同步来源204条，复用已有音频，程序仍v2.20.0。
 
 2026-09-07 词库#21：通过 `scripts/import_wrong_words.py` 导入 `source/intakes/2026-09-07-reading-errors.json` 中11项阅读识义错词，新增9卡、复用condition/improvement两卡；assessed归assess，不生成额外词形卡。7个S级语境、raise及3个未定等级生词暂按A；初始错词档案等级由现有逻辑核验，已有个人掌握/赦免/历史不重置。程序仍为v2.20.0，仅词库更新。
