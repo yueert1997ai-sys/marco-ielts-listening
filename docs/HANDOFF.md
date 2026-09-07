@@ -4,6 +4,10 @@
 
 ## 本轮统一与发布
 
+2026-09-07 Confusions 已新增第三条首页刷词主线并发布：根首页的词汇区现为“背新词 / 背错词 / 易混词”三路；易混词刷词使用 84 词独立题库和 `marcoIeltsConfusionsFlash.v1`，每轮 20 个基础词，先判断“认识 / 不认识”，不认识再做中文四选一，随后揭示释义、Chunk、语境和同组易混词，题量足够时按 8–12 题间隔回炉。该记录不写 `marcoIeltsListening.v1`，也不改 `marcoIeltsConfusions.v1` 的 cold test / confusion pair 统计。原 `/confusions/` 学习、匹配、cold test 与错词强化继续保留为“易混辨析”。功能合并提交为 `868d2b34982d6382fee856e1fc85b8b2973d93dc`，Pages 34103589352 success。
+
+同日继续重构 Confusions Chunk 数据：全部 84 个 Chunk 已在独立分支改为可语义辨析的长搭配，要求答案词被遮掉后仍至少保留 2 个有意义的内容线索、84 个遮罩提示互不重复，并显式包含原形答案词，避免 `compose/composed`、`prospect/prospects` 等词形导致遮罩失效。`scripts/validate_confusions.py` 与 `tests/test_confusions_chunk_mask.js` 已加入这些硬约束；本项在发布前仍需通过文档守卫、合并及 Pages 回读。
+
 2026-09-07 v2.19.2 已发布：fetch/rebase 最新 main 后正常快进推送 `c5345c920716148c9f90a01c14dcb6441e008d41`，Pages [34044571790](https://github.com/yueert1997ai-sys/marco-ielts-listening/actions/runs/34044571790) 与文档守卫 success。公开站点真实 Chrome 通过 `streak_playwright.js`、`multi_tab_playwright.js`：三入口完成后连续天数 3→4、刷新幂等；双页互斥、关闭接续、重点/进度保留、外部更新与旧按钮保护、320×568/390×844 弹窗均通过。生产 version.json 为 v2.19.2；后台与词库不变。
 
 本次修复内容：连续天数按日期幂等记账，覆盖已置 completed 的最后一题、刷新恢复且不计空任务；多页面通过 `${STORAGE_KEY}:writer` Web Locks 独占写入，读取旧快照的页面不覆盖新记录。锁随关闭/离开释放，BFCache 恢复要求重新载入；冲突冻结交互并提供当前页导出，导入同样校验快照。无 Web Locks 时停止写入并提示升级，不增加新数据库、不改存储键。词库与后台未变。
@@ -22,7 +26,7 @@ v2.19.1 本地验证：主逻辑 132、易混逻辑 12、Python 16 项通过；�
 
 后台待补发：v1.0.1 本地 14 项测试及 wrangler dry-run 成功，但现有 OAuth 缺少 `workers_scripts:write`，正式部署在读取 deployments 时返回 Authentication error 10000（未上传新代码）。旧后台首页与 `/api/session` 回读正常。本次设备授权等待用户确认；授权后用原 `XDG_CONFIG_HOME` 配置运行 `npx wrangler deploy`，不要改 D1、Secret 或 GitHub token。不得把训练端成功描述为后台也已发布，后台及三层拦截中的服务端生产代码需补验。
 
-两条词汇主线与旧识义共用 `recordAttempt / reinforcementDecision / renderRecognitionMeaningCheck`。首屏只有认识/不认识；不认识后四选一、揭义、8–12 题回炉再判断，选中正确中文仍只记录最初那一次错误。`queue[].meaningCheck` 保存已做出的不认识判断，刷新/暂停继续确认，不能看答案后改报认识。
+Listening 的“背新词 / 背错词”两条主线与旧识义共用 `recordAttempt / reinforcementDecision / renderRecognitionMeaningCheck`。首屏只有认识/不认识；不认识后四选一、揭义、8–12 题回炉再判断，选中正确中文仍只记录最初那一次错误。`queue[].meaningCheck` 保存已做出的不认识判断，刷新/暂停继续确认，不能看答案后改报认识。首页第三条“易混词”在 Confusions 独立状态中复用相同学习节奏，但不参与 Listening 的 25/25、18/18、streak 或永久错词档案。
 
 `vocabNewDaily` 是新词识义队列的统一来源，`syncLearningRecognition` 将其投影回混合 `daily`，保留听写项位置和记录；新旧入口共享基础进度、强化队列、streak 和 retryCount。旧在途队列会兼容补入，不重置学习数据。回炉不增加每日完成数；初次认识需间隔确认（15–20 题），已有记忆阶段则按到期复习，不加无用确认。同轮短队尾或 3 次上限停止插题，未确认状态可次日独立判断完成；`:vocab` 不会被塞进只能解析听写/识义的旧复习队列。
 
@@ -52,9 +56,10 @@ v2.19.0 发布前验收：主逻辑 129、易混逻辑 12、Python 16、后台 N
 <!-- VOCAB_STATUS_END -->
 
 - 当前代码 v2.19.2 增加多页面写入保护与连续天数修复；v2.19.1 误判认识纠正与 v2.19.0 统一主线、永久档案、赦免、重点、固定日任务及排期修复均保留。
+- 首页词汇学习现有三条入口：背新词、背错词、易混词；第三条读取 84 个 Confusions 词并使用独立 `marcoIeltsConfusionsFlash.v1`。
 - 2026-09-05 本地真实 Chrome 验收通过：390×844、320×568、1440×900；主应用逻辑 122 项、易混逻辑 12 项、Python 16 项、后台 Node 14 项均通过。
-- 易混词 v1.1.0 本轮本地完成学习、12 题冷测、错题强化、暂停/舒缓节奏、故障隔离和离线回归。Listening LocalStorage 前后字节级相等。
-- 当前生产验收以本页顶部 v2.19.2 回读为准；后续发布仍需重新 fetch、验收并回读，不能只引用历史记录。
+- 易混词 v1.1.0 保留学习、12 题冷测、错题强化、暂停/舒缓节奏、故障隔离和离线能力；第三条刷词主线已经发布，Chunk 语义重构待本轮 PR 合并与 Pages 回读。
+- 当前生产验收以本页顶部记录为准；后续发布仍需重新 fetch、验收并回读，不能只引用历史记录。
 - 训练端由 GitHub Pages 托管；后台由 Cloudflare Worker + D1 托管。
 - 词库后台只管理正式词库，不同步手机浏览器里的训练进度和记忆曲线。
 - 训练端采用手机优先的浅色 iOS 原生界面：系统分组灰背景、白色表面、动态圆形日进度和系统蓝主操作；正确/错误反馈只使用成功绿与错误红。桌面仅保留居中的手机宽度外壳。
@@ -96,9 +101,10 @@ v2.19.0 发布前验收：主逻辑 129、易混逻辑 12、Python 16、后台 N
 
 易混词独立数据真相源：
 
-- `source/confusions.json`：32 组、84 词及句内题
+- `source/confusions.json`：32 组、84 词、Chunk 及句内题
 - `confusions/data/confusions.json`：由 `scripts/build_confusions.py` 生成的运行时数据
 - `marcoIeltsConfusions.v1`：浏览器内学习、冷测、混淆对与强化记录
+- `marcoIeltsConfusionsFlash.v1`：首页第三条易混词刷词的独立认识度、回炉和掌握记录
 
 不要直接维护 `data/listening.json`、`data/audit.json` 或音频清单；这些都应由构建流程生成。
 易混词数据不得写入任何 Listening 源数据或 `marcoIeltsListening.v1`。
@@ -107,7 +113,7 @@ v2.19.0 发布前验收：主逻辑 129、易混逻辑 12、Python 16、后台 N
 
 - 训练端代码或体验变化：提升 `version.json`、页面资源版本和 Service Worker 版本。
 - 后台代码变化：提升 `admin/package.json` 的后台版本。
-- 单纯新增或更新词汇：训练端程序版本不变，以 Git 提交、Issue 编号和最后同步日期作为词库版本。
+- 单纯新增或更新词汇/Confusions Chunk 数据：训练端程序版本不变，以 Git 提交、Issue 编号和最后同步日期作为数据版本。
 - 手机上看到旧版时，先核对线上 `version.json` 和 `sw.js`，再判断是否是浏览器缓存。
 - 易混词独立读取 `confusions/version.json`，版本不跟随 Listening；两套 Service Worker 只清理各自的 cache namespace。
 
@@ -138,6 +144,8 @@ python scripts/build_confusions.py
 python scripts/validate_confusions.py
 node tests/test_logic.js
 node tests/test_confusions_logic.js
+node tests/test_confusions_flash_logic.js
+node tests/test_confusions_chunk_mask.js
 python -m unittest tests/test_vocabulary_admin.py tests/test_project_docs.py
 cd admin && npm test
 ```
@@ -145,15 +153,17 @@ cd admin && npm test
 发布后至少回读：
 
 - `version.json` 的程序版本
-- `sw.js` 的 `APP_VERSION`
+- `sw.js` 的 APP_VERSION
 - `data/listening.json` 的主卡数量及本次目标词
+- `confusions/data/confusions.json` 的 32 组 / 84 词和目标 Chunk
 - GitHub Actions 和同步 Issue 的最终状态
 
 ## 已知边界
 
 - 手机训练进度只保存在对应浏览器本地，不在后台跨端同步。
-- 易混词使用独立 `marcoIeltsConfusions.v1`；其学习、冷测和强化记录不进入 Listening 进度、streak 或词库统计。
+- 易混辨析使用独立 `marcoIeltsConfusions.v1`；第三条易混词刷词使用 `marcoIeltsConfusionsFlash.v1`。两者都不进入 Listening 进度、streak 或词库统计。
+- 第三条易混词刷词已通过逻辑回归与 Pages 部署，但尚未做一次完整的真实手机浏览器端到端回归；后续 UI 改动应补 320×568 / 390×844 验收。
 - 本地模型只在词典缺失且浏览器支持 WebGPU 时按需使用；模型资源不随仓库发布。
-- 剩余 P2：普通词库尚无搜索；原生浏览器返回无专用路由；多标签同存档并发写、iOS Safari 真机、超大历史备份等边界尚未充分验证。前轮报告中的训练题型分歧已在 v2.19.0 统一。
+- 剩余 P2：普通词库尚无搜索；原生浏览器返回无专用路由；iOS Safari 真机、超大历史备份等边界尚未充分验证。前轮多标签同存档并发写边界已在 v2.19.2 增加保护。
 
 - v2.18.0 QA：普通训练错误只作为近期错误提升优先级，只有明确真实错题证据才设置 `causedIeltsError`；赦免会同步刷新当日背错词队列；`id:vocab` 复习进度每次以永久错词档案的掌握阶段与 nextReview 为基准，防止状态分叉。
