@@ -1,8 +1,11 @@
-const APP_VERSION = "v2.19.2";
+const APP_VERSION = "v2.20.0";
 const CACHE_PREFIX = "ielts-listening-";
 const CACHE = `${CACHE_PREFIX}${APP_VERSION}`;
 const CORE = [
   "./",
+  "./807-mainline.js",
+  "./build-version.js",
+  "./confusions-mainline.js",
   `./index.html?v=${APP_VERSION}`,
   `./style.css?v=${APP_VERSION}`,
   `./vendor/phosphor/phosphor-regular.css?v=${APP_VERSION}`,
@@ -44,7 +47,7 @@ self.addEventListener("activate", (event) => {
 self.addEventListener("fetch", (event) => {
   if (event.request.method !== "GET") return;
   const url = new URL(event.request.url);
-  if (url.origin === location.origin && url.pathname.includes("/confusions/")) return;
+  if (url.origin === location.origin && (url.pathname.includes("/confusions/") || url.pathname.includes("/807/"))) return;
   const isCoreRequest = event.request.mode === "navigate" || (
     url.origin === location.origin && (
       url.pathname.endsWith("/index.html") ||

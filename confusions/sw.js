@@ -1,8 +1,14 @@
-const CONFUSIONS_VERSION = "v1.1.0";
+const CONFUSIONS_VERSION = "v1.2.0";
 const CACHE_PREFIX = "ielts-confusions-";
-const CACHE = `${CACHE_PREFIX}v3`;
+const CACHE = `${CACHE_PREFIX}v4`;
 const CORE = [
   "./",
+  "./?mode=flash",
+  "./flash.js?v=1",
+  "./flash-logic.js?v=1",
+  "../shared/module-audio.js?v=1",
+  "../shared/module-store.js?v=1",
+  "../module-audio/manifest.json",
   `./index.html?v=${CONFUSIONS_VERSION}`,
   `./style.css?v=${CONFUSIONS_VERSION}`,
   `./logic.js?v=${CONFUSIONS_VERSION}`,
@@ -28,9 +34,21 @@ self.addEventListener("activate", (event) => {
 self.addEventListener("fetch", (event) => {
   if (event.request.method !== "GET") return;
   const url = new URL(event.request.url);
+  if (url.origin === location.origin && url.pathname.endsWith(".mp3")) {
+    event.respondWith(caches.open("ielts-module-audio-v1").then(async cache => {
+      const cached = await cache.match(url.href);
+      if (cached) return cached;
+      const response = await fetch(url.href);
+      if (response.ok) await cache.put(url.href, response.clone());
+      return response;
+    }));
+    return;
+  }
   const isModuleAsset = url.origin === location.origin && (
     url.pathname.includes("/confusions/")
     || url.pathname.includes("/vendor/phosphor/")
+    || url.pathname.includes("/shared/")
+    || url.pathname.includes("/module-audio/")
   );
   if (!isModuleAsset) return;
 
@@ -49,7 +67,7 @@ self.addEventListener("fetch", (event) => {
     return;
   }
 
-  event.respondWith(caches.match(event.request).then((cached) => cached || fetch(event.request).then((response) => {
+  event.respondWith(caches.match(event.request, { ignoreSearch: true }).then((cached) => cached || fetch(event.request).then((response) => {
     if (response.ok) caches.open(CACHE).then((cache) => cache.put(event.request, response.clone()));
     return response;
   })));

@@ -6,7 +6,7 @@
   "use strict";
 
   const STORAGE_KEY = "marcoIeltsConfusions.v1";
-  const VERSION = "v1.1.0";
+  const VERSION = "v1.2.0";
   const QUESTION_COUNT = 12;
   const RECENT_WINDOW = 20;
   const MIN_STABLE_ATTEMPTS = 3;

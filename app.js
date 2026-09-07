@@ -2,7 +2,7 @@
   "use strict";
 
   const STORAGE_KEY = "marcoIeltsListening.v1";
-  const APP_VERSION = "v2.19.2";
+  const APP_VERSION = "v2.20.0";
   const AUTO_UPDATE_SESSION_KEY = "marcoIeltsListening.autoUpdateAttempt";
   const AUTO_UPDATE_THROTTLE_MS = 60 * 1000;
   const TRAINING_RESET_ID = "fresh-start-v2.5.0";

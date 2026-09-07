@@ -89,6 +89,7 @@ async (page) => {
 
   await page.emulateMedia({ reducedMotion: "reduce" });
   await page.locator("#start-test").click();
+  if (await page.locator('[data-speak], [data-result-audio]').count()) throw new Error('Cold test exposes audio answers');
   const firstLimit = Number.parseFloat(await page.locator("#test-timer-count").innerText());
   const firstIsSentence = await page.locator(".prompt-sentence").count() > 0;
   const reducedMotionTimer = await page.locator("#test-timer-bar").evaluate((element) => Number.parseFloat(getComputedStyle(element).animationDuration));
@@ -174,7 +175,7 @@ async (page) => {
   const cacheNames = await page.evaluate(() => caches.keys());
   const cacheIsolation = {
     listening: cacheNames.includes(`ielts-listening-${listeningVersion}`),
-    confusions: cacheNames.includes("ielts-confusions-v3"),
+    confusions: cacheNames.includes("ielts-confusions-v4"),
   };
   await page.context().setOffline(true);
   await page.reload({ waitUntil: "domcontentloaded" });
@@ -195,7 +196,7 @@ async (page) => {
   failure.listeningStillWorks = await page.locator("#start").isVisible();
 
   if (entry.title !== "易混词"
-    || entry.version !== "v1.1.0"
+    || entry.version !== "v1.2.0"
     || !entry.url.includes("/confusions/")
     || !entry.mainStorageUnchanged
     || !entry.standardPaceSelected

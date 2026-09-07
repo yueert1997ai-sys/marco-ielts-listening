@@ -1,7 +1,7 @@
 {
-  "version": "v2.19.2",
+  "version": "v2.20.0",
   "releasedAt": "2026-09-07",
-  "label": "多页面记录保护与连续天数修复",
+  "label": "易混词与807站内音频及训练可靠性",
   "contentRevision": "词库#20",
   "contentUpdatedAt": "2026-09-03"
 }

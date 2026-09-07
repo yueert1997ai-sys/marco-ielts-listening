@@ -57,7 +57,7 @@ def main() -> None:
         masked_prompts[key] = word
 
     version = json.loads((ROOT / "confusions" / "version.json").read_text(encoding="utf-8")).get("version")
-    if version != "v1.1.0":
+    if version != "v1.2.0":
         fail("Unexpected Confusions version")
     for filename in ("index.html", "style.css", "logic.js", "app.js", "sw.js"):
         if not (ROOT / "confusions" / filename).exists():
@@ -75,7 +75,7 @@ def main() -> None:
         fail("Confusions storage key is missing")
     if 'CACHE_PREFIX = "ielts-confusions-"' not in child_sw or "ielts-listening-" in child_sw:
         fail("Confusions Service Worker cache scope is not isolated")
-    if 'CACHE = `${CACHE_PREFIX}v3`' not in child_sw:
+    if 'CACHE = `${CACHE_PREFIX}v4`' not in child_sw:
         fail("Unexpected Confusions cache version")
     if 'data-test-pace="standard"' not in app or 'id="pause-test"' not in app or 'id="resume-test"' not in app:
         fail("Confusions accessible timing controls are missing")
