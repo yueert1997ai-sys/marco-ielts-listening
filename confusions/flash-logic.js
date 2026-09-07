@@ -125,7 +125,7 @@
     const count = session.retryCount[term] || 0;
     if (count >= MAX_RETRIES) return false;
     const remaining = session.queue.length - session.cursor - 1;
-    if (remaining < 6) return false;
+    if (remaining < RETRY_MIN_DISTANCE) return false;
     const span = RETRY_MAX_DISTANCE - RETRY_MIN_DISTANCE + 1;
     const distance = RETRY_MIN_DISTANCE + (hashString(`${session.id}:${term}:${count}`) % span);
     const insertAt = Math.min(session.queue.length, session.cursor + 1 + distance);
