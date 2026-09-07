@@ -4,6 +4,8 @@
 
 ## 本轮统一与发布
 
+2026-09-07 新增 807 听写候选功能，当前只在 `feature/807-dictation` 分支、尚未发布：根首页通过 `807-mainline.js` 增加“807 听写”入口，子应用位于 `/807/`，版本 `807 v1.0.0`。首次联网从公开 `golowper/807WordsRepo` 的 `807.txt` 读取词项，过滤 `#` 分类标题、空行并按大小写不敏感去重，成功后缓存到浏览器；每轮 30 词、优先未练，浏览器语音英音优先 1.2x 自动播报，答错或“不会”按 8–12 题距离回炉且每词最多 3 次。状态使用独立 `marcoIelts807.v1`，不写 `marcoIeltsListening.v1`、不占 25+25、不改 streak 或永久错词档案；807 自己维护覆盖数、正确率和历史错词重听。当前仅完成 JS 语法静态检查，尚未做真实浏览器、iOS Safari、文档守卫或 Pages 回读，合并前必须补验。
+
 2026-09-07 Confusions 已新增第三条首页刷词主线并发布：根首页的词汇区现为“背新词 / 背错词 / 易混词”三路；易混词刷词使用 84 词独立题库和 `marcoIeltsConfusionsFlash.v1`，每轮 20 个基础词，先判断“认识 / 不认识”，不认识再做中文四选一，随后揭示释义、Chunk、语境和同组易混词，题量足够时按 8–12 题间隔回炉。该记录不写 `marcoIeltsListening.v1`，也不改 `marcoIeltsConfusions.v1` 的 cold test / confusion pair 统计。原 `/confusions/` 学习、匹配、cold test 与错词强化继续保留为“易混辨析”。功能合并提交为 `868d2b34982d6382fee856e1fc85b8b2973d93dc`，Pages 34103589352 success。
 
 同日继续重构 Confusions Chunk 数据：全部 84 个 Chunk 已在独立分支改为可语义辨析的长搭配，要求答案词被遮掉后仍至少保留 2 个有意义的内容线索、84 个遮罩提示互不重复，并显式包含原形答案词，避免 `compose/composed`、`prospect/prospects` 等词形导致遮罩失效。`scripts/validate_confusions.py` 与 `tests/test_confusions_chunk_mask.js` 已加入这些硬约束；本项在发布前仍需通过文档守卫、合并及 Pages 回读。
@@ -45,6 +47,8 @@ v2.19.0 发布前验收：主逻辑 129、易混逻辑 12、Python 16、后台 N
 - 词库后台：<https://marco-vocabulary-admin.marco-vocabulary-admin.workers.dev/>
 - GitHub：<https://github.com/yueert1997ai-sys/marco-ielts-listening>
 
+> `/807/` 当前只存在于功能分支，未合并前不得当作线上入口。
+
 ## 当前代码与发布状态
 
 <!-- VOCAB_STATUS_START -->
@@ -56,9 +60,10 @@ v2.19.0 发布前验收：主逻辑 129、易混逻辑 12、Python 16、后台 N
 <!-- VOCAB_STATUS_END -->
 
 - 当前代码 v2.19.2 增加多页面写入保护与连续天数修复；v2.19.1 误判认识纠正与 v2.19.0 统一主线、永久档案、赦免、重点、固定日任务及排期修复均保留。
-- 首页词汇学习现有三条入口：背新词、背错词、易混词；第三条读取 84 个 Confusions 词并使用独立 `marcoIeltsConfusionsFlash.v1`。
+- 首页词汇学习生产版现有三条入口：背新词、背错词、易混词；第三条读取 84 个 Confusions 词并使用独立 `marcoIeltsConfusionsFlash.v1`。`feature/807-dictation` 候选分支额外注入第四条“807 听写”，仍未发布。
 - 2026-09-05 本地真实 Chrome 验收通过：390×844、320×568、1440×900；主应用逻辑 122 项、易混逻辑 12 项、Python 16 项、后台 Node 14 项均通过。
 - 易混词 v1.1.0 保留学习、12 题冷测、错题强化、暂停/舒缓节奏、故障隔离和离线能力；第三条刷词主线已经发布，Chunk 语义重构待本轮 PR 合并与 Pages 回读。
+- 807 子应用使用独立 `marcoIelts807.v1` 和 `marcoIelts807.terms.v1`，数据源目前为外部公开 raw GitHub 文本；正式合并前需要确认 CORS、iOS Safari SpeechSynthesis 自动播报、缓存回退和首页卡片在 320×568 / 390×844 下的布局。
 - 当前生产验收以本页顶部记录为准；后续发布仍需重新 fetch、验收并回读，不能只引用历史记录。
 - 训练端由 GitHub Pages 托管；后台由 Cloudflare Worker + D1 托管。
 - 词库后台只管理正式词库，不同步手机浏览器里的训练进度和记忆曲线。
@@ -106,6 +111,13 @@ v2.19.0 发布前验收：主逻辑 129、易混逻辑 12、Python 16、后台 N
 - `marcoIeltsConfusions.v1`：浏览器内学习、冷测、混淆对与强化记录
 - `marcoIeltsConfusionsFlash.v1`：首页第三条易混词刷词的独立认识度、回炉和掌握记录
 
+807 候选训练目前的数据边界：
+
+- 运行时源：`https://raw.githubusercontent.com/golowper/807WordsRepo/main/807.txt`
+- `marcoIelts807.terms.v1`：首次加载后的浏览器词表缓存
+- `marcoIelts807.v1`：独立训练记录、覆盖数和错词池
+- 不写任何 Listening / Confusions 真相源或正式训练状态
+
 不要直接维护 `data/listening.json`、`data/audit.json` 或音频清单；这些都应由构建流程生成。
 易混词数据不得写入任何 Listening 源数据或 `marcoIeltsListening.v1`。
 
@@ -116,6 +128,7 @@ v2.19.0 发布前验收：主逻辑 129、易混逻辑 12、Python 16、后台 N
 - 单纯新增或更新词汇/Confusions Chunk 数据：训练端程序版本不变，以 Git 提交、Issue 编号和最后同步日期作为数据版本。
 - 手机上看到旧版时，先核对线上 `version.json` 和 `sw.js`，再判断是否是浏览器缓存。
 - 易混词独立读取 `confusions/version.json`，版本不跟随 Listening；两套 Service Worker 只清理各自的 cache namespace。
+- 807 候选子应用当前自有版本 `807 v1.0.0`；若正式发布时仍通过根首页脚本增加入口，需要决定是否同步提升根训练端版本并补 Service Worker 缓存策略，不能默认沿用本候选分支的 v2.19.2 标记。
 
 ## Agent 接手流程
 
@@ -161,8 +174,9 @@ cd admin && npm test
 ## 已知边界
 
 - 手机训练进度只保存在对应浏览器本地，不在后台跨端同步。
-- 易混辨析使用独立 `marcoIeltsConfusions.v1`；第三条易混词刷词使用 `marcoIeltsConfusionsFlash.v1`。两者都不进入 Listening 进度、streak 或词库统计。
+- 易混辨析使用独立 `marcoIeltsConfusions.v1`；第三条易混词刷词使用独立 `marcoIeltsConfusionsFlash.v1`。两者都不进入 Listening 进度、streak 或词库统计。
 - 第三条易混词刷词已通过逻辑回归与 Pages 部署，但尚未做一次完整的真实手机浏览器端到端回归；后续 UI 改动应补 320×568 / 390×844 验收。
+- 807 候选训练依赖浏览器 SpeechSynthesis 和首次 raw GitHub 拉取；缓存后可在后续加载失败时继续使用，但尚未做真机语音、跨域、网络失败或离线验收，也尚未接入正式错词档案。
 - 本地模型只在词典缺失且浏览器支持 WebGPU 时按需使用；模型资源不随仓库发布。
 - 剩余 P2：普通词库尚无搜索；原生浏览器返回无专用路由；iOS Safari 真机、超大历史备份等边界尚未充分验证。前轮多标签同存档并发写边界已在 v2.19.2 增加保护。
 
