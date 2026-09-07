@@ -4,6 +4,8 @@
 
 ## 本轮统一与发布
 
+2026-09-07 晚间修复进行中：`codex/modules-audio-ready` 已基于最新 main 整合 `feature/807-dictation`。807 真相源改为 `source/807.txt`，由 `scripts/build_module_audio.py` 生成 `807/data/terms.json`（1,854 条、来源与 SHA-256）及 `module-audio/manifest.json`。共 2,017 条站内音频映射，精确复用 321 条、新生成 1,696 条 en-GB-SoniaNeural 合成英音；`python scripts/validate_module_audio.py` 完整解码全部通过。下方早先“807 未合并/系统朗读/运行时 GitHub 词表”记录描述的是修复前状态，发布结果以本节后续更新为准。
+
 2026-09-07 新增 807 听写候选功能，当前只在 `feature/807-dictation` 分支、尚未发布：根首页通过 `807-mainline.js` 增加“807 听写”入口，子应用位于 `/807/`，版本 `807 v1.0.0`。首次联网从公开 `golowper/807WordsRepo` 的 `807.txt` 读取词项，过滤 `#` 分类标题、空行并按大小写不敏感去重，成功后缓存到浏览器；每轮 30 词、优先未练，浏览器语音英音优先 1.2x 自动播报，答错或“不会”按 8–12 题距离回炉且每词最多 3 次。状态使用独立 `marcoIelts807.v1`，不写 `marcoIeltsListening.v1`、不占 25+25、不改 streak 或永久错词档案；807 自己维护覆盖数、正确率和历史错词重听。当前仅完成 JS 语法静态检查，尚未做真实浏览器、iOS Safari、文档守卫或 Pages 回读，合并前必须补验。
 
 2026-09-07 Confusions 已新增第三条首页刷词主线并发布：根首页的词汇区现为“背新词 / 背错词 / 易混词”三路；易混词刷词使用 84 词独立题库和 `marcoIeltsConfusionsFlash.v1`，每轮 20 个基础词，先判断“认识 / 不认识”，不认识再做中文四选一，随后揭示释义、Chunk、语境和同组易混词，题量足够时按 8–12 题间隔回炉。该记录不写 `marcoIeltsListening.v1`，也不改 `marcoIeltsConfusions.v1` 的 cold test / confusion pair 统计。原 `/confusions/` 学习、匹配、cold test 与错词强化继续保留为“易混辨析”。功能合并提交为 `868d2b34982d6382fee856e1fc85b8b2973d93dc`，Pages 34103589352 success。
