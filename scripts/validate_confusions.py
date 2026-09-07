@@ -1,16 +1,31 @@
 from __future__ import annotations
 
 import json
+import re
 from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[1]
 SOURCE = json.loads((ROOT / "source" / "confusions.json").read_text(encoding="utf-8"))
 RUNTIME = json.loads((ROOT / "confusions" / "data" / "confusions.json").read_text(encoding="utf-8"))
+STOPWORDS = {
+    "a", "an", "the", "to", "of", "as", "from", "that", "with", "on", "in", "for", "by", "and", "or",
+    "be", "is", "are", "was", "were", "will", "can", "may", "should", "each", "other", "someone", "their",
+    "about", "after", "before", "into", "across", "among", "within", "over", "under", "through", "than",
+}
 
 
 def fail(message: str) -> None:
     raise SystemExit(message)
+
+
+def mask_chunk(chunk: str, term: str) -> str:
+    pattern = re.compile(rf"(^|[^A-Za-z0-9]){re.escape(term)}(?=$|[^A-Za-z0-9])", re.IGNORECASE)
+    return pattern.sub(lambda match: f"{match.group(1)}___", chunk, count=1)
+
+
+def semantic_cues(masked: str) -> list[str]:
+    return [token for token in re.findall(r"[a-z]+(?:-[a-z]+)?", masked.lower()) if token not in STOPWORDS]
 
 
 def main() -> None:
@@ -26,6 +41,20 @@ def main() -> None:
         fail("Every confusion group must contain at least two members")
     if any(term.get("sentence", "").count("___") != 1 for term in terms):
         fail("Every confusion term must have one cloze sentence")
+
+    masked_prompts: dict[str, str] = {}
+    for term in terms:
+        word = str(term.get("term", "")).strip()
+        chunk = str(term.get("chunk", "")).strip()
+        masked = mask_chunk(chunk, word)
+        if masked == chunk:
+            fail(f"Chunk for {word} must contain the exact answer term so it can be masked: {chunk}")
+        if len(semantic_cues(masked)) < 2:
+            fail(f"Chunk for {word} leaves too little semantic information after masking: {masked}")
+        key = masked.lower()
+        if key in masked_prompts:
+            fail(f"Masked chunk for {word} duplicates {masked_prompts[key]}: {masked}")
+        masked_prompts[key] = word
 
     version = json.loads((ROOT / "confusions" / "version.json").read_text(encoding="utf-8")).get("version")
     if version != "v1.1.0":
@@ -62,7 +91,7 @@ def main() -> None:
         fail("Listening runtime contains an invalid card")
     if any(set(item) & {"chunk", "sentence", "confusionGroupId"} for item in listening):
         fail("Confusions-only fields leaked into Listening runtime")
-    print(json.dumps({"ok": True, "version": version, "groups": len(groups), "terms": len(terms), "listeningCards": len(listening)}, ensure_ascii=False))
+    print(json.dumps({"ok": True, "version": version, "groups": len(groups), "terms": len(terms), "semanticChunks": len(masked_prompts), "listeningCards": len(listening)}, ensure_ascii=False))
 
 
 if __name__ == "__main__":
