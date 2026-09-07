@@ -160,7 +160,7 @@
           </div>
           <div class="match-column">
             ${right.map((term) => `<button class="match-option" data-right="${escapeHtml(term.term)}">
-              ${isMeaning ? `<span class="meaning-pos">${escapeHtml(term.partOfSpeech)}</span><span class="meaning-main">${escapeHtml(term.meaning)}</span>` : `<span class="meaning-main">${escapeHtml(term.chunk)}</span>`}
+              ${isMeaning ? `<span class="meaning-pos">${escapeHtml(term.partOfSpeech)}</span><span class="meaning-main">${escapeHtml(term.meaning)}</span>` : `<span class="meaning-main">${escapeHtml(logic.maskChunkTerm(term.chunk, term.term))}</span>`}
             </button>`).join("")}
           </div>
         </div>
