@@ -307,6 +307,32 @@
     "audioPath": "audio/architectural.mp3"
   },
   {
+    "id": "arise",
+    "term": "arise",
+    "meaning": "出现；产生；发生",
+    "note": "阅读错题 · S 级：a better option ... arises = 一个更好的选择出现了；不要误解为崛起方向。",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "arise"
+    ],
+    "errorNote": "阅读错题 · S 级：a better option ... arises = 一个更好的选择出现了；不要误解为崛起方向。",
+    "userAddedAt": "2026-09-07",
+    "sourceType": "user",
+    "partOfSpeech": "v.",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-07",
+    "sourceRevision": 4,
+    "audioText": "arise",
+    "audioPath": "audio/arise.mp3"
+  },
+  {
     "id": "artistic-achievement",
     "term": "artistic achievement",
     "meaning": "艺术成就；艺术成果",
@@ -331,6 +357,32 @@
     "sourceRevision": 4,
     "audioText": "artistic achievement",
     "audioPath": "audio/artistic-achievement.mp3"
+  },
+  {
+    "id": "assess",
+    "term": "assess",
+    "meaning": "评估；测试；考察",
+    "note": "阅读错题 · S 级：was assessed 在汽车文章中表示接受测试/评估；assessed 是 assess 的过去式/过去分词，归并主词，不新建词形卡。",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "assess"
+    ],
+    "errorNote": "阅读错题 · S 级：was assessed 在汽车文章中表示接受测试/评估；assessed 是 assess 的过去式/过去分词，归并主词，不新建词形卡。",
+    "userAddedAt": "2026-09-07",
+    "sourceType": "user",
+    "partOfSpeech": "v.",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-07",
+    "sourceRevision": 4,
+    "audioText": "assess",
+    "audioPath": "audio/assess.mp3"
   },
   {
     "id": "asthma",
@@ -811,6 +863,32 @@
     "audioPath": "audio/commitment.mp3"
   },
   {
+    "id": "comparable",
+    "term": "comparable",
+    "meaning": "相近的；可比较的",
+    "note": "阅读错题 · S 级：comparable advantages = 相近的优势/性能；没抓住 comparable，导致人物观点混淆。",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "comparable"
+    ],
+    "errorNote": "阅读错题 · S 级：comparable advantages = 相近的优势/性能；没抓住 comparable，导致人物观点混淆。",
+    "userAddedAt": "2026-09-07",
+    "sourceType": "user",
+    "partOfSpeech": "adj.",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-07",
+    "sourceRevision": 4,
+    "audioText": "comparable",
+    "audioPath": "audio/comparable.mp3"
+  },
+  {
     "id": "complaint",
     "term": "complaint",
     "meaning": "抱怨；不满；投诉；负面意见",
@@ -967,6 +1045,33 @@
     "sourceRevision": 4,
     "audioText": "concern",
     "audioPath": "audio/concern.mp3"
+  },
+  {
+    "id": "condition",
+    "term": "condition",
+    "meaning": "条件；环境；状况；疾病",
+    "note": "medical condition",
+    "category": "常见第二义",
+    "sections": [
+      "常见第二义",
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "condition"
+    ],
+    "errorNote": "阅读错题 · S 级：cold conditions = 寒冷/低温环境，不是艰难环境；保留原有 medical condition 的疾病义。",
+    "userAddedAt": "2026-09-07",
+    "sourceType": "user",
+    "partOfSpeech": "n.",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-07",
+    "sourceRevision": 4,
+    "audioText": "condition",
+    "audioPath": "audio/condition.mp3"
   },
   {
     "id": "consequent",
@@ -1822,6 +1927,32 @@
     "audioPath": "audio/expedition.mp3"
   },
   {
+    "id": "expense",
+    "term": "expense",
+    "meaning": "费用；开支；成本",
+    "note": "阅读错题 · S 级：题目已限定在成本问题，未及时识别 expense 的费用/成本义。",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "expense"
+    ],
+    "errorNote": "阅读错题 · S 级：题目已限定在成本问题，未及时识别 expense 的费用/成本义。",
+    "userAddedAt": "2026-09-07",
+    "sourceType": "user",
+    "partOfSpeech": "n.",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-07",
+    "sourceRevision": 4,
+    "audioText": "expense",
+    "audioPath": "audio/expense.mp3"
+  },
+  {
     "id": "extent",
     "term": "extent",
     "meaning": "程度；范围",
@@ -2382,6 +2513,59 @@
     "audioPath": "audio/implication.mp3"
   },
   {
+    "id": "impression",
+    "term": "impression",
+    "meaning": "印象；观感",
+    "note": "阅读错题 · S 级：positive impressions = 正面印象，不是实际改善；与 improvement（改善；提高）区分。",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "impression"
+    ],
+    "errorNote": "阅读错题 · S 级：positive impressions = 正面印象，不是实际改善；与 improvement（改善；提高）区分。",
+    "userAddedAt": "2026-09-07",
+    "sourceType": "user",
+    "partOfSpeech": "n.",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-07",
+    "sourceRevision": 4,
+    "audioText": "impression",
+    "audioPath": "audio/impression.mp3"
+  },
+  {
+    "id": "improvement",
+    "term": "improvement",
+    "meaning": "改善；提高；改进",
+    "note": "—",
+    "category": "原因、问题、优缺点与评价",
+    "sections": [
+      "P2 + P3 必会看懂词",
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "improvement"
+    ],
+    "errorNote": "阅读错题 · S 级：improvement 表示实际改善/提高；与 impression（印象；观感）区分。",
+    "userAddedAt": "2026-09-07",
+    "sourceType": "user",
+    "partOfSpeech": "n.",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-07",
+    "sourceRevision": 4,
+    "audioText": "improvement",
+    "audioPath": "audio/improvement.mp3"
+  },
+  {
     "id": "in-accordance-with",
     "term": "in accordance with",
     "meaning": "依照；与……一致",
@@ -2537,6 +2721,32 @@
     "sourceRevision": 4,
     "audioText": "indicate",
     "audioPath": "audio/indicate.mp3"
+  },
+  {
+    "id": "indication",
+    "term": "indication",
+    "meaning": "迹象；征兆；表明；指示",
+    "note": "用户补充不熟悉，未提供具体语境或等级；暂按 A 级。",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "indication"
+    ],
+    "errorNote": "用户补充不熟悉，未提供具体语境或等级；暂按 A 级。",
+    "userAddedAt": "2026-09-07",
+    "sourceType": "user",
+    "partOfSpeech": "n.",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-07",
+    "sourceRevision": 4,
+    "audioText": "indication",
+    "audioPath": "audio/indication.mp3"
   },
   {
     "id": "induce",
@@ -4428,6 +4638,32 @@
     "audioPath": "audio/quality.mp3"
   },
   {
+    "id": "raise",
+    "term": "raise",
+    "meaning": "提高；增加；筹集；举起",
+    "note": "A 级：raise speed = 提高速度；看到 raise，先问提高什么指标。",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "raise"
+    ],
+    "errorNote": "A 级：raise speed = 提高速度；看到 raise，先问提高什么指标。",
+    "userAddedAt": "2026-09-07",
+    "sourceType": "user",
+    "partOfSpeech": "v.",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-07",
+    "sourceRevision": 4,
+    "audioText": "raise",
+    "audioPath": "audio/raise.mp3"
+  },
+  {
     "id": "rather-than",
     "term": "rather than",
     "meaning": "而不是；而非",
@@ -4453,6 +4689,32 @@
     "sourceRevision": 4,
     "audioText": "rather than",
     "audioPath": "audio/rather-than.mp3"
+  },
+  {
+    "id": "raw",
+    "term": "raw",
+    "meaning": "生的；未加工的；原始的",
+    "note": "用户补充不熟悉，未提供具体语境或等级；暂按 A 级。",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "raw"
+    ],
+    "errorNote": "用户补充不熟悉，未提供具体语境或等级；暂按 A 级。",
+    "userAddedAt": "2026-09-07",
+    "sourceType": "user",
+    "partOfSpeech": "adj.",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-07",
+    "sourceRevision": 4,
+    "audioText": "raw",
+    "audioPath": "audio/raw.mp3"
   },
   {
     "id": "reconcile",
@@ -5919,6 +6181,32 @@
     "sourceRevision": 4,
     "audioText": "ventilation",
     "audioPath": "audio/ventilation.mp3"
+  },
+  {
+    "id": "viable",
+    "term": "viable",
+    "meaning": "可行的；能实施的；能存活的",
+    "note": "用户补充不熟悉，未提供具体语境或等级；暂按 A 级。",
+    "category": "我的同步错词",
+    "sections": [
+      "我的同步错词"
+    ],
+    "modes": [
+      "recognition"
+    ],
+    "isRealError": true,
+    "acceptedAnswers": [
+      "viable"
+    ],
+    "errorNote": "用户补充不熟悉，未提供具体语境或等级；暂按 A 级。",
+    "userAddedAt": "2026-09-07",
+    "sourceType": "user",
+    "partOfSpeech": "adj.",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-07",
+    "sourceRevision": 4,
+    "audioText": "viable",
+    "audioPath": "audio/viable.mp3"
   },
   {
     "id": "waitress",
@@ -8806,27 +9094,6 @@
     "sourceRevision": 4,
     "audioText": "concrete",
     "audioPath": "audio/concrete.mp3"
-  },
-  {
-    "id": "condition",
-    "term": "condition",
-    "meaning": "条件；状况；疾病",
-    "note": "medical condition",
-    "category": "常见第二义",
-    "sections": [
-      "常见第二义"
-    ],
-    "modes": [
-      "recognition"
-    ],
-    "isRealError": false,
-    "acceptedAnswers": [
-      "condition"
-    ],
-    "partOfSpeech": "名词",
-    "sourceRevision": 4,
-    "audioText": "condition",
-    "audioPath": "audio/condition.mp3"
   },
   {
     "id": "conduct",
@@ -11871,27 +12138,6 @@
     "sourceRevision": 4,
     "audioText": "improve",
     "audioPath": "audio/improve.mp3"
-  },
-  {
-    "id": "improvement",
-    "term": "improvement",
-    "meaning": "改进",
-    "note": "—",
-    "category": "原因、问题、优缺点与评价",
-    "sections": [
-      "P2 + P3 必会看懂词"
-    ],
-    "modes": [
-      "recognition"
-    ],
-    "isRealError": false,
-    "acceptedAnswers": [
-      "improvement"
-    ],
-    "partOfSpeech": "名词",
-    "sourceRevision": 4,
-    "audioText": "improvement",
-    "audioPath": "audio/improvement.mp3"
   },
   {
     "id": "in-fact",

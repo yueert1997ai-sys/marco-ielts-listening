@@ -141,6 +141,20 @@
     "lastReportedAt": "2026-09-01"
   },
   {
+    "id": "arise",
+    "term": "arise",
+    "meaning": "出现；产生；发生",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "阅读错题 · S 级：a better option ... arises = 一个更好的选择出现了；不要误解为崛起方向。",
+    "category": "我的同步错词",
+    "addedAt": "2026-09-07",
+    "partOfSpeech": "v.",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-07"
+  },
+  {
     "id": "artistic-achievement",
     "term": "artistic achievement",
     "meaning": "艺术成就；艺术成果",
@@ -152,6 +166,20 @@
     "addedAt": "2026-09-03",
     "reportedCount": 1,
     "lastReportedAt": "2026-09-03"
+  },
+  {
+    "id": "assess",
+    "term": "assess",
+    "meaning": "评估；测试；考察",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "阅读错题 · S 级：was assessed 在汽车文章中表示接受测试/评估；assessed 是 assess 的过去式/过去分词，归并主词，不新建词形卡。",
+    "category": "我的同步错词",
+    "addedAt": "2026-09-07",
+    "partOfSpeech": "v.",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-07"
   },
   {
     "id": "asthma",
@@ -308,6 +336,20 @@
     "lastReportedAt": "2026-08-27"
   },
   {
+    "id": "comparable",
+    "term": "comparable",
+    "meaning": "相近的；可比较的",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "阅读错题 · S 级：comparable advantages = 相近的优势/性能；没抓住 comparable，导致人物观点混淆。",
+    "category": "我的同步错词",
+    "addedAt": "2026-09-07",
+    "partOfSpeech": "adj.",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-07"
+  },
+  {
     "id": "complaint",
     "term": "complaint",
     "meaning": "抱怨；不满；投诉；负面意见",
@@ -384,6 +426,20 @@
     "addedAt": "2026-09-01",
     "reportedCount": 1,
     "lastReportedAt": "2026-09-01"
+  },
+  {
+    "id": "condition",
+    "term": "condition",
+    "meaning": "条件；环境；状况；疾病",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "阅读错题 · S 级：cold conditions = 寒冷/低温环境，不是艰难环境；保留原有 medical condition 的疾病义。",
+    "category": "我的同步错词",
+    "addedAt": "2026-09-07",
+    "partOfSpeech": "n.",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-07"
   },
   {
     "id": "consequent",
@@ -753,6 +809,20 @@
     "lastReportedAt": "2026-08-27"
   },
   {
+    "id": "expense",
+    "term": "expense",
+    "meaning": "费用；开支；成本",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "阅读错题 · S 级：题目已限定在成本问题，未及时识别 expense 的费用/成本义。",
+    "category": "我的同步错词",
+    "addedAt": "2026-09-07",
+    "partOfSpeech": "n.",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-07"
+  },
+  {
     "id": "extent",
     "term": "extent",
     "meaning": "程度；范围",
@@ -983,6 +1053,34 @@
     "lastReportedAt": "2026-09-01"
   },
   {
+    "id": "impression",
+    "term": "impression",
+    "meaning": "印象；观感",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "阅读错题 · S 级：positive impressions = 正面印象，不是实际改善；与 improvement（改善；提高）区分。",
+    "category": "我的同步错词",
+    "addedAt": "2026-09-07",
+    "partOfSpeech": "n.",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-07"
+  },
+  {
+    "id": "improvement",
+    "term": "improvement",
+    "meaning": "改善；提高；改进",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "阅读错题 · S 级：improvement 表示实际改善/提高；与 impression（印象；观感）区分。",
+    "category": "我的同步错词",
+    "addedAt": "2026-09-07",
+    "partOfSpeech": "n.",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-07"
+  },
+  {
     "id": "in-accordance-with",
     "term": "in accordance with",
     "meaning": "依照；与……一致",
@@ -1059,6 +1157,20 @@
     "addedAt": "2026-08-31",
     "reportedCount": 1,
     "lastReportedAt": "2026-08-31"
+  },
+  {
+    "id": "indication",
+    "term": "indication",
+    "meaning": "迹象；征兆；表明；指示",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "用户补充不熟悉，未提供具体语境或等级；暂按 A 级。",
+    "category": "我的同步错词",
+    "addedAt": "2026-09-07",
+    "partOfSpeech": "n.",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-07"
   },
   {
     "id": "induce",
@@ -1814,6 +1926,20 @@
     "lastReportedAt": "2026-09-03"
   },
   {
+    "id": "raise",
+    "term": "raise",
+    "meaning": "提高；增加；筹集；举起",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "A 级：raise speed = 提高速度；看到 raise，先问提高什么指标。",
+    "category": "我的同步错词",
+    "addedAt": "2026-09-07",
+    "partOfSpeech": "v.",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-07"
+  },
+  {
     "id": "rather-than",
     "term": "rather than",
     "meaning": "而不是；而非",
@@ -1825,6 +1951,20 @@
     "addedAt": "2026-08-31",
     "reportedCount": 1,
     "lastReportedAt": "2026-08-31"
+  },
+  {
+    "id": "raw",
+    "term": "raw",
+    "meaning": "生的；未加工的；原始的",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "用户补充不熟悉，未提供具体语境或等级；暂按 A 级。",
+    "category": "我的同步错词",
+    "addedAt": "2026-09-07",
+    "partOfSpeech": "adj.",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-07"
   },
   {
     "id": "reconcile",
@@ -2441,6 +2581,20 @@
     "addedAt": "2026-08-27",
     "reportedCount": 1,
     "lastReportedAt": "2026-08-27"
+  },
+  {
+    "id": "viable",
+    "term": "viable",
+    "meaning": "可行的；能实施的；能存活的",
+    "modes": [
+      "recognition"
+    ],
+    "reason": "用户补充不熟悉，未提供具体语境或等级；暂按 A 级。",
+    "category": "我的同步错词",
+    "addedAt": "2026-09-07",
+    "partOfSpeech": "adj.",
+    "reportedCount": 1,
+    "lastReportedAt": "2026-09-07"
   },
   {
     "id": "warden",
