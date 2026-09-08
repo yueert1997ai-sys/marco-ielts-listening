@@ -1,5 +1,5 @@
-const CACHE = "ielts-807-v1.1.0";
-const CORE = ["./", "./index.html", "./version.json", "./style.css", "../style.css", "./app.js?v=2", "./data/terms.json", "./variants.js", "../shared/module-audio.js?v=1", "../shared/module-store.js?v=1", "../module-audio/manifest.json", "../vendor/phosphor/phosphor-regular.css", "../vendor/phosphor/Phosphor.woff2"];
+const CACHE = "ielts-807-v1.2.0";
+const CORE = ["./", "./index.html", "./version.json", "./style.css?v=2", "../style.css", "./app.js?v=3", "./data/terms.json", "./data/meanings.json", "./variants.js", "../shared/module-audio.js?v=1", "../shared/module-store.js?v=1", "../module-audio/manifest.json", "../vendor/phosphor/phosphor-regular.css", "../vendor/phosphor/Phosphor.woff2"];
 self.addEventListener("install", event => event.waitUntil(caches.open(CACHE).then(cache => cache.addAll(CORE)).then(() => self.skipWaiting())));
 self.addEventListener("activate", event => event.waitUntil(caches.keys().then(keys => Promise.all(keys.filter(key => key.startsWith("ielts-807-") && key !== CACHE).map(key => caches.delete(key)))).then(() => self.clients.claim())));
 self.addEventListener("fetch", event => {

@@ -228,4 +228,7 @@
 .vocab807-mode .screen-title { margin-top: 5px; }
 .vocab807-mode .version-badge { font-size: 10px; }
 .vocab807-mode .spelling-actions { grid-template-columns: 1fr 1fr; }
+.answer-definition { width: 100%; box-sizing: border-box; padding: 16px; border-radius: 16px; background: var(--card, white); text-align: left; overflow-wrap: anywhere; }
+.answer-pos { display: inline-block; padding: 3px 8px; border-radius: 6px; background: #edf2fa; color: #36557b; font-size: 14px; font-weight: 600; }
+.answer-meaning { margin: 10px 0 0; font-size: 18px; line-height: 1.6; white-space: pre-line; }
 .spelling-actions { position: sticky; bottom: env(safe-area-inset-bottom, 0px); background: var(--card, white); padding-block: 6px; }

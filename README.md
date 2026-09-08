@@ -31,7 +31,9 @@
 
 ## 王陆 807 听写
 
-入口：[807 听写](https://yueert1997ai-sys.github.io/marco-ielts-listening/807/)，独立版本 `v1.1.0`。`source/807.txt` 是公开第三方词表的固定快照，去重 1,854 条，不代表 807 个词或教材章节。来源、快照日期与校验值保存在 `807/data/terms.json`。
+入口：[807 听写](https://yueert1997ai-sys.github.io/marco-ielts-listening/807/)，独立版本 `v1.2.0`。`source/807.txt` 是公开第三方词表的固定快照，去重 1,854 条，不代表 807 个词或教材章节。来源、快照日期与校验值保存在 `807/data/terms.json`。
+
+答对、答错和“不会”之后均显示中文释义与词性，读完手动点“继续”，可重听或暂停；答题前不泄露词义。释义由仓库内 ECDICT（MIT）与 `source/807_meaning_overrides.tsv` 补充项生成，`python scripts/build_807_meanings.py` 构建 `807/data/meanings.json`，随模块离线缓存。原词表疑似误拼项明确提示，不静默改题或重置记录。
 
 每轮 30 词，站内合成英音（非教材原音），默认 1.2 倍，可切换 0.8/1.0/1.2 并保存。音频实际播放后才允许提交或“不会”；空答案不计错。接受显式核对的英美拼写与孤立听词同音变体，不放过单复数、时态或普通拼写错误。
 

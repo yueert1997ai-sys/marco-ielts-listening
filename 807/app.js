@@ -4,7 +4,6 @@
   const STORAGE_KEY = "marcoIelts807.v1";
   const SOURCE_URL = "./data/terms.json";
   const SESSION_SIZE = 30;
-  const QUICK_PASS_DELAY_MS = 760;
   const RETRY_MIN_DISTANCE = 8;
   const RETRY_MAX_DISTANCE = 12;
   const MAX_RETRIES_PER_TERM = 3;
@@ -15,6 +14,7 @@
   const versionBadge = document.getElementById("app-version");
 
   let terms = [];
+  let meanings = {};
   const store = ModuleStore.create(STORAGE_KEY, value => value?.version === 1 && ModuleStore.recordsValid(value.records, ["attempts", "correct", "wrong", "streak"]) && ModuleStore.recordsValid(value.wrongTerms, ["wrong"]) && ModuleStore.sessionValid(value.session));
   let state = loadState();
   let activeSession = null;
@@ -101,6 +101,11 @@
     if (!response.ok) throw new Error(`HTTP ${response.status}`);
     const parsed = (await response.json()).terms;
     if (!Array.isArray(parsed) || parsed.length !== 1854 || parsed.some(term => typeof term !== "string" || !term.trim()) || new Set(parsed).size !== 1854) throw new Error("词库快照不完整");
+    const glossaryResponse = await fetch("./data/meanings.json");
+    if (!glossaryResponse.ok) throw new Error("词义数据加载失败");
+    const glossary = (await glossaryResponse.json()).entries;
+    if (!glossary || parsed.some(term => typeof glossary[term]?.pos !== "string" || !glossary[term].pos.trim() || typeof glossary[term]?.meaning !== "string" || !/[\u3400-\u9fff]/.test(glossary[term].meaning))) throw new Error("词义或词性数据不完整");
+    meanings = glossary;
     terms = parsed;
     return terms;
   }
@@ -334,15 +339,14 @@
     saveState();
     if (correct) {
       renderCorrect(entry.term);
-      transitionTimer = window.setTimeout(() => {
-        if (!screen.querySelector(".quick-correct")) return;
-        activeSession.feedback = null;
-        if (!activeSession?.queue.length) finishSession();
-        else renderQuestion();
-      }, verdict.reason ? 4000 : QUICK_PASS_DELAY_MS);
       return;
     }
     renderWrong(entry, typed, skipped);
+  }
+
+  function renderDefinition(term) {
+    const entry = meanings[term];
+    return `<div class="answer-definition"><span class="answer-pos" aria-label="词性">${escapeHtml(entry.pos)}</span><p class="answer-meaning">${escapeHtml(entry.meaning)}</p></div>`;
   }
 
   function renderCorrect(term) {
@@ -352,10 +356,17 @@
         <div class="result-mark correct">${icon("check-circle")}</div>
         <p class="feedback-label">正确</p>
         <h2 class="answer-word">${escapeHtml(term)}</h2>
+        ${renderDefinition(term)}
         ${activeSession?.feedback?.reason ? `<p>接受 ${escapeHtml(activeSession.feedback.typed)}：${escapeHtml(activeSession.feedback.reason)}。上方为题库原词。</p>` : ""}
-        <p class="feedback-sub">下一题马上开始</p>
-        <button id="correct-continue" class="primary">继续</button>
+        <div class="result-actions">
+          <button id="replay" class="secondary">${icon("speaker-high")}再听一次</button>
+          <button id="correct-continue" class="primary">继续</button>
+        </div>
+        <button id="pause" class="text-button">暂停并返回</button>
       </section>`;
+    const replay = document.getElementById("replay");
+    replay.onclick = () => speak(term, replay);
+    document.getElementById("pause").onclick = () => { saveState(); homeScreen(); };
     const feedback = activeSession?.feedback;
     document.getElementById("correct-continue").onclick = () => {
       if (!activeSession || activeSession.feedback !== feedback) return;
@@ -372,6 +383,7 @@
         <div class="result-mark wrong">${icon("x-circle")}</div>
         <p class="feedback-label">${skipped ? "先跳过" : "拼写不对"}</p>
         <h2 class="answer-word">${escapeHtml(entry.term)}</h2>
+        ${renderDefinition(entry.term)}
         ${skipped ? "" : `<p class="typed-answer">你写的是：<strong>${escapeHtml(typed || "（空）")}</strong></p>`}
         <p class="feedback-sub">已保留到错词池；间隔足够才在本轮回炉，不会马上重复。</p>
         <div class="result-actions">
@@ -476,7 +488,7 @@
 
   async function boot() {
     loadingScreen();
-    versionBadge.textContent = "807 v1.1.0";
+    versionBadge.textContent = "807 v1.2.0";
     try {
       await loadTerms();
       state = loadState();
