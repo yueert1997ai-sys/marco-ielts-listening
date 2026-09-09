@@ -5,6 +5,10 @@ on:
     branches: [main]
     paths:
       - 'source/807.txt'
+      - '807/app.js'
+      - '807/index.html'
+      - '807/sw.js'
+      - '807/version.json'
       - '807/data/terms.json'
       - '807/data/priority-rules.json'
       - '807/priorities.js'
@@ -14,6 +18,10 @@ on:
     branches: [main]
     paths:
       - 'source/807.txt'
+      - '807/app.js'
+      - '807/index.html'
+      - '807/sw.js'
+      - '807/version.json'
       - '807/data/terms.json'
       - '807/data/priority-rules.json'
       - '807/priorities.js'
@@ -33,3 +41,5 @@ jobs:
           node-version: '22'
       - name: Validate 807 priority tiers
         run: node tests/test_807_priorities.js
+      - name: Check 807 JavaScript syntax
+        run: node --check 807/priorities.js && node --check 807/app.js && node --check 807/sw.js
