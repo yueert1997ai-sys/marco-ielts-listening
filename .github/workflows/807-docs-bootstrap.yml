@@ -67,3 +67,5 @@ jobs:
           git add CHANGELOG.md docs/HANDOFF.md README.md
           git commit -m "Document 807 priority tiers"
           git push origin HEAD:feature/807-priority-tiering
+
+# One-shot helper for this feature branch; remove after docs commit lands.
