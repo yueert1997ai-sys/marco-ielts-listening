@@ -1,14 +1,20 @@
 name: 807 finalize docs
 
 on:
-  push:
-    branches: [feature/807-priority-tiering]
+  pull_request:
+    branches: [main]
+    paths:
+      - '.github/workflows/807-finalize-docs.yml'
+      - 'CHANGELOG.md'
+      - 'README.md'
+      - 'docs/HANDOFF.md'
 
 permissions:
   contents: write
 
 jobs:
   finalize:
+    if: github.event.pull_request.head.repo.full_name == github.repository && github.head_ref == 'feature/807-priority-tiering'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
