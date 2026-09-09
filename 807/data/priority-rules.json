@@ -1,0 +1,63 @@
+{
+  "version": 1,
+  "method": "ielts-listening-value",
+  "defaultTier": "important",
+  "tiers": ["core", "important", "extended"],
+  "preludeRanges": [
+    { "label": "学科名称", "start": "major", "end": "banking", "tier": "important" },
+    { "label": "课程与学习", "start": "orientation", "end": "teaching", "tier": "important" },
+    { "label": "校园角色", "start": "president", "end": "senior advisor", "tier": "important" },
+    { "label": "论文与研究", "start": "paper", "end": "analysis", "tier": "important" }
+  ],
+  "sectionTiers": {
+    "图书馆词汇": "core",
+    "学生种类": "important",
+    "证书种类": "core",
+    "出版物": "important",
+    "普通用词": "important",
+    "花费": "core",
+    "旅游": "important",
+    "人物": "core",
+    "交通": "important",
+    "住宿类型": "core",
+    "设施": "core",
+    "其他常见家电": "core",
+    "家具": "core",
+    "场所": "core",
+    "饮料": "core",
+    "食物": "core",
+    "日常": "core",
+    "晚会": "core",
+    "服装": "important",
+    "动物": "important",
+    "植物": "important",
+    "行业": "important",
+    "人员": "important",
+    "犯罪": "important",
+    "药品": "core",
+    "各种症状": "core",
+    "常见疾病": "important",
+    "医生名称": "important",
+    "其他必备词汇-医学": "core",
+    "环境主题": "important",
+    "运动主题": "important",
+    "其他重要词汇": "extended",
+    "基础词汇": "core",
+    "最新补充": "important"
+  },
+  "coreOverrides": [
+    "physical", "orientation", "register", "enroll", "curriculum", "semester", "assignment", "session", "course", "lecture", "tutorial", "seminar", "assessment", "attendance", "exam", "grade", "score", "office", "beginner", "deadline", "feedback", "workshop", "diploma",
+    "paper", "abstract", "bibliography", "project", "revision", "survey", "research", "draft", "questionnaire", "interview", "respondent", "conclusion", "index", "presentation", "chapter", "report", "method", "title", "approach", "theory", "objective", "faculty", "heading", "observation", "strategy", "outline", "summary", "reference", "analysis",
+    "library", "catalog", "due", "renewal", "circulation", "periodical", "reserve", "check out", "applicant", "graduate", "degree", "certificate", "publication", "journal", "handout", "article",
+    "facility", "equipment", "schedule", "aim", "resource", "lab", "application", "enquiry", "expense", "deposit", "tax",
+    "location", "brochure", "station", "ticket", "entrance", "transport", "traffic", "congestion", "ferry", "coach", "bicycle", "taxi", "rental", "railway", "underground", "wheelchair", "route", "flight", "passport", "emergency", "postcode", "parking", "junction", "destination", "tunnel", "altitude", "tube",
+    "accommodation", "property", "reservation", "insurance", "waitress", "disease", "give a prescription", "prescribe", "therapy", "ambulance",
+    "metal", "raw", "litre", "kilogram", "appointment", "vacancy"
+  ],
+  "importantOverrides": [
+    "advantage", "lack", "reason", "skill", "problem", "advice", "factor", "quantity", "purpose", "relation", "confidence", "difference", "requirement", "effect", "efficient", "variety", "solution", "condition", "feature", "focus", "career", "personality", "responsibility", "qualification", "selection", "supply", "process", "identification", "technology", "participant", "trend", "maximum", "minimum", "familiar", "lifestyle", "performance", "amount", "average", "specific", "benefit", "percentage", "rate", "convenient", "adequate", "reliable", "weather", "charity", "donation", "announcement", "decision", "pressure", "workload", "conservation", "profit", "figure", "risk", "measurement", "stability", "exchange", "pattern", "evidence", "positive", "negative", "distribution", "confirmation", "worthwhile", "likelihood", "possibility", "depth", "approval", "enthusiasm", "essential", "traditional", "event", "intervention", "independence", "self-discipline", "preference", "exposure", "potential", "value", "arrival", "satisfaction", "status", "permit", "discovery", "sufficient", "subjective", "development", "innovation", "knowledge", "critical", "consumption", "crisis", "steady", "response", "repair", "depression", "genetic", "frequency", "enhance", "improve", "loss", "resistance", "authority", "opportunity", "mathematics", "replacement", "margin", "assistance", "appeal", "alternative", "relevant", "percent", "usage", "strength", "relief", "accuracy", "influence", "measure", "scale", "network", "concentration", "monitor", "flood", "attitude", "sector", "storage space", "simulation", "collection tank", "decade", "accountable", "private property", "evolution", "reproduce", "cost effective", "climate", "flooding"
+  ],
+  "extendedOverrides": [
+    "Forbes", "Baked Earth", "Wollongong", "Trinity", "Oxford", "Cambridge", "Japanese Pagoda", "Queen's", "greyhound", "bag-packer", "special party hats", "arm badge", "wretched boat", "residential collage", "phone-in", "low nutrition", "spare socks", "hard-hoofed", "horse hair", "velvet", "syndicate", "subcommittee", "oculist", "20 centigrade", "sportsman", "EL Nino"
+  ]
+}
