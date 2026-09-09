@@ -31,7 +31,9 @@
 
 ## 王陆 807 听写
 
-入口：[807 听写](https://yueert1997ai-sys.github.io/marco-ielts-listening/807/)，独立版本 `v1.2.0`。`source/807.txt` 是公开第三方词表的固定快照，去重 1,854 条，不代表 807 个词或教材章节。来源、快照日期与校验值保存在 `807/data/terms.json`。
+入口：[807 听写](https://yueert1997ai-sys.github.io/marco-ielts-listening/807/)，独立版本 `v1.3.0`。`source/807.txt` 是公开第三方词表的固定快照，去重 1,854 条，不代表 807 个词或教材章节。来源、快照日期与校验值保存在 `807/data/terms.json`。
+
+默认训练只抽“核心”池：当前基础分级为核心 539、重要 744、扩展 571；可手动切到“核心+重要”或“全量 807”。分级只存在 807 模块，任何答错词都会动态提升到个人核心；不写入 Listening、538 或 Confusions 的词表和学习记录。
 
 答对、答错和“不会”之后均显示中文释义与词性，读完手动点“继续”，可重听或暂停；答题前不泄露词义。释义由仓库内 ECDICT（MIT）与 `source/807_meaning_overrides.tsv` 补充项生成，`python scripts/build_807_meanings.py` 构建 `807/data/meanings.json`，随模块离线缓存。原词表疑似误拼项明确提示，不静默改题或重置记录。
 

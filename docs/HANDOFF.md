@@ -4,6 +4,8 @@
 
 ## 本轮统一与发布
 
+2026-09-09 807 v1.3.0 候选：仅 807 子应用新增三档优先级，规则源为 `807/data/priority-rules.json`，分类器读取固定 `source/807.txt` 场景标题后得到核心 539 / 重要 744 / 扩展 571。默认 30 词改为核心池；“核心+重要”和“全量 807”保留；历史错词无论基础档位都动态提升到个人核心。旧 `marcoIelts807.v1` 记录、词项 ID、释义和音频不迁移，Listening v2.20.0 / Confusions v1.2.0 / 正式词库及 538 均不改。新增 `tests/test_807_priorities.js` 与独立 Actions guard；发布前仍需浏览器验收核心/重要/全量/错词四入口、旧 session 接续与离线缓存。
+
 807 v1.2.0 本地验收：全量释义构建/覆盖测试 3 项通过；807 正确/错误/不会、手动继续、刷新、暂停、离线及 320×568 / 390×844 / 1440×900 浏览器通过；缺失/损坏释义不会改写进度，恢复后可继续并重听。原模块 30 基础词+1回炉、易混刷词21次及实际音频时间推进回归通过。主逻辑135、易混12、后台词库12、词库与文档验证通过。iPhone Safari 实机未测。发布后须回读 `/807/version.json`、释义与 `sw.js` 并重跑结果页浏览器验收。
 
 2026-09-08 807 v1.2.0：正确/错误/不会的反馈均显示中文与词性，正确结果不再自动跳题，手动继续/重听/暂停；原记录结构不变。释义真相源为本地 `admin/public/data/ecdict-lite.json`（MIT）与 `source/807_meaning_overrides.tsv`，运行 `python scripts/build_807_meanings.py` 生成 `807/data/meanings.json`（1,854 项）。补充项保留原词表疑似误拼的不确定性，不更改题目 ID；新增 JSON 已进 807 独立离线缓存 `ielts-807-v1.2.0`。验证入口：`python -m unittest tests/test_807_meanings.py`、`tests/807_meanings_playwright.js`。仅 807 升级，Listening v2.20.0 / Confusions v1.2.0 / 词库#22 不变，后台无改动。
