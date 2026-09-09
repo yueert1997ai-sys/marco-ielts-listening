@@ -33,10 +33,18 @@ const expected = {
   kaleidoscope: "extended",
   "Baked Earth": "extended",
   "one quarter": "core",
+  century: "core",
+  instrument: "core",
+  domestic: "important",
   "food processing": "important",
 };
 for (const [term, tier] of Object.entries(expected)) {
   assert.strictEqual(result.tier(term), tier, `${term} 应为 ${tier}`);
 }
+
+assert(result.sections("century").includes("其他重要词汇"));
+assert(result.sections("century").includes("基础词汇"));
+assert(result.sections("domestic").includes("其他重要词汇"));
+assert(result.sections("domestic").includes("最新补充"));
 
 console.log(`807 priority counts: core=${result.counts.core}, important=${result.counts.important}, extended=${result.counts.extended}`);
