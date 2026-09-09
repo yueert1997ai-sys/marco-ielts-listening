@@ -7,6 +7,7 @@
   "use strict";
 
   const VALID_TIERS = new Set(["core", "important", "extended"]);
+  const TIER_RANK = { extended: 1, important: 2, core: 3 };
 
   function normalise(value) {
     return String(value || "")
@@ -16,8 +17,15 @@
       .replace(/\s+/g, " ");
   }
 
+  function strongerTier(current, candidate) {
+    if (!VALID_TIERS.has(current)) return candidate;
+    if (!VALID_TIERS.has(candidate)) return current;
+    return TIER_RANK[candidate] > TIER_RANK[current] ? candidate : current;
+  }
+
   function parseSource(sourceText) {
     const sectionByTerm = {};
+    const sectionsByTerm = {};
     const ordered = [];
     let section = "__prelude__";
     for (const rawLine of String(sourceText || "").split(/\r?\n/)) {
@@ -28,11 +36,15 @@
         continue;
       }
       const key = normalise(line);
-      if (!key || Object.prototype.hasOwnProperty.call(sectionByTerm, key)) continue;
-      sectionByTerm[key] = section;
-      ordered.push({ key, term: line, section });
+      if (!key) continue;
+      if (!sectionsByTerm[key]) sectionsByTerm[key] = [];
+      if (!sectionsByTerm[key].includes(section)) sectionsByTerm[key].push(section);
+      if (!Object.prototype.hasOwnProperty.call(sectionByTerm, key)) {
+        sectionByTerm[key] = section;
+        ordered.push({ key, term: line, section });
+      }
     }
-    return { sectionByTerm, ordered };
+    return { sectionByTerm, sectionsByTerm, ordered };
   }
 
   function validateRules(rules) {
@@ -46,6 +58,11 @@
     }
   }
 
+  function tierForSection(section, rules) {
+    if (section === "__prelude__") return rules.defaultTier;
+    return rules.sectionTiers?.[section] || rules.defaultTier;
+  }
+
   function classify(terms, sourceText, rules) {
     validateRules(rules);
     if (!Array.isArray(terms) || !terms.length) throw new Error("807 词表为空");
@@ -54,14 +71,16 @@
     const knownKeys = new Set(terms.map(normalise));
     const tierByTerm = {};
     const sectionByTerm = {};
+    const sectionsByTerm = {};
 
     for (const term of terms) {
       const key = normalise(term);
-      const section = parsed.sectionByTerm[key] || "__missing__";
-      sectionByTerm[key] = section;
-      tierByTerm[key] = section === "__prelude__"
-        ? rules.defaultTier
-        : (rules.sectionTiers?.[section] || rules.defaultTier);
+      const sections = parsed.sectionsByTerm[key] || [];
+      sectionByTerm[key] = parsed.sectionByTerm[key] || "__missing__";
+      sectionsByTerm[key] = sections.slice();
+      let tier = null;
+      for (const section of sections) tier = strongerTier(tier, tierForSection(section, rules));
+      tierByTerm[key] = tier || rules.defaultTier;
     }
 
     for (const range of rules.preludeRanges || []) {
@@ -72,7 +91,7 @@
       for (const entry of parsed.ordered) {
         if (entry.section !== "__prelude__") continue;
         if (entry.key === start) active = true;
-        if (active && knownKeys.has(entry.key)) tierByTerm[entry.key] = range.tier;
+        if (active && knownKeys.has(entry.key)) tierByTerm[entry.key] = strongerTier(tierByTerm[entry.key], range.tier);
         if (active && entry.key === end) {
           closed = true;
           break;
@@ -97,13 +116,14 @@
     applyOverrides(rules.importantOverrides, "important");
     applyOverrides(rules.coreOverrides, "core");
 
-    const missingFromSource = terms.filter(term => !parsed.sectionByTerm[normalise(term)]);
+    const missingFromSource = terms.filter(term => !(parsed.sectionsByTerm[normalise(term)] || []).length);
     const counts = { core: 0, important: 0, extended: 0 };
     for (const term of terms) counts[tierByTerm[normalise(term)]] += 1;
 
     return {
       tierByTerm,
       sectionByTerm,
+      sectionsByTerm,
       counts,
       missingFromSource,
       unknownOverrides,
@@ -112,6 +132,9 @@
       },
       section(term) {
         return sectionByTerm[normalise(term)] || "__missing__";
+      },
+      sections(term) {
+        return (sectionsByTerm[normalise(term)] || []).slice();
       },
     };
   }
