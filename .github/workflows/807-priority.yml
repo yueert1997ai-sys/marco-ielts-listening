@@ -1,0 +1,47 @@
+name: 807 priority guard
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'source/807.txt'
+      - '807/app.js'
+      - '807/index.html'
+      - '807/style.css'
+      - '807/sw.js'
+      - '807/version.json'
+      - '807/data/terms.json'
+      - '807/data/priority-rules.json'
+      - '807/priorities.js'
+      - 'tests/test_807_priorities.js'
+      - '.github/workflows/807-priority.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'source/807.txt'
+      - '807/app.js'
+      - '807/index.html'
+      - '807/style.css'
+      - '807/sw.js'
+      - '807/version.json'
+      - '807/data/terms.json'
+      - '807/data/priority-rules.json'
+      - '807/priorities.js'
+      - 'tests/test_807_priorities.js'
+      - '.github/workflows/807-priority.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Validate 807 priority tiers
+        run: node tests/test_807_priorities.js
+      - name: Check 807 JavaScript syntax
+        run: node --check 807/priorities.js && node --check 807/app.js && node --check 807/sw.js

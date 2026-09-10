@@ -3,10 +3,14 @@
 
   const STORAGE_KEY = "marcoIelts807.v1";
   const SOURCE_URL = "./data/terms.json";
+  const PRIORITY_SOURCE_URL = "../source/807.txt";
+  const PRIORITY_RULES_URL = "./data/priority-rules.json";
   const SESSION_SIZE = 30;
   const RETRY_MIN_DISTANCE = 8;
   const RETRY_MAX_DISTANCE = 12;
   const MAX_RETRIES_PER_TERM = 3;
+  const SESSION_MODES = new Set(["core", "priority", "all", "wrong"]);
+  const TIER_LABELS = { core: "核心", important: "重要", extended: "扩展 · 低优先" };
 
   const screen = document.getElementById("screen");
   const screenTitle = document.getElementById("screen-title");
@@ -15,6 +19,7 @@
 
   let terms = [];
   let meanings = {};
+  let priority = null;
   const store = ModuleStore.create(STORAGE_KEY, value => value?.version === 1 && ModuleStore.recordsValid(value.records, ["attempts", "correct", "wrong", "streak"]) && ModuleStore.recordsValid(value.wrongTerms, ["wrong"]) && ModuleStore.sessionValid(value.session));
   let state = loadState();
   let activeSession = null;
@@ -97,16 +102,31 @@
   }
 
   async function loadTerms() {
-    const response = await fetch(SOURCE_URL);
-    if (!response.ok) throw new Error(`HTTP ${response.status}`);
-    const parsed = (await response.json()).terms;
-    if (!Array.isArray(parsed) || parsed.length !== 1854 || parsed.some(term => typeof term !== "string" || !term.trim()) || new Set(parsed).size !== 1854) throw new Error("词库快照不完整");
-    const glossaryResponse = await fetch("./data/meanings.json");
+    if (!window.Vocab807Priority) throw new Error("807 优先级模块未加载");
+    const [termsResponse, glossaryResponse, sourceResponse, rulesResponse] = await Promise.all([
+      fetch(SOURCE_URL),
+      fetch("./data/meanings.json"),
+      fetch(PRIORITY_SOURCE_URL),
+      fetch(PRIORITY_RULES_URL),
+    ]);
+    if (!termsResponse.ok) throw new Error(`词表 HTTP ${termsResponse.status}`);
     if (!glossaryResponse.ok) throw new Error("词义数据加载失败");
+    if (!sourceResponse.ok) throw new Error("807 分类源加载失败");
+    if (!rulesResponse.ok) throw new Error("807 优先级规则加载失败");
+
+    const parsed = (await termsResponse.json()).terms;
+    if (!Array.isArray(parsed) || parsed.length !== 1854 || parsed.some(term => typeof term !== "string" || !term.trim()) || new Set(parsed).size !== 1854) throw new Error("词库快照不完整");
     const glossary = (await glossaryResponse.json()).entries;
     if (!glossary || parsed.some(term => typeof glossary[term]?.pos !== "string" || !glossary[term].pos.trim() || typeof glossary[term]?.meaning !== "string" || !/[\u3400-\u9fff]/.test(glossary[term].meaning))) throw new Error("词义或词性数据不完整");
+
+    const sourceText = await sourceResponse.text();
+    const rules = await rulesResponse.json();
+    const classified = Vocab807Priority.classify(parsed, sourceText, rules);
+    if (classified.missingFromSource.length || classified.unknownOverrides.length) throw new Error("807 优先级数据与词表不一致");
+
     meanings = glossary;
     terms = parsed;
+    priority = classified;
     return terms;
   }
 
@@ -137,7 +157,7 @@
   }
 
   function seenCount() {
-    return Object.values(state.records).filter((record) => (record?.attempts || 0) > 0).length;
+    return Object.values(state.records).filter(record => (record?.attempts || 0) > 0).length;
   }
 
   function wrongCount() {
@@ -149,28 +169,104 @@
     return Math.round((state.totalCorrect / state.totalAttempts) * 100);
   }
 
-  function chooseSessionTerms(mode) {
+  function baseTier(term) {
+    return priority?.tier(term) || "important";
+  }
+
+  function effectiveTier(term) {
+    return state.wrongTerms[normalise(term)] ? "core" : baseTier(term);
+  }
+
+  function effectiveCoreTerms() {
+    return terms.filter(term => effectiveTier(term) === "core");
+  }
+
+  function tierBadge(term) {
+    const base = baseTier(term);
+    const promoted = base !== "core" && effectiveTier(term) === "core";
+    const label = TIER_LABELS[base] || "重要";
+    return `<span class="tier-badge tier-${escapeHtml(base)}">${escapeHtml(label)}${promoted ? " · 个人核心" : ""}</span>`;
+  }
+
+  function allowedTiersForMode(mode) {
+    if (mode === "all") return ["core", "important", "extended"];
+    if (mode === "priority") return ["core", "important"];
+    return ["core"];
+  }
+
+  function coreSeenCount() {
+    return effectiveCoreTerms().filter(term => getRecord(term).attempts > 0).length;
+  }
+
+  function modeLabel(mode) {
+    if (mode === "wrong") return "错词重听";
+    if (mode === "priority") return "核心 + 重要";
+    if (mode === "all") return "全量 807";
+    return "核心主线";
+  }
+
+  function poolForMode(mode) {
     if (mode === "wrong") {
-      const pool = Object.values(state.wrongTerms)
-        .map((entry) => entry.term)
-        .filter((term) => terms.some((candidate) => normalise(candidate) === normalise(term)));
-      return shuffled(pool, `wrong-${Date.now()}`).slice(0, SESSION_SIZE);
+      return Object.values(state.wrongTerms)
+        .map(entry => entry.term)
+        .filter(term => terms.some(candidate => normalise(candidate) === normalise(term)));
     }
-    const unseen = terms.filter((term) => !state.records[normalise(term)]?.attempts);
-    const seen = terms.filter((term) => state.records[normalise(term)]?.attempts);
-    const ordered = [
-      ...shuffled(unseen, `unseen-${Date.now()}`),
-      ...shuffled(seen, `seen-${Date.now()}`),
-    ];
-    return ordered.slice(0, SESSION_SIZE);
+    if (mode === "all") return terms.slice();
+    if (mode === "priority") return terms.filter(term => effectiveTier(term) !== "extended");
+    return effectiveCoreTerms();
+  }
+
+  function reviewOrder(left, right, salt) {
+    const a = getRecord(left);
+    const b = getRecord(right);
+    if (a.streak !== b.streak) return a.streak - b.streak;
+    if (a.wrong !== b.wrong) return b.wrong - a.wrong;
+    const aSeen = a.lastSeen ? Date.parse(a.lastSeen) || 0 : 0;
+    const bSeen = b.lastSeen ? Date.parse(b.lastSeen) || 0 : 0;
+    if (aSeen !== bSeen) return aSeen - bSeen;
+    return seededRank(left, salt) - seededRank(right, salt);
+  }
+
+  function chooseSessionTerms(mode) {
+    const pool = poolForMode(mode);
+    if (mode === "wrong") return shuffled(pool, `wrong-${Date.now()}`).slice(0, SESSION_SIZE);
+
+    const salt = `${mode}-${Date.now()}`;
+    const allowedTiers = allowedTiersForMode(mode);
+    const activeTier = Vocab807Priority.nextUnseenTier(
+      pool,
+      allowedTiers,
+      effectiveTier,
+      term => getRecord(term).attempts > 0,
+    );
+
+    if (activeTier) {
+      const tierPool = pool.filter(term => effectiveTier(term) === activeTier);
+      const unseen = tierPool.filter(term => !getRecord(term).attempts);
+      const seen = tierPool.filter(term => getRecord(term).attempts);
+      seen.sort((left, right) => reviewOrder(left, right, salt));
+      return [
+        ...shuffled(unseen, `unseen-${activeTier}-${salt}`),
+        ...seen,
+      ].slice(0, SESSION_SIZE);
+    }
+
+    const seen = pool.slice();
+    seen.sort((left, right) => {
+      const tierDelta = allowedTiers.indexOf(effectiveTier(left)) - allowedTiers.indexOf(effectiveTier(right));
+      return tierDelta || reviewOrder(left, right, salt);
+    });
+    return seen.slice(0, SESSION_SIZE);
   }
 
   function createSession(mode) {
-    const baseTerms = chooseSessionTerms(mode);
+    const safeMode = SESSION_MODES.has(mode) ? mode : "core";
+    const baseTerms = chooseSessionTerms(safeMode);
     return {
       id: `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`,
-      mode,
-      queue: baseTerms.map((term) => ({ term, isRetry: false, retryCount: 0 })),
+      orderVersion: 2,
+      mode: safeMode,
+      queue: baseTerms.map(term => ({ term, isRetry: false, retryCount: 0 })),
       totalBase: baseTerms.length,
       answeredBase: 0,
       correctBase: 0,
@@ -181,13 +277,16 @@
 
   function sanitiseSession(session) {
     if (!session || typeof session !== "object" || !Array.isArray(session.queue)) return null;
-    const queue = session.queue.filter((entry) => entry && typeof entry.term === "string").map(entry => ({ ...entry, retryCount: Number.isInteger(entry.retryCount) ? Math.max(0, entry.retryCount) : 0 }));
+    // v1.3 strict-order migration: discard only unfinished old queues; answered history remains in records.
+    if (session.orderVersion !== 2) return null;
+    const queue = session.queue.filter(entry => entry && typeof entry.term === "string").map(entry => ({ ...entry, retryCount: Number.isInteger(entry.retryCount) ? Math.max(0, entry.retryCount) : 0 }));
     if (!queue.length && !session.feedback) return null;
     return {
       ...session,
-      mode: session.mode === "wrong" ? "wrong" : "all",
+      orderVersion: 2,
+      mode: SESSION_MODES.has(session.mode) ? session.mode : "core",
       queue,
-      totalBase: Number.isInteger(session.totalBase) ? session.totalBase : queue.filter((entry) => !entry.isRetry).length,
+      totalBase: Number.isInteger(session.totalBase) ? session.totalBase : queue.filter(entry => !entry.isRetry).length,
       answeredBase: Number.isInteger(session.answeredBase) ? session.answeredBase : 0,
       correctBase: Number.isInteger(session.correctBase) ? session.correctBase : 0,
       wrongBase: Number.isInteger(session.wrongBase) ? session.wrongBase : 0,
@@ -226,35 +325,49 @@
     dayCount.textContent = count;
   }
 
+  function startMode(mode) {
+    if (activeSession && !confirm("替换未完成的队列？已有历史统计会保留。")) return;
+    activeSession = createSession(mode);
+    state.session = activeSession;
+    saveState();
+    renderQuestion();
+  }
+
   function homeScreen() {
     clearTimeout(transitionTimer);
     questionToken++;
     ModuleAudio.stop();
     if ("speechSynthesis" in window) speechSynthesis.cancel();
     activeSession = sanitiseSession(state.session);
-    setHeader("807 听写", `${seenCount()}/${terms.length || "?"}`);
+    const coreTerms = effectiveCoreTerms();
+    const coreSeen = coreSeenCount();
+    setHeader("807 听写", `${coreSeen}/${coreTerms.length || "?"}`);
     const canResume = Boolean(activeSession);
     const wrong = wrongCount();
+    const counts = priority?.counts || { core: 0, important: 0, extended: 0 };
     screen.innerHTML = `
       <section class="home-screen vocab807-home">
         <div class="vocab807-hero">
           <p class="eyebrow">王陆 807 · 听音拼写</p>
-          <h2>只听声音，把英文写出来。</h2>
-          <p>独立题库，不占主 App 的 25+25。优先抽未练词，答错后会在 8–12 题后重新出现。</p>
+          <h2>先把最值钱的词拿下。</h2>
+          <p>默认先练核心词；即使进入“核心 + 重要”或“全量”，也会严格按核心 → 重要 → 扩展推进。做错的词自动进入个人核心池。</p>
         </div>
         <div class="vocab807-stats">
-          <div><strong>${seenCount()}</strong><span>已覆盖</span></div>
+          <div><strong>${coreSeen}/${coreTerms.length}</strong><span>核心进度</span></div>
           <div><strong>${wrong}</strong><span>错词</span></div>
           <div><strong>${accuracy()}%</strong><span>总正确率</span></div>
         </div>
         <div class="vocab807-actions">
-          ${canResume ? `<button id="resume" class="primary">${icon("play")}继续上次训练</button>` : ""}
-          <button id="start" class="${canResume ? "secondary" : "primary"}">${icon("headphones")}开始 30 词</button>
+          ${canResume ? `<button id="resume" class="primary">${icon("play")}继续 ${escapeHtml(modeLabel(activeSession.mode))}</button>` : ""}
+          <button id="start-core" class="${canResume ? "secondary" : "primary"}">${icon("target")}核心主线 · 30 词</button>
+          <button id="start-priority" class="secondary">核心 + 重要</button>
           <button id="wrong" class="secondary" ${wrong ? "" : "disabled"}>${icon("arrow-counter-clockwise")}错词重听 ${wrong ? `(${wrong})` : ""}</button>
+          <button id="start-all" class="text-button">全量 807</button>
         </div>
         <div class="vocab807-note">
           <span>${icon("speaker-high")} 站内合成英音 · ${rate.toFixed(1)}x（非教材原音）</span>
-          <span>词库 ${terms.length} 条去重词项</span>
+          <span>基础分级：核心 ${counts.core} · 重要 ${counts.important} · 扩展 ${counts.extended}（低优先）</span>
+          <span>总覆盖 ${seenCount()}/${terms.length}</span>
         </div>
         <a class="back-link" href="../">${icon("arrow-left")}返回 IELTS Listening</a>
       </section>`;
@@ -266,20 +379,10 @@
         else renderWrong(feedback.entry, feedback.typed, feedback.skipped);
       } else renderQuestion();
     });
-    document.getElementById("start").addEventListener("click", () => {
-      if (activeSession && !confirm("替换未完成的队列？已有历史统计会保留。")) return;
-      activeSession = createSession("all");
-      state.session = activeSession;
-      saveState();
-      renderQuestion();
-    });
-    document.getElementById("wrong").addEventListener("click", () => {
-      if (activeSession && !confirm("替换未完成的队列？已有历史统计会保留。")) return;
-      activeSession = createSession("wrong");
-      state.session = activeSession;
-      saveState();
-      renderQuestion();
-    });
+    document.getElementById("start-core").addEventListener("click", () => startMode("core"));
+    document.getElementById("start-priority").addEventListener("click", () => startMode("priority"));
+    document.getElementById("start-all").addEventListener("click", () => startMode("all"));
+    document.getElementById("wrong").addEventListener("click", () => startMode("wrong"));
   }
 
   function finishSession() {
@@ -292,13 +395,14 @@
     activeSession = null;
     saveState();
     setHeader("本轮完成", `${completed.answeredBase}/${completed.totalBase}`);
-    const rate = completed.answeredBase ? Math.round((completed.correctBase / completed.answeredBase) * 100) : 0;
+    const sessionRate = completed.answeredBase ? Math.round((completed.correctBase / completed.answeredBase) * 100) : 0;
+    const coreTerms = effectiveCoreTerms();
     screen.innerHTML = `
       <section class="result-card vocab807-finish">
         <div class="result-mark correct">${icon("check-circle")}</div>
-        <p class="eyebrow">本轮完成</p>
-        <h2>${completed.correctBase}/${completed.answeredBase} · ${rate}%</h2>
-        <p>已覆盖 ${seenCount()}/${terms.length}，当前错词池 ${wrongCount()} 个。</p>
+        <p class="eyebrow">${escapeHtml(modeLabel(completed.mode))}</p>
+        <h2>${completed.correctBase}/${completed.answeredBase} · ${sessionRate}%</h2>
+        <p>核心进度 ${coreSeenCount()}/${coreTerms.length}，总覆盖 ${seenCount()}/${terms.length}，当前错词池 ${wrongCount()} 个。</p>
         <div class="result-actions">
           <button id="another" class="primary">再来 30 词</button>
           <button id="finish-wrong" class="secondary" ${wrongCount() ? "" : "disabled"}>练错词</button>
@@ -306,7 +410,7 @@
         </div>
       </section>`;
     document.getElementById("another").addEventListener("click", () => {
-      activeSession = createSession("all");
+      activeSession = createSession(completed.mode);
       state.session = activeSession;
       saveState();
       renderQuestion();
@@ -350,11 +454,12 @@
   }
 
   function renderCorrect(term) {
-    setHeader("807 听写", sessionProgressText());
+    setHeader(modeLabel(activeSession?.mode), sessionProgressText());
     screen.innerHTML = `
       <section class="training-card spelling-card quick-correct">
         <div class="result-mark correct">${icon("check-circle")}</div>
         <p class="feedback-label">正确</p>
+        ${tierBadge(term)}
         <h2 class="answer-word">${escapeHtml(term)}</h2>
         ${renderDefinition(term)}
         ${activeSession?.feedback?.reason ? `<p>接受 ${escapeHtml(activeSession.feedback.typed)}：${escapeHtml(activeSession.feedback.reason)}。上方为题库原词。</p>` : ""}
@@ -377,15 +482,16 @@
   }
 
   function renderWrong(entry, typed, skipped) {
-    setHeader("807 听写", sessionProgressText());
+    setHeader(modeLabel(activeSession?.mode), sessionProgressText());
     screen.innerHTML = `
       <section class="training-card spelling-card spelling-result">
         <div class="result-mark wrong">${icon("x-circle")}</div>
         <p class="feedback-label">${skipped ? "先跳过" : "拼写不对"}</p>
+        ${tierBadge(entry.term)}
         <h2 class="answer-word">${escapeHtml(entry.term)}</h2>
         ${renderDefinition(entry.term)}
         ${skipped ? "" : `<p class="typed-answer">你写的是：<strong>${escapeHtml(typed || "（空）")}</strong></p>`}
-        <p class="feedback-sub">已保留到错词池；间隔足够才在本轮回炉，不会马上重复。</p>
+        <p class="feedback-sub">已保留到错词池，并自动提升到个人核心；间隔足够才在本轮回炉。</p>
         <div class="result-actions">
           <button id="replay" class="secondary">${icon("speaker-high")}再听一次</button>
           <button id="continue" class="primary">继续</button>
@@ -412,7 +518,7 @@
     const token = ++questionToken;
     heard = false;
     if (!activeSession) { homeScreen(); return; }
-    if (!activeSession || !activeSession.queue.length) {
+    if (!activeSession.queue.length) {
       finishSession();
       return;
     }
@@ -420,12 +526,15 @@
     activeSession.phase = "question";
     activeSession.feedback = null;
     saveState();
-    setHeader(activeSession.mode === "wrong" ? "807 错词重听" : "807 听写", sessionProgressText());
+    setHeader(`807 ${modeLabel(activeSession.mode)}`, sessionProgressText());
     screen.innerHTML = `
       <section class="training-card spelling-card vocab807-question">
         <div class="training-toolbar">
           <button id="pause" class="text-button">${icon("arrow-left")}暂停</button>
-          <span class="mode-label">${entry.isRetry ? "回炉题" : "听写"}</span>
+          <div class="question-meta">
+            <span class="mode-label">${entry.isRetry ? "回炉题" : escapeHtml(modeLabel(activeSession.mode))}</span>
+            ${tierBadge(entry.term)}
+          </div>
         </div>
         <div class="audio-stage">
           <button id="play" class="audio-button" type="button" aria-label="播放单词">${icon("speaker-high")}</button>
@@ -441,7 +550,7 @@
             <button id="skip" class="secondary" type="button" disabled>不会</button>
           </div>
         </form>
-        <p class="coverage-line">已覆盖 ${seenCount()}/${terms.length} · 错词 ${wrongCount()}</p>
+        <p class="coverage-line">核心 ${coreSeenCount()}/${effectiveCoreTerms().length} · 总覆盖 ${seenCount()}/${terms.length} · 错词 ${wrongCount()}</p>
       </section>`;
     const play = document.getElementById("play");
     const answer = document.getElementById("answer");
@@ -450,7 +559,7 @@
     speed.addEventListener("change", () => { rate = Number(speed.value); state.audioRate = rate; saveState(); speak(entry.term, play); });
     document.getElementById("download-audio").onclick = event => ModuleAudio.download(activeSession.queue.map(item => item.term), event.currentTarget);
     play.addEventListener("click", () => speak(entry.term, play));
-    document.getElementById("spelling-form").addEventListener("submit", (event) => {
+    document.getElementById("spelling-form").addEventListener("submit", event => {
       event.preventDefault();
       handleAnswer(entry, answer.value, false);
     });
@@ -469,7 +578,7 @@
       <section class="empty-card vocab807-loading">
         <div class="result-mark">${icon("cloud-arrow-down")}</div>
         <strong>正在载入 807 词库</strong>
-        <p>首次打开需要联网，成功后会把词表缓存到当前浏览器。</p>
+        <p>同时加载 807 独立优先级；不会读取或改写其他词库。</p>
       </section>`;
   }
 
@@ -488,7 +597,7 @@
 
   async function boot() {
     loadingScreen();
-    versionBadge.textContent = "807 v1.2.0";
+    versionBadge.textContent = "807 v1.3.0";
     try {
       await loadTerms();
       state = loadState();
