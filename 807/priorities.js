@@ -63,6 +63,13 @@
     return rules.sectionTiers?.[section] || rules.defaultTier;
   }
 
+  function nextUnseenTier(terms, allowedTiers, tierOf, seen) {
+    for (const tier of allowedTiers || []) {
+      if (terms.some(term => tierOf(term) === tier && !seen(term))) return tier;
+    }
+    return null;
+  }
+
   function classify(terms, sourceText, rules) {
     validateRules(rules);
     if (!Array.isArray(terms) || !terms.length) throw new Error("807 词表为空");
@@ -139,5 +146,5 @@
     };
   }
 
-  return { normalise, parseSource, classify };
+  return { normalise, parseSource, classify, nextUnseenTier };
 });

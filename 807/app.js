@@ -10,6 +10,7 @@
   const RETRY_MAX_DISTANCE = 12;
   const MAX_RETRIES_PER_TERM = 3;
   const SESSION_MODES = new Set(["core", "priority", "all", "wrong"]);
+  const TIER_LABELS = { core: "核心", important: "重要", extended: "扩展 · 低优先" };
 
   const screen = document.getElementById("screen");
   const screenTitle = document.getElementById("screen-title");
@@ -180,6 +181,19 @@
     return terms.filter(term => effectiveTier(term) === "core");
   }
 
+  function tierBadge(term) {
+    const base = baseTier(term);
+    const promoted = base !== "core" && effectiveTier(term) === "core";
+    const label = TIER_LABELS[base] || "重要";
+    return `<span class="tier-badge tier-${escapeHtml(base)}">${escapeHtml(label)}${promoted ? " · 个人核心" : ""}</span>`;
+  }
+
+  function allowedTiersForMode(mode) {
+    if (mode === "all") return ["core", "important", "extended"];
+    if (mode === "priority") return ["core", "important"];
+    return ["core"];
+  }
+
   function coreSeenCount() {
     return effectiveCoreTerms().filter(term => getRecord(term).attempts > 0).length;
   }
@@ -216,14 +230,33 @@
   function chooseSessionTerms(mode) {
     const pool = poolForMode(mode);
     if (mode === "wrong") return shuffled(pool, `wrong-${Date.now()}`).slice(0, SESSION_SIZE);
-    const unseen = pool.filter(term => !getRecord(term).attempts);
-    const seen = pool.filter(term => getRecord(term).attempts);
+
     const salt = `${mode}-${Date.now()}`;
-    seen.sort((left, right) => reviewOrder(left, right, salt));
-    return [
-      ...shuffled(unseen, `unseen-${salt}`),
-      ...seen,
-    ].slice(0, SESSION_SIZE);
+    const allowedTiers = allowedTiersForMode(mode);
+    const activeTier = Vocab807Priority.nextUnseenTier(
+      pool,
+      allowedTiers,
+      effectiveTier,
+      term => getRecord(term).attempts > 0,
+    );
+
+    if (activeTier) {
+      const tierPool = pool.filter(term => effectiveTier(term) === activeTier);
+      const unseen = tierPool.filter(term => !getRecord(term).attempts);
+      const seen = tierPool.filter(term => getRecord(term).attempts);
+      seen.sort((left, right) => reviewOrder(left, right, salt));
+      return [
+        ...shuffled(unseen, `unseen-${activeTier}-${salt}`),
+        ...seen,
+      ].slice(0, SESSION_SIZE);
+    }
+
+    const seen = pool.slice();
+    seen.sort((left, right) => {
+      const tierDelta = allowedTiers.indexOf(effectiveTier(left)) - allowedTiers.indexOf(effectiveTier(right));
+      return tierDelta || reviewOrder(left, right, salt);
+    });
+    return seen.slice(0, SESSION_SIZE);
   }
 
   function createSession(mode) {
@@ -231,6 +264,7 @@
     const baseTerms = chooseSessionTerms(safeMode);
     return {
       id: `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`,
+      orderVersion: 2,
       mode: safeMode,
       queue: baseTerms.map(term => ({ term, isRetry: false, retryCount: 0 })),
       totalBase: baseTerms.length,
@@ -243,11 +277,14 @@
 
   function sanitiseSession(session) {
     if (!session || typeof session !== "object" || !Array.isArray(session.queue)) return null;
+    // v1.3 strict-order migration: discard only unfinished old queues; answered history remains in records.
+    if (session.orderVersion !== 2) return null;
     const queue = session.queue.filter(entry => entry && typeof entry.term === "string").map(entry => ({ ...entry, retryCount: Number.isInteger(entry.retryCount) ? Math.max(0, entry.retryCount) : 0 }));
     if (!queue.length && !session.feedback) return null;
     return {
       ...session,
-      mode: SESSION_MODES.has(session.mode) ? session.mode : "all",
+      orderVersion: 2,
+      mode: SESSION_MODES.has(session.mode) ? session.mode : "core",
       queue,
       totalBase: Number.isInteger(session.totalBase) ? session.totalBase : queue.filter(entry => !entry.isRetry).length,
       answeredBase: Number.isInteger(session.answeredBase) ? session.answeredBase : 0,
@@ -313,7 +350,7 @@
         <div class="vocab807-hero">
           <p class="eyebrow">王陆 807 · 听音拼写</p>
           <h2>先把最值钱的词拿下。</h2>
-          <p>默认只练核心词。原 1,854 词完整保留；做错的词会自动进入个人核心池，不影响主 App、538 或易混词。</p>
+          <p>默认先练核心词；即使进入“核心 + 重要”或“全量”，也会严格按核心 → 重要 → 扩展推进。做错的词自动进入个人核心池。</p>
         </div>
         <div class="vocab807-stats">
           <div><strong>${coreSeen}/${coreTerms.length}</strong><span>核心进度</span></div>
@@ -329,7 +366,7 @@
         </div>
         <div class="vocab807-note">
           <span>${icon("speaker-high")} 站内合成英音 · ${rate.toFixed(1)}x（非教材原音）</span>
-          <span>基础分级：核心 ${counts.core} · 重要 ${counts.important} · 扩展 ${counts.extended}</span>
+          <span>基础分级：核心 ${counts.core} · 重要 ${counts.important} · 扩展 ${counts.extended}（低优先）</span>
           <span>总覆盖 ${seenCount()}/${terms.length}</span>
         </div>
         <a class="back-link" href="../">${icon("arrow-left")}返回 IELTS Listening</a>
@@ -422,6 +459,7 @@
       <section class="training-card spelling-card quick-correct">
         <div class="result-mark correct">${icon("check-circle")}</div>
         <p class="feedback-label">正确</p>
+        ${tierBadge(term)}
         <h2 class="answer-word">${escapeHtml(term)}</h2>
         ${renderDefinition(term)}
         ${activeSession?.feedback?.reason ? `<p>接受 ${escapeHtml(activeSession.feedback.typed)}：${escapeHtml(activeSession.feedback.reason)}。上方为题库原词。</p>` : ""}
@@ -449,6 +487,7 @@
       <section class="training-card spelling-card spelling-result">
         <div class="result-mark wrong">${icon("x-circle")}</div>
         <p class="feedback-label">${skipped ? "先跳过" : "拼写不对"}</p>
+        ${tierBadge(entry.term)}
         <h2 class="answer-word">${escapeHtml(entry.term)}</h2>
         ${renderDefinition(entry.term)}
         ${skipped ? "" : `<p class="typed-answer">你写的是：<strong>${escapeHtml(typed || "（空）")}</strong></p>`}
@@ -492,7 +531,10 @@
       <section class="training-card spelling-card vocab807-question">
         <div class="training-toolbar">
           <button id="pause" class="text-button">${icon("arrow-left")}暂停</button>
-          <span class="mode-label">${entry.isRetry ? "回炉题" : escapeHtml(modeLabel(activeSession.mode))}</span>
+          <div class="question-meta">
+            <span class="mode-label">${entry.isRetry ? "回炉题" : escapeHtml(modeLabel(activeSession.mode))}</span>
+            ${tierBadge(entry.term)}
+          </div>
         </div>
         <div class="audio-stage">
           <button id="play" class="audio-button" type="button" aria-label="播放单词">${icon("speaker-high")}</button>
